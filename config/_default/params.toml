@@ -16,7 +16,7 @@ DateFormat = "2006-01-02"
 
 [[socialIcons]]
   name = "github"
-  url = "https://github.com/"
+  url = "https://github.com/alexwwang"
 
 # 搜索配置
 [fuseOpts]
