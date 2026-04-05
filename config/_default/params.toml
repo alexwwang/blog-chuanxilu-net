@@ -18,6 +18,23 @@ DateFormat = "2006-01-02"
   name = "github"
   url = "https://github.com/alexwwang"
 
+[comments]
+  enabled = true
+
+  [comments.giscus]
+    repo = "alexwwang/blog-chuanxilu-net"
+    repoId = "R_kgDOR6RFiQ"
+    category = "Announcements"
+    categoryId = "DIC_kwDOR6RFic4C6Gr-"
+    mapping = "pathname"
+    strict = 0
+    reactionsEnabled = 1
+    emitMetadata = 0
+    inputPosition = "top"
+    lightTheme = "light"
+    darkTheme = "dark"
+    lang = "zh-CN"
+
 # 搜索配置
 [fuseOpts]
   isCaseSensitive = false
