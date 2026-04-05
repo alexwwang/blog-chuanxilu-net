@@ -1,0 +1,94 @@
+baseURL = "https://blog.chuanxilu.net/"
+languageCode = "zh-CN"
+defaultContentLanguage = "zh"
+title = "传习录"
+theme = "PaperMod"
+hasCJKLanguage = true
+enableRobotsTXT = true
+enableGitInfo = false
+enableEmoji = true
+
+[pagination]
+  pagerSize = 10
+
+[permalinks]
+  posts = "/posts/:year/:month/:slug/"
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+  series = "series"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[markup]
+  [markup.highlight]
+    style = "dracula"
+    lineNos = false
+    codeFences = true
+    guessSyntax = true
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[minify]
+  disableXML = false
+  minifyOutput = true
+
+[languages]
+  [languages.zh]
+    languageName = "中文"
+    languageCode = "zh-CN"
+    weight = 1
+    title = "能工智人的传习录"
+    [languages.zh.params]
+      description = "知行合一，以 AI 炼器 · 能工智人的实践笔记"
+    [[languages.zh.menu.main]]
+      name = "文章"
+      url = "/posts/"
+      weight = 1
+    [[languages.zh.menu.main]]
+      name = "分类"
+      url = "/categories/"
+      weight = 2
+    [[languages.zh.menu.main]]
+      name = "标签"
+      url = "/tags/"
+      weight = 3
+    [[languages.zh.menu.main]]
+      name = "搜索"
+      url = "/search/"
+      weight = 4
+    [[languages.zh.menu.main]]
+      name = "关于"
+      url = "/about/"
+      weight = 5
+
+  [languages.en]
+    languageName = "English"
+    languageCode = "en-US"
+    weight = 2
+    title = "Chuanxilu of an AI Craftsman"
+    [languages.en.params]
+      description = "Unity of Knowledge and Action · An AI Craftsman's Practice Journal"
+    [[languages.en.menu.main]]
+      name = "Posts"
+      url = "/en/posts/"
+      weight = 1
+    [[languages.en.menu.main]]
+      name = "Categories"
+      url = "/en/categories/"
+      weight = 2
+    [[languages.en.menu.main]]
+      name = "Tags"
+      url = "/en/tags/"
+      weight = 3
+    [[languages.en.menu.main]]
+      name = "Search"
+      url = "/en/search/"
+      weight = 4
+    [[languages.en.menu.main]]
+      name = "About"
+      url = "/en/about/"
+      weight = 5

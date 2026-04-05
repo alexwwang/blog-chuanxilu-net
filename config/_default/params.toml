@@ -1,0 +1,29 @@
+env = "production"
+defaultTheme = "auto"
+showReadingTime = true
+showShareButtons = false
+showPostNavLinks = true
+showBreadCrumbs = true
+showCodeCopyButtons = true
+showToc = true
+TocOpen = false
+DateFormat = "2006-01-02"
+
+# 首页设置 - Home-Info 模式
+[homeInfoParams]
+  Title = "能工智人的传习录"
+  Content = "知行合一，以 AI 炼器\n\n记录 AI 实践、技术思考与生活点滴"
+
+[[socialIcons]]
+  name = "github"
+  url = "https://github.com/"
+
+# 搜索配置
+[fuseOpts]
+  isCaseSensitive = false
+  shouldSort = true
+  location = 0
+  distance = 1000
+  threshold = 0.4
+  minMatchCharLength = 1
+  keys = ["title", "permalink", "summary", "content", "tags"]

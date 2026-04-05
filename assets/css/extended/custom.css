@@ -1,0 +1,17 @@
+:root {
+  --inline-tag-color: #6366f1;
+  --inline-tag-hover: #4f46e5;
+}
+
+.inline-tag {
+  color: var(--inline-tag-color);
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px dotted var(--inline-tag-color);
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.inline-tag:hover {
+  color: var(--inline-tag-hover);
+  border-color: var(--inline-tag-hover);
+}
