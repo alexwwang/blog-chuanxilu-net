@@ -6,11 +6,54 @@
 @import url('https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300..900;1,7..72,300..900&display=swap');
 
 /* Serif font for English body text */
+[lang="en"] .post-description,
 [lang="en"] .post-content p,
 [lang="en"] .post-content li,
 [lang="en"] .post-content td,
 [lang="en"] .post-content blockquote {
   font-family: 'Literata', Georgia, 'Times New Roman', serif;
+}
+
+[lang="en"] .post-content blockquote {
+  margin: 1.5em 0;
+  padding: 1em 1.2em;
+  background: var(--code-bg);
+  border-left: 3px solid var(--primary);
+}
+
+[lang="en"] .post-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* English: square corners for TOC and details */
+[lang="en"] .toc {
+  border-radius: 0;
+}
+
+[lang="en"] .post-content details {
+  margin: 1.5em 0;
+  padding: 1em 1.2em;
+  background: var(--code-bg);
+  border-left: 3px solid var(--primary);
+}
+
+[lang="en"] .post-content details summary {
+  cursor: pointer;
+  font-weight: 500;
+}
+
+[lang="en"] .post-content details summary:hover {
+  color: var(--secondary);
+}
+
+[lang="en"] .post-content details[open] > *:not(summary) {
+  margin-top: 0.8em;
+  padding-top: 0.8em;
+  border-top: 1px solid var(--border);
+}
+
+[lang="en"] .post-content details[open] > *:last-child {
+  margin-bottom: 0;
 }
 
 /* ========================================
@@ -82,6 +125,34 @@
 }
 
 [lang="zh"] .post-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Details/summary: same visual language as blockquote */
+[lang="zh"] .post-content details {
+  margin: 1.5em 0;
+  padding: 1em 1.2em;
+  background: var(--code-bg);
+  border-inline-start: 3px solid var(--primary);
+  border-radius: var(--radius);
+}
+
+[lang="zh"] .post-content details summary {
+  cursor: pointer;
+  font-weight: 500;
+}
+
+[lang="zh"] .post-content details summary:hover {
+  color: var(--secondary);
+}
+
+[lang="zh"] .post-content details[open] > *:not(summary) {
+  margin-top: 0.8em;
+  padding-top: 0.8em;
+  border-top: 1px solid var(--border);
+}
+
+[lang="zh"] .post-content details[open] > *:last-child {
   margin-bottom: 0;
 }
 

@@ -113,7 +113,11 @@ v3 方案在理论上认为：后台子会话只写项目根目录内的 `.refle
   RETRY_DELAY=10
   attempt=0
   while [ $attempt -lt $MAX_RETRIES ]; do
-    claude -p "$(cat prompt.txt)" --session-id $SESSION_ID --model ${REFLECT_SUBAGENT_MODEL:-sonnet} --permission-mode bypassPermissions --output-format json 2>>stderr.log
+    claude -p "$(cat prompt.txt)" \
+      --session-id $SESSION_ID \
+      --model ${REFLECT_SUBAGENT_MODEL:-sonnet} \
+      --permission-mode bypassPermissions \
+      --output-format json 2>>stderr.log
     [ $? -eq 0 ] && break
     attempt=$((attempt + 1))
     sleep $RETRY_DELAY
