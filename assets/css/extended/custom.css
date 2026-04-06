@@ -13,6 +13,94 @@
   font-family: 'Literata', Georgia, 'Times New Roman', serif;
 }
 
+/* ========================================
+   Chinese Typography Optimization
+   ======================================== */
+
+/* 1. Chinese font-family: system font stack */
+[lang="zh"] .post-content {
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    "Source Han Sans SC", "Noto Sans CJK SC", "WenQuanYi Micro Hei",
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", sans-serif;
+}
+
+/* 2. Line-height: Chinese needs more breathing room */
+[lang="zh"] .post-content p,
+[lang="zh"] .post-content li,
+[lang="zh"] .post-content td,
+[lang="zh"] .post-content dd {
+  line-height: 1.75;
+}
+
+/* 3. Paragraph spacing: clearer separation between paragraphs */
+[lang="zh"] .post-content p {
+  margin-bottom: 1.4em;
+}
+
+/* 4. Heading styles: stronger visual hierarchy */
+
+/* h2: add bottom border for clear section breaks */
+[lang="zh"] .post-content h2 {
+  margin-top: 2.5em;
+  margin-bottom: 1.2em;
+  padding-bottom: 0.4em;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.3;
+}
+
+/* h3: more spacing, slightly bolder feel */
+[lang="zh"] .post-content h3 {
+  margin-top: 2em;
+  margin-bottom: 1em;
+  line-height: 1.35;
+}
+
+/* h4: distinguish from body text */
+[lang="zh"] .post-content h4 {
+  margin-top: 1.5em;
+  margin-bottom: 0.8em;
+}
+
+/* 5. List spacing: more room between items */
+[lang="zh"] .post-content li {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+[lang="zh"] .post-content ul,
+[lang="zh"] .post-content ol {
+  margin-bottom: 1.4em;
+}
+
+/* Blockquote: subtle background for emphasis, no italic (Chinese has no italics) */
+[lang="zh"] .post-content blockquote {
+  margin: 1.5em 0;
+  padding: 1em 1.2em;
+  background: var(--code-bg);
+  border-radius: var(--radius);
+}
+
+[lang="zh"] .post-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* 6. TOC: better spacing and readability */
+[lang="zh"] .toc {
+  padding: 0.8em 1em;
+}
+
+[lang="zh"] .toc .inner {
+  margin: 8px 16px;
+  padding: 0 8px;
+  line-height: 1.7;
+}
+
+[lang="zh"] .toc li {
+  margin: 0.3em 0;
+}
+
+/* Inline tag styles */
 .inline-tag {
   color: var(--inline-tag-color);
   text-decoration: none;

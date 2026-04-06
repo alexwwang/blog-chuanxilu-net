@@ -1,6 +1,6 @@
 ---
 title: "claude-code-reflect：同样的元认知，落在不同的土壤"
-date: 2026-04-06T16:00:00+08:00
+date: 2026-04-06T14:56:00+08:00
 draft: false
 description: "同一套反思机制落在不同平台基座上，落地姿态和路径截然不同——从插件安装到权限暗坑到 API 并发，记录 Claude Code 上的真实开发过程。"
 tags: ["AI", "agent", "claude-code", "反思", "claude-code-reflect"]
