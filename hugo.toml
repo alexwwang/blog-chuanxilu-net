@@ -72,6 +72,9 @@ enableEmoji = true
     title = "Chuanxilu for Skilled Homo sapiens"
     [languages.en.params]
       description = "Unity of Knowledge and Action · A Skilled Homo sapiens' Practice Journal"
+    [languages.en.params.homeInfoParams]
+      Title = "Chuanxilu for Skilled Homo sapiens"
+      Content = "Unity of Knowledge and Action, Forged with AI\n\nDocumenting AI practice, technical thinking, and life notes"
     [[languages.en.menu.main]]
       name = "Posts"
       url = "/en/posts/"
