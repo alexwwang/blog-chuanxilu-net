@@ -69,9 +69,9 @@ enableEmoji = true
     languageName = "English"
     languageCode = "en-US"
     weight = 2
-    title = "Chuanxilu of an AI Craftsman"
+    title = "Chuanxilu for Skilled Homo sapiens"
     [languages.en.params]
-      description = "Unity of Knowledge and Action · An AI Craftsman's Practice Journal"
+      description = "Unity of Knowledge and Action · A Skilled Homo sapiens' Practice Journal"
     [[languages.en.menu.main]]
       name = "Posts"
       url = "/en/posts/"

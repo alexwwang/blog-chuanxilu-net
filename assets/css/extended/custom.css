@@ -3,6 +3,16 @@
   --inline-tag-hover: #4f46e5;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300..900;1,7..72,300..900&display=swap');
+
+/* Serif font for English body text */
+[lang="en"] .post-content p,
+[lang="en"] .post-content li,
+[lang="en"] .post-content td,
+[lang="en"] .post-content blockquote {
+  font-family: 'Literata', Georgia, 'Times New Roman', serif;
+}
+
 .inline-tag {
   color: var(--inline-tag-color);
   text-decoration: none;
