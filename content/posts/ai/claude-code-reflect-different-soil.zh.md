@@ -1,5 +1,6 @@
 ---
 title: "claude-code-reflect：同样的元认知，落在不同的土壤"
+slug: "claude-code-reflect-different-soil"
 date: 2026-04-06T14:56:00+08:00
 draft: false
 description: "同一套反思机制落在不同平台基座上，落地姿态和路径截然不同——从插件安装到权限暗坑到 API 并发，记录 Claude Code 上的真实开发过程。"
@@ -11,7 +12,7 @@ toc: true
 
 同样的元认知能力，落在不同的土壤上，发芽的姿态和路径会截然不同。
 
-上一篇 Aristotle（OpenCode 上的反思技能）的核心设计是三个原则：即时触发、会话隔离、人在回路。这些原则听起来平台无关，但当把同一套理念搬到 Claude Code 上时，才发现平台差异比想象中大得多。
+上一篇 [Aristotle：让 AI 学会从错误中反思](/posts/2026/04/aristotle-ai-reflection/) 的核心设计是三个原则：即时触发、会话隔离、人在回路。这些原则听起来平台无关，但当把同一套理念搬到 Claude Code 上时，才发现平台差异比想象中大得多。
 
 ## 第一关：插件体系差异
 
@@ -77,7 +78,7 @@ OMC 带来两个核心能力：
 
 这一步比较顺，v3 方案的核心是把"准备"和"分析"的边界划清楚，把写入权限问题集中解决。接下来才是真正踩的坑。
 
-### 测试发现 bypass 不能丢
+### 测试发现 `bypassPermissions` 不能丢
 
 v3 方案在理论上认为：后台子会话只写项目根目录内的 `.reflect/reflections/{id}/`，理论上不需要 `bypassPermissions`。
 

@@ -1,5 +1,6 @@
 ---
 title: "claude-code-reflect: Same Metacognition, Different Soil"
+slug: "claude-code-reflect-different-soil"
 date: 2026-04-06T14:56:00+08:00
 draft: false
 description: "The same reflection mechanism lands on different platform foundations with very different landing postures and paths—from plugin installation to permission pitfalls to API concurrency, documenting the actual development process on Claude Code."
@@ -11,7 +12,7 @@ toc: true
 
 Same metacognitive ability, different soil. The growing patterns look nothing alike.
 
-My previous post on Aristotle (the reflection skill on OpenCode) had three core principles: immediate trigger, session isolation, human in the loop. These sound platform-agnostic. But when I moved the same philosophy to Claude Code, I discovered something: platform differences are much larger than expected.
+My previous post, [Aristotle: Teaching AI to Reflect on Its Mistakes](/en/posts/2026/04/aristotle-ai-reflection/), had three core principles: immediate trigger, session isolation, human in the loop. These sound platform-agnostic. But when I moved the same philosophy to Claude Code, I discovered something: platform differences are much larger than expected.
 
 ## First Hurdle: Plugin System Differences
 
@@ -19,7 +20,11 @@ Claude Code's plugin and OpenCode's skill are completely different systems. Just
 
 The marketplace.json format was wrong. Plugin installed but wasn't recognized. Skill call path was wrong, system couldn't find the entry point. Loading mechanism misunderstood, configuration changes wouldn't take effect. AI repeatedly failed installation. It took multiple rounds to figure out the correct format and location.
 
-This raises a question: why does the same model-driven Vibe Coding, when designing tasks with the same goals in Claude Code, not even get the plugin system right? The answer: implicit rules of different platforms run deeper than surface differences. I used to think OpenCode's skill system and Claude Code followed the same protocol. Highly similar. In practice, I discovered Claude Code's plugin loading mechanism, configuration format, and path conventions all have detailed differences and extra restrictions. Experience the model accumulated on the first platform can't be directly migrated. Each ecosystem's "common sense" details need to be learned again. Checking documentation is still important. It just shifted from humans checking to teaching AI to check.
+This raises a question: why does the same model-driven Vibe Coding, when designing tasks with the same goals in Claude Code, not even get the plugin system right?
+
+The answer: implicit rules of different platforms run deeper than surface differences. I used to think OpenCode's skill system and Claude Code followed the same protocol. Highly similar. In practice, I discovered Claude Code's plugin loading mechanism, configuration format, and path conventions all have detailed differences and extra restrictions.
+
+Experience the model accumulated on the first platform can't be directly migrated. Each ecosystem's "common sense" details need to be learned again. Checking documentation is still important. It just shifted from humans checking to teaching AI to check.
 
 What looks like "same standard protocol + switch platform" is actually understanding another ecosystem's design details from scratch.
 
@@ -46,7 +51,7 @@ After finally getting the subagent to start (V1 version refactoring introduced t
 
 When the solution hit this bug, it manifested as: user-level rules (like skill updates under `~/.claude/skills/`) precisely needed to write outside the project root directory. But background sub-sessions were designed as non-interactive. The locations they needed to write happened to be on the permission boundary. So **saving files failed**.
 
-## Exploring Around the Pitfall: Solution Iteration v2→v3
+## Exploring Around the Pitfall: Solution Iteration v2 to v3
 
 So I came up with a v2 solution to work around the write permission problem: move all final writes to the user-confirmed interactive session (resumed session). The background sub-session would only do analysis and generate drafts. This way the background sub-session only writes to `.reflect/reflections/{id}/` inside the project root, avoiding that bug.
 
@@ -61,7 +66,7 @@ OMC brings two core capabilities:
 
 2. `project_memory_add_note` / `project_memory_add_directive`, providing structured project memory management. Standalone uses the Write tool to directly write `.reflect/project-memory.json`, functionally equivalent, just without OMC's unified management layer. For this project's usage scenario, the difference is barely perceptible.
 
-So the conclusion is that standalone is completely sufficient. The OMC dependency in the main branch isn't cost-effective:
+Standalone is completely sufficient. The OMC dependency in the main branch isn't cost-effective:
 * First, OMC itself needs separate installation, an extra installation step and cognitive burden for users, while the benefits it brings are already marginal.
 * Second, standalone's file-based solution is more transparent—which file gets written, what gets written, users can see and control completely, fitting this project's human-in-the-loop design philosophy.
 * Third, maintaining two branches itself has ongoing costs. Every time SKILL.md changes, it needs to be synchronized, and I already have the write path redesign big change to do.
@@ -74,13 +79,13 @@ So I had the v3 solution:
 | Background Analysis | Background sub-session | Yes—required for non-interactive writes | `.reflect/reflections/{id}/` |
 | Review+Write | Interactive (resumed) session | No | `.reflect/` + `~/.claude/` |
 
-## Bumpy Implementation Based on v3 Solution
+## Implementing v3: More Pitfalls Ahead
 
 I used a ralph loop to execute the v3 solution changes. Cross-platform path compatibility is a detail—Windows Git Bash and POSIX systems handle paths differently.
 
 This step went relatively smoothly. The v3 solution drew a clear boundary between "preparation" and "analysis," concentrating on solving write permission issues. What came next was where I really stepped into pitfalls.
 
-### Testing Found That Bypass Can't Be Removed
+### Testing Proved That `bypassPermissions` Can't Be Removed
 
 In theory, the background sub-session only writes to `.reflect/reflections/{id}/` inside the project root. So `bypassPermissions` shouldn't be needed.
 
@@ -88,7 +93,7 @@ In practice? Without it, I couldn't even write files. Theory and platform realit
 
 The final solution added back `bypassPermissions`, and at the same time added path restrictions in the prompt as defense in depth: open in permissions, constrained in logic.
 
-A table to review the V1→V3 iteration. Looking back it's simple, but figuring it out really took some effort:
+A table to review the V1→V3 iteration. Looking back, it's simple, but figuring it out really took some effort:
 
 | Dimension | V1 | V2 | V3 |
 |---|---|---|---|
@@ -100,7 +105,7 @@ A table to review the V1→V3 iteration. Looking back it's simple, but figuring 
 
 Iteration isn't linear progress, but constant trade-offs between atomicity, permission safety, and dependency complexity. Each solution solves the previous version's problems, then exposes new boundary conditions.
 
-### Testing Found API Concurrency Errors
+### Testing Revealed API Concurrency Errors
 
 Another problem surfaced during testing. Main session and sub-session share the API endpoint. Concurrent requests triggered ECONNRESET errors.
 
@@ -128,7 +133,7 @@ Since concurrency limits objectively exist, let's add a retry mechanism:
 ) &
 ```
 
-The background pulls up a sub-shell wrapping the `claude -p` call. After failure it waits 10 seconds and retries, up to 3 times. At the same time add a configurable model parameter `REFLECT_SUBAGENT_MODEL`, allowing users to choose the model according to their own API's concurrency limits.
+The script spawns a background sub-shell wrapping the `claude -p` call. After failure it waits 10 seconds and retries, up to 3 times. At the same time add a configurable model parameter `REFLECT_SUBAGENT_MODEL`, allowing users to choose the model according to their own API's concurrency limits.
 
 Verification succeeded, matching expectations. But this is an uncontrollable risk from outside. The current design mechanism can only mitigate its impact, cannot completely eliminate it.
 
@@ -147,7 +152,7 @@ Solving these problems requires platform-level support, or making trade-offs und
 
 ## One more thing: The Value of AI-Driven Testing
 
-The entire testing process was completed by AI. This isn't the point. The point is that several problems discovered during testing were in the blind spot of the original solution documentation: `bypassPermissions` permission is a platform characteristic, not a design problem. API concurrency is an environment limitation, also not a design problem. `heredoc` variable not expanding is a Bash implementation detail, even less a design problem.
+The entire testing process was completed by AI. This isn't the point. The point is that several problems discovered during testing were in the blind spot of the original solution documentation: `bypassPermissions` permission is a platform characteristic, not a design problem. API concurrency is an environment limitation, also not a design problem. `heredoc` variable not expanding is a Bash implementation detail, let alone a design problem.
 
 If designed in traditional ways, these problems might only be exposed after launch. Letting AI test the system, AI can discover unforeseen edge cases in human solutions. This point is worth emphasizing—if you're designing a system, let AI test it. AI isn't just an executor, it's also a participant in design verification.
 

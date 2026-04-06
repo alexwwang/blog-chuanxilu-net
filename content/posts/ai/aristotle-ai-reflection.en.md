@@ -1,5 +1,6 @@
 ---
 title: "Aristotle: Teaching AI to Reflect on Its Mistakes"
+slug: "aristotle-ai-reflection"
 date: 2026-04-06T10:00:00+08:00
 draft: false
 description: "Installing reflection capability into AI coding assistants—when the model makes a mistake, immediately trigger root cause analysis and transform the correction into persistent rules."
@@ -121,6 +122,6 @@ Moving the same philosophy to Claude Code wasn't that simple.
 
 OpenCode has a complete skill system and background task infrastructure. Implementing Aristotle was a natural fit. Claude Code's environment is different. Many capabilities need to be redesigned.
 
-In the next post, I'll talk about this process and the technical challenges encountered. The core philosophy stays the same, but the implementation path is completely different.
+In the [next post](/en/posts/2026/04/claude-code-reflect-different-soil/), I'll talk about this process and the technical challenges encountered. The core philosophy stays the same, but the implementation path is completely different.
 
 The key to mastering AI isn't prompts. It's giving AI the ability to learn from mistakes. This is the starting point of this series. And what I consider the most important point.
