@@ -9,6 +9,9 @@ showToc = true
 TocOpen = false
 DateFormat = "2006-01-02"
 
+[label]
+  icon = "/favicon-32x32.png"
+
 # 首页设置 - Home-Info 模式
 [homeInfoParams]
   Title = "能工智人的传习录"
