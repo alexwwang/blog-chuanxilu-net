@@ -158,4 +158,4 @@ If designed in traditional ways, these problems might only be exposed after laun
 
 ## Next Post Preview
 
-The next post will systematically compare the differences between the two systems—from skill systems to permission models to concurrency control to underlying design philosophy, seeing what the same metacognitive mechanism grows into on different soil, and what insights it gives us for future AI practice.
+Next post: [Trust Boundaries: The Same Idea on Open and Closed Platforms](/en/posts/2026/04/a-trust-boundary-design-experiment/) — systematically comparing the differences between the two systems, from skill systems to permission models to concurrency control to underlying design philosophy, seeing what the same metacognitive mechanism grows into on different soil, and what insights it gives us for future AI practice.
