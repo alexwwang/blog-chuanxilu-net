@@ -1,4 +1,6 @@
 {{- if .Site.Params.comments.enabled -}}
+{{- $lang := .Lang -}}
+{{- if eq $lang "zh" -}}{{- $lang = "zh-CN" -}}{{- end -}}
 <script
   src="https://giscus.app/client.js"
   data-repo="{{ .Site.Params.comments.giscus.repo }}"
@@ -11,7 +13,8 @@
   data-emit-metadata="{{ .Site.Params.comments.giscus.emitMetadata }}"
   data-input-position="{{ .Site.Params.comments.giscus.inputPosition }}"
   data-theme="preferred_color_scheme"
-  data-lang="{{ .Lang }}"
+  data-lang="{{ $lang }}"
+  data-loading="lazy"
   crossorigin="anonymous"
   async
 ></script>
