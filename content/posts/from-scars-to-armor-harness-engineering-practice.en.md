@@ -234,4 +234,4 @@ But deciding "it's time to shift" — that's always human responsibility.
 
 ---
 
-Aristotle project: https://github.com/alexwwang/aristotle
+Aristotle project: [https://github.com/alexwwang/aristotle](https://github.com/alexwwang/aristotle)
