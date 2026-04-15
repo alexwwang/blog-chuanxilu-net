@@ -1,0 +1,91 @@
+# robots.txt — blog.chuanxilu.net
+# 允许所有搜索引擎及主流 AI 爬虫读取
+
+# ── 搜索引擎 ──────────────────────────────
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp          # Yahoo
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Sogou web spider
+Allow: /
+
+User-agent: yandexbot
+Allow: /
+
+User-agent: Facebot        # Facebook / Meta
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: SemrushBot
+Allow: /
+
+# ── AI 搜索与训练爬虫 ─────────────────────
+User-agent: GPTBot          # OpenAI 搜索与训练
+Allow: /
+
+User-agent: ChatGPT-User    # OpenAI ChatGPT 实时检索
+Allow: /
+
+User-agent: OAI-SearchBot   # OpenAI search.chatgpt.com
+Allow: /
+
+User-agent: Google-Extended # Google AI 训练 (Gemini 等)
+Allow: /
+
+User-agent: AdsBot-Google   # Google Ads 爬虫
+Allow: /
+
+User-agent: CCBot           # Common Crawl (训练数据来源)
+Allow: /
+
+User-agent: ClaudeBot       # Anthropic
+Allow: /
+
+User-agent: Anthropic-AI    # Anthropic AI 搜索
+Allow: /
+
+User-agent: Bytespider      # 字节跳动 / 豆包
+Disallow: /
+
+User-agent: PerplexityBot   # Perplexity AI
+Allow: /
+
+User-agent: YouBot          # You.com
+Allow: /
+
+User-agent: Amazonbot       # Amazon
+Allow: /
+
+User-agent: AI2Bot          # Allen Institute for AI
+Allow: /
+
+User-agent: FacebookBot     # Meta AI 训练
+Allow: /
+
+# ── 万能兜底 ───────────────────────────────
+User-agent: *
+Allow: /
+
+# ── 禁止索引的路径 ─────────────────────────
+# (目前无，如需要可在此添加 Disallow 规则)
+
+# ── Sitemap ────────────────────────────────
+{{- if hugo.IsProduction | or (eq site.Params.env "production") }}
+Sitemap: {{ "sitemap.xml" | absURL }}
+{{- end }}
