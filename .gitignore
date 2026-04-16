@@ -6,3 +6,9 @@ node_modules/
 *.swp
 *.swo
 *~
+draft/
+.claude/
+.omc/
+.opencode/
+.playwright-mcp/
+*.bak
