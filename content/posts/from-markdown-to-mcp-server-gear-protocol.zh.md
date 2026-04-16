@@ -1,7 +1,7 @@
 ---
 title: "一份 Markdown 的三次生命：从静态规则到 Git 版本管理的 MCP Server"
 slug: "from-markdown-to-mcp-server-gear-protocol"
-date: 2026-04-17T01:00:00+08:00
+date: 2026-04-16T19:00:00+08:00
 draft: false
 description: "Aristotle 的反思规则最初写在一份 Markdown 文件里，追加、遗忘、无法回滚。当规则积累到几十条，我意识到这份文件已经不够用了——于是踏上了一条从 append-only 到 Git-backed MCP Server 的设计迭代之路。这条路最终引出了一个叫 GEAR 的协议。"
 tags: ["AI", "agent", "opencode", "反思", "aristotle", "驾驭工程", "MCP", "GEAR"]

@@ -1,7 +1,7 @@
 ---
 title: "A Markdown's Three Lives: From Static Rules to Git-Backed MCP Server"
 slug: "from-markdown-to-mcp-server-gear-protocol"
-date: 2026-04-17T01:00:00+08:00
+date: 2026-04-16T19:00:00+08:00
 draft: false
 description: "Aristotle's reflection rules started as a flat Markdown file — append-only, forgotten, no rollback. When dozens of rules accumulated, I realized the file wasn't enough. This started a design iteration path from append-only to Git-backed MCP Server. That path led to something called GEAR."
 tags: ["AI", "agent", "opencode", "reflection", "aristotle", "harness engineering", "MCP", "GEAR"]
