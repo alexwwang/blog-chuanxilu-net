@@ -86,11 +86,13 @@ When writing tests, I found several edge cases — like empty conversation histo
 
 The third commit was the README. Writing down the design philosophy and usage clearly, bringing this project to a close.
 
-The whole process went smoothly without unexpected technical obstacles.
+The whole process went smoothly. 37 static assertions plus E2E tests all passed. The full chain — from trigger to rule generation — ran end to end without a hitch.
 
 Not because the problem was simple. But because OpenCode's infrastructure already solved the hardest parts. The skill system makes implementing custom commands natural. The omo task() background task natively supports session isolation. The session read/write APIs are complete.
 
 I just had to combine these capabilities and express Aristotle's design philosophy with a clear framework.
+
+> *(Added 2026-04-11: The "smoothness" described here turned out to be the smoothness of the tests. What the tests didn't cover — that's a story for part four.)*
 
 ## Reflection Itself Is Worth Reflecting On
 
