@@ -42,7 +42,7 @@ Details in [post one](/en/posts/2026/04/aristotle-ai-reflection/) and [post two]
 
 ---
 
-## Core Theme I: A Tiered Trust Model
+## A Tiered Trust Model
 
 ### A Turning Point
 
@@ -96,7 +96,9 @@ This isn't criticism. It's an honest observation about human-AI collaboration. T
 
 ---
 
-## Core Theme II: Design Philosophy — Who Trusts Whom
+## Design Philosophy — Who Trusts Whom
+
+User trust in AI is only half the picture. How much a platform trusts its developers determines how far that user trust can actually be expressed — and that's a separate layer entirely.
 
 ### OpenCode Treats You Like a Developer
 
@@ -126,7 +128,9 @@ But dig one level deeper. Low platform trust isn't necessarily arrogance — it 
 
 ---
 
-## Extended Discussion: Trust Boundaries in the Wild
+## Trust Boundaries in the Wild
+
+So far this has been about two specific projects. But the same trust dynamics play out at industry scale.
 
 The two layers of trust discussed above aren't abstract theorizing. Two events from the past few months serve as real-world footnotes.
 
