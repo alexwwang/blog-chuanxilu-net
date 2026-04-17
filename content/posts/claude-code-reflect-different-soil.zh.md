@@ -60,9 +60,9 @@ OMC 带来两个核心能力：
 2.  `project_memory_add_note` / `project_memory_add_directive`，提供结构化的 project memory 管理。standalone 用 Write tool 直接写 `.reflect/project-memory.json`，功能等价，只是没有 OMC 的统一管理层。对于这个项目的使用场景来说，差异几乎感知不到。
 
 因此结论是 standalone 完全够用，main 分支的 OMC 依赖性价比不高：
-* 首先，OMC 本身也需要单独安装，对用户是额外的安装步骤和认知负担，而它带来的收益已经很边缘。
-* 其次，standalone 的 file-based 方案更透明——写到哪个文件、写了什么，用户完全可见可控，符合这个项目 human-in-the-loop 的设计哲学。
-* 第三，维护两个分支本身有持续成本，每次 SKILL.md 有改动都要同步，而已经有了 write path redesign 这个大改动要做。
+* 首先，standalone 的 file-based 方案更透明——写到哪个文件、写了什么，用户完全可见可控，符合这个项目 human-in-the-loop 的设计哲学。
+* 其次，OMC 带来的收益已经边际化——notepad 通知的价值在 v3 write path 重设计后大幅下降，project memory 用 Write tool 直接写 JSON 功能等价，说明不是"为了方便放弃了有价值的东西"，而是"它的价值本来就已经不大了"。
+* 第三，OMC 本身需要单独安装，对用户是额外的安装步骤和认知负担，加上维护两个分支的持续成本（每次 SKILL.md 改动都要同步），而已经有了 write path redesign 这个大改动要做。
 
 于是有了 v3 版方案：
 
@@ -143,7 +143,7 @@ v3 方案在理论上认为：后台子会话只写项目根目录内的 `.refle
 
 这些问题的解决需要平台层面的支持，或者在当前约束下做出取舍。工程就是这样，不是所有问题都有完美解法。
 
-## One more thing：AI 驱动测试的价值
+## AI 驱动测试的价值
 
 整个测试流程由 AI 驱动完成。这不是重点，重点是测试中发现的几个问题都在原始方案文档的盲区里：`bypassPermissions` 权限是平台特性，不是设计问题；API 并发是环境限制，也不是设计问题；`heredoc` 变量不展开是 Bash 实现细节，更不是设计问题。
 

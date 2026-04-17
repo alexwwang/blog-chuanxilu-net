@@ -67,9 +67,9 @@ OMC brings two core capabilities:
 2. `project_memory_add_note` / `project_memory_add_directive`, providing structured project memory management. Standalone uses the Write tool to directly write `.reflect/project-memory.json`, functionally equivalent, just without OMC's unified management layer. For this project's usage scenario, the difference is barely perceptible.
 
 Standalone is completely sufficient. The OMC dependency in the main branch isn't cost-effective:
-* First, OMC itself needs separate installation, an extra installation step and cognitive burden for users, while the benefits it brings are already marginal.
-* Second, standalone's file-based solution is more transparent—which file gets written, what gets written, users can see and control completely, fitting this project's human-in-the-loop design philosophy.
-* Third, maintaining two branches itself has ongoing costs. Every time SKILL.md changes, it needs to be synchronized, and I already have the write path redesign big change to do.
+* First, standalone's file-based solution is more transparent—which file gets written, what gets written, users can see and control completely, fitting this project's human-in-the-loop design philosophy.
+* Second, the benefits OMC brings have already been marginalized—after the v3 write path redesign, the notepad notification's value dropped significantly, and project memory using the Write tool to write JSON directly is functionally equivalent. This isn't "giving up something valuable for convenience"—it's "the value was already marginal to begin with."
+* Third, OMC itself needs separate installation, an extra step and cognitive burden for users, plus the ongoing cost of maintaining two branches (every SKILL.md change needs to be synchronized)—and I already have the write path redesign big change to do.
 
 So I had the v3 solution:
 
@@ -150,7 +150,7 @@ Not every problem has an elegant solution. Let's honestly face the unresolved pr
 
 Solving these problems requires platform-level support, or making trade-offs under current constraints. Engineering is like this—not all problems have perfect solutions.
 
-## One more thing: The Value of AI-Driven Testing
+## The Value of AI-Driven Testing
 
 The entire testing process was completed by AI. This isn't the point. The point is that several problems discovered during testing were in the blind spot of the original solution documentation: `bypassPermissions` permission is a platform characteristic, not a design problem. API concurrency is an environment limitation, also not a design problem. `heredoc` variable not expanding is a Bash implementation detail, let alone a design problem.
 
