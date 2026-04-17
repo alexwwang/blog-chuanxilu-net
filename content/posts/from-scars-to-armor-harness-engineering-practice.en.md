@@ -208,7 +208,7 @@ The trust curve across both projects:
 | First Aristotle | Implicit trust — didn't consider boundaries | 371-line full injection, full report retrieval |
 | Discovering problems | Trust calibration — realized boundaries were missing | Promise vs. reality comparison, four architectural defects exposed |
 | Refactoring Aristotle | Active constraints — lock boundaries with code structure | Progressive Disclosure |
-| claude-code-reflect | Passive constraints — platform forces boundaries | bypassPermissions, resumed session |
+| claude-code-reflect | Constrained choices — platform limits shape the design | bypassPermissions, resumed session |
 
 Two paths, same destination. Both converge to: sub-agent analyzes, main session reviews, user approves. The difference is, on OpenCode you have the opportunity to actively choose the correct constraints. On Claude Code, you're forced to find workarounds under platform limits.
 

@@ -210,7 +210,7 @@ Reflect Phase                    Review Phase
 | 初版 Aristotle | 隐式信任——没考虑边界 | 371行全量注入、报告全量取回 |
 | 发现问题 | 信任校准——意识到边界缺失 | 承诺与现实对比，四个架构级缺陷暴露 |
 | 改造 Aristotle | 主动约束——用代码结构锁定边界 | Progressive Disclosure |
-| claude-code-reflect | 被动约束——平台强制边界 | bypassPermissions、resumed session |
+| claude-code-reflect | 条件信任——平台限制倒逼主动设计 | bypassPermissions、resumed session |
 
 两种约束殊途同归：最终都收敛到"子 agent 做分析、主 session 做审核、用户做审批"的职责分离。区别在于，OpenCode 上你有机会主动选择正确的约束，Claude Code 上你不得不在平台限制下寻找变通方案。
 
