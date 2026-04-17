@@ -290,6 +290,8 @@ GEAR defines five roles (O/R/C/L/S), a state machine, a frontmatter schema, and 
 
 ### Δ Decision Factor
 
+This mechanism is part of the GEAR protocol spec but not yet implemented in Aristotle. It is documented here as forward-looking design — the current behavior remains fixed `semi` mode for all rules.
+
 One mechanism in GEAR still in design — Δ decision factor:
 
 ```
