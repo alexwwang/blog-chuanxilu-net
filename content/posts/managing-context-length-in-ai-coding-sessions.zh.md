@@ -3,7 +3,7 @@ title: "上下文腐烂：AI 编程中一个被忽视的问题"
 slug: "managing-context-length-in-ai-coding-sessions"
 date: 2026-04-18T10:00:00+08:00
 draft: false
-description: "群里有朋友抱怨 GPT-5.4 表现还不如豆包，问问题常常不读题就瞎回复。追问之后发现大概率是上下文腐烂了——喂了太多文档，对话轮次太长，模型已经"看不清"当前的任务。这引出了一个被忽视的问题：在 vibe coding 或 writing 的过程中，如何管理好上下文，避免模型表现下降导致的 token 和时间浪费。"
+description: '群里有朋友抱怨 GPT-5.4 表现还不如豆包，问问题常常不读题就瞎回复。追问之后发现大概率是上下文腐烂了——喂了太多文档，对话轮次太长，模型已经"看不清"当前的任务。这引出了一个被忽视的问题：在 vibe coding 或 writing 的过程中，如何管理好上下文，避免模型表现下降导致的 token 和时间浪费。'
 tags: ["AI", "agent", "上下文管理", "context rot", "opencode", "claude-code"]
 categories: ["AI 实践"]
 toc: true
