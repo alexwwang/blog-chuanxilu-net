@@ -9,7 +9,7 @@ categories: ["AI Practice"]
 toc: true
 ---
 
-Yesterday someone in a group chat said GPT-5.4 performed worse than Doubao, ByteDance's chatbot. When they asked questions, the model would often give irrelevant answers without even reading the question. I asked a few follow-up questions and found they had fed it a lot of documents, and the conversation had gone on for many turns. This probably wasn't the model's problem—it was context rot.
+Yesterday someone in a group chat said GPT-5.4 performed worse than Doubao. When they asked questions, the model would often give irrelevant answers without even reading the question. I asked a few follow-up questions and found they had fed it a lot of documents, and the conversation had gone on for many turns. This probably wasn't the model's problem—it was context rot.
 
 I've had similar experiences myself. After talking to a model for a long time, it starts "forgetting" what we discussed earlier, or repeats mistakes that were already corrected. The model hasn't gotten stupider. The conversation has just gotten too long.
 
@@ -71,11 +71,9 @@ A session has been running for two hours. The context is already heavy. You say 
 
 Continuing in the current session means the new task's context has to share space with the old task's history. File contents from the old task, decision reasoning, error corrections—they're all there. According to the context rot principle above, longer context means more severe attention dilution—when the model processes the new task, its attention gets scattered by information from the old task. Worse, the model might "extract" irrelevant patterns from the old task's context, interfering with its judgment on the current task.
 
-**Judgment criterion: if the new task isn't in the same logical unit as the current task, start a new session.** Developing and testing the same feature can be in one session. But developing feature A and designing feature B shouldn't.
-
 Looking back at my data confirms this. That 992-message session on "reflection skill dual-platform blog series planning" contained three logical units: writing the first blog post, writing the second blog post, series planning discussion. By all rights it should have been split into three sessions. But it wasn't—three serialized posts needed coherence, and keeping them in one session let the model "remember" the style and conventions established earlier. This touches on the boundary between compacting and splitting sessions, which Strategy 5 will explore in detail.
 
-**Core judgment: if the new task isn't in the same logical unit as the current task, start a new session.** If multiple tasks have strong dependencies—where later output quality directly depends on earlier context—keep them in the same session, but pair it with proactive compacting. Otherwise, if you're just "doing it on the side," don't be lazy—start a new session.
+**Core judgment: if the new task isn't in the same logical unit as the current task, start a new session.** If multiple tasks have strong dependencies—where later output quality directly depends on earlier context—keep them in the same session, but pair it with proactive compacting. Developing and testing the same feature can share a session, but developing feature A and designing feature B shouldn't. Otherwise, if you're just "doing it on the side," don't be lazy—start a new session.
 
 One rule of thumb: when you find yourself repeatedly reminding the model "we're doing X now, not Y," you should have started a new session long ago.
 
@@ -136,7 +134,7 @@ Rollback has a side effect: after an error is rolled back, there's no trace in t
 
 This is a new feature I'm considering adding to Aristotle: intercept rollback operations, capture the error scene before executing (the wrong instruction, the model's response, the user's correction intent), and trigger a reflection process. The goal isn't just to clean context, but to transform "why rollback was needed" into reusable experience—recording error patterns, trigger conditions, avoidance methods, reducing the likelihood of similar errors happening in the future.
 
-Rollback is the endpoint of context management, but it shouldn't be the endpoint of information. Discarded errors, if properly reflected and recorded, are the cheapest lessons.
+Rollback cleans the context. It shouldn't erase the lesson. Discarded errors, if properly reflected and recorded, are the cheapest lessons.
 
 ## Strategy 5: Compact Proactively, Don't Wait for Auto-Trigger
 
