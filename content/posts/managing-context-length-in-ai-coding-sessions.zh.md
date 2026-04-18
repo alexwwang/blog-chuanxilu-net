@@ -1,5 +1,5 @@
 ---
-title: "上下文腐烂：AI 编程中一个被忽视的问题"
+title: "上下文腐烂：AI编程中一个容易被忽视的问题"
 slug: "managing-context-length-in-ai-coding-sessions"
 date: 2026-04-18T10:00:00+08:00
 draft: false

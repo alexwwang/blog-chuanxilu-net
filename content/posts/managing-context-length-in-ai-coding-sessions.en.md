@@ -1,5 +1,5 @@
 ---
-title: "Context Rot: An Overlooked Problem in AI Coding"
+title: "Context Rot: An Easily Overlooked Problem in AI Coding"
 slug: "managing-context-length-in-ai-coding-sessions"
 date: 2026-04-18T10:00:00+08:00
 draft: false
