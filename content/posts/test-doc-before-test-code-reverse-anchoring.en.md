@@ -3,7 +3,7 @@ title: "Write Test Plans Before Test Code: Requirement Anchoring in AI Developme
 slug: "test-doc-before-test-code-reverse-anchoring"
 date: 2026-04-23T10:00:00+08:00
 draft: false
-description: 'In AI-assisted development, tests are not just verification. They are the most precise requirement language you can give an AI. The full chain from test scenario identification to test development documents, and why this matters far more when the coder is an AI.'
+description: 'In AI-assisted development, tests are not just verification. They are the most precise requirement language you can give an AI. Drawing from my own failures, this article walks through the full chain from test scenario identification to test development documents, and explains why this method matters far more when the coder is an AI.'
 tags: ["AI", "TDD", "testing", "AI-assisted development", "engineering methodology"]
 categories: ["AI Practice"]
 series: ["Taming AI Coding Agents with TDD"]
