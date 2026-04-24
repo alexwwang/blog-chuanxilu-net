@@ -3,7 +3,7 @@ title: "Why AI-Assisted Development Needs Structured Requirements First: Lessons
 slug: "why-aristotle-vibe-development-needs-gear-protocol"
 date: 2026-04-25T00:00:00+08:00
 draft: false
-description: 'Aristotle v1 had a one-line requirement. The reflection task ran inside the main session, polluting 371 lines of context. This article traces that failure to a structural problem: AI fills gaps you leave in your requirements, and it fills them with the most common patterns from its training data. Here is what I learned about writing requirements that leave no room for guessing.'
+description: 'Aristotle v1 had a one-line requirement. The reflection task ran inside the main session, polluting 371 lines of context. This article starts from that failure and walks through why requirement gaps get amplified into systematic bias in AI-assisted development, and how structured methods close those gaps.'
 tags: ["AI", "GEAR", "requirements engineering", "AI-assisted development", "engineering methodology"]
 categories: ["AI Practice"]
 series: ["Taming AI Coding Agents with TDD"]

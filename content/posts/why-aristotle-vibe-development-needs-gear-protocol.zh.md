@@ -3,7 +3,7 @@ title: "为什么 AI 辅助 Aristotle 开发必须从 GEAR 协议开始：需求
 slug: "why-aristotle-vibe-development-needs-gear-protocol"
 date: 2026-04-25T00:00:00+08:00
 draft: false
-description: 'Aristotle 第一版的需求只有一句话，结果反思任务直接在主 session 里跑了起来，371 行上下文被污染。这篇文章从这次翻车出发，讲 AI 辅助开发中需求缺失为什么会被放大成系统性偏差，以及怎么用结构化的方法堵住漏洞。'
+description: 'Aristotle 第一版的需求只有一句话，结果反思任务直接在主 session 里跑了起来，371 行上下文被污染。这篇文章从这次翻车出发，聊聊 AI 辅助开发中需求缺失为什么会被放大成系统性偏差，以及怎么用结构化的方法堵住漏洞。'
 tags: ["AI", "GEAR", "需求工程", "AI 辅助开发", "工程方法论"]
 categories: ["AI 实践"]
 series: ["用 TDD 驯服 AI 编码代理"]
