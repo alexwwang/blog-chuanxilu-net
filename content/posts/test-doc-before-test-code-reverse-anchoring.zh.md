@@ -2,7 +2,7 @@
 title: "先写测试文档，再写测试代码：AI 开发的需求锚定"
 slug: "test-doc-before-test-code-reverse-anchoring"
 date: 2026-04-23T10:00:00+08:00
-draft: true
+draft: false
 description: '在 AI 辅助开发中，测试不仅是验证手段，更是最精确的需求语言。从测试场景识别到测试开发文档的完整链路，以及为什么这套方法在 AI 编码中比在传统开发中更重要。'
 tags: ["AI", "TDD", "测试", "AI 辅助开发", "工程方法论"]
 categories: ["AI 实践"]
