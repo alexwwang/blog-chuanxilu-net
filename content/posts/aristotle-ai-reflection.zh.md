@@ -5,7 +5,7 @@ date: 2026-04-06T10:00:00+08:00
 draft: false
 description: "给 AI 编程助手装上反思能力——当模型犯错时，即时触发根因分析，将纠正经验转化为持久规则。"
 tags: ["AI", "agent", "opencode", "反思", "aristotle"]
-categories: ["AI 实践"]
+categories: ["AI 实践", "让 AI 学会反思"]
 series: ["让 AI 学会反思"]
 toc: true
 ---

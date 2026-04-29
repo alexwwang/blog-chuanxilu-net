@@ -5,7 +5,7 @@ date: 2026-04-16T21:00:00+08:00
 draft: false
 description: "Looking back at the Aristotle project—from initial design to the GEAR protocol—I identified seven distinct collaboration patterns between myself and AI. As AI gets more capable, human judgment doesn't become less important. It becomes more critical."
 tags: ["AI", "agent", "reflection", "aristotle", "human-AI collaboration", "harness engineering"]
-categories: ["AI Practice"]
+categories: ["AI Practice", "Teaching AI to Reflect"]
 series: ["Teaching AI to Reflect"]
 toc: true
 ---

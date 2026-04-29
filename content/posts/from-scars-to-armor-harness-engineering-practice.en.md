@@ -5,7 +5,7 @@ date: 2026-04-11T01:00:00+08:00
 draft: false
 description: "The first version of Aristotle looked smooth. In practice, it exposed four architectural problems. Fixing them validated the trust model and harness engineering framework from Part 3 — every constraint encodes a trust judgment."
 tags: ["AI", "agent", "opencode", "reflection", "aristotle", "harness engineering", "trust"]
-categories: ["AI Practice"]
+categories: ["AI Practice", "Teaching AI to Reflect"]
 series: ["Teaching AI to Reflect"]
 toc: true
 ---

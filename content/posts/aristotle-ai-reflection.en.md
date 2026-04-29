@@ -5,7 +5,7 @@ date: 2026-04-06T10:00:00+08:00
 draft: false
 description: "Installing reflection capability into AI coding assistants—when the model makes a mistake, immediately trigger root cause analysis and transform the correction into persistent rules."
 tags: ["AI", "agent", "opencode", "reflection", "aristotle"]
-categories: ["AI Practice"]
+categories: ["AI Practice", "Teaching AI to Reflect"]
 series: ["Teaching AI to Reflect"]
 toc: true
 ---

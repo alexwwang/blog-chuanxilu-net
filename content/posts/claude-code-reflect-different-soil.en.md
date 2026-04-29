@@ -5,7 +5,7 @@ date: 2026-04-06T14:56:00+08:00
 draft: false
 description: "The same reflection mechanism lands on different platform foundations with very different landing postures and paths—from plugin installation to permission pitfalls to API concurrency, documenting the actual development process on Claude Code."
 tags: ["AI", "agent", "claude-code", "reflection", "claude-code-reflect"]
-categories: ["AI Practice"]
+categories: ["AI Practice", "Teaching AI to Reflect"]
 series: ["Teaching AI to Reflect"]
 toc: true
 ---

@@ -5,7 +5,7 @@ date: 2026-04-11T01:00:00+08:00
 draft: false
 description: "初版 Aristotle 看起来顺利，实际使用却暴露了四个架构级问题。修复它们的过程，恰好验证了第三篇提出的信任分层模型和驾驭工程框架——从上下文隔离到信息流控制到职责分离，每一道约束背后都是一个信任判断。"
 tags: ["AI", "agent", "opencode", "反思", "aristotle", "驾驭工程", "信任"]
-categories: ["AI 实践"]
+categories: ["AI 实践", "让 AI 学会反思"]
 series: ["让 AI 学会反思"]
 toc: true
 ---

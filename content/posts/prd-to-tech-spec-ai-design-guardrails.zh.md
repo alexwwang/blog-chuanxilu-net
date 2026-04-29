@@ -5,7 +5,7 @@ date: 2026-04-29T10:00:00+08:00
 draft: false
 description: '第二次重构 Aristotle 时，需求用 GEAR 协议写清楚了，代码结构也拆分了。但装完发现异步后台根本没生效——agent 还是在主 session 里被拉起。问题不在需求层，在技术方案层。这篇文章讲 PRD 和技术方案各自该写什么，为什么两者缺一不可。'
 tags: ["AI", "TDD", "设计文档", "AI 辅助开发", "工程方法论"]
-categories: ["AI 实践"]
+categories: ["AI 实践", "用 TDD 驯服 AI 编码代理"]
 series: ["用 TDD 驯服 AI 编码代理"]
 toc: true
 ---

@@ -5,7 +5,7 @@ date: 2026-04-16T21:00:00+08:00
 draft: false
 description: "回顾 Aristotle 项目从初版设计到 GEAR 协议的完整开发过程，提炼出七种人机协作模式——从'用户给哲学、AI 填细节'到'反思系统反思设计者自身的错误'。随着 AI 能力增强，人类的判断力不是变得不重要了，而是变得更加关键。"
 tags: ["AI", "agent", "反思", "aristotle", "人机协作", "驾驭工程"]
-categories: ["AI 实践"]
+categories: ["AI 实践", "让 AI 学会反思"]
 series: ["让 AI 学会反思"]
 toc: true
 ---

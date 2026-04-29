@@ -5,7 +5,7 @@ date: 2026-04-06T18:00:00+08:00
 draft: false
 description: "同一个反思机制落在不同平台上，实现复杂度差了一个数量级——但复杂度本身引出了一个更值得谈的问题：我们应该在什么时候信任 AI 的判断，又在什么时候需要插手？"
 tags: ["AI", "agent", "信任", "Aristotle", "claude-code-reflect", "OpenCode", "Claude Code"]
-categories: ["AI 实践"]
+categories: ["AI 实践", "让 AI 学会反思"]
 series: ["让 AI 学会反思"]
 toc: true
 ---

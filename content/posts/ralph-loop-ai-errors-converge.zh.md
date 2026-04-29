@@ -5,7 +5,7 @@ date: 2026-04-29T14:00:00+08:00
 draft: false
 description: '第三篇留下了一个问题：AI 写的文档里的事实性声明，一个人无法逐条核实。这篇文章讲 Ralph Loop——一个多轮审核机制，如何让独立的 AI subagent 审查每个阶段的交付物。它的退出条件借鉴了数学里的收敛概念：一轮干净不代表真干净，连续两轮零问题才是收敛的证据。'
 tags: ["AI", "TDD", "审核机制", "AI 辅助开发", "工程方法论"]
-categories: ["AI 实践"]
+categories: ["AI 实践", "用 TDD 驯服 AI 编码代理"]
 series: ["用 TDD 驯服 AI 编码代理"]
 toc: true
 ---

@@ -5,7 +5,7 @@ date: 2026-04-06T14:56:00+08:00
 draft: false
 description: "同一套反思机制落在不同平台基座上，落地姿态和路径截然不同——从插件安装到权限暗坑到 API 并发，记录 Claude Code 上的真实开发过程。"
 tags: ["AI", "agent", "claude-code", "反思", "claude-code-reflect"]
-categories: ["AI 实践"]
+categories: ["AI 实践", "让 AI 学会反思"]
 series: ["让 AI 学会反思"]
 toc: true
 ---

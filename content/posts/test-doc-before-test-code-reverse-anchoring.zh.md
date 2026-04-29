@@ -5,7 +5,7 @@ date: 2026-04-23T10:00:00+08:00
 draft: false
 description: '在 AI 辅助开发中，测试不仅是验证手段，更是最精确的需求语言。这篇文章从我的失败经历出发，讨论从测试场景识别到测试开发文档的完整链路，以及为什么这套方法在 AI 编码中比在传统开发中更重要。'
 tags: ["AI", "TDD", "测试", "AI 辅助开发", "工程方法论"]
-categories: ["AI 实践"]
+categories: ["AI 实践", "用 TDD 驯服 AI 编码代理"]
 series: ["用 TDD 驯服 AI 编码代理"]
 toc: true
 ---
