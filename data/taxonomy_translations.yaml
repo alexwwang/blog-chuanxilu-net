@@ -1,0 +1,111 @@
+# taxonomy_translations.yaml
+# Cross-language slug mapping for taxonomy terms with different Chinese/English slugs.
+# Used by layouts/partials/extend_head.html to inject hreflang alternates.
+#
+# MAINTENANCE: When adding a new tag/category/series that has different
+# Chinese and English names, add a pair here. Tags with identical slugs
+# in both languages (e.g., "AI", "TDD", "GEAR") do NOT need mapping.
+#
+# Values can be raw terms or pre-urlized slugs — the template applies
+# urlize() to both sides at runtime, so any format works.
+
+pairs:
+
+  # ── Tags ──────────────────────────────────────────────
+  - section: tags
+    zh: "上下文管理"
+    en: "context-management"
+
+  - section: tags
+    zh: "人机协作"
+    en: "human-ai-collaboration"
+
+  - section: tags
+    zh: "信任"
+    en: "trust"
+
+  - section: tags
+    zh: "全流程"
+    en: "full-pipeline"
+
+  - section: tags
+    zh: "反思"
+    en: "reflection"
+
+  - section: tags
+    zh: "回归测试"
+    en: "regression-testing"
+
+  - section: tags
+    zh: "审核机制"
+    en: "review-mechanism"
+
+  - section: tags
+    zh: "工程方法论"
+    en: "engineering-methodology"
+
+  - section: tags
+    zh: "建站"
+    en: "blog"
+
+  - section: tags
+    zh: "根因分析"
+    en: "root-cause-analysis"
+
+  - section: tags
+    zh: "测试"
+    en: "testing"
+
+  - section: tags
+    zh: "程序正义"
+    en: "procedural-justice"
+
+  - section: tags
+    zh: "设计文档"
+    en: "design-docs"
+
+  - section: tags
+    zh: "随笔"
+    en: "thoughts"
+
+  - section: tags
+    zh: "需求工程"
+    en: "requirements-engineering"
+
+  - section: tags
+    zh: "驾驭工程"
+    en: "harness-engineering"
+
+  - section: tags
+    zh: "ai-辅助开发"
+    en: "ai-assisted-development"
+
+  - section: tags
+    zh: "bug-定位"
+    en: "bug-diagnosis"
+
+  # ── Categories ────────────────────────────────────────
+  - section: categories
+    zh: "ai-实践"
+    en: "ai-practice"
+
+  - section: categories
+    zh: "用-tdd-驯服-ai-编码代理"
+    en: "taming-ai-coding-agents-with-tdd"
+
+  - section: categories
+    zh: "让-ai-学会反思"
+    en: "teaching-ai-to-reflect"
+
+  - section: categories
+    zh: "折腾记录"
+    en: "meta"
+
+  # ── Series ────────────────────────────────────────────
+  - section: series
+    zh: "用-tdd-驯服-ai-编码代理"
+    en: "taming-ai-coding-agents-with-tdd"
+
+  - section: series
+    zh: "让-ai-学会反思"
+    en: "teaching-ai-to-reflect"
