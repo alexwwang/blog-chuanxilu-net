@@ -4,7 +4,7 @@ slug: "ai-bug-root-cause-diagnosis"
 date: 2026-05-01T01:00:00+08:00
 draft: false
 description: 'Fix #13, and old bugs come back. This isn''t a "how I fixed a bug with AI" anecdote. It''s a full post-mortem of a 15+ bug battle — four rounds of attribution, regression traps, and how TDD was forced out by pain.'
-tags: ["AI", "bug diagnosis", "root cause analysis", "regression testing", "Aristotle", "AI-assisted development"]
+tags: ["AI", "bug diagnosis", "root cause analysis", "regression testing", "Aristotle", "AI-Assisted Development"]
 categories: ["AI Practice"]
 toc: true
 ---

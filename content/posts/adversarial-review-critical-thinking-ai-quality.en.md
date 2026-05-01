@@ -5,8 +5,8 @@ date: 2026-04-30T10:00:00+08:00
 draft: false
 description: 'Ralph Loop v0.3 encodes procedural justice into the review protocol — structured review output, critical scrutiny, contested issue protocol — so every review decision has evidence, records, and rule-based constraints. Inspired by Robert''s Rules of Order, born 150 years ago.'
 tags: ["AI", "TDD", "Review Mechanism", "Procedural Justice", "AI-Assisted Development"]
-categories: ["AI Practice", "Using TDD to Tame AI Coding Agents"]
-series: ["Using TDD to Tame AI Coding Agents"]
+categories: ["AI Practice", "Taming AI Coding Agents with TDD"]
+series: ["Taming AI Coding Agents with TDD"]
 toc: true
 ---
 

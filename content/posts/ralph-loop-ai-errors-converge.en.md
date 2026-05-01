@@ -4,7 +4,7 @@ slug: "ralph-loop-ai-errors-converge"
 date: 2026-04-29T14:00:00+08:00
 draft: false
 description: 'The tech spec from the previous article shrank the space where AI can improvise. But the spec itself contains assumptions — and some of them are wrong. Ralph Loop is a multi-round review protocol where an independent AI subagent audits every deliverable. Its exit condition borrows from mathematical convergence: one clean round proves nothing. Two consecutive clean rounds prove convergence.'
-tags: ["AI", "TDD", "Code Review", "AI-Assisted Development", "Engineering Methodology"]
+tags: ["AI", "TDD", "Review Mechanism", "AI-Assisted Development", "Engineering Methodology"]
 categories: ["AI Practice", "Taming AI Coding Agents with TDD"]
 series: ["Taming AI Coding Agents with TDD"]
 toc: true

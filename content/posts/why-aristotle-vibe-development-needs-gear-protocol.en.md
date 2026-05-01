@@ -4,7 +4,7 @@ slug: "why-aristotle-vibe-development-needs-gear-protocol"
 date: 2026-04-25T00:00:00+08:00
 draft: false
 description: 'Aristotle v1 had a one-line requirement. The reflection task ran inside the main session, polluting 371 lines of context. This article starts from that failure and walks through why requirement gaps get amplified into systematic bias in AI-assisted development, and how structured methods close those gaps.'
-tags: ["AI", "GEAR", "requirements engineering", "AI-assisted development", "engineering methodology"]
+tags: ["AI", "GEAR", "requirements engineering", "AI-Assisted Development", "Engineering Methodology"]
 categories: ["AI Practice", "Taming AI Coding Agents with TDD"]
 series: ["Taming AI Coding Agents with TDD"]
 toc: true

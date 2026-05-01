@@ -4,7 +4,7 @@ slug: "prd-to-tech-spec-ai-design-guardrails"
 date: 2026-04-29T10:00:00+08:00
 draft: false
 description: 'The second Aristotle refactor had clear requirements, clean code structure, passing tests. But the async background mechanism still did not work. The problem was not in the PRD—it was in the tech spec. This article covers what a PRD should contain, what a tech spec should add, and why both are non-negotiable when AI writes your code.'
-tags: ["AI", "TDD", "design-docs", "AI-assisted-development", "engineering"]
+tags: ["AI", "TDD", "design-docs", "AI-Assisted Development", "Engineering Methodology"]
 categories: ["AI Practice", "Taming AI Coding Agents with TDD"]
 series: ["Taming AI Coding Agents with TDD"]
 toc: true

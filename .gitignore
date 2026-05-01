@@ -12,3 +12,4 @@ draft/
 .opencode/
 .playwright-mcp/
 *.bak
+AGENTS.md
