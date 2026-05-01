@@ -1,7 +1,7 @@
 ---
 title: "The Bug Loop You Can't Escape: Root Cause Diagnosis with AI"
 slug: "ai-bug-root-cause-diagnosis"
-date: 2026-05-01T01:00:00+08:00
+date: 2026-05-01T10:00:00+08:00
 draft: false
 description: 'Fix #13, and old bugs come back. This isn''t a "how I fixed a bug with AI" anecdote. It''s a full post-mortem of a 15+ bug battle — four rounds of attribution, regression traps, and how TDD was forced out by pain.'
 tags: ["AI", "bug diagnosis", "root cause analysis", "regression testing", "Aristotle", "AI-Assisted Development"]
@@ -11,11 +11,13 @@ toc: true
 
 ## 1. The Loop That Never Ends
 
-I was stuck in a dead loop.
+A few days ago, the Aristotle project [1] — aimed at fully implementing the GEAR protocol — finally validated all its core technical pathways. The codebase had gone through its third refactoring, core features were working, and testing was complete. Right before merging the development branch into main for release, I ran a manual test and discovered that SKILL.md instructions weren't being executed correctly — the model received the action but didn't call `task()` to launch a background subagent. Instead, it loaded LEARN.md. From investigating this issue, more bugs kept surfacing:
 
 Fix #1 (SKILL.md context injection), and #3 turned out to be worse — Shell syntax `$(date +%s)` was being injected directly into the main session, leaving a random timestamp command visible on the user's screen. Fix #3, and #5 turned out to be an architectural flaw: when the Reflector session disappeared, every DRAFT report vanished with it. Users clicking "review" hit a wall. Fix #5, run the tests — #1 is back. The AI's fix for one bug had quietly reintroduced another.
 
 Every bug fix moved the progress bar half a step forward and one step back. You think you've fixed 5? Test again. Now there are 8 left — 3 are old bugs that came back, 2 are new ones introduced by the fixes themselves. Shipping felt impossible.
+
+I realized I was stuck in a dead loop.
 
 Through all of this, every line of code, every test script, every fix — written by AI. My job was quality control: reviewing AI output against expectations, giving feedback, pointing out gaps or misinterpretations. But even with AI dramatically speeding up diagnosis and coding, the loop remained unbroken. Faster fixes meant faster regressions too.
 
