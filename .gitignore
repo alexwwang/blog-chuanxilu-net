@@ -13,3 +13,6 @@ draft/
 .playwright-mcp/
 *.bak
 AGENTS.md
+.prompts/
+templates/
+static/favicon-512.png
