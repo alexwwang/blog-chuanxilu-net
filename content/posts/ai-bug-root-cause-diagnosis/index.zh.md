@@ -6,7 +6,11 @@ draft: false
 description: '修了 #13 回头发现老 bug 又回来了——AI 给的修复方案把已修的 bug 又引进来了。这不是一篇「我用 AI 修了一个 bug」的轶事。是一次 15+ bug 上线攻坚的完整复盘，包含四轮归因、回归陷阱、以及 TDD 如何被痛苦逼出来的真实经历。'
 tags: ["AI", "bug 定位", "根因分析", "回归测试", "Aristotle", "AI 辅助开发"]
 categories: ["AI 实践"]
+series: ["让 AI 学会反思"]
 toc: true
+cover:
+  image: "cover.png"
+  alt: "修不完的 bug 死循环：四轮归因与回归测试打破螺旋"
 ---
 
 ## 一、引子：永远修不完的 bug

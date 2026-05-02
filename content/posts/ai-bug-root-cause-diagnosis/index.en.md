@@ -6,7 +6,11 @@ draft: false
 description: 'Fix #13, and old bugs come back. This isn''t a "how I fixed a bug with AI" anecdote. It''s a full post-mortem of a 15+ bug battle — four rounds of attribution, regression traps, and how TDD was forced out by pain.'
 tags: ["AI", "bug diagnosis", "root cause analysis", "regression testing", "Aristotle", "AI-Assisted Development"]
 categories: ["AI Practice"]
+series: ["Teaching AI to Reflect"]
 toc: true
+cover:
+  image: "cover.png"
+  alt: "The bug loop: four rounds of root cause diagnosis and regression tests breaking the spiral"
 ---
 
 ## 1. The Loop That Never Ends
