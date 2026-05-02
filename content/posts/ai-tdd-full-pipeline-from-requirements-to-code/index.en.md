@@ -8,6 +8,9 @@ tags: ["AI", "TDD", "AI-Assisted Development", "Engineering Methodology", "Full 
 categories: ["AI Practice", "Taming AI Coding Agents with TDD"]
 series: ["Taming AI Coding Agents with TDD"]
 toc: true
+cover:
+  image: "cover.png"
+  alt: "Five-stage pipeline from requirements to code, each stage catching what the previous one missed"
 ---
 
 This is the last article in "Taming AI Coding Agents with TDD." The first four covered [requirements disambiguation with the GEAR protocol](/en/posts/2026/04/why-aristotle-vibe-development-needs-gear-protocol/), [tech spec guardrails](/en/posts/2026/04/prd-to-tech-spec-ai-design-guardrails/), [test documents before test code](/en/posts/2026/04/test-doc-before-test-code-reverse-anchoring/), and [convergent review loops](/en/posts/2026/04/ralph-loop-ai-errors-converge/). This one strings them together into a single pipeline you can actually run.

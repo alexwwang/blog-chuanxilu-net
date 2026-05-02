@@ -8,6 +8,9 @@ tags: ["AI", "TDD", "AI 辅助开发", "工程方法论", "全流程"]
 categories: ["AI 实践", "用 TDD 驯服 AI 编码代理"]
 series: ["用 TDD 驯服 AI 编码代理"]
 toc: true
+cover:
+  image: "cover.png"
+  alt: "五阶段完整管线：从需求到代码，每道防线拦截上一层漏过的错误"
 ---
 
 这是"用 TDD 驯服 AI 编码代理"系列的终篇。前四篇分别讲了[需求层](/posts/2026/04/why-aristotle-vibe-development-needs-gear-protocol/)、[设计层](/posts/2026/04/prd-to-tech-spec-ai-design-guardrails/)、[测试层](/posts/2026/04/test-doc-before-test-code-reverse-anchoring/)和[审核层](/posts/2026/04/ralph-loop-ai-errors-converge/)。本篇把它们串成一条可落地的完整管线。
