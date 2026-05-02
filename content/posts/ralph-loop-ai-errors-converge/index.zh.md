@@ -8,6 +8,9 @@ tags: ["AI", "TDD", "审核机制", "AI 辅助开发", "工程方法论"]
 categories: ["AI 实践", "用 TDD 驯服 AI 编码代理"]
 series: ["用 TDD 驯服 AI 编码代理"]
 toc: true
+cover:
+  image: "cover.png"
+  alt: "Ralph Loop：多轮收敛审核，连续两轮零问题才退出"
 ---
 
 这是"用 TDD 驯服 AI 编码代理"系列的第四篇。前三篇按管线顺序讲了[需求层](/posts/2026/04/why-aristotle-vibe-development-needs-gear-protocol/)、[设计层](/posts/2026/04/prd-to-tech-spec-ai-design-guardrails/)和[测试层](/posts/2026/04/test-doc-before-test-code-reverse-anchoring/)。本篇讲最后一道防线——审核机制。

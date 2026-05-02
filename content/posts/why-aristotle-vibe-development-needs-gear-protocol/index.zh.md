@@ -8,6 +8,9 @@ tags: ["AI", "GEAR", "需求工程", "AI 辅助开发", "工程方法论"]
 categories: ["AI 实践", "用 TDD 驯服 AI 编码代理"]
 series: ["用 TDD 驯服 AI 编码代理"]
 toc: true
+cover:
+  image: "cover.png"
+  alt: "结构化需求文档 vs 一句话需求：AI 自动填空的陷阱"
 ---
 
 这是"用 TDD 驯服 AI 编码代理"系列的第二篇。上一篇讲了测试层的需求锚定方法[1]。测试的前提是需求清晰。本篇回头补上游——需求层的消歧实践。

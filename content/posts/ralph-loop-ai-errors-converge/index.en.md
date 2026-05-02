@@ -8,9 +8,10 @@ tags: ["AI", "TDD", "Review Mechanism", "AI-Assisted Development", "Engineering 
 categories: ["AI Practice", "Taming AI Coding Agents with TDD"]
 series: ["Taming AI Coding Agents with TDD"]
 toc: true
----
-
-This is the fourth article in "Taming AI Coding Agents with TDD." The first covered [test-driven requirements anchoring](/en/posts/2026/04/test-doc-before-test-code-reverse-anchoring/), the second introduced [the GEAR protocol for disambiguation](/en/posts/2026/04/why-aristotle-vibe-development-needs-gear-protocol/), the third laid out [what the tech spec must nail down](/en/posts/2026/04/prd-to-tech-spec-ai-design-guardrails/). This one covers the last line of defense: review.
+cover:
+  image: "cover.png"
+  alt: "Ralph Loop: multi-round convergent review, two consecutive clean rounds to exit"
+--- in "Taming AI Coding Agents with TDD." The first covered [test-driven requirements anchoring](/en/posts/2026/04/test-doc-before-test-code-reverse-anchoring/), the second introduced [the GEAR protocol for disambiguation](/en/posts/2026/04/why-aristotle-vibe-development-needs-gear-protocol/), the third laid out [what the tech spec must nail down](/en/posts/2026/04/prd-to-tech-spec-ai-design-guardrails/). This one covers the last line of defense: review.
 
 ## The Problem the Tech Spec Cannot Solve
 

@@ -8,6 +8,9 @@ tags: ["AI", "TDD", "设计文档", "AI 辅助开发", "工程方法论"]
 categories: ["AI 实践", "用 TDD 驯服 AI 编码代理"]
 series: ["用 TDD 驯服 AI 编码代理"]
 toc: true
+cover:
+  image: "cover.png"
+  alt: "PRD 到技术方案：文档是护栏，不是负担"
 ---
 
 这是"用 TDD 驯服 AI 编码代理"系列的第三篇。前两篇分别讲了[测试层的需求锚定](/posts/2026/04/test-doc-before-test-code-reverse-anchoring/)和[需求层的 GEAR 消歧协议](/posts/2026/04/why-aristotle-vibe-development-needs-gear-protocol/)。本篇补中间一环——PRD 做完之后，技术方案该做什么。
