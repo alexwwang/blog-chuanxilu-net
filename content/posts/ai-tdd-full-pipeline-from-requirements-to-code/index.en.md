@@ -84,6 +84,16 @@ Each layer exists to catch what the layer above missed. Skip one, and errors flo
 
 > Full rules: [Convergent review loops](/en/posts/2026/04/ralph-loop-ai-errors-converge/)
 
+### Procedural Justice Stage
+
+- [ ] Did the reviewer output in three structured categories (defects / suggestions / critique)?
+- [ ] Did the main agent make ADOPT/MODIFY/REJECT decisions for each item with documented rationale?
+- [ ] Were rejected C/H/M issues responded to by the reviewer in the next round?
+- [ ] Was the same rationale not reused for rejection?
+- [ ] Were issues unresolved after two contested rounds escalated to the user?
+
+> Full rules: [Procedural justice encoded](/en/posts/2026/04/adversarial-review-critical-thinking-ai-quality/)
+
 ## Aristotle Project Retrospective
 
 Everything in this series came from mistakes I made on the Aristotle project[2]. Three versions. Each failure traced back to the same root cause: a missing process layer.

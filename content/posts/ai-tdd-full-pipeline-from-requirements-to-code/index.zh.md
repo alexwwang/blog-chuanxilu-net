@@ -84,6 +84,16 @@ cover:
 
 > 完整规则参考：[审核层防线](/posts/2026/04/ralph-loop-ai-errors-converge/)
 
+### 程序正义阶段
+
+- ✅ 审查者是否按三类结构输出（缺陷/建议/批判）？
+- ✅ 主代理是否逐项做了 ADOPT/MODIFY/REJECT 决策并记录理由？
+- ✅ 被拒绝的 C/H/M 问题是否在下一轮由审查者回应？
+- ✅ 同一理由是否未被重复用于拒绝？
+- ✅ 两轮争议未决的问题是否已升级给用户？
+
+> 完整规则参考：[程序正义层防线](/posts/2026/04/adversarial-review-critical-thinking-ai-quality/)
+
 ## Aristotle 项目复盘
 
 这个系列的所有方法，都是我在 Aristotle 项目里踩坑踩出来的。三版迭代，每一版的失败都指向同一个根因：流程缺失。
