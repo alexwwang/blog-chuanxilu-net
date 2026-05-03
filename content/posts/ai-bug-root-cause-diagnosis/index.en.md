@@ -155,7 +155,7 @@ Once this process was in place, bug fix velocity jumped immediately. No more tim
 
 ## 4. Victory and Lessons
 
-The day v1.1.0 merged into main, every test was green: 134 pytest + 162 vitest + 358 static = 654 tests [7]. Every former bug had a corresponding test case guarding it. No more worrying about fixes pulling old bugs back to life.
+The day v1.1.0 merged into main, every test was green: 325 pytest + 162 vitest + others = 654 tests [7]. Every former bug had a corresponding test case guarding it. No more worrying about fixes pulling old bugs back to life.
 
 The biggest lesson from this campaign: your job isn't to judge whether AI's conclusions are right or wrong. It's to audit the reliability of AI's reasoning process. AI has three structural blind spots that require human intervention:
 
@@ -183,5 +183,5 @@ AI is not a silver bullet. It's an efficiency amplifier. Your correct decisions 
 4. Aristotle, *Posterior Analytics* I.13 (78a22). Aristotle distinguished hoti (knowing *that*) from dioti (knowing *why*): knowing a fact holds is not the same as knowing why it holds. Genuine scientific knowledge must be established through causes. Overview: <https://plato.stanford.edu/entries/aristotle-causality/>
 5. Duhem, P. *The Aim and Structure of Physical Theory*, 1906. The underdetermination thesis: the same body of empirical evidence can support multiple mutually incompatible theories. Duhem himself was skeptical of "crucial experiments," arguing auxiliary hypotheses can always protect a refuted theory. Popper took the opposing view, arguing that high-risk tests can genuinely distinguish competing hypotheses — what he called "crucial experiments." Overview: <https://plato.stanford.edu/entries/scientific-underdetermination/>
 6. Regression test script: <https://github.com/alexwwang/aristotle/blob/main/test/regression_b1_checks.sh> (39 checkpoints)
-7. Final test counts: 134 pytest + 162 vitest + 358 static = 654, test-coverage merge commit: `bf777fe`
+7. Final test counts: 325 pytest + 162 vitest + others = 654, test-coverage merge commit: `bf777fe`, later count update in commit `cd0a364`
 8. tdd-pipeline project: <https://github.com/alexwwang/tdd-pipeline>
