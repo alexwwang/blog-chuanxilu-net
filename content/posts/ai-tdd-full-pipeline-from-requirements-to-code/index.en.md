@@ -3,17 +3,17 @@ title: "The Full Pipeline: Five Stages from Requirements to Code"
 slug: "ai-tdd-full-pipeline-from-requirements-to-code"
 date: 2026-04-30T14:00:00+08:00
 draft: false
-description: 'Series finale. The previous four articles each covered one layer — requirements, design, testing, review. This one connects them into a working pipeline. Checklists for every stage, a real-project retrospective with hard numbers, and a blunt assessment of when this process is worth the overhead and when it is not.'
+description: 'The previous four articles each covered one layer — requirements, design, testing, review. This one connects them into a working pipeline. Checklists for every stage, a real-project retrospective with hard numbers, and a blunt assessment of when this process is worth the overhead and when it is not.'
 tags: ["AI", "TDD", "AI-Assisted Development", "Engineering Methodology", "Full Pipeline"]
 categories: ["AI Practice", "Taming AI Coding Agents with TDD"]
 series: ["Taming AI Coding Agents with TDD"]
 toc: true
 cover:
   image: "cover.png"
-  alt: "Five-stage pipeline from requirements to code, each stage catching what the previous one missed"
+   alt: "Pipeline from requirements to code, each stage catching what the previous one missed"
 ---
 
-This is the last article in "Taming AI Coding Agents with TDD." The first four covered [requirements disambiguation with the GEAR protocol](/en/posts/2026/04/why-aristotle-vibe-development-needs-gear-protocol/), [tech spec guardrails](/en/posts/2026/04/prd-to-tech-spec-ai-design-guardrails/), [test documents before test code](/en/posts/2026/04/test-doc-before-test-code-reverse-anchoring/), and [convergent review loops](/en/posts/2026/04/ralph-loop-ai-errors-converge/). This one strings them together into a single pipeline you can actually run.
+This is article 6 in "Taming AI Coding Agents with TDD." The first four covered [requirements disambiguation with the GEAR protocol](/en/posts/2026/04/why-aristotle-vibe-development-needs-gear-protocol/), [tech spec guardrails](/en/posts/2026/04/prd-to-tech-spec-ai-design-guardrails/), [test documents before test code](/en/posts/2026/04/test-doc-before-test-code-reverse-anchoring/), and [convergent review loops](/en/posts/2026/04/ralph-loop-ai-errors-converge/). [Article 5](/en/posts/2026/04/adversarial-review-critical-thinking-ai-quality/) upgraded the review layer with procedural justice. This one strings everything together into a single pipeline you can actually run.
 
 ## The Complete Pipeline
 
@@ -160,16 +160,17 @@ In traditional development, an experienced engineer can judge "these acceptance 
 
 ## Series Conclusion
 
-This series ran five articles. It really comes down to one principle:
+This series ran six articles. It really comes down to one principle:
 
 **AI coding agents are not silver bullets. They are amplifiers.** They amplify your engineering capability. They also amplify your engineering debt. Taming them requires stricter process discipline than traditional development.
 
-Four layers, each solving a specific AI problem:
+Five layers, each solving a specific AI problem:
 
 1. **Requirements:** The AI does not ask follow-up questions. Structured clarification questions close the ambiguity gaps.
 2. **Design:** The AI designs around APIs that do not exist. Explicit research checklists verify every assumption.
 3. **Testing:** The AI writes happy-path tests and skips boundary cases. Test documents anchor to requirements, not to implementation.
 4. **Review:** An AI reviewing its own work lacks the independence to catch its own errors. Independent reviewers plus two consecutive rounds with zero issues at any level (C/H/M/L) prove convergence.
+5. **Procedural justice:** Every step of the AI review process is itself untrustworthy by default. The contested issue protocol encodes procedural justice into rules — every step has evidence, records, and constraints.
 
 Process is not a straightjacket. It is the wall that stops the AI from going off the rails.
 
@@ -184,5 +185,6 @@ Process is not a straightjacket. It is the wall that stops the AI from going off
 - Article 2 — Design layer: [PRD to Tech Spec](/en/posts/2026/04/prd-to-tech-spec-ai-design-guardrails/)
 - Article 3 — Testing layer: [Test Documents Before Test Code](/en/posts/2026/04/test-doc-before-test-code-reverse-anchoring/)
 - Article 4 — Review layer: [AI Errors Converge, They Don't Randomize](/en/posts/2026/04/ralph-loop-ai-errors-converge/)
+- Article 5 — Procedural justice layer: [Procedural Justice Encoded](/en/posts/2026/04/adversarial-review-critical-thinking-ai-quality/)
 
 > *The Aristotle project is open source on [GitHub](https://github.com/alexwwang/aristotle) under the MIT license. Issues and PRs welcome.*

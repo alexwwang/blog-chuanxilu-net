@@ -3,7 +3,7 @@ title: "AI 辅助 TDD 全流程：从需求到代码的完整防线"
 slug: "ai-tdd-full-pipeline-from-requirements-to-code"
 date: 2026-04-30T14:00:00+08:00
 draft: false
-description: '系列终篇。把前四篇的需求层、设计层、测试层、审核层串成一条完整管线。每个阶段有 checklist，结尾讨论这套方法的适用边界——严格流程的边际成本随项目复杂度下降，其必要性随 AI 参与度上升而增加。'
+description: '把前四篇的需求层、设计层、测试层、审核层串成一条完整管线。每个阶段有 checklist，结尾讨论这套方法的适用边界——严格流程的边际成本随项目复杂度下降，其必要性随 AI 参与度上升而增加。'
 tags: ["AI", "TDD", "AI 辅助开发", "工程方法论", "全流程"]
 categories: ["AI 实践", "用 TDD 驯服 AI 编码代理"]
 series: ["用 TDD 驯服 AI 编码代理"]
@@ -13,7 +13,7 @@ cover:
   alt: "五阶段完整管线：从需求到代码，每道防线拦截上一层漏过的错误"
 ---
 
-这是"用 TDD 驯服 AI 编码代理"系列的终篇。前四篇分别讲了[需求层](/posts/2026/04/why-aristotle-vibe-development-needs-gear-protocol/)、[设计层](/posts/2026/04/prd-to-tech-spec-ai-design-guardrails/)、[测试层](/posts/2026/04/test-doc-before-test-code-reverse-anchoring/)和[审核层](/posts/2026/04/ralph-loop-ai-errors-converge/)。本篇把它们串成一条可落地的完整管线。
+这是"用 TDD 驯服 AI 编码代理"系列的第 6 篇。前四篇分别讲了[需求层](/posts/2026/04/why-aristotle-vibe-development-needs-gear-protocol/)、[设计层](/posts/2026/04/prd-to-tech-spec-ai-design-guardrails/)、[测试层](/posts/2026/04/test-doc-before-test-code-reverse-anchoring/)和[审核层](/posts/2026/04/ralph-loop-ai-errors-converge/)，[第 5 篇](/posts/2026/04/adversarial-review-critical-thinking-ai-quality/)把审核层升级为程序正义。本篇把它们串成一条可落地的完整管线。
 
 ## 完整流程管线
 
@@ -158,16 +158,17 @@ cover:
 
 ## 系列总结
 
-这个系列写了五篇，其实只在讲一个原则：
+这个系列写了六篇，其实只在讲一个原则：
 
 **AI 编码代理不是银弹。它是放大器。** 既放大你的工程能力，也放大你的工程债务。要驯服它，需要比传统开发更严格的流程纪律。
 
-回顾四层防线，每层解决一个 AI 特有的问题：
+回顾五层防线，每层解决一个 AI 特有的问题：
 
 1. **需求层**：AI 不会追问需求。结构化的澄清提问堵死歧义。
 2. **设计层**：AI 会基于不存在的 API 做设计。显式的调研清单验证每个假设。
 3. **测试层**：AI 会写 happy-path 跳过边界。测试文档锚定在需求上，不锚定在实现上。
 4. **审核层**：AI 审查自己的工作有确认偏误。独立的审查者 + 连续两轮零 C/H/M/L 确认收敛。
+5. **程序正义层**：AI 审核的每一步决策本身不可信。争议协议把程序正义编码进规则——每一步都有证据、有记录、有约束。
 
 流程不是束缚你的枷锁，是帮你挡住 AI 胡来的防线。
 
@@ -179,5 +180,6 @@ cover:
 4. 第 2 篇 设计层防线：[PRD → 技术方案](/posts/2026/04/prd-to-tech-spec-ai-design-guardrails/)
 5. 第 3 篇 测试层防线：[先写测试文档再写测试代码](/posts/2026/04/test-doc-before-test-code-reverse-anchoring/)
 6. 第 4 篇 审核层防线：[Ralph Loop](/posts/2026/04/ralph-loop-ai-errors-converge/)
+7. 第 5 篇 程序正义层防线：[程序正义入协议](/posts/2026/04/adversarial-review-critical-thinking-ai-quality/)
 
 > *Aristotle 项目在 [GitHub](https://github.com/alexwwang/aristotle) 开源，MIT 协议。欢迎提交 Issue 和 PR。*
