@@ -10,7 +10,7 @@ series: ["Taming AI Coding Agents with TDD"]
 toc: true
 cover:
   image: "cover.png"
-   alt: "Pipeline from requirements to code, each stage catching what the previous one missed"
+  alt: "Pipeline from requirements to code, each stage catching what the previous one missed"
 ---
 
 This is article 6 in "Taming AI Coding Agents with TDD." The first four covered [requirements disambiguation with the GEAR protocol](/en/posts/2026/04/why-aristotle-vibe-development-needs-gear-protocol/), [tech spec guardrails](/en/posts/2026/04/prd-to-tech-spec-ai-design-guardrails/), [test documents before test code](/en/posts/2026/04/test-doc-before-test-code-reverse-anchoring/), and [convergent review loops](/en/posts/2026/04/ralph-loop-ai-errors-converge/). [Article 5](/en/posts/2026/04/adversarial-review-critical-thinking-ai-quality/) upgraded the review layer with procedural justice. This one strings everything together into a single pipeline you can actually run.
