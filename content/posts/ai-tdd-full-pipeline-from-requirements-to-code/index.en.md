@@ -81,18 +81,13 @@ Each layer exists to catch what the layer above missed. Skip one, and errors flo
 - [ ] Have C/H/M issues hit zero (gate pass condition)?
 - [ ] Do two consecutive rounds with zero issues at any level (C/H/M/L) trigger early stop?
 - [ ] Can every change be traced to a requirement?
-
-> Full rules: [Convergent review loops](/en/posts/2026/04/ralph-loop-ai-errors-converge/)
-
-### Procedural Justice Stage
-
 - [ ] Did the reviewer output in three structured categories (defects / suggestions / critique)?
 - [ ] Did the main agent make ADOPT/MODIFY/REJECT decisions for each item with documented rationale?
 - [ ] Were rejected C/H/M issues responded to by the reviewer in the next round?
 - [ ] Was the same rationale not reused for rejection?
 - [ ] Were issues unresolved after two contested rounds escalated to the user?
 
-> Full rules: [Procedural justice encoded](/en/posts/2026/04/adversarial-review-critical-thinking-ai-quality/)
+> Full rules: [Convergent review loops](/en/posts/2026/04/ralph-loop-ai-errors-converge/), [Procedural justice encoded](/en/posts/2026/04/adversarial-review-critical-thinking-ai-quality/)
 
 ## Aristotle Project Retrospective
 
@@ -174,13 +169,12 @@ This series ran six articles. It really comes down to one principle:
 
 **AI coding agents are not silver bullets. They are amplifiers.** They amplify your engineering capability. They also amplify your engineering debt. Taming them requires stricter process discipline than traditional development.
 
-Five layers, each solving a specific AI problem:
+Four layers, each solving a specific AI problem:
 
 1. **Requirements:** The AI does not ask follow-up questions. Structured clarification questions close the ambiguity gaps.
 2. **Design:** The AI designs around APIs that do not exist. Explicit research checklists verify every assumption.
 3. **Testing:** The AI writes happy-path tests and skips boundary cases. Test documents anchor to requirements, not to implementation.
-4. **Review:** An AI reviewing its own work lacks the independence to catch its own errors. Independent reviewers plus two consecutive rounds with zero issues at any level (C/H/M/L) prove convergence.
-5. **Procedural justice:** Every step of the AI review process is itself untrustworthy by default. The contested issue protocol encodes procedural justice into rules — every step has evidence, records, and constraints.
+4. **Review:** An AI reviewing its own work lacks the independence to catch its own errors. Independent reviewers, a contested issue protocol, and two consecutive rounds with zero issues at any level (C/H/M/L) prove convergence — every step backed by evidence, records, and rule-based constraints.
 
 Process is not a straightjacket. It is the wall that stops the AI from going off the rails.
 
