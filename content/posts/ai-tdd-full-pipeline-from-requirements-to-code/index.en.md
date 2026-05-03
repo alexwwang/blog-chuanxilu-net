@@ -3,7 +3,7 @@ title: "The Full Pipeline: Five Stages from Requirements to Code"
 slug: "ai-tdd-full-pipeline-from-requirements-to-code"
 date: 2026-04-30T14:00:00+08:00
 draft: false
-description: 'The previous four articles each covered one layer — requirements, design, testing, review. This one connects them into a working pipeline. Checklists for every stage, a real-project retrospective with hard numbers, and a blunt assessment of when this process is worth the overhead and when it is not.'
+description: 'Article 6 in the series. The previous five articles each covered one layer — requirements, design, testing, review, procedural justice. This one connects them into a working pipeline. Checklists for every stage, a real-project retrospective, and a blunt assessment of when this process is worth the overhead.'
 tags: ["AI", "TDD", "AI-Assisted Development", "Engineering Methodology", "Full Pipeline"]
 categories: ["AI Practice", "Taming AI Coding Agents with TDD"]
 series: ["Taming AI Coding Agents with TDD"]

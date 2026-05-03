@@ -3,7 +3,7 @@ title: "AI 辅助 TDD 全流程：从需求到代码的完整防线"
 slug: "ai-tdd-full-pipeline-from-requirements-to-code"
 date: 2026-04-30T14:00:00+08:00
 draft: false
-description: '把前四篇的需求层、设计层、测试层、审核层串成一条完整管线。每个阶段有 checklist，结尾讨论这套方法的适用边界——严格流程的边际成本随项目复杂度下降，其必要性随 AI 参与度上升而增加。'
+description: '系列第 6 篇。把需求层、设计层、测试层、审核层、程序正义层串成一条完整管线。每个阶段有 checklist，结尾讨论这套方法的适用边界——严格流程的边际成本随项目复杂度下降，其必要性随 AI 参与度上升而增加。'
 tags: ["AI", "TDD", "AI 辅助开发", "工程方法论", "全流程"]
 categories: ["AI 实践", "用 TDD 驯服 AI 编码代理"]
 series: ["用 TDD 驯服 AI 编码代理"]
