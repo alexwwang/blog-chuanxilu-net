@@ -2,7 +2,7 @@
 title: "给 AI 套上质量缰绳：追问协议的七个条件"
 slug: "inquiry-protocol-design-2"
 date: 2026-05-05T17:00:00+08:00
-draft: true
+draft: false
 description: '追问协议的终止条件设计：T1-T3 是地板（保证 AI 走得够深），HC1-HC4 是护栏（防止追问失控）。T2 的预防性反事实检验是最关键的洞察。'
 tags: ["AI", "5-Why", "根因分析", "追问协议", "TDD"]
 categories: ["AI 实践", "AI 根因诊断", "追问协议设计"]

@@ -2,7 +2,7 @@
 title: "Seven Conditions to Keep AI's 5-Why from Going Off the Rails"
 slug: "inquiry-protocol-design-2"
 date: 2026-05-05T17:00:00+08:00
-draft: true
+draft: false
 description: "Designing termination conditions for an inquiry protocol: T1–T3 are floor conditions (ensure AI goes deep enough), HC1–HC4 are guardrails (prevent the inquiry from spiraling). T2's preventive counterfactual check is the most important insight."
 tags: ["AI", "5-Why", "root cause analysis", "inquiry protocol", "TDD"]
 categories: ["AI Practice", "AI Root Cause Diagnosis", "Inquiry Protocol Design"]
