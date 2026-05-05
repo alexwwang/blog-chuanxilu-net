@@ -1,19 +1,19 @@
 ---
 title: "Seven Conditions to Keep AI's 5-Why from Going Off the Rails"
 slug: "inquiry-protocol-design-2"
-date: 2026-05-06T10:00:00+08:00
+date: 2026-05-05T17:00:00+08:00
 draft: true
 description: "Designing termination conditions for an inquiry protocol: T1–T3 are floor conditions (ensure AI goes deep enough), HC1–HC4 are guardrails (prevent the inquiry from spiraling). T2's preventive counterfactual check is the most important insight."
 tags: ["AI", "5-Why", "root cause analysis", "inquiry protocol", "TDD"]
 categories: ["AI Practice", "AI Root Cause Diagnosis", "Inquiry Protocol Design"]
 series: ["Taming AI Coding Agents with TDD", "AI Root Cause Diagnosis"]
 toc: true
-# cover:
-#   image: "cover.png"
-#   alt: "Seven conditions to keep AI's 5-Why from going off the rails"
+cover:
+  image: "cover.png"
+  alt: "Seven conditions to keep AI's 5-Why from going off the rails"
 ---
 
-> **TL;DR:** The inquiry protocol sets seven conditions to keep AI's 5-Why on track: T1–T3 are floor conditions (can't stop until all three are met), HC1–HC4 are guardrails (prevent the process from spiraling). T2's preventive counterfactual check is the most important design — by distinguishing preventive framing from patch framing, it simultaneously constrains both stopping too early and confirmation bias.
+> **TL;DR:** The inquiry protocol sets seven conditions to keep AI's 5-Why on track: T1–T3 are floor conditions (can't stop until all three are met), HC1–HC4 are guardrails (prevent the process from spiraling). T2's preventive counterfactual check is the most important design — preventive framing forces the inquiry to go deep, while counterfactual questions deliberately construct negation scenarios to counter confirmation bias.
 
 [← Previous post](/posts/inquiry-protocol-design-1/) The last post diagnosed three problems when AI runs 5-Why: stopping too early (depth insufficient), single-path tracking (breadth insufficient), and confirmation bias (reasoning bias). These three are independent but tend to show up together — a shallow conclusion becomes an anchor, which simultaneously compresses the exploration space and biases evidence selection. This post designs the inquiry protocol: encoding the tacit judgment of "when to stop, when to keep going" that human experts use, into explicit rules that bring AI's reasoning quality up to the standard 5-Why actually requires.
 
