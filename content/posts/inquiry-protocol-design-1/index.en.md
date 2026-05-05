@@ -9,9 +9,9 @@ categories: ["AI Practice", "AI Root Cause Diagnosis", "Inquiry Protocol Design"
 series: ["Taming AI Coding Agents with TDD", "AI Root Cause Diagnosis"]
 toc: true
 aliases: ["/posts/inquiry-protocol-design-1-en/"]
-# cover:
-#   image: "cover.png"
-#   alt: "Why AI Can't Do 5-Why Right: Stopping Too Early, Single-Path Tracking, and Confirmation Bias"
+cover:
+  image: "cover.png"
+  alt: "Why AI Can't Do 5-Why Right: Stopping Too Early, Single-Path Tracking, and Confirmation Bias"
 ---
 
 > **TL;DR:** AI fails at 5-Why in three ways: stopping too early (insufficient depth), single-path tracking (insufficient breadth), and confirmation bias (reasoning distortion). The three are independent but tend to show up together — a shallow conclusion becomes an anchor that compresses the exploration space and biases evidence selection. This post uses a real case where all four rounds of attribution went wrong to dissect each failure mode.
