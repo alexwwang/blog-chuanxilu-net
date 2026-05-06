@@ -1,5 +1,5 @@
 ---
-title: "omo vs omo-slim：一次省钱切换的实测与反思"
+title: "OMO vs SLIM：一次省钱切换的实测与反思"
 slug: "omo-vs-omo-slim-token-comparison"
 date: 2026-05-06T10:00:00+08:00
 draft: false
@@ -9,7 +9,7 @@ categories: ["AI 实践"]
 toc: true
 cover:
   image: "cover.png"
-  alt: "omo vs omo-slim：一次省钱切换的实测与反思"
+  alt: "OMO vs SLIM：一次省钱切换的实测与反思"
 ---
 
 oh-my-openagent（[GitHub](https://github.com/code-yeongyu/oh-my-openagent)，npm 包名 `oh-my-opencode`）和 oh-my-opencode-slim（[GitHub](https://github.com/alvinunreal/oh-my-opencode-slim)）是两个 OpenCode 插件。前者是原版，后者是 fork。下文分别简称为 OMO 和 SLIM。
