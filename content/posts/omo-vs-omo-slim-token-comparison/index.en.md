@@ -12,6 +12,8 @@ cover:
   alt: "OMO vs SLIM: I Switched Plugins to Save Tokens. Here's What Actually Happened."
 ---
 
+**TL;DR:** I switched from OMO to SLIM and ran it for 13 days. Average Tokens per message dropped 3.7% — practically flat. Broken down by task type: coding flat, writing +61%, review -53%, debug +121% (unreliable, tiny sample). Aristotle dropped 68%, but the main cause was an architecture rewrite, not the plugin. "Saving tokens" is not a global fact. It's local. The real differences are in experience and architecture choices, not in token counts.
+
 oh-my-openagent ([GitHub](https://github.com/code-yeongyu/oh-my-openagent), npm package `oh-my-opencode`) and oh-my-opencode-slim ([GitHub](https://github.com/alvinunreal/oh-my-opencode-slim)) are two OpenCode plugins. The first is the original. The second is a fork. I'll call them OMO and SLIM from here on.
 
 OMO goes all-in: 11 agents, prompts up to 1,100 lines, batteries-included. SLIM bets on minimal viable complexity: seven agents, trimmed prompts. SLIM has Council (multi-model voting) and Interview features that OMO lacks. OMO counters with LSP deep integration, hashline edit, ultrawork mode, and model-prompt hard binding.

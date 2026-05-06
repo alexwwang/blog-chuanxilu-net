@@ -12,6 +12,8 @@ cover:
   alt: "OMO vs SLIM：一次省钱切换的实测与反思"
 ---
 
+**TL;DR：** 从 OMO 切换到 SLIM 跑了 13 天，每消息平均 Token 数降了 3.7%，几乎持平。按任务类型拆开后发现：coding 持平，写作贵 61%，review 省 53%，debug 贵 121%（样本不足不可靠）。Aristotle 省 68%，但主因是架构重写不是插件差异。「省钱」不是全局事实，是局部现象。真正的差异在体验和架构选择上，不在 Token 数。
+
 oh-my-openagent（[GitHub](https://github.com/code-yeongyu/oh-my-openagent)，npm 包名 `oh-my-opencode`）和 oh-my-opencode-slim（[GitHub](https://github.com/alvinunreal/oh-my-opencode-slim)）是两个 OpenCode 插件。前者是原版，后者是 fork。下文分别简称为 OMO 和 SLIM。
 
 OMO 走「全家桶」路线，11 个 agent，prompt 能到 1100 行，batteries-included。SLIM 走「最小有效复杂度」路线，7 个 agent，prompt 精简。SLIM 独有 Council 多模型投票和 Interview 功能；OMO 则有 LSP 深度集成、hashline edit、ultrawork 模式、model-prompt 硬绑定这些独门武器。
