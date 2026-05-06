@@ -113,6 +113,6 @@ In short, here's what each condition constrains:
 ## Cross-References
 
 - [Part 1: Why AI Can't Do 5-Why Right](/posts/inquiry-protocol-design-1/)
-- [Part 3: The Last Line of Defense](/posts/inquiry-protocol-design-3/)
+- [Part 3: The Last Line of Defense for Inquiry](/posts/inquiry-protocol-design-3/)
 - The earlier post [The Bug Loop You Can't Escape](/posts/ai-bug-root-cause-diagnosis/) covers four root cause diagnosis lessons from practice
 - tdd-pipeline repository: [https://github.com/alexwwang/tdd-pipeline](https://github.com/alexwwang/tdd-pipeline)

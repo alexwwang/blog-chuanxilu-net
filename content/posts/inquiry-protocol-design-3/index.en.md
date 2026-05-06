@@ -1,16 +1,16 @@
 ---
-title: "The Last Line of Defense: Independent Confirmation and Protocol Reflexivity"
+title: "The Last Line of Defense for Inquiry: Independent Confirmation and Protocol Reflexivity"
 slug: "inquiry-protocol-design-3"
 date: 2026-05-07T10:00:00+08:00
-draft: true
+draft: false
 description: "The inquiry protocol's last line of defense: an independent confirmer uses falsifiability testing to hunt for counterexamples, pushing back against AI's shallow anchoring. Plus the protocol's origin story — from 18 bugs of practice to the v0.4.1 upgrade, and plans for reflexivity."
 tags: ["AI", "5-Why", "root cause analysis", "inquiry protocol", "falsifiability", "Popper"]
 categories: ["AI Practice", "AI Root Cause Diagnosis", "Inquiry Protocol Design"]
 series: ["Taming AI Coding Agents with TDD", "AI Root Cause Diagnosis"]
 toc: true
-# cover:
-#   image: "cover.png"
-#   alt: "The last line of defense: independent confirmation and protocol reflexivity"
+cover:
+  image: "cover.png"
+  alt: "The last line of defense for inquiry: independent confirmation and protocol reflexivity"
 ---
 
 > **TL;DR:** The inquiry protocol's last line of defense is independent confirmation — a perspective free of confirmation bias that runs falsifiability testing to hunt for counterexamples. This post also covers how the protocol came to be (from 18 bugs of practice to a gap found while writing these articles) and plans for future reflexivity.
