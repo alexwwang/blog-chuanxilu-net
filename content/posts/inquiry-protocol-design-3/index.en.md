@@ -1,7 +1,7 @@
 ---
 title: "The Last Line of Defense for Inquiry: Independent Confirmation and Protocol Reflexivity"
 slug: "inquiry-protocol-design-3"
-date: 2026-05-05T09:00:00+08:00
+date: 2026-05-06T09:00:00+08:00
 draft: false
 description: "The inquiry protocol's last line of defense: an independent confirmer uses falsifiability testing to hunt for counterexamples, pushing back against AI's shallow anchoring. Plus the protocol's origin story — from 18 bugs of practice to the v0.4.1 upgrade, and plans for reflexivity."
 tags: ["AI", "5-Why", "root cause analysis", "inquiry protocol", "falsifiability", "Popper"]
