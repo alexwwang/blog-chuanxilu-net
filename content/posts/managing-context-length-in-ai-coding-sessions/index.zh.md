@@ -8,6 +8,7 @@ tags: ["AI", "agent", "上下文管理", "context rot", "opencode", "claude-code
 categories: ["AI 实践"]
 cover:
   image: "cover.png"
+  relative: true
   alt: "上下文腐烂：AI编程中一个容易被忽视的问题"
 toc: true
 ---

@@ -9,6 +9,7 @@ categories: ["AI 实践"]
 toc: true
 cover:
   image: "cover.png"
+  relative: true
   alt: "OMO vs SLIM：一次省钱切换的实测与反思"
 ---
 

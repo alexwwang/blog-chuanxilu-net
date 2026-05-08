@@ -10,6 +10,7 @@ series: ["用 TDD 驯服 AI 编码代理", "AI 根因诊断"]
 toc: true
 cover:
   image: "cover.png"
+  relative: true
   alt: "追问的最后一道防线：独立确认与协议的自反性"
 ---
 

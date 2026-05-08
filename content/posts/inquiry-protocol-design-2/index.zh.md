@@ -10,6 +10,7 @@ series: ["用 TDD 驯服 AI 编码代理", "AI 根因诊断"]
 toc: true
 cover:
   image: "cover.png"
+  relative: true
   alt: "给 AI 套上质量缰绳：追问协议的七个条件"
 ---
 

@@ -10,6 +10,7 @@ series: ["让 AI 学会反思", "用 TDD 驯服 AI 编码代理"]
 toc: true
 cover:
   image: "cover.png"
+  relative: true
   alt: "六种 bug 模式：组件各自正确，集成后破碎，诊断性复盘中浮现规律"
 ---
 

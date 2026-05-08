@@ -9,6 +9,7 @@ categories: ["AI 实践", "让 AI 学会反思"]
 series: ["让 AI 学会反思"]
 cover:
   image: "cover.png"
+  relative: true
   alt: "信任边界：开放系统与受限系统之间的检查点概念图"
 toc: true
 ---

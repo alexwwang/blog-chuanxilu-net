@@ -10,6 +10,7 @@ series: ["用 TDD 驯服 AI 编码代理"]
 toc: true
 cover:
   image: "cover.png"
+  relative: true
   alt: "程序正义入协议：对抗式审核，每一步决策都可验证"
 ---
 

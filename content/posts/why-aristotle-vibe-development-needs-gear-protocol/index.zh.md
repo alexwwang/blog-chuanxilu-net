@@ -10,6 +10,7 @@ series: ["用 TDD 驯服 AI 编码代理"]
 toc: true
 cover:
   image: "cover.png"
+  relative: true
   alt: "结构化需求文档 vs 一句话需求：AI 自动填空的陷阱"
 ---
 

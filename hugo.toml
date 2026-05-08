@@ -32,6 +32,9 @@ enableEmoji = true
     [markup.goldmark.renderer]
       unsafe = true
 
+[params]
+  author = "Alex Wang"
+
 [minify]
   disableXML = false
   minifyOutput = true

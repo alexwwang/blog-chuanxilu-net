@@ -9,6 +9,7 @@ categories: ["AI Practice"]
 toc: true
 cover:
   image: "cover.png"
+  relative: true
   alt: "OMO vs SLIM: I Switched Plugins to Save Tokens. Here's What Actually Happened."
 ---
 

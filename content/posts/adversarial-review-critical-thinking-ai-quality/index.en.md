@@ -10,6 +10,7 @@ series: ["Taming AI Coding Agents with TDD"]
 toc: true
 cover:
   image: "cover.png"
+  relative: true
   alt: "Procedural justice encoded: adversarial review where every decision is verifiable"
 ---
 

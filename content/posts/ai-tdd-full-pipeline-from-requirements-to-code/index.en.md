@@ -10,6 +10,7 @@ series: ["Taming AI Coding Agents with TDD"]
 toc: true
 cover:
   image: "cover.png"
+  relative: true
   alt: "Pipeline from requirements to code, each stage catching what the previous one missed"
 ---
 

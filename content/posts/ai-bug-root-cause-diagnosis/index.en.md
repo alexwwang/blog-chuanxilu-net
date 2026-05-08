@@ -10,6 +10,7 @@ series: ["Teaching AI to Reflect"]
 toc: true
 cover:
   image: "cover.png"
+  relative: true
   alt: "The bug loop: four rounds of root cause diagnosis and regression tests breaking the spiral"
 ---
 

@@ -9,6 +9,7 @@ categories: ["AI 实践", "让 AI 学会反思"]
 series: ["让 AI 学会反思"]
 cover:
   image: "cover.png"
+  relative: true
   alt: "四道伤疤化为铠甲：从架构缺陷到Progressive Disclosure重构"
 toc: true
 ---

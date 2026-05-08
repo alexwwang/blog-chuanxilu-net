@@ -10,6 +10,7 @@ series: ["用 TDD 驯服 AI 编码代理"]
 toc: true
 cover:
   image: "cover.png"
+  relative: true
   alt: "Ralph Loop：多轮收敛审核，连续两轮零问题才退出"
 ---
 

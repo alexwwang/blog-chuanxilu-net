@@ -10,6 +10,7 @@ series: ["用 TDD 驯服 AI 编码代理"]
 toc: true
 cover:
   image: "cover.png"
+  relative: true
   alt: "PRD 到技术方案：文档是护栏，不是负担"
 ---
 

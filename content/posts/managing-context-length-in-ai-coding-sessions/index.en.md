@@ -8,6 +8,7 @@ tags: ["AI", "agent", "context management", "context rot", "opencode", "claude-c
 categories: ["AI Practice"]
 cover:
   image: "cover.png"
+  relative: true
   alt: "Context rot: an easily overlooked problem in AI coding"
 toc: true
 ---

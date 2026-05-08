@@ -9,6 +9,7 @@ categories: ["AI 实践", "用 TDD 驯服 AI 编码代理"]
 series: ["用 TDD 驯服 AI 编码代理"]
 cover:
   image: "cover.png"
+  relative: true
   alt: "需求锚定：测试方案文档先于测试代码先于业务代码"
 toc: true
 ---

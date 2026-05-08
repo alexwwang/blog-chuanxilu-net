@@ -9,6 +9,7 @@ categories: ["AI 实践", "让 AI 学会反思"]
 series: ["让 AI 学会反思"]
 cover:
   image: "cover.png"
+  relative: true
   alt: "Aristotle 反思系统概念图"
 toc: true
 ---

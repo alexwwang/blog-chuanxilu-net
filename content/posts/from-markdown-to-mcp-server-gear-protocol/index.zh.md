@@ -9,6 +9,7 @@ categories: ["AI 实践", "让 AI 学会反思"]
 series: ["让 AI 学会反思"]
 cover:
   image: "cover.png"
+  relative: true
   alt: "一份Markdown的三次生命：从静态规则到Git版本管理的MCP Server"
 toc: true
 ---

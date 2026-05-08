@@ -11,6 +11,7 @@ toc: true
 aliases: ["/posts/inquiry-protocol-design-1-en/"]
 cover:
   image: "cover.png"
+  relative: true
   alt: "Why AI Can't Do 5-Why Right: Stopping Too Early, Single-Path Tracking, and Confirmation Bias"
 ---
 

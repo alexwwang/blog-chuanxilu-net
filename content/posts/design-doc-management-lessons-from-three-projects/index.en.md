@@ -9,6 +9,7 @@ categories: ["AI Practice"]
 toc: true
 cover:
   image: "cover.png"
+  relative: true
   alt: "Design docs dissolving after git rebase, a git worktree branch shielding them safely"
 ---
 

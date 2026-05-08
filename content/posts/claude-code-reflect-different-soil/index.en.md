@@ -9,6 +9,7 @@ categories: ["AI Practice", "Teaching AI to Reflect"]
 series: ["Teaching AI to Reflect"]
 cover:
   image: "cover.png"
+  relative: true
   alt: "Same metacognition landing on different platform soils"
 toc: true
 ---

@@ -10,6 +10,7 @@ series: ["Taming AI Coding Agents with TDD", "AI Root Cause Diagnosis"]
 toc: true
 cover:
   image: "cover.png"
+  relative: true
   alt: "The last line of defense for inquiry: independent confirmation and protocol reflexivity"
 ---
 

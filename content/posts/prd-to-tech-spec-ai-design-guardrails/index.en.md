@@ -10,6 +10,7 @@ series: ["Taming AI Coding Agents with TDD"]
 toc: true
 cover:
   image: "cover.png"
+  relative: true
   alt: "PRD to tech spec: documents as guardrails, not burden"
 --- in the "Taming AI Coding Agents with TDD" series. The first covered [test-driven requirements anchoring](/en/posts/2026/04/test-doc-before-test-code-reverse-anchoring/), the second covered [the GEAR protocol for requirements disambiguation](/en/posts/2026/04/why-aristotle-vibe-development-needs-gear-protocol/). This one fills the gap between them: after the PRD is done, what must the tech spec cover?
 

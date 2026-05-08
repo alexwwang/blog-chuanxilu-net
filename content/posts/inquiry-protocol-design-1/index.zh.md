@@ -10,6 +10,7 @@ series: ["用 TDD 驯服 AI 编码代理", "AI 根因诊断"]
 toc: true
 cover:
   image: "cover.png"
+  relative: true
   alt: "AI 用不好 5-Why：浅尝辄止、单线追踪与确认偏差"
 ---
 

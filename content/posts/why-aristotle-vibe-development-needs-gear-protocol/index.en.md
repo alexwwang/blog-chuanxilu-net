@@ -10,6 +10,7 @@ series: ["Taming AI Coding Agents with TDD"]
 toc: true
 cover:
   image: "cover.png"
+  relative: true
   alt: "Structured requirements vs one-liner: the trap of AI auto-filling gaps"
 --- in the "Taming AI Coding Agents with TDD" series. The first article covered requirement anchoring at the test layer[1]. Tests assume clear requirements. This one goes upstream — to the practice of disambiguating requirements before a single line of code gets written.
 

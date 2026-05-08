@@ -9,6 +9,7 @@ categories: ["AI Practice", "Teaching AI to Reflect"]
 series: ["Teaching AI to Reflect"]
 cover:
   image: "cover.png"
+  relative: true
   alt: "A Markdown's three lives: from static rules to Git-backed MCP Server"
 toc: true
 ---

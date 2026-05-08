@@ -10,6 +10,7 @@ series: ["Taming AI Coding Agents with TDD", "AI Root Cause Diagnosis"]
 toc: true
 cover:
   image: "cover.png"
+  relative: true
   alt: "Seven conditions to keep AI's 5-Why from going off the rails"
 ---
 

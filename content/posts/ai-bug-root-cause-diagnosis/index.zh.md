@@ -10,6 +10,7 @@ series: ["让 AI 学会反思"]
 toc: true
 cover:
   image: "cover.png"
+  relative: true
   alt: "修不完的 bug 死循环：四轮归因与回归测试打破螺旋"
 ---
 

@@ -9,6 +9,7 @@ categories: ["AI Practice", "Teaching AI to Reflect"]
 series: ["Teaching AI to Reflect"]
 cover:
   image: "cover.png"
+  relative: true
   alt: "Seven human-AI collaboration patterns from the Aristotle project"
 toc: true
 ---

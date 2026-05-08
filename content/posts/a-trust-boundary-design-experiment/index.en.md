@@ -9,6 +9,7 @@ categories: ["AI Practice", "Teaching AI to Reflect"]
 series: ["Teaching AI to Reflect"]
 cover:
   image: "cover.png"
+  relative: true
   alt: "Trust boundary checkpoint between open and constrained AI ecosystems"
 toc: true
 ---

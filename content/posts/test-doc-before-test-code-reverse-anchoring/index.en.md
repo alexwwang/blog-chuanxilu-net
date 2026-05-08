@@ -9,6 +9,7 @@ categories: ["AI Practice", "Taming AI Coding Agents with TDD"]
 series: ["Taming AI Coding Agents with TDD"]
 cover:
   image: "cover.png"
+  relative: true
   alt: "Requirement anchoring: test plan before test code before business code"
 toc: true
 ---

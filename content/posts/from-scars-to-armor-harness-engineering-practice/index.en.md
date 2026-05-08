@@ -9,6 +9,7 @@ categories: ["AI Practice", "Teaching AI to Reflect"]
 series: ["Teaching AI to Reflect"]
 cover:
   image: "cover.png"
+  relative: true
   alt: "From scars to armor: Progressive Disclosure architecture reforged from four defects"
 toc: true
 ---

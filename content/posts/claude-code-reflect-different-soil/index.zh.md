@@ -9,6 +9,7 @@ categories: ["AI 实践", "让 AI 学会反思"]
 series: ["让 AI 学会反思"]
 cover:
   image: "cover.png"
+  relative: true
   alt: "同样的元认知落在不同平台土壤上的概念图"
 toc: true
 ---

@@ -10,6 +10,7 @@ series: ["Teaching AI to Reflect", "Taming AI Coding Agents with TDD"]
 toc: true
 cover:
   image: "cover.png"
+  relative: true
   alt: "Six bug patterns: components correct in isolation, broken after integration, diagnostic clarity emerging from chaos"
 ---
 

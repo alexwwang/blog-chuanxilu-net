@@ -9,6 +9,7 @@ categories: ["AI 实践"]
 toc: true
 cover:
   image: "cover.png"
+  relative: true
   alt: "设计文档在 rebase 后灰飞烟灭，git worktree 分支为其提供安全庇护"
 ---
 

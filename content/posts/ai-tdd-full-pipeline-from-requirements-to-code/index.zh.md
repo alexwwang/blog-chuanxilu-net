@@ -10,6 +10,7 @@ series: ["用 TDD 驯服 AI 编码代理"]
 toc: true
 cover:
   image: "cover.png"
+  relative: true
   alt: "五阶段完整管线：从需求到代码，每道防线拦截上一层漏过的错误"
 ---
 
