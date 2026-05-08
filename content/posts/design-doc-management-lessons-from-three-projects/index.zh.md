@@ -1,7 +1,7 @@
 ---
 title: "rebase 一敲，三天设计草稿灰飞烟灭——用 git worktree 拯救 AI 的设计文档"
 slug: "design-doc-management-lessons-from-three-projects"
-date: 2026-05-08T16:00:00+08:00
+date: 2026-05-08T15:00:00+08:00
 draft: false
 description: 'AI 辅助开发产生大量设计文档，它们被 .gitignore 忽略、被 git rebase 静默删除、被 git reflog 永远无法恢复。本文介绍一种基于 git worktree 的轻量方案，用独立的本地分支保护设计文档，并以多个项目的实战数据做佐证。'
 tags: ["AI", "设计文档", "git worktree", "AI辅助开发", "文档管理"]
