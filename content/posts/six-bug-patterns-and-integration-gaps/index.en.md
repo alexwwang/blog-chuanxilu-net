@@ -2,7 +2,7 @@
 title: "Green Tests, Broken System: Six Bug Patterns AI Left at the Integration Layer"
 slug: "six-bug-patterns-and-integration-gaps"
 date: 2026-05-07T10:00:00+08:00
-draft: true
+draft: false
 description: "Before releasing Aristotle v1.1, I found 18 bugs. Unit tests caught four. The rest lived at the integration layer. After root cause analysis, six patterns emerged — not because the problems got harder, but because AI bypassed the defenses I'd built through years of experience."
 tags: ["AI", "bug patterns", "integration testing", "Aristotle", "AI-assisted development", "TDD"]
 categories: ["AI Practice"]

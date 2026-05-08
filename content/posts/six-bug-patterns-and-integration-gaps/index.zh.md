@@ -2,7 +2,7 @@
 title: "测试全绿，系统不能用：18 个 bug 的六种死法"
 slug: "six-bug-patterns-and-integration-gaps"
 date: 2026-05-07T10:00:00+08:00
-draft: true
+draft: false
 description: 'Aristotle v1.1 发布前发现了 18 个 bug，单元测试只拦住了 4 个。剩下的都在集成层。对它们做 root cause analysis 之后，我归纳出六种 AI 辅助开发中特有的 bug 模式——不是因为问题变难了，是因为 AI 绕过了你靠经验建立的防线。'
 tags: ["AI", "bug 模式", "集成测试", "Aristotle", "AI 辅助开发", "TDD"]
 categories: ["AI 实践"]
