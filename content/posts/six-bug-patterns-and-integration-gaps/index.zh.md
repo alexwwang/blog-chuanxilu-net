@@ -8,6 +8,9 @@ tags: ["AI", "bug 模式", "集成测试", "Aristotle", "AI 辅助开发", "TDD"
 categories: ["AI 实践"]
 series: ["让 AI 学会反思", "用 TDD 驯服 AI 编码代理"]
 toc: true
+cover:
+  image: "cover.png"
+  alt: "六种 bug 模式：组件各自正确，集成后破碎，诊断性复盘中浮现规律"
 ---
 
 ## 一、测试全绿，系统不能用

@@ -8,11 +8,14 @@ tags: ["AI", "bug patterns", "integration testing", "Aristotle", "AI-assisted de
 categories: ["AI Practice"]
 series: ["Teaching AI to Reflect", "Taming AI Coding Agents with TDD"]
 toc: true
+cover:
+  image: "cover.png"
+  alt: "Six bug patterns: components correct in isolation, broken after integration, diagnostic clarity emerging from chaos"
 ---
 
 ## 1. Tests Green, System Broken
 
-I kept hitting the same scenario during the Aristotle release. All automated tests green. Lint clean. Type checks passing. I'd breathe easy and prepare to ship.
+I kept hitting the same scenario during the Aristotle release in the early stage. All automated tests green. Lint clean. Type checks passing. I'd breathe easy and prepare to ship.
 
 Then I'd run the full workflow manually. The system didn't work. Not some edge case — the most basic path was broken. Tests covered each function's logic. Put them together, nothing fit.
 
