@@ -13,6 +13,8 @@ cover:
   alt: "Six bug patterns: components correct in isolation, broken after integration, diagnostic clarity emerging from chaos"
 ---
 
+> **TL;DR:** Before releasing Aristotle v1.1, I found 18 bugs. Unit tests caught four (22%). The other 14 lived at the integration layer — component wiring, config propagation, process startup seams. Root cause analysis revealed six patterns: path/environment mismatch (5), registration omission (3), startup hang (2), silent failure (2), test-production path divergence (2), integration seam errors (4). The root cause isn't harder problems — it's AI bypassing the defenses that experience built. Implementation and review rhythms decouple, code appearance misleads quality judgment, and integration shifts from an explicit action to an implicit assumption. Includes an eight-dimension integration checklist and a 16-type bug roadmap at the end.
+
 ## 1. Tests Green, System Broken
 
 I kept hitting the same scenario during the Aristotle release in the early stage. All automated tests green. Lint clean. Type checks passing. I'd breathe easy and prepare to ship.
