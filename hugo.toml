@@ -34,6 +34,7 @@ enableEmoji = true
 
 [params]
   author = "Alex Wang"
+  authorURL = "https://orcid.org/0009-0006-3435-065X"
 
 [minify]
   disableXML = false
