@@ -1,5 +1,5 @@
 ---
-title: "组件单独能跑≠拼起来能跑：18 个 bug 归纳的六种死法与集成盲区"
+title: "测试全绿，系统不能用：18 个 bug 的六种死法"
 slug: "six-bug-patterns-and-integration-gaps"
 date: 2026-05-07T10:00:00+08:00
 draft: true
