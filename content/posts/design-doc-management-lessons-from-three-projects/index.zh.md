@@ -1,5 +1,5 @@
 ---
-title: "rebase 一敲，三天设计草稿灰飞烟灭——用 git worktree 拯救 AI 的设计文档"
+title: "rebase 一敲，文档灰飞烟灭——用 git worktree 拯救设计文档"
 slug: "design-doc-management-lessons-from-three-projects"
 date: 2026-05-08T15:00:00+08:00
 draft: false
@@ -12,7 +12,9 @@ cover:
   alt: "设计文档在 rebase 后灰飞烟灭，git worktree 分支为其提供安全庇护"
 ---
 
-那天下午，我在一个项目里做了 `git rebase -i`，整理一下最近十几条提交的历史。操作很顺利，没有冲突，rebase 完成后终端干干净净。
+> **TL;DR：** git rebase / checkout 会静默删除 `.gitignore` 中的未追踪文件，且无法恢复；`git stash -u` 不会 stash git-ignored 的文件。解决方案是用 git worktree 创建 `local-assets` 分支，把设计文档放在被 git 追踪的安全空间里。三条命令搞定日常：`dp-save.sh` 保存、`--prune` 清理、`--restore` 恢复。多个项目实测引入后文档丢失归零。完整脚本见 [alexwwang/design-doc-worktree](https://github.com/alexwwang/design-doc-worktree)。
+
+那天下午，我让 AI 在一个项目里做了 `git rebase -i`，整理一下最近十几条提交的历史。操作很顺利，没有冲突，rebase 完成后终端干干净净。
 
 然后我打开 `design_plan/` 目录，准备继续完善一份协议草稿。
 
@@ -52,7 +54,7 @@ AI 辅助开发不是这样。
 |----------|-----------|-------------|
 | `git reflog` | 被追踪过的 commit | **无效** |
 | `git fsck --lost-found` | 悬空的 blob/tree/commit | **无效** |
-| `git stash -u` | 未追踪文件 | **对 gitignored 的文件无效** |
+| `git stash -u` | 未追踪文件 | **对 git-ignored 的文件无效** |
 | `git checkout HEAD -- .` | 工作区恢复到最近 commit | **只恢复被追踪的文件** |
 
 注意第三行——`git stash -u` 也不会 stash 被 `.gitignore` 忽略的文件。很多人以为 stash 能救，其实不能。
@@ -67,7 +69,7 @@ AI 辅助开发不是这样。
 
 | 方案 | 思路 | 问题 |
 |------|------|------|
-| `git stash -u` | 操作前先 stash | **不会 stash gitignored 的文件**，设计文档被忽略所以无效 |
+| `git stash -u` | 操作前先 stash | **不会 stash git-ignored 的文件**，设计文档被忽略所以无效 |
 | 云同步 (iCloud/Dropbox) | 把 `design_plan/` 放到同步目录 | 多设备同步冲突、不利于命令行操作 |
 | 单独的 git 仓库 | 给设计文档建一个独立 repo | 管理成本高，需要维护两套仓库的对应关系 |
 | 符号链接到安全目录 | `design_plan/` → `/safe/dir/` | rebase 时符号链接本身可能被删除 |

@@ -1,5 +1,5 @@
 ---
-title: "Git Rebase Ate My Design Docs — Here's How I Stopped It From Happening Again"
+title: "Git Rebase Ate My Docs — Save Them with Worktree"
 slug: "design-doc-management-lessons-from-three-projects"
 date: 2026-05-08T15:00:00+08:00
 draft: false
@@ -12,7 +12,9 @@ cover:
   alt: "Design docs dissolving after git rebase, a git worktree branch shielding them safely"
 ---
 
-One afternoon I ran `git rebase -i` to tidy up the last dozen commits. No conflicts. Clean terminal. Everything went smoothly.
+> **TL;DR:** git rebase / checkout silently deletes untracked files in `.gitignore`, with no recovery; `git stash -u` does NOT stash git-ignored files. The fix: use git worktree to create a `local-assets` branch, storing design docs in a git-tracked safe space. Three commands handle daily use: `dp-save.sh` to save, `--prune` to clean, `--restore` to recover. Real project data shows zero document loss after introducing worktree. Full script at [alexwwang/design-doc-worktree](https://github.com/alexwwang/design-doc-worktree).
+
+One afternoon I had AI run `git rebase -i` to tidy up the last dozen commits. No conflicts. Clean terminal. Everything went smoothly.
 
 Then I opened `design_plan/` to keep working on a protocol draft.
 
@@ -52,7 +54,7 @@ More critically, every recovery path is blocked:
 |----------|-----------|-------------|
 | `git reflog` | Tracked commits | **Useless** |
 | `git fsck --lost-found` | Dangling blobs/trees/commits | **Useless** |
-| `git stash -u` | Untracked files | **Useless for gitignored files** |
+| `git stash -u` | Untracked files | **Useless for git-ignored files** |
 | `git checkout HEAD -- .` | Working tree reset to last commit | **Only recovers tracked files** |
 
 Note the third row—`git stash -u` won't stash files that are in `.gitignore`. Many people think stash is the safety net. It isn't.
@@ -67,7 +69,7 @@ After losing documents twice, I systematically considered every option:
 
 | Approach | Idea | Problem |
 |------|------|------|
-| `git stash -u` | Stash before operations | **Doesn't stash gitignored files**, so it can't protect design docs |
+| `git stash -u` | Stash before operations | **Doesn't stash git-ignored files**, so it can't protect design docs |
 | Cloud sync (iCloud/Dropbox) | Put `design_plan/` in a synced directory | Multi-device sync conflicts, awkward for command-line workflows |
 | Separate git repository | Create a standalone repo for design docs | High maintenance overhead, need to keep two repos in sync |
 | Symlink to a safe directory | `design_plan/` → `/safe/dir/` | The symlink itself can get deleted during rebase |
