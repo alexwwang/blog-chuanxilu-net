@@ -1,5 +1,6 @@
 ---
 title: "AI Toolchain Evolution Path: From First Contact to AI Native"
+slug: "ai-toolchain-evolution-path"
 date: 2026-05-10T08:00:00+08:00
 tags: ["AI", "Toolchain", "Evolution Path", "Career Development"]
 categories: ["AI Practice"]

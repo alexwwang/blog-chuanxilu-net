@@ -1,5 +1,6 @@
 ---
 title: "AI 工具链进化路径：从初触者到原住民"
+slug: "ai-toolchain-evolution-path"
 date: 2026-05-10T08:00:00+08:00
 tags: ["AI", "工具链", "进化路径", "职业发展"]
 categories: ["AI实践"]
