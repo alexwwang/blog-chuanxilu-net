@@ -4,6 +4,9 @@ date: 2026-05-10T08:00:00+08:00
 tags: ["AI", "Toolchain", "Evolution Path", "Career Development"]
 categories: ["AI Practice"]
 summary: "An evolution map of AI capabilities from L0 to L4—not a tutorial for any specific tool, but a guide to understanding the fundamental mindset shifts at each stage."
+cover:
+  image: "cover.png"
+  alt: "AI Toolchain Evolution Path panorama — five levels from First Contact to AI Native"
 ---
 
 ## Introduction
