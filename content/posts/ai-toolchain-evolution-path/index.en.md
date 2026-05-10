@@ -16,7 +16,7 @@ cover:
 
 ## Introduction
 
-We're living in a strange era: everyone talks about AI, yet few can articulate what "knowing how to use it" really means for them. Some chat with ChatGPT daily but have never touched an API; others orchestrate multi-agent workflows with LangGraph yet barely grasp the nuances of prompt engineering. This fragmentation isn't an outlier—it's nearly everyone's reality.
+We're living in a strange era: everyone talks about AI, yet few can articulate what "knowing how to use it" really means for them. Some chat with ChatGPT daily but have never touched an API; others are building RAG pipelines yet barely grasp the ideas behind agent orchestration. This fragmentation isn't an outlier—it's nearly everyone's reality.
 
 I've been wondering: could I draw a "map" that doesn't categorize by tech stack or job title, but instead positions you by the depth of your collaboration with AI and the maturity of your thinking? That question led to this **AI Toolchain Evolution Path**. It breaks the journey from "opening a chat box for the first time" to "AI-native thinking" into five levels, each with clear capability boundaries, tool recommendations, and upgrade conditions.
 
