@@ -1,5 +1,5 @@
 ---
-title: "AI 工具链进化路径：从初触者到原住民"
+title: "AI 之路：从初触者到原住民"
 slug: "ai-toolchain-evolution-path"
 date: 2026-05-10T08:00:00+08:00
 draft: false
