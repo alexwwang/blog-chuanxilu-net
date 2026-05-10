@@ -12,7 +12,7 @@ cover:
   alt: "AI Toolchain Evolution Path panorama — five levels from First Contact to AI Native"
 ---
 
-> **TL;DR:** This post introduces an AI Toolchain Evolution Path that maps the journey from "opening ChatGPT for the first time" to "AI-native thinking" across five levels (L0→L4). Each level has clear core concepts, recommended tools, habits to build, and key transition conditions. Key insight: the path isn't linear, tools are the least important part, and mindset is the real asset. The [interactive HTML version](/en/ai-evolution-path/) at the end lets you explore each level in full detail.
+> **TL;DR:** How does a person grow with AI? This post maps the journey from "opening a chat box for the first time" to "thinking in AI-native ways" across five stages—First Contact, Power User, Engineer, Architect, and Native. The essence of each stage isn't learning more tools, but a shift in mindset: from passively accepting outputs, to actively designing inputs, to orchestrating multi-agent collaboration, and ultimately reshaping your own cognitive framework. The [interactive path map](/en/ai-evolution-path/) at the end lets you explore each stage in full detail.
 
 ## Introduction
 
