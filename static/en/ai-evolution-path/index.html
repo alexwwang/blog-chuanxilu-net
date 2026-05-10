@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Toolchain Evolution Path</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=JetBrains+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0d0f;
+    --surface: #141418;
+    --border: #222228;
+    --text: #e8e8ec;
+    --muted: #6b6b7a;
+    --accent0: #7c9fff;
+    --accent1: #a78bfa;
+    --accent2: #34d399;
+    --accent3: #fb923c;
+    --accent4: #f472b6;
+
+    --l0: #1a1f3a;
+    --l1: #1a2a1e;
+    --l2: #2a1a3a;
+    --l3: #3a2a10;
+    --l4: #3a1020;
+
+    --l0-accent: #7c9fff;
+    --l1-accent: #34d399;
+    --l2-accent: #a78bfa;
+    --l3-accent: #fb923c;
+    --l4-accent: #f472b6;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', 'Noto Serif SC', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Grid noise texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Header */
+  header {
+    padding: 72px 0 48px;
+    text-align: center;
+  }
+
+  .header-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+
+  h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--accent0), var(--accent1));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 560px;
+    margin: 0 auto 40px;
+    font-weight: 300;
+  }
+
+  /* Overview bar */
+  .overview {
+    display: flex;
+    gap: 4px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 64px;
+    height: 6px;
+  }
+
+  .overview-seg {
+    flex: 1;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+    opacity: 0.6;
+  }
+  .overview-seg:hover, .overview-seg.active { opacity: 1; transform: scaleY(1.5); }
+
+  /* Level navigation */
+  .level-nav {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .nav-btn:hover { border-color: var(--muted); color: var(--text); }
+  .nav-btn.active { color: var(--text); }
+  .nav-btn .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* Level cards */
+  .level-card {
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 32px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .level-card.visible { opacity: 1; transform: translateY(0); }
+
+  .level-header {
+    padding: 32px 36px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .level-badge {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+    font-weight: 500;
+    flex-shrink: 0;
+    transition: transform 0.3s;
+  }
+  .level-card:hover .level-badge { transform: scale(1.05) rotate(-3deg); }
+
+  .level-meta { flex: 1; }
+
+  .level-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    opacity: 0.6;
+  }
+
+  .level-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+
+  .level-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .toggle-icon {
+    font-size: 20px;
+    color: var(--muted);
+    transition: transform 0.3s;
+    padding-top: 4px;
+  }
+  .level-card.expanded .toggle-icon { transform: rotate(45deg); }
+
+  /* Level body */
+  .level-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .level-body-inner {
+    padding: 0 36px 36px;
+    border-top: 1px solid var(--border);
+    padding-top: 28px;
+  }
+
+  /* Section headers inside card */
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  @media (max-width: 640px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 640px) { .grid-3 { grid-template-columns: 1fr; } }
+
+  .card-mini {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .card-mini-title {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .card-mini ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .card-mini li {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+    font-weight: 300;
+  }
+
+  .card-mini li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: inherit;
+    opacity: 0.5;
+  }
+
+  /* Tags */
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+
+  .tag {
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    border: 1px solid currentColor;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .tag:hover { opacity: 1; }
+
+  /* Transition block */
+  .transition-block {
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-top: 8px;
+  }
+
+  .transition-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .transition-content {}
+
+  .transition-title {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .transition-text {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* Habit block */
+  .habit-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .habit-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+
+  .habit-icon { font-size: 16px; flex-shrink: 0; }
+
+  .habit-text {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .habit-text strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* Progress path at bottom */
+  .path-section {
+    margin-top: 64px;
+    margin-bottom: 80px;
+  }
+
+  .path-title {
+    text-align: center;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 40px;
+    color: var(--muted);
+  }
+
+  .path-line {
+    position: relative;
+    padding-left: 32px;
+  }
+
+  .path-line::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom,
+      var(--accent0),
+      var(--accent1),
+      var(--accent2),
+      var(--accent3),
+      var(--accent4)
+    );
+    opacity: 0.4;
+  }
+
+  .path-node {
+    position: relative;
+    padding: 0 0 32px 24px;
+  }
+
+  .path-node::before {
+    content: '';
+    position: absolute;
+    left: -22px;
+    top: 5px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid currentColor;
+    background: var(--bg);
+  }
+
+  .path-node-title {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .path-node-text {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* Scrolled in */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Footer */
+  .page-footer {
+    text-align: center;
+    padding: 40px 0 48px;
+    border-top: 1px solid var(--border);
+    margin-top: 16px;
+  }
+
+  .page-footer p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .page-footer a {
+    color: var(--muted);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s;
+  }
+
+  .page-footer a:hover {
+    color: var(--text);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="header-tag">AI Practitioner's Evolution Map · 2026</div>
+    <h1>The AI <em>Toolchain Evolution Path</em></h1>
+    <p class="subtitle">From opening ChatGPT for the first time, to building your own AI-native workflows — the concepts, methods, and habits to master at each stage, and the key transitions to reach the next level.</p>
+  </header>
+
+  <div class="overview" id="overview">
+    <div class="overview-seg" style="background: var(--l0-accent)" data-level="0"></div>
+    <div class="overview-seg" style="background: var(--l1-accent)" data-level="1"></div>
+    <div class="overview-seg" style="background: var(--l2-accent)" data-level="2"></div>
+    <div class="overview-seg" style="background: var(--l3-accent)" data-level="3"></div>
+    <div class="overview-seg" style="background: var(--l4-accent)" data-level="4"></div>
+  </div>
+
+  <div class="level-nav" id="level-nav">
+    <button class="nav-btn active" data-level="0" style="border-color: var(--l0-accent); color: var(--l0-accent)">
+      <span class="dot" style="background: var(--l0-accent)"></span> L0 · First Contact
+    </button>
+    <button class="nav-btn" data-level="1" style="">
+      <span class="dot" style="background: var(--l1-accent)"></span> L1 · Power User
+    </button>
+    <button class="nav-btn" data-level="2" style="">
+      <span class="dot" style="background: var(--l2-accent)"></span> L2 · Engineer
+    </button>
+    <button class="nav-btn" data-level="3" style="">
+      <span class="dot" style="background: var(--l3-accent)"></span> L3 · Architect
+    </button>
+    <button class="nav-btn" data-level="4" style="">
+      <span class="dot" style="background: var(--l4-accent)"></span> L4 · Native
+    </button>
+  </div>
+
+  <!-- Cards -->
+  <div id="cards">
+
+    <!-- L0 -->
+    <div class="level-card" id="card-0" style="background: linear-gradient(135deg, var(--l0) 0%, transparent 100%); border-color: rgba(124,159,255,0.2)">
+      <div class="level-header" onclick="toggleCard(0)">
+        <div class="level-badge" style="background: rgba(124,159,255,0.15); color: var(--l0-accent)">✦</div>
+        <div class="level-meta">
+          <div class="level-number" style="color: var(--l0-accent)">Level 0 · First Contact</div>
+          <div class="level-title">Your First Conversation with AI</div>
+          <div class="level-desc">Unclear about AI's capabilities, relying mostly on intuition to ask questions. Results are mixed. No systematic understanding yet.</div>
+        </div>
+        <div class="toggle-icon">+</div>
+      </div>
+      <div class="level-body">
+        <div class="level-body-inner">
+
+          <div class="section-label">Core Concepts</div>
+          <div class="grid-2" style="margin-bottom: 24px">
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l0-accent)">🧠 Understanding LLMs</div>
+              <ul>
+                <li>AI is not a search engine — it predicts the next token</li>
+                <li>Outputs are probabilistic, not deterministic</li>
+                <li>The context window is its "working memory"</li>
+                <li>No persistent memory — every conversation starts from scratch</li>
+              </ul>
+            </div>
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l0-accent)">🗣 Prompt Basics</div>
+              <ul>
+                <li>The more specific the question, the more useful the answer</li>
+                <li>Provide role / context / goal</li>
+                <li>You can request specific output formats</li>
+                <li>You can ask it to "think step by step"</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="section-label">Tools</div>
+          <div class="tag-row">
+            <span class="tag" style="color: var(--l0-accent)">ChatGPT / Claude.ai</span>
+            <span class="tag" style="color: var(--l0-accent)">Gemini</span>
+            <span class="tag" style="color: var(--l0-accent)">Notion AI</span>
+            <span class="tag" style="color: var(--l0-accent)">Copilot (Office)</span>
+            <span class="tag" style="color: var(--l0-accent)">Perplexity</span>
+            <span class="tag" style="color: var(--l0-accent)">DeepSeek</span>
+          </div>
+
+          <div class="section-label">Habits to Build</div>
+          <div class="habit-list">
+            <div class="habit-item">
+              <span class="habit-icon">📋</span>
+              <div class="habit-text"><strong>Ask with intent</strong> — clarify "what do I want to get" before hitting send</div>
+            </div>
+            <div class="habit-item">
+              <span class="habit-icon">🔁</span>
+              <div class="habit-text"><strong>Follow up and iterate</strong> — the first answer is rarely the best; keep guiding</div>
+            </div>
+            <div class="habit-item">
+              <span class="habit-icon">🔍</span>
+              <div class="habit-text"><strong>Verify factual claims</strong> — AI can be confidently wrong; always cross-check critical information</div>
+            </div>
+          </div>
+
+          <div class="section-label">Key Transition to L1</div>
+          <div class="transition-block" style="background: rgba(124,159,255,0.06); border: 1px solid rgba(124,159,255,0.15)">
+            <div class="transition-icon">→</div>
+            <div class="transition-content">
+              <div class="transition-title">Develop a "Prompt Mindset"</div>
+              <div class="transition-text">Realize that AI output quality is entirely determined by your input. Start actively designing how you ask, instead of passively accepting what comes back. Recommended action: find a repetitive writing task you do every day, optimize it with AI, and save the effective prompt templates.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- L1 -->
+    <div class="level-card" id="card-1" style="background: linear-gradient(135deg, var(--l1) 0%, transparent 100%); border-color: rgba(52,211,153,0.2)">
+      <div class="level-header" onclick="toggleCard(1)">
+        <div class="level-badge" style="background: rgba(52,211,153,0.15); color: var(--l1-accent)">◈</div>
+        <div class="level-meta">
+          <div class="level-number" style="color: var(--l1-accent)">Level 1 · Power User</div>
+          <div class="level-title">Putting AI to Real Work</div>
+          <div class="level-desc">AI has become a daily tool with your own go-to scenarios and playbooks. You start feeling real productivity gains, but still rely on a single platform.</div>
+        </div>
+        <div class="toggle-icon">+</div>
+      </div>
+      <div class="level-body">
+        <div class="level-body-inner">
+
+          <div class="section-label">Core Concepts</div>
+          <div class="grid-3" style="margin-bottom: 24px">
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l1-accent)">📐 Prompt Engineering</div>
+              <ul>
+                <li>Few-shot example guidance</li>
+                <li>System prompt / role assignment</li>
+                <li>Chain-of-Thought (CoT)</li>
+                <li>Format constraints (JSON, lists)</li>
+              </ul>
+            </div>
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l1-accent)">🔄 Conversation Management</div>
+              <ul>
+                <li>Context accumulation and when to clear it</li>
+                <li>Segmenting long tasks</li>
+                <li>Role-playing and expert simulation</li>
+                <li>Conversation branching and version comparison</li>
+              </ul>
+            </div>
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l1-accent)">🌐 Model Differences</div>
+              <ul>
+                <li>Capability strengths across models</li>
+                <li>Speed vs. quality tradeoffs</li>
+                <li>Web Search mode</li>
+                <li>Multimodal (image, voice)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="section-label">Tool Matrix</div>
+          <div class="grid-2" style="margin-bottom: 24px">
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l1-accent)">📝 Writing & Thinking (examples)</div>
+              <ul>
+                <li>Claude.ai Projects (long context)</li>
+                <li>ChatGPT Workspace Agents</li>
+                <li>Notion AI, Obsidian + AI plugins</li>
+                <li>Perplexity (research-oriented search)</li>
+              </ul>
+            </div>
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l1-accent)">💻 Coding Assistants (examples)</div>
+              <ul>
+                <li>GitHub Copilot (IDE inline)</li>
+                <li>Cursor / Windsurf</li>
+                <li>Claude.ai (code review)</li>
+                <li>v0.app (app builder)</li>
+                <li>Bolt.new (full-stack prototyping)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="section-label">Habits to Build</div>
+          <div class="habit-list">
+            <div class="habit-item">
+              <span class="habit-icon">📁</span>
+              <div class="habit-text"><strong>Maintain a prompt library</strong> — save effective prompts, categorize them, and reuse on demand</div>
+            </div>
+            <div class="habit-item">
+              <span class="habit-icon">🎯</span>
+              <div class="habit-text"><strong>Choose the right tool for the job</strong> — Copilot for code, Perplexity for research, Claude Projects for long-form writing</div>
+            </div>
+            <div class="habit-item">
+              <span class="habit-icon">📊</span>
+              <div class="habit-text"><strong>Build a personal knowledge base</strong> — organize valuable AI-generated content into a note system (Obsidian / Notion)</div>
+            </div>
+          </div>
+
+          <div class="section-label">Key Transition to L2</div>
+          <div class="transition-block" style="background: rgba(52,211,153,0.06); border: 1px solid rgba(52,211,153,0.15)">
+            <div class="transition-icon">→</div>
+            <div class="transition-content">
+              <div class="transition-title">Your First API Call — Stepping Beyond the Chat Box</div>
+              <div class="transition-text">Call the Anthropic / OpenAI API for the first time — even if it's just printing a reply in Python. Realize that AI can be embedded into your workflow, not just confined to a browser chat box. Recommended action: write a small script using the API that automates one of your repetitive text tasks.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- L2 -->
+    <div class="level-card" id="card-2" style="background: linear-gradient(135deg, var(--l2) 0%, transparent 100%); border-color: rgba(167,139,250,0.2)">
+      <div class="level-header" onclick="toggleCard(2)">
+        <div class="level-badge" style="background: rgba(167,139,250,0.15); color: var(--l2-accent)">⬡</div>
+        <div class="level-meta">
+          <div class="level-number" style="color: var(--l2-accent)">Level 2 · Engineer</div>
+          <div class="level-title">Building AI-Powered Tools</div>
+          <div class="level-desc">Capable of embedding AI into custom workflows via APIs, building truly automated pipelines, and understanding token economics and context management.</div>
+        </div>
+        <div class="toggle-icon">+</div>
+      </div>
+      <div class="level-body">
+        <div class="level-body-inner">
+
+          <div class="section-label">Core Concepts</div>
+          <div class="grid-2" style="margin-bottom: 24px">
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l2-accent)">⚙️ API & Engineering Fundamentals</div>
+              <ul>
+                <li>Messages API (System / User / Assistant)</li>
+                <li>Token calculation and cost control</li>
+                <li>Temperature / Top-P parameters</li>
+                <li>Streaming output</li>
+                <li>Function Calling / Tool Use</li>
+              </ul>
+            </div>
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l2-accent)">🤖 AI Coding Tools (examples)</div>
+              <ul>
+                <li>Claude Code (terminal AI agent)</li>
+                <li>Cursor Rules / .mdc</li>
+                <li>AI-assisted TDD workflow</li>
+                <li>Prompt version control (Git)</li>
+                <li>Structured output (JSON Schema)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="grid-2" style="margin-bottom: 24px">
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l2-accent)">🔗 RAG Fundamentals</div>
+              <ul>
+                <li>Embedding vectorization principles</li>
+                <li>Vector databases (Chroma / Pinecone)</li>
+                <li>Retrieval-Augmented Generation pipeline</li>
+                <li>How chunking strategies affect quality</li>
+              </ul>
+            </div>
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l2-accent)">⚡ Workflow Automation</div>
+              <ul>
+                <li>n8n / Make / Zapier + AI nodes</li>
+                <li>LangChain / LlamaIndex basics</li>
+                <li>Webhook-triggered AI tasks</li>
+                <li>Batch processing (Batch API)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="section-label">Tool Stack</div>
+          <div class="tag-row">
+            <span class="tag" style="color: var(--l2-accent)">Claude Code</span>
+            <span class="tag" style="color: var(--l2-accent)">Cursor / Windsurf</span>
+            <span class="tag" style="color: var(--l2-accent)">Anthropic API</span>
+            <span class="tag" style="color: var(--l2-accent)">LangChain</span>
+            <span class="tag" style="color: var(--l2-accent)">n8n</span>
+            <span class="tag" style="color: var(--l2-accent)">Chroma / Pinecone</span>
+            <span class="tag" style="color: var(--l2-accent)">Supabase pgvector</span>
+          </div>
+
+          <div class="section-label">Habits to Build</div>
+          <div class="habit-list">
+            <div class="habit-item">
+              <span class="habit-icon">📝</span>
+              <div class="habit-text"><strong>CLAUDE.md-driven development</strong> — maintain an AI context file for each project to reduce repeated explanations</div>
+            </div>
+            <div class="habit-item">
+              <span class="habit-icon">🔬</span>
+              <div class="habit-text"><strong>Prompt experiment log</strong> — track prompt changes with Git; manage prompts like code</div>
+            </div>
+            <div class="habit-item">
+              <span class="habit-icon">💡</span>
+              <div class="habit-text"><strong>Failure-driven learning</strong> — document AI failure cases and root causes; build a personal "AI anti-pattern" checklist</div>
+            </div>
+            <div class="habit-item">
+              <span class="habit-icon">📐</span>
+              <div class="habit-text"><strong>Human-in-the-loop design</strong> — retain manual confirmation checkpoints for high-risk operations, rather than full automation</div>
+            </div>
+          </div>
+
+          <div class="section-label">Key Transition to L3</div>
+          <div class="transition-block" style="background: rgba(167,139,250,0.06); border: 1px solid rgba(167,139,250,0.15)">
+            <div class="transition-icon">→</div>
+            <div class="transition-content">
+              <div class="transition-title">From single AI calls to multi-agent collaboration</div>
+              <div class="transition-text">Realize that complex tasks require multiple AI roles working in concert — one to plan, one to execute, one to verify. Start thinking about the "cognitive architecture of workflows" rather than single conversations. Recommended action: design a two-layer agent system with an Orchestrator + Worker structure, even if the functionality is simple.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- L3 -->
+    <div class="level-card" id="card-3" style="background: linear-gradient(135deg, var(--l3) 0%, transparent 100%); border-color: rgba(251,146,60,0.2)">
+      <div class="level-header" onclick="toggleCard(3)">
+        <div class="level-badge" style="background: rgba(251,146,60,0.15); color: var(--l3-accent)">❋</div>
+        <div class="level-meta">
+          <div class="level-number" style="color: var(--l3-accent)">Level 3 · Architect</div>
+          <div class="level-title">Designing Multi-Agent Systems</div>
+          <div class="level-desc">Capable of designing complex multi-agent collaboration pipelines, understanding memory architectures, tool-call chains, and the reliability boundaries of AI systems.</div>
+        </div>
+        <div class="toggle-icon">+</div>
+      </div>
+      <div class="level-body">
+        <div class="level-body-inner">
+
+          <div class="section-label">Core Concepts</div>
+          <div class="grid-2" style="margin-bottom: 24px">
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l3-accent)">🧩 Agent Architecture Patterns</div>
+              <ul>
+                <li>Orchestrator / Subagent layering</li>
+                <li>ReAct (Reason-Act-Observe) loop</li>
+                <li>Plan-and-Execute pattern</li>
+                <li>Multi-Agent parallel execution</li>
+                <li>Tool call chains and error recovery</li>
+              </ul>
+            </div>
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l3-accent)">💾 Memory & State Management</div>
+              <ul>
+                <li>In-context vs. External Memory</li>
+                <li>Cross-session memory persistence</li>
+                <li>Structured knowledge graphs</li>
+                <li>Error learning and reflection mechanisms (e.g., GEAR)</li>
+                <li>Session Kick-off / Wrap-up patterns</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="grid-2" style="margin-bottom: 24px">
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l3-accent)">🔒 Reliability Design</div>
+              <ul>
+                <li>Trust boundaries and permission tiers (L0-L3)</li>
+                <li>Human-in-the-loop trigger condition design</li>
+                <li>Fallback degradation strategies</li>
+                <li>Idempotency and state recovery</li>
+                <li>Observability (logging / tracing)</li>
+              </ul>
+            </div>
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l3-accent)">🔌 Protocols & Integration</div>
+              <ul>
+                <li>MCP (Model Context Protocol)</li>
+                <li>A2A (Agent-to-Agent) protocol</li>
+                <li>OpenAPI tool injection</li>
+                <li>Sandbox isolated execution environments</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="section-label">Tool Stack</div>
+          <div class="tag-row">
+            <span class="tag" style="color: var(--l3-accent)">LangGraph</span>
+            <span class="tag" style="color: var(--l3-accent)">CrewAI</span>
+            <span class="tag" style="color: var(--l3-accent)">AutoGen</span>
+            <span class="tag" style="color: var(--l3-accent)">OpenAI Agents SDK</span>
+            <span class="tag" style="color: var(--l3-accent)">Smolagents</span>
+            <span class="tag" style="color: var(--l3-accent)">MCP Servers</span>
+            <span class="tag" style="color: var(--l3-accent)">A2A Protocol</span>
+            <span class="tag" style="color: var(--l3-accent)">Weights & Biases</span>
+            <span class="tag" style="color: var(--l3-accent)">Langfuse</span>
+            <span class="tag" style="color: var(--l3-accent)">Claude Code Skills</span>
+          </div>
+
+          <div class="section-label">Habits to Build</div>
+          <div class="habit-list">
+            <div class="habit-item">
+              <span class="habit-icon">🏗</span>
+              <div class="habit-text"><strong>System diagrams before code</strong> — map out data flows, agent boundaries, and human intervention points before implementing</div>
+            </div>
+            <div class="habit-item">
+              <span class="habit-icon">📊</span>
+              <div class="habit-text"><strong>Continuous evaluation (Evals)</strong> — test prompts like you test code; build regression test suites</div>
+            </div>
+            <div class="habit-item">
+              <span class="habit-icon">🔄</span>
+              <div class="habit-text"><strong>Error corpus and reflection loops</strong> — systematically collect agent failure cases; periodically update system prompts</div>
+            </div>
+            <div class="habit-item">
+              <span class="habit-icon">📖</span>
+              <div class="habit-text"><strong>Track academic and engineering frontiers</strong> — read arXiv weekly; follow Anthropic / OpenAI engineering blogs</div>
+            </div>
+          </div>
+
+          <div class="section-label">Key Transition to L4</div>
+          <div class="transition-block" style="background: rgba(251,146,60,0.06); border: 1px solid rgba(251,146,60,0.15)">
+            <div class="transition-icon">→</div>
+            <div class="transition-content">
+              <div class="transition-title">From building tools to contributing knowledge</div>
+              <div class="transition-text">Develop unique insights in a domain and start sharing outward (technical blogs, open-source projects, papers / RFCs). The cognitive framework of your AI toolchain has been internalized; your focus shifts to the generality of patterns and their boundary conditions. Recommended action: write up a non-trivial problem you solved as an article or open-source project — force yourself to articulate the underlying mental models clearly.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- L4 -->
+    <div class="level-card" id="card-4" style="background: linear-gradient(135deg, var(--l4) 0%, transparent 100%); border-color: rgba(244,114,182,0.2)">
+      <div class="level-header" onclick="toggleCard(4)">
+        <div class="level-badge" style="background: rgba(244,114,182,0.15); color: var(--l4-accent)">⊛</div>
+        <div class="level-meta">
+          <div class="level-number" style="color: var(--l4-accent)">Level 4 · Native</div>
+          <div class="level-title">AI-Native Thinking</div>
+          <div class="level-desc">AI is no longer a tool but an extension of cognition. Capable of designing new paradigms, contributing to the open-source ecosystem, and maintaining clear judgment amidst uncertainty.</div>
+        </div>
+        <div class="toggle-icon">+</div>
+      </div>
+      <div class="level-body">
+        <div class="level-body-inner">
+
+          <div class="section-label">Core Capabilities</div>
+          <div class="grid-2" style="margin-bottom: 24px">
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l4-accent)">🧬 Paradigm Innovation</div>
+              <ul>
+                <li>Identify structural flaws in existing frameworks</li>
+                <li>Design new agent interaction protocols</li>
+                <li>Model AI behavior from first principles</li>
+                <li>Bridge the gap between academia and engineering</li>
+              </ul>
+            </div>
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l4-accent)">🌐 Ecosystem Contributions</div>
+              <ul>
+                <li>Open-source project maintenance and community building</li>
+                <li>Technical blog / paper / RFC publications</li>
+                <li>Building reusable tool primitives for others</li>
+                <li>Establishing comparative evaluation frameworks (Evals)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="grid-2" style="margin-bottom: 24px">
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l4-accent)">⚖️ Clear Judgment</div>
+              <ul>
+                <li>Understand the hard limits of current models</li>
+                <li>Distinguish between "doesn't work yet" and "will never work"</li>
+                <li>Maintain technical honesty amid hype</li>
+                <li>Practical perspectives on AI ethics and safety</li>
+              </ul>
+            </div>
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l4-accent)">🔮 Future Sensing</div>
+              <ul>
+                <li>Track frontier model development curves</li>
+                <li>Anticipate toolchain evolution directions</li>
+                <li>Identify genuine technological inflection points</li>
+                <li>Translate academic breakthroughs into engineering practice</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="section-label">Hallmarks</div>
+          <div class="habit-list">
+            <div class="habit-item">
+              <span class="habit-icon">🚀</span>
+              <div class="habit-text"><strong>Your own "AI cognitive framework"</strong> — you have a conceptual system of your own and can clearly explain why AI systems work or fail</div>
+            </div>
+            <div class="habit-item">
+              <span class="habit-icon">🌱</span>
+              <div class="habit-text"><strong>Changed way of thinking</strong> — when facing new problems, you instinctively consider "which parts suit AI, and which require human judgment"</div>
+            </div>
+            <div class="habit-item">
+              <span class="habit-icon">🎓</span>
+              <div class="habit-text"><strong>Helping others level up continuously</strong> — you can identify what stage someone is at and offer targeted guidance</div>
+            </div>
+          </div>
+
+          <div class="transition-block" style="background: rgba(244,114,182,0.06); border: 1px solid rgba(244,114,182,0.15)">
+            <div class="transition-icon">∞</div>
+            <div class="transition-content">
+              <div class="transition-title">Maintain a beginner's mind</div>
+              <div class="transition-text">This field undergoes fundamental shifts every 6–12 months. The core capability of L4 is not "knowing everything" but being able to rapidly integrate new capabilities into your own framework — and discern what they change and what they don't.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Path section -->
+  <div class="path-section">
+    <div class="path-title">A Non-Linear Linear Path</div>
+    <div class="path-line">
+      <div class="path-node" style="color: var(--l0-accent)">
+        <div class="path-node-title">L0 → L1: The first real taste of productivity gains (typically 1–4 weeks)</div>
+        <div class="path-node-text">Find a genuine pain point and solve it with AI. What matters most at this stage isn't the tool — it's the first-hand experience that "AI can actually help me."</div>
+      </div>
+      <div class="path-node" style="color: var(--l1-accent)">
+        <div class="path-node-title">L1 → L2: Your first API call (typically 1–3 months)</div>
+        <div class="path-node-text">Requires some programming foundation — or the willingness to learn. This is the tipping point from consumer to builder.</div>
+      </div>
+      <div class="path-node" style="color: var(--l2-accent)">
+        <div class="path-node-title">L2 → L3: Your first genuinely complex system (3–12 months)</div>
+        <div class="path-node-text">Requires accumulating enough battle scars from real projects. Many people stay at this stage for a long time, and that's perfectly normal.</div>
+      </div>
+      <div class="path-node" style="color: var(--l3-accent)">
+        <div class="path-node-title">L3 → L4: Distillation and outward contribution (ongoing)</div>
+        <div class="path-node-text">Not a stage with a finish line, but a sustained way of working. Sharing, open-sourcing, and writing are all natural byproducts of this phase.</div>
+      </div>
+      <div class="path-node" style="color: var(--l4-accent)">
+        <div class="path-node-title">Note: there's never just one path</div>
+        <div class="path-node-text">People without a technical background may never need L2's API skills, yet can still reach L3/L4 in domains like writing, product, or research. The shape of the toolchain varies from person to person.</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    <p>© 2026 <a href="https://blog.chuanxilu.net/">Chuanxilu</a> · All rights reserved</p>
+    <p>This content is published under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></p>
+  </footer>
+
+</div>
+
+<script>
+  function toggleCard(n) {
+    const card = document.getElementById('card-' + n);
+    const body = card.querySelector('.level-body');
+    const expanded = card.classList.contains('expanded');
+
+    if (expanded) {
+      body.style.maxHeight = '0';
+      card.classList.remove('expanded');
+    } else {
+      body.style.maxHeight = body.scrollHeight + 'px';
+      card.classList.add('expanded');
+    }
+
+    // Update nav
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    if (!expanded) {
+      document.querySelector(`.nav-btn[data-level="${n}"]`).classList.add('active');
+    }
+  }
+
+  // Nav button click scrolls to card
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const n = parseInt(btn.dataset.level);
+      const card = document.getElementById('card-' + n);
+      const isExpanded = card.classList.contains('expanded');
+      if (!isExpanded) toggleCard(n);
+      card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Overview click
+  document.querySelectorAll('.overview-seg').forEach(seg => {
+    seg.addEventListener('click', () => {
+      const n = parseInt(seg.dataset.level);
+      const card = document.getElementById('card-' + n);
+      if (!card.classList.contains('expanded')) toggleCard(n);
+      card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Intersection observer for card entrance animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.05 });
+
+  document.querySelectorAll('.level-card').forEach(c => observer.observe(c));
+
+  // Open first card by default
+  setTimeout(() => toggleCard(0), 300);
+</script>
+</body>
+</html>

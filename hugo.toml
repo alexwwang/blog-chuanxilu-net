@@ -65,9 +65,13 @@ enableEmoji = true
       url = "/search/"
       weight = 4
     [[languages.zh.menu.main]]
+      name = "AI之路"
+      url = "/ai-evolution-path/"
+      weight = 5
+    [[languages.zh.menu.main]]
       name = "关于"
       url = "/about/"
-      weight = 5
+      weight = 6
 
   [languages.en]
     languageName = "English"
@@ -96,6 +100,10 @@ enableEmoji = true
       url = "/en/search/"
       weight = 4
     [[languages.en.menu.main]]
+      name = "AI Evo Path"
+      url = "/en/ai-evolution-path/"
+      weight = 5
+    [[languages.en.menu.main]]
       name = "About"
       url = "/en/about/"
-      weight = 5
+      weight = 6

@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 工具链进化路径</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=JetBrains+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0d0f;
+    --surface: #141418;
+    --border: #222228;
+    --text: #e8e8ec;
+    --muted: #6b6b7a;
+    --accent0: #7c9fff;
+    --accent1: #a78bfa;
+    --accent2: #34d399;
+    --accent3: #fb923c;
+    --accent4: #f472b6;
+
+    --l0: #1a1f3a;
+    --l1: #1a2a1e;
+    --l2: #2a1a3a;
+    --l3: #3a2a10;
+    --l4: #3a1020;
+
+    --l0-accent: #7c9fff;
+    --l1-accent: #34d399;
+    --l2-accent: #a78bfa;
+    --l3-accent: #fb923c;
+    --l4-accent: #f472b6;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', 'Noto Serif SC', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Grid noise texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Header */
+  header {
+    padding: 72px 0 48px;
+    text-align: center;
+  }
+
+  .header-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+
+  h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--accent0), var(--accent1));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 560px;
+    margin: 0 auto 40px;
+    font-weight: 300;
+  }
+
+  /* Overview bar */
+  .overview {
+    display: flex;
+    gap: 4px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 64px;
+    height: 6px;
+  }
+
+  .overview-seg {
+    flex: 1;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+    opacity: 0.6;
+  }
+  .overview-seg:hover, .overview-seg.active { opacity: 1; transform: scaleY(1.5); }
+
+  /* Level navigation */
+  .level-nav {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .nav-btn:hover { border-color: var(--muted); color: var(--text); }
+  .nav-btn.active { color: var(--text); }
+  .nav-btn .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* Level cards */
+  .level-card {
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 32px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .level-card.visible { opacity: 1; transform: translateY(0); }
+
+  .level-header {
+    padding: 32px 36px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .level-badge {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+    font-weight: 500;
+    flex-shrink: 0;
+    transition: transform 0.3s;
+  }
+  .level-card:hover .level-badge { transform: scale(1.05) rotate(-3deg); }
+
+  .level-meta { flex: 1; }
+
+  .level-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    opacity: 0.6;
+  }
+
+  .level-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+
+  .level-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .toggle-icon {
+    font-size: 20px;
+    color: var(--muted);
+    transition: transform 0.3s;
+    padding-top: 4px;
+  }
+  .level-card.expanded .toggle-icon { transform: rotate(45deg); }
+
+  /* Level body */
+  .level-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .level-body-inner {
+    padding: 0 36px 36px;
+    border-top: 1px solid var(--border);
+    padding-top: 28px;
+  }
+
+  /* Section headers inside card */
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  @media (max-width: 640px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 640px) { .grid-3 { grid-template-columns: 1fr; } }
+
+  .card-mini {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .card-mini-title {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .card-mini ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .card-mini li {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+    font-weight: 300;
+  }
+
+  .card-mini li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: inherit;
+    opacity: 0.5;
+  }
+
+  /* Tags */
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+
+  .tag {
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    border: 1px solid currentColor;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .tag:hover { opacity: 1; }
+
+  /* Transition block */
+  .transition-block {
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-top: 8px;
+  }
+
+  .transition-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .transition-content {}
+
+  .transition-title {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .transition-text {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* Habit block */
+  .habit-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .habit-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+
+  .habit-icon { font-size: 16px; flex-shrink: 0; }
+
+  .habit-text {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .habit-text strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* Progress path at bottom */
+  .path-section {
+    margin-top: 64px;
+    margin-bottom: 80px;
+  }
+
+  .path-title {
+    text-align: center;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 40px;
+    color: var(--muted);
+  }
+
+  .path-line {
+    position: relative;
+    padding-left: 32px;
+  }
+
+  .path-line::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom,
+      var(--accent0),
+      var(--accent1),
+      var(--accent2),
+      var(--accent3),
+      var(--accent4)
+    );
+    opacity: 0.4;
+  }
+
+  .path-node {
+    position: relative;
+    padding: 0 0 32px 24px;
+  }
+
+  .path-node::before {
+    content: '';
+    position: absolute;
+    left: -22px;
+    top: 5px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid currentColor;
+    background: var(--bg);
+  }
+
+  .path-node-title {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .path-node-text {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* Scrolled in */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Footer */
+  .page-footer {
+    text-align: center;
+    padding: 40px 0 48px;
+    border-top: 1px solid var(--border);
+    margin-top: 16px;
+  }
+
+  .page-footer p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .page-footer a {
+    color: var(--muted);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s;
+  }
+
+  .page-footer a:hover {
+    color: var(--text);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="header-tag">AI Practitioner's Evolution Map · 2026</div>
+    <h1>围绕 AI 的<em>工具链进化路径</em></h1>
+    <p class="subtitle">从第一次打开 ChatGPT，到构建自己的 AI 原生工作流 —— 每一阶段应掌握的概念、方法与习惯，以及进入下一阶段的关键跃迁。</p>
+  </header>
+
+  <div class="overview" id="overview">
+    <div class="overview-seg" style="background: var(--l0-accent)" data-level="0"></div>
+    <div class="overview-seg" style="background: var(--l1-accent)" data-level="1"></div>
+    <div class="overview-seg" style="background: var(--l2-accent)" data-level="2"></div>
+    <div class="overview-seg" style="background: var(--l3-accent)" data-level="3"></div>
+    <div class="overview-seg" style="background: var(--l4-accent)" data-level="4"></div>
+  </div>
+
+  <div class="level-nav" id="level-nav">
+    <button class="nav-btn active" data-level="0" style="border-color: var(--l0-accent); color: var(--l0-accent)">
+      <span class="dot" style="background: var(--l0-accent)"></span> L0 · 初触者
+    </button>
+    <button class="nav-btn" data-level="1" style="">
+      <span class="dot" style="background: var(--l1-accent)"></span> L1 · 使用者
+    </button>
+    <button class="nav-btn" data-level="2" style="">
+      <span class="dot" style="background: var(--l2-accent)"></span> L2 · 工程师
+    </button>
+    <button class="nav-btn" data-level="3" style="">
+      <span class="dot" style="background: var(--l3-accent)"></span> L3 · 架构师
+    </button>
+    <button class="nav-btn" data-level="4" style="">
+      <span class="dot" style="background: var(--l4-accent)"></span> L4 · 原住民
+    </button>
+  </div>
+
+  <!-- Cards -->
+  <div id="cards">
+
+    <!-- L0 -->
+    <div class="level-card" id="card-0" style="background: linear-gradient(135deg, var(--l0) 0%, transparent 100%); border-color: rgba(124,159,255,0.2)">
+      <div class="level-header" onclick="toggleCard(0)">
+        <div class="level-badge" style="background: rgba(124,159,255,0.15); color: var(--l0-accent)">✦</div>
+        <div class="level-meta">
+          <div class="level-number" style="color: var(--l0-accent)">Level 0 · 初触者</div>
+          <div class="level-title">第一次与 AI 对话</div>
+          <div class="level-desc">对 AI 的能力边界模糊，主要靠直觉提问，结果好坏参半。尚未建立系统性认知。</div>
+        </div>
+        <div class="toggle-icon">+</div>
+      </div>
+      <div class="level-body">
+        <div class="level-body-inner">
+
+          <div class="section-label">核心概念</div>
+          <div class="grid-2" style="margin-bottom: 24px">
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l0-accent)">🧠 理解 LLM 的本质</div>
+              <ul>
+                <li>AI 不是搜索引擎，是预测下一个 token</li>
+                <li>输出概率性的，不是确定性的</li>
+                <li>上下文窗口是它的"工作记忆"</li>
+                <li>没有持久记忆，每次对话从零开始</li>
+              </ul>
+            </div>
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l0-accent)">🗣 Prompt 基础</div>
+              <ul>
+                <li>提问越具体，答案越有用</li>
+                <li>给出角色 / 背景 / 目标</li>
+                <li>可以要求特定输出格式</li>
+                <li>可以让它"一步步思考"</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="section-label">工具接触</div>
+          <div class="tag-row">
+            <span class="tag" style="color: var(--l0-accent)">ChatGPT / Claude.ai</span>
+            <span class="tag" style="color: var(--l0-accent)">Gemini</span>
+            <span class="tag" style="color: var(--l0-accent)">Notion AI</span>
+            <span class="tag" style="color: var(--l0-accent)">Copilot（Office）</span>
+            <span class="tag" style="color: var(--l0-accent)">Perplexity</span>
+            <span class="tag" style="color: var(--l0-accent)">DeepSeek</span>
+          </div>
+
+          <div class="section-label">建立的使用习惯</div>
+          <div class="habit-list">
+            <div class="habit-item">
+              <span class="habit-icon">📋</span>
+              <div class="habit-text"><strong>有目的地提问</strong> —— 在发送前想清楚"我希望得到什么"</div>
+            </div>
+            <div class="habit-item">
+              <span class="habit-icon">🔁</span>
+              <div class="habit-text"><strong>追问和迭代</strong> —— 第一个答案往往不是最好的，继续引导</div>
+            </div>
+            <div class="habit-item">
+              <span class="habit-icon">🔍</span>
+              <div class="habit-text"><strong>验证事实性内容</strong> —— AI 会自信地说错，关键信息要核实</div>
+            </div>
+          </div>
+
+          <div class="section-label">升级到 L1 的关键跃迁</div>
+          <div class="transition-block" style="background: rgba(124,159,255,0.06); border: 1px solid rgba(124,159,255,0.15)">
+            <div class="transition-icon">→</div>
+            <div class="transition-content">
+              <div class="transition-title">建立"提示词思维"</div>
+              <div class="transition-text">意识到 AI 的输出质量完全由你的输入决定。开始主动设计提问方式，而不是被动接受输出。推荐行动：找一项你每天重复做的文字工作，用 AI 优化它，并保存有效的提示词模板。</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- L1 -->
+    <div class="level-card" id="card-1" style="background: linear-gradient(135deg, var(--l1) 0%, transparent 100%); border-color: rgba(52,211,153,0.2)">
+      <div class="level-header" onclick="toggleCard(1)">
+        <div class="level-badge" style="background: rgba(52,211,153,0.15); color: var(--l1-accent)">◈</div>
+        <div class="level-meta">
+          <div class="level-number" style="color: var(--l1-accent)">Level 1 · 使用者</div>
+          <div class="level-title">把 AI 真正用起来</div>
+          <div class="level-desc">AI 已经成为日常工具，有自己惯用的场景和套路。开始感受到生产力提升，但仍依赖单一平台。</div>
+        </div>
+        <div class="toggle-icon">+</div>
+      </div>
+      <div class="level-body">
+        <div class="level-body-inner">
+
+          <div class="section-label">核心概念</div>
+          <div class="grid-3" style="margin-bottom: 24px">
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l1-accent)">📐 Prompt 工程</div>
+              <ul>
+                <li>Few-shot 示例引导</li>
+                <li>System prompt / 角色设定</li>
+                <li>思维链（CoT）</li>
+                <li>格式约束（JSON、列表）</li>
+              </ul>
+            </div>
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l1-accent)">🔄 对话管理</div>
+              <ul>
+                <li>上下文积累与清除时机</li>
+                <li>分段处理长任务</li>
+                <li>角色扮演与专家模拟</li>
+                <li>对话分支与版本对比</li>
+              </ul>
+            </div>
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l1-accent)">🌐 模型差异</div>
+              <ul>
+                <li>不同模型的能力侧重</li>
+                <li>速度 vs 质量权衡</li>
+                <li>Web Search 模式</li>
+                <li>多模态（图像、语音）</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="section-label">工具矩阵</div>
+          <div class="grid-2" style="margin-bottom: 24px">
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l1-accent)">📝 写作 & 思考（举例）</div>
+              <ul>
+                <li>Claude.ai Projects（长上下文）</li>
+                <li>ChatGPT Workspace Agents</li>
+                <li>Notion AI、Obsidian + AI 插件</li>
+                <li>Perplexity（研究型搜索）</li>
+              </ul>
+            </div>
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l1-accent)">💻 编程辅助（举例）</div>
+              <ul>
+                <li>GitHub Copilot（IDE 内联）</li>
+                <li>Cursor / Windsurf</li>
+                <li>Claude.ai（代码审查）</li>
+                <li>v0.app（应用构建）</li>
+                <li>Bolt.new（全栈原型）</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="section-label">建立的使用习惯</div>
+          <div class="habit-list">
+            <div class="habit-item">
+              <span class="habit-icon">📁</span>
+              <div class="habit-text"><strong>维护 Prompt 库</strong> —— 把高效的提示词存下来，分类管理，按需调用</div>
+            </div>
+            <div class="habit-item">
+              <span class="habit-icon">🎯</span>
+              <div class="habit-text"><strong>选对工具做对事</strong> —— 代码用 Copilot，研究用 Perplexity，长文用 Claude Projects</div>
+            </div>
+            <div class="habit-item">
+              <span class="habit-icon">📊</span>
+              <div class="habit-text"><strong>建立个人知识库</strong> —— 把 AI 生成的有价值内容整理进笔记系统（Obsidian / Notion）</div>
+            </div>
+          </div>
+
+          <div class="section-label">升级到 L2 的关键跃迁</div>
+          <div class="transition-block" style="background: rgba(52,211,153,0.06); border: 1px solid rgba(52,211,153,0.15)">
+            <div class="transition-icon">→</div>
+            <div class="transition-content">
+              <div class="transition-title">打开 API，触碰自动化边界</div>
+              <div class="transition-text">第一次调用 Anthropic / OpenAI API，哪怕只是在 Python 里打印一条回复。意识到 AI 可以嵌入你的工作流而不仅仅是网页聊天框。推荐行动：用 API 写一个能自动处理你某个重复性文字任务的小脚本。</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- L2 -->
+    <div class="level-card" id="card-2" style="background: linear-gradient(135deg, var(--l2) 0%, transparent 100%); border-color: rgba(167,139,250,0.2)">
+      <div class="level-header" onclick="toggleCard(2)">
+        <div class="level-badge" style="background: rgba(167,139,250,0.15); color: var(--l2-accent)">⬡</div>
+        <div class="level-meta">
+          <div class="level-number" style="color: var(--l2-accent)">Level 2 · 工程师</div>
+          <div class="level-title">构建 AI 驱动的工具</div>
+          <div class="level-desc">能够通过 API 将 AI 嵌入自定义流程，构建真正自动化的工作流，理解 token 经济和上下文管理。</div>
+        </div>
+        <div class="toggle-icon">+</div>
+      </div>
+      <div class="level-body">
+        <div class="level-body-inner">
+
+          <div class="section-label">核心概念</div>
+          <div class="grid-2" style="margin-bottom: 24px">
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l2-accent)">⚙️ API & 工程基础</div>
+              <ul>
+                <li>Messages API（System / User / Assistant）</li>
+                <li>Token 计算与成本控制</li>
+                <li>Temperature / Top-P 参数</li>
+                <li>Streaming 流式输出</li>
+                <li>Function Calling / Tool Use</li>
+              </ul>
+            </div>
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l2-accent)">🤖 AI 编程工具（举例）</div>
+              <ul>
+                <li>Claude Code（终端 AI 代理）</li>
+                <li>Cursor Rules / .mdc</li>
+                <li>AI-assisted TDD 流程</li>
+                <li>Prompt 版本管理（Git）</li>
+                <li>结构化输出（JSON Schema）</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="grid-2" style="margin-bottom: 24px">
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l2-accent)">🔗 RAG 基础</div>
+              <ul>
+                <li>Embedding 向量化原理</li>
+                <li>向量数据库（Chroma / Pinecone）</li>
+                <li>检索增强生成流程</li>
+                <li>Chunking 策略对质量的影响</li>
+              </ul>
+            </div>
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l2-accent)">⚡ 工作流自动化</div>
+              <ul>
+                <li>n8n / Make / Zapier + AI 节点</li>
+                <li>LangChain / LlamaIndex 基础</li>
+                <li>Webhook 触发 AI 任务</li>
+                <li>批处理（Batch API）</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="section-label">工具栈</div>
+          <div class="tag-row">
+            <span class="tag" style="color: var(--l2-accent)">Claude Code</span>
+            <span class="tag" style="color: var(--l2-accent)">Cursor / Windsurf</span>
+            <span class="tag" style="color: var(--l2-accent)">Anthropic API</span>
+            <span class="tag" style="color: var(--l2-accent)">LangChain</span>
+            <span class="tag" style="color: var(--l2-accent)">n8n</span>
+            <span class="tag" style="color: var(--l2-accent)">Chroma / Pinecone</span>
+            <span class="tag" style="color: var(--l2-accent)">Supabase pgvector</span>
+          </div>
+
+          <div class="section-label">建立的使用习惯</div>
+          <div class="habit-list">
+            <div class="habit-item">
+              <span class="habit-icon">📝</span>
+              <div class="habit-text"><strong>CLAUDE.md 驱动开发</strong> —— 每个项目维护一份 AI 上下文文件，减少重复解释</div>
+            </div>
+            <div class="habit-item">
+              <span class="habit-icon">🔬</span>
+              <div class="habit-text"><strong>Prompt 实验记录</strong> —— 用 Git 追踪 prompt 变更，像代码一样管理提示词</div>
+            </div>
+            <div class="habit-item">
+              <span class="habit-icon">💡</span>
+              <div class="habit-text"><strong>错误驱动学习</strong> —— 记录 AI 的失败案例和根因，建立个人的"AI 反模式"清单</div>
+            </div>
+            <div class="habit-item">
+              <span class="habit-icon">📐</span>
+              <div class="habit-text"><strong>Human-in-the-loop 设计</strong> —— 对高风险操作保留人工确认节点，而非全自动</div>
+            </div>
+          </div>
+
+          <div class="section-label">升级到 L3 的关键跃迁</div>
+          <div class="transition-block" style="background: rgba(167,139,250,0.06); border: 1px solid rgba(167,139,250,0.15)">
+            <div class="transition-icon">→</div>
+            <div class="transition-content">
+              <div class="transition-title">从单个 AI 调用到多 Agent 协作</div>
+              <div class="transition-text">意识到复杂任务需要多个 AI 角色分工——一个规划、一个执行、一个验证。开始思考"工作流的认知架构"而非单次对话。推荐行动：设计一个有 Orchestrator + Worker 结构的两层 Agent 系统，哪怕功能很简单。</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- L3 -->
+    <div class="level-card" id="card-3" style="background: linear-gradient(135deg, var(--l3) 0%, transparent 100%); border-color: rgba(251,146,60,0.2)">
+      <div class="level-header" onclick="toggleCard(3)">
+        <div class="level-badge" style="background: rgba(251,146,60,0.15); color: var(--l3-accent)">❋</div>
+        <div class="level-meta">
+          <div class="level-number" style="color: var(--l3-accent)">Level 3 · 架构师</div>
+          <div class="level-title">设计多 Agent 系统</div>
+          <div class="level-desc">能够设计复杂的多 Agent 协作流程，理解记忆架构、工具调用链，以及 AI 系统的可靠性边界。</div>
+        </div>
+        <div class="toggle-icon">+</div>
+      </div>
+      <div class="level-body">
+        <div class="level-body-inner">
+
+          <div class="section-label">核心概念</div>
+          <div class="grid-2" style="margin-bottom: 24px">
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l3-accent)">🧩 Agent 架构模式</div>
+              <ul>
+                <li>Orchestrator / Subagent 分层</li>
+                <li>ReAct（推理-行动-观察）循环</li>
+                <li>Plan-and-Execute 规划模式</li>
+                <li>Multi-Agent 并行执行</li>
+                <li>工具调用链与错误恢复</li>
+              </ul>
+            </div>
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l3-accent)">💾 记忆与状态管理</div>
+              <ul>
+                <li>In-context vs External Memory</li>
+                <li>跨会话记忆持久化</li>
+                <li>结构化知识图谱</li>
+                <li>错误学习与反思机制（如 GEAR）</li>
+                <li>会话 Kick-off / Wrap-up 模式</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="grid-2" style="margin-bottom: 24px">
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l3-accent)">🔒 可靠性设计</div>
+              <ul>
+                <li>信任边界与权限分级（L0-L3）</li>
+                <li>Human-in-the-loop 触发条件设计</li>
+                <li>Fallback 降级策略</li>
+                <li>幂等性与状态恢复</li>
+                <li>可观测性（日志 / Trace）</li>
+              </ul>
+            </div>
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l3-accent)">🔌 协议与集成</div>
+              <ul>
+                <li>MCP（Model Context Protocol）</li>
+                <li>A2A（Agent-to-Agent）协议</li>
+                <li>OpenAPI 工具注入</li>
+                <li>Sandbox 隔离执行环境</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="section-label">工具栈</div>
+          <div class="tag-row">
+            <span class="tag" style="color: var(--l3-accent)">LangGraph</span>
+            <span class="tag" style="color: var(--l3-accent)">CrewAI</span>
+            <span class="tag" style="color: var(--l3-accent)">AutoGen</span>
+            <span class="tag" style="color: var(--l3-accent)">OpenAI Agents SDK</span>
+            <span class="tag" style="color: var(--l3-accent)">Smolagents</span>
+            <span class="tag" style="color: var(--l3-accent)">MCP Servers</span>
+            <span class="tag" style="color: var(--l3-accent)">A2A Protocol</span>
+            <span class="tag" style="color: var(--l3-accent)">Weights & Biases</span>
+            <span class="tag" style="color: var(--l3-accent)">Langfuse</span>
+            <span class="tag" style="color: var(--l3-accent)">Claude Code Skills</span>
+          </div>
+
+          <div class="section-label">建立的使用习惯</div>
+          <div class="habit-list">
+            <div class="habit-item">
+              <span class="habit-icon">🏗</span>
+              <div class="habit-text"><strong>系统图先于代码</strong> —— 画出数据流、Agent 边界、人工干预节点，再开始实现</div>
+            </div>
+            <div class="habit-item">
+              <span class="habit-icon">📊</span>
+              <div class="habit-text"><strong>持续评估（Evals）</strong> —— 像测试代码一样测试 prompt，建立回归测试集</div>
+            </div>
+            <div class="habit-item">
+              <span class="habit-icon">🔄</span>
+              <div class="habit-text"><strong>错误库与反思循环</strong> —— 系统性收集 Agent 失败案例，周期性更新系统 prompt</div>
+            </div>
+            <div class="habit-item">
+              <span class="habit-icon">📖</span>
+              <div class="habit-text"><strong>跟踪学术与工程前沿</strong> —— 每周阅读 arXiv、跟进 Anthropic / OpenAI 工程 blog</div>
+            </div>
+          </div>
+
+          <div class="section-label">升级到 L4 的关键跃迁</div>
+          <div class="transition-block" style="background: rgba(251,146,60,0.06); border: 1px solid rgba(251,146,60,0.15)">
+            <div class="transition-icon">→</div>
+            <div class="transition-content">
+              <div class="transition-title">从构建工具到贡献知识</div>
+              <div class="transition-text">在某个领域形成独到见解，开始对外分享（技术博客、开源项目、论文/RFC）。AI 工具链的认知框架已经内化，更关注模式的通用性和边界条件。推荐行动：把你解决的一个非平凡问题写成文章或开源项目，逼自己梳理清楚背后的思维模型。</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- L4 -->
+    <div class="level-card" id="card-4" style="background: linear-gradient(135deg, var(--l4) 0%, transparent 100%); border-color: rgba(244,114,182,0.2)">
+      <div class="level-header" onclick="toggleCard(4)">
+        <div class="level-badge" style="background: rgba(244,114,182,0.15); color: var(--l4-accent)">⊛</div>
+        <div class="level-meta">
+          <div class="level-number" style="color: var(--l4-accent)">Level 4 · 原住民</div>
+          <div class="level-title">AI 原生思维</div>
+          <div class="level-desc">AI 不再是工具，而是认知的延伸。能够设计新范式、贡献开源生态，并在不确定中保持清醒的判断。</div>
+        </div>
+        <div class="toggle-icon">+</div>
+      </div>
+      <div class="level-body">
+        <div class="level-body-inner">
+
+          <div class="section-label">核心能力</div>
+          <div class="grid-2" style="margin-bottom: 24px">
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l4-accent)">🧬 范式创新</div>
+              <ul>
+                <li>识别现有框架的结构性缺陷</li>
+                <li>设计新的 Agent 交互协议</li>
+                <li>从第一原理出发建模 AI 行为</li>
+                <li>在学界与工程界之间搭桥</li>
+              </ul>
+            </div>
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l4-accent)">🌐 生态贡献</div>
+              <ul>
+                <li>开源项目维护与社区运营</li>
+                <li>技术博客 / 论文 / RFC 发布</li>
+                <li>构建他人可复用的工具原语</li>
+                <li>建立对比测评框架（Evals）</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="grid-2" style="margin-bottom: 24px">
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l4-accent)">⚖️ 清醒判断</div>
+              <ul>
+                <li>理解当前模型的硬边界</li>
+                <li>区分"目前不行"和"永远不行"</li>
+                <li>在 hype 中保持技术诚实</li>
+                <li>AI 伦理与安全的实践视角</li>
+              </ul>
+            </div>
+            <div class="card-mini">
+              <div class="card-mini-title" style="color: var(--l4-accent)">🔮 未来感知</div>
+              <ul>
+                <li>跟踪 frontier model 发展曲线</li>
+                <li>预判工具链演进方向</li>
+                <li>识别真正的技术转折点</li>
+                <li>将学术突破转化为工程实践</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="section-label">典型标志</div>
+          <div class="habit-list">
+            <div class="habit-item">
+              <span class="habit-icon">🚀</span>
+              <div class="habit-text"><strong>建立自己的"AI 认知框架"</strong> —— 有自己的概念体系，能清晰解释 AI 系统为什么工作或失败</div>
+            </div>
+            <div class="habit-item">
+              <span class="habit-icon">🌱</span>
+              <div class="habit-text"><strong>思维方式已经改变</strong> —— 遇到新问题会自然地思考"哪些部分适合 AI 处理，哪些必须保留人类判断"</div>
+            </div>
+            <div class="habit-item">
+              <span class="habit-icon">🎓</span>
+              <div class="habit-text"><strong>持续帮助他人升级</strong> —— 能够识别他人处于哪个阶段，并给出有针对性的导入建议</div>
+            </div>
+          </div>
+
+          <div class="transition-block" style="background: rgba(244,114,182,0.06); border: 1px solid rgba(244,114,182,0.15)">
+            <div class="transition-icon">∞</div>
+            <div class="transition-content">
+              <div class="transition-title">保持初学者心态</div>
+              <div class="transition-text">这个领域每 6-12 个月就会有根本性变化。L4 的核心能力不是"知道一切"，而是能够快速将新能力整合进自己的框架，并判断它改变了什么、没改变什么。</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Path section -->
+  <div class="path-section">
+    <div class="path-title">一条不是线性的线性路径</div>
+    <div class="path-line">
+      <div class="path-node" style="color: var(--l0-accent)">
+        <div class="path-node-title">L0 → L1：第一次感受到效率提升（通常 1-4 周）</div>
+        <div class="path-node-text">找到一个真实痛点，用 AI 解决它。这一步最重要的不是工具，而是建立"AI 可以帮我"的真实体验。</div>
+      </div>
+      <div class="path-node" style="color: var(--l1-accent)">
+        <div class="path-node-title">L1 → L2：第一次调用 API（通常 1-3 个月）</div>
+        <div class="path-node-text">需要有一定编程基础，或愿意为此学习。这是从消费者到建造者的临界点。</div>
+      </div>
+      <div class="path-node" style="color: var(--l2-accent)">
+        <div class="path-node-title">L2 → L3：第一个真正复杂的系统（3-12 个月）</div>
+        <div class="path-node-text">需要在真实项目中踩过足够多的坑。很多人会在这里停留很长时间，这完全正常。</div>
+      </div>
+      <div class="path-node" style="color: var(--l3-accent)">
+        <div class="path-node-title">L3 → L4：沉淀与对外输出（持续进行）</div>
+        <div class="path-node-text">不是一个有终点的阶段，而是一种持续的工作方式。分享、开源、写作都是这个阶段的自然产物。</div>
+      </div>
+      <div class="path-node" style="color: var(--l4-accent)">
+        <div class="path-node-title">注意：路径从不只有一条</div>
+        <div class="path-node-text">非技术背景的人可能永远不需要 L2 的 API 技能，但可以在写作、产品、研究等领域达到 L3/L4。工具链的形态因人而异。</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    <p>© 2026 <a href="https://blog.chuanxilu.net/">能工智人的传习录</a> · 保留所有权利</p>
+    <p>本文内容采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 协议发布</p>
+  </footer>
+
+</div>
+
+<script>
+  function toggleCard(n) {
+    const card = document.getElementById('card-' + n);
+    const body = card.querySelector('.level-body');
+    const expanded = card.classList.contains('expanded');
+
+    if (expanded) {
+      body.style.maxHeight = '0';
+      card.classList.remove('expanded');
+    } else {
+      body.style.maxHeight = body.scrollHeight + 'px';
+      card.classList.add('expanded');
+    }
+
+    // Update nav
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    if (!expanded) {
+      document.querySelector(`.nav-btn[data-level="${n}"]`).classList.add('active');
+    }
+  }
+
+  // Nav button click scrolls to card
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const n = parseInt(btn.dataset.level);
+      const card = document.getElementById('card-' + n);
+      const isExpanded = card.classList.contains('expanded');
+      if (!isExpanded) toggleCard(n);
+      card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Overview click
+  document.querySelectorAll('.overview-seg').forEach(seg => {
+    seg.addEventListener('click', () => {
+      const n = parseInt(seg.dataset.level);
+      const card = document.getElementById('card-' + n);
+      if (!card.classList.contains('expanded')) toggleCard(n);
+      card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Intersection observer for card entrance animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.05 });
+
+  document.querySelectorAll('.level-card').forEach(c => observer.observe(c));
+
+  // Open first card by default
+  setTimeout(() => toggleCard(0), 300);
+</script>
+</body>
+</html>
