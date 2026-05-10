@@ -2,13 +2,17 @@
 title: "AI Toolchain Evolution Path: From First Contact to AI Native"
 slug: "ai-toolchain-evolution-path"
 date: 2026-05-10T08:00:00+08:00
+draft: false
+description: "An evolution map of AI capabilities from L0 to L4—not a tutorial for any specific tool, but a guide to understanding the fundamental mindset shifts at each stage. Includes an interactive HTML page where you can explore detailed skill checklists, recommended tools, and transition conditions for each level."
 tags: ["AI", "Toolchain", "Evolution Path", "Career Development"]
 categories: ["AI Practice"]
-summary: "An evolution map of AI capabilities from L0 to L4—not a tutorial for any specific tool, but a guide to understanding the fundamental mindset shifts at each stage."
+toc: true
 cover:
   image: "cover.png"
   alt: "AI Toolchain Evolution Path panorama — five levels from First Contact to AI Native"
 ---
+
+> **TL;DR:** This post introduces an AI Toolchain Evolution Path that maps the journey from "opening ChatGPT for the first time" to "AI-native thinking" across five levels (L0→L4). Each level has clear core concepts, recommended tools, habits to build, and key transition conditions. Key insight: the path isn't linear, tools are the least important part, and mindset is the real asset. The [interactive HTML version](/en/ai-evolution-path/) at the end lets you explore each level in full detail.
 
 ## Introduction
 
