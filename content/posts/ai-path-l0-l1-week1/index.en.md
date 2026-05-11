@@ -107,7 +107,7 @@ There are three practical techniques to keep in mind:
 
 **Global platforms:**
 
-- **ChatGPT**: The most complete ecosystem, with a rich plugin and app marketplace. The GPT-4o series delivers well-rounded capabilities. Best for all-purpose daily use and scenarios that benefit from the plugin ecosystem.
+- **ChatGPT**: The most complete ecosystem, with a rich plugin and app marketplace. The GPT-5.5 series delivers well-rounded capabilities. Best for all-purpose daily use and scenarios that benefit from the plugin ecosystem.
 - **Claude**: Exceptional at long-form content, with high-quality writing and analysis. The Projects feature lets you upload reference materials and maintain context. Best for in-depth writing, long-document analysis, and code review.
 - **Gemini**: Deep integration with the Google ecosystem (email, docs, calendar), strong multimodal capabilities, and Deep Research for thorough investigations. Best for heavy Google ecosystem users.
 
