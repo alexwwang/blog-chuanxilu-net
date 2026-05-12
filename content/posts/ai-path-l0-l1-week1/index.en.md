@@ -11,7 +11,6 @@ cover:
   image: "cover.png"
   alt: "Watercolor illustration: a person at a cozy desk, holding a glowing translucent orb representing the essence of understanding LLMs"
 series: ["AI Path L0→L1 Upgrade Guide"]
-weight: 1
 ---
 
 > 📖 This is Part 1 of 5 in the "AI Path L0→L1 Upgrade Guide" series. Series navigation will be updated once all parts are published.
