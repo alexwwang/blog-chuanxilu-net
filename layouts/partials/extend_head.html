@@ -2,7 +2,8 @@
   extend_head.html — Inject cross-language hreflang for taxonomy terms
   whose slugs differ between Chinese and English.
   Mapping table: data/taxonomy_translations.yaml
-  PaperMod calls this partial AFTER its own hreflang generation (head.html:197).
+  head.html calls this partial AFTER its own hreflang generation.
+  Uses full language codes (zh-CN / en-US) to match sitemap hreflang values.
 */ -}}
 
 {{- if eq .Kind "term" -}}
@@ -17,19 +18,22 @@
       {{- if eq .section $section -}}
         {{- $zhSlug := urlize .zh -}}
         {{- $enSlug := urlize .en -}}
-        {{- $otherLang := "" -}}
+        {{- $otherLangKey := "" -}}
+        {{- $otherLangCode := "" -}}
         {{- $otherSlug := "" -}}
         {{- if and (eq $currentLang "zh") (eq $zhSlug $termSlug) -}}
-          {{- $otherLang = "en" -}}
+          {{- $otherLangKey = "en" -}}
+          {{- $otherLangCode = "en-US" -}}
           {{- $otherSlug = $enSlug -}}
         {{- else if and (eq $currentLang "en") (eq $enSlug $termSlug) -}}
-          {{- $otherLang = "zh" -}}
+          {{- $otherLangKey = "zh" -}}
+          {{- $otherLangCode = "zh-CN" -}}
           {{- $otherSlug = $zhSlug -}}
         {{- end -}}
         {{- if $otherSlug -}}
           {{- $matched = true -}}
-          {{- $prefix := cond (eq $otherLang "zh") "" (printf "/%s" $otherLang) -}}
-<link rel="alternate" hreflang="{{ $otherLang }}" href="{{ printf "%s%s/%s/%s/" $base $prefix $section $otherSlug }}">
+          {{- $prefix := cond (eq $otherLangKey "zh") "" (printf "/%s" $otherLangKey) -}}
+<link rel="alternate" hreflang="{{ $otherLangCode }}" href="{{ printf "%s%s/%s/%s/" $base $prefix $section $otherSlug }}">
 <link rel="alternate" hreflang="x-default" href="{{ printf "%s/en/%s/%s/" $base $section $enSlug }}">
         {{- end -}}
       {{- end -}}
