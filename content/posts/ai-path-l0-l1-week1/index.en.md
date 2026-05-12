@@ -134,4 +134,4 @@ Then do something even more important: **based on your primary use cases, pick 1
 
 ---
 
-*That wraps up Week 1. Next week, we dive into Prompt fundamentals—from vague questions to precise instructions. → [Part 2](/en/posts/2026/05/ai-path-l0-l1-week2/)*
+*That wraps up Week 1. Next week, we dive into Prompt fundamentals—from vague questions to precise instructions. (Part 2 coming soon)*
