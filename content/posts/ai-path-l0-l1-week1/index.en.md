@@ -56,7 +56,7 @@ Ready? Let's begin.
 
 This exercise builds an important intuition: AI output isn't *looked up*—it's *assembled*. Once that clicks, you'll stop treating it like a search engine.
 
-Then ask yourself a key question: **When should you use AI, and when should you use a search engine?** A simple rule of thumb: verifying specific facts ("What was China's GDP in 2024?") → search engine; analysis, creation, synthesis, or reasoning ("Help me analyze the risks in this business model") → AI. For anything requiring accurate cited sources, always verify with a search engine first.
+Then ask yourself a key question: **When should you use AI, and when should you use a search engine?** A simple rule of thumb: verifying specific facts ("What is China's latest GDP?") → search engine; analysis, creation, synthesis, or reasoning ("Help me analyze the risks in this business model") → AI. For anything requiring accurate cited sources, always verify with a search engine first.
 
 ### Day 3–4: Two Kinds of Memory — Working Memory vs. Long-Term Memory
 
@@ -78,7 +78,7 @@ There are three practical techniques to keep in mind:
 
 #### Long-Term Memory (Cross-Conversation Memory)
 
-**Long-term memory** refers to the cross-conversation memory features that AI platforms offer. By 2025–2026, this has become a mainstream standard—but implementations vary significantly across platforms, and it's worth spending a few minutes understanding the differences.
+**Long-term memory** refers to the cross-conversation memory features that AI platforms offer. By 2026, this has become a mainstream standard—but implementations vary significantly across platforms, and it's worth spending a few minutes understanding the differences.
 
 > The information below is current as of **May 2026**. Platform features may have been updated since—check official docs for the latest.
 
@@ -134,4 +134,4 @@ Then do something even more important: **based on your primary use cases, pick 1
 
 ---
 
-*That wraps up Week 1. Next week, we dive into Prompt fundamentals—from vague questions to precise instructions. (Part 2 coming soon)*
+*That wraps up Week 1. Next week, we dive into Prompt fundamentals—from vague questions to precise instructions. → [Part 2](/en/posts/2026/05/ai-path-l0-l1-week2/)*
