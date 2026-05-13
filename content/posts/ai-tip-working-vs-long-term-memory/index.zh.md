@@ -1,7 +1,7 @@
 ---
 title: "AI 的「桌面」和「文件柜」"
 slug: "ai-tip-working-vs-long-term-memory"
-date: 2026-05-13T00:00:00+08:00
+date: 2026-05-14T06:00:00+08:00
 draft: false
 description: "跟 AI 聊了半天它就忘了？换个对话框又得从头解释？理解 AI 的两种记忆——桌面和文件柜——从此告别无效重复。"
 tags: ["AI", "工具链", "进化路径", "技巧卡"]

@@ -1,7 +1,7 @@
 ---
 title: "Your AI Has a Desk and a Filing Cabinet"
 slug: "ai-tip-working-vs-long-term-memory"
-date: 2026-05-13T00:00:00+08:00
+date: 2026-05-14T06:00:00+08:00
 draft: false
 description: "Why your AI forgets what you said five minutes ago — and what to do about it."
 tags: ["AI", "toolchain", "evolution-path", "tip-card"]
