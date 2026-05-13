@@ -94,4 +94,4 @@ Next time we get practical — how to turn the vague ideas in your head into ins
 **Series navigation:**
 
 - Previous: [Practice Challenge: Ask AI the Same Question 3 Times](/en/posts/2026/05/ai-practice-same-question-3-times/)
-- Next: AI Path L0→L1 Upgrade Guide (2): From Vague Questions to Precise Instructions
+- Next: [Your AI Has a Desk and a Filing Cabinet](/en/posts/2026/05/ai-tip-working-vs-long-term-memory/)
