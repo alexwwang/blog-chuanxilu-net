@@ -5,7 +5,7 @@ date: 2026-05-10T08:00:00+08:00
 draft: false
 description: "一份从 L0 到 L4 的 AI 能力进化地图——不是教你用某个工具，而是帮你理解思维方式在每个阶段发生的根本转变。包含交互式 HTML 页面，可展开查看每个等级的详细能力清单、推荐工具和升级跃迁条件。"
 tags: ["AI", "工具链", "进化路径", "职业发展"]
-categories: ["AI实践"]
+categories: ["AI 实践"]
 toc: true
 cover:
   image: "cover.png"

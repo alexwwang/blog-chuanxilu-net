@@ -5,7 +5,7 @@ date: 2026-05-11T08:00:00+08:00
 draft: true
 description: "AI 之路系列最终篇：L1 达成清单帮你验收 4 周学习成果，L1→L2 双路径预告（API 构建工具 / 自主执行型 AI），带你从'使用 AI'走向'让 AI 替你做事'。"
 tags: ["AI", "工具链", "进化路径", "教程"]
-categories: ["AI实践"]
+categories: ["AI 实践"]
 toc: true
 series: ["AI 之路初阶升级指南"]
 ---

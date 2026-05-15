@@ -5,7 +5,7 @@ date: 2026-05-11T08:00:00+08:00
 draft: true
 description: "AI 之路系列第三篇：追问迭代是多轮对话中最被低估的技巧，上下文管理帮你防止 AI 跑偏，角色扮演让同一个问题得到完全不同深度的回答。"
 tags: ["AI", "工具链", "进化路径", "教程"]
-categories: ["AI实践"]
+categories: ["AI 实践"]
 toc: true
 series: ["AI 之路初阶升级指南"]
 ---

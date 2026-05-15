@@ -13,7 +13,7 @@ cover:
   alt: "An arched gateway inscribed with WHY, two rods of different length and color on the ground"
 ---
 
-> TLDR: Anthropic's alignment research shows that teaching a model *why* works better than teaching it *what* — misalignment dropped from 22% to 3%. This post breaks down four experiments and distills three lessons you can use in prompt design.
+> **TL;DR:** Anthropic's alignment research shows that teaching a model *why* works better than teaching it *what* — misalignment dropped from 22% to 3%. This post breaks down four experiments and distills three lessons you can use in prompt design.
 
 I ran an A/B test comparing two prompt strategies. One group got positive examples — "do it like this." The other got no examples. Instead, the AI had to explain *why* a choice was correct before acting on it.
 

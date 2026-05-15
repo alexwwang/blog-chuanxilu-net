@@ -5,7 +5,7 @@ date: 2026-05-16T08:00:00+08:00
 draft: true
 description: "AI 之路系列第二篇：掌握 RBGO 提问框架（角色-背景-目标-输出），学会 Chain-of-Thought 思维链技巧，用格式约束让 AI 输出直接可用。"
 tags: ["AI", "工具链", "进化路径", "教程"]
-categories: ["AI实践"]
+categories: ["AI 实践"]
 toc: true
 series: ["AI 之路初阶升级指南"]
 cover:

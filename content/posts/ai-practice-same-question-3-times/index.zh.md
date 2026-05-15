@@ -5,7 +5,7 @@ date: 2026-05-12T08:00:00+08:00
 draft: false
 description: "系列配套实践：拿同一个问题问 AI 三遍，对比三次回答的差异。亲手感受 LLM 的概率性生成机制，告别'把 AI 当搜索引擎'的误区。"
 tags: ["AI", "工具链", "进化路径", "练习"]
-categories: ["AI实践"]
+categories: ["AI 实践"]
 toc: false
 series: ["AI 之路初阶升级指南"]
 cover:

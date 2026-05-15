@@ -5,7 +5,7 @@ date: 2026-05-11T08:00:00+08:00
 draft: false
 description: "AI 之路系列第一篇：LLM 不是搜索引擎，它不'知道'答案而是在'生成'答案。理解工作记忆与长期记忆的区别，认识主流平台的能力特长，为后续 3 周的练习打好认知基础。"
 tags: ["AI", "工具链", "进化路径", "教程"]
-categories: ["AI实践"]
+categories: ["AI 实践"]
 toc: true
 cover:
   image: "cover.png"

@@ -5,7 +5,7 @@ date: 2026-05-14T06:00:00+08:00
 draft: false
 description: "跟 AI 聊了半天它就忘了？换个对话框又得从头解释？理解 AI 的两种记忆——桌面和文件柜——从此告别无效重复。"
 tags: ["AI", "工具链", "进化路径", "技巧卡"]
-categories: ["AI实践"]
+categories: ["AI 实践"]
 toc: false
 series: ["AI 之路初阶升级指南"]
 cover:
