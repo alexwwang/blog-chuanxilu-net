@@ -184,3 +184,8 @@
   color: var(--inline-tag-hover);
   border-color: var(--inline-tag-hover);
 }
+
+/* Show cover images on category/tag listing pages */
+.tag-entry .entry-cover {
+  display: block;
+}

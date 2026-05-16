@@ -4,7 +4,7 @@ slug: "anthropic-alignment-to-prompt-design"
 date: 2026-05-14T10:00:00+08:00
 draft: false
 description: 'Anthropic 的对齐研究发现"教 why 比教 what 更有效"——这个来自安全训练的洞察，同样适用于日常 prompt 设计。本文拆解研究中的四组实验，提炼出三个可迁移的教训。'
-tags: ["AI", "prompt 工程", "Anthropic", "A/B 测试", "TDD"]
+tags: ["AI", "prompt 工程", "Anthropic", "AB 测试", "TDD"]
 categories: ["AI 实践", "为什么让 AI 动手之前先说 why"]
 series: ["为什么让 AI 动手之前先说 why"]
 toc: true

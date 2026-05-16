@@ -4,7 +4,7 @@ slug: "anthropic-alignment-to-prompt-design"
 date: 2026-05-14T10:00:00+08:00
 draft: false
 description: 'Anthropic discovered that teaching models "why" works better than teaching them "what" — misalignment dropped from 22% to 3%. This insight from safety training applies to everyday prompt design too.'
-tags: ["AI", "prompt engineering", "Anthropic", "A/B testing", "TDD"]
+tags: ["AI", "prompt engineering", "Anthropic", "AB testing", "TDD"]
 categories: ["AI Practice", "Why Make AI Articulate Why Before Acting"]
 series: ["Why Make AI Articulate Why Before Acting"]
 toc: true

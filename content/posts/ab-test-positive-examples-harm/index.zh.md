@@ -4,7 +4,7 @@ slug: "ab-test-positive-examples-harm"
 date: 2026-05-15T10:00:00+08:00
 draft: false
 description: '为什么给 AI 看正面示例反而降低输出质量？一次 4 变量 A/B 实验，测了 Why Articulation 的结构、语气、位置和示例类型，发现正面示例有害——和 Anthropic 的对齐研究结论一致。'
-tags: ["AI", "prompt 工程", "A/B 测试", "TDD", "Why Articulation"]
+tags: ["AI", "prompt 工程", "AB 测试", "TDD", "Why Articulation"]
 categories: ["AI 实践", "为什么让 AI 动手之前先说 why"]
 series: ["为什么让 AI 动手之前先说 why"]
 toc: true
@@ -102,13 +102,11 @@ Trigger rate 所有 condition 都是 100%。模型在每种设计下都执行了
 
 ### V1：开放式赢了——但赢得不多
 
-V1 把显式三问替换成了一段开放式 prompt：
+V1 把显式三问替换成了一句话的纯开放式 prompt：
 
 ```markdown
-Before any work in this phase, articulate your understanding of this task:
-explain what this phase protects, where the key risks lie, and why your
-chosen approach will achieve the goal. Do not proceed to execution until
-you have produced this reasoning.
+Before any work in this phase, articulate your understanding of this task.
+Do not proceed to execution until you have produced this reasoning.
 ```
 
 结果 +0.17，token 还省了 33%。在 Task 2（分布式 rate limiter）产生了最深的替代方案分析——hazard-driven vs component-driven 的测试结构选择，contract-first vs coverage-first 的策略权衡。Task 3（early-stop）识别了具体的非显而易见风险：false-red tests、timing attacks、wrong-interface imports。

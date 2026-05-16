@@ -4,7 +4,7 @@ slug: "ab-test-positive-examples-harm"
 date: 2026-05-15T10:00:00+08:00
 draft: false
 description: "Why do positive examples make AI output worse? A 4-variable A/B test on Why Articulation structure, tone, position, and example type found that demonstrations hurt — echoing Anthropic's alignment research."
-tags: ["AI", "prompt engineering", "A/B testing", "TDD", "Why Articulation"]
+tags: ["AI", "prompt engineering", "AB testing", "TDD", "Why Articulation"]
 categories: ["AI Practice", "Why Make AI Articulate Why Before Acting"]
 series: ["Why Make AI Articulate Why Before Acting"]
 toc: true
