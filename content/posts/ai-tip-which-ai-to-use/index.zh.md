@@ -40,4 +40,4 @@ cover:
 **系列导航：**
 
 - 上一篇：[AI 的「桌面」和「文件柜」](/posts/2026/05/ai-tip-working-vs-long-term-memory/)
-- 下一篇：AI 之路初阶升级指南（二）：从模糊提问到精确指令
+- 下一篇：[AI 之路初阶升级指南（二）：从模糊提问到精确指令](/posts/2026/05/ai-path-l0-l1-week2/)

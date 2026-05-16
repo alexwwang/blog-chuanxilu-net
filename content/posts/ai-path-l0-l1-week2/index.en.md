@@ -1,8 +1,8 @@
 ---
 title: "AI Path L0→L1 Upgrade Guide (2): From Vague Questions to Precise Instructions"
 slug: "ai-path-l0-l1-week2"
-date: 2026-05-16T08:00:00+08:00
-draft: true
+date: 2026-05-16T06:00:00+08:00
+draft: false
 description: "Part 2 of the AI Path L0→L1 Upgrade Guide. Master the RBGO prompt framework (Role–Background–Goal–Output), learn Chain-of-Thought reasoning to improve analytical answers, and use format constraints to make AI output ready to use."
 tags: ["AI", "toolchain", "evolution-path", "tutorial"]
 categories: ["AI Practice"]

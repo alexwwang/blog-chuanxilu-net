@@ -58,4 +58,4 @@ Once you accept this, your expectations get more realistic. And the way you use 
 📖 **Series Navigation**
 
 - Previous: [AI Path L0→L1 Upgrade Guide (1): Understanding Your Tools](/en/posts/2026/05/ai-path-l0-l1-week1/)
-- Next: AI Path L0→L1 Upgrade Guide (2): From Vague Questions to Precise Instructions
+- Next: [AI Path L0→L1 Upgrade Guide (2): From Vague Questions to Precise Instructions](/en/posts/2026/05/ai-path-l0-l1-week2/)

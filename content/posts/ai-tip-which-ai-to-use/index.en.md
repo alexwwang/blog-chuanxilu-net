@@ -44,4 +44,4 @@ Here's the thing: that's the wrong question. There is no universally best AI —
 **Series Navigation:**
 
 - Previous: [Your AI Has a Desk and a Filing Cabinet](/en/posts/2026/05/ai-tip-working-vs-long-term-memory/)
-- Next: AI Path L0→L1 Upgrade Guide (2): From Vague Questions to Precise Instructions
+- Next: [AI Path L0→L1 Upgrade Guide (2): From Vague Questions to Precise Instructions](/en/posts/2026/05/ai-path-l0-l1-week2/)

@@ -46,4 +46,4 @@ Sounds great — but there's a catch. The AI might file away something wrong, or
 **Series Navigation:**
 
 - Previous: [Don't Treat AI Like a Search Engine: 3 Cognitive Shifts](/en/posts/2026/05/ai-3-cognitive-shifts/)
-- Next: AI Path L0→L1 Upgrade Guide (2): From Vague Questions to Precise Instructions
+- Next: [AI Path L0→L1 Upgrade Guide (2): From Vague Questions to Precise Instructions](/en/posts/2026/05/ai-path-l0-l1-week2/)
