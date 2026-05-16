@@ -17,7 +17,15 @@ cover:
 >
 > [Part 1: Understanding Your Tools](/en/posts/2026/05/ai-path-l0-l1-week1/) · Part 2: From Vague Questions to Precise Instructions · Part 3: Turning AI Into Your Collaboration Partner (coming soon) · Part 4: Building Your Personal System (coming soon) · Part 5: Graduation & Next Steps (coming soon)
 
-In the last part we covered how LLMs actually work, how their memory operates, and the key differences between major platforms. Starting this week, we move into practice — how to turn what you want to say into instructions that AI can understand precisely.
+ In the last part we covered how LLMs actually work, how their memory operates, and the key differences between major platforms. Starting this week, we move into practice — how to turn what you want to say into instructions that AI can understand precisely.
+
+**📋 Week 1 Recap:**
+
+- [Part 1: Understanding Your Tools](/en/posts/2026/05/ai-path-l0-l1-week1/) — LLMs aren't search engines; they "think it through" every time
+- [Practice: Ask AI the Same Question 3 Times](/en/posts/2026/05/ai-practice-same-question-3-times/) — Experience probabilistic generation firsthand
+- [3 Cognitive Shifts: Stop Using AI Like a Search Engine](/en/posts/2026/05/ai-3-cognitive-shifts/) — From searching to conversing, from trusting to verifying, from answers to thinking
+- [Your AI Has a Desk and a Filing Cabinet](/en/posts/2026/05/ai-tip-working-vs-long-term-memory/) — Working memory vs. long-term memory
+- [Pick Your AI by the Job, Not the Ranking](/en/posts/2026/05/ai-tip-which-ai-to-use/) — Scenario-based matching across 7 platforms
 
 ![From vague questions to precise instructions — the RBGO framework helps AI understand you](l0-l1-2m.png)
 
