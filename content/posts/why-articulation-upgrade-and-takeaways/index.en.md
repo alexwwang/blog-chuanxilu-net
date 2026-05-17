@@ -1,7 +1,7 @@
 ---
 title: "The Upgrade — New Template and Three Transferable Lessons"
 slug: "why-articulation-upgrade-and-takeaways"
-date: 2026-05-16T10:00:00+08:00
+date: 2026-05-17T09:00:00+08:00
 draft: false
 description: "Upgrading the Why Articulation template based on A/B test data: replacing explicit questions with open-ended reasoning plus self-check, keeping mandatory tone and negative-only examples. Three transferable prompt engineering lessons."
 tags: ["AI", "prompt engineering", "AB testing", "TDD", "Why Articulation"]

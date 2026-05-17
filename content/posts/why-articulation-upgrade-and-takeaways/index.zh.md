@@ -1,13 +1,16 @@
 ---
 title: "升级落地——新模板与三个可迁移建议"
 slug: "why-articulation-upgrade-and-takeaways"
-date: 2026-05-16T10:00:00+08:00
+date: 2026-05-17T09:00:00+08:00
 draft: false
 description: '基于 A/B 实验结果升级 Why Articulation 模板：去掉显式三问，改为先自由思考再自检补充，保留强制语气和纯反面例子。提炼出三条可迁移到其他 prompt 工程场景的建议。'
 tags: ["AI", "prompt 工程", "AB 测试", "TDD", "Why Articulation"]
 categories: ["AI 实践", "为什么让 AI 动手之前先说 why"]
 series: ["为什么让 AI 动手之前先说 why"]
 toc: true
+cover:
+  image: "cover.png"
+  alt: "左侧散落的脚手架碎片标记为废弃，右侧干净的空框，三条金色虚线连接——从复杂到简洁的升级"
 ---
 
 > **TL;DR：** 展示 Why Articulation 模板升级前后的对比，以及三条可迁移建议：给原则不给示例、关键步骤用强制语气、相信模型的自我组织能力。实验局限也已说明。
@@ -85,6 +88,8 @@ If not, supplement before proceeding.
 ## 三个可迁移建议
 
 上面是具体到 Why Articulation 的决策。下面我把这些发现抽象成三条建议，适用于任何 prompt 设计场景。
+
+![三条可迁移建议：从约束到自由的三层递进——底层原则种子、中层开放锁、顶层空框](illustration.png)
 
 ### 1. 给原则，不给示例
 
