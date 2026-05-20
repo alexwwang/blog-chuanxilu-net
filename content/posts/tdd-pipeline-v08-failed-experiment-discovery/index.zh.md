@@ -71,7 +71,7 @@ cover:
 
 ---
 
-> 系列下一篇：[用方法改进方法](/posts/tdd-pipeline-v07-refinement-experiment/)
+> 系列下一篇：[以尺度尺，用方法改进方法](/posts/tdd-pipeline-v07-refinement-experiment/)
 
 ---
 

@@ -105,11 +105,11 @@
 {{- range .AllTranslations -}}
 <link rel="alternate" hreflang="{{ .Language.LanguageCode }}" href="{{ .Permalink }}">
 {{- end -}}
-{{- /* x-default: only for pages where Hugo sees both translations (matching slugs).
-   Mismatched-slug pages get x-default from extend_head.html instead. */ -}}
+{{- /* x-default: point to the default language (zh) per Google's recommendation.
+   For pages with both translations, use zh as fallback for unmatched languages. */ -}}
 {{- if ge (len .AllTranslations) 2 -}}
 {{- range .AllTranslations -}}
-{{- if eq .Lang "en" -}}
+{{- if eq .Lang "zh" -}}
 <link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">
 {{- end -}}
 {{- end -}}

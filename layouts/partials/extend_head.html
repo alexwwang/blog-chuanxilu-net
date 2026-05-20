@@ -34,7 +34,7 @@
           {{- $matched = true -}}
           {{- $prefix := cond (eq $otherLangKey "zh") "" (printf "/%s" $otherLangKey) -}}
 <link rel="alternate" hreflang="{{ $otherLangCode }}" href="{{ printf "%s%s/%s/%s/" $base $prefix $section $otherSlug }}">
-<link rel="alternate" hreflang="x-default" href="{{ printf "%s/en/%s/%s/" $base $section $enSlug }}">
+<link rel="alternate" hreflang="x-default" href="{{ printf "%s/%s/%s/" $base $section $zhSlug }}">
         {{- end -}}
       {{- end -}}
     {{- end -}}
