@@ -1,8 +1,8 @@
 ---
 title: "The Invisible Blank Layer"
 slug: "tdd-pipeline-phase7-invisible-gap"
-date: 2026-05-24T10:00:00+08:00
-draft: true
+date: 2026-05-21T11:00:00+08:00
+draft: false
 description: "Phase 6 drills every bug to root cause. But it doesn't scan for shared patterns across bugs, unchecked component gaps, or execution order flaws. That's Phase 7's job. In small systems it catches more bugs. In large systems, the same findings point to architectural evolution. Phase 7 doesn't make architecture decisions — it provides the scarcest input for them: evidence-based problem localization."
 tags: ["AI", "TDD", "skill design", "system audit", "architectural evolution"]
 categories: ["AI Practice", "Breaking to Build: TDD Process Iterations"]
@@ -14,7 +14,7 @@ cover:
 ---
 
 > Series: Breaking to Build: TDD Process Iterations (Post 3)
-> Previous: [Using the Method to Improve the Method](/en/posts/tdd-pipeline-v07-refinement-experiment/)
+> [Post 1: What a Failed Experiment Got Right](/en/posts/tdd-pipeline-v08-failed-experiment-discovery/) · [Post 2: Using the Method to Improve the Method](/en/posts/tdd-pipeline-v07-refinement-experiment/)
 
 > **TL;DR:** Phase 6 already does diagnostics at the integration level — drilling into each bug's root cause. What it doesn't do: cross-defect pattern scanning, component gap checking, execution order analysis. Those belong to Phase 7. In small systems, Phase 7 catches a few more bugs. As the system grows, those same three tasks produce something different — building test infrastructure, hardening CI rules, driving architectural evolution. Phase 7 doesn't make architecture decisions. But it provides the scarcest input for those decisions: evidence-based problem localization.
 

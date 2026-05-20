@@ -2,7 +2,7 @@
 title: "AI 之路初阶升级指南（三）：把 AI 变成你的协作伙伴"
 slug: "ai-path-l0-l1-week3"
 date: 2026-05-21T06:00:00+08:00
-draft: true
+draft: false
 description: "AI 之路系列第三篇：追问迭代是多轮对话中最被低估的技巧，上下文管理帮你防止 AI 跑偏，角色扮演让同一个问题得到完全不同深度的回答。"
 tags: ["AI", "工具链", "进化路径", "教程"]
 categories: ["ai-path"]

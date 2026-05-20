@@ -1,8 +1,8 @@
 ---
 title: "看不见的空白层"
 slug: "tdd-pipeline-phase7-invisible-gap"
-date: 2026-05-24T10:00:00+08:00
-draft: true
+date: 2026-05-21T11:00:00+08:00
+draft: false
 description: '每个 bug 都追到底了，但没人看 bug 之间的共同模式。不是升级追问工具，是加一层系统性扫描——它的发现不止于多拦几个 bug，而是驱动架构演进的证据起点。'
 tags: ["AI", "TDD", "skill 设计", "系统审计", "架构演进"]
 categories: ["AI 实践", "破而后立的 TDD 流程迭代"]
@@ -14,7 +14,7 @@ cover:
 ---
 
 > 系列：破而后立的 TDD 流程迭代（第三篇）
-> [上一篇：以尺度尺，用方法改进方法](/posts/tdd-pipeline-v07-refinement-experiment/)
+> [第一篇：失之东隅，收之桑榆的实验](/posts/tdd-pipeline-v08-failed-experiment-discovery/) · [第二篇：以尺度尺，用方法改进方法](/posts/tdd-pipeline-v07-refinement-experiment/)
 
 > **TL;DR：** 阶段六已经在集成层做诊断——逐个 bug 追问根因。它不做的事是跨缺陷的模式扫描、组件缝隙检查、执行顺序分析。这些事归阶段七。小系统里阶段七多拦几个 bug；系统大了，同样是这三件事，产出变成建测试基础设施、硬化 CI 规则、驱动架构演进。阶段七不做架构决策，但它提供架构决策最稀缺的输入——基于证据的问题定位。
 

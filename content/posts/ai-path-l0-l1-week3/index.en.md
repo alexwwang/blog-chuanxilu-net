@@ -2,7 +2,7 @@
 title: "AI Path L0→L1 Upgrade Guide (3): Turning AI Into Your Collaboration Partner"
 slug: "ai-path-l0-l1-week3"
 date: 2026-05-21T06:00:00+08:00
-draft: true
+draft: false
 description: "Part 3 of the AI Path L0→L1 Upgrade Guide: follow-up iteration is the most underrated skill in multi-turn conversation, context management keeps AI from drifting off track, and role-playing unlocks entirely different depths of insight from the same question."
 tags: ["AI", "toolchain", "evolution-path", "tutorial"]
 categories: ["ai-path"]
