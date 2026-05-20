@@ -1,7 +1,7 @@
 ---
 title: "Using the Method to Improve the Method"
 slug: "tdd-pipeline-v07-refinement-experiment"
-date: 2026-05-22T10:00:00+08:00
+date: 2026-05-20T10:00:00+08:00
 draft: false
 description: "I built a ruler. The ruler measured 'redundancy is harmful.' Then I used that ruler to trim the ruler's own redundancy. I deleted the operational steps from my AI skill files, keeping only principles and counterexamples. The model reconstructed the deleted steps on its own — output quality didn't drop."
 tags: ["AI", "TDD", "skill design", "prompt engineering", "principle-driven"]
