@@ -5,7 +5,7 @@ date: 2026-05-11T08:00:00+08:00
 draft: true
 description: "Final part of the AI Path L0→L1 Upgrade Guide series. Use the L1 graduation checklist to assess your four weeks of progress, then preview the two paths from L1 to L2 — API-based automation or autonomous execution AI."
 tags: ["AI", "toolchain", "evolution-path", "tutorial"]
-categories: ["AI Practice"]
+categories: ["ai-path"]
 toc: true
 series: ["AI Path L0→L1 Upgrade Guide"]
 ---

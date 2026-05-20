@@ -5,7 +5,7 @@ date: 2026-05-13T00:00:00+08:00
 draft: false
 description: "Open ChatGPT, type a keyword, copy the answer, close the tab. That works fine — but it wastes 90% of what AI can do. Three real scenarios show you what changes when you shift how you think about AI."
 tags: ["AI", "toolchain", "evolution-path"]
-categories: ["AI Practice"]
+categories: ["ai-path"]
 toc: false
 series: ["AI Path L0→L1 Upgrade Guide"]
 cover:

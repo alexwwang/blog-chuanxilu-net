@@ -5,7 +5,7 @@ date: 2026-05-15T06:00:00+08:00
 draft: false
 description: "Tried ChatGPT, Claude, Gemini — still not sure which one to use? A scenario-based framework to find the right fit."
 tags: ["AI", "toolchain", "evolution-path", "tip-card"]
-categories: ["AI Practice"]
+categories: ["ai-path"]
 toc: false
 series: ["AI Path L0→L1 Upgrade Guide"]
 cover:

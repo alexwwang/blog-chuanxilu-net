@@ -5,7 +5,7 @@ date: 2026-05-12T08:00:00+08:00
 draft: false
 description: "Series practice challenge: ask an AI the same open-ended question three separate times and compare the answers. Experience the probabilistic nature of LLM generation firsthand—and stop treating AI like a search engine."
 tags: ["AI", "toolchain", "evolution-path", "practice"]
-categories: ["AI Practice"]
+categories: ["ai-path"]
 toc: false
 series: ["AI Path L0→L1 Upgrade Guide"]
 cover:

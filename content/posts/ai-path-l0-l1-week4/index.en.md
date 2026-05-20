@@ -5,7 +5,7 @@ date: 2026-05-11T08:00:00+08:00
 draft: true
 description: "Part 4 of the AI Path L0→L1 Upgrade Guide. Build a prompt library, pick the right tool for each job (with separate maps for international and Chinese users), and learn a tiered approach to knowledge management — because not every AI output is worth saving."
 tags: ["AI", "toolchain", "evolution-path", "tutorial"]
-categories: ["AI Practice"]
+categories: ["ai-path"]
 toc: true
 series: ["AI Path L0→L1 Upgrade Guide"]
 ---

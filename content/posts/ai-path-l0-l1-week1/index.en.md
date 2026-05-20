@@ -5,7 +5,7 @@ date: 2026-05-11T08:00:00+08:00
 draft: false
 description: "First part of the AI Path L0→L1 Upgrade Guide series. LLMs aren't search engines—they generate answers rather than retrieve them. Understand the difference between working memory and long-term memory, learn the strengths of mainstream platforms, and build the cognitive foundation for the next 4 weeks of practice."
 tags: ["AI", "toolchain", "evolution-path", "tutorial"]
-categories: ["AI Practice"]
+categories: ["ai-path"]
 toc: true
 cover:
   image: "cover.png"

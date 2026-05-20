@@ -5,7 +5,7 @@ date: 2026-05-14T06:00:00+08:00
 draft: false
 description: "Why your AI forgets what you said five minutes ago — and what to do about it."
 tags: ["AI", "toolchain", "evolution-path", "tip-card"]
-categories: ["AI Practice"]
+categories: ["ai-path"]
 toc: false
 series: ["AI Path L0→L1 Upgrade Guide"]
 cover:
