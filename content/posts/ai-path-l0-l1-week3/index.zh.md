@@ -29,6 +29,8 @@ cover:
 - [什么时候该让 AI「一步步思考」？](/posts/2026/05/ai-tip-when-to-use-cot/) — 三个信号判断是否加 CoT
 - [格式约束速查](/posts/2026/05/ai-tip-format-constraints/) — 6 种输出格式的 Prompt 模板
 
+![对话管理三技巧——追问迭代、上下文管理、角色扮演，把 AI 变成协作伙伴](l0-l1-3m.png)
+
 ---
 
 ## 第三周：对话管理——把 AI 变成你的协作伙伴

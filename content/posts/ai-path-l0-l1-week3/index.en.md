@@ -29,6 +29,8 @@ In the first two weeks we built a solid cognitive foundation and sharpened our p
 - [When to Ask AI to "Think Step by Step"](/en/posts/2026/05/ai-tip-when-to-use-cot/) — three signals for CoT
 - [Format Constraints Cheat Sheet](/en/posts/2026/05/ai-tip-format-constraints/) — prompt templates for 6 output formats
 
+![Three dialogue management skills — follow-up iteration, context management, role-playing, turning AI into a collaboration partner](l0-l1-3m.png)
+
 ---
 
 ## Week 3: Conversation Management — Turning AI Into Your Collaboration Partner
