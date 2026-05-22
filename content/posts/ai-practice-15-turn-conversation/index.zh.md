@@ -2,7 +2,7 @@
 title: "今日实践：一次 15 轮长对话实验"
 slug: "ai-practice-15-turn-conversation"
 date: 2026-05-22T06:00:00+08:00
-draft: true
+draft: false
 description: "系列配套实践：选一个多步骤任务，和 AI 对话至少 15 轮。感受长对话中的跑偏，练习进度总结和开新对话，亲手建立上下文管理的肌肉记忆。"
 tags: ["AI", "工具链", "进化路径", "练习"]
 categories: ["ai-path"]

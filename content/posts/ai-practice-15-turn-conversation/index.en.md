@@ -2,7 +2,7 @@
 title: "Today's Practice: A 15-Turn Conversation Experiment"
 slug: "ai-practice-15-turn-conversation"
 date: 2026-05-22T06:00:00+08:00
-draft: true
+draft: false
 description: "Series companion practice: pick a multi-step task and hold at least 15 turns of conversation with AI. Experience drift and recovery in long conversations, and practice progress summaries and context management."
 tags: ["AI", "toolchain", "evolution-path", "practice"]
 categories: ["ai-path"]
