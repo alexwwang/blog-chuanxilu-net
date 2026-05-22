@@ -1,9 +1,9 @@
 ---
-title: "Cascade Retrieval: Rethinking My Design Review Agent"
+title: "Cascade Retrieval: A 15-Year-Old IR Trick Fixed My Design Review Agent"
 slug: "dual-pass-review-recall-precision-tradeoff"
 date: 2026-05-22T10:00:00+08:00
 draft: false
-description: "A design review agent needs to find every issue AND avoid false positives. One agent can't do both well. Borrowing cascade retrieval from information retrieval — a 60-year-old idea — I split the agent into two: one for recall, one for precision. Real defects get caught earlier, and the risk of rework during development drops."
+description: "A design review agent needs to find every issue AND avoid false positives. One agent can't do both well. Borrowing cascade retrieval from information retrieval — a 15-year-old method — I split the agent into two: one for recall, one for precision. Real defects get caught earlier, and the risk of rework during development drops."
 tags: ["AI", "Design Review", "Information Retrieval", "Recall", "Precision", "Agent"]
 categories: ["AI Practice", "Classic Theory Meets Agent Practice"]
 series: ["Classic Theory Meets Agent Practice"]
@@ -15,9 +15,9 @@ cover:
 
 > Series: Classic Theory Meets Agent Practice (Part 1)
 
-> **TL;DR:** A design review agent needs to find every issue AND avoid false positives. One agent can't do both. Borrowing cascade retrieval from information retrieval — a 60-year-old idea — I split it into two: a Recall Pass that casts a wide net, and a Precision Pass that filters strictly. Real defects get caught earlier, and the risk of rework during development drops.
+> **TL;DR:** A design review agent needs to find every issue AND avoid false positives. One agent can't do both. Borrowing cascade retrieval from information retrieval — a 15-year-old method — I split it into two: a Recall Pass that casts a wide net, and a Precision Pass that filters strictly. Real defects get caught earlier, and the risk of rework during development drops.
 
-This series is about one thing: how classic theoretical frameworks directly guide AI agent engineering. The first post applies the Recall vs. Precision tradeoff from information retrieval — a problem the field has been wrestling with for over 60 years — to redesign a design review agent.
+This series is about one thing: how classic theoretical frameworks directly guide AI agent engineering. The first post starts with cascade retrieval — a 15-year-old method from information retrieval (IR) — and the much older Recall vs. Precision tradeoff it sits on top of. The 1966 Cranfield II experiments proved these two goals fight each other. Applying that old problem's newer solution to design review made a striking difference.
 
 ## Results first
 
@@ -54,7 +54,7 @@ Textbooks illustrate this with a single chart. The horizontal axis is Recall, th
 
 Same thing with reviews. Loosen the review criteria, you find more issues, but many are false positives. Tighten the criteria, false positives drop, but real issues get filtered out too.
 
-This is a core tradeoff in search engines, spam filters, medical diagnosis. Over 60 years of literature. It's a fundamental tension.
+This is a core tradeoff in search engines, spam filters, medical diagnosis. Over 60 years of literature — the 1966 Cranfield II experiments conclusively proved the inverse relationship between Recall and Precision [4], and it's been foundational in IR evaluation ever since.
 
 ### Cascade Retrieval: how search engines solved it
 
@@ -116,7 +116,7 @@ Each review round is independent — the model doesn't know what round it is or 
 
 Instead of letting the model balance both objectives on its own, I split the balance. The first pass is fixed to "cast wide." The second pass is fixed to "filter hard."
 
-I'm not the first to apply this to LLM reviews. G-Research's Data and Analytics team wrote a blog post in May 2026 [4] about building an internal code review tool, where they use a two-pass LLM call — first pass for recall, second pass for precision. Their key takeaway is exactly that: "separate recall and precision; two simple passes outperform one complex prompt." When I read it, a light went on — that's cascade retrieval. I took the same idea from code review to design review, and connected it back to the IR theory from 60 years ago.
+I'm not the first to apply this to LLM reviews. G-Research's Data and Analytics team wrote a blog post in May 2026 [5] about building an internal code review tool, where they use a two-pass LLM call — first pass for recall, second pass for precision. Their key takeaway is exactly that: "separate recall and precision; two simple passes outperform one complex prompt." When I read it, a light went on — that's cascade retrieval. I took the same idea from code review to design review, and connected it back to the 15-year-old cascade retrieval literature in IR — which itself rests on a 60-year-old Recall/Precision tradeoff.
 
 ### Not just design review
 
@@ -139,4 +139,5 @@ Next post.
 1. Manning, C. D., Raghavan, P., & Schütze, H. *Introduction to Information Retrieval*, Cambridge University Press, 2008, Chapter 8. [https://nlp.stanford.edu/IR-book/information-retrieval-book.html](https://nlp.stanford.edu/IR-book/information-retrieval-book.html)
 2. Wang, L., Lin, J., & Metzler, D. "A Cascade Ranking Model for Efficient Ranked Retrieval," *SIGIR*, 2011, pp. 105–114. [https://dl.acm.org/doi/10.1145/2009916.2009934](https://dl.acm.org/doi/10.1145/2009916.2009934)
 3. Dang, V., Bendersky, M., & Croft, W. B. "Two-Stage Learning to Rank for Information Retrieval," *ECIR*, 2013, pp. 423–434. [https://link.springer.com/chapter/10.1007/978-3-642-36973-5_36](https://link.springer.com/chapter/10.1007/978-3-642-36973-5_36)
-4. G-Research, "Building a code review tool: The LLM patterns that actually work," May 2026. [https://www.gresearch.com/news/building-a-code-review-tool-the-llm-patterns-that-actually-work/](https://www.gresearch.com/news/building-a-code-review-tool-the-llm-patterns-that-actually-work/)
+4. Cleverdon, C. W., Mills, J., & Keen, E. M. *Factors Determining the Performance of Indexing Systems, Volume 2: Test Results*, Aslib Cranfield Research Project, College of Aeronautics, Cranfield, 1966. (The Cranfield II report; first conclusive evidence of the inverse Recall/Precision relationship.) [https://dspace.lib.cranfield.ac.uk/items/aa7d3ba6-091b-47ff-aa96-8d9511a3d263](https://dspace.lib.cranfield.ac.uk/items/aa7d3ba6-091b-47ff-aa96-8d9511a3d263)
+5. G-Research, "Building a code review tool: The LLM patterns that actually work," May 2026. [https://www.gresearch.com/news/building-a-code-review-tool-the-llm-patterns-that-actually-work/](https://www.gresearch.com/news/building-a-code-review-tool-the-llm-patterns-that-actually-work/)
