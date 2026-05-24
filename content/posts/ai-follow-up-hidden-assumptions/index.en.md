@@ -1,8 +1,8 @@
 ---
 title: "Advanced Follow-Up: 3 Questions That Expose AI's Hidden Assumptions"
 slug: "ai-follow-up-hidden-assumptions"
-date: 2026-05-24T06:00:00+08:00
-draft: true
+date: 2026-05-24T07:00:00+08:00
+draft: false
 description: "Follow-up questions are not just for getting AI to say more. They can expose the default assumptions behind an answer. Use three questions to check hidden premises, find unanswered questions, and identify conditions that would invalidate the conclusion before accepting a suggestion."
 tags: ["AI", "toolchain", "evolution-path", "prompt engineering"]
 categories: ["ai-path"]

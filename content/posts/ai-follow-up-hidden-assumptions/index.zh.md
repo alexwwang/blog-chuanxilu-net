@@ -1,8 +1,8 @@
 ---
 title: "追问进阶：用 3 个问题暴露 AI 回答中的隐含假设"
 slug: "ai-follow-up-hidden-assumptions"
-date: 2026-05-24T06:00:00+08:00
-draft: true
+date: 2026-05-24T07:00:00+08:00
+draft: false
 description: "追问不只是让 AI 说更多，还能暴露回答背后的默认前提。用三个问题检查隐含假设、发现遗漏问题、寻找反例条件，在接受建议前先做一次安全检查。"
 tags: ["AI", "工具链", "进化路径", "提示工程"]
 categories: ["ai-path"]
