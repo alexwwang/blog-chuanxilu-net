@@ -18,7 +18,7 @@ cover:
 
 > **TL;DR:** Two controlled experiments. Code review dimensions went from 8 to 11, and known-issue detection went from 1/6 to 6/6. Design review introduced axiomatic design dimensions, and detection also went from 1/6 to 6/6. But the version with a math formula proved that more dimensions are not always better — computation consumed review attention, and findings dropped 35%. Run controlled experiments with known issues as reference, and you learn which dimensions actually work.
 
-The previous post solved "what to put in the prompt" — remove inferable redundant content, keep only strategy genes, and review quality improved 29%. But one question remained: are the review dimensions complete enough?
+The previous post solved "what to put in the prompt" — remove inferable redundant content, keep only strategy genes, and review quality improved 29%, but one question remained: are the review dimensions complete enough?
 
 No matter how refined the strategy genes are, if the dimensions are not enough, the model still won't see certain issues.
 
@@ -42,7 +42,7 @@ Introduced Axiomatic Design, adding 3 dimensions (independence axiom, informatio
 
 Result: **6/6 — all found.**
 
-Both experiments seem to reach the same conclusion: add dimensions, get better results. But that is not the full picture. A third experiment showed the opposite.
+Both experiments seem to reach the same conclusion: add dimensions, get better results, but the story does not end there. A third experiment reached the opposite conclusion — more on that below.
 
 ## Controlled experiment methodology
 
@@ -97,13 +97,13 @@ Putting this check into a review dimension: map the correspondence between FRs a
 
 ![Design matrix comparison: clean diagonal one-to-one mapping on the left vs tangled many-to-many coupling lines in coral on the right](fr-dp-coupling.png)
 
-Pure correctness review does not check this. "Is the function correct?" and "is there coupling between functions?" are two different questions. Correctness dimensions only check the former.
+Pure correctness review does not check this — "is the function correct?" and "is there coupling between functions?" are two different questions, and correctness dimensions only check the former.
 
 ### Two versions of the Information Axiom
 
 The Information Axiom says: if multiple solutions all satisfy independence, choose the simplest one. I=-log₂(p), where p is the probability of success. Higher success probability = simpler solution.
 
-I made two versions: the concise version is just one line — "choose the simplest solution." The formula version requires the model to do the full I=-log₂(p) calculation. Which is better? That comes later.
+I made two versions: the concise version is just one line — "choose the simplest solution." The formula version requires the model to do the full I=-log₂(p) calculation. Which is better? I will leave that as a cliffhanger for now — more on this later.
 
 ## How I got here
 
@@ -119,9 +119,9 @@ But there was another phenomenon: after convergence, regression testing always r
 
 SQL query `ORDER BY created_at` with no tiebreaker or secondary sort column. When multiple records share the same `created_at`, the database may return them in a different order each time.
 
-This is not a logic error — the query results are correct in most cases. It is not a security issue or a performance issue. None of the existing 8 dimensions covered it.
+This is not a logic error — the query results are correct in most cases, it is not a security issue, not a performance issue, but none of the existing 8 dimensions covered it.
 
-The "correctness" dimension does not check for this. "Security" does not check. "Performance" does not check. A new dimension was needed to catch this kind of problem. So I added the "test gap analysis" dimension.
+The "correctness" dimension does not check for this, "security" does not either, "performance" does not either, so a new dimension was needed to catch this kind of problem — and I added the "test gap analysis" dimension.
 
 ### The controlled experiment
 
@@ -175,19 +175,17 @@ Second post, strategy genes. Problem: the prompt was too long, model attention d
 
 Third post, dimension experiments. Problem: review dimensions were incomplete, systematically missing certain categories of issues. Solution: controlled experiments to verify dimension effectiveness, using known issues as reference. Theoretical basis: controlled experiment methodology and Axiomatic Design.
 
-Three posts, three different classic theories. IR, genetic algorithms, Axiomatic Design. They seem unrelated.
+Three posts, three different classic theories — IR, genetic algorithms, Axiomatic Design — they seem unrelated.
 
 But they are really telling one pattern: **when adapting classic theories for AI agent design, the most important skill is distinguishing strategy genes from redundant content.**
 
-- Dual-pass review: the Recall-Precision tension is a strategy gene. "The model should weigh them itself" is redundant content.
-- Strategy genes: constraints and negative examples are strategy genes. Step descriptions and positive examples are redundant content.
-- Dimension experiments: the Independence Axiom's checking framework is a strategy gene. The math formula is redundant content.
+- Dual-pass review: the Recall-Precision tension is a strategy gene, "the model should weigh them itself" is redundant content.
+- Strategy genes: constraints and negative examples are strategy genes, step descriptions and positive examples are redundant content.
+- Dimension experiments: the Independence Axiom's checking framework is a strategy gene, the math formula is redundant content.
 
-Every post's "rejected version" tells the same story: something that looks important in theory may not be useful in an agent. The key is whether it has an actual effect on output. No effect, however elegant, is redundant content.
+Every post's "rejected version" tells the same story: something that looks important in theory may not be useful in an agent — the key is whether it has an actual effect on output. No effect, however elegant, is redundant content.
 
-This judgment can only be made through experiments. Remove it, observe whether output changes. Add it, observe whether recall rises. No shortcuts.
-
-![One pattern across three posts: dual-pass splitting, strategy gene pruning, dimension experiment — each distinguishing strategy genes from redundant content](one-pattern-three-posts.png)
+This judgment can only be made through experiments — remove it, observe whether output changes, add it, observe whether recall rises. No shortcuts.
 
 ## References
 
