@@ -2,7 +2,7 @@
 title: "角色扮演实战：让 AI 当你的魔鬼代言人"
 slug: "ai-devils-advocate-role-play"
 date: 2026-05-25T07:00:00+08:00
-draft: true
+draft: false
 description: "追问是自己挖假设，角色扮演是让 AI 帮你挖。用一个 Prompt 让 AI 扮演严厉的反对者，专挑方案里的漏洞——比自我审查快十倍，比问朋友方便十倍。"
 tags: ["AI", "工具链", "进化路径", "提示工程"]
 categories: ["ai-path"]

@@ -2,7 +2,7 @@
 title: "Role-Playing in Practice: Make AI Your Devil's Advocate"
 slug: "ai-devils-advocate-role-play"
 date: 2026-05-25T07:00:00+08:00
-draft: true
+draft: false
 description: "Follow-up questions let you dig for assumptions yourself. Role-playing lets AI dig for you. Use one prompt to make AI a harsh critic of your plan — ten times faster than self-review, ten times more convenient than asking a friend."
 tags: ["AI", "toolchain", "evolution-path", "prompt engineering"]
 categories: ["ai-path"]
