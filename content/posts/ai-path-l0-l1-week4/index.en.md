@@ -1,20 +1,32 @@
 ---
 title: "AI Path L0→L1 Upgrade Guide (4): Building Your Personal System"
 slug: "ai-path-l0-l1-week4"
-date: 2026-05-11T08:00:00+08:00
-draft: true
+date: 2026-05-26T07:00:00+08:00
+draft: false
 description: "Part 4 of the AI Path L0→L1 Upgrade Guide. Build a prompt library, pick the right tool for each job (with separate maps for international and Chinese users), and learn a tiered approach to knowledge management — because not every AI output is worth saving."
 tags: ["AI", "toolchain", "evolution-path", "tutorial"]
 categories: ["ai-path"]
 toc: true
 series: ["AI Path L0→L1 Upgrade Guide"]
+cover:
+  image: "cover.png"
+  alt: "Watercolor style: a neatly organized workbench with labeled glass jars, a leather journal, curated tools, and a two-drawer cabinet symbolizing tiered knowledge management"
 ---
 
 > 📖 This is Part 4 of 5 in the "AI Path L0→L1 Upgrade Guide" series.
 >
 > [Part 1: Understanding Your Tools](/en/posts/2026/05/ai-path-l0-l1-week1/) · [Part 2: From Vague Questions to Precise Instructions](/en/posts/2026/05/ai-path-l0-l1-week2/) · [Part 3: Turning AI Into Your Collaboration Partner](/en/posts/2026/05/ai-path-l0-l1-week3/) · Part 4: Building Your Personal System · [Part 5: Graduation & Next Steps](/en/posts/2026/05/ai-path-l0-l1-graduation/)
 
-Over the first three weeks we covered the cognitive foundations, prompt techniques, and conversation management. In this final week we're going to cement those skills — building a prompt library, choosing the right tools, and setting up knowledge management. By the end, you'll have a personal AI workflow that's genuinely yours.
+Over three weeks we've picked up follow-up questions, context management, role-playing... the skills are piling up, and here's the problem: how do you manage all these scattered abilities in one place? Week 4 is about exactly that — building a prompt library, choosing the right tools, and setting up knowledge management. Turning what you've learned into a personal system.
+
+---
+
+> 📋 **Week 3 Recap**
+> - [Main article: Turning AI Into Your Collaboration Partner](/en/posts/2026/05/ai-path-l0-l1-week3/) (follow-up iteration, context management, role-playing)
+> - [Practice: 15-Turn Long Conversation Experiment](/en/posts/2026/05/ai-practice-15-turn-conversation/)
+> - [Case Study: Long Conversation Failures](/en/posts/2026/05/ai-3-long-conversation-fails/)
+> - [Tip Card: Follow-Up Questions That Expose Hidden Assumptions](/en/posts/2026/05/ai-follow-up-hidden-assumptions/)
+> - [Tip Card: Devil's Advocate Role-Playing](/en/posts/2026/05/ai-devils-advocate-role-play/)
 
 ---
 
@@ -37,7 +49,14 @@ For each prompt entry, record:
 
 - **The original prompt**: The exact text you used
 - **Effectiveness rating**: 1–5, or simply "great / decent / poor"
-- **Iterated versions**: If you later refine the prompt, log the new version alongside the original
+- **Refined versions**: If you later refine the prompt, log the new version alongside the original
+
+For example, a prompt entry might look like this:
+
+> **Writing · Summarize Article Key Points**
+> - Original prompt: `Summarize this article in no more than 5 key points, each under 30 words, using a numbered list.`
+> - Effectiveness: 4/5 — clear structure, occasionally misses secondary points
+> - Refined version v2: Added `First list the article's core argument, then organize key points around it` — effectiveness improved to 5/5
 
 **Practice exercise:** Look back over your AI usage from the past three weeks and extract at least 5 battle-tested prompts. If you can't find your history, create 5 new prompts you know you'll need at work, test each one, confirm the results, and add them to your library.
 
@@ -63,7 +82,7 @@ For each prompt entry, record:
 
 | Scenario | Recommended Tool | Why |
 |----------|-----------------|-----|
-| Deep research | Kimi / 秘塔搜索 (MetaSo) / 天工 AI (Tiangong) | More complete coverage of the Chinese web; no VPN needed; Kimi supports ultra-long context (256K tokens, ~500K characters) |
+| Deep research | Kimi / 秘塔搜索 (MetaSo) / 天工 AI (Tiangong) | More complete coverage of the Chinese web; no VPN needed; Kimi supports ultra-long context, great for long-document analysis |
 | Long-form writing | Kimi / 千问 (Qwen) | More natural Chinese prose; better formatting for government and business documents |
 | Everyday Q&A | 豆包 (Doubao) / 千问 (Qwen) / Kimi / 智谱清言 (ChatGLM) — any one | Generous free quotas; strong Chinese comprehension; fast response times; ChatGLM also stands out for code and reasoning |
 | Code assistance (autocomplete) | Trae (by ByteDance) / 通义灵码 Lingma (by Alibaba) | Domestic AI IDEs, free, low latency, accurate understanding of Chinese comments. Trae ships with multiple built-in models and a "SOLO" autonomous coding mode; Lingma has passed multiple authoritative security certifications for code |
@@ -88,7 +107,7 @@ For each prompt entry, record:
 
 It depends on how you learn. If your style is to internalize on the spot — see something great, understand it immediately, apply it, remember it — then treating AI outputs as disposable is perfectly fine. You don't need any archiving system at all. But if you often find yourself hunting for "that great answer AI gave me once," then yes, some kind of archive makes sense.
 
-**Watch out for a trap:** The process of building a knowledge base can itself become a form of **"all process, no learning" performance art.** You organize 100 notes, add tags, pretty up the formatting, build a table of contents — but you haven't genuinely understood a single one. That's not knowledge management; that's *performing* knowledge management.
+**Watch out for a trap:** The process of building a knowledge base can itself become a form of "all process, no learning" performance art. You organize 100 notes, add tags, pretty up the formatting, build a table of contents — but you haven't genuinely understood a single one. That's not knowledge management; that's *performing* knowledge management.
 
 **How to think about it — a tiered approach:**
 
@@ -115,4 +134,13 @@ Six months is a rough window — the point is to force a decision. Don't let you
 
 ---
 
-*That wraps up Week 4. All four weeks of practice are now complete — ready for the final test? → [Part 5: Graduation & Next Steps →](/en/posts/2026/05/ai-path-l0-l1-graduation/)*
+Four weeks down:
+
+- **Week 1:** you understood the nature of your tools.
+- **Week 2:** you learned to ask precise questions.
+- **Week 3:** you mastered conversation management.
+- **This week:** you built a personal system.
+
+You now have the knowledge, the tools, and the habits.
+
+Next up is the graduation assessment — testing everything you've practiced, and looking ahead at what comes after L1. → [Part 5: Graduation & Next Steps](/en/posts/2026/05/ai-path-l0-l1-graduation/)
