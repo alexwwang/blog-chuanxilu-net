@@ -19,8 +19,15 @@ enableEmoji = true
   category = "categories"
   series = "series"
 
+[outputFormats]
+  [outputFormats.LLMS]
+    mediaType = "text/plain"
+    baseName = "llms"
+    isPlainText = true
+    notAlternative = true
+
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+  home = ["HTML", "RSS", "JSON", "LLMS"]
 
 [markup]
   [markup.highlight]

@@ -1,0 +1,80 @@
+{{- /* llms.txt — 为 LLM 提供站点内容概览 */ -}}
+{{- /* 双文件方案：每个语言独立生成，仅包含当前语言的内容 */ -}}
+{{- /* Index 功能：在 blockquote 后追加多语言博客简介 */ -}}
+
+# {{ .Site.Title }}
+
+> {{ .Site.Params.description }}
+
+{{ if eq .Site.Language.Lang "zh" }}
+This is a bilingual blog (Chinese & English) about AI practice, engineering methodology, and cognitive upgrade by Alex Wang.
+Este blog bilingüe (chino e inglés) trata sobre la práctica de la IA, metodología de ingeniería y mejora cognitiva.
+AIの実践、エンジニアリング手法、認知の向上に関するバイリンガルブログ（中国語・英語）です。
+중국어와 영어로 된 블로그로, AI 실천, 엔지니어링 방법론, 인지 향상에 대해 다룹니다.
+Dieser zweisprachige Blog (Chinesisch/Englisch) behandelt KI-Praxis, Engineering-Methodik und kognitive Weiterentwicklung.
+Ce blog bilingue (chinois/anglais) porte sur la pratique de l'IA, la méthodologie d'ingénierie et l'amélioration cognitive.
+{{- else if eq .Site.Language.Lang "en" }}
+知行合一、AIを以て器を練る。AI実践、エンジニアリング思考、認知アップグレードに関するバイリンガルブログ。
+중국어와 영어로 된 블로그로, AI 실천, 엔지니어링 사고, 인지 업그레이드에 대해 다룹니다.
+Einheit von Wissen und Handeln, geschmiedet mit KI. Ein zweisprachiger Blog über KI-Praxis, Engineering-Denken und kognitive Weiterentwicklung.
+L'unité du savoir et de l'action, forgée avec l'IA. Un blog bilingue sur la pratique de l'IA, la pensée ingénierique et l'amélioration cognitive.
+Unidad de conocimiento y acción, forjada con IA. Un blog bilingüe sobre práctica de IA, pensamiento de ingeniería y mejora cognitiva.
+{{- end }}
+
+{{- /* ── 文章列表（按日期倒序） ── */ -}}
+{{- $posts := where .Site.RegularPages "Type" "in" (slice "posts") }}
+{{- $posts = sort $posts "Date" "desc" }}
+
+{{- if gt (len $posts) 0 }}
+## {{ if eq .Site.Language.Lang "zh" }}文章{{ else }}Posts{{ end }}
+
+{{- range $posts }}
+{{- if and (not .Params.searchHidden) (ne .Layout "archives") (ne .Layout "search") }}
+- [{{ .Title }}]({{ .Permalink }}): {{ .Params.description | default .Summary | plainify | truncate 120 }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{- /* ── 系列分组 ── */ -}}
+{{- $series := slice }}
+{{- range $posts }}
+{{- if .Params.series }}
+{{- range .Params.series }}
+{{- $series = $series | append . }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- $series = $series | uniq }}
+
+{{- if gt (len $series) 0 }}
+
+## {{ if eq .Site.Language.Lang "zh" }}系列{{ else }}Series{{ end }}
+
+{{- range $s := $series }}
+{{- $pages := where $posts "Params.series" "intersect" (slice $s) }}
+{{- if gt (len $pages) 0 }}
+{{- $first := index $pages 0 }}
+- [{{ $s }}]({{ printf "/series/%s/" (urlize $s) | absLangURL }}): {{ $first.Params.description | default (printf "%d %s" (len $pages) (T "posts" | default "posts")) | plainify | truncate 100 }}
+{{- end }}
+{{- end }}
+
+{{ end }}
+
+{{- /* ── Optional 段 ── */ -}}
+
+## Optional
+
+{{- range where .Site.RegularPages "Type" "in" (slice "page") }}
+{{- if not .Params.searchHidden }}
+- [{{ .Title }}]({{ .Permalink }}): {{ .Params.description | default .Summary | plainify | truncate 120 }}
+{{- end }}
+{{- end }}
+
+{{- /* ── 跨语言链接（双语言站点：zh 在根路径，en 在 /en/） ── */ -}}
+{{- if eq .Site.Language.Lang "zh" }}
+- [English version]({{ "en/llms.txt" | absURL }}): English llms.txt
+{{- else }}
+- [中文版]({{ "llms.txt" | absURL }}): 中文 llms.txt
+{{- end }}
+
+- [RSS]({{ "index.xml" | absLangURL }}): {{ if eq .Site.Language.Lang "zh" }}RSS 订阅{{ else }}Content feed{{ end }}
