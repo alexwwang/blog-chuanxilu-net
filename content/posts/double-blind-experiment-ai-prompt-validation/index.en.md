@@ -1,7 +1,7 @@
 ---
 title: "Testing Prompt Changes: Why You Need Double-Blind Experiments"
 slug: double-blind-experiment-ai-prompt-validation
-date: 2026-05-27T10:00:00+08:00
+date: 2026-05-29T10:00:00+08:00
 draft: false
 tags: ["AI Agent", "Experiment Methodology", "Double-Blind Experiment", "Prompt Engineering"]
 categories: ["AI Practice", "AI Agent Experiment Methodology"]

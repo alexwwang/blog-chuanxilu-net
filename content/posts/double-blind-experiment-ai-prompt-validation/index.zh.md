@@ -1,7 +1,7 @@
 ---
 title: "如何用双盲实验验证 skill 改动的有效性"
 slug: double-blind-experiment-ai-prompt-validation
-date: 2026-05-27T10:00:00+08:00
+date: 2026-05-29T10:00:00+08:00
 draft: false
 tags: ["AI Agent", "实验方法论", "双盲实验", "Prompt Engineering"]
 categories: ["AI 实践", "AI Agent 实验方法论"]
