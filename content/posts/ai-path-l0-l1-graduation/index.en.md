@@ -1,13 +1,16 @@
 ---
 title: "AI Path L0→L1 Upgrade Guide (5): Graduation Checklist & Next Steps"
 slug: "ai-path-l0-l1-graduation"
-date: 2026-05-11T08:00:00+08:00
-draft: true
+date: 2026-05-30T07:00:00+08:00
+draft: false
 description: "Final part of the AI Path L0→L1 Upgrade Guide series. Use the L1 graduation checklist to assess your four weeks of progress, then preview the two paths from L1 to L2 — API-based automation or autonomous execution AI."
 tags: ["AI", "toolchain", "evolution-path", "tutorial"]
 categories: ["ai-path"]
 toc: true
 series: ["AI Path L0→L1 Upgrade Guide"]
+cover:
+  image: "cover.png"
+  alt: "Watercolor style: a winding path leading to a small flag on a hilltop, with broader mountain ranges and clouds stretching beyond"
 ---
 
 > 📖 This is Part 5 of 5 in the "AI Path L0→L1 Upgrade Guide" series — **Series Navigation + Graduation Checklist**.
@@ -23,6 +26,8 @@ series: ["AI Path L0→L1 Upgrade Guide"]
 | **Part 5** | **Graduation & Next Steps** | **L1 graduation checklist, L1→L2 dual-path preview** |
 
 ---
+
+![Four-week learning path](illustration-weeks.jpg)
 
 ## Graduation Checklist: Have You Reached L1?
 
@@ -43,6 +48,8 @@ If a few items are still unchecked — that's perfectly fine. Go back and drill 
 
 ---
 
+![Scoring levels](illustration-levels.jpg)
+
 ## What Comes Next: The L1→L2 Threshold
 
 If L1 already feels natural and you're starting to wonder "what else is out there," the direction to L2 is already coming into view:
@@ -60,5 +67,7 @@ L2 means you're no longer just chatting with AI — you're starting to make AI *
 The planned L1→L2 upgrade guide will involve command-line operations or basic programming. We'll meet again when that time comes.
 
 ---
+
+![Three directions](illustration-paths.png)
 
 *Getting from L0 to L1 took you a month. But from this day forward, every conversation you have with AI is no longer a roll of the dice — you know what you're doing, you know how to get the results you want, and you have a system that's truly yours. This is the real starting point of treating AI as a tool.*
