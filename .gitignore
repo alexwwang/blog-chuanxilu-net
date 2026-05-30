@@ -16,6 +16,7 @@ AGENTS.md
 .prompts/
 templates/
 static/favicon-512.png
-*_original.png
+*_original.*
 content/posts/product-ad-prompt-gen-deep-dive/
+content/wechat/
 
