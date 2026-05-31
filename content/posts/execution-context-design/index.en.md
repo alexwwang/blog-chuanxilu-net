@@ -51,6 +51,8 @@ The evaluator produced a polluted result. The scorer received garbled input and 
 
 This is the same pattern as "phantom delivery" from the previous post: **LLMs won't proactively tell you something went wrong. If you don't specify rejection conditions in the prompt, they'll "successfully" complete work on garbage input.**
 
+![ANSI pollution chain: clean data stream corrupted by terminal color codes at the evaluator node, scorer produces tidy but wrong scores on garbage input](ansi-pollution-chain.png)
+
 Here's how absurd S1-A's scores were, dimension by dimension:
 
 | Dimension | S1-A Score | Reason |
@@ -75,6 +77,8 @@ v1's scorer was a single sub-agent scoring all scenarios. Given four scenarios' 
 The problem: four X's contained two A scores and two B scores. Same for Y. A and B scores were mixed in the average, and the difference was flattened.
 
 X average 2.44, Y average 2.41, a 0.03 gap. Looks like "no difference."
+
+![Aggregation error vs independent scoring: left side shows four data ribbons merging into a funnel and turning gray, right side shows four independent chambers preserving distinct colors](aggregation-vs-independent.png)
 
 This isn't some rare scorer error. Give it all the data, and it'll naturally aggregate—that's default LLM behavior. **The mistake was in my execution architecture: each scenario should have used an independent scorer sub-agent, given only that scenario's scoring input, so it had no opportunity to aggregate across scenarios.**
 
@@ -108,6 +112,8 @@ Two fixes, both with data changes. S1-A recovered from 0.625 to 2.500. Aggregati
 One detail worth noting: B's average dropped from 2.781 to 2.531 in v2. B didn't get weaker—v1's S1-A score of 0.625 dragged down A's average severely, making B look like it won by a lot. After the fix, the gap narrowed, but the data became more reliable.
 
 **Reconstructed the execution context for two steps, and the conclusion flipped from "insufficient evidence" to "adopt B."**
+
+![v1 vs v2 conclusion flip: identical experiment designs, left side has red warning rings producing ambiguous results, right side has teal isolation barriers producing a decisive outcome](conclusion-flip.png)
 
 ## If the Design Was Right, Why Did It Fail?
 
