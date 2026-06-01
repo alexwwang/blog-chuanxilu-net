@@ -53,7 +53,9 @@ Ready? Let's begin.
 
 Use an analogy: chat window = you stand at the counter and order in person, one item at a time. API = you send a written order to the kitchen—they prepare everything and deliver it when ready. You write the order once; they handle the rest.
 
-**Practice:** No need to write code yet, just build intuition. Think back to the last AI task you manually repeated 3+ times—like translating 10 text segments to English, summarizing 5 articles, writing personalized welcome emails for 20 clients. Imagine if a program could do this automatically. How much time would that save? That scenario is your goal in learning APIs.
+![Chat Window vs API](illustration-chat-vs-api.jpeg "Left: chat window—manual, one at a time; Right: API—automated batch processing")
+
+**Practice:** No need to write code yet, just build intuition. Later I'll give you complete code—copy, paste, change a few parameters, and run. No need to start from scratch. For now, think back to the last AI task you manually repeated 3+ times—like translating 10 text segments to English, summarizing 5 articles, writing personalized welcome emails for 20 clients. Imagine if a program could do this automatically. How much time would that save? That scenario is your goal in learning APIs.
 
 ---
 
@@ -253,6 +255,8 @@ Different platforms have different billing methods (May 2026 prices, subject to 
 **How to check the latest prices:** Every platform has a pricing page—DeepSeek at [api-docs.deepseek.com/quick_start/pricing](https://api-docs.deepseek.com/quick_start/pricing), Anthropic at [docs.anthropic.com](https://docs.anthropic.com), OpenAI at [platform.openai.com](https://platform.openai.com) under Pricing. Can't find it? Just ask AI.
 
 **How to estimate:** A simple rule of thumb—Chinese roughly 1 character = 1.5 tokens, English roughly 1 word = 1 token. If you send AI a 1000-character article, it consumes about 1500 tokens.
+
+![Token Billing Illustration](illustration-token-billing.jpeg "Input and output are billed separately—your question and AI's reply each count separately")
 
 ---
 
