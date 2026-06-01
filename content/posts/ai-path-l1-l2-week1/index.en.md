@@ -2,7 +2,7 @@
 title: "AI Path L1→L2 Upgrade Guide (1): Your First API Call"
 slug: "ai-path-l1-l2-week1"
 date: "2026-06-01T07:00:00+08:00"
-draft: true
+draft: false
 description: "First part of the AI Path L1→L2 Upgrade Guide series. Learn what APIs are, how they differ from chat windows, register for API accounts (DeepSeek/OpenRouter/Claude), set up Python, run your first API call, and build intuition for token, temperature, context window, and max_tokens."
 tags: ["AI", "toolchain", "evolution-path", "tutorial", "API"]
 categories: ["ai-path"]
