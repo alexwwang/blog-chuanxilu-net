@@ -171,7 +171,7 @@ load_dotenv()
 api_key = os.environ.get("DEEPSEEK_API_KEY")
 
 if not api_key:
-    raise ValueError("DEEPSEEK_API_KEY 环境变量未设置")
+    raise ValueError("DEEPSEEK_API_KEY 环境变量未设置，检查 .env 文件")
 
 # 创建客户端
 # 注意：DeepSeek 兼容 OpenAI 的 API 接口，所以可以用 openai 库

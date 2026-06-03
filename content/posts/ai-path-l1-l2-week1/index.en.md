@@ -176,7 +176,7 @@ load_dotenv()
 api_key = os.environ.get("DEEPSEEK_API_KEY")
 
 if not api_key:
-    raise ValueError("DEEPSEEK_API_KEY environment variable not set")
+    raise ValueError("DEEPSEEK_API_KEY environment variable not set. Check your .env file.")
 
 # Create client
 # The only difference is base_url needs to point to DeepSeek's address
