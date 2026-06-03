@@ -59,7 +59,7 @@
   ]
 }
 </script>
-{{- if .IsPage }}
+{{- if and .IsPage (ne .Section "") }}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -75,14 +75,19 @@
     {{- end }}
   ],
   "articleBody": {{ .Content | safeJS | htmlUnescape | plainify }},
-  "wordCount" : "{{ .WordCount }}",
+  "wordCount" : {{ .WordCount }},
   "inLanguage": {{ .Language.Lang | default "en-us" }},
   {{ if .Params.cover.image -}}
   "image":
     {{- if (ne .Params.cover.relative true) -}}
     {{ .Params.cover.image | absURL }},
     {{- else -}}
+    {{- $cover := (.Resources.ByType "image").GetMatch (printf "*%s*" .Params.cover.image) -}}
+    {{- if $cover -}}
+    {{ $cover.Permalink }},
+    {{- else -}}
     {{ (path.Join .RelPermalink .Params.cover.image ) | absURL }},
+    {{- end -}}
     {{- end}}
   {{- else }}
     {{- $images := partial "templates/_funcs/get-page-images" . -}}
