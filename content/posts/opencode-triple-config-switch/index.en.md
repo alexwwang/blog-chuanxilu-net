@@ -1,7 +1,7 @@
 ---
 title: "When Your AI Coding Tool Needs Three Configs"
 slug: "opencode-triple-config-switch"
-date: 2026-06-03T10:00:00+08:00
+date: 2026-06-05T10:00:00+08:00
 draft: false
 description: "Three parallel OpenCode configs from real pain points—omo full version, oms slim version, clean mode. Environment variable switching for the right tool in each scenario."
 tags: ["AI", "opencode", "agent", "configuration management", "oh-my-openagent"]

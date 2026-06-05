@@ -1,7 +1,7 @@
 ---
 title: "当你的 AI 编程工具需要三套配置"
 slug: "opencode-triple-config-switch"
-date: 2026-06-03T10:00:00+08:00
+date: 2026-06-05T10:00:00+08:00
 draft: false
 description: "从实际痛点出发，设计 OpenCode 的三套并行配置方案——omo 完整版、oms 精简版、纯净模式。通过环境变量切换，让每个场景用最合适的工具。包含完整的文件结构、fallback 链设计、启动脚本和踩坑记录。"
 tags: ["AI", "opencode", "agent", "配置管理", "oh-my-openagent"]
