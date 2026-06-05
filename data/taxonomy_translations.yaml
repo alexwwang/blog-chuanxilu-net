@@ -62,6 +62,10 @@ pairs:
 
   - section: tags
     zh: "设计文档"
+    en: "design-documents"
+
+  - section: tags
+    zh: "设计文档"
     en: "design-docs"
 
   - section: tags
@@ -77,35 +81,243 @@ pairs:
     en: "harness-engineering"
 
   - section: tags
-    zh: "ai-辅助开发"
-    en: "ai-assisted-development"
+    zh: "AI 辅助开发"
+    en: "AI-Assisted Development"
 
   - section: tags
-    zh: "bug-定位"
-    en: "bug-diagnosis"
+    zh: "bug 定位"
+    en: "bug diagnosis"
+
+  - section: tags
+    zh: "上下文构造"
+    en: "context-construction"
+
+  - section: tags
+    zh: "信息检索"
+    en: "information-retrieval"
+
+  - section: tags
+    zh: "公告"
+    en: "announcements"
+
+  - section: tags
+    zh: "公理化设计"
+    en: "axiomatic-design"
+
+  - section: tags
+    zh: "单场景结论"
+    en: "single-scenario-fallacy"
+
+  - section: tags
+    zh: "原则驱动"
+    en: "principle-driven"
+
+  - section: tags
+    zh: "参考答案偏心"
+    en: "ground-truth-bias"
+
+  - section: tags
+    zh: "双盲实验"
+    en: "double-blind-experiment"
+
+  - section: tags
+    zh: "可证伪性"
+    en: "falsifiability"
+
+  - section: tags
+    zh: "实验方法"
+    en: "experiment-methodology"
+
+  - section: tags
+    zh: "实验方法论"
+    en: "experiment-methodology"
+
+  - section: tags
+    zh: "实验设计审查"
+    en: "experiment-design-review"
+
+  - section: tags
+    zh: "审查"
+    en: "review"
+
+  - section: tags
+    zh: "对照实验"
+    en: "controlled-experiments"
+
+  - section: tags
+    zh: "工具链"
+    en: "toolchain"
+
+  - section: tags
+    zh: "执行协议"
+    en: "execution-protocol"
+
+  - section: tags
+    zh: "技巧卡"
+    en: "tip-card"
+
+  - section: tags
+    zh: "提示工程"
+    en: "prompt-engineering"
+
+  - section: tags
+    zh: "Prompt 工程"
+    en: "prompt-engineering"
+
+  - section: tags
+    zh: "prompt 工程"
+    en: "prompt-engineering"
+
+  - section: tags
+    zh: "教程"
+    en: "tutorial"
+
+  - section: tags
+    zh: "文档管理"
+    en: "document-management"
+
+  - section: tags
+    zh: "架构演进"
+    en: "architectural-evolution"
+
+  - section: tags
+    zh: "策略基因"
+    en: "strategy-genes"
+
+  - section: tags
+    zh: "系统审计"
+    en: "system-audit"
+
+  - section: tags
+    zh: "练习"
+    en: "practice"
+
+  - section: tags
+    zh: "职业发展"
+    en: "career-development"
+
+  - section: tags
+    zh: "设计审查"
+    en: "design-review"
+
+  - section: tags
+    zh: "进化路径"
+    en: "evolution-path"
+
+  - section: tags
+    zh: "追问协议"
+    en: "inquiry-protocol"
+
+  - section: tags
+    zh: "遗传算法"
+    en: "genetic-algorithms"
+
+  - section: tags
+    zh: "配置管理"
+    en: "configuration-management"
+
+  - section: tags
+    zh: "集成测试"
+    en: "integration-testing"
+
+  - section: tags
+    zh: "预发布测试"
+    en: "pre-release-testing"
+
+  - section: tags
+    zh: "子 agent"
+    en: "sub-agent"
+
+  - section: tags
+    zh: "bug 模式"
+    en: "bug-patterns"
+
+  - section: tags
+    zh: "skill 设计"
+    en: "skill-design"
+
+  - section: tags
+    zh: "AB 测试"
+    en: "ab-testing"
 
   # ── Categories ────────────────────────────────────────
   - section: categories
-    zh: "ai-实践"
-    en: "ai-practice"
+    zh: "AI 实践"
+    en: "AI Practice"
 
   - section: categories
-    zh: "用-tdd-驯服-ai-编码代理"
-    en: "taming-ai-coding-agents-with-tdd"
+    zh: "用 TDD 驯服 AI 编码代理"
+    en: "Taming AI Coding Agents with TDD"
 
   - section: categories
-    zh: "让-ai-学会反思"
-    en: "teaching-ai-to-reflect"
+    zh: "让 AI 学会反思"
+    en: "Teaching AI to Reflect"
 
   - section: categories
     zh: "折腾记录"
-    en: "meta"
+    en: "Meta"
+
+  - section: categories
+    zh: "AI Agent 实验方法论"
+    en: "AI Agent Experiment Methodology"
+
+  - section: categories
+    zh: "AI 根因诊断"
+    en: "AI Root Cause Diagnosis"
+
+  - section: categories
+    zh: "为什么让 AI 动手之前先说 why"
+    en: "Why Make AI Articulate Why Before Acting"
+
+  - section: categories
+    zh: "用经典理论指导 Agent 实践"
+    en: "Classic Theory Meets Agent Practice"
+
+  - section: categories
+    zh: "破而后立的 TDD 流程迭代"
+    en: "Breaking to Build: TDD Process Iterations"
+
+  - section: categories
+    zh: "追问协议设计"
+    en: "Inquiry Protocol Design"
+
+  - section: categories
+    zh: "公告"
+    en: "Announcements"
 
   # ── Series ────────────────────────────────────────────
   - section: series
-    zh: "用-tdd-驯服-ai-编码代理"
-    en: "taming-ai-coding-agents-with-tdd"
+    zh: "用 TDD 驯服 AI 编码代理"
+    en: "Taming AI Coding Agents with TDD"
 
   - section: series
-    zh: "让-ai-学会反思"
-    en: "teaching-ai-to-reflect"
+    zh: "让 AI 学会反思"
+    en: "Teaching AI to Reflect"
+
+  - section: series
+    zh: "AI Agent 实验方法论"
+    en: "AI Agent Experiment Methodology"
+
+  - section: series
+    zh: "AI 根因诊断"
+    en: "AI Root Cause Diagnosis"
+
+  - section: series
+    zh: "为什么让 AI 动手之前先说 why"
+    en: "Why Make AI Articulate Why Before Acting"
+
+  - section: series
+    zh: "用经典理论指导 Agent 实践"
+    en: "Classic Theory Meets Agent Practice"
+
+  - section: series
+    zh: "破而后立的 TDD 流程迭代"
+    en: "Breaking to Build: TDD Process Iterations"
+
+  - section: series
+    zh: "AI 之路初阶升级指南"
+    en: "AI Path L0→L1 Upgrade Guide"
+
+  - section: series
+    zh: "AI 之路进阶升级指南"
+    en: "AI Path L1→L2 Upgrade Guide"
