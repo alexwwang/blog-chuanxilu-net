@@ -10,8 +10,7 @@ toc: true
 series: ["AI Path L1→L2 Upgrade Guide"]
 cover:
   image: "cover.jpeg"
-  alt: "Day 3 Exercise: API Parameter Experiments — Cover Image"
-  caption: "Watercolor illustration: a notebook with temperature parameter experiment records"
+  alt: "Watercolor illustration: a notebook with temperature parameter experiment records"
   relative: true
 ---
 
