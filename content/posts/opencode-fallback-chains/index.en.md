@@ -1,13 +1,15 @@
 ---
 title: "omo vs oms: Fallback Chains Deep Dive"
 slug: "opencode-fallback-chains"
-date: 2026-06-07T11:00:00+08:00
-draft: true
+date: 2026-06-07T08:00:00+08:00
+draft: false
 description: "oh-my-openagent (omo) and oh-my-opencode-slim (oms) have different fallback mechanisms: omo uses a 5-layer pipeline, oms uses startup selection + runtime abort retry. Source-code deep dive."
 tags: ["AI", "opencode", "agent", "fallback", "oh-my-openagent"]
 categories: ["AI Practice"]
 toc: true
 series: ["opencode-triple-config"]
+cover:
+  image: "cover.png"
 ---
 
 > This is Part 2 of [When Your AI Coding Tool Needs Three Configs](/posts/opencode-triple-config-switch/). Part 1 covered the config design, file structure, and orchestration philosophy. This article focuses on fallback mechanisms.
@@ -22,17 +24,17 @@ My own trigger: my primary provider has a quota limit every 5 hours. When the qu
 
 ## omo's Fallback Architecture
 
-omo's model resolution is a **5-layer pipeline**, in priority order from highest to lowest:
+omo's model resolution is a **5-layer pipeline**[1], in priority order from highest to lowest:
 
 1. **Override**: Model explicitly selected by the user via UI, returned directly, skipping all subsequent layers
-2. **Category Default**: Default model configured for agent category, with fuzzy matching (`model-alpha` can match `provider-e/model-alpha`)
+2. **Category Default**: Default model configured for agent category, with fuzzy matching[4] (`model-alpha` can match `provider-e/model-alpha`)
 3. **User Fallback Models**: `fallback_models` written by the user in config, tried one by one until an available model is found
-4. **Hardcoded Chain**: omo's built-in per-agent and per-category hardcoded chain (9 agents + 9 categories, ~65 entries total), cross-provider matching
+4. **Hardcoded Chain**: omo's built-in per-agent and per-category hardcoded chain[5], cross-provider matching
 5. **System Default**: Final safety net when all layers fail (`opencode/gpt-5-nano`)
 
 Key point: Your `fallback_models` doesn't replace the hardcoded chain—it **takes priority over** it. When your chain is exhausted, the hardcoded chain still provides a backup.
 
-`fallback_models` supports four formats:
+`fallback_models` supports four formats[2]:
 
 ```jsonc
 // Format 1: single model
@@ -53,9 +55,9 @@ Key point: Your `fallback_models` doesn't replace the hardcoded chain—it **tak
 ]
 ```
 
-Object format supports fields: `model` (required), `variant`, `reasoningEffort` (none/minimal/low/medium/high/xhigh/max), `temperature`, `top_p`, `maxTokens`, `thinking` (type + budgetTokens). This means fallback isn't just switching models—it can switch reasoning modes too. Use high reasoning on the primary, medium reasoning on the backup to save tokens.
+Object format supports fields[2]: `model` (required), `variant`, `reasoningEffort` (none/minimal/low/medium/high/xhigh/max), `temperature`, `top_p`, `maxTokens`, `thinking` (type + budgetTokens). This means fallback isn't just switching models—it can switch reasoning modes too. Use high reasoning on the primary, medium reasoning on the backup to save tokens.
 
-omo also has runtime fallback (`runtime_fallback`): when HTTP errors like 429, 500, 502, 503, 504 occur mid-session, or rate-limit/quota-exceeded error patterns, it automatically switches to the next model in the chain without restarting the session. Default parameters:
+omo also has runtime fallback (`runtime_fallback`)[3]: when HTTP errors like 429, 500, 502, 503, 504 occur mid-session, or rate-limit/quota-exceeded error patterns, it automatically switches to the next model in the chain without restarting the session. Default parameters:
 
 ```jsonc
 "runtime_fallback": {
@@ -68,13 +70,15 @@ omo also has runtime fallback (`runtime_fallback`): when HTTP errors like 429, 5
 }
 ```
 
-omo also has **fuzzy matching** capability: model names are normalized (lowercase, version separators unified), then substring matching is applied. `model-alpha` can match `provider-e/model-alpha`, even variants from different providers can map to each other.
+omo also has **fuzzy matching** capability[4]: model names are normalized (lowercase, version separators unified), then substring matching is applied. `model-alpha` can match `provider-e/model-alpha`, even variants from different providers can map to each other.
+
+![omo's 5-layer fallback pipeline architecture](illustration-1.png)
 
 ## omo Fallback Patterns & Scenarios
 
 **Pattern 1: Zero config—purely relying on hardcoded chain**
 
-Set only primary model, don't write `fallback_models`, don't enable `runtime_fallback`. The hardcoded chain covers 9 agents and 9 categories, each chain has 4-8 entries, spanning multiple mainstream providers.
+Set only primary model, don't write `fallback_models`, don't enable `runtime_fallback`. Rely purely on the built-in hardcoded chain — omo finds available models automatically.
 
 Use case: Just getting started with omo, not familiar with config yet. Or using default providers—the hardcoded chain is designed for them. The benefit is zero maintenance: when a provider goes down, omo finds a replacement model on its own. The cost is lack of precision—the hardcoded chain doesn't know which provider accounts you have, so it might waste time on expired providers.
 
@@ -111,10 +115,10 @@ Use case: Provider rate-limits but doesn't limit quota. 429 errors, wait a few s
 
 ## oms Fallback Architecture
 
-oms's fallback is a **2-layer architecture**:
+oms's fallback is a **2-layer architecture**[6]:
 
 1. **Startup selection**: In the `config()` hook, the system takes the first model from the chain as primary. This step doesn't check if the provider is online—it just takes the first one, uses it if it works, otherwise waits for runtime to switch
-2. **Runtime failure switching**: `ForegroundFallbackManager` listens to OpenCode events (`message.updated`, `session.error`, `session.status`), detects rate-limit errors then aborts the current session and re-prompts with the next model in the chain
+2. **Runtime failure switching**: `ForegroundFallbackManager`[7] listens to OpenCode events (`message.updated`, `session.error`, `session.status`)[8], detects rate-limit errors then aborts the current session and re-prompts with the next model in the chain[16]
 
 ```jsonc
 "fallback": {
@@ -125,7 +129,7 @@ oms's fallback is a **2-layer architecture**:
   },
   "retryDelayMs": 500,       // How long to wait after abort before re-prompting (default 500ms)
   "retry_on_empty": true,    // Empty response (0 tokens) also triggers retry (default true)
-  "timeoutMs": 15000         // Single call timeout (default 15s)
+  "timeoutMs": 15000         // Single call timeout (default 15s)[16]
 }
 ```
 
@@ -133,11 +137,11 @@ oms has no hardcoded chain—users must configure everything themselves. Chains 
 
 oms has several features omo doesn't have:
 
-**Strict agent isolation**: Each agent only uses its own chain. If explorer isn't configured with a chain, it absolutely won't get the orchestrator's strong model. Each session maintains a tried-set, recording models already tried, so it won't retry the same model in a loop. When the chain is exhausted, the session stays in a failed state and won't secretly degrade.
+**Strict agent isolation**[9]: Each agent only uses its own chain. If explorer isn't configured with a chain, it absolutely won't get the orchestrator's strong model. Each session maintains a tried-set[10], recording models already tried, so it won't retry the same model in a loop. When the chain is exhausted, the session stays in a failed state and won't secretly degrade.
 
-**Empty response retry** (`retry_on_empty`): When a model returns empty content with 0 tokens, oms treats it as failure. This is particularly useful for council review scenarios—weak models occasionally generate empty responses, auto-retry is less hassle than manual resend.
+**Empty response retry** (`retry_on_empty`)[11]: When a model returns empty content with 0 tokens, oms treats it as failure. This is particularly useful for council review scenarios—weak models occasionally generate empty responses, auto-retry is less hassle than manual resend.
 
-**Inline priority chain** (Model Array syntax): Besides `fallback.chains`, oms supports writing model arrays directly in agent config:
+**Inline priority chain** (Model Array syntax)[12]: Besides `fallback.chains`, oms supports writing model arrays directly in agent config:
 
 ```jsonc
 "agents": {
@@ -151,9 +155,9 @@ oms has several features omo doesn't have:
 }
 ```
 
-Model Array and `fallback.chains` are merged (Array first, chains appended, deduplicated). This means you can put your main preferences in agent config (with variant), and put the safety net list in chains.
+Model Array and `fallback.chains` are merged[13] (Array first, chains appended, deduplicated). This means you can put your main preferences in agent config (with variant), and put the safety net list in chains.
 
-**Preset linkage**: oms has a preset system (switch at runtime via `/preset` command). When switching preset, the `config()` hook re-executes, chains rebuild. `ForegroundFallbackManager` retains session state (tried-set isn't lost), but chain content updates. This is useful in "use expensive models by day, switch to cheap models by night" scenarios.
+**Preset linkage**: oms has a preset system (switch at runtime via `/preset` command)[14]. When switching preset, the `config()` hook re-executes, chains rebuild[15]. `ForegroundFallbackManager` retains session state (tried-set isn't lost), but chain content updates. This is useful in "use expensive models by day, switch to cheap models by night" scenarios.
 
 ## oms Fallback Patterns & Scenarios
 
@@ -213,7 +217,7 @@ Use case: Using unstable providers (e.g., domestic providers during peak hours).
 | Feature | omo | oms |
 |---------|-----|-----|
 | Resolution layers | 5-layer pipeline (override → category → user → hardcoded → system) | 2 layers (startup select + runtime switch) |
-| Built-in hardcoded chain | Yes (9 agents + 9 categories, ~65 entries) | No |
+| Built-in hardcoded chain | Yes | No |
 | User chain length | Usually 1-2 (hardcoded fallback) | Usually 3-5 (fully self-configured) |
 | Config format | string / string[] / object[] / mixed[] (with variant, thinking) | string[] (chains) + object[] (inline) |
 | Runtime switching | `runtime_fallback` (configurable cooldown, max attempts, timeout) | `ForegroundFallbackManager` (event-driven) |
@@ -222,6 +226,8 @@ Use case: Using unstable providers (e.g., domestic providers during peak hours).
 | Fuzzy matching | Yes (name normalization + substring matching) | No (exact matching) |
 | Safety net model | `opencode/gpt-5-nano` | None (stop when chain exhausted) |
 | Preset linkage | No | Yes (chains rebuild with preset) |
+
+![omo vs oms fallback mechanism comparison](illustration-2.png)
 
 ## Configuration Best Practices
 
@@ -323,3 +329,22 @@ oms has no hardcoded fallback, you get exactly what you configure in the chain. 
 ## Special Handling for Dedicated Analysis Agents
 
 Both systems can configure dedicated analysis agents (like `oracle-ds4f` and `oracle-ds4p`). They don't participate in automatic fallback—only used when explicitly requested. The fallback chain is self-retry: same model repeated 4 times, achieving 5 attempts.
+
+## References
+
+1. [omo 5-layer pipeline](https://github.com/code-yeongyu/oh-my-openagent/blob/v4.7.5/src/shared/model-resolution-pipeline.ts)
+2. [omo fallback_models config](https://github.com/code-yeongyu/oh-my-openagent/blob/v4.7.5/src/config/schema/fallback-models.ts)
+3. [omo runtime_fallback config](https://github.com/code-yeongyu/oh-my-openagent/blob/v4.7.5/src/config/schema/runtime-fallback.ts)
+4. [omo fuzzy matching](https://github.com/code-yeongyu/oh-my-openagent/blob/v4.7.5/src/shared/model-availability.ts) · [model name normalization](https://github.com/code-yeongyu/oh-my-openagent/blob/v4.7.5/src/shared/model-normalization.ts)
+5. [omo hardcoded chain](https://github.com/code-yeongyu/oh-my-openagent/blob/v4.7.5/src/shared/model-requirements.ts)
+6. [oms 2-layer architecture + config() hook](https://github.com/alvinunreal/oh-my-opencode-slim/blob/v1.1.1/src/index.ts)
+7. [oms ForegroundFallbackManager](https://github.com/alvinunreal/oh-my-opencode-slim/blob/v1.1.1/src/hooks/foreground-fallback/index.ts)
+8. [oms event listeners](https://github.com/alvinunreal/oh-my-opencode-slim/blob/v1.1.1/src/hooks/foreground-fallback/index.ts) (`message.updated`, `session.error`, `session.status`)
+9. [oms strict agent isolation](https://github.com/alvinunreal/oh-my-opencode-slim/blob/v1.1.1/src/hooks/foreground-fallback/index.ts) (`resolveChain`)
+10. [oms tried-set](https://github.com/alvinunreal/oh-my-opencode-slim/blob/v1.1.1/src/hooks/foreground-fallback/index.ts)
+11. [oms retry_on_empty + fallback schema](https://github.com/alvinunreal/oh-my-opencode-slim/blob/v1.1.1/src/config/schema.ts)
+12. [oms inline priority chain (Model Array)](https://github.com/alvinunreal/oh-my-opencode-slim/blob/v1.1.1/src/config/schema.ts)
+13. [oms chain merge logic (effectiveArrays)](https://github.com/alvinunreal/oh-my-opencode-slim/blob/v1.1.1/src/index.ts)
+14. [oms preset system](https://github.com/alvinunreal/oh-my-opencode-slim/blob/v1.1.1/src/tools/preset-manager.ts)
+15. [oms preset linkage (chain rebuild)](https://github.com/alvinunreal/oh-my-opencode-slim/blob/v1.1.1/src/index.ts)
+16. [oms abort + re-prompt](https://github.com/alvinunreal/oh-my-opencode-slim/blob/v1.1.1/src/hooks/foreground-fallback/index.ts)
