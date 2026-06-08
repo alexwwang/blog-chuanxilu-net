@@ -88,7 +88,7 @@ When you see "Summary saved to output.txt", open `output.txt` and check the cont
 
 A few details worth knowing:
 
-- `encoding="utf-8"` is not optional. Python's default encoding varies across operating systems. Without it, non-ASCII characters may garble.
+- `encoding="utf-8"` is not optional. Python's default encoding varies across operating systems. Without it, non-ASCII characters may get garbled.
 - `with open(...)` is a context manager. The file closes automatically when the block ends, so you don't need to call `f.close()` yourself.
 - The `f"...{file_content}"` in the prompt is an f-string, Python's most convenient way to format strings. It plugs the variable right into the string.
 
@@ -294,11 +294,11 @@ Usage:
 
 This script has a few upgrades over the previous version:
 
-**Function encapsulation.** `summarize_file()` wraps the full "read, call, write" logic. `main()` handles flow control. Functions keep code clear and make reuse easy.
+**Breaking it into functions.** `summarize_file()` wraps the full "read, call, write" logic. `main()` handles flow control. Functions keep code clear and make reuse easy.
 
-**System prompt added.** The `messages` list now includes a `"role": "system"` entry to set the AI's identity and task rules. System prompts aren't billed separately (they count as input tokens) but they make output more consistent. `temperature=0.3` produces more uniform summaries. `max_tokens=500` caps output length.
+**System prompt added.** The `messages` list now includes a `"role": "system"` entry to set the AI's identity and task rules. System prompts count as regular input tokens (no extra cost), and they make output more consistent. `temperature=0.3` produces more uniform summaries. `max_tokens=500` caps output length.
 
-**Error protection.** Each file's processing is wrapped in `try/except`. One file failing won't crash the whole program. It prints the error and moves on to the next.
+**Error handling.** Each file's processing is wrapped in `try/except`. One file failing won't crash the whole program. It prints the error and moves on to the next.
 
 Expected folder structure:
 
@@ -323,9 +323,9 @@ Grab 3 to 5 of your own documents and run it. If the documents are long, keep an
 
 ## Error Handling Basics: Making Scripts Resilient
 
-Real-world scripts hit problems. Network hiccups, temporary API outages, locked files. These aren't "if" questions, they're "when." A script without error handling crashes on the first exception and forces you to start over.
+Real-world scripts hit problems. Network hiccups, temporary API outages, locked files. These aren't "if" questions. They're "when." A script without error handling crashes on the first exception and forces you to start over.
 
-The code above already wraps each file in `try/except`, but that's just a safety net. A robust script needs to handle several common scenarios: network timeouts, API error responses, file I/O failures.
+The code above already wraps each file in `try/except`, but that's just a safety net. A production script needs to handle several common scenarios: network timeouts, API error responses, file I/O failures.
 
 This section won't cover every scenario (Day 7 goes deep on that). Just two techniques you can apply right now.
 
@@ -394,4 +394,4 @@ Part 3 enters new territory: autonomous AI. Not just reading and writing files, 
 
 ---
 
-*Script won't run? Screenshot the error and share it in the reader group (don't paste your API Key). Most common causes: `.env` file in the wrong location, folder name typo, network timeout.*
+*Script won't run? Screenshot the error and share it in the reader group (don't paste your API key). Most common causes: `.env` file in the wrong location, folder name typo, network timeout.*
