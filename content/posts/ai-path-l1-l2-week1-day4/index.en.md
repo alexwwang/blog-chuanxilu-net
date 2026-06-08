@@ -296,7 +296,7 @@ This script has a few upgrades over the previous version:
 
 **Breaking it into functions.** `summarize_file()` wraps the full "read, call, write" logic. `main()` handles flow control. Functions keep code clear and make reuse easy.
 
-**System prompt added.** The `messages` list now includes a `"role": "system"` entry to set the AI's identity and task rules. System prompts count as regular input tokens (no extra cost), and they make output more consistent. `temperature=0.3` produces more uniform summaries. `max_tokens=500` caps output length.
+**System prompt added.** The `messages` list now includes a `"role": "system"` entry to set the AI's identity and task rules. System prompts are billed as regular input tokens (no separate/additional fee), and they make output more consistent. `temperature=0.3` produces more uniform summaries. `max_tokens=500` caps output length.
 
 **Error handling.** Each file's processing is wrapped in `try/except`. One file failing won't crash the whole program. It prints the error and moves on to the next.
 
