@@ -1,9 +1,9 @@
 ---
-title: "AI Path L1→L2 Upgrade Guide (2): From One Call to Batch Processing—Let Your Program Do 100 Tasks"
+title: "AI Path L1→L2 Upgrade Guide (2): From One Call to Batch Processing: Let Your Program Do 100 Tasks"
 slug: "ai-path-l1-l2-week1-day4"
 date: "2026-06-10T07:00:00+08:00"
 draft: false
-description: "Part 2 of the AI Path L1→L2 Upgrade Guide: learn to read files with Python, call the API, save results, then loop through an entire folder—building a complete script that auto-summarizes 100 documents."
+description: "Part 2 of the AI Path L1→L2 Upgrade Guide: learn to read files with Python, call the API, save results, then loop through an entire folder to build a complete script that auto-summarizes 100 documents."
 tags: ["AI", "toolchain", "tutorial", "API", "Python"]
 categories: ["ai-path"]
 toc: true
@@ -16,19 +16,19 @@ cover:
 
 > This is Part 2 of the "AI Path L1→L2 Upgrade Guide" series. Complete [Part 1](../ai-path-l1-l2-week1/) and the first three days of exercises ([Day 1](../ai-path-l1-l2-week1-day1/), [Day 2](../ai-path-l1-l2-week1-day2/), [Day 3](../ai-path-l1-l2-week1-day3/)) before continuing.
 
-Part 1 taught you to make one API call. Today's goal is different: **make your program ask AI a hundred questions**.
+Part 1 taught you to make one API call. Today we're going bigger: make your program ask AI a hundred questions.
 
-Asking AI a hundred times manually versus running a script a hundred times—these are fundamentally different workflows. One is grunt work. The other is leverage. Spend 10 minutes writing the script, let it run for 10 minutes, and do something else with the time you saved.
+Manually pasting text into a chat window a hundred times is grunt work. Writing a ten-minute script that does it for you is leverage. You get the time back.
 
-Today covers three things: reading files, writing loops, and assembling a full script. Walk through these three steps and you'll have a general-purpose tool that can process any folder of documents.
+We'll cover three things today: reading files, writing loops, and putting it all together into a script that processes an entire folder of documents.
 
 ---
 
 ## File I/O + API: Feeding Data to the API
 
-The code in Part 1 hardcoded the question right in the source (`content="Hello..."`). Real scenarios don't work like that. You might need to process 10 meeting notes or 50 pieces of user feedback—all stored in files. Your program needs to read those files, stuff the content into an API request, and save the response.
+The code in Part 1 hardcoded the question right in the source (`content="Hello..."`). That works for learning, but real tasks don't look like that. You might need to process 10 meeting notes or 50 pieces of user feedback, all stored in files. Your program needs to read those files, send the content to the API, and save the response.
 
-Hardcoding the question is like speaking to AI face-to-face—one sentence at a time. Reading from a file is like handing AI a stack of papers and asking it to read them all before answering. Writing the response to a file means AI writes its answer on paper for you to read later.
+Think of it this way. Hardcoding the question is like talking to AI face to face, one sentence at a time. Reading from a file is like handing AI a stack of papers and saying "read these first." Writing the response to a file means you can come back and read the answer later without the chat window.
 
 Start with the simplest version: read one file, send it to the API, save the reply.
 
@@ -84,23 +84,23 @@ Run it:
 uv run python read_file_api.py
 ```
 
-When you see "Summary saved to output.txt", open `output.txt` and check the content. This flow is the core pattern behind all batch processing: **read → process → write**.
+When you see "Summary saved to output.txt", open `output.txt` and check the content. That flow, read then process then write, is the backbone of every batch processing script you'll ever write.
 
-A few details worth noting:
+A few details worth knowing:
 
-- `encoding="utf-8"` is not optional. Python's default encoding varies across operating systems—without it, non-ASCII characters may garble.
-- `with open(...)` is a context manager. The file closes automatically when the block ends. No need to call `f.close()` yourself.
-- The `f"...{file_content}"` in the prompt is an f-string—Python's most convenient string formatting. It interpolates the variable directly into the string.
+- `encoding="utf-8"` is not optional. Python's default encoding varies across operating systems. Without it, non-ASCII characters may garble.
+- `with open(...)` is a context manager. The file closes automatically when the block ends, so you don't need to call `f.close()` yourself.
+- The `f"...{file_content}"` in the prompt is an f-string, Python's most convenient way to format strings. It plugs the variable right into the string.
 
-Try swapping `input.txt` with any text file of your own and see how the summary turns out. You can also change the prompt—replace "Summarize the following in 3 bullet points" with "Extract action items from the following" or "Translate the following into Chinese"—and observe how the output changes.
+Try swapping `input.txt` with any text file of your own and see what the summary looks like. You can also change the prompt. Replace "Summarize the following in 3 bullet points" with "Extract action items from the following" or "Translate the following into Chinese" and watch how the output changes.
 
 ---
 
 ## Loops + Batch Processing: The Core of Automation
 
-The previous section handled one file. What if a folder has 10? Copy-paste the code 10 times, changing the filename each time? Obviously not. Use a loop to iterate through the folder and let the program handle each file.
+The previous section handled one file. What if a folder has 10? You could copy-paste the code 10 times, changing the filename each time. Obviously not. Use a loop to iterate through the folder and let the program handle each file.
 
-Python has two common ways to list files: `os.listdir()` and `glob`. `glob` is more flexible—it supports wildcards to match specific file types. I recommend it.
+Python has two common ways to list files: `os.listdir()` and `glob`. `glob` is more flexible because it supports wildcards to match specific file types. I recommend it.
 
 Create `batch_basic.py` in your project directory:
 
@@ -163,7 +163,7 @@ echo "Content of meeting note two..." > input/meeting_02.txt
 echo "Content of meeting note three..." > input/meeting_03.txt
 ```
 
-Of course, you can put your own real `.txt` or `.md` files in the `input/` folder. Then run:
+Of course, you can put your own real `.txt` or `.md` files in the `input/` folder instead. Then run:
 
 ```bash
 uv run python batch_basic.py
@@ -181,11 +181,11 @@ Processing 3/3: meeting_03.txt
 All done! 3 files processed
 ```
 
-Open the `output/` folder—each input file has a corresponding output file.
+Open the `output/` folder. Each input file has a corresponding output file.
 
 `glob.glob("input/*.txt")` returns all matching file paths. Change `"*.txt"` to `"*.md"` to process Markdown files instead. `enumerate(input_files, 1)` adds a counter to the loop, starting at 1. `os.path.basename(filepath)` extracts just the filename from the full path.
 
-About speed: this script calls the API one after another—serial processing. With 10 files and ~2 seconds per request, the total is roughly 20 seconds. Day 6 covers parallel processing (sending multiple requests simultaneously), but serial is simpler, more stable, and easier to debug. Master serial first.
+One thing about speed: this script calls the API one after another, which is serial processing. With 10 files and roughly 2 seconds per request, the whole thing takes about 20 seconds. Day 6 covers parallel processing (sending multiple requests at once), but serial is simpler, more stable, and easier to debug. Learn serial first.
 
 Try changing `glob.glob("input/*.txt")` to `"input/*.md"`, put a few Markdown files in `input/`, and run it again.
 
@@ -193,9 +193,9 @@ Try changing `glob.glob("input/*.txt")` to `"input/*.md"`, put a few Markdown fi
 
 ## Complete Script: Batch Summarize Documents
 
-The previous two sections built up the pieces. Now assemble them into a genuinely useful tool. The use case is universal: **you have a folder of documents, and you want AI to generate a summary for each one, saving results to a new folder**.
+The previous two sections built up the pieces. Now we assemble them into something you'd actually use. The scenario is simple: you have a folder of documents, and you want AI to generate a summary for each one, saving the results to a new folder.
 
-Meeting notes, article drafts, user feedback, research notes—any text collection works.
+Meeting notes, article drafts, user feedback, research notes. Any collection of text files works.
 
 Create `batch_summarize.py`:
 
@@ -294,11 +294,11 @@ Usage:
 
 This script has a few upgrades over the previous version:
 
-**Function encapsulation.** `summarize_file()` wraps the full "read → call → write" logic. `main()` handles flow control. Functions keep code clear and make reuse easy.
+**Function encapsulation.** `summarize_file()` wraps the full "read, call, write" logic. `main()` handles flow control. Functions keep code clear and make reuse easy.
 
-**System prompt added.** The `messages` list now includes a `"role": "system"` entry to set AI's identity and task rules. System prompts aren't billed separately (they count as input tokens) but make output more consistent. `temperature=0.3` produces more uniform summaries. `max_tokens=500` caps output length.
+**System prompt added.** The `messages` list now includes a `"role": "system"` entry to set the AI's identity and task rules. System prompts aren't billed separately (they count as input tokens) but they make output more consistent. `temperature=0.3` produces more uniform summaries. `max_tokens=500` caps output length.
 
-**Error protection.** Each file's processing is wrapped in `try/except`. One file failing won't crash the whole program—it prints the error and moves on to the next.
+**Error protection.** Each file's processing is wrapped in `try/except`. One file failing won't crash the whole program. It prints the error and moves on to the next.
 
 Expected folder structure:
 
@@ -317,13 +317,13 @@ your-project/
     └── notes.txt
 ```
 
-Grab 3–5 of your own documents and run it. If the documents are long, keep an eye on cost—long texts consume more input tokens. At DeepSeek V4-Flash pricing ($0.14/1M input tokens, roughly ¥1/1M), even a batch of 100 files should cost under $0.50 (roughly ¥3.60), but it adds up faster than you'd expect.
+Grab 3 to 5 of your own documents and run it. If the documents are long, keep an eye on cost. Long texts consume more input tokens. At DeepSeek V4-Flash pricing ($0.14/1M input tokens, roughly ¥1/1M), even a batch of 100 files should cost under $0.50 (roughly ¥3.60). But it adds up faster than you'd expect.
 
 ---
 
 ## Error Handling Basics: Making Scripts Resilient
 
-Real-world scripts will hit problems. Network hiccups, temporary API outages, locked files—these aren't "if" questions, they're "when." A script without error handling crashes on the first exception and forces you to start over.
+Real-world scripts hit problems. Network hiccups, temporary API outages, locked files. These aren't "if" questions, they're "when." A script without error handling crashes on the first exception and forces you to start over.
 
 The code above already wraps each file in `try/except`, but that's just a safety net. A robust script needs to handle several common scenarios: network timeouts, API error responses, file I/O failures.
 
@@ -368,9 +368,9 @@ def call_api_with_retry(client, **kwargs):
 
 Replace the direct API call in your script with this function, and momentary network blips won't kill the task.
 
-At minimum, wrap your API calls in `try/except`. One file failing shouldn't abort an entire batch—that's the biggest mindset shift between single calls and batch processing.
+At minimum, wrap your API calls in `try/except`. One file failing shouldn't abort an entire batch. That's the biggest mindset shift between single calls and batch processing.
 
-One more thing you'll encounter with batch processing (covered in detail on Day 7): **API rate limits**. Most platforms cap how many requests you can send per second (e.g., 2 per second). If you have many files and the loop runs fast, you might hit the limit and get a 429 error. The quick fix for now: if you see a 429, wait a few seconds and retry. A more elegant solution comes on Day 7.
+One more thing you'll run into with batch processing (covered in detail on Day 7): API rate limits. Most platforms cap how many requests you can send per second. DeepSeek, for example, allows about 2 per second on the basic tier. If you have many files and the loop runs fast, you might hit the limit and get a 429 error. The quick fix for now: if you see a 429, wait a few seconds and retry. A cleaner solution comes on Day 7.
 
 ---
 
@@ -378,7 +378,7 @@ One more thing you'll encounter with batch processing (covered in detail on Day 
 
 Read files with Python and sent them to the API. Used `glob` plus a `for` loop to batch-process an entire folder. Assembled a complete script that handles any document folder, with `try/except` to ensure one failed file doesn't bring down the whole run.
 
-The code isn't long, but conceptually this is a key leap. From "make one API call" to "batch-process a folder"—you're no longer "using an API." You're "building tools with an API." That difference is the dividing line between L1 and L2.
+The code isn't long, but conceptually this is a real leap. Going from "make one API call" to "batch-process a folder" means you're no longer just using an API. You're building tools with one. That difference is what separates L1 from L2.
 
 ---
 
@@ -388,9 +388,9 @@ Today was backbone code. The next three days are companion exercises:
 
 - **Day 5**: Write a script that reads multiple file formats (not just `.md` and `.txt`)
 - **Day 6**: Add a progress bar and cost tracking to the batch script
-- **Day 7**: Full error handling—retries, logging, timeout control
+- **Day 7**: Full error handling with retries, logging, and timeout control
 
-Part 3 enters a new dimension: **autonomous AI**—AI that doesn't just read and write files, but plans its own steps, calls tools, and completes complex tasks on its own.
+Part 3 enters new territory: autonomous AI. Not just reading and writing files, but AI that plans its own steps, calls tools, and completes complex tasks without hand-holding.
 
 ---
 
