@@ -394,4 +394,4 @@ Part 3 enters new territory: autonomous AI. Not just reading and writing files, 
 
 ---
 
-*Script won't run? Screenshot the error and share it in the reader group (don't paste your API key). Most common causes: `.env` file in the wrong location, folder name typo, network timeout.*
+*Script won't run? Read the error message first (don't paste your API key), then check your `.env` file location, folder name, and network connection.*
