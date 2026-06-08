@@ -16,7 +16,7 @@ cover:
 
 > This is the Day 3 companion exercise. Complete [Day 1](../ai-path-l1-l2-week1-day1/) first. Part 1 covers the theory ("Understanding API Parameters")—today you verify it with your own eyes.
 
-Part 1 explained parameters in theory. But theory without practice is just words. Today you run three experiments and **see for yourself how parameters affect output**.
+Part 1 explained parameters in theory. But theory without practice is just noise. Today you run three experiments and **see for yourself how parameters affect output**.
 
 ---
 
@@ -28,7 +28,7 @@ Make sure your Day 1 project still works:
 uv run python hello_api.py
 ```
 
-If AI replies, your environment is ready. All experiments below build on this code.
+If the AI replies, your environment is ready. All experiments below build on this code.
 
 ---
 
@@ -77,15 +77,15 @@ uv run python experiment_temp.py
 **What to observe**:
 
 - `temperature=0`: Nearly identical output every time. AI picks the highest-probability word. No randomness.
-- `temperature=0.5`: Some variation, but the logic stays coherent.
-- `temperature=1.0`: noticeably different each run. Word choice, style, and story direction may vary.
+- `temperature=0.5`: Some variation, but the logic remains coherent.
+- `temperature=1.0`: Noticeably different each run. Word choice, style, and story direction may vary.
 
 **Try it**: Run the same code two or three times and compare the stability of `temperature=0` vs `temperature=1.0`.
 
 **When to use which**:
 - Deterministic output (code, data extraction) → `temperature=0`
 - Some variation but controlled (daily conversation, translation) → `temperature=0.5-0.7`
-- Creative divergence (writing, brainstorming) → `temperature=0.8-1.0`
+- Creative work (writing, brainstorming) → `temperature=0.8-1.0`
 
 ---
 
@@ -138,7 +138,7 @@ uv run python experiment_tokens.py
 - `max_tokens=200`: A short answer, but probably not enough room for all three examples.
 - `max_tokens=1000`: Full answer with all three examples expanded.
 
-**Note**: `max_tokens` is a ceiling, not a target. AI won't pad output to fill the limit. If the question only needs 100 tokens, setting 1000 won't produce more.
+**Note**: `max_tokens` is a ceiling, not a target. AI won't pad output to fill the limit. A 100-token answer won't grow to 1000 tokens just because you raised the ceiling.
 
 ---
 
@@ -161,10 +161,10 @@ Add this to the end of experiment 2:
     print(f"  Input: {input_tokens} tokens, Output: {output_tokens} tokens")
 ```
 
-**Build intuition**:
+**Build Your Intuition**
 
-- A simple Q&A (100 input + 200 output tokens) costs about ¥0.0006—less than a thousandth of a yuan
-- ¥10 can fund roughly 15,000-20,000 such requests
+- A simple Q&A (100 input + 200 output tokens) costs about $0.00008 (roughly ¥0.0006)
+- $1.50 (roughly ¥10) can fund roughly 15,000–20,000 such requests
 - Long texts are where costs add up: summarizing a 5,000-character article may consume 7,500 input tokens
 
 ---
@@ -175,8 +175,6 @@ Add this to the end of experiment 2:
 - [ ] Ran the max_tokens experiment and saw truncation in action
 - [ ] Calculated the actual cost of one API request
 
-**Next up**: Day 4 is Part 2 of the main tutorial—moving from single calls to batch processing. You'll learn to make the API process 100 files automatically.
+**Tip**: Not sure how to tune parameters? Describe the output you want in plain language and ask AI: "I want more stable/creative/shorter output, what should I set temperature and max_tokens to?"
 
----
-
-*Not sure how to tune parameters? Describe the output you want in plain language and ask AI: "I want more stable/creative/shorter output, what should I set temperature and max_tokens to?"*
+**Next up**: Day 4 is Part 2 of the main tutorial—moving from single calls to batch processing. You'll learn to have the API process 100 files automatically.
