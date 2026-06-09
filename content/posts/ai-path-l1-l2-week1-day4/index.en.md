@@ -1,7 +1,7 @@
 ---
 title: "AI Path L1→L2 Upgrade Guide (2): From One Call to Batch Processing: Let Your Program Do 100 Tasks"
 slug: "ai-path-l1-l2-week1-day4"
-date: "2026-06-10T07:00:00+08:00"
+date: "2026-06-09T07:00:00+08:00"
 draft: false
 description: "Part 2 of the AI Path L1→L2 Upgrade Guide: learn to read files with Python, call the API, save results, then loop through an entire folder to build a complete script that auto-summarizes 100 documents."
 tags: ["AI", "toolchain", "tutorial", "API", "Python"]
