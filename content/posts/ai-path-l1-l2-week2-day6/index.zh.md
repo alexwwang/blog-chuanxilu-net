@@ -2,7 +2,7 @@
 title: "Day 6 练习：批量处理实战——选一个场景跑通"
 slug: "ai-path-l1-l2-week2-day6"
 date: 2026-06-13T07:00:00+08:00
-draft: true
+draft: false
 description: "L1→L2 第二周 Day 6 练习：选一个真实场景（翻译、摘要或改写），跑通完整的批量处理流程。"
 tags: ["AI", "工具链", "教程", "API", "Python"]
 categories: ["ai-path"]

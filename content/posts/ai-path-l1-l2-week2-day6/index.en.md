@@ -2,7 +2,7 @@
 title: "Day 6 Exercise: Batch Processing Practice — Pick a Scenario and Run It"
 slug: "ai-path-l1-l2-week2-day6"
 date: 2026-06-13T07:00:00+08:00
-draft: true
+draft: false
 description: "L1→L2 Week 2 Day 6 exercise: Pick a real scenario (translation, summarization, or rewriting), and run the full batch processing pipeline end to end."
 tags: ["AI", "toolchain", "tutorial", "API", "Python"]
 categories: ["ai-path"]
