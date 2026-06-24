@@ -1,7 +1,7 @@
 ---
 title: "协议遵守的半衰期（下）：深层根因"
 slug: "half-life-of-protocol-compliance-2"
-date: 2026-06-19T09:00:00+08:00
+date: 2026-06-24T09:00:00+08:00
 draft: false
 description: '为什么协议遵守会有半衰期？从 softmax 注意力稀释、RoPE 位置衰减、EOS 偏好到 transformer 无状态架构，逐层挖到 LLM 不会自治循环的算法根因。'
 tags: ["AI Agent", "LLM", "transformer", "RLHF", "autonomous loop"]
