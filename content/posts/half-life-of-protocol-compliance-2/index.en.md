@@ -1,7 +1,7 @@
 ---
 title: "The Half-Life of Protocol Compliance (Part 2): Deep Root Causes"
 slug: "half-life-of-protocol-compliance-2"
-date: 2026-06-19T09:00:00+08:00
+date: 2026-06-24T09:00:00+08:00
 draft: false
 description: "Why does protocol compliance degrade over rounds? From softmax attention dilution and RoPE distance decay to the EOS bias and transformer statelessness, layer by layer to the algorithmic root causes of LLM loop failure."
 tags: ["AI Agent", "LLM", "transformer", "RLHF", "autonomous loop"]
