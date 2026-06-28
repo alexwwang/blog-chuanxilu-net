@@ -390,7 +390,7 @@ You can:
 - [ ] Added exception logging and failure tracking (`results.json`)
 - [ ] Understood why `logging` beats `print` for batch processing
 
-**Next step**: The script is more robust now. Day 8 adds the final piece: **caching**. Store API call results locally, read from cache on subsequent runs for the same file. Saves time, saves tokens.
+**Next step**: The script is more robust now. Day 8 takes a different approach—no code, let AI handle automation tasks autonomously. Introduction to autonomous execution AI.
 
 ---
 
