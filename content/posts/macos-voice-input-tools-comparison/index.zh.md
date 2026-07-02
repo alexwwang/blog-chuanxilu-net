@@ -17,18 +17,18 @@ cover:
 
 但真正让我认真找语音输入工具的，是 **vibe coding**。核心瓶颈从"写代码的速度"变成了"表达意图的速度"——改个 prompt 要敲半天，调个参数要切出去打字，频繁打断思路。语音输入刚好解决这个问题：想到什么直接说出来，保持 flow。
 
-{{< figure src="vibe-coding-concept.png" alt="开发者用语音输入写代码的场景示意" >}}
+{{< figure src="vibe-coding-concept.png" alt="语音输入与打字的对比：瓶颈从打字速度转移到意图表达速度" >}}
 
 市面上不缺语音输入方案：豆包的语音输入、微信的语音转文字、各大输入法的语音模块，都能用。但它们有两个绕不开的问题：
 
 1. **隐私和自由度。** 豆包的语音走豆包的模型，微信的语音走微信的模型。你绑定了它们的生态，就得接受它们的识别质量、隐私策略和数据流向。不支持切换后端，不支持本地模型。哪天功能改了、收费了、下架了，你只能接受。闭源意味着不可控。
 2. **硬件资源占用。** 这些方案往往是完整输入法或应用的一部分，后台常驻、内存占用不小。为了一个语音输入功能，不值得扛一个几百 MB 的输入法全家桶。
 
-把市面上的方案拉出来看，特点高度一致：全部闭源、无法自选模型、都是完整输入法而非独立语音工具，输入内容默认走厂商服务器。没有一款支持"我只想要一个语音输入按钮，不要输入法"。
+回头看市面上的方案，特点高度一致：全部闭源、无法自选模型、都是完整输入法而非独立语音工具，输入内容默认走厂商服务器。没有一款支持"我只想要一个语音输入按钮，不要输入法"。
 
-所以我的要求很明确：**开源**，能看代码、能选语音识别引擎、能本地跑也能接云端方案。必须支持**中文 + 英文混合输入，在当前光标位置直接插入文字。不要复制粘贴。**
+所以我的要求很明确：**开源**，能看代码、能选语音识别引擎、能本地跑也能接云端方案。必须支持 **中文 + 英文混合输入**，文字在当前光标位置直接插入，不要复制粘贴。
 
-额外加一条限制：我手头是一台 2020 年初的 Intel MacBook Pro（MacBookPro16,2），Core i5 @ 2GHz、4 核、16GB 内存，没有 Apple Neural Engine。很多 Apple Silicon 独占的工具跑不了。
+还有一个限制：我手头是一台 2020 年初的 Intel MacBook Pro（MacBookPro16,2），Core i5 @ 2GHz、4 核、16GB 内存，没有 Apple Neural Engine。很多 Apple Silicon 独占的工具跑不了。
 
 GitHub 上搜了一圈，找到四个项目：iamarunbrahma/purr、mylxsw/typeflux、larryxiao/openquack、zachlatta/freeflow。这篇把四个项目走了一遍，记下对比结果和选择过程。
 
@@ -43,7 +43,7 @@ GitHub 上搜了一圈，找到四个项目：iamarunbrahma/purr、mylxsw/typefl
 - 技术栈：SwiftUI、WhisperKit
 - 特色：录音后自动转写，插入当前应用；支持智能标点、自定义热键、快速复制
 
-**硬件要求就挡在门外了。** purr 的 README 没有明确写最低 macOS 版本，但 WhisperKit 是它的底层依赖。WhisperKit 要求 Apple Silicon（M1+）和 macOS 14+。[2] Intel Mac 上 WhisperKit 虽然可以纯 CPU 推理，但性能很差——依赖 Apple Neural Engine 的优化路径全部失效，几秒的音频要处理数秒甚至十秒以上。录一句话等五秒出结果，语音输入就失去了意义。
+**硬件要求就挡在门外了。** purr 的 README 没有明确写最低 macOS 版本，但 WhisperKit 是它的底层依赖。WhisperKit 要求 Apple Silicon（M1+）和 macOS 14+。[2] Intel Mac 上 WhisperKit 虽然可以纯 CPU 推理，但性能很差——依赖 Apple Neural Engine 的优化路径全部失效，几秒的音频要处理 5 秒以上。录一句话等五秒出结果，语音输入就失去了意义。
 
 purr 本身是个好产品，设计精致、交互流畅——前提是你有一台 Apple Silicon Mac。
 
@@ -54,7 +54,7 @@ purr 本身是个好产品，设计精致、交互流畅——前提是你有一
 - 技术栈：Swift、WhisperKit、Core ML
 - 特色：开源免费，强调隐私（本地处理）
 
-**硬件门槛更高。** openquack 也依赖 WhisperKit + Core ML 做本地推理，Warm 状态下一次推理需要约 5GB 显存。[3] Apple Silicon 的统一内存架构（M1/M2/M3 的 8-16GB 共享内存）刚好够用。Intel Mac 的独立显存最多 4GB（部分高配），加上 CPU/GPU 内存分离，本地推理很难跑起来。
+**硬件门槛更高。** openquack 也依赖 WhisperKit + Core ML 做本地推理，模型加载后单次推理需要约 5GB 显存。[3] Apple Silicon 的统一内存架构（M1/M2/M3 的 8-16GB 共享内存）刚好够用。Intel Mac 的独立显存最多 4GB（部分高配），加上 CPU/GPU 内存分离，本地推理很难跑起来。
 
 openquack 的项目描述也直接声明了需要 Apple Silicon：
 
@@ -91,28 +91,28 @@ openquack 的项目描述也直接声明了需要 Apple Silicon：
 - 技术栈：Swift、Groq Whisper API
 - 特色：极简设计，安装即用（配置 Groq API key）
 
-**cloud-only 路线。** freeflow 不做本地推理，完全通过 Groq 的 Whisper API（large-v3 / large-v3 Turbo）做转写。Groq 的 LPU 硬件跑 Whisper 可以达到 189-216 倍实时速度——1 小时音频 8-12 秒转写完成。[6]
+**纯云端路线。** freeflow 不做本地推理，完全通过 Groq 的 Whisper API（large-v3 / large-v3 Turbo）做转写。Groq 的 LPU 硬件跑 Whisper 可以达到 189-216 倍实时速度——1 小时音频 8-12 秒转写完成。[6]
 
 不挑硬件，Intel Mac 跑起来体验跟 Apple Silicon 完全一致，因为繁重计算都在云端。中文 WER（词错误率）约 4.1%，英语约 2.1%。[7] 准确率够用，但不出彩——中文不如阿里云 Paraformer 或豆包 ASR 这些原生中文引擎。
 
-对 Intel Mac 用户来说，freeflow 是预算最低的选择：不用下载模型，不用配置多个后端，注册 Groq（免费额度每小时 $0.111）就能用。代价是没有本地离线能力，所有音频都要上传到 Groq 的服务器。
+对 Intel Mac 用户来说，freeflow 是预算最低的选择：不用下载模型，不用配置多个后端。注册 Groq（有免费额度），按每小时 $0.111 计费就能用。代价是没有本地离线能力，所有音频都要上传到 Groq 的服务器。
 
 ## 横向对比
 
-| | purr | openquack | freeflow | typeflux |
-|---|---|---|---|---|
-| CPU 推理 | ~5 秒 | ❌（不可用） | ❌（纯云端） | ~2-3 秒 |
-| Apple Silicon 体验 | ✅ | ❌ | ✅ | ✅ |
+| | purr | openquack | typeflux | freeflow |
+|---|---|---|---|---|---|
+| CPU 推理 | ❌（推理过慢，不可用） | ❌（不可用） | ~2-3 秒 | ❌（纯云端） |
+| Apple Silicon 体验 | ✅ | ❌ | ✅ | —（纯云端） |
 | 中英双语 | ✅ | ✅ | ✅ | ✅ |
-| 中文专项优化 | 无 | 无 | 无 | 有（AliCloud/Doubao/SenseVoice） |
-| 本地离线 | ✅ | ✅ | ❌ | ✅ |
-| 云端转写 | ❌ | ❌ | ✅（Groq） | ✅（多种选择） |
-| 硬件门槛 | Apple Silicon + macOS 14+ | Apple Silicon | macOS 12+（纯云端） | macOS 13+，x86_64 |
+| 中文专项优化 | 无 | 无 | 有（AliCloud/Doubao/SenseVoice） | 无 |
+| 本地离线 | ✅ | ✅ | ✅ | ❌ |
+| 云端转写 | ❌ | ❌ | ✅（多种选择） | ✅（Groq） |
+| 硬件门槛 | Apple Silicon + macOS 14+ | Apple Silicon | macOS 13+，x86_64 | macOS 12+（纯云端） |
 | 安装复杂度 | 低 | 低 | 低 | 低 |
-| Stars | ~305 | ~100+ | ~2064 | ~305 |
-| 开源协议 | MIT | MIT | — | AGPL-3.0 |
+| Stars | ~63 | ~31 | ~302 | ~2k |
+| 开源协议 | MIT | MIT | AGPL-3.0 | MIT |
 
-> 四个项目中，purr 和 freeflow 走单一路线（WhisperKit 和 Groq），openquack 依赖 Apple 生态，typeflux 通过抽象 provider 层，硬件兼容性最广。
+> purr 和 freeflow 走单一路线（WhisperKit 和 Groq），openquack 依赖 Apple 生态；typeflux 通过抽象 provider 层实现最广的硬件兼容。
 
 {{< figure src="comparison-overview.png" alt="四款 macOS 语音输入工具在 Intel Mac 上的可用性对比" >}}
 
@@ -177,7 +177,7 @@ freeflow 的不足：没有改写能力、没有 Persona、没有中文专项优
 
 5. SenseVoice Small model specs: 234M parameters, ~350MB, FunASR Chinese benchmark CER 7.81%. See https://github.com/modelscope/FunASR.
 
-6. Groq Whisper benchmark: 189x real-time (large-v3) and 216x (large-v3 Turbo) as measured by Artificial Analysis (January 2025). See https://groq.com.
+6. Groq Whisper benchmark: 189x real-time (large-v3) and 216x (large-v3 Turbo) as measured by Artificial Analysis (January 2025). See https://artificialanalysis.ai.
 
 7. SayToWords multilingual benchmark (January 2026): Whisper large-v3 achieves 4.1% WER on Chinese vs 2.1% on English. See https://www.saytowords.com/zh/blogs/Whisper-V3-Benchmarks.
 
