@@ -1,5 +1,5 @@
 ---
-title: "Finding a Chinese-English Voice Input Tool on Intel Mac: purr, typeflux, openquack, freeflow Compared"
+title: "purr, typeflux, openquack, freeflow: Voice Input Tools Compared on Intel Mac"
 slug: "macos-voice-input-tools-comparison"
 date: 2026-07-02T07:00:00+08:00
 draft: false
@@ -15,9 +15,17 @@ cover:
 
 Typing speed averages 50-80 WPM. Natural speech runs 150-180 WPM. For emails, notes, and even code comments, the gap is hard to ignore.[1]
 
-What pushed me to actually look was **vibe coding**, the "describe and decide, let AI write the rest" style of programming. The bottleneck shifts from "how fast can I code" to "how fast can I articulate what I want." Rewriting a prompt, tweaking a parameter, jumping between apps to type, all of it breaks flow. Voice input closes that loop. Speak the intent, stay in flow.
+What pushed me to actually look was **vibe coding**, the "describe and decide, let AI write the rest" style of programming. The bottleneck shifts from "how fast can I code" to "how fast can I articulate what I want." Rewrite a prompt, tweak a parameter, jump to another app to type — all of it breaks flow. Voice input closes that loop. Speak the intent, stay in flow.
 
-{{< figure src="vibe-coding-concept.png" alt="Voice input vs typing: the bottleneck shifts from typing speed to intent expression speed" >}}
+{{< figure src="/posts/2026/07/macos-voice-input-tools-comparison/vibe-coding-concept.png" alt="Voice input vs typing: the bottleneck shifts from typing speed to intent expression speed" >}}
+
+Commercial solutions are not in short supply. Google Docs has voice typing, Otter.ai transcribes meetings, Zoom has live captions — voice input is everywhere. But these features share two problems:
+
+1. **Privacy and freedom.** Google Docs voice runs Google models. Otter.ai runs its own. You are locked into each vendor's ecosystem — their quality, their privacy policy, their data pipeline. No backend switching, no local model option. Feature changes, pricing changes, or shutdowns are out of your control. Closed source means no recourse.
+
+2. **Bundled, not standalone.** These are voice features tucked inside larger applications — a word processor, a meeting tool, a transcription service. None is a dedicated voice input tool that you can point at any app and start dictating.
+
+Every option I looked at shared the same pattern: closed source, fixed model, bundled inside a larger application, audio sent to the vendor's servers by default. None offered a standalone voice input button — just that one feature, nothing else.
 
 I wanted something **open source**. I wanted to inspect the code, choose the ASR engine, run locally if needed, or hook into a better cloud service. And it had to support Chinese and English voice input that inserts text at the cursor position. No copy-paste, no app switching.
 
@@ -31,17 +39,17 @@ Four projects on GitHub came up: iamarunbrahma/purr, mylxsw/typeflux, larryxiao/
 
 - GitHub: https://github.com/iamarunbrahma/purr
 - Stack: SwiftUI, WhisperKit
-- Pitch: Minimal macOS menu-bar voice input, record, transcribe, insert
+- Focus: Minimal macOS menu-bar voice input, record, transcribe, insert
 
-purr does not advertise its minimum macOS version, but its WhisperKit dependency does. WhisperKit requires Apple Silicon (M1+) and macOS 14+.[2] On Intel Mac, WhisperKit falls back to CPU inference. A few seconds of audio takes 5+ seconds to transcribe. At that point voice input loses its purpose.
+purr does not state its minimum macOS version, but its WhisperKit dependency does. WhisperKit requires Apple Silicon (M1+) and macOS 14+.[2] On Intel Mac, WhisperKit falls back to CPU inference. A few seconds of audio takes 5+ seconds to transcribe. At that point voice input loses its purpose.
 
-purr itself is well-designed. Clean UI, smooth interaction. But it is built for Apple Silicon.
+purr itself is well-designed, with a clean UI and smooth interaction. But it is built for Apple Silicon.
 
 ### openquack
 
 - GitHub: https://github.com/larryxiao/openquack
 - Stack: Swift, WhisperKit, Core ML
-- Pitch: Free, open-source, privacy-first local transcription
+- Focus: Free, open-source, privacy-first local transcription
 
 openquack also uses WhisperKit and Core ML. Warm inference requires about 5GB VRAM.[3] Apple Silicon unified memory handles this fine. Intel Mac does not.
 
@@ -53,11 +61,11 @@ The README is upfront about it:
 
 - GitHub: https://github.com/mylxsw/typeflux
 - Stack: Swift, multiple STT backends
-- Pitch: "Hold to talk, release to insert" for zero context-switch voice input
+- Focus: "Hold to talk, release to insert" for zero context-switch voice input
 
 typeflux originally only supported Apple Silicon, but PR #67 (December 2025) added native Intel Mac support.[4] Instead of baking in one inference engine, it abstracts an STT provider layer:
 
-{{< figure src="typeflux-architecture.png" alt="Typeflux STT provider abstraction layer architecture" >}}
+{{< figure src="/posts/2026/07/macos-voice-input-tools-comparison/typeflux-architecture.png" alt="Typeflux STT provider abstraction layer architecture" >}}
 
 | Provider | Type | Best For |
 |---|---|---|
@@ -76,28 +84,28 @@ For local inference, typeflux supports SenseVoice Small, FunASR (Paraformer), Wh
 
 - GitHub: https://github.com/zachlatta/freeflow
 - Stack: Swift, Groq Whisper API
-- Pitch: Minimal menu-bar voice input, cloud transcription
+- Focus: Minimal menu-bar voice input, cloud transcription
 
 freeflow relies entirely on Groq Whisper API (large-v3 and large-v3 Turbo). No local inference. Groq LPU hardware runs Whisper at 189-216x real-time, so one hour of audio transcribes in 8-12 seconds.[6]
 
-Hardware does not matter. Intel Mac and Apple Silicon have identical experiences because the compute happens on Groq servers. Chinese WER is about 4.1%, English about 2.1%.[7] Accurate enough for everyday use, but not as good as Chinese-native engines like Alibaba Cloud Paraformer or Doubao ASR.
+Hardware does not matter. Intel Mac and Apple Silicon have identical experiences because the compute happens on Groq servers. Chinese WER is about 4.1%, English about 2.1%.[7] Good for everyday use, but not as good as Chinese-native engines like Alibaba Cloud Paraformer or Doubao ASR.
 
 For Intel Mac users, freeflow is the lowest-friction option: register a Groq account (free credits available), paste an API key, done. The tradeoff is no offline capability. All audio goes to Groq servers.
 
 ## Side by Side
 
-| | purr | openquack | freeflow | typeflux |
-|---|---|---|---|---|
-| CPU Inference | ~5s | ❌ (unusable) | ❌ (cloud-only) | ~2-3s |
-| Apple Silicon Experience | ✅ | ❌ | ✅ | ✅ |
+| | purr | openquack | typeflux | freeflow |
+|---|---|---|---|---|---|
+| CPU Inference | ❌ (impractically slow on Intel) | ❌ (unusable) | ~2-3s | ❌ (cloud-only) |
+| Apple Silicon Experience | ✅ | ❌ | ✅ | — (cloud only) |
 | Chinese + English | ✅ | ✅ | ✅ | ✅ |
-| Chinese-Specific Optimization | None | None | None | Yes (AliCloud/Doubao/SenseVoice) |
-| Offline Capable | ✅ | ✅ | ❌ | ✅ |
-| Cloud Backends | None | None | Groq | Multiple options |
-| Hardware Requirement | Apple Silicon + macOS 14+ | Apple Silicon | macOS 12+ (cloud-only) | macOS 13+, x86_64 |
+| Chinese-Specific Optimization | None | None | Yes (AliCloud/Doubao/SenseVoice) | None |
+| Offline Capable | ✅ | ✅ | ✅ | ❌ |
+| Cloud Backends | None | None | Multiple options | Groq |
+| Hardware Requirement | Apple Silicon + macOS 14+ | Apple Silicon | macOS 13+, x86_64 | macOS 12+ (cloud-only) |
 | Setup Complexity | Low | Low | Low | Low |
-| Stars | ~305 | ~100+ | ~2064 | ~305 |
-| License | MIT | MIT | -- | AGPL-3.0 |
+| Stars | ~63 | ~31 | ~302 | ~2k |
+| License | MIT | MIT | AGPL-3.0 | MIT |
 
 > purr and freeflow take the single-backend path (WhisperKit and Groq respectively). openquack is Apple-ecosystem only. typeflux abstracts the backend layer, so it supports the widest range of hardware and providers.
 
@@ -107,9 +115,9 @@ On Intel Mac, only typeflux and freeflow are viable. freeflow is simpler but mor
 
 I went with typeflux for three reasons.
 
-{{< figure src="comparison-overview.png" alt="Four tools compared on Intel Mac compatibility" >}}
+{{< figure src="/posts/2026/07/macos-voice-input-tools-comparison/comparison-overview.png" alt="Four tools compared on Intel Mac compatibility" >}}
 
-1. **Chinese recognition.** freeflow Groq Whisper at 4.1% WER is fine in quiet conditions. typeflux can use Alibaba Cloud Paraformer or Doubao Realtime ASR, native Chinese engines that consistently outperform Whisper on Mandarin.[8] Or SenseVoice Small locally, no network required. More options are better.
+1. **Chinese recognition.** freeflow's Groq Whisper at 4.1% WER is fine in quiet conditions. typeflux can use Alibaba Cloud Paraformer or Doubao Realtime ASR, native Chinese engines that consistently outperform Whisper on Mandarin.[8] Or SenseVoice Small locally, no network required. More options are better.
 
 2. **Persona system.** typeflux ships with two built-in personas: "Typeflux" and "English Translator." Default is Typeflux, say whatever language and it transcribes verbatim. Switch to English Translator from the menu bar, and regardless of what language you speak, the output is in English at the cursor position. No copy-paste needed.
 
@@ -119,7 +127,7 @@ I went with typeflux for three reasons.
 
 The latest release offers two download options: the full bundle (about 190MB, includes SenseVoice model files) and the app-only version (about 12MB, models download on first launch).
 
-I ended up with the app-only version. Drag to /Applications. Local models are not automatic though. Go to Settings, Model, and click "Prepare Local Model." It downloads in a few minutes. Model files land in ~/Library/Application Support/Typeflux/. Total disk usage is about 377MB (45MB app plus 332MB models and data).
+I installed the app-only version. Drag to /Applications. Local models are not automatic though. Go to Settings, Model, and click "Prepare Local Model." It downloads in a few minutes. Model files land in ~/Library/Application Support/Typeflux/. Total disk usage is about 377MB (45MB app plus 332MB models and data).
 
 If you use OpenCode or similar AI coding tools, you can offload the download and installation: open a new session and tell the agent "download typeflux and install it to /Applications." It handles the rest. Configuration is still manual.
 
@@ -144,17 +152,17 @@ typeflux has been running on my Intel MacBook Pro for a while now. My daily work
 - **Fallback**: Apple Speech (auto fallback via STT Router)
 - **Personas**: Two built-in, "Typeflux" and "English Translator"
 
-Typeflux Cloud latency is about 0.5-1 second. SenseVoice Small takes about 2-3 seconds on Intel Mac. Cloud is the daily driver; local handles offline scenarios.
+Typeflux Cloud latency is about 0.5-1 second. SenseVoice Small takes about 2-3 seconds on Intel Mac. I use the cloud version daily; local handles offline scenarios.
 
 ## Freeflow, if you want simple
 
-If you just need basic English and Chinese voice input and do not want to configure multiple backends or manage model files, freeflow plus Groq is the fastest path to working. Groq offers free credits on signup; whisper-large-v3 is $0.111/hour, whisper-large-v3-turbo is $0.04/hour.[10] An hour of daily use costs pocket change.
+If you just need basic English and Chinese voice input and do not want to configure multiple backends or manage model files, freeflow plus Groq is the fastest path to working. Groq offers free credits on signup; whisper-large-v3 is $0.111/hour, whisper-large-v3-turbo is $0.04/hour.[10] An hour of daily use costs a few dollars a month.
 
-freeflow lacks rewrite capability, personas, and Chinese-specific optimization. Voice input is raw transcription. What you say is what you get. That is fine if you do not need post-processing.
+freeflow lacks rewrite capability, personas, and Chinese-specific optimization. It does raw transcription — what you say is what you get — which is fine if you do not need post-processing.
 
 ## References
 
-1. Speech-to-text throughput advantage is well-documented. See Karat et al., "Patterns of entry and correction in multimodal interaction with a speech style dictator" (1999), and more recent studies from Microsoft Research. WER data from the Hugging Face Open ASR Leaderboard and vendor benchmarks.
+1. Speech-to-text throughput advantage is well-documented. See Karat et al., "Patterns of entry and correction in multimodal interaction with a speech style dictator" (1999), and more recent studies from Microsoft Research and Google. WER data from the Hugging Face Open ASR Leaderboard and vendor benchmarks.
 
 2. WhisperKit system requirements: Apple Silicon (M1+), macOS 14+. https://github.com/argmaxinc/WhisperKit
 
@@ -164,7 +172,7 @@ freeflow lacks rewrite capability, personas, and Chinese-specific optimization. 
 
 5. SenseVoice Small: 234M params, about 350MB, FunASR Chinese benchmark CER 7.81%. https://github.com/modelscope/FunASR
 
-6. Groq Whisper benchmark: 189x real-time (large-v3), 216x (large-v3 Turbo). Artificial Analysis, January 2025. https://groq.com
+6. Groq Whisper benchmark: 189x real-time (large-v3), 216x (large-v3 Turbo). Artificial Analysis, January 2025. https://artificialanalysis.ai
 
 7. SayToWords multilingual benchmark (January 2026): Whisper large-v3 Chinese WER 4.1%, English 2.1%. https://www.saytowords.com/blogs/Whisper-V3-Benchmarks
 
@@ -172,4 +180,4 @@ freeflow lacks rewrite capability, personas, and Chinese-specific optimization. 
 
 9. typeflux STT fallback: STTRouter routes failed transcriptions to AppleSpeechTranscriber. Source: Sources/Typeflux/STT/STTRouter+Fallbacks.swift.
 
-10. Groq pricing as of June 2026. https://console.groq.com/docs/model/whisper-large-v3
+10. Groq pricing as of June 2026: whisper-large-v3 at $0.111/hr, whisper-large-v3-turbo at $0.04/hr, distil-whisper at $0.02/hr. https://console.groq.com/docs/model/whisper-large-v3
