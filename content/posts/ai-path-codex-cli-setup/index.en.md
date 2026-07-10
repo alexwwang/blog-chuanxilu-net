@@ -17,7 +17,7 @@ cover:
 
 On July 9, 2026, OpenAI made two announcements at once: GPT-5.6 went public, and Codex was merged into the ChatGPT desktop app. The new desktop app has three modes — Chat, Work, and Codex — all in a single installation. If you already have the standalone Codex desktop app, it updates in place. Your projects, settings, and workflows carry over.
 
-Codex CLI also updated on the same day to v0.144.0/v0.144.1, for terminal-first developers and CI/CD pipelines. Both paths work. Pick the one that fits your workflow.
+Codex CLI was also updated on the same day to v0.144.0/v0.144.1, for terminal-first developers and CI/CD pipelines. Both paths work. Pick the one that fits your workflow.
 
 This is the first hands-on article since Day 8 — from account setup to running your first instruction.
 
@@ -35,11 +35,12 @@ The GPT-5.6 family has three models, each for a different use case:
 
 Sol scored 80 on the Coding Agent Index, above Claude Fable 5's 77.2. But not all plans give you access to every model — Free and Go users are limited to Terra. Plus and above can choose freely.
 
-Both the Codex desktop app and CLI draw from your ChatGPT plan's credits. There's no separate free tier for Codex. Here's what each plan offers:
+Both the Codex desktop app and CLI use credits from your ChatGPT plan. There's no separate free tier for Codex. Here's what each plan offers:
 
 | Plan | Price | Codex Models | Notes |
 |------|-------|-------------|-------|
 | Free | $0 | Terra only, limited quota | Enough to try, not for heavy use |
+| Go | $8/mo | Terra only, expanded quota | Light use on a budget |
 | Plus | $20/mo | Sol/Terra/Luna, higher quota | Best for personal daily use |
 | Pro | $200/mo | Same, higher quota, ultra available | Heavy daily use |
 
@@ -70,7 +71,7 @@ If you already have a ChatGPT Plus or higher subscription, skip to Part 2.
 OpenAI supports:
 
 - **International credit cards**: Visa, Mastercard, American Express
-- **PayPal**: Works with PayPal accounts, including for users in China
+- **PayPal**: Works with PayPal accounts, including users in China
 
 If your card is declined, common causes:
 
