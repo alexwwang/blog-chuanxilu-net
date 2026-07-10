@@ -39,6 +39,7 @@ fi
 
 # --- Restore mode: local-assets → main ---
 if [ "${1:-}" = "--restore" ]; then
+  shift
   if [ $# -gt 0 ]; then
     echo "Error: unexpected argument '$1' after --restore" >&2
     exit 1
