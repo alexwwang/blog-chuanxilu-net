@@ -1,7 +1,7 @@
 ---
 title: "Codex Cold Start: From Installation to Your First Command"
 slug: "ai-path-codex-cli-setup"
-date: "2026-07-09T12:00:00+08:00"
+date: "2026-07-13T07:00:00+08:00"
 draft: false
 description: "AI Path bonus article: with GPT-5.6 out and Codex merged into the ChatGPT desktop app, here's how to get started — desktop or CLI, from account setup to your first instruction."
 tags: ["AI", "codex", "tutorial", "chatgpt", "openai", "cold-start", "GPT-5.6"]
@@ -10,16 +10,16 @@ toc: true
 series: ["AI Path L1→L2 Upgrade Guide"]
 cover:
   image: "cover.png"
-  alt: "Watercolor: a terminal window with a blinking cursor, Codex logo and ChatGPT speech bubble nearby, hands typing on a keyboard below"
+  alt: "Watercolor: ChatGPT desktop app floating centrally with three mode icons Chat/Work/Codex, a terminal window with scrolling code behind, three geometric shapes representing GPT-5.6 Sol/Terra/Luna"
 ---
 
 > This is a bonus article for the "AI Path L1→L2 Upgrade Guide." If you haven't set up Codex yet, this guide gets you from zero to running.
 
-On July 9, 2026, OpenAI made two announcements at once: GPT-5.6 went public, and Codex was merged into the ChatGPT desktop app. The new desktop app has three modes — Chat, Work, and Codex — all in a single installation. If you already have the standalone Codex desktop app, it updates in place. Your projects, settings, and workflows carry over.
+On July 9, 2026, OpenAI made two announcements at once: GPT-5.6 went public, and Codex was merged into the ChatGPT desktop app. The new desktop app has three modes: Chat, Work, and Codex, all in one app. If you've already got the standalone Codex desktop app, it updates in place. Your projects and settings carry over.
 
 Codex CLI was also updated on the same day to v0.144.0/v0.144.1, for terminal-first developers and CI/CD pipelines. Both paths work. Pick the one that fits your workflow.
 
-This is the first hands-on article since Day 8 — from account setup to running your first instruction.
+This is the first hands-on article since Day 8, from account setup to running your first instruction.
 
 ---
 
@@ -33,7 +33,7 @@ The GPT-5.6 family has three models, each for a different use case:
 | Terra | Daily balance | $2.50 | $15 |
 | Luna | Cost-efficient | $1 | $6 |
 
-Sol scored 80 on the Coding Agent Index, above Claude Fable 5's 77.2. But not all plans give you access to every model — Free and Go users are limited to Terra. Plus and above can choose freely.
+Sol scored 80 on the Coding Agent Index, above Claude Fable 5's 77.2. But not all plans give you access to every model: Free and Go users are limited to Terra. Plus and above can choose freely.
 
 Both the Codex desktop app and CLI use credits from your ChatGPT plan. There's no separate free tier for Codex. Here's what each plan offers:
 
@@ -44,7 +44,12 @@ Both the Codex desktop app and CLI use credits from your ChatGPT plan. There's n
 | Plus | $20/mo | Sol/Terra/Luna, higher quota | Best for personal daily use |
 | Pro | $200/mo | Same, higher quota, ultra available | Heavy daily use |
 
-For most individuals, Plus is the most economical choice. The rest of this guide assumes a Plus account.
+For most people, Plus is the better deal. The rest of this guide assumes you're on Plus.
+
+---
+
+![](illustration.png)
+*ChatGPT desktop app's three modes: Chat, Work, and Codex — one app that switches between conversation, productivity, and development*
 
 ---
 
@@ -68,10 +73,10 @@ If you already have a ChatGPT Plus or higher subscription, skip to Part 2.
 
 ### Payment Methods
 
-OpenAI supports:
+On the web, OpenAI accepts major credit cards (Visa, Mastercard, American Express, Discover). PayPal is not supported for individual subscriptions. On mobile:
 
-- **International credit cards**: Visa, Mastercard, American Express
-- **PayPal**: Works with PayPal accounts, including users in China
+- **iOS**: Subscribe through the App Store, supports Apple Pay
+- **Android**: Subscribe through Google Play, supports Google Pay
 
 If your card is declined, common causes:
 
@@ -85,11 +90,11 @@ Payment done, your account is upgraded. Codex credits are included.
 
 ## Part 2: Install Codex — Desktop App (Recommended)
 
-The ChatGPT desktop app is now the most straightforward way to use Codex.
+The ChatGPT desktop app is now a more straightforward way to use Codex.
 
 ### Download and Install
 
-Go to [chatgpt.com/download](https://chatgpt.com/download) and download the version for your system. If you already have the standalone Codex desktop app, opening it triggers an automatic update — your projects and settings carry over.
+Go to [chatgpt.com/download](https://chatgpt.com/download) and download the version for your system. If you've already got the standalone Codex desktop app, opening it triggers an automatic update. Your projects and settings carry over.
 
 ### Switch to Codex Mode
 
@@ -138,7 +143,7 @@ brew install --cask codex
 codex --version
 ```
 
-A version number means installation succeeded.
+A version number means it's installed.
 
 ### Link Your Account
 
@@ -163,7 +168,7 @@ Both the desktop app and CLI let you type natural language instructions. Try thi
 Explain this project's file structure and point out any problematic code
 ```
 
-Codex reads the current directory's files and returns an analysis. Try something more specific:
+Codex reads your project files and gives you an analysis. Try something more specific:
 
 ```
 Translate this README.md to Spanish, keep the Markdown format
@@ -175,15 +180,15 @@ Start with read-only instructions to get a feel for how Codex handles your proje
 
 ## FAQ
 
-**What's the difference between Codex desktop and Codex CLI?**
+**1. What's the difference between Codex desktop and Codex CLI?**
 
-The desktop app is integrated into ChatGPT with graphical diff review and a PR review sidebar — suited for everyday development. The CLI is a terminal tool for CI/CD and scripting. The underlying capabilities are the same; the desktop app adds GUI features. The desktop app authenticates through your ChatGPT login, while the CLI requires a one-time OAuth flow.
+Desktop app is built into ChatGPT, with graphical diff review and a PR review sidebar. It's a better fit for everyday coding. The CLI is a terminal tool, more for CI/CD and scripting. Under the hood they're the same; desktop just adds a GUI. For auth, the desktop app uses your ChatGPT login, but the CLI needs a one-time OAuth flow.
 
-**Can Free users use Codex?**
+**2. Can Free users use Codex?**
 
-Yes, but with restrictions. You can switch to Codex mode in the ChatGPT desktop app with a Free account, but you're limited to the Terra model with a reduced quota. Free accounts cannot use Codex CLI.
+Yes, but with restrictions. You can switch to Codex mode in the ChatGPT desktop app with a Free account, but you're limited to the Terra model with a reduced quota. Free accounts can't use Codex CLI.
 
-**"Command not found: codex"**
+**3. "Command not found: codex"**
 
 npm global binaries aren't in your PATH. Add this to `~/.zshrc` or `~/.bashrc`:
 
@@ -191,13 +196,13 @@ npm global binaries aren't in your PATH. Add this to `~/.zshrc` or `~/.bashrc`:
 export PATH="$PATH:$(npm prefix -g)/bin"
 ```
 
-**Authentication fails**
+**4. Authentication fails**
 
 For the desktop app, check that you're logged into ChatGPT. For the CLI, verify your account is on Plus or higher.
 
-**Codex won't edit files**
+**5. Codex won't edit files**
 
-By default, Codex runs in Suggest mode — it proposes changes but doesn't apply them. Switch to Auto-Edit:
+By default, Codex runs in Suggest mode: it proposes changes but doesn't apply them. Switch to Auto-Edit:
 
 ```bash
 codex --approval-policy on-failure
