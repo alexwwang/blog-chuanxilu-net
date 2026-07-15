@@ -34,7 +34,7 @@ A few hours later, he had pulled **6 hidden bugs** out of a system everyone thou
 
 ## The double agent: when right answers come from wrong reasons
 
-There was a gate in the castle called `_should_return_result`. It had a clever design, maybe too clever:
+There was a guard at the castle gate called `_should_return_result`. It had a clever design, maybe too clever:
 
 * **In test mode (drill environment):** it was lenient. It handed out passes and logged results.
 * **In production (real battlefield):** it turned strict. It threw exceptions on any anomaly.
@@ -43,11 +43,11 @@ Sound good? Drill is drill, combat is combat. But this double standard dug a tra
 
 ![Two parallel railroad tracks: test environment on top in golden light, production on bottom in cool shadow](illustration.png "Test and production run on two tracks that never intersect")
 
-Oracle followed the gate's output to the counter, the logic that tallies failures. The counter had a rigid rule: it only recognized one kind of failure, and that was the gate raising the alarm and making a capture.
+Oracle followed the guard's output to the counter, the logic that tallies failures. The counter had a rigid rule: it only recognized one kind of failure, and that was the guard raising the alarm and making a capture.
 
 **The chain reaction unfolded:**
 
-In test mode (drill environment), an anomaly occurred that should have been intercepted. But the gate was on its lenient setting. It didn't raise the alarm. Instead, it quietly issued a pass marked "anomaly" and let the request through.
+In test mode (drill environment), an anomaly occurred that should have been intercepted. But the guard was on its lenient setting. It didn't raise the alarm. Instead, it quietly issued a pass marked "anomaly" and let the request through.
 
 The counter's blind spot: the counter looked up, saw no alarm had been raised, and dutifully recorded: "All clear, no failures."
 
@@ -55,7 +55,7 @@ The absurd outcome: the automated test saw the counter's report reading "no fail
 
 Think of it as a military drill gone absurd. To make record-keeping easy, command decided that soldiers hit by simulated fire wouldn't leave the field. They would carry a "hit card" and keep marching. The counter only counted soldiers carried off the field. Nobody was carried off, so the report read: "Zero casualties. Mission success."
 
-But in real combat, the same anomaly triggered the gate's strict mode. It raised the alarm, and the counter, seeing the alarm, classified every legitimate request as a failure.
+But in real combat, the same anomaly triggered the guard's strict mode. It raised the alarm, and the counter, seeing the alarm, classified every legitimate request as a failure.
 
 Because drill rules and combat rules run on separate tracks, the 1,754 automated tests only participated in the self-deceiving drill. They could never reach the scenario where this absurd contradiction appeared.
 
@@ -79,13 +79,12 @@ Tests passed because the test environment only had one copy of everything. In a 
 
 ## Bug 3: The traveler who can't adapt
 
-This bug was a relative path, hardcoded to a specific working directory.
+This bug was a relative path, hardcoded to a specific working directory. It was a guide who relied entirely on familiar surroundings.
 
-In the test environment, everyone worked from the same office (the current working directory, CWD). The path always found what it needed. Tests passed.
+In the drill (test environment), everyone worked from the same office (the current working directory, CWD). The guide sent maintenance workers to fix things and always found the right spot. Tests passed.
 
 **In production:**
-
-The system could wake up anywhere. On the roof, in the basement. But the path still walked forward three steps and turned left, just like it did in the office. It found nothing and crashed.
+Problems could appear anywhere — on the roof, in the basement. The guide still sent workers "three steps forward then left" based on office memory. The workers either couldn't find the pipe to fix, or fixed the wrong thing and brought down the security system.
 
 Tests proved it worked in the office. They didn't prove it could survive outside it.
 
@@ -125,4 +124,4 @@ Hold that thought. Before Oracle left, he stopped the manager who was reaching f
 
 Tests cover **known risks**. Code review catches **unknown logic gaps**.
 
-You need both. That's the only way the castle stays secure.
+Neither can be missing. That's how the castle stays secure.
