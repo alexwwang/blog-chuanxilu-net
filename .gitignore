@@ -9,6 +9,7 @@ node_modules/
 draft/
 .claude/
 .omc/
+.omo/
 .opencode/
 .playwright-mcp/
 *.bak
