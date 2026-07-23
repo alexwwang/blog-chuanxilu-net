@@ -1,7 +1,7 @@
 ---
 title: "任务描述练习：从模糊到清晰"
 slug: "ai-path-l1-l2-week3-day10"
-date: 2026-07-15T07:00:00+08:00
+date: 2026-07-21T07:00:00+08:00
 draft: false
 description: "AI 之路 L1→L2 Day 10：同一个需求，模糊描述和清晰描述，AI 输出能差多远？三个练习帮你建立任务描述直觉。"
 tags: ["AI", "教程", "提示词", "prompt-engineering", "任务描述"]
