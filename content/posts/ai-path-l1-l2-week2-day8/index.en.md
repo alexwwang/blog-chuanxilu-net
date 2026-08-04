@@ -24,8 +24,10 @@ Writing code to call APIs is one kind of automation. There's a lighter one: **de
 ## What Is Autonomous Execution AI?
 
 In API mode, you're the programmer. You write Python scripts, call OpenAI-compatible endpoints, handle timeouts, rate limits, file I/O. It's powerful, but you need to code.
+An API call here is a single round-trip from your script: send the prompt, wait for the result, done. No memory, no context between calls. The same call gives the same result at the same cost, whether you run it once or a hundred times.
 
 In autonomous execution AI mode, you're the project manager. You tell AI what you want, and it writes the code, debugs it, and hands you the result. You don't need Python. You just need to understand your own problem.
+It's the opposite of an API call: the agent has context and state awareness. It remembers what you've said so far and adjusts course as it works.
 
 **A direct comparison:**
 
@@ -36,6 +38,7 @@ In autonomous execution AI mode, you're the project manager. You tell AI what yo
 | Programming knowledge needed | Yes | No |
 | Best for | Repetitive, predictable tasks | Exploratory, judgment-heavy tasks |
 | Control granularity | Precise | Rough direction |
+| Call state | Stateless, one-shot | Stateful, remembers context |
 
 The two modes don't conflict. When AI completes a task autonomously, you can save its generated code and call it via API later. That's the combo approach Part 4 will cover.
 
