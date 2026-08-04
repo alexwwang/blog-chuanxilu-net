@@ -7,7 +7,6 @@ node_modules/
 *.swo
 *~
 draft/
-drafts/
 .claude/
 .omc/
 .omo/
