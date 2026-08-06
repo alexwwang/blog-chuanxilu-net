@@ -172,13 +172,13 @@ If DeepSeek's next flagship lands near the hike window, the story switches from 
 
 For developers, the per-million-token price matters. For industry watchers, what matters is: **what does DeepSeek do before the formal plan?** Business decisions rarely start at the official announcement; changes happen early. The signals below will decide which of this post's inferences hold and which need revision.
 
-![Close-up of a row of status LEDs on a GPU server front panel. Blue, amber, and a few green lights, some lit, some dark. The signal list below is what we watch in the window before the official plan](signals.png)
-
 ### Signal 1: Do free allowances tighten first?
 
 This is the most important signal. Compared to reworking the whole price system, cutting free allowances has almost no technical cost, and it immediately reduces GPU pressure, thins out the free-tier farmers, reveals user churn, and tests the market. If DeepSeek faces inference-resource pressure, **free allowances likely change before official prices.** That's the top signal in this window.
 
 Fewer free tokens means the company cares about GPU utilization. Unchanged free allowances with a pure price increase means commercialization is the bigger goal.
+
+![Close-up of a row of status LEDs on a GPU server front panel. Blue, amber, and a few green lights, some lit, some dark. Every item on the signal list is observable, like this row of LEDs](signals.png)
 
 ### Signal 2: Does a new flagship land in the hike window?
 
