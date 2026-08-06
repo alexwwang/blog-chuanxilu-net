@@ -59,6 +59,12 @@ Cost explains "why raise prices." It doesn't explain "why now." Since cost can't
 
 ![Close-up of a GPU server rack in a data center, with a frosted glass panel showing an upward cost curve. Compute costs are real, but they don't explain the timing of the announcement](illustration.png)
 
+#### If this layer holds, we should see:
+
+- If cost is the main driver, the formal notice or a later official statement should cite cost explicitly — this preview doesn't. If the formal plan still doesn't mention cost, the cost explanation keeps losing explanatory power.
+- The increase should be roughly in line with observable changes in inference costs. If it's significantly above them, something beyond cost is at work.
+- If other vendors on the same GPUs adjust prices around the same time, cost is an industry-wide pressure and the cost story gains weight. If DeepSeek is the only one hiking, the cost explanation deserves less weight.
+
 ### Price itself is a user filter
 
 AI APIs have an odd property: every call costs real compute, but not every call creates revenue. With generous free tiers or prices persistently below the industry average, you attract trial users, automated tests, benchmark loops, one-off projects, and free-tier farming. All of those consume GPUs, and most never convert to long-term revenue.
@@ -91,6 +97,12 @@ If none of that happens, the "price as filter" inference needs revisiting. And i
 This might be the most interesting part of the whole notice. If the price is decided, why not publish it? One plausible answer: **DeepSeek is managing expectations first.** Telling everyone "prices are going up" without a number gets the market to adjust its mental baseline. When the plan lands, the conversation shifts from "why the surprise increase?" to "more or less than I expected?"
 
 It's a familiar rhythm from internet product launches: split one price shock into two news cycles. Announce the hike, then announce the number. Each gets media coverage, while the backlash is diluted. It's also how many SaaS companies update pricing.
+
+#### If this layer holds, we should see:
+
+- The formal notice should frame the hike — a rationale, or "promotional pricing ends" wording — steering the conversation toward "more or less than I expected?" (see Signal 3 on wording).
+- The gap between preview and formal plan: a short gap (days) means the price was already decided and the preview exists to split the news cycle; a long gap means the decision is still being made.
+- Whether the formal notice explains "why." Expectation management usually comes with an explanation. If the formal plan is still just numbers with no rationale, this layer's explanatory power needs revisiting.
 
 Managing expectations explains half the cadence. The other half is distribution: the preview is itself free marketing. That's the next layer.
 
@@ -169,6 +181,12 @@ That's value-based pricing.[8] A model that only answers questions is hard to ch
 ![Close-up of a modern GPU processor chip on a dark reflective surface, an amber upward curve glowing above it. Value-based pricing: what sustains a price increase shifts from more parameters to a stronger ability to complete work](value-pricing.png)
 
 Software has been through this cycle before. Early SaaS grew on free tiers, ultra-low prices, and subsidies; later the metrics that mattered were ARPU, paid conversion, retention, and enterprise revenue. Many SaaS products raised prices after shipping new capabilities, because the conversation changed from "why is this more expensive" to "what are these capabilities worth." AI is repeating the process, just faster.
+
+#### If this layer holds, we should see:
+
+- A new flagship lands in or near the hike window, switching the story from "cost pressure" to "product upgrade" (see Signal 2).
+- The formal plan ties price to capability — enterprise plans, per-task pricing, agent-scenario pricing — not just a flat per-million-token increase on the same model.
+- If the hike is only a token-price increase on an unchanged model with no new capability vehicle, value-based pricing loses explanatory power, and "cost + commercialization" gains it.
 
 If DeepSeek's next flagship lands near the hike window, the story switches from "cost pressure" to "product upgrade": the classic value-pricing narrative, and the classic software-industry price upgrade. Whether that story holds depends on the signals before the formal plan, which is the observation checklist in the next section.
 
