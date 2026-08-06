@@ -128,7 +128,7 @@ For the press:
 
 For investors:
 
-> Is the company finally commercializing?
+> How does the hike change the company's valuation math?
 
 For competitors:
 
