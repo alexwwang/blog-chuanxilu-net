@@ -43,7 +43,7 @@ Separately these look unrelated. Together they point in one direction: **the ind
 
 ## No explanation, just a notice
 
-First, a premise: **DeepSeek gave no explanation for the hike.** The notice is one sentence — prices go up overall, by a relatively large margin, formal plan to follow. The "rising compute costs" attribution circulating online is not from DeepSeek; it's a typical market guess. Not an unreasonable one: GPU costs, inference demand, and model scale are real, industry-wide pressures. The problem is: **if cost were the only reason, why would the announcement take this form?** No number, no effective date. Just an early signal that prices are going up. The notice probably does more than pass along cost information.
+First, a premise: **DeepSeek gave no explanation for the hike.** The notice is one sentence: prices go up overall, by a relatively large margin, formal plan to follow. The "rising compute costs" attribution circulating online is not from DeepSeek; it's a typical market guess. Not an unreasonable one: GPU costs, inference demand, and model scale are real, industry-wide pressures. The problem is: **if cost were the only reason, why would the announcement take this form?** No number, no effective date. Just an early signal that prices are going up. The notice probably does more than pass along cost information.
 
 The analysis has layers. Layer one is the circulating cost story. It's real, but it doesn't explain the timing. Layer two is what price itself does. Layers three and four are why the announcement uses a preview. Layer five is the direction of the increase. Each layer stands on its own; together they form the full picture.
 
@@ -61,7 +61,7 @@ Cost explains "why raise prices." It doesn't explain "why now." Since cost can't
 
 **If this layer holds, we should see:**
 
-- If cost is the main driver, the formal notice or a later official statement should cite cost explicitly — this preview doesn't. If the formal plan still doesn't mention cost, the cost explanation keeps losing explanatory power.
+- If cost is the main driver, the formal notice or a later official statement should cite cost explicitly, and this preview doesn't. If the formal plan still doesn't mention cost, the cost explanation keeps losing explanatory power.
 - The increase should be roughly in line with observable changes in inference costs. If it's significantly above them, something beyond cost is at work.
 - If other vendors on the same GPUs adjust prices around the same time, cost is an industry-wide pressure and the cost story gains weight. If DeepSeek is the only one hiking, the cost explanation deserves less weight.
 
@@ -85,7 +85,7 @@ DeepSeek has already experimented with peak/off-peak pricing.[1] Most people rea
 
 **If this layer holds, we should see:**
 
-Whether this layer holds shows up directly in the shape of the formal plan — does it include these elements:
+Whether this layer holds shows up directly in the shape of the formal plan: does it include these elements:
 
 - free allowances tighten further;
 - the peak/off-peak spread widen;
@@ -102,7 +102,7 @@ It's a familiar rhythm from internet product launches: split one price shock int
 
 **If this layer holds, we should see:**
 
-- The formal notice should frame the hike — a rationale, or "promotional pricing ends" wording — steering the conversation toward "more or less than I expected?" (see Signal 3 on wording in the checklist below).
+- The formal notice should frame the hike with a rationale, or "promotional pricing ends" wording, steering the conversation toward "more or less than I expected?" (see Signal 3 on wording in the checklist below).
 - The gap between preview and formal plan: a short gap (days) means the price was already decided and the preview exists to split the news cycle; a long gap means the decision is still being made.
 - Whether the formal notice explains "why." Expectation management usually comes with an explanation. If the formal plan is still just numbers with no rationale, this layer's explanatory power needs revisiting.
 
@@ -187,7 +187,7 @@ Software has been through this cycle before. Early SaaS grew on free tiers, ultr
 **If this layer holds, we should see:**
 
 - A new flagship lands in or near the hike window, switching the story from "cost pressure" to "product upgrade" (see Signal 2 in the checklist below).
-- The formal plan ties price to capability — enterprise plans, per-task pricing, agent-scenario pricing — not just a flat per-million-token increase on the same model.
+- The formal plan ties price to capability: enterprise plans, per-task pricing, agent-scenario pricing, not just a flat per-million-token increase on the same model.
 - If the hike is only a token-price increase on an unchanged model with no new capability vehicle, value-based pricing loses explanatory power, and "cost + commercialization" gains it.
 
 If DeepSeek's next flagship lands near the hike window, the story switches from "cost pressure" to "product upgrade": the classic value-pricing narrative, and the classic software-industry price upgrade. Whether that story holds depends on the signals before the formal plan, which is the observation checklist in the next section.
@@ -246,7 +246,7 @@ DeepSeek's challenge may be just beginning. If its biggest advantage was extreme
 
 Back to the original question: why is DeepSeek raising prices? The most accurate answer: **when compute costs, commercialization pressure, product upgrades, financing windows, competition, marketing, and the industry cycle all point at the same move, the hike becomes the natural choice.** No single factor is the cause. For industry watchers, the direction is worth recording: AI is slowly ending the era of subsidizing growth.
 
-The "financing window" layer deserves a separate note, because it rests on market reports, not official confirmation. Reports say DeepSeek is working on a second funding round: according to unnamed dealmakers, around RMB 50 billion raised at a pre-money valuation of about RMB 500 billion, targeting a signing in late August, with the round reportedly paused in late July. The same report also states, as aggregated media disclosure, that DeepSeek's ARR has reached USD 400-500 million and that its gross margin on V4 exceeds 50%.[11] These numbers need to be read in tiers: the round size, valuation, and timeline come secondhand from anonymous dealmakers, and the actual signing could change or fall through; the ARR and margin figures are media disclosure with no other source found to cross-check. But even if the exact numbers are wrong, **the fact that the hike landed inside a financing window is worth watching on its own** — announcing a price increase before a round signs improves the revenue and margin story, which helps valuation talks. This layer is falsifiable too: if funding news matches the timeline described here, it gains credibility; if the funding reports are denied, this layer should be dropped.
+The "financing window" layer deserves a separate note, because it rests on market reports, not official confirmation. Reports say DeepSeek is working on a second funding round: according to unnamed dealmakers, around RMB 50 billion raised at a pre-money valuation of about RMB 500 billion, targeting a signing in late August, with the round reportedly paused in late July. The same report also states, as aggregated media disclosure, that DeepSeek's ARR has reached USD 400-500 million and that its gross margin on V4 exceeds 50%.[11] These numbers need to be read in tiers: the round size, valuation, and timeline come secondhand from anonymous dealmakers, and the actual signing could change or fall through; the ARR and margin figures are media disclosure with no other source found to cross-check. But even if the exact numbers are wrong, **the fact that the hike landed inside a financing window is worth watching on its own**. Announcing a price increase before a round signs improves the revenue and margin story, which helps valuation talks. This layer is falsifiable too: if funding news matches the timeline described here, it gains credibility; if the funding reports are denied, this layer should be dropped.
 
 ## References
 
