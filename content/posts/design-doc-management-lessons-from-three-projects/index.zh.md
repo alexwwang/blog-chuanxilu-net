@@ -13,7 +13,7 @@ cover:
   alt: "设计文档在 rebase 后灰飞烟灭，git worktree 分支为其提供安全庇护"
 ---
 
-> **TL;DR：** git rebase / checkout 会静默删除 `.gitignore` 中的未追踪文件，且无法恢复；`git stash -u` 不会 stash git-ignored 的文件。解决方案是用 git worktree 创建 `local-assets` 分支，把设计文档放在被 git 追踪的安全空间里。三条命令搞定日常：`dp-save.sh` 保存、`--prune` 清理、`--restore` 恢复。多个项目实测引入后文档丢失归零。完整脚本见 [alexwwang/design-doc-worktree](https://github.com/alexwwang/design-doc-worktree)。
+> **TL;DR:** git rebase / checkout 会静默删除 `.gitignore` 中的未追踪文件，且无法恢复；`git stash -u` 不会 stash git-ignored 的文件。解决方案是用 git worktree 创建 `local-assets` 分支，把设计文档放在被 git 追踪的安全空间里。三条命令搞定日常：`dp-save.sh` 保存、`--prune` 清理、`--restore` 恢复。多个项目实测引入后文档丢失归零。完整脚本见 [alexwwang/design-doc-worktree](https://github.com/alexwwang/design-doc-worktree)。
 
 那天下午，我让 AI 在一个项目里做了 `git rebase -i`，整理一下最近十几条提交的历史。操作很顺利，没有冲突，rebase 完成后终端干干净净。
 
@@ -107,7 +107,7 @@ project/                        # 主 worktree（main 分支，日常开发在�
 
 ### 日常使用：三条命令
 
-**保存（默认加性同步）：**
+**保存（默认加性同步）:**
 
 ```bash
 ./scripts/dp-save.sh "draft: new feature design"
@@ -115,7 +115,7 @@ project/                        # 主 worktree（main 分支，日常开发在�
 
 加性的意思是：只往 assets worktree 里添加和更新文件，**不删除** assets worktree 中独有的文件。这保护了一个重要的工作流——有时候我直接在 assets worktree 里编辑文档（因为文件始终被追踪，编辑完直接 commit），加性同步不会意外删除这些文件。
 
-**镜像清理：**
+**镜像清理:**
 
 ```bash
 ./scripts/dp-save.sh --prune "sync with main worktree"
@@ -123,7 +123,7 @@ project/                        # 主 worktree（main 分支，日常开发在�
 
 加上 `--prune` 后，同步会删除 assets worktree 中存在但主 worktree 中不存在的文件，让两边完全一致。用于定期清理。
 
-**恢复（rebase 后救命用）：**
+**恢复（rebase 后救命用）:**
 
 ```bash
 ./scripts/dp-save.sh --restore
@@ -265,7 +265,7 @@ vim design_plan/protocol_draft/new-feature.md
 ./scripts/dp-save.sh --restore
 ```
 
-**关键提醒：** `local-assets` 分支不要推送。在 `.git/config` 或 CI 配置中确保这个分支永远不会被 push。
+**关键提醒:** `local-assets` 分支不要推送。在 `.git/config` 或 CI 配置中确保这个分支永远不会被 push。
 
 ---
 
@@ -273,7 +273,7 @@ vim design_plan/protocol_draft/new-feature.md
 
 最后说清楚这套方案适合什么、不适合什么。
 
-**适合：** AI 辅助开发的中大型项目，设计文档需要跨 session 复用，团队使用 git 管理代码，频繁进行 rebase/checkout 操作。
+**适合:** AI 辅助开发的中大型项目，设计文档需要跨 session 复用，团队使用 git 管理代码，频繁进行 rebase/checkout 操作。
 
 **不适合小型脚本和一次性任务。** 几百行代码的脚本，设计文档可能只有几行注释，用 worktree 是过度工程化。
 

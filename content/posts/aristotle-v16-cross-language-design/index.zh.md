@@ -14,7 +14,7 @@ cover:
 toc: true
 ---
 
-> **TL;DR：** Watchdog-Intervention Bridge 的跨语言架构是被五类约束逼出来的。Watchdog 必须跟 LLM tool call 做同步拦截 → TypeScript。Intervention 必须复用已有反思引擎和规则系统 → Python。Bridge 必须零新增基础设施 → subprocess。通信不能阻塞每次 tool call → 批量而非实时。这五个决策，每一个都是在特定约束下的妥协。
+> **TL;DR:** Watchdog-Intervention Bridge 的跨语言架构是被五类约束逼出来的。Watchdog 必须跟 LLM tool call 做同步拦截 → TypeScript。Intervention 必须复用已有反思引擎和规则系统 → Python。Bridge 必须零新增基础设施 → subprocess。通信不能阻塞每次 tool call → 批量而非实时。这五个决策，每一个都是在特定约束下的妥协。
 
 上一篇文章介绍了 [Aristotle v1.6 的 Watchdog-Intervention Bridge 做了什么](/posts/2026/06/aristotle-v16-watchdog-intervention-bridge/)。这篇说设计背后的约束和取舍。
 
@@ -64,9 +64,9 @@ Intervention 是作为 MCP 工具暴露的。MCP 同时有 TypeScript SDK 和 Py
 
 跨语言连接有几种常见方案：
 
-- **IPC（Unix domain socket / named pipe）：** 需要管理 socket 生命周期、处理重连、处理并发。
-- **HTTP server：** 需要启动一个轻量 server，管理端口、处理请求排队、处理服务挂了的情况。
-- **Subprocess：** 每次需要时启动子进程，执行完退出，不需要状态管理。
+- **IPC（Unix domain socket / named pipe）:** 需要管理 socket 生命周期、处理重连、处理并发。
+- **HTTP server:** 需要启动一个轻量 server，管理端口、处理请求排队、处理服务挂了的情况。
+- **Subprocess:** 每次需要时启动子进程，执行完退出，不需要状态管理。
 
 给一个现存项目引入 IPC 或 HTTP，就要面对新的故障模式：socket 断连、server 意外退出、端口冲突。每个问题都有标准解法，但这些复杂度会一直存在，需要持续应对。
 

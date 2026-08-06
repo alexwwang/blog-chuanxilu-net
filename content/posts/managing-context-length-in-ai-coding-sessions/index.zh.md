@@ -178,7 +178,7 @@ Transformer 的注意力机制不是完美的。在上下文越来越长的今�
 
 ---
 
-**参考来源：**
+**参考来源:**
 
 1. Chroma Research, "Context Rot: How Increasing Input Tokens Impacts LLM Performance"（2025-07）：[research.trychroma.com/context-rot](https://research.trychroma.com/context-rot)
 2. Anthropic Applied AI Team, "Effective context engineering for AI agents"（2025-09-29）：[anthropic.com/engineering/effective-context-engineering-for-ai-agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)

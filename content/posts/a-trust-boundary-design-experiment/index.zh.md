@@ -78,13 +78,13 @@ claude-code-reflect 里 human-in-the-loop 的设计——用户必须主动跑 `
 
 对应的信任模型应该是这样的：
 
-**Level 0（当下）：** 每次 RCA 都要 human review 才能写入记忆。用户亲眼确认每一条防范规则。这是 claude-code-reflect 现在的设计。
+**Level 0（当下）:** 每次 RCA 都要 human review 才能写入记忆。用户亲眼确认每一条防范规则。这是 claude-code-reflect 现在的设计。
 
-**Level 1：** RCA 自动写入，标记为"待验证"。每周批量 review 一次，确认或撤销。
+**Level 1:** RCA 自动写入，标记为"待验证"。每周批量 review 一次，确认或撤销。
 
-**Level 2：** 高置信度的 RCA 直接归档，低置信度的进入 review 队列。用户定期随机抽查高置信度的归档。
+**Level 2:** 高置信度的 RCA 直接归档，低置信度的进入 review 队列。用户定期随机抽查高置信度的归档。
 
-**Level 3：** 全自动，审计日志完整保留，随机抽查作为质量兜底。
+**Level 3:** 全自动，审计日志完整保留，随机抽查作为质量兜底。
 
 Aristotle（OpenCode 版本）在实现上更接近 Level 2-3，这不是问题，这是它在开放系统上能做到的事。但它是否应该这样运行，取决于你对模型 RCA 质量的实际信任程度。
 
@@ -212,9 +212,9 @@ Aristotle 和 claude-code-reflect 不是"哪个更好"的关系，它们是同�
 
 两个项目都是 MIT 许可，欢迎参与。
 
-**Aristotle（OpenCode）：** 当前最需要的改进包括：Reflector 在非交互模式下的模型选择默认值（目前 `opencode run` 在非交互模式下会卡在模型选择提示）、`session_read()` 在不同 model/provider 组合下的优雅降级路径、以及规则去重机制（目前语义相似的规则会重复累积）。
+**Aristotle（OpenCode）:** 当前最需要的改进包括：Reflector 在非交互模式下的模型选择默认值（目前 `opencode run` 在非交互模式下会卡在模型选择提示）、`session_read()` 在不同 model/provider 组合下的优雅降级路径、以及规则去重机制（目前语义相似的规则会重复累积）。
 
-**claude-code-reflect（Claude Code）：** 当前有 6 个已知问题待解决，最关键的三个是：准备阶段的原子性（多步操作需合并为单条 Bash 调用，否则用户会看到"假死"状态）、subagent 完成后的自动通知机制、以及重试时的 session ID 碰撞。此外，非英语 correction signal 的测试覆盖和 RCA prompt 质量改进也很有价值。
+**claude-code-reflect（Claude Code）:** 当前有 6 个已知问题待解决，最关键的三个是：准备阶段的原子性（多步操作需合并为单条 Bash 调用，否则用户会看到"假死"状态）、subagent 完成后的自动通知机制、以及重试时的 session ID 碰撞。此外，非英语 correction signal 的测试覆盖和 RCA prompt 质量改进也很有价值。
 
 如果你在日常使用中发现模型的某类错误反复出现，欢迎把它做成 test case 提 PR——这种来自真实使用场景的 correction pattern，是让这类工具真正有用的核心材料。
 
@@ -255,7 +255,7 @@ Aristotle 和 claude-code-reflect 不是"哪个更好"的关系，它们是同�
 
 ---
 
-**参考来源：**
+**参考来源:**
 
 1. DHH 关于 Anthropic 的评论： [x.com/dhh/status/2009664622274781625](https://x.com/dhh/status/2009664622274781625)
 2. George Hotz, "Anthropic Is Making a Huge Mistake"：[geohot.github.io/blog](https://geohot.github.io/blog/jekyll/update/2026/01/15/anthropic-huge-mistake.html)

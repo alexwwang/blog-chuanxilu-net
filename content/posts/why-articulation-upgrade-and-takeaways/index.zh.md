@@ -13,7 +13,7 @@ cover:
   alt: "左侧散落的脚手架碎片标记为废弃，右侧干净的空框，三条金色虚线连接——从复杂到简洁的升级"
 ---
 
-> **TL;DR：** 展示 Why Articulation 模板升级前后的对比，以及三条可迁移建议：给原则不给示例、关键步骤用强制语气、相信模型的自我组织能力。实验局限也已说明。
+> **TL;DR:** 展示 Why Articulation 模板升级前后的对比，以及三条可迁移建议：给原则不给示例、关键步骤用强制语气、相信模型的自我组织能力。实验局限也已说明。
 >
 
 ## 前两篇回顾
@@ -28,7 +28,7 @@ cover:
 
 新版改了一个地方：把显式三问替换成两段式设计——先自由思考，再自检补充。其余全部保留——⛔ 强制语气、文件顶部位置、纯反面例子、risk hint。具体变化如下。
 
-**旧版（V0）的核心部分：**
+**旧版（V0）的核心部分:**
 
 ```markdown
 Before any work in this phase, you must explicitly answer the three questions below.
@@ -48,7 +48,7 @@ This is not optional commentary — without these answers, you MUST NOT proceed 
 > explain why you chose this one.
 ```
 
-**新版（V1）替换为：**
+**新版（V1）替换为:**
 
 ```markdown
 Before any work in this phase, articulate your understanding of this task.

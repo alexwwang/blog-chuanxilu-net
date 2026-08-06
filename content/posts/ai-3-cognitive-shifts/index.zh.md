@@ -87,7 +87,7 @@ AI 的回答大概是：要综合考虑薪资、发展空间、通勤距离、�
 
 ---
 
-**系列导航：**
+**系列导航:**
 
 - 上一篇：[今日实践：问 AI 同一个问题 3 遍](/posts/2026/05/ai-practice-same-question-3-times/)
 - 下一篇：[AI 的「桌面」和「文件柜」](/posts/2026/05/ai-tip-working-vs-long-term-memory/)

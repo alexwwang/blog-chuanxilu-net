@@ -14,7 +14,7 @@ cover:
 toc: true
 ---
 
-> **TL;DR：** Aristotle v1.6.0 引入 Watchdog-Intervention Bridge，从"事后反思"转向"实时拦截"。TypeScript watchdog 在 tool call 前后检测 21 种信号，Python intervention 层处理 13 种违规类型，通过 subprocess bridge 实现跨语言实时干预。MCP 工具从 10 个 stub 扩展到 25 个完整实现。遗留两个确定会出错的 bug。GitHub 开源，MIT 协议。
+> **TL;DR:** Aristotle v1.6.0 引入 Watchdog-Intervention Bridge，从"事后反思"转向"实时拦截"。TypeScript watchdog 在 tool call 前后检测 21 种信号，Python intervention 层处理 13 种违规类型，通过 subprocess bridge 实现跨语言实时干预。MCP 工具从 10 个 stub 扩展到 25 个完整实现。遗留两个确定会出错的 bug。GitHub 开源，MIT 协议。
 
 ## 一个被推翻的假设
 
@@ -54,19 +54,19 @@ AI 执行这个流程时，有四类问题不会等到"下次"再犯，它们必
 
 v1.6 的架构分三层。
 
-**Watchdog（TypeScript）：** 在 LLM 的 tool call 前后拦截。Interceptor 在调用前检查条件，Observer 在调用后观察结果。21 种检测信号类型，涵盖 phase 状态、测试结果等检测维度。
+**Watchdog（TypeScript）:** 在 LLM 的 tool call 前后拦截。Interceptor 在调用前检查条件，Observer 在调用后观察结果。21 种检测信号类型，涵盖 phase 状态、测试结果等检测维度。
 
-**Intervention（Python）：** 接收违规信号，执行干预措施。13 种违规类型，每种由对应的 handler 决定干预策略：隔离、回滚、暂停或指导修复。其中 8 种走新的 handler 路径，其余走 legacy 路径（这是已知技术债之一）。
+**Intervention（Python）:** 接收违规信号，执行干预措施。13 种违规类型，每种由对应的 handler 决定干预策略：隔离、回滚、暂停或指导修复。其中 8 种走新的 handler 路径，其余走 legacy 路径（这是已知技术债之一）。
 
-**Bridge：** 连接两层。TypeScript 检测到违规 → 缓存在 audit log → checkpoint 调用时批量发送给 Python → Python 返回干预决策 → TypeScript 应用决策。
+**Bridge:** 连接两层。TypeScript 检测到违规 → 缓存在 audit log → checkpoint 调用时批量发送给 Python → Python 返回干预决策 → TypeScript 应用决策。
 
 三层协作围绕三个介入点展开。
 
-**onToolBefore：** 工具调用前，Interceptor 检查当前操作是否合法。比如 AI 在 Phase 5 写代码但 Phase 4 测试尚未完成，或者在 GREEN 阶段修改测试文件试图让测试通过而不是修改实现。
+**onToolBefore:** 工具调用前，Interceptor 检查当前操作是否合法。比如 AI 在 Phase 5 写代码但 Phase 4 测试尚未完成，或者在 GREEN 阶段修改测试文件试图让测试通过而不是修改实现。
 
-**onToolAfter：** 工具调用后，Observer 检查结果是否引入回归。比如测试结果从 pass 变为 fail，或者 phase 结束时 git status 显示未跟踪文件但无 commit。
+**onToolAfter:** 工具调用后，Observer 检查结果是否引入回归。比如测试结果从 pass 变为 fail，或者 phase 结束时 git status 显示未跟踪文件但无 commit。
 
-**tdd_checkpoint：** violation gate 检查尚未处理的违规信号，批量发送给 Python intervention。Python 返回 `InterventionResult`，包含四个动作：
+**tdd_checkpoint:** violation gate 检查尚未处理的违规信号，批量发送给 Python intervention。Python 返回 `InterventionResult`，包含四个动作：
 
 | 动作 | 含义 | 触发场景 |
 |------|------|---------|
@@ -104,17 +104,17 @@ v1.6 的架构分三层。
 
 bridge 的实现考虑过几种方案。对比了 HTTP、IPC 和 subprocess 三种方式。
 
-**HTTP：** 需要在 Python 侧启动常驻 server（FastAPI/Flask），管理端口分配、生命周期和异常恢复。零违规时 server 也在运行，资源浪费。额外引入网络栈，即便只在 localhost 通信，仍有端口冲突、进程守护、优雅关闭等问题。最讽刺的是，pipeline 的 watchdog 在监控 AI 行为，而 HTTP 方案需要另一个 watchdog 来监控这个 watchdog 的通信层是否健康。
+**HTTP:** 需要在 Python 侧启动常驻 server（FastAPI/Flask），管理端口分配、生命周期和异常恢复。零违规时 server 也在运行，资源浪费。额外引入网络栈，即便只在 localhost 通信，仍有端口冲突、进程守护、优雅关闭等问题。最讽刺的是，pipeline 的 watchdog 在监控 AI 行为，而 HTTP 方案需要另一个 watchdog 来监控这个 watchdog 的通信层是否健康。
 
-**IPC（Unix Domain Socket / named pipe）：** 同样需要常驻进程。比 HTTP 轻量，但仍涉及连接管理、心跳检测、崩溃恢复。调试手段有限，不能用 curl 测试，出问题得 strace 或 lldb 级别排查。这套基建的维护成本，对于一个非必须（降级不影响主流程）、仅在 checkpoint 触发一次的通信路径来说，太重了。
+**IPC（Unix Domain Socket / named pipe）:** 同样需要常驻进程。比 HTTP 轻量，但仍涉及连接管理、心跳检测、崩溃恢复。调试手段有限，不能用 curl 测试，出问题得 strace 或 lldb 级别排查。这套基建的维护成本，对于一个非必须（降级不影响主流程）、仅在 checkpoint 触发一次的通信路径来说，太重了。
 
-**Subprocess（选中方案）：** 按需启动，没有违规信号就不会启动。没有常驻进程和端口管理，也不需要维护连接。每次调用是新进程，进程级隔离，Python 崩溃不会波及其他组件。启动延迟 ~400ms，但 checkpoint 的调用频率低（每轮交互一次）。
+**Subprocess（选中方案）:** 按需启动，没有违规信号就不会启动。没有常驻进程和端口管理，也不需要维护连接。每次调用是新进程，进程级隔离，Python 崩溃不会波及其他组件。启动延迟 ~400ms，但 checkpoint 的调用频率低（每轮交互一次）。
 
 三个因素：
 
-1. **调用频率低：** checkpoint 每轮交互只触发一次，subprocess 的启动开销不会成为瓶颈。
-2. **通信模式简单：** 输入是 audit log 快照，输出是干预决策。单向无状态的单次往返，不需要流式或双工连接。
-3. **容错优先级高于延迟：** Python 进程失败时 bridge 返回空 envelope，pipeline 继续。HTTP 和 IPC 的常驻进程需要额外管理：谁来重启挂掉的 server？subprocess 按需启动，没有常驻进程需要维护。
+1. **调用频率低:** checkpoint 每轮交互只触发一次，subprocess 的启动开销不会成为瓶颈。
+2. **通信模式简单:** 输入是 audit log 快照，输出是干预决策。单向无状态的单次往返，不需要流式或双工连接。
+3. **容错优先级高于延迟:** Python 进程失败时 bridge 返回空 envelope，pipeline 继续。HTTP 和 IPC 的常驻进程需要额外管理：谁来重启挂掉的 server？subprocess 按需启动，没有常驻进程需要维护。
 
 ## 25 个 MCP 工具：从 stub 到完整实现
 
@@ -139,8 +139,8 @@ install.sh 新增了 Step 5：检测用户是否已安装 tdd-pipeline skill。�
 
 还有两个确定会出问题的地方需要修：
 
-- **`_should_return_result` 测试分支：** 生产代码根据 `PYTEST_CURRENT_TEST` 决定抛异常还是返回结果。测试看到的行为和生产不同，bridge 和 audit log 的覆盖始终有缺口。已引发过一个 bug。
-- **String sort 优先级：** 用字符串代替了数值比较，多位数字时排序必然出错。
+- **`_should_return_result` 测试分支:** 生产代码根据 `PYTEST_CURRENT_TEST` 决定抛异常还是返回结果。测试看到的行为和生产不同，bridge 和 audit log 的覆盖始终有缺口。已引发过一个 bug。
+- **String sort 优先级:** 用字符串代替了数值比较，多位数字时排序必然出错。
 
 ## 从"事后反思"到"实时拦截"
 

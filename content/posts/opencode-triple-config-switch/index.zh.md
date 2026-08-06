@@ -186,19 +186,19 @@ source "$HOME/.config/opencode/launch.sh"
 
 `bunx` 安装插件时，`opencode-omo.json` 里的 plugin name 偶尔会被覆盖。写的是 `oh-my-openagent`，装完变成 `oh-my-openagent@latest`。功能不受影响，但 git diff 会报变更。排查问题时容易误判"我改了什么"。
 
-**解法：** 安装后手动检查 plugins 字段，确认 name 没被篡改。或者写个 postinstall hook 自动修正。
+**解法:** 安装后手动检查 plugins 字段，确认 name 没被篡改。或者写个 postinstall hook 自动修正。
 
 ### 2. oms 重复加载
 
 `oh-my-opencode-slim` 有时会和主配置里的插件条目重复注册。症状是启动时看到两条 `loading oh-my-opencode-slim...` 日志。不影响功能，但白跑了一遍初始化。
 
-**解法：** 确保 `opencode-slim.json` 里只出现一次 plugin 声明。不要在全局配置和 slim 配置里同时写。
+**解法:** 确保 `opencode-slim.json` 里只出现一次 plugin 声明。不要在全局配置和 slim 配置里同时写。
 
 ### 3. `t` MCP 重复注册
 
 三套配置如果都声明了同一个 MCP server（比如 `t`），启动时可能注册两次。表现是 MCP 调用返回两份结果，或者 tool 列表里出现重复条目。
 
-**解法：** 把共享的 MCP server 从 omo 和 oms 的配置里移除，只在纯净模式的 `opencode.json` 里保留一份。omo 和 oms 通过插件内部机制引用。
+**解法:** 把共享的 MCP server 从 omo 和 oms 的配置里移除，只在纯净模式的 `opencode.json` 里保留一份。omo 和 oms 通过插件内部机制引用。
 
 ### 4. Sisyphus 的模型适配
 

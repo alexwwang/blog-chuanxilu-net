@@ -134,17 +134,17 @@ AI 可能给你写一个 Python 脚本，依赖 psutil 库，但你服务器是 
 
 ### 各平台适配版本
 
-> **Linux 版（Bash）：**
+> **Linux 版（Bash）:**
 > 目标：每天检查 /dev/sda 分区使用量，超过 85% 告警。
 > 约束：兼容 Ubuntu 22.04；告警走 logger；用 crontab 调度；无第三方依赖。
 > 输出：monitor_disk.sh + crontab 配置示例。
 >
-> **macOS 版（Bash）：**
+> **macOS 版（Bash）:**
 > 目标：每天检查 Macintosh HD 磁盘使用量，超过 85% 告警。
 > 约束：检查 /dev/disk1s1；告警走 logger；用 launchd 调度。
 > 输出：monitor_disk.sh + plist 配置示例。
 >
-> **Windows 版（PowerShell）：**
+> **Windows 版（PowerShell）:**
 > 目标：每天检查 C: 盘使用量，超过 85% 告警。
 > 约束：用 Get-PSDrive C 获取用量；告警写入 Event Log；用 Task Scheduler 调度。
 > 输出：Monitor-Disk.ps1 + Task Scheduler 导入示例。
