@@ -85,12 +85,14 @@ DeepSeek has already experimented with peak/off-peak pricing.[1] Most people rea
 
 **If this layer holds, we should see:**
 
+Whether this layer holds shows up directly in the shape of the formal plan — does it include these elements:
+
 - free allowances tighten further;
 - the peak/off-peak spread widen;
 - more enterprise plans;
 - more discounts aimed at agent scenarios.
 
-If none of that happens, the "price as filter" inference needs revisiting. And if the price structure is already filtering users, the cadence of the preview is probably engineered too. Which brings us to the next question: why announce the hike without the numbers?
+If none of these appear in the formal plan, the "price as filter" inference needs revisiting. And if the price structure is already filtering users, the cadence of the preview is probably engineered too. Which brings us to the next question: why announce the hike without the numbers?
 
 ### Why announce a hike without the numbers?
 
