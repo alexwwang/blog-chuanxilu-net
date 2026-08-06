@@ -102,7 +102,7 @@ It's a familiar rhythm from internet product launches: split one price shock int
 
 **If this layer holds, we should see:**
 
-- The formal notice should frame the hike — a rationale, or "promotional pricing ends" wording — steering the conversation toward "more or less than I expected?" (see Signal 3 on wording).
+- The formal notice should frame the hike — a rationale, or "promotional pricing ends" wording — steering the conversation toward "more or less than I expected?" (see Signal 3 on wording in the checklist below).
 - The gap between preview and formal plan: a short gap (days) means the price was already decided and the preview exists to split the news cycle; a long gap means the decision is still being made.
 - Whether the formal notice explains "why." Expectation management usually comes with an explanation. If the formal plan is still just numbers with no rationale, this layer's explanatory power needs revisiting.
 
@@ -186,7 +186,7 @@ Software has been through this cycle before. Early SaaS grew on free tiers, ultr
 
 **If this layer holds, we should see:**
 
-- A new flagship lands in or near the hike window, switching the story from "cost pressure" to "product upgrade" (see Signal 2).
+- A new flagship lands in or near the hike window, switching the story from "cost pressure" to "product upgrade" (see Signal 2 in the checklist below).
 - The formal plan ties price to capability — enterprise plans, per-task pricing, agent-scenario pricing — not just a flat per-million-token increase on the same model.
 - If the hike is only a token-price increase on an unchanged model with no new capability vehicle, value-based pricing loses explanatory power, and "cost + commercialization" gains it.
 
