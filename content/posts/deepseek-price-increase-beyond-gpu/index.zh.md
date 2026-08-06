@@ -1,8 +1,8 @@
 ---
 title: "DeepSeek 涨价，不只是因为 GPU 更贵"
 slug: "deepseek-price-increase-beyond-gpu"
-date: 2026-08-06T21:00:00+08:00
-draft: true
+date: 2026-08-07T02:00:00+08:00
+draft: false
 description: "2026 年 8 月 6 日 DeepSeek 发布 API 涨价预告。本文拆解涨价背后同时成立的多层动机：成本转嫁之外，还有用户筛选、预期管理、免费营销、价值定价切换与开源生态的定价约束，并列出方案公布前可验证的信号。"
 tags: ["AI", "API", "DeepSeek", "定价", "商业分析"]
 categories: ["行业观察"]
