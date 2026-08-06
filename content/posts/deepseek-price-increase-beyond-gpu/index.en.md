@@ -13,7 +13,7 @@ cover:
 toc: true
 ---
 
-> **TL;DR:** On August 6, 2026, DeepSeek announced a planned API price hike. No single cause: cost pass-through, user filtering, expectation management, free marketing, a shift to value-based pricing, and open-source ecosystem pressure all point at the same move. Rising compute costs are real, but they don't explain the timing or the form of the announcement. The market is moving from subsidies-for-scale to value-based pricing, and seven falsifiable signals before the official plan will confirm or overturn this post's inferences.
+> **TL;DR:** On August 6, 2026, DeepSeek announced a planned API price hike. No single cause: cost pass-through, user filtering, expectation management, free marketing, a shift to value-based pricing, and open-source ecosystem pressure all point at the same move. Rising compute costs are real, but they don't explain the timing or the form of the announcement. The market is largely moving from winning share with low prices toward value-based pricing, and seven falsifiable signals before the official plan will confirm or overturn this post's inferences.
 
 A one-paragraph notice about a future price hike might be the signal that China's LLM inference market is entering a new phase. On August 6, 2026, DeepSeek announced on its website that it plans to raise API pricing overall, "by a relatively large margin," with the specific plan to come.[1] No numbers, no effective date. Just the announcement that a formal plan is on the way.
 
@@ -39,7 +39,7 @@ A routine price change wouldn't deserve a long post. This one matters because it
 - another started cutting free allowances;[3]
 - another suspended sign-ups because demand exceeded capacity.[4]
 
-Separately these look unrelated. Together they point in one direction: **the industry is ending the phase of subsidizing scale and starting to talk about pricing itself.** DeepSeek's notice is part of that trend. So the question worth watching isn't the final percentage. It's what this hike says about how AI commercialization is changing.
+Separately these look unrelated. Together they point in one direction: **the industry is gradually ending the phase of winning share with low prices and starting to talk about pricing itself.** DeepSeek's notice is part of that trend. So the question worth watching isn't the final percentage. It's what this hike says about how AI commercialization is changing.
 
 ## No explanation, just a notice
 
@@ -236,7 +236,7 @@ The real value of tech analysis is proposing falsifiable predictions. This post 
 
 Zoom out, and DeepSeek's hike isn't an isolated event. Over the past year, nearly every major lab, domestic and international, went through the same arc. Phase one: compete on **who's cheaper.** Prices fell,[3] free allowances grew, context lengthened, some quotes approached or went below cost to buy developer growth. Back then, everyone was buying market share.
 
-That model has a natural end. When model capabilities converge, inference demand grows, and GPUs stop being infinite, the industry has to answer: **who will actually pay?** Competition shifts from "who's cheaper" to "is it worth it." The LLM inference market is moving from subsidies-for-scale to value-based pricing, and DeepSeek's hike is a node in that turn. Over the next few years, the question stops being which model benchmarks 2% higher, and becomes which company can build its own price system. Price is part of the product; it tells the market where the company believes its value is.
+That model has a natural end. When model capabilities converge, inference demand grows, and GPUs stop being infinite, the industry has to answer: **who will actually pay?** Competition shifts from "who's cheaper" to "is it worth it." To a large degree, the LLM inference market is moving from winning share with low prices toward value-based pricing, and DeepSeek's hike is a node in that turn. Over the next few years, the question stops being which model benchmarks 2% higher, and becomes which company can build its own price system. Price is part of the product; it tells the market where the company believes its value is.
 
 Developers are buying outcomes, not tokens. The old API discussion was about per-million-token price. The future discussion may be what a completed agent, a coding task, or a report costs. Users buy results, not inference.[10] What sustains a price increase shifts from more parameters to a stronger ability to complete work.
 
@@ -244,7 +244,7 @@ DeepSeek's challenge may be just beginning. If its biggest advantage was extreme
 
 ## The bottom line
 
-Back to the original question: why is DeepSeek raising prices? The most accurate answer: **when compute costs, commercialization pressure, product upgrades, financing windows, competition, marketing, and the industry cycle all point at the same move, the hike becomes the natural choice.** No single factor is the cause. For industry watchers, the direction is worth recording: AI is slowly ending the era of subsidizing growth.
+Back to the original question: why is DeepSeek raising prices? The most accurate answer: **when compute costs, commercialization pressure, product upgrades, financing windows, competition, marketing, and the industry cycle all point at the same move, the hike becomes the natural choice.** No single factor is the cause. For industry watchers, the direction is worth recording: AI is slowly ending the era of buying growth with low prices.
 
 The "financing window" layer deserves a separate note, because it rests on market reports, not official confirmation. Reports say DeepSeek is working on a second funding round: according to unnamed dealmakers, around RMB 50 billion raised at a pre-money valuation of about RMB 500 billion, targeting a signing in late August, with the round reportedly paused in late July. The same report also states, as aggregated media disclosure, that DeepSeek's ARR has reached USD 400-500 million and that its gross margin on V4 exceeds 50%.[11] These numbers need to be read in tiers: the round size, valuation, and timeline come secondhand from anonymous dealmakers, and the actual signing could change or fall through; the ARR and margin figures are media disclosure with no other source found to cross-check. But even if the exact numbers are wrong, **the fact that the hike landed inside a financing window is worth watching on its own**. Announcing a price increase before a round signs improves the revenue and margin story, which helps valuation talks. This layer is falsifiable too: if funding news matches the timeline described here, it gains credibility; if the funding reports are denied, this layer should be dropped.
 
