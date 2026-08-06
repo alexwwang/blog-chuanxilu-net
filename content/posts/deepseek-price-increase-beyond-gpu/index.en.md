@@ -13,6 +13,8 @@ cover:
 toc: true
 ---
 
+> **TL;DR:** On August 6, 2026, DeepSeek announced a planned API price hike. No single cause: cost pass-through, user filtering, expectation management, free marketing, a shift to value-based pricing, and open-source ecosystem pressure all point at the same move. Rising compute costs are real, but they don't explain the timing or the form of the announcement. The market is moving from subsidies-for-scale to value-based pricing, and seven falsifiable signals before the official plan will confirm or overturn this post's inferences.
+
 A one-paragraph notice about a future price hike might be the signal that China's AI API market is entering a new phase. On August 6, 2026, DeepSeek announced on its website that it plans to raise API pricing overall, "by a relatively large margin," with the specific plan to come.[1] No numbers, no effective date. Just the announcement that a formal plan is on the way.
 
 Taken at face value, this is an ordinary pricing update. Placed on the timeline of the last few months of AI API pricing, it looks like more. Most coverage attributes the hike to rising compute costs, and that is a real factor: GPU supply is still tight, inference demand keeps growing, and every major lab faces the same cost pressure.[2] But a business decision rarely has a single motive. Two questions are worth asking:
