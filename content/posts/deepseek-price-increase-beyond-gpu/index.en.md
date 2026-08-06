@@ -154,7 +154,7 @@ Everyone discusses "the price hike"; the exposure accrues to DeepSeek. Many deve
 
 #### If a new flagship model is coming, the story completes itself
 
-Suppose within two weeks of the preview, DeepSeek ships a new flagship, formal prices, new plans, enterprise options. Then today's notice isn't an isolated event. It's step one of a product launch. Many tech companies follow the same cadence: a signal on day one, the product a few days later, prices after that, a one-to-two-week cycle. Three rounds of media, three rounds of community discussion, three rounds of exposure. Compared to dumping everything in one day, the drip is more efficient.
+Suppose before the formal plan, DeepSeek ships a new flagship, formal prices, new plans, enterprise options. Then today's notice isn't an isolated event. It's step one of a product launch. Many tech companies follow the same cadence: a signal on day one, the product a few days later, prices after that, a one-to-two-week cycle. Three rounds of media, three rounds of community discussion, three rounds of exposure. Compared to dumping everything in one day, the drip is more efficient.
 
 To be clear: marketing is not the primary purpose. The marketing effect is an important byproduct of the announcement format. Mature internet companies design business decisions to capture both benefits. If a move improves revenue and earns industry attention, there's no reason to leave the second on the table.
 
@@ -190,7 +190,7 @@ Software has been through this cycle before. Early SaaS grew on free tiers, ultr
 
 If DeepSeek's next flagship lands near the hike window, the story switches from "cost pressure" to "product upgrade": the classic value-pricing narrative, and the classic software-industry price upgrade. Whether that story holds depends on the signals before the formal plan, which is the observation checklist in the next section.
 
-## The two weeks before the official plan matter more than the final number
+## What happens before the official plan matters more than the final number
 
 For developers, the per-million-token price matters. For industry watchers, what matters is: **what does DeepSeek do before the formal plan?** Business decisions rarely start at the official announcement; changes happen early. The signals below will decide which of this post's inferences hold and which need revision.
 
