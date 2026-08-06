@@ -230,7 +230,7 @@ A rarely discussed angle: even before the official price, if GPUs get tight, use
 
 ## These signals will confirm or refute the hypotheses
 
-The real value of tech analysis is proposing falsifiable predictions. This post is an attempt at business observation: placing DeepSeek's price preview into the industry cycle, unpacking the multiple goals it may serve, and listing falsifiable signals. If the signals show up over the window, the user-filter, value-pricing, marketing-cadence, and commercialization-turn analyses gain credibility. If none of them show up, the post should be revised. What DeepSeek does consecutively during the window will directly test these inferences.
+The real value of tech analysis is proposing falsifiable predictions. This post is an attempt at business observation: placing DeepSeek's price preview into the industry cycle, unpacking the multiple goals it may serve, and listing falsifiable signals. If the signals show up over the window, the user-filter, value-pricing, marketing-cadence, and commercialization-turn analyses gain credibility. If none of them show up, the hypotheses in this post should be revised. What DeepSeek does consecutively during the window will directly test these inferences.
 
 ## Price is becoming part of the AI product again
 
