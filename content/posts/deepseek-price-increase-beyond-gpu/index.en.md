@@ -17,6 +17,8 @@ toc: true
 
 A one-paragraph notice about a future price hike might be the signal that China's AI API market is entering a new phase. On August 6, 2026, DeepSeek announced on its website that it plans to raise API pricing overall, "by a relatively large margin," with the specific plan to come.[1] No numbers, no effective date. Just the announcement that a formal plan is on the way.
 
+![Screenshot of the DeepSeek Platform usage page (dark theme): a notice at the top reads "We plan to raise the overall pricing for DeepSeek API services in the near future, with a significant increase expected. Please plan your usage accordingly. The specific pricing plan will be subject to official notice."](announcement-en.png)
+
 Taken at face value, this is an ordinary pricing update. Placed on the timeline of the last few months of AI API pricing, it looks like more. Most coverage attributes the hike to rising compute costs, and that is a real factor: GPU supply is still tight, inference demand keeps growing, and every major lab faces the same cost pressure.[2] But a business decision rarely has a single motive. Two questions are worth asking:
 
 - Why is DeepSeek raising prices?
@@ -39,15 +41,15 @@ A routine price change wouldn't deserve a long post. This one matters because it
 
 Separately these look unrelated. Together they point in one direction: **the industry is ending the phase of subsidizing scale and starting to talk about pricing itself.** DeepSeek's notice is part of that trend. So the question worth watching isn't the final percentage. It's what this hike says about how AI commercialization is changing.
 
-## Why the official explanation isn't the whole story
+## No explanation, just a notice
 
-First, a premise: this post is not claiming DeepSeek's cost explanation is false. GPU costs, inference demand, and model scale are real, industry-wide pressures. The problem is: **if cost were the only reason, why would the announcement take this form?** No number, no effective date. Just an early signal that prices are going up. The notice probably does more than pass along cost information.
+First, a premise: **DeepSeek gave no explanation for the hike.** The notice is one sentence — prices go up overall, by a relatively large margin, formal plan to follow. The "rising compute costs" attribution circulating online is not from DeepSeek; it's a typical market guess. Not an unreasonable one: GPU costs, inference demand, and model scale are real, industry-wide pressures. The problem is: **if cost were the only reason, why would the announcement take this form?** No number, no effective date. Just an early signal that prices are going up. The notice probably does more than pass along cost information.
 
-The explanation has layers. Layer one is the official cost story. It's real, but it doesn't explain the timing. Layer two is what price itself does. Layers three and four are why the announcement uses a preview. Layer five is the direction of the increase. Each layer stands on its own; together they form the full picture.
+The analysis has layers. Layer one is the circulating cost story. It's real, but it doesn't explain the timing. Layer two is what price itself does. Layers three and four are why the announcement uses a preview. Layer five is the direction of the increase. Each layer stands on its own; together they form the full picture.
 
-## Cost pressure is real, but it doesn't explain the timing
+### Cost pressure is real, but it doesn't explain the timing
 
-DeepSeek's notice frames the change as an overall adjustment to API pricing, with a formal plan to follow.[5] Meanwhile, over the past year neither NVIDIA GPU supply nor global inference demand has eased. Inference has begun to overtake training as the main cost driver for more model companies.[2] OpenAI, Anthropic, Google, and Meta have all talked publicly about inference cost and efficiency.[2] So the compute pressure is real; there's no need to doubt that. It still leaves one question:
+DeepSeek's notice assigns no cause. It only says API pricing goes up overall, with the formal plan to follow.[5] Meanwhile, over the past year neither NVIDIA GPU supply nor global inference demand has eased. Inference has begun to overtake training as the main cost driver for more model companies.[2] OpenAI, Anthropic, Google, and Meta have all talked publicly about inference cost and efficiency.[2] So the compute pressure is real; there's no need to doubt that. It still leaves one question:
 
 - Why not two months ago?
 - Why not on the day the formal plan is published?
@@ -57,25 +59,25 @@ Cost explains "why raise prices." It doesn't explain "why now." Since cost can't
 
 ![Close-up of a GPU server rack in a data center, with a frosted glass panel showing an upward cost curve. Compute costs are real, but they don't explain the timing of the announcement](illustration.png)
 
-## Price itself is a user filter
+### Price itself is a user filter
 
 AI APIs have an odd property: every call costs real compute, but not every call creates revenue. With generous free tiers or prices persistently below the industry average, you attract trial users, automated tests, benchmark loops, one-off projects, and free-tier farming. All of those consume GPUs, and most never convert to long-term revenue.
 
-### The valuable users are few
+#### The valuable users are few
 
 Public statistics have suggested that under some measures, a large share of DeepSeek's token consumption comes from free allowances, with paid calls clearly below free calls. (Metrics differ by methodology, so treat this as a trend observation, not official data.) If that holds, a lot of GPU capacity is serving low-value requests, and the people actually building products are only a fraction of the traffic.
 
 That's where price starts to do a second job: not just earning money, but filtering. There's an old line in economics: **price is a filter.**[6] Price works in two ways: it raises revenue, and it redefines who stays. Businesses that genuinely depend on the API don't stop because prices go up 20%; the "just trying it out" traffic drops immediately. The platform gets two results: less GPU pressure, and a remaining request mix that looks more like real production load.
 
-### Why this matters for training data
+#### Why this matters for training data
 
 There's an easy-to-miss angle here. For today's models, the most valuable data is concentrating in agent workflows: a single request chaining search, tool calling, multi-step reasoning, error recovery, and long context. Those requests are fewer but far denser than casual chat. If price naturally filters out one-off trial users, what remains is closer to enterprise usage. Price filters users, and it also filters the future data source.
 
-### Peak/off-peak pricing is filtering too
+#### Peak/off-peak pricing is filtering too
 
 DeepSeek has already experimented with peak/off-peak pricing.[1] Most people read that as load shifting. There's a second meaning: interactive users want answers "right now," while batch enterprise jobs can run at 3 a.m. Price structure changes user behavior, and what remains is increasingly schedulable, automatable, long-running workloads. If DeepSeek widens the peak/off-peak spread, it's optimizing the overall traffic shape. Revenue is only part of the goal.
 
-### If this layer holds, we should see:
+#### If this layer holds, we should see:
 
 - free allowances tighten further;
 - the peak/off-peak spread widen;
@@ -84,7 +86,7 @@ DeepSeek has already experimented with peak/off-peak pricing.[1] Most people rea
 
 If none of that happens, the "price as filter" inference needs revisiting. And if the price structure is already filtering users, the cadence of the preview is probably engineered too. Which brings us to the next question: why announce the hike without the numbers?
 
-## Why announce a hike without the numbers?
+### Why announce a hike without the numbers?
 
 This might be the most interesting part of the whole notice. If the price is decided, why not publish it? One plausible answer: **DeepSeek is managing expectations first.** Telling everyone "prices are going up" without a number gets the market to adjust its mental baseline. When the plan lands, the conversation shifts from "why the surprise increase?" to "more or less than I expected?"
 
@@ -92,7 +94,7 @@ It's a familiar rhythm from internet product launches: split one price shock int
 
 Managing expectations explains half the cadence. The other half is distribution: the preview is itself free marketing. That's the next layer.
 
-## The announcement is itself free marketing
+### The announcement is itself free marketing
 
 A price-hike notice has a side effect that's easy to overlook: it spreads almost by itself. If DeepSeek had quietly updated its API pricing page today, many developers wouldn't notice for days. Instead the company announced:
 
@@ -100,7 +102,7 @@ A price-hike notice has a side effect that's easy to overlook: it spreads almost
 
 Media reports, developers discuss, social platforms speculate, competitors pay attention. The whole industry enters a waiting state for the formal plan. For a tech company, that kind of attention is a scarce resource.
 
-### Why "will raise prices" spreads better than "raised prices"
+#### Why "will raise prices" spreads better than "raised prices"
 
 Internet products have a classic property: uncertainty drives discussion. An Apple keynote generates more buzz before the event than on the day, because everyone is guessing. A price preview creates three questions:
 
@@ -110,7 +112,7 @@ Internet products have a classic property: uncertainty drives discussion. An App
 
 Until the answers arrive, the discussion doesn't stop. A few dozen words of announcement can buy days or weeks of exposure.
 
-### One message, different audiences
+#### One message, different audiences
 
 For developers:
 
@@ -134,17 +136,17 @@ For competitors:
 
 One announcement, many groups activated. That's a wider reach than a typical product launch.
 
-### The subject being spread is DeepSeek
+#### The subject being spread is DeepSeek
 
 Everyone discusses "the price hike"; the exposure accrues to DeepSeek. Many developers hadn't visited DeepSeek's site in months; the notice brings them back to check pricing, compare models, read docs, re-evaluate migration. The announcement pulls developers back to the product. From an attention standpoint, that's a successful reflow.
 
-### If a new flagship model is coming, the story completes itself
+#### If a new flagship model is coming, the story completes itself
 
 Suppose within two weeks of the preview, DeepSeek ships a new flagship, formal prices, new plans, enterprise options. Then today's notice isn't an isolated event. It's step one of a product launch. Many tech companies follow the same cadence: a signal on day one, the product a few days later, prices after that, a one-to-two-week cycle. Three rounds of media, three rounds of community discussion, three rounds of exposure. Compared to dumping everything in one day, the drip is more efficient.
 
 To be clear: marketing is not the primary purpose. The marketing effect is an important byproduct of the announcement format. Mature internet companies design business decisions to capture both benefits. If a move improves revenue and earns industry attention, there's no reason to leave the second on the table.
 
-### If this layer holds, we should see:
+#### If this layer holds, we should see:
 
 - the official account publishing more API and model-capability content;
 - developers invited to beta-test a harness product;
@@ -158,7 +160,7 @@ If the result is just a price notice with no supporting moves, the marketing eff
 
 Cadence and form covered. That leaves direction: where does the price level come from? That's about product value.
 
-## Value-based pricing
+### Value-based pricing
 
 Now the other question: why are so many AI companies revisiting pricing? Because the product changed, not the GPU. For the past year, the biggest competitive advantage among models was one word: **cheaper.** Everyone cut prices, grew free allowances, lengthened context, and raced for market share. That strategy has a premise: a company willing to subsidize long-term. As the industry enters the next phase, the question becomes: what capabilities are users willing to pay for?
 
