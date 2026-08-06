@@ -59,7 +59,7 @@ Cost explains "why raise prices." It doesn't explain "why now." Since cost can't
 
 ![Close-up of a GPU server rack in a data center, with a frosted glass panel showing an upward cost curve. Compute costs are real, but they don't explain the timing of the announcement](illustration.png)
 
-#### If this layer holds, we should see:
+**If this layer holds, we should see:**
 
 - If cost is the main driver, the formal notice or a later official statement should cite cost explicitly — this preview doesn't. If the formal plan still doesn't mention cost, the cost explanation keeps losing explanatory power.
 - The increase should be roughly in line with observable changes in inference costs. If it's significantly above them, something beyond cost is at work.
@@ -69,21 +69,21 @@ Cost explains "why raise prices." It doesn't explain "why now." Since cost can't
 
 AI APIs have an odd property: every call costs real compute, but not every call creates revenue. With generous free tiers or prices persistently below the industry average, you attract trial users, automated tests, benchmark loops, one-off projects, and free-tier farming. All of those consume GPUs, and most never convert to long-term revenue.
 
-#### The valuable users are few
+**The valuable users are few**
 
 Public statistics have suggested that under some measures, a large share of DeepSeek's token consumption comes from free allowances, with paid calls clearly below free calls. (Metrics differ by methodology, so treat this as a trend observation, not official data.) If that holds, a lot of GPU capacity is serving low-value requests, and the people actually building products are only a fraction of the traffic.
 
 That's where price starts to do a second job: not just earning money, but filtering. There's an old line in economics: **price is a filter.**[6] Price works in two ways: it raises revenue, and it redefines who stays. Businesses that genuinely depend on the API don't stop because prices go up 20%; the "just trying it out" traffic drops immediately. The platform gets two results: less GPU pressure, and a remaining request mix that looks more like real production load.
 
-#### Why this matters for training data
+**Why this matters for training data**
 
 There's an easy-to-miss angle here. For today's models, the most valuable data is concentrating in agent workflows: a single request chaining search, tool calling, multi-step reasoning, error recovery, and long context. Those requests are fewer but far denser than casual chat. If price naturally filters out one-off trial users, what remains is closer to enterprise usage. Price filters users, and it also filters the future data source.
 
-#### Peak/off-peak pricing is filtering too
+**Peak/off-peak pricing is filtering too**
 
 DeepSeek has already experimented with peak/off-peak pricing.[1] Most people read that as load shifting. There's a second meaning: interactive users want answers "right now," while batch enterprise jobs can run at 3 a.m. Price structure changes user behavior, and what remains is increasingly schedulable, automatable, long-running workloads. If DeepSeek widens the peak/off-peak spread, it's optimizing the overall traffic shape. Revenue is only part of the goal.
 
-#### If this layer holds, we should see:
+**If this layer holds, we should see:**
 
 - free allowances tighten further;
 - the peak/off-peak spread widen;
@@ -98,7 +98,7 @@ This might be the most interesting part of the whole notice. If the price is dec
 
 It's a familiar rhythm from internet product launches: split one price shock into two news cycles. Announce the hike, then announce the number. Each gets media coverage, while the backlash is diluted. It's also how many SaaS companies update pricing.
 
-#### If this layer holds, we should see:
+**If this layer holds, we should see:**
 
 - The formal notice should frame the hike — a rationale, or "promotional pricing ends" wording — steering the conversation toward "more or less than I expected?" (see Signal 3 on wording).
 - The gap between preview and formal plan: a short gap (days) means the price was already decided and the preview exists to split the news cycle; a long gap means the decision is still being made.
@@ -114,7 +114,7 @@ A price-hike notice has a side effect that's easy to overlook: it spreads almost
 
 Media reports, developers discuss, social platforms speculate, competitors pay attention. The whole industry enters a waiting state for the formal plan. For a tech company, that kind of attention is a scarce resource.
 
-#### Why "will raise prices" spreads better than "raised prices"
+**Why "will raise prices" spreads better than "raised prices"**
 
 Internet products have a classic property: uncertainty drives discussion. An Apple keynote generates more buzz before the event than on the day, because everyone is guessing. A price preview creates three questions:
 
@@ -124,7 +124,7 @@ Internet products have a classic property: uncertainty drives discussion. An App
 
 Until the answers arrive, the discussion doesn't stop. A few dozen words of announcement can buy days or weeks of exposure.
 
-#### One message, different audiences
+**One message, different audiences**
 
 For developers:
 
@@ -148,17 +148,17 @@ For competitors:
 
 One announcement, many groups activated. That's a wider reach than a typical product launch.
 
-#### The subject being spread is DeepSeek
+**The subject being spread is DeepSeek**
 
 Everyone discusses "the price hike"; the exposure accrues to DeepSeek. Many developers hadn't visited DeepSeek's site in months; the notice brings them back to check pricing, compare models, read docs, re-evaluate migration. The announcement pulls developers back to the product. From an attention standpoint, that's a successful reflow.
 
-#### If a new flagship model is coming, the story completes itself
+**If a new flagship model is coming, the story completes itself**
 
 Suppose before the formal plan, DeepSeek ships a new flagship, formal prices, new plans, enterprise options. Then today's notice isn't an isolated event. It's step one of a product launch. Many tech companies follow the same cadence: a signal on day one, the product a few days later, prices after that, a one-to-two-week cycle. Three rounds of media, three rounds of community discussion, three rounds of exposure. Compared to dumping everything in one day, the drip is more efficient.
 
 To be clear: marketing is not the primary purpose. The marketing effect is an important byproduct of the announcement format. Mature internet companies design business decisions to capture both benefits. If a move improves revenue and earns industry attention, there's no reason to leave the second on the table.
 
-#### If this layer holds, we should see:
+**If this layer holds, we should see:**
 
 - the official account publishing more API and model-capability content;
 - developers invited to beta-test a harness product;
@@ -182,7 +182,7 @@ That's value-based pricing.[8] A model that only answers questions is hard to ch
 
 Software has been through this cycle before. Early SaaS grew on free tiers, ultra-low prices, and subsidies; later the metrics that mattered were ARPU, paid conversion, retention, and enterprise revenue. Many SaaS products raised prices after shipping new capabilities, because the conversation changed from "why is this more expensive" to "what are these capabilities worth." AI is repeating the process, just faster.
 
-#### If this layer holds, we should see:
+**If this layer holds, we should see:**
 
 - A new flagship lands in or near the hike window, switching the story from "cost pressure" to "product upgrade" (see Signal 2).
 - The formal plan ties price to capability — enterprise plans, per-task pricing, agent-scenario pricing — not just a flat per-million-token increase on the same model.
