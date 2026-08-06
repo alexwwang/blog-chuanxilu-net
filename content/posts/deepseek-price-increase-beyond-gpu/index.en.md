@@ -226,6 +226,8 @@ DeepSeek's challenge may be just beginning. If its biggest advantage was extreme
 
 Back to the original question: why is DeepSeek raising prices? The most accurate answer: **when compute costs, commercialization pressure, product upgrades, financing windows, competition, marketing, and the industry cycle all point at the same move, the hike becomes the natural choice.** No single factor is the cause. For industry watchers, the direction is worth recording: AI is slowly ending the era of subsidizing growth.
 
+The "financing window" layer deserves a separate note, because it rests on market reports, not official confirmation. Reports say DeepSeek is working on a second funding round: according to unnamed dealmakers, around RMB 50 billion raised at a pre-money valuation of about RMB 500 billion, targeting a signing in late August, with the round reportedly paused in late July. The same report also states, as aggregated media disclosure, that DeepSeek's ARR has reached USD 400-500 million and that its gross margin on V4 exceeds 50%.[11] These numbers need to be read in tiers: the round size, valuation, and timeline come secondhand from anonymous dealmakers, and the actual signing could change or fall through; the ARR and margin figures are media disclosure with no other source found to cross-check. But even if the exact numbers are wrong, **the fact that the hike landed inside a financing window is worth watching on its own** — announcing a price increase before a round signs improves the revenue and margin story, which helps valuation talks. This layer is falsifiable too: if funding news matches the timeline described here, it gains credibility; if the funding reports are denied, this layer should be dropped.
+
 ## References
 
 1. [DeepSeek API Documentation: Pricing](https://api-docs.deepseek.com/quick_start/pricing/)
@@ -238,3 +240,4 @@ Back to the original question: why is DeepSeek raising prices? The most accurate
 8. [Ramanujam & Tacke, *Monetizing Innovation*, Wiley](https://www.wiley.com/en-us/Monetizing+Innovation:+How+Smart+Companies+Design+the+Product+Around+the+Price-p-9781119240860)
 9. [Reuters: "China's DeepSeek slashes prices for new AI model" (2026-04-27)](https://www.reuters.com/world/china/chinas-deepseek-slashes-prices-new-ai-model-2026-04-27/)
 10. [Chen et al., "The Price Reversal Phenomenon: When Cheaper Reasoning Models End Up Costing More", arXiv](https://arxiv.org/abs/2603.23971)
+11. [Wallstreetcn (华尔街见闻): "DeepSeek officially announces a price hike, by a relatively large margin!" (2026-08-06, 11:51). Republished by Tencent News](https://news.qq.com/rain/a/20260806A0690300); [also on NetEase](https://www.163.com/dy/article/L3L782H005198NMR.html)

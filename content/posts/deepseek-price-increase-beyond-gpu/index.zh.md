@@ -230,6 +230,8 @@ DeepSeek 的挑战，可能才刚开始。如果说过去一年 DeepSeek 最大�
 
 回到文章最开始的问题：DeepSeek 为什么涨价？最准确的答案是：**当算力成本、商业化压力、产品升级、融资窗口、市场竞争、营销传播以及行业周期同时指向同一个动作时，涨价就成了顺理成章的选择。** 其中没有任何一个因素是唯一原因。对行业观察者来说，更值得记录的是方向：AI 正在慢慢结束依靠补贴换增长的时代。
 
+其中，"融资窗口"这一层需要单独说明，因为它依赖的市场信息并未得到官方确认。有市场报道称 DeepSeek 正在推进第二轮融资：据报道援引多名交易人士的说法，融资金额约 500 亿元人民币、投前估值约 5000 亿元、目标 8 月下旬签约，7 月底融资一度暂停；同一篇报道还综合披露，DeepSeek 的 ARR 已达 4-5 亿美元、V4 毛利率超过 50%。[11] 这些数字需要分级看待：融资金额、估值与时间表来自匿名交易人士的二手转述，实际签约可能变化甚至流产；ARR 与毛利率是媒体综合披露，目前也没有找到可交叉验证的其他信源。但即使具体数字不准确，**"涨价发生在融资窗口内"这个事实本身依然值得观察**——在融资签约前发布涨价预告，会直接改善收入与毛利率叙事，有利于估值谈判。这一层同样可以被证伪：如果后续融资消息与本文描述的时间节点重合，它的可信度会提高；如果融资传闻被否认，这一层就应该被移除。
+
 ## References
 
 1. DeepSeek API 官方文档：定价页（DeepSeek API Documentation - Pricing）。[https://api-docs.deepseek.com/quick_start/pricing/](https://api-docs.deepseek.com/quick_start/pricing/)
@@ -242,3 +244,4 @@ DeepSeek 的挑战，可能才刚开始。如果说过去一年 DeepSeek 最大�
 8. Ramanujam & Tacke：《Monetizing Innovation》（创新变现：聪明公司如何围绕价格设计产品）。Wiley。[Wiley 图书页](https://www.wiley.com/en-us/Monetizing+Innovation:+How+Smart+Companies+Design+the+Product+Around+the+Price-p-9781119240860)
 9. 路透社：DeepSeek V4-Pro 降价 75%（China's DeepSeek slashes prices for new AI model，2026-04-27）。[reuters.com 报道](https://www.reuters.com/world/china/chinas-deepseek-slashes-prices-new-ai-model-2026-04-27/)
 10. Chen et al.：《The Price Reversal Phenomenon: When Cheaper Reasoning Models End Up Costing More》（价格反转现象：更便宜的推理模型反而更贵）。arXiv：[arxiv.org/abs/2603.23971](https://arxiv.org/abs/2603.23971)
+11. 华尔街见闻：《DeepSeek官宣涨价，且"幅度较大"！》（2026-08-06，11:51）。腾讯新闻转载：[news.qq.com/rain/a/20260806A0690300](https://news.qq.com/rain/a/20260806A0690300)；网易转载：[163.com/dy/article/L3L782H005198NMR](https://www.163.com/dy/article/L3L782H005198NMR.html)
