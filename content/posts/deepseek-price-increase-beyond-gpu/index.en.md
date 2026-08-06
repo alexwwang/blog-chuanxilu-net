@@ -15,11 +15,11 @@ toc: true
 
 > **TL;DR:** On August 6, 2026, DeepSeek announced a planned API price hike. No single cause: cost pass-through, user filtering, expectation management, free marketing, a shift to value-based pricing, and open-source ecosystem pressure all point at the same move. Rising compute costs are real, but they don't explain the timing or the form of the announcement. The market is moving from subsidies-for-scale to value-based pricing, and seven falsifiable signals before the official plan will confirm or overturn this post's inferences.
 
-A one-paragraph notice about a future price hike might be the signal that China's AI API market is entering a new phase. On August 6, 2026, DeepSeek announced on its website that it plans to raise API pricing overall, "by a relatively large margin," with the specific plan to come.[1] No numbers, no effective date. Just the announcement that a formal plan is on the way.
+A one-paragraph notice about a future price hike might be the signal that China's LLM inference market is entering a new phase. On August 6, 2026, DeepSeek announced on its website that it plans to raise API pricing overall, "by a relatively large margin," with the specific plan to come.[1] No numbers, no effective date. Just the announcement that a formal plan is on the way.
 
 ![Screenshot of the DeepSeek Platform usage page (dark theme): a notice at the top reads "We plan to raise the overall pricing for DeepSeek API services in the near future, with a significant increase expected. Please plan your usage accordingly. The specific pricing plan will be subject to official notice."](announcement-en.png)
 
-Taken at face value, this is an ordinary pricing update. Placed on the timeline of the last few months of AI API pricing, it looks like more. Most coverage attributes the hike to rising compute costs, and that is a real factor: GPU supply is still tight, inference demand keeps growing, and every major lab faces the same cost pressure.[2] But a business decision rarely has a single motive. Two questions are worth asking:
+Taken at face value, this is an ordinary pricing update. Placed on the timeline of the last few months of LLM inference pricing, it looks like more. Most coverage attributes the hike to rising compute costs, and that is a real factor: GPU supply is still tight, inference demand keeps growing, and every major lab faces the same cost pressure.[2] But a business decision rarely has a single motive. Two questions are worth asking:
 
 - Why is DeepSeek raising prices?
 - Why announce it now, this way?
@@ -32,7 +32,7 @@ There's a term for what happens when multiple independent reasons point at the s
 
 ## Why this announcement matters
 
-A routine price change wouldn't deserve a long post. This one matters because it's the latest node in a chain of changes in the AI API market over the past few months:
+A routine price change wouldn't deserve a long post. This one matters because it's the latest node in a chain of changes in the LLM inference market over the past few months:
 
 - one vendor raised API prices;
 - another launched new tiered plans;
@@ -67,7 +67,7 @@ Cost explains "why raise prices." It doesn't explain "why now." Since cost can't
 
 ### Price itself is a user filter
 
-AI APIs have an odd property: every call costs real compute, but not every call creates revenue. With generous free tiers or prices persistently below the industry average, you attract trial users, automated tests, benchmark loops, one-off projects, and free-tier farming. All of those consume GPUs, and most never convert to long-term revenue.
+LLM APIs have an odd property: every call costs real compute, but not every call creates revenue. With generous free tiers or prices persistently below the industry average, you attract trial users, automated tests, benchmark loops, one-off projects, and free-tier farming. All of those consume GPUs, and most never convert to long-term revenue.
 
 **The valuable users are few**
 
@@ -236,7 +236,7 @@ The real value of tech analysis is proposing falsifiable predictions. This post 
 
 Zoom out, and DeepSeek's hike isn't an isolated event. Over the past year, nearly every major lab, domestic and international, went through the same arc. Phase one: compete on **who's cheaper.** Prices fell,[3] free allowances grew, context lengthened, some quotes approached or went below cost to buy developer growth. Back then, everyone was buying market share.
 
-That model has a natural end. When model capabilities converge, inference demand grows, and GPUs stop being infinite, the industry has to answer: **who will actually pay?** Competition shifts from "who's cheaper" to "is it worth it." The AI API market is moving from subsidies-for-scale to value-based pricing, and DeepSeek's hike is a node in that turn. Over the next few years, the question stops being which model benchmarks 2% higher, and becomes which company can build its own price system. Price is part of the product; it tells the market where the company believes its value is.
+That model has a natural end. When model capabilities converge, inference demand grows, and GPUs stop being infinite, the industry has to answer: **who will actually pay?** Competition shifts from "who's cheaper" to "is it worth it." The LLM inference market is moving from subsidies-for-scale to value-based pricing, and DeepSeek's hike is a node in that turn. Over the next few years, the question stops being which model benchmarks 2% higher, and becomes which company can build its own price system. Price is part of the product; it tells the market where the company believes its value is.
 
 Developers are buying outcomes, not tokens. The old API discussion was about per-million-token price. The future discussion may be what a completed agent, a coding task, or a report costs. Users buy results, not inference.[10] What sustains a price increase shifts from more parameters to a stronger ability to complete work.
 
