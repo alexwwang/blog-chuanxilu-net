@@ -164,6 +164,8 @@ Sorted by estimated monthly request volume, high to low:
 
 Measured and verified 2026-08-09. The free model list, quotas, and model versions are moving fast. Check the official docs before you commit.
 
+> Thinking about a Go subscription? Sign up through my referral link and you get an extra $5 of quota (I get $5 too — official program): <https://opencode.ai/go?ref=CGNQ69YARZ>
+
 ---
 
 ## References
