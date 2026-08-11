@@ -1,5 +1,5 @@
 ---
-title: "同一个 key，两个世界：OpenCode 的 Zen 与 Go"
+title: "OpenCode 免费额度实测：一天 450~766 次，不是传言说的 200"
 slug: "opencode-zen-go-misconceptions"
 date: 2026-08-10T16:00:00+08:00
 draft: false
