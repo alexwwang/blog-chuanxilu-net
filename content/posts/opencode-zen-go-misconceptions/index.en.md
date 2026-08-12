@@ -59,7 +59,7 @@ The free tier is genuinely free. It is also a limited-time trial tier, not a per
 
 "200 a day" undersells the free tier. I had days at 544 and 665 requests with no limit triggered. But "use it freely" is also false: a batch run at 250 requests per hour hits the wall.
 
-So the free tier can't replace the subscription. For trials and light use, it's fine. For high-volume agent batch jobs, extended context windows, and predictable stability, opting for the Go subscription becomes essential. The Go ds4f gets a 1M context window (matching the official native spec [6]); the free tier gets a fifth of that.
+So the free tier can't replace the subscription. For trials and light use, it's fine. For high-volume agent batch jobs, extended context windows, and operational stability, opting for the Go subscription becomes essential. The Go ds4f gets a 1M context window (matching the official native spec [6]); the free tier gets a fifth of that.
 
 ## Myth 3: OpenCode's ds4f Is a Downgraded Version
 
@@ -75,7 +75,7 @@ The watered-down part is the free tier: 200K context, daily limits, no vision. B
 
 ## Myth 4: ds4f Can't See Images, So OpenCode Can't Handle Them
 
-ds4f natively lacks multimodal and vision capabilities: the official Responses API rejects image and file inputs [6], and the free tier's modalities are code/text [4]. That's a model capability boundary.
+ds4f natively lacks vision and multimodal capabilities: the official Responses API rejects image and file inputs [6], and the free tier's modalities are code/text [4]. That's a model capability boundary.
 
 But handling images doesn't require switching tools. It requires switching models. Different apps route differently:
 
