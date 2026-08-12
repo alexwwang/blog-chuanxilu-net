@@ -12,9 +12,9 @@ cover:
   alt: "Watercolor painting of a brass key before two arched doors, representing the Zen and Go services"
 ---
 
-If you build with, or are thinking of using, OpenCode.ai (oc, for short) for development or agent work, you've probably felt this anxiety: worried the models won't match the official ones, worried the free tier will hit its limit every day, or puzzled over how the Go subscription quota is even calculated, especially when users claim they "burned through half a month's quota in 5 minutes," an assertion that sounds dubious.
+If you build with, or are thinking of using, OpenCode.ai (oc, for short) for development or agent work, you've probably felt this anxiety: worried the models won't match the official ones, worried the free tier will hit its limit every day, or puzzled over how the Go subscription quota is even calculated, especially with claims floating around about burning through half a month's quota in 5 minutes.
 
-Then DeepSeek V4 Flash (ds4f, for short) went stable, and my token anxiety evaporated. I analyzed over 3,000 API call logs from my local machine across three months of active usage and cross-checked them against the numbers online. Here's the truth behind these five misconceptions. Once you get these straight, your workflow runs steadier, and you stop worrying about burning through your token quota.
+Once DeepSeek V4 Flash (ds4f, for short) stabilized, the token constraint issues became much easier to manage. I analyzed over 3,000 API call logs from my local machine across three months of active usage and cross-checked them against the numbers online. Here's the truth behind these five misconceptions. Once you get these straight, your workflow runs steadier, and you stop worrying about burning through your token quota.
 
 ## Myth 1: Zen and Go Are Identical Because They Share One Key
 
@@ -27,7 +27,7 @@ They're not. The difference is the base URL, not the key:
 - Zen: `https://opencode.ai/zen/v1`
 - Go: `https://opencode.ai/zen/go/v1`
 
-One `/go` in the URL. Entirely different billing.
+A simple `/go` segment in the Base URL completely changes the underlying endpoint and billing mechanism.
 
 | | Zen | Go |
 |---|---|---|
@@ -52,8 +52,8 @@ The free tier is genuinely free. It is also a limited-time trial tier, not a per
 ![Free-tier limit: a measuring cup and an hourglass](illustration-2.png)
 
 - The quota resets at **UTC 0:00** (08:00 Beijing). All three rate-limit hits came with a retry-after pointing exactly at the next UTC midnight, and the first successful call after each reset came after it.
-- Call volume fluctuates with token consumption and how much inference capacity the platform has that day. Measured: about **450 to 766 requests/day** (mean 605), or **49-72M tok/day**. On average, each request processed roughly 94.5K cached input tokens, 6.5K uncached input tokens, and 0.8K output tokens. Overall cache hit rate: 93.6%. Median hit rate per request: 99.6%. Most requests hit cache almost entirely; a few new-context requests drag the average down.
-- One of the three limit hits was rate-triggered: 450+ calls in three hours late at night (about 250 in the last hour), before the daily total had hit the cap. So there's a request-frequency boundary on top of the daily total. Batch jobs hammering the API in quick succession hit it before the cumulative usage does. The other two hits (7/28 and 8/5) were cumulative-cap triggers.
+- Call volume fluctuates with token consumption and how much inference capacity the platform has that day. Measured: about **450 to 766 requests/day** (mean 605), or roughly **49-72 million tokens/day**. On average, each request processed roughly 94.5K cached input tokens, 6.5K uncached input tokens, and 0.8K output tokens. Overall cache hit rate: 93.6%. Median hit rate per request: 99.6%. Most requests hit cache almost entirely; a few new-context requests drag the average down.
+- One of the three limit hits was rate-triggered: 450+ calls in three hours late at night (about 250 in the last hour), before the daily total had hit the cap. This suggests the platform enforces a short-term request frequency cap alongside the cumulative daily limit. Batch jobs hammering the API in quick succession hit it before the cumulative usage does. The other two hits (7/28 and 8/5) were cumulative-cap triggers.
 
 > Data source: local `~/.omp/stats.db`, `opencode-zen` provider, 2026-07-27 to 08-07.
 
@@ -69,13 +69,13 @@ The reality: Both services run the exact same model and version.
 
 DeepSeek V4 Flash's official API updated to the 0731 version on 2026-07-31, featuring a retrained setup, the same architecture (284B total / 13B active MoE parameters), a native 1M context window, and support for up to 384K output tokens per request [6]. OpenCode's ds4f connects directly to DeepSeek's official service (community corroboration [7]), priced internally at $0.14 / $0.28 per 1M token [2], matching the official RMB price of roughly ¥1 / ¥2 [6].
 
-There is one real detail that *looks* like a downgrade: the 0731 version is deployed in China only. You have to explicitly enable "models deployed in China" in the Go console, or you get a 403 RegionError [7]. That's a deployment-location choice, not a watered-down model.
+There is one real detail that *looks* like a downgrade: the 0731 version is deployed in China only. You have to explicitly enable "models deployed in China" in the Go console, or you get a 403 RegionError [7]. This is purely a regional routing constraint rather than a model capability reduction. Output specs (context window, max output) remain identical to the official API.
 
-The watered-down part is the free tier: 200K context, daily limits, no vision. But that's Zen's free tier, not the Go subscription's ds4f.
+The real trade-offs reside in the free tier, which restricts context to 200K, caps daily usage, and omits vision support. But that's Zen's free tier, not the Go subscription's ds4f.
 
 ## Myth 4: ds4f Can't See Images, So OpenCode Can't Handle Them
 
-ds4f natively lacks vision and multimodal capabilities: the official Responses API rejects image and file inputs [6], and the free tier's modalities are code/text [4]. That's a model capability boundary.
+While ds4f itself is purely a text/code model (a genuine capability boundary), handling image inputs doesn't require switching workspace tools. It simply requires routing image tasks to a multimodal model.
 
 But handling images doesn't require switching tools. It requires switching models. Different apps route differently:
 
@@ -160,7 +160,7 @@ Sorted by estimated monthly request volume, high to low:
 
 ### The One-Sentence Strategy
 
-**Deploy the Go subscription's ds4f as your primary workhorse, rely on the Zen free tier for image processing fallbacks, and route production workloads directly to official APIs.** The three tiers combine. You don't have to pick one.
+**A solid rule of thumb is using Go's ds4f for main coding tasks, turning to the Zen free tier for vision fallbacks, and pointing production workloads to official APIs.** The three tiers combine. You don't have to pick one.
 
 Measured and verified 2026-08-09. The free model list, quotas, and model versions are moving fast. Check the official docs before you commit.
 
