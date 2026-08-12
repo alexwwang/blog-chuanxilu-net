@@ -39,20 +39,20 @@ Zen is a pay-as-you-go gateway: top up a balance, pay per token. Free models wit
 
 The base URL you configure determines which billing model applies. Side by side, the difference is obvious.
 
-## Myth 2: The Free Tier Is Enough, So Skip the Go Subscription
+## Myth 2: The Free Tier Can Completely Replace the Go Subscription
 
 The free tier is genuinely free. It is also a limited-time trial tier, not a permanent service offering.
 
-**The time limit.** The docs say free models are "available for a limited time", to collect feedback and improve the models [1]. The free list itself changes: in June it was Nemotron 3 Super, MiniMax M2.5, Qwen3.6 Plus. By August the official list had rotated to a different set [3][1].
+**The time limit:** The docs say free models are "available for a limited time", to collect feedback and improve the models [1]. The free list itself changes: in June it was Nemotron 3 Super, MiniMax M2.5, Qwen3.6 Plus. By August the official list had rotated to a different set [3][1].
 
-**The capability limits.** Two hard boundaries: a 200K context window [4], and no vision (code/text modalities only) [4].
+**The capability limits:** Two hard boundaries: a 200K context window [4], and no vision (code/text modalities only) [4].
 
-**The usage limits.** The claim online is "about 200 requests a day" [5]. I pulled my own call logs to check. Between July 27 and August 7, 2026, I recorded 3,606 call failures triggered by rate limits. The measured boundaries:
+**The usage limits:** The claim online is "about 200 requests a day" [5]. I pulled my own call logs to check. Between July 27 and August 7, 2026, I recorded 3,606 call failures triggered by rate limits. The measured boundaries:
 
 ![Free-tier limit: a measuring cup and an hourglass](illustration-2.png)
 
 - The quota resets at **UTC 0:00** (08:00 Beijing). All three rate-limit hits came with a retry-after pointing exactly at the next UTC midnight, and the first successful call after each reset came after it.
-- Call volume fluctuates with token consumption and how much inference capacity the platform has that day. Measured: about **450 to 766 requests/day** (mean 605), or roughly **49-72 million tokens/day**. On average, each request processed roughly 94.5K cached input tokens, 6.5K uncached input tokens, and 0.8K output tokens. Overall cache hit rate: 93.6%. Median hit rate per request: 99.6%. Most requests hit cache almost entirely; a few new-context requests drag the average down.
+- Call volume fluctuates with token consumption and how much inference capacity the platform has that day. Measured: about **450 to 766 requests per day** (mean: 605), or roughly **49-72 million tokens per day**. On average, each request processed roughly 94.5K cached input tokens, 6.5K uncached input tokens, and 0.8K output tokens. Overall cache hit rate: 93.6%. Median hit rate per request: 99.6%. Most requests hit cache almost entirely; a few new-context requests drag the average down.
 - One of the three limit hits was rate-triggered: 450+ calls in three hours late at night (about 250 in the last hour), before the daily total had hit the cap. This suggests the platform enforces a short-term request frequency cap alongside the cumulative daily limit. Batch jobs hammering the API in quick succession hit it before the cumulative usage does. The other two hits (7/28 and 8/5) were cumulative-cap triggers.
 
 > Data source: local `~/.omp/stats.db`, `opencode-zen` provider, 2026-07-27 to 08-07.
@@ -77,7 +77,7 @@ The real trade-offs reside in the free tier, which restricts context to 200K, ca
 
 While ds4f itself is purely a text/code model (a genuine capability boundary), handling image inputs doesn't require switching workspace tools. It simply requires routing image tasks to a multimodal model.
 
-But handling images doesn't require switching tools. It requires switching models. Different apps route differently:
+The key lies in model routing rather than tool switching. Different clients handle this in two ways:
 
 ### Option A: Manual Model Switching in OpenCode
 
@@ -108,7 +108,7 @@ Which models have lower multipliers? The **$15 tier** (monthly quota cut from $6
 
 The reason: OpenCode couldn't get bulk discounts on these, or the public pricing is already so low there's no room to discount [2]. Calling them drains your monthly quota faster. For the same $10 allocation, ds4f can process approximately 158,000 requests, whereas GLM-5.2 yields only around 4,300.
 
-`Requests = Dollar Quota / Model Price / Tokens per Request`. The official estimate table [2]:
+`Requests = Dollar Quota / (Model Price × Tokens per Request)`. The official estimate table [2]:
 
 | Model | Estimated requests/month |
 |---|---|
@@ -125,7 +125,7 @@ The reason: OpenCode couldn't get bulk discounts on these, or the public pricing
 | Grok 4.5 | ~600 |
 | Kimi K3 | ~490 |
 
-> Excerpt of the official estimate table; the full list is at [opencode.ai/docs/go](https://opencode.ai/docs/go/) [2]. Estimates assume typical usage (ds4f: ~790 input + 68,000 cached + 280 output tok per request). My own Go ds4f usage in the same period: 2,151 calls, billed $2.57. My per-request volume runs higher than the typical assumption, and even so the monthly quota clearly isn't exhausted.
+> Excerpt of the official estimate table; the full list is at [opencode.ai/docs/go](https://opencode.ai/docs/go/) [2]. Estimates assume typical usage (ds4f: ~790 input + 68,000 cached + 280 output tokens per request). My own Go ds4f usage in the same period: 2,151 calls, billed $2.57. My per-request volume runs higher than the typical assumption, and even so the monthly quota clearly isn't exhausted.
 
 Over quota, two options. Default: **rate limiting** (requests get blocked with 429). Or enable **Use balance** in the console: over-quota traffic continues on your Zen balance automatically, no interruption [2].
 
@@ -137,7 +137,7 @@ Go's subscription value is **more requests for less money**.
 
 Sorted by estimated monthly request volume, high to low:
 
-| Model | Est. requests/month | Price (per 1M tok) | Where it fits |
+| Model | Est. requests/month | Price (per 1M tokens) | Where it fits |
 |---|---|---|---|
 | **ds4f (DeepSeek V4 Flash)** | ~158K | $0.14 / $0.28 | **Primary pick**: highest volume, use it for all daily coding |
 | **MiMo-V2.5** | ~150K | $0.14 / $0.28 | **Same tier**: nearly as many requests, handles image tasks too |
@@ -146,25 +146,25 @@ Sorted by estimated monthly request volume, high to low:
 | **GLM-5.2/5.1** | ~4,300 | $1.40 / $4.40 | **Expensive per token**; noticeably fewer requests |
 | Grok 4.5, Kimi K3, etc. | 600/490 | $2.00-3.00 | **Smallest tier** ($15/month quota); only when necessary |
 
-> Estimates assume typical usage (ds4f: ~790 input + 68,000 cached + 280 output tok per request). Your actual count depends on your per-request token size. The $60 monthly quota is shared by all models.
+> Estimates assume typical usage (ds4f: ~790 input + 68,000 cached + 280 output tokens per request). Your actual count depends on your per-request token size. The $60 monthly quota is shared by all models.
 
 ### Best Practice: Three Tiers, Not a Choice of One
 
 | Scenario | Recommended setup | Why |
 |---|---|---|
 | Daily coding, text generation | **Go subscription ds4f** | 1M context, ~158K requests/month, cheapest |
-| Image understanding | **Zen free MiMo-V2.5 Free** → fallback to Go MiMo-V2.5 | Free multimodal first, no Go quota spent |
+| Image understanding | **Zen free tier (mimo-v2.5-free)** → fallback to Go mimo-v2.5 | Free multimodal first, no Go quota spent |
 | Batch jobs | **Go subscription ds4f** | High volume; mind the ~250 req/hour rate limit |
 | Production / compliance | **Official API** | Independent balance, zero retention, doesn't touch Go quota |
 | Evaluating new needs | **Zen free tier first** → then Go | Zero-cost experimentation |
 
 ### The One-Sentence Strategy
 
-**A solid rule of thumb is using Go's ds4f for main coding tasks, turning to the Zen free tier for vision fallbacks, and pointing production workloads to official APIs.** The three tiers combine. You don't have to pick one.
+**A solid rule of thumb is using Go's ds4f for main coding tasks, turning to the Zen free tier for vision fallbacks, and pointing production workloads to official APIs.** Combining all three gives you the best mix of cost and flexibility without locking yourself into just one.
 
 Measured and verified 2026-08-09. The free model list, quotas, and model versions are moving fast. Check the official docs before you commit.
 
-> Thinking about a Go subscription? Sign up through my referral link and you get an extra $5 of quota (I get $5 too — official program): <https://opencode.ai/go?ref=CGNQ69YARZ>
+> Thinking about a Go subscription? Sign up through my referral link and you get an extra $5 of quota (I get $5 too via the official program): <https://opencode.ai/go?ref=CGNQ69YARZ>
 
 ---
 
