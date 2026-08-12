@@ -17,7 +17,7 @@ cover:
 
 Day 10 ended with a note: description and verification are the same coin. If you can't describe what you want, you can't check whether you got it.
 
-I default to trusting AI output, especially the confident ones. It's well structured, clear, and sounds right. Day 10 mentioned an example: I asked AI to "organize these files by category." It sorted them alphabetically by name. The result looked organized, but it wasn't the kind of organization I meant. At the time I thought "I need to describe it better next time," not "let me check whether what it delivered is actually correct."
+I default to trusting AI output, especially when it sounds confident. It's well structured, clear, and sounds right. Day 10 mentioned an example: I asked AI to "organize these files by category." It sorted them alphabetically by name. The result looked organized, but it wasn't the kind of organization I meant. At the time I thought "I need to describe it better next time," not "let me check whether what it delivered is actually correct."
 
 That pattern keeps repeating. AI produces something that looks reasonable at a glance; I skim it and move on. By the time a detail goes wrong enough to notice, I've already built on top of the mistake.
 
@@ -31,7 +31,7 @@ None of these methods require writing code.
 
 The GCO you wrote to describe the task works as an acceptance checklist. You just switch the direction.
 
-Day 10 exercise 2 asked AI to analyze 2025 sales data, trending by product line with growth rates and recommendations. Day 10 showed the difference between vague and clear descriptions. Today picks up where that left off: how to check the result.
+Day 10 exercise 2 asked AI to analyze 2025 sales data: trends by product line, growth rates, and recommendations. Day 10 showed the difference between vague and clear descriptions. Today picks up where that left off: how to check the result.
 
 Say AI finished the analysis and handed you a report. Verification starts by pulling out the original GCO and going line by line:
 
@@ -87,17 +87,17 @@ AI will probably write: wrong data source, wrong aggregation formula, wrong time
 
 > Now act as a reviewer. Find every issue in this report, the more the better. Tag each with a risk level and a fix recommendation.
 
-AI will produce some false positives. You skim the list, pick out the real issues, and find problems that more thorough descriptions wouldn't have caught.
+AI will produce some false positives. You skim the list, pick out the real issues, and find problems you might have missed even with a more thorough description.
 
 ---
 
 ## Human in the Loop
 
 ![Verification gradation: GCO checklist → Invariant checks → Reverse checks](illustration-verification.png)
-Three methods, escalating depth based on task weight:
+The three methods escalate in depth based on task weight:
 
 - 🟢 **GCO checklist**: Every task. 3 minutes. The GCO is already written. Just tick through it.
-- 🟡 **Invariant checks**: Critical tasks. 5 minutes. Worth it for anything involving data, configuration, or batch operations.
+- 🟡 **Invariant checks**: Critical tasks. 5 minutes. It's worth it for anything involving data, configuration, or batch operations.
 - 🔴 **Reverse checks**: High-risk tasks. 10 minutes. Anything involving money, permissions, or external delivery.
 
 You are not the one doing the manual checking. AI handles bulk verification: scanning a thousand rows in a minute, listing possible failure modes, and questioning its own output from different angles. Your job is judgment. Is this deviation acceptable? Does that risk need action?
