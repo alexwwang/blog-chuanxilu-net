@@ -12,7 +12,7 @@ cover:
   alt: "Watercolor painting of a brass key before two arched doors, representing the Zen and Go services"
 ---
 
-If you build with, or are thinking of using, OpenCode.ai (oc, for short) for development or agent work, you've probably felt this anxiety: worried the models won't match the official ones, worried the free tier will hit its limit every day, or puzzled over how the Go subscription quota is even calculated, when users claim they "burned through half a month's quota in 5 minutes," which sounds dubious.
+If you build with, or are thinking of using, OpenCode.ai (oc, for short) for development or agent work, you've probably felt this anxiety: worried the models won't match the official ones, worried the free tier will hit its limit every day, or puzzled over how the Go subscription quota is even calculated, especially when users claim they "burned through half a month's quota in 5 minutes," an assertion that sounds dubious.
 
 Then DeepSeek V4 Flash (ds4f, for short) went stable, and my token anxiety evaporated. I analyzed over 3,000 API call logs from my local machine across three months of active usage and cross-checked them against the numbers online. Here's the truth behind these five misconceptions. Once you get these straight, your workflow runs steadier, and you stop worrying about burning through your token quota.
 
@@ -20,7 +20,7 @@ Then DeepSeek V4 Flash (ds4f, for short) went stable, and my token anxiety evapo
 
 OpenCode runs two model services: Zen and Go.
 
-They share the same entry point and admin panel. The API key creation page makes no distinction. The same key can call both services [1][2]. As a result, users often assume that Go is simply Zen's subscription tier, and that Zen's free models apply to Go as well.
+They share the same entry point and admin panel. The API key creation page makes no distinction. The same key can call both services [1][2]. As a result, users frequently assume that Go is simply Zen's subscription tier, and that Zen's free models apply to Go as well.
 
 They're not. The difference is the base URL, not the key:
 
@@ -41,31 +41,31 @@ The base URL you configure determines which billing model applies. Side by side,
 
 ## Myth 2: The Free Tier Is Enough, So Skip the Go Subscription
 
-The free tier is genuinely free. It's also a limited-time trial tier, not a permanent product.
+The free tier is genuinely free. It is also a limited-time trial tier, not a permanent service offering.
 
 **The time limit.** The docs say free models are "available for a limited time", to collect feedback and improve the models [1]. The free list itself changes: in June it was Nemotron 3 Super, MiniMax M2.5, Qwen3.6 Plus. By August the official list had rotated to a different set [3][1].
 
 **The capability limits.** Two hard boundaries: a 200K context window [4], and no vision (code/text modalities only) [4].
 
-**The usage limits.** The claim online is "about 200 requests a day" [5]. I pulled my own call logs to check. Between July 27 and August 7, 2026, I recorded 3,606 call failures due to rate limits. The measured boundaries:
+**The usage limits.** The claim online is "about 200 requests a day" [5]. I pulled my own call logs to check. Between July 27 and August 7, 2026, I recorded 3,606 call failures triggered by rate limits. The measured boundaries:
 
 ![Free-tier limit: a measuring cup and an hourglass](illustration-2.png)
 
 - The quota resets at **UTC 0:00** (08:00 Beijing). All three rate-limit hits came with a retry-after pointing exactly at the next UTC midnight, and the first successful call after each reset came after it.
-- Call volume fluctuates with token consumption and how much inference capacity the platform has that day. Measured: about **450 to 766 requests/day** (mean 605), or **49-72M tok/day**. On average, each request consumed roughly 94.5K cached input tokens, 6.5K uncached input tokens, and 0.8K output tokens. Overall cache hit rate: 93.6%. Median hit rate per request: 99.6%. Most requests hit cache almost entirely; a few new-context requests drag the average down.
+- Call volume fluctuates with token consumption and how much inference capacity the platform has that day. Measured: about **450 to 766 requests/day** (mean 605), or **49-72M tok/day**. On average, each request processed roughly 94.5K cached input tokens, 6.5K uncached input tokens, and 0.8K output tokens. Overall cache hit rate: 93.6%. Median hit rate per request: 99.6%. Most requests hit cache almost entirely; a few new-context requests drag the average down.
 - One of the three limit hits was rate-triggered: 450+ calls in three hours late at night (about 250 in the last hour), before the daily total had hit the cap. So there's a request-frequency boundary on top of the daily total. Batch jobs hammering the API in quick succession hit it before the cumulative usage does. The other two hits (7/28 and 8/5) were cumulative-cap triggers.
 
 > Data source: local `~/.omp/stats.db`, `opencode-zen` provider, 2026-07-27 to 08-07.
 
 "200 a day" undersells the free tier. I had days at 544 and 665 requests with no limit triggered. But "use it freely" is also false: a batch run at 250 requests per hour hits the wall.
 
-So the free tier can't replace the subscription. For trials and light use, it's fine. For agent batch workloads, large context windows, and high operational stability, opting for the Go subscription becomes essential. The Go ds4f gets a 1M context window (matching the official native spec [6]); the free tier gets a fifth of that.
+So the free tier can't replace the subscription. For trials and light use, it's fine. For high-volume agent batch jobs, extended context windows, and predictable stability, opting for the Go subscription becomes essential. The Go ds4f gets a 1M context window (matching the official native spec [6]); the free tier gets a fifth of that.
 
 ## Myth 3: OpenCode's ds4f Is a Downgraded Version
 
 The rumor: OpenCode's ds4f has a cut context window, an old version, worse quality.
 
-The reality: it is the same model and the exact same version.
+The reality: Both services run the exact same model and version.
 
 DeepSeek V4 Flash's official API updated to the 0731 version on 2026-07-31, featuring a retrained setup, the same architecture (284B total / 13B active MoE parameters), a native 1M context window, and support for up to 384K output tokens per request [6]. OpenCode's ds4f connects directly to DeepSeek's official service (community corroboration [7]), priced internally at $0.14 / $0.28 per 1M token [2], matching the official RMB price of roughly ¥1 / ¥2 [6].
 
@@ -75,7 +75,7 @@ The watered-down part is the free tier: 200K context, daily limits, no vision. B
 
 ## Myth 4: ds4f Can't See Images, So OpenCode Can't Handle Them
 
-ds4f natively lacks vision capabilities: the official Responses API rejects image and file inputs [6], and the free tier's modalities are code/text [4]. That's a model capability boundary.
+ds4f natively lacks multimodal and vision capabilities: the official Responses API rejects image and file inputs [6], and the free tier's modalities are code/text [4]. That's a model capability boundary.
 
 But handling images doesn't require switching tools. It requires switching models. Different apps route differently:
 
@@ -106,7 +106,7 @@ The quota is not a request count. It's dollars: $5 first month, $10/month after,
 
 Which models have lower multipliers? The **$15 tier** (monthly quota cut from $60 to $15, a 1.5x multiplier instead of 6x): Grok 4.5, GPT 5.6 Luna, Kimi K3, MiMo-V2.5-Pro, DeepSeek V4 Pro, Qwen3.8 Max.
 
-The reason: OpenCode couldn't get bulk discounts on these, or the public pricing is already so low there's no room to discount [2]. Calling them drains your monthly quota faster. For the same $10 budget, ds4f can handle approximately 158,000 requests, whereas GLM-5.2 yields only around 4,300 requests.
+The reason: OpenCode couldn't get bulk discounts on these, or the public pricing is already so low there's no room to discount [2]. Calling them drains your monthly quota faster. For the same $10 allocation, ds4f can process approximately 158,000 requests, whereas GLM-5.2 yields only around 4,300.
 
 `Requests = Dollar Quota / Model Price / Tokens per Request`. The official estimate table [2]:
 
@@ -160,7 +160,7 @@ Sorted by estimated monthly request volume, high to low:
 
 ### The One-Sentence Strategy
 
-**Deploy Go subscription's ds4f as your primary workhorse, rely on the Zen free tier for image fallbacks, and use official APIs for production workloads.** The three tiers combine. You don't have to pick one.
+**Deploy the Go subscription's ds4f as your primary workhorse, rely on the Zen free tier for image processing fallbacks, and route production workloads directly to official APIs.** The three tiers combine. You don't have to pick one.
 
 Measured and verified 2026-08-09. The free model list, quotas, and model versions are moving fast. Check the official docs before you commit.
 
