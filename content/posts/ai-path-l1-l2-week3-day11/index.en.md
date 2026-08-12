@@ -13,13 +13,13 @@ cover:
   alt: "Watercolor: a beam of light passes through GCO (Goal, Constraints, Output) through a magnifying glass, landing on a verified report"
 ---
 
-> This is Day 11 of the AI Path L1→L2 Upgrade Guide, a practice article. Do [Day 8](../ai-path-l1-l2-week2-day8/) and [Day 10](../ai-path-l1-l2-week3-day10/) first.
+> This is Day 11 of the AI Path L1→L2 Upgrade Guide, a practice article. Do [Day 8]({{< relref "ai-path-l1-l2-week2-day8" >}}) and [Day 10]({{< relref "ai-path-l1-l2-week3-day10" >}}) first.
 
 Day 10 ended with a note: description and verification are the same coin. If you can't describe what you want, you can't check whether you got it.
 
-I default to trusting AI output. Especially the confident ones. Well structured, clear, sounds right. Day 10 mentioned an example: I asked AI to "organize these files by category." It sorted them alphabetically by name. The result looked organized, it just wasn't the kind of organization I meant. At the time I thought "I need to describe it better next time," not "let me check whether what it delivered is actually correct."
+I default to trusting AI output, especially the confident ones. It's well structured, clear, and sounds right. Day 10 mentioned an example: I asked AI to "organize these files by category." It sorted them alphabetically by name. The result looked organized, but it wasn't the kind of organization I meant. At the time I thought "I need to describe it better next time," not "let me check whether what it delivered is actually correct."
 
-That pattern kept repeating. AI produces something that looks reasonable at a glance, I skim it and move on. By the time a detail goes wrong enough to notice, I've already built on top of the mistake.
+That pattern keeps repeating. AI produces something that looks reasonable at a glance; I skim it and move on. By the time a detail goes wrong enough to notice, I've already built on top of the mistake.
 
 Today I flip GCO around. It's a spec going in and a checklist coming back. Same three fields, different direction.
 
@@ -29,11 +29,11 @@ None of these methods require writing code.
 
 ## GCO as a Checklist
 
-The GCO you wrote to describe the task works as an acceptance checklist. Just switch direction.
+The GCO you wrote to describe the task works as an acceptance checklist. You just switch the direction.
 
-Using Day 10 exercise 2: ask AI to analyze 2025 sales data, trending by product line with growth rates and recommendations. Day 10 showed the difference between vague and clear descriptions. Today picks up where that left off: how to check the result.
+Day 10 exercise 2 asked AI to analyze 2025 sales data, trending by product line with growth rates and recommendations. Day 10 showed the difference between vague and clear descriptions. Today picks up where that left off: how to check the result.
 
-Assume AI finished the analysis and handed you a report. Verification starts by pulling out the original GCO and going line by line:
+Say AI finished the analysis and handed you a report. Verification starts by pulling out the original GCO and going line by line:
 
 | GCO Field | As Description | As Verification |
 |-----------|---------------|-----------------|
@@ -58,14 +58,14 @@ Back to the sales example:
 
 - **Row count**: 1,024 rows in, 1,024 rows out. AI won't delete data intentionally, but it might decide a row looks "anomalous" and filter it.
 - **Key identifier columns**: Order IDs, user IDs. These are anchors. If they change, you can't trace back to the source.
-- **Raw values**: AI can compute aggregates, but it shouldn't round individual values to distortion.
+- **Raw values**: AI can compute aggregates, but it shouldn't round individual values to the point of distortion.
 - **Source categories**: Raw data has A, B, C categories. The result shouldn't invent category D.
 
-The straightforward approach: tell AI to self-verify.
+The straightforward approach is to have AI self-verify.
 
 > Check your analysis: did the total row count change? Were any order IDs modified? Are there categories in the output that don't exist in the source data? Answer each one.
 
-Not sure what's invariant? Ask AI to figure it out:
+Not sure what's invariant? Have AI figure it out:
 
 > You're about to process this dataset. First, list the properties that must never change no matter what analysis you perform. Then tell me how you'll verify each one.
 
@@ -75,7 +75,7 @@ AI lists them. You review, confirm the right ones, and add missing ones. Two min
 
 ## Reverse Checking
 
-GCO-as-checklist checks completeness. Invariant checks check correctness. Reverse checking goes further: assume the result is wrong, then find where it broke.
+GCO-as-checklist checks completeness. Invariant checks check correctness. Reverse checking goes further: it assumes the result is wrong, then finds where it broke.
 
 **Method 1: Likelihood list.**
 
@@ -87,7 +87,7 @@ AI will probably write: wrong data source, wrong aggregation formula, wrong time
 
 > Now act as a reviewer. Find every issue in this report, the more the better. Tag each with a risk level and a fix recommendation.
 
-AI will produce some false positives. Skim the list, pick out the real issues, and you've found problems that more thorough descriptions wouldn't have caught.
+AI will produce some false positives. You skim the list, pick out the real issues, and find problems that more thorough descriptions wouldn't have caught.
 
 ---
 
@@ -102,7 +102,7 @@ Three methods, escalating depth based on task weight:
 
 You are not the one doing the manual checking. AI handles bulk verification: scanning a thousand rows in a minute, listing possible failure modes, and questioning its own output from different angles. Your job is judgment. Is this deviation acceptable? Does that risk need action?
 
-GCO's value is complete here. You used it to say what you wanted. You used it to confirm that's what you got.
+GCO's value closes the loop here. You used it to say what you wanted. You used it to confirm that's what you got.
 
 ---
 
@@ -124,4 +124,4 @@ Pick a task you'd give AI today, preferably with data output or text generation.
 
 ---
 
-Description and verification covered. Next up in Part 4: your AI toolbox, how to combine APIs with autonomous AI agents, and when to reach for which.
+Description and verification covered. [Day 12]({{< relref "ai-path-l1-l2-week3-day12" >}}) is next: your AI toolbox, how to combine APIs with autonomous AI agents, and when to reach for which.
