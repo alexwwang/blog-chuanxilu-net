@@ -12,7 +12,7 @@ cover:
   alt: "Watercolor painting of a brass key before two arched doors, representing the Zen and Go services"
 ---
 
-If you build with, or are thinking of using, OpenCode.ai (oc, for short) for development or agent work, you've probably felt this anxiety: worried the models won't match the official ones, worried the free tier will hit its limit every day, or puzzled over how the Go subscription quota is even calculated, when users claim they "burned through half a month's quota in 5 minutes," which sounds unreasonable.
+If you build with, or are thinking of using, OpenCode.ai (oc, for short) for development or agent work, you've probably felt this anxiety: worried the models won't match the official ones, worried the free tier will hit its limit every day, or puzzled over how the Go subscription quota is even calculated, when users claim they "burned through half a month's quota in 5 minutes," which sounds dubious.
 
 Then DeepSeek V4 Flash (ds4f, for short) went stable, and my token anxiety evaporated. I analyzed over 3,000 API call logs from my local machine across three months of active usage and cross-checked them against the numbers online. Here's the truth behind these five misconceptions. Once you get these straight, your workflow runs steadier, and you stop worrying about burning through your token quota.
 
@@ -59,7 +59,7 @@ The free tier is genuinely free. It's also a limited-time trial tier, not a perm
 
 "200 a day" undersells the free tier. I had days at 544 and 665 requests with no limit triggered. But "use it freely" is also false: a batch run at 250 requests per hour hits the wall.
 
-So the free tier can't replace the subscription. For trials and light use, it's fine. For agent batch workloads, large context windows, and high operational stability, opting for the Go subscription becomes necessary. The Go ds4f gets a 1M context window (matching the official native spec [6]); the free tier gets a fifth of that.
+So the free tier can't replace the subscription. For trials and light use, it's fine. For agent batch workloads, large context windows, and high operational stability, opting for the Go subscription becomes essential. The Go ds4f gets a 1M context window (matching the official native spec [6]); the free tier gets a fifth of that.
 
 ## Myth 3: OpenCode's ds4f Is a Downgraded Version
 
