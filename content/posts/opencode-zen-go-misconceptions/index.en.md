@@ -12,11 +12,11 @@ cover:
   alt: "Watercolor painting of a brass key before two arched doors, representing the Zen and Go services"
 ---
 
-If you build with, or are thinking of using, OpenCode.ai (oc, for short) for development or agent work, you've probably felt this anxiety: worried the models won't match the official ones, worried the free tier will hit its limit every day, or puzzled over how the Go subscription quota is even calculated, when people claim they "burned through half a month's quota in 5 minutes."
+If you build with, or are thinking of using, OpenCode.ai (oc, for short) for development or agent work, you've probably felt this anxiety: worried the models won't match the official ones, worried the free tier will hit its limit every day, or puzzled over how the Go subscription quota is even calculated, when users claim they "burned through half a month's quota in 5 minutes," which sounds unreasonable.
 
-Then DeepSeek V4 Flash (ds4f, for short) went stable, and my token anxiety evaporated. I analyzed over 3,000 API call logs from my local machine over the past three months and cross-checked them against the numbers online. Here's the truth behind these five misconceptions. Once you get these straight, your workflow runs steadier, and you stop worrying about burning through your token quota.
+Then DeepSeek V4 Flash (ds4f, for short) went stable, and my token anxiety evaporated. I analyzed over 3,000 API call logs from my local machine across three months of active usage and cross-checked them against the numbers online. Here's the truth behind these five misconceptions. Once you get these straight, your workflow runs steadier, and you stop worrying about burning through your token quota.
 
-## Myth 1: One Key Means Zen and Go Are the Same Thing
+## Myth 1: Zen and Go Are Identical Because They Share One Key
 
 OpenCode runs two model services: Zen and Go.
 
@@ -59,7 +59,7 @@ The free tier is genuinely free. It's also a limited-time trial tier, not a perm
 
 "200 a day" undersells the free tier. I had days at 544 and 665 requests with no limit triggered. But "use it freely" is also false: a batch run at 250 requests per hour hits the wall.
 
-So the free tier can't replace the subscription. For trials and light use, it's fine. For agent batch workloads, large context requirements, and higher reliability, the Go subscription becomes essential. The Go ds4f gets a 1M context window (matching the official native spec [6]); the free tier gets a fifth of that.
+So the free tier can't replace the subscription. For trials and light use, it's fine. For agent batch workloads, large context windows, and high operational stability, opting for the Go subscription becomes necessary. The Go ds4f gets a 1M context window (matching the official native spec [6]); the free tier gets a fifth of that.
 
 ## Myth 3: OpenCode's ds4f Is a Downgraded Version
 
@@ -67,7 +67,7 @@ The rumor: OpenCode's ds4f has a cut context window, an old version, worse quali
 
 The reality: it is the same model and the exact same version.
 
-DeepSeek V4 Flash's official API updated to the 0731 version on 2026-07-31, featuring a retrained setup, the same architecture (284B total / 13B active MoE parameters), a native 1M context window, and up to 384K output tokens per request [6]. OpenCode's ds4f connects directly to DeepSeek's official service (community corroboration [7]), priced internally at $0.14 / $0.28 per 1M token [2], matching the official RMB price of roughly ¥1 / ¥2 [6].
+DeepSeek V4 Flash's official API updated to the 0731 version on 2026-07-31, featuring a retrained setup, the same architecture (284B total / 13B active MoE parameters), a native 1M context window, and support for up to 384K output tokens per request [6]. OpenCode's ds4f connects directly to DeepSeek's official service (community corroboration [7]), priced internally at $0.14 / $0.28 per 1M token [2], matching the official RMB price of roughly ¥1 / ¥2 [6].
 
 There is one real detail that *looks* like a downgrade: the 0731 version is deployed in China only. You have to explicitly enable "models deployed in China" in the Go console, or you get a 403 RegionError [7]. That's a deployment-location choice, not a watered-down model.
 
@@ -75,7 +75,7 @@ The watered-down part is the free tier: 200K context, daily limits, no vision. B
 
 ## Myth 4: ds4f Can't See Images, So OpenCode Can't Handle Them
 
-ds4f lacks vision capabilities: the official Responses API rejects image and file inputs [6], and the free tier's modalities are code/text [4]. That's a model capability boundary.
+ds4f natively lacks vision capabilities: the official Responses API rejects image and file inputs [6], and the free tier's modalities are code/text [4]. That's a model capability boundary.
 
 But handling images doesn't require switching tools. It requires switching models. Different apps route differently:
 
@@ -133,7 +133,7 @@ Over quota, two options. Default: **rate limiting** (requests get blocked with 4
 
 Go's subscription value is **more requests for less money**.
 
-> **Key premise**: all models share a single subscription quota ($60/month). ds4f, MiMo, and GLM all draw from the same pool. They don't each get their own quota.
+> **Key premise**: all models share a single unified subscription quota ($60/month). ds4f, MiMo, and GLM all draw from the same pool. They don't each get their own quota.
 
 Sorted by estimated monthly request volume, high to low:
 
@@ -160,7 +160,7 @@ Sorted by estimated monthly request volume, high to low:
 
 ### The One-Sentence Strategy
 
-**Use the Go subscription (ds4f) as your primary workhorse, use the Zen free tier for image fallbacks, and rely on official APIs for production.** The three tiers combine. You don't have to pick one.
+**Deploy Go subscription's ds4f as your primary workhorse, rely on the Zen free tier for image fallbacks, and use official APIs for production workloads.** The three tiers combine. You don't have to pick one.
 
 Measured and verified 2026-08-09. The free model list, quotas, and model versions are moving fast. Check the official docs before you commit.
 
