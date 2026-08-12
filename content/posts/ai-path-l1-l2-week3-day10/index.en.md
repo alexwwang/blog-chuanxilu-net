@@ -3,7 +3,7 @@ title: "Your AI Feels Like an Intern? Try the GCO Framework"
 slug: "ai-path-l1-l2-week3-day10"
 date: 2026-07-21T07:00:00+08:00
 draft: false
-description: "Three exercises that show how fuzzy vs clear task descriptions change AI output — and the GCO framework that fixes it."
+description: "Three exercises that show how vague vs clear task descriptions change AI output, and the GCO framework that fixes it."
 tags: ["AI", "tutorial", "prompt-engineering", "task-description"]
 categories: ["ai-path"]
 toc: true
@@ -21,13 +21,13 @@ I once asked an AI to organize project documents:
 
 > "Help me sort these files."
 
-What I got back: all `.md` and `.py` files mixed together, sorted alphabetically by filename. It *did* sort them. Just not the way I meant.
+What I got back: all `.md` and `.py` files mixed together, sorted alphabetically by filename. It *did* sort them, just not the way I meant.
 
-Another time I said: "Show me the directory structure." I wanted a tree view. The AI gave me `ls -lh` output: file sizes, timestamps, permissions. Everything I didn't ask for.
+Another time I said: "Show me the directory structure." I wanted a tree view. The AI gave me `ls -lh` output: file sizes, timestamps, permissions, everything I didn't ask for.
 
-Same request, two completely different results. The gap wasn't in the tool. It was in how I described what I wanted.
+The same request, described vaguely or clearly, can produce two completely different results. The gap wasn't in the tool. It was in how I described what I wanted.
 
-A fuzzy description and a clear one can mean the difference between three iterations and zero. Here are three exercises from everyday scenarios. Each starts with a vague version, breaks down what's missing, and builds up to a clear version.
+A vague description and a clear one can mean the difference between three iterations and zero. Here are three exercises from everyday scenarios. Each starts with a vague version, breaks down what's missing, and builds up to a clear version.
 
 If you read these and think "wait, I write prompts like the vague version too," that is exactly why this article exists.
 
@@ -61,7 +61,7 @@ The fix is straightforward: state the goal, set constraints, define the output.
 
 With this version, the AI gets it right on the first try nine times out of ten. Even if something is off, say SVGs end up in documents/ instead of images/, you correct one category, not the whole task.
 
-A fuzzy description costs more than a few extra edits. The AI may end up doing something completely different from what you had in mind.
+A vague description costs more than a few extra edits. The AI may end up doing something completely different from what you had in mind.
 
 ## Exercise 2: "Analyze This Data"
 
@@ -91,7 +91,7 @@ I tested both versions on the same dataset. The vague one returned a heatmap of 
 
 > Write a script to monitor disk space.
 
-Three missing pieces: What threshold triggers the alert? What's the notification channel? What environment and scheduler?
+Three missing pieces: What threshold triggers the alert? What's the notification channel? What's the target environment and scheduler?
 
 The AI might write a Python script that depends on `psutil`. But your server runs Ubuntu 22.04 with a minimal base image and no extra packages. Or it writes an email alert, but you don't have SMTP configured.
 
@@ -120,7 +120,7 @@ This version drops platform assumptions. The AI can use Bash, PowerShell, or any
 > Constraints: Use Get-PSDrive C for usage. Write alerts to Event Log. Schedule via Task Scheduler.
 > Output: Monitor-Disk.ps1 + Task Scheduler import config.
 
-Every constraint eliminates a risk of assuming the AI would guess correctly. The vague version outputs a Python script that emails you. Except you don't have SMTP set up. Dead on arrival.
+Every constraint eliminates a risk that comes from assuming the AI would guess correctly. The vague version might output a Python script that emails you. Except you don't have SMTP set up. Dead on arrival.
 
 ## The Pattern: GCO
 
@@ -128,11 +128,11 @@ All three clear versions share the same structure. I call it **GCO**:
 
 ![GCO three elements: Goal → Constraints → Output](illustration-gco.png)
 
-**G (Goal).** What to do, and only that. One sentence defining the finish line.
+**G (Goal):** What to do, and only that. One sentence defining the finish line.
 
-**C (Constraints).** What not to do. Draw the boundaries, exclude the unwanted options.
+**C (Constraints):** What not to do. Draw the boundaries, exclude the unwanted options.
 
-**O (Output).** What counts as done. Define the deliverable so validation is objective.
+**O (Output):** What counts as done. Define the deliverable so validation is objective.
 
 These three elements are sequential. Goal sets direction. Constraints narrow the path. Output defines the finish line. Without Goal, Constraints and Output have no anchor. Without Constraints, the AI can hit the target but cross your boundaries, deleting files you wanted kept or using a library your environment does not have. Without Output, the AI finishes but you have no way to tell whether it is done, and you accept whatever it gives you.
 
