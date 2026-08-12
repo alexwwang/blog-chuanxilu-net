@@ -19,7 +19,7 @@ Day 11 ended with a question: how do I automate these steps?
 
 Here's my answer. Pairing stateless API calls with an AI agent is the same kind of work as breaking down workflows, designing systems, and building software. I've been doing that kind of work for years. The AI picture book project I'm building right now is a clean example. I'll walk through how I designed its pipeline and tasks.
 
-Let me settle the terms first. Autonomous execution AI and AI agent are the same thing: an AI with context and state awareness. It remembers earlier conversation and adjusts course as it works. Under the hood it runs on stateless LLM API calls: one request at a time, no memory between calls. The agent keeps its own state on top of that. I'll use both terms interchangeably from here on; they point to the same concept.
+Let me settle the terms first. Autonomous execution AI and AI agent are the same thing: an AI with context and state awareness. It remembers the earlier conversation and adjusts course as it works. Under the hood it runs on stateless LLM API calls: one request at a time, no memory between calls. The agent keeps its own state on top of that. I'll use both terms interchangeably from here on; they point to the same concept.
 
 Now the project. My kid was learning Dolch sight words and I wanted picture books that practiced them. Everything on the market was flashcards and worksheets. There were no storybooks at all.
 
@@ -41,21 +41,21 @@ The finished books matter less than the logic behind them: why this job can run 
 
 The rule has one line:
 
-**Can this step be pinned down?** If yes: prompts, process, output format can all be fixed. Write a script and call the API. Each call is stateless: prompt in, result out, no memory between calls. Running it once or a hundred times gives the same result. If no, hand it to an AI agent with context and state awareness. Exploring, trial and error, on-the-fly judgment is its job. It doesn't execute for you; it turns the task into something that can be pinned down: scripts, prompts, tables.
+**Can this step be pinned down?** If yes: prompts, process, output format can all be fixed. I write a script and call the API. Each call is stateless: prompt in, result out, no memory between calls. Running it once or a hundred times gives the same result. If no, it goes to an AI agent with context and state awareness. Exploring, trial and error, and on-the-fly judgment are its job. It converts the task into something that can be pinned down: scripts, prompts, tables.
 
 Here's the split in the picture book project:
 
 - **Story text and image prompts**: one-time exploration and judgment. Each story needs a plot, embedded vocabulary, controlled sentence patterns, and per-page image prompts following the character style guide. That work goes to the AI agent.
 - **71 illustrations**: the same action repeated 71 times. Prompts are already written, so no judgment is needed. This goes to the API script, queued one by one.
-- **Verification**: words sufficient? pages correct? images any good? Human and AI check together.
+- **Verification**: Are the words sufficient? Are the page counts correct? Are the images any good? Human and AI check together.
 
-Remember the dividing line: **writing prompts is judgment work, running prompts is labor. Judgment happens once; labor goes to the script.** That's the core of this combination.
+The dividing line is worth repeating: **writing prompts is judgment work, running prompts is labor. Judgment happens once; labor goes to the script.** That's the core of this combination.
 
 ---
 
 ## The Pipeline: Five Steps
 
-Look at the whole before the details:
+Let's look at the whole before the details:
 
 ```text
 Constraints first → AI generates structured table → script parses Markdown → API generates/downloads images → rules + human verification
@@ -67,7 +67,7 @@ Each step's output is the next step's input. Break anywhere in the middle and ev
 
 ### Step 1: Design Constraints First
 
-Before writing the first story, fix the constraints. For PP level, constraints center on two things: **word distribution** and **text shape**.
+The constraints are fixed before the first story is written. For PP level, constraints center on two things: **word distribution** and **text shape**.
 
 Word distribution: 40 words across 10 books. Each book introduces 4-5 new words; the last one, PP10, introduces only 3. Each book reuses words from the previous one. The distribution table is fixed before any story is written:
 
@@ -87,7 +87,7 @@ Text constraints: 1-2 sentences per page, 3-5 words per sentence, 30-60 words pe
 
 Hard targets: each new word appears at least 3 times in its story, each reused word at least once, fixed page count per book.
 
-These are Day 10's Constraints. Write them down first; every later step has something to check against.
+These are Day 10's Constraints. Writing them down first gives every later step something to check against.
 
 ### Step 2: AI Generates Structured Content
 
@@ -110,7 +110,7 @@ With the table done, the rest is labor. A Python script reads the Markdown, spli
 ```python
 import re
 
-        # Locate the table block (header is assumed to be "| Page |"; use a more tolerant regex in production, e.g. r'\|\s*Page\s*\|')
+def parse_pages(md_path):
     text = open(md_path).read()
     pages = []
     # Split by story title
@@ -140,7 +140,7 @@ Note: column 4 carries the global constraints assembled into a prompt: art style
 
 With the prompt list ready, I call the image API. For each image: write the prompt to a temp file, call the API once, take the image URL from the JSON response, download and save.
 
-The API is synchronous: I call once, wait until it finishes generating and returns the URL, then start the next image. Calls queue up one by one and run strictly sequentially. 71 images finish in about half an hour, and nobody needs to watch. Doing them by hand, one at a time, would eat most of a day just waiting.
+The API is synchronous: I call once, wait until it finishes generating and returns the URL, then start the next image. Calls queue up one by one and run strictly sequentially. 71 images finish in about half an hour, and nobody needs to watch. Doing them by hand, one at a time, would mean waiting most of a day.
 
 ### Step 5: Verify and Fix
 
@@ -151,7 +151,7 @@ Generating isn't finishing. Checklist:
 - Image integrity: all 71 downloaded? Regenerate the failures.
 - Audit: log every API call (time, prompt, response, image URL, file size) so problems can be traced.
 
-I pick out the bad images (wrong proportions, blurry) and regenerate them together; no need to rerun the whole batch. This is the payoff of pinning the process down: a rerun is just another API call, nearly zero cost. If an AI agent reran the whole pipeline every time, tokens would be wasted on duplicated work.
+I pick out the bad images (wrong proportions, blurry) and regenerate them together; there's no need to rerun the whole batch. This is the payoff of pinning the process down: a rerun is just another API call, nearly zero cost. If an AI agent reran the whole pipeline every time, tokens would be wasted on duplicated work.
 
 ---
 
@@ -159,10 +159,10 @@ I pick out the bad images (wrong proportions, blurry) and regenerate them togeth
 
 The whole pipeline runs because of that four-column table.
 
-The table is the contract between human and AI. It's also the input protocol for every script. The script doesn't know "stories"; it knows "page number, prompt". AI output must land in this format before the script can touch it.
+The table is the contract between human and AI. It's also the input protocol for every script. The script only knows "page number, prompt". AI output must land in this format before the script can touch it.
 Two payoffs:
 
-**Change one thing, everything updates.** Want to add a new word to PP01? Edit the story text in that row, regenerate images, recount words. The other 9 stories are untouched.
+**Change one thing and everything updates.** Want to add a new word to PP01? You'd edit the story text in that row, regenerate images, and recount words. The other 9 stories are untouched.
 
 **Verification has a basis.** The table itself is the checklist: rows for page counts, cells for word counts.
 
@@ -176,7 +176,7 @@ After the pipeline works, the script is still at the "edit code every run" stage
 
 Two changes turn it into a reusable tool:
 
-**Command-line arguments.** Use argparse to make the changeable options parameters:
+**Command-line arguments:** Use argparse to make the changeable options parameters:
 
 ```python
 import argparse
@@ -201,9 +201,9 @@ python batch_generate.py --input pp-storybook-complete.md --story pp01 --pages 3
 
 Script vs tool: a script is written for one use; a tool is reusable, accepts new inputs, and can be shared.
 
-The refactor is two steps: the parts that change (input path, output dir, which book, which pages) go into variables, then argparse wraps them. An AI agent can do it in a few minutes. Once the tool exists, every similar task reuses it. The time and tokens saved pay for the refactor quickly.
+The refactor is two steps: the parts that change (input path, output dir, which book, which pages) go into variables; then argparse wraps them. An AI agent can do it in a few minutes. Once the tool exists, every similar task reuses it. The time and tokens saved pay for the refactor quickly.
 
-**Config file.** Options that rarely change (API key, default model, image size) go into a config file read at startup. Change the config, not the code.
+**Config file:** Options that rarely change (API key, default model, image size) go into a config file read at startup. Changing the config replaces changing the code.
 
 ---
 
@@ -215,9 +215,9 @@ Have an AI agent write them. Describe the process with Day 10's GCO and verify t
 
 **"Is API more expensive than a subscription?"**
 
-Cheaper isn't the point. The division of labor is.
+The division of labor matters more than the price.
 
-The AI agent's output is a script: it thinks through the process for the task and writes the prompts. Once the script exists, image generation becomes a fixed task. No more judgment; just call the API.
+The AI agent's output is a script: it thinks through the process for the task and writes the prompts. Once the script exists, image generation becomes a fixed task. No more judgment, just API calls.
 
 One note: a subscription is essentially an API with different billing. If the TOS doesn't forbid it, you can use a subscription to drive your own scripts and AI agents for personal use. **So the dividing line comes down to whether the task can be pinned down: fixed tasks go through stateless API calls, the rest goes to an AI agent.**
 
@@ -238,7 +238,7 @@ Taken apart, it's two actions: AI generates structured content, scripts execute 
 
 ---
 
-[Day 13]({{< relref "ai-path-l1-l2-week3-day13" >}}) is next: run this pipeline once by hand. The next step is to batch-generate a set of content via API, then have an AI agent review and filter it. Two tools working in relay. Run it once and you'll see.
+[Day 13]({{< relref "ai-path-l1-l2-week3-day13" >}}) is next: it runs this pipeline once by hand. The next step is to batch-generate a set of content via API, then have an AI agent review and filter it. Two tools working in relay. One run makes it visible.
 
 ---
 
