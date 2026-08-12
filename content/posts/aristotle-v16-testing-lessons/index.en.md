@@ -1,5 +1,5 @@
 ---
-title: "1754 Tests All Green, Then a Code Review Found 6 Assassins"
+title: "1,754 Tests All Green, Then a Code Review Found 6 Assassins"
 slug: "testing-coverage-truth-code-review-found-6-bugs"
 date: 2026-07-15T07:00:00+08:00
 draft: false
@@ -14,9 +14,9 @@ cover:
 toc: true
 ---
 
-## Prologue: 1,754 perfect green lights
+## Prologue: 1,754 Perfect Green Lights
 
-Late on the night Aristotle v1.6.0 was shipping, the team watched the test panel.
+Late on the night Aristotle v1.6.0 shipped, the team watched the test panel.
 
 Green indicators lit up like dominoes. Python side: 1,166 assertions. TypeScript side: 588 checks. Total: 1,754 automated test cases. All green.
 
@@ -24,26 +24,26 @@ In code terms, that's cameras and infrared sensors on every wall. A fly couldn't
 
 They didn't know a ghost was already inside the castle.
 
-## The detective arrives, and the victim that wasn't there
+## The Detective Arrives, and the Victim That Wasn't There
 
 To be safe, the team brought in an independent code reviewer. Call him Oracle. He had a peculiar habit: he never looked at the green test reports. He only read the code itself.
 
 Oracle walked the castle, tapped a wall, and made his diagnosis: "Your tests catch every bad guy you expected. They miss the blind spots you couldn't see."
 
-A few hours later, he had pulled **6 hidden bugs** out of a system everyone thought was clean. The best one was a double agent that had fooled the automated tests completely.
+A few hours later, he pulled **6 hidden bugs** out of a system everyone thought was clean. The best one was a double agent that had fooled the automated tests completely.
 
-## The double agent: when right answers come from wrong reasons
+## The Double Agent: When Right Answers Come from Wrong Reasons
 
 There was a guard at the castle gate called `_should_return_result`. It had a clever design, maybe too clever:
 
 * **In test mode (drill environment):** it was lenient. It handed out passes and logged results.
 * **In production (real battlefield):** it turned strict. It threw exceptions on any anomaly.
 
-Sound good? Drill is drill, combat is combat. But this double standard dug a trap in the dark.
+Sound good? Drill is drill, combat is combat. But this double standard set a trap in the dark.
 
 ![Two parallel railroad tracks: test environment on top in golden light, production on bottom in cool shadow](illustration.png "Test and production run on two tracks that never intersect")
 
-Oracle followed the guard's output to the counter, the logic that tallies failures. The counter had a rigid rule: it only recognized one kind of failure, and that was the guard raising the alarm and making a capture.
+Oracle followed the guard's output to the counter, the logic that tallies failures. The counter had a rigid rule. It only recognized one kind of failure: the guard raising the alarm and making a capture.
 
 **The chain reaction unfolded:**
 
@@ -51,7 +51,7 @@ In test mode (drill environment), an anomaly occurred that should have been inte
 
 The counter's blind spot: the counter looked up, saw no alarm had been raised, and dutifully recorded: "All clear, no failures."
 
-The absurd outcome: the automated test saw the counter's report reading "no failures" and happily declared: test passed! The test saw a green light, but for the wrong reason. It mistook an "unflagged隐患" for "system healthy."
+The absurd outcome: the automated test saw the counter's report reading "no failures" and happily declared: "test passed!" The test saw a green light, but for the wrong reason. It mistook an "unflagged hazard" for "system healthy."
 
 Think of it as a military drill gone absurd. To make record-keeping easy, command decided that soldiers hit by simulated fire wouldn't leave the field. They would carry a "hit card" and keep marching. The counter only counted soldiers carried off the field. Nobody was carried off, so the report read: "Zero casualties. Mission success."
 
@@ -63,9 +63,9 @@ Because drill rules and combat rules run on separate tracks, the 1,754 automated
 
 Let's turn our attention to the other cases Oracle caught.
 
-The original report listed five more bugs Oracle found across the castle. None are as mind-bending as the double agent, but each one shows how automated testing can be fooled by its own assumptions.
+The original report listed 5 more bugs Oracle found across the castle. None are as mind-bending as the double agent, but each one shows how automated testing can be fooled by its own assumptions.
 
-## Bug 2: The impostor on the wrong path
+## Bug 2: The Impostor on the Wrong Path
 
 The Python environment has a rule: when you import a package, you follow the official path.
 
@@ -75,20 +75,20 @@ Someone wrote `sys.path.insert` as a convenience. It's like sticking a handwritt
 
 If the real environment already has an official package with the same name, `sys.path.insert` jumps the queue. The system picks up the impostor package instead of the real one.
 
-Tests passed because the test environment only had one copy of everything. In a real deployment, with dependencies layered in, the system would grab the wrong package at the wrong time. Oracle spotted this path-shading trick immediately.
+Tests passed because the test environment only had one copy of everything. In a real deployment, with dependencies layered in, the system would grab the wrong package at the wrong time. Oracle spotted this path-shadowing trick immediately.
 
-## Bug 3: The traveler who can't adapt
+## Bug 3: The Traveler Who Can't Adapt
 
 This bug was a relative path, hardcoded to a specific working directory. It was a guide who relied entirely on familiar surroundings.
 
 In the drill (test environment), everyone worked from the same office (the current working directory, CWD). The guide sent maintenance workers to fix things and always found the right spot. Tests passed.
 
 **In production:**
-Problems could appear anywhere — on the roof, in the basement. The guide still sent workers "three steps forward then left" based on office memory. The workers either couldn't find the pipe to fix, or fixed the wrong thing and brought down the security system.
+Problems could appear anywhere: on the roof, in the basement. The guide still sent workers "three steps forward then left" based on office memory. The workers either couldn't find the pipe to fix, or fixed the wrong thing and brought down the security system.
 
 Tests proved it worked in the office. They didn't prove it could survive outside it.
 
-## Bug 4: The erased Agent 0
+## Bug 4: The Erased Agent 0
 
 This one had dark comedy written all over it.
 
@@ -102,9 +102,9 @@ A legitimate task with `run_id=0` walked up to the guard. The guard decided `0` 
 
 The Agent 0 task vanished from the system. No one could find it.
 
-Why didn't the tests catch this? Because when writing test cases, everyone naturally picks `run_id=1` or `run_id=100`. Nobody thinks to test "what if the ID is zero." The tests covered all the common numbers. They made zero a blind spot. Oracle stared at that `0` for a long time.
+Why didn't the tests catch this? Because when writing test cases, everyone naturally picks `run_id=1` or `run_id=100`. Nobody thinks to test "what if the ID is zero." The tests covered all the common numbers. They treated zero as a blind spot. Oracle stared at that `0` for a long time.
 
-## Bugs 5 and 6: The invisible branch and the zombie code
+## Bugs 5 and 6: The Invisible Branch and the Zombie Code
 
 Two bugs for the price of one.
 
@@ -114,7 +114,7 @@ Meanwhile, in another corner, dead code from years ago was still lying around. N
 
 Oracle pulled both out. The team's faces went red. All 1,754 tests were marching on the main roads with floodlights. These two dark corners had never seen a single beam.
 
-## Epilogue: Perfect isn't the goal
+## Epilogue: Perfect Isn't the Goal
 
 Story over. If you were the team lead watching Oracle pull out 6 hidden assassins, you might be thinking: fire the engineer who wrote the tests?
 
