@@ -4,7 +4,7 @@ slug: "opencode-fallback-chains"
 date: 2026-06-07T08:00:00+08:00
 draft: false
 description: "oh-my-openagent（omo）和 oh-my-opencode-slim（oms）的 fallback 机制完全不同：omo 是五层管线逐层降级，oms 是启动选模型 + 运行时 abort 重试。本文从源码出发，拆解两套系统的架构、配置模式、最佳实践，并给出一份脱敏的实战配置示例。"
-tags: ["AI", "opencode", "agent", "fallback", "oh-my-openagent"]
+tags: ["AI", "opencode", "agent", "fallback", "oh-my-openagent", "gpt", "chatgbt"]
 categories: ["AI 实践"]
 toc: true
 series: ["opencode-triple-config"]

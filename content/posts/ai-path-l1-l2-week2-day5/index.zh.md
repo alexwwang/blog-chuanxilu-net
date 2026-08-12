@@ -4,7 +4,7 @@ slug: "ai-path-l1-l2-week2-day5"
 date: 2026-06-12T07:00:00+08:00
 draft: false
 description: "L1→L2 第二周配套练习 Day 5：扩展 Part 2 的脚本，让它能读取 PDF、Word、CSV 等多种格式文件，不再只限于 .md 和 .txt。"
-tags: ["AI", "工具链", "教程", "API", "Python"]
+tags: ["AI", "工具链", "教程", "API", "Python", "deepseek v4 flash", "deepseek api"]
 categories: ["ai-path"]
 toc: true
 series: ["AI 之路进阶升级指南"]

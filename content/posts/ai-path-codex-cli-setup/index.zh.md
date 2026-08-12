@@ -4,7 +4,7 @@ slug: "ai-path-codex-cli-setup"
 date: 2026-07-13T07:00:00+08:00
 draft: false
 description: "AI 之路番外篇：GPT-5.6 发布后，Codex 的新装法——ChatGPT 桌面版自带 Codex 模式，CLI 也仍在更新。"
-tags: ["AI", "codex", "教程", "chatgpt", "openai", "冷启动", "GPT-5.6"]
+tags: ["AI", "codex", "教程", "chatgpt", "openai", "冷启动", "GPT-5.6", "chatgbt", "gpt 5.6", "claude code"]
 categories: ["ai-path"]
 toc: true
 series: ["AI 之路进阶升级指南"]

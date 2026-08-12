@@ -4,7 +4,7 @@ slug: "macos-voice-input-tools-comparison"
 date: 2026-07-02T07:00:00+08:00
 draft: false
 description: "一台 Intel MacBook Pro（MacBookPro16,2），需要支持中文和英文的语音输入。GitHub 上四个项目——purr、typeflux、openquack、freeflow——各有取舍。本文从实际硬件出发做一次横向对比，记录选择过程和安装体验。"
-tags: ["macOS", "语音输入", "ASR", "typeflux", "freeflow", "Intel Mac", "开源"]
+tags: ["macOS", "语音输入", "ASR", "typeflux", "freeflow", "Intel Mac", "开源", "AI"]
 categories: ["工具评测"]
 toc: true
 cover:

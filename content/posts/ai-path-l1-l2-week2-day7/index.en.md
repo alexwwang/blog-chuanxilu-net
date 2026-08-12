@@ -4,7 +4,7 @@ slug: "ai-path-l1-l2-week2-day7"
 date: 2026-06-18T07:00:00+08:00
 draft: false
 description: "L1→L2 Week 2 Day 7 exercise: Add timeout retries, rate-limit backoff, and exception logging to your batch processing script so it survives real-world network conditions."
-tags: ["AI", "toolchain", "tutorial", "API", "Python"]
+tags: ["AI", "toolchain", "tutorial", "API", "Python", "deepseek v4 flash", "deepseek api"]
 categories: ["ai-path"]
 toc: true
 series: ["AI Path: Level Up Guide"]

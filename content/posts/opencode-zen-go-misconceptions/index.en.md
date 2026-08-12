@@ -4,7 +4,7 @@ slug: "opencode-zen-go-misconceptions"
 date: 2026-08-10T16:00:00+08:00
 draft: false
 description: "Online rumors about OpenCode's free models and subscriptions, checked against real data: how one API key splits Zen from Go, the measured limits of the free tier, whether OpenCode's ds4f is a downgrade, and how the Go subscription quota is calculated."
-tags: ["AI", "opencode", "zen", "go", "deepseek"]
+tags: ["AI", "opencode", "zen", "go", "deepseek", "chatgbt", "kimi k3", "gpt 5.6", "codex", "deepseek v4 flash 0731", "deepseek api", "opencode go", "kimi k2.7 code"]
 categories: ["opencode"]
 toc: true
 cover:

@@ -4,7 +4,7 @@ slug: "ai-path-l1-l2-week2-day9"
 date: "2026-06-30T07:00:00+08:00"
 draft: false
 description: "L1→L2 Week 2 Day 9: Understand how API caching works, evaluate providers by cache hit rate and pricing, and pick a provider that fits your workload."
-tags: ["AI", "toolchain", "tutorial", "API", "caching", "cost-optimization"]
+tags: ["AI", "toolchain", "tutorial", "API", "caching", "cost-optimization", "gpt", "chatgbt", "deepseek v4 flash", "deepseek price", "claude opus 4.8"]
 categories: ["ai-path"]
 toc: true
 series: ["AI Path L1→L2 Upgrade Guide"]

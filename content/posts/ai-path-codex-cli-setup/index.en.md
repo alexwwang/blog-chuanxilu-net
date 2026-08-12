@@ -4,7 +4,7 @@ slug: "ai-path-codex-cli-setup"
 date: "2026-07-13T07:00:00+08:00"
 draft: false
 description: "AI Path bonus article: with GPT-5.6 out and Codex merged into the ChatGPT desktop app, here's how to get started — desktop or CLI, from account setup to your first instruction."
-tags: ["AI", "codex", "tutorial", "chatgpt", "openai", "cold-start", "GPT-5.6"]
+tags: ["AI", "codex", "tutorial", "chatgpt", "openai", "cold-start", "GPT-5.6", "chatgbt", "gpt 5.6", "claude code"]
 categories: ["ai-path"]
 toc: true
 series: ["AI Path L1→L2 Upgrade Guide"]

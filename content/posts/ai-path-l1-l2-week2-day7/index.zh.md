@@ -4,7 +4,7 @@ slug: "ai-path-l1-l2-week2-day7"
 date: 2026-06-18T07:00:00+08:00
 draft: false
 description: "L1→L2 第二周 Day 7 练习：给批量处理脚本加上超时重试、限流等待、异常日志，让脚本在真实网络环境下不再轻易中断。"
-tags: ["AI", "工具链", "教程", "API", "Python"]
+tags: ["AI", "工具链", "教程", "API", "Python", "deepseek v4 flash", "deepseek api"]
 categories: ["ai-path"]
 toc: true
 series: ["AI 之路进阶升级指南"]

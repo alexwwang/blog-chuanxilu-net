@@ -4,7 +4,7 @@ slug: "ai-path-l1-l2-week1-day1"
 date: "2026-06-02T07:00:00+08:00"
 draft: false
 description: "Day 1 companion exercise for the AI Path L1→L2 Upgrade Guide: run the hello_api.py from Part 1, see AI reply in your terminal, with a troubleshooting guide for common errors."
-tags: ["AI", "toolchain", "tutorial", "API", "DeepSeek"]
+tags: ["AI", "toolchain", "tutorial", "API", "DeepSeek", "deepseek v4 flash", "deepseek api"]
 categories: ["ai-path"]
 toc: true
 series: ["AI Path L1→L2 Upgrade Guide"]

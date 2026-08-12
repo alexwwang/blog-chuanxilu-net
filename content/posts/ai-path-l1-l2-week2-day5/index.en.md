@@ -4,7 +4,7 @@ slug: "ai-path-l1-l2-week2-day5"
 date: "2026-06-12T07:00:00+08:00"
 draft: false
 description: "L1→L2 Week 2 Day 5 exercise: extend the Part 2 batch script to handle PDF, Word, CSV, and JSON files instead of just .md and .txt."
-tags: ["AI", "toolchain", "tutorial", "API", "Python"]
+tags: ["AI", "toolchain", "tutorial", "API", "Python", "deepseek v4 flash", "deepseek api"]
 categories: ["ai-path"]
 toc: true
 series: ["AI Path L1→L2 Upgrade Guide"]

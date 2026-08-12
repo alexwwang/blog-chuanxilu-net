@@ -4,7 +4,7 @@ slug: "ai-path-l1-l2-week2-day6"
 date: 2026-06-13T07:00:00+08:00
 draft: false
 description: "L1→L2 Week 2 Day 6 exercise: Pick a real scenario (translation, summarization, or rewriting), and run the full batch processing pipeline end to end."
-tags: ["AI", "toolchain", "tutorial", "API", "Python"]
+tags: ["AI", "toolchain", "tutorial", "API", "Python", "deepseek v4 flash", "deepseek api"]
 categories: ["ai-path"]
 toc: true
 series: ["AI Path: Level Up Guide"]

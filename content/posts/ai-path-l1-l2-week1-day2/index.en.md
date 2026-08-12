@@ -4,7 +4,7 @@ slug: "ai-path-l1-l2-week1-day2"
 date: "2026-06-06T07:00:00+08:00"
 draft: false
 description: "Day 2 companion exercise for the AI Path L1→L2 Upgrade Guide: register on an aggregator platform, change two parameters, and see how the same code works across platforms."
-tags: ["AI", "toolchain", "tutorial", "API"]
+tags: ["AI", "toolchain", "tutorial", "API", "deepseek v4 flash", "deepseek api"]
 categories: ["ai-path"]
 toc: true
 series: ["AI Path L1→L2 Upgrade Guide"]

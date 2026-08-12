@@ -4,7 +4,7 @@ slug: "ai-path-l1-l2-week2-day8"
 date: "2026-06-28T07:00:00+08:00"
 draft: false
 description: "L1 to L2 Week 2 Day 8: understand autonomous execution AI (Claude Code, OpenCode, Codex), learn to describe tasks and let AI handle the coding, with a hands-on file organization exercise."
-tags: ["AI", "toolchain", "tutorial", "autonomous-execution", "automation"]
+tags: ["AI", "toolchain", "tutorial", "autonomous-execution", "automation", "chatgpt", "chatgbt", "codex", "openai", "claude code"]
 categories: ["ai-path"]
 toc: true
 series: ["AI Path L1→L2 Upgrade Guide"]

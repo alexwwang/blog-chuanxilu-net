@@ -4,7 +4,7 @@ slug: "ai-toolchain-evolution-path"
 date: 2026-05-10T08:00:00+08:00
 draft: false
 description: "An evolution map of AI capabilities from L0 to L4—not a tutorial for any specific tool, but a guide to understanding the fundamental mindset shifts at each stage. Includes an interactive HTML page where you can explore detailed skill checklists, recommended tools, and transition conditions for each level."
-tags: ["AI", "Toolchain", "Evolution Path", "Career Development"]
+tags: ["AI", "Toolchain", "Evolution Path", "Career Development", "chatgpt", "chatgbt"]
 categories: ["AI Practice"]
 toc: true
 cover:

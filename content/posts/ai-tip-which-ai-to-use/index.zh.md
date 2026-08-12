@@ -4,7 +4,7 @@ slug: "ai-tip-which-ai-to-use"
 date: 2026-05-15T06:00:00+08:00
 draft: false
 description: "ChatGPT、Claude、Gemini……试了一圈不知道选谁？一个场景对号入座框架，帮你找到最趁手的 AI。"
-tags: ["AI", "工具链", "进化路径", "技巧卡"]
+tags: ["AI", "工具链", "进化路径", "技巧卡", "chatgpt", "gemini", "gpt", "chatgbt", "claude", "kimi", "deepseek", "deepseek api"]
 categories: ["ai-path"]
 toc: false
 series: ["AI 之路初阶升级指南"]

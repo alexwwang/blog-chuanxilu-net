@@ -4,7 +4,7 @@ slug: "ai-path-l1-l2-week1-day1"
 date: 2026-06-02T07:00:00+08:00
 draft: false
 description: "L1→L2 第一周配套练习 Day 1：动手跑通 Part 1 里的第一段代码，附带常见错误排查。"
-tags: ["AI", "工具链", "教程", "API", "DeepSeek"]
+tags: ["AI", "工具链", "教程", "API", "DeepSeek", "deepseek v4 flash", "deepseek api"]
 categories: ["ai-path"]
 toc: true
 series: ["AI 之路进阶升级指南"]

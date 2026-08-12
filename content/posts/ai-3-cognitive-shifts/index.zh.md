@@ -4,7 +4,7 @@ slug: "ai-3-cognitive-shifts"
 date: 2026-05-13T00:00:00+08:00
 draft: false
 description: "你是不是打开 ChatGPT，打一句关键词，拿到答案就走？这种用法没错，但浪费了 AI 90% 的能力。通过 3 个真实场景的转变，帮你把上一篇的认知转变成可落地的结果。"
-tags: ["AI", "工具链", "进化路径"]
+tags: ["AI", "工具链", "进化路径", "chatgpt", "chatgbt"]
 categories: ["ai-path"]
 toc: false
 series: ["AI 之路初阶升级指南"]

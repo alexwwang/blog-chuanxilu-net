@@ -5,7 +5,7 @@ date: 2026-08-12T16:00:00+08:00
 draft: false
 description: 'Day 14 配套练习：角色文档的四块骨架，把验收标准写进提示词'
 categories: ["ai-path"]
-tags: ["ai-path", "l1-l2", "skill", "prompt"]
+tags: ["AI", "ai-path", "l1-l2", "skill", "prompt", "deepseek v4 flash"]
 toc: true
 series: ["AI 之路进阶升级指南"]
 cover:

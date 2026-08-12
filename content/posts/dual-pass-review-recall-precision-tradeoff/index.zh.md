@@ -4,7 +4,7 @@ slug: "dual-pass-review-recall-precision-tradeoff"
 date: 2026-05-22T10:00:00+08:00
 draft: false
 description: "设计审查的 agent 既要找得全又要找得准，一个 agent 难以两全。借鉴信息检索领域 15 年前的级联检索思路，拆成两个 agent——一个只管找全，一个只管找准。设计方案的问题更早被发现，开发阶段返工的风险降低了。"
-tags: ["AI", "设计审查", "信息检索", "Recall", "Precision", "Agent"]
+tags: ["AI", "设计审查", "信息检索", "Recall", "Precision", "Agent", "级联检索", "双 agent 审查"]
 categories: ["AI 实践", "用经典理论指导 Agent 实践"]
 series: ["用经典理论指导 Agent 实践"]
 toc: true

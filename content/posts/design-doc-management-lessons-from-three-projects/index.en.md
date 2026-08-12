@@ -4,7 +4,7 @@ slug: "design-doc-management-lessons-from-three-projects"
 date: 2026-05-08T15:00:00+08:00
 draft: false
 description: 'AI-assisted development generates tons of design documents that live in .gitignore, invisible to git. A single rebase silently deletes them, and git reflog can''t bring them back. This post walks through a lightweight git worktree setup that protects these documents, backed by real project data.'
-tags: ["AI", "design documents", "git worktree", "AI-assisted development", "document management"]
+tags: ["AI", "design documents", "git worktree", "AI-assisted development", "document management", "git rebase", ".gitignore", "version control"]
 categories: ["AI Practice"]
 toc: true
 cover:

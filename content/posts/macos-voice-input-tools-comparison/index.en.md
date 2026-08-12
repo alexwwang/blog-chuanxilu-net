@@ -4,7 +4,7 @@ slug: "macos-voice-input-tools-comparison"
 date: 2026-07-02T07:00:00+08:00
 draft: false
 description: "An Intel MacBook Pro (MacBookPro16,2) with four open-source voice input candidates: purr, typeflux, openquack, freeflow. Hardware constraints quickly eliminate three. This post documents the comparison, the decision, and what it's like to use the winner on an Intel Mac."
-tags: ["macOS", "voice input", "ASR", "typeflux", "freeflow", "Intel Mac", "open source"]
+tags: ["macOS", "voice input", "ASR", "typeflux", "freeflow", "Intel Mac", "open source", "AI"]
 categories: ["Tool Review"]
 toc: true
 cover:

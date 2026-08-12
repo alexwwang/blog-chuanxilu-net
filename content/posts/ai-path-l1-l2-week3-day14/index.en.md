@@ -5,7 +5,7 @@ date: 2026-08-12T16:00:00+08:00
 draft: false
 description: 'Day 14 practice: automate your skill documents. Four core blocks (identity, input, output requirements, quality requirements) are all it takes for the AI to build your skill.'
 categories: ["ai-path"]
-tags: ["ai-path", "l1-l2", "skill", "prompt"]
+tags: ["AI", "ai-path", "l1-l2", "skill", "prompt", "deepseek v4 flash"]
 toc: true
 series: ["AI Path L1→L2 Upgrade Guide"]
 cover:

@@ -4,7 +4,7 @@ slug: "deepseek-price-increase-beyond-gpu"
 date: 2026-08-07T02:00:00+08:00
 draft: false
 description: "On August 6, 2026, DeepSeek announced that it plans to raise API prices. This post unpacks the multifaceted motivations behind the move: cost pass-through, user filtering, expectation management, free marketing, a shift to value-based pricing, and open-source ecosystem constraints, accompanied by a list of falsifiable signals for the window prior to the official plan."
-tags: ["AI", "API", "DeepSeek", "pricing", "business analysis"]
+tags: ["AI", "API", "DeepSeek", "pricing", "business analysis", "openai", "deepseek api pricing", "kimi moonshot ai"]
 categories: ["Industry"]
 cover:
   image: "cover.jpg"

@@ -4,7 +4,7 @@ slug: "ai-path-l1-l2-week2-day8"
 date: 2026-06-28T07:00:00+08:00
 draft: false
 description: "L1→L2 第二周 Day 8：认识自主执行型 AI（Claude Code / OpenCode / Codex），学会描述任务让 AI 自己干活，用整理下载文件夹做一次完整实操。"
-tags: ["AI", "工具链", "教程", "自主执行", "自动化"]
+tags: ["AI", "工具链", "教程", "自主执行", "自动化", "chatgpt", "chatgbt", "codex", "openai", "claude code"]
 categories: ["ai-path"]
 toc: true
 series: ["AI 之路进阶升级指南"]

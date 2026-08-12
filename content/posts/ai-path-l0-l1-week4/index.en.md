@@ -4,7 +4,7 @@ slug: "ai-path-l0-l1-week4"
 date: 2026-05-26T07:00:00+08:00
 draft: false
 description: "Part 4 of the AI Path L0→L1 Upgrade Guide. Build a prompt library, pick the right tool for each job (with separate maps for international and Chinese users), and learn a tiered approach to knowledge management — because not every AI output is worth saving."
-tags: ["AI", "toolchain", "evolution-path", "tutorial"]
+tags: ["AI", "toolchain", "evolution-path", "tutorial", "chatgpt", "gemini", "chatgbt", "claude"]
 categories: ["ai-path"]
 toc: true
 series: ["AI Path L0→L1 Upgrade Guide"]

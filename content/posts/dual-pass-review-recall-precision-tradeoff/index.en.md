@@ -4,7 +4,7 @@ slug: "dual-pass-review-recall-precision-tradeoff"
 date: 2026-05-22T10:00:00+08:00
 draft: false
 description: "A design review agent needs to find every issue AND avoid false positives. One agent can't do both well. Borrowing cascade retrieval from information retrieval — a 15-year-old method — I split the agent into two: one for recall, one for precision. Real defects get caught earlier, and the risk of rework during development drops."
-tags: ["AI", "Design Review", "Information Retrieval", "Recall", "Precision", "Agent"]
+tags: ["AI", "Design Review", "Information Retrieval", "Recall", "Precision", "Agent", "cascade ranking", "two-stage review"]
 categories: ["AI Practice", "Classic Theory Meets Agent Practice"]
 series: ["Classic Theory Meets Agent Practice"]
 toc: true

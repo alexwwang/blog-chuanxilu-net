@@ -4,7 +4,7 @@ slug: "opencode-triple-config-switch"
 date: 2026-06-05T10:00:00+08:00
 draft: false
 description: "Three parallel OpenCode configs from real pain points—omo full version, oms slim version, clean mode. Environment variable switching for the right tool in each scenario."
-tags: ["AI", "opencode", "agent", "configuration management", "oh-my-openagent"]
+tags: ["AI", "opencode", "agent", "configuration management", "oh-my-openagent", "gemini", "gpt", "chatgbt", "claude", "kimi"]
 categories: ["AI Practice"]
 toc: true
 series: ["opencode-triple-config"]

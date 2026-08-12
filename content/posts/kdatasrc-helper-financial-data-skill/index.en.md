@@ -4,7 +4,7 @@ slug: "kdatasrc-helper-financial-data-skill"
 date: 2026-06-21T08:00:00+08:00
 draft: false
 description: "kimi CLI's datasource plugin can query stock quotes, macro indicators, corporate registries, and academic papers, but calling it from an AI agent workflow is awkward. kdatasrc-helper wraps it: single query, batch parallel, auto-parse, market-aware merge. This post covers its design and usage."
-tags: ["AI", "opencode", "kimi", "datasource", "financial data", "skill", "open source"]
+tags: ["AI", "opencode", "datasource", "financial data", "skill", "open source", "kimi moonshot ai"]
 categories: ["AI Practice"]
 toc: true
 cover:

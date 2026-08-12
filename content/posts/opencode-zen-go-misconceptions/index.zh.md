@@ -4,7 +4,7 @@ slug: "opencode-zen-go-misconceptions"
 date: 2026-08-10T16:00:00+08:00
 draft: false
 description: "网上关于 OpenCode 免费模型与订阅的传言，逐条拿数据对账：同一把 key 如何区分 Zen 与 Go、免费版额度的实测边界、oc 的 ds4f 是否缩水、Go 订阅额度怎么算。"
-tags: ["AI", "opencode", "zen", "go", "deepseek", "订阅"]
+tags: ["AI", "opencode", "zen", "go", "deepseek", "订阅", "chatgbt", "kimi k3", "gpt 5.6", "codex", "deepseek v4 flash 0731", "deepseek api", "opencode go", "kimi k2.7 code"]
 categories: ["opencode"]
 toc: true
 cover:

@@ -4,7 +4,7 @@ slug: "kdatasrc-helper-financial-data-skill"
 date: 2026-06-21T08:00:00+08:00
 draft: false
 description: "kimi CLI 的 datasource plugin 能查行情、宏观数据、企业工商、学术论文，但在 AI agent 工作流里直接调用很别扭。kdatasrc-helper 做了一层封装：单条查询、批量并行、自动解析、市场感知合并。本文介绍它的设计和用法。"
-tags: ["AI", "opencode", "kimi", "datasource", "金融数据", "skill", "开源"]
+tags: ["AI", "opencode", "datasource", "金融数据", "skill", "开源", "kimi moonshot ai"]
 categories: ["AI 实践"]
 toc: true
 cover:

@@ -4,7 +4,7 @@ slug: "ai-path-l1-l2-week1-day3"
 date: "2026-06-08T07:00:00+08:00"
 draft: false
 description: "Day 3 companion exercise for the AI Path L1→L2 Upgrade Guide: experiment with temperature and max_tokens, observe how they change AI output, and calculate actual API costs."
-tags: ["AI", "toolchain", "tutorial", "API"]
+tags: ["AI", "toolchain", "tutorial", "API", "deepseek v4 flash", "deepseek api"]
 categories: ["ai-path"]
 toc: true
 series: ["AI Path L1→L2 Upgrade Guide"]

@@ -4,7 +4,7 @@ slug: "ai-path-l1-l2-week1-day4"
 date: 2026-06-09T07:00:00+08:00
 draft: false
 description: "AI 之路进阶系列第二篇：学会用 Python 读取文件、调用 API、保存结果，再用循环批量处理整个文件夹，写一个能自动总结 100 篇文档的完整脚本。"
-tags: ["AI", "工具链", "教程", "API", "Python"]
+tags: ["AI", "工具链", "教程", "API", "Python", "deepseek v4 flash", "deepseek api"]
 categories: ["ai-path"]
 toc: true
 series: ["AI 之路进阶升级指南"]

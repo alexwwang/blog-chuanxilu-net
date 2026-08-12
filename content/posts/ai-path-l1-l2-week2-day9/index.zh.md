@@ -4,7 +4,7 @@ slug: "ai-path-l1-l2-week2-day9"
 date: 2026-06-30T07:00:00+08:00
 draft: false
 description: "L1→L2 第二周 Day 9 番外：理解 API 缓存的工作原理，学会从缓存命中率、价格等角度评估 API provider。选对工具比选便宜的更重要。"
-tags: ["AI", "工具链", "教程", "API", "缓存", "成本优化"]
+tags: ["AI", "工具链", "教程", "API", "缓存", "成本优化", "gpt", "chatgbt", "deepseek v4", "claude opus 4.8"]
 categories: ["ai-path"]
 toc: true
 series: ["AI 之路进阶升级指南"]

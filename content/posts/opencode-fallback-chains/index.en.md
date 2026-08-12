@@ -4,7 +4,7 @@ slug: "opencode-fallback-chains"
 date: 2026-06-07T08:00:00+08:00
 draft: false
 description: "oh-my-openagent (omo) and oh-my-opencode-slim (oms) have different fallback mechanisms: omo uses a 5-layer pipeline, oms uses startup selection + runtime abort retry. Source-code deep dive."
-tags: ["AI", "opencode", "agent", "fallback", "oh-my-openagent"]
+tags: ["AI", "opencode", "agent", "fallback", "oh-my-openagent", "gpt", "chatgbt"]
 categories: ["AI Practice"]
 toc: true
 series: ["opencode-triple-config"]

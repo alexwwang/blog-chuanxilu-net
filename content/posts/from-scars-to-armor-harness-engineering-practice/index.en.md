@@ -4,7 +4,7 @@ slug: "from-scars-to-armor-harness-engineering-practice"
 date: 2026-04-11T01:00:00+08:00
 draft: false
 description: "The first version of Aristotle looked smooth. In practice, it exposed four architectural problems. Fixing them validated the trust model and harness engineering framework from Part 3 — every constraint encodes a trust judgment."
-tags: ["AI", "agent", "opencode", "reflection", "aristotle", "harness engineering", "trust"]
+tags: ["AI", "agent", "opencode", "reflection", "aristotle", "harness engineering", "trust", "claude", "progressive disclosure", "context isolation", "trust layering"]
 categories: ["AI Practice", "Teaching AI to Reflect"]
 series: ["Teaching AI to Reflect"]
 cover:

@@ -4,7 +4,7 @@ slug: from-warp-to-kitty
 date: "2026-07-10T07:00:00+08:00"
 draft: false
 description: "When Chinese input kept freezing inside Warp + OpenCode, I switched to Kitty. The problem vanished. Plus: GPU terminal benchmarks."
-tags: ["terminal", "kitty", "warp", "ghostty", "iterm2", "opencode", "toolchain"]
+tags: ["terminal", "kitty", "warp", "ghostty", "iterm2", "opencode", "toolchain", "AI"]
 categories: ["tech-tinkering"]
 toc: true
 cover:

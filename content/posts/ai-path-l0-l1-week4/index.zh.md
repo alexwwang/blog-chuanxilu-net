@@ -4,7 +4,7 @@ slug: "ai-path-l0-l1-week4"
 date: 2026-05-26T07:00:00+08:00
 draft: false
 description: "AI 之路系列第四篇：构建你的 Prompt 库，按场景选对工具（国际/中国双方案），用分层策略做知识管理——不是所有 AI 输出都值得保存。"
-tags: ["AI", "工具链", "进化路径", "教程"]
+tags: ["AI", "工具链", "进化路径", "教程", "chatgpt", "gemini", "chatgbt", "claude"]
 categories: ["ai-path"]
 toc: true
 series: ["AI 之路初阶升级指南"]

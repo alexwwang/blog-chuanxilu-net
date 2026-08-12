@@ -4,7 +4,7 @@ slug: "ai-tip-which-ai-to-use"
 date: 2026-05-15T06:00:00+08:00
 draft: false
 description: "Tried ChatGPT, Claude, Gemini — still not sure which one to use? A scenario-based framework to find the right fit."
-tags: ["AI", "toolchain", "evolution-path", "tip-card"]
+tags: ["AI", "toolchain", "evolution-path", "tip-card", "chatgpt", "gemini", "gpt", "chatgbt", "claude", "kimi", "deepseek", "deepseek api pricing"]
 categories: ["ai-path"]
 toc: false
 series: ["AI Path L0→L1 Upgrade Guide"]

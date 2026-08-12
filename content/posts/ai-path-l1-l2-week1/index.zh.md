@@ -4,7 +4,7 @@ slug: "ai-path-l1-l2-week1"
 date: 2026-06-01T07:00:00+08:00
 draft: false
 description: "AI 之路进阶系列第一篇：API 是什么、和聊天窗口有什么不同、怎么注册账号（DeepSeek/OpenRouter/Claude）、Python 环境搭建、第一段代码跑通，以及 token、temperature 等核心参数的直觉理解。"
-tags: ["AI", "工具链", "进化路径", "教程", "API"]
+tags: ["AI", "工具链", "进化路径", "教程", "API", "chatgpt", "gpt", "chatgbt", "deepseek v4 flash", "deepseek api pricing", "claude opus 4.8"]
 categories: ["ai-path"]
 toc: true
 series: ["AI 之路进阶升级指南"]

@@ -4,7 +4,7 @@ slug: "ai-path-opencode-zen-setup"
 date: "2026-07-06T06:00:00+08:00"
 draft: false
 description: "AI Path bonus article: install OpenCode, register a Zen account, configure your API key, and select the free DeepSeek V4 Flash model -- a complete cold-start walkthrough."
-tags: ["AI", "opencode", "tutorial", "zen", "deepseek", "cold-start"]
+tags: ["AI", "opencode", "tutorial", "zen", "deepseek", "cold-start", "deepseek v4 flash", "deepseek api", "opencode go", "kimi k2.7 code"]
 categories: ["ai-path"]
 toc: true
 series: ["AI Path L1→L2 Upgrade Guide"]

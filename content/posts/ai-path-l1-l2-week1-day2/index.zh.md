@@ -4,7 +4,7 @@ slug: "ai-path-l1-l2-week1-day2"
 date: 2026-06-06T07:00:00+08:00
 draft: false
 description: "L1→L2 第一周配套练习 Day 2：注册聚合平台，修改两个参数让昨天的代码对接新地址，对比聚合平台和官方直连的区别。"
-tags: ["AI", "工具链", "教程", "API"]
+tags: ["AI", "工具链", "教程", "API", "deepseek v4 flash", "deepseek api"]
 categories: ["ai-path"]
 toc: true
 series: ["AI 之路进阶升级指南"]

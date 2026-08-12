@@ -4,7 +4,7 @@ slug: "managing-context-length-in-ai-coding-sessions"
 date: 2026-04-18T10:00:00+08:00
 draft: false
 description: "Someone in a group chat complained that GPT-5.4 performed worse than Doubao, ByteDance's chatbot—the model would give irrelevant answers without even reading the question. After asking some follow-up questions, I learned they had fed it many documents and the conversation had gone on for a long time. This probably wasn't the model's problem—it was context rot. The conversation had gotten so long that the model could no longer 'see' the current task clearly. This raises an overlooked problem: in the process of vibe coding or writing, how do you manage context effectively to avoid token and time wasted on model performance degradation?"
-tags: ["AI", "agent", "context management", "context rot", "opencode", "claude-code"]
+tags: ["AI", "agent", "context management", "context rot", "opencode", "claude-code", "claude"]
 categories: ["AI Practice"]
 cover:
   image: "cover.png"

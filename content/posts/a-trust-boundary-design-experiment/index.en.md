@@ -4,7 +4,7 @@ slug: "a-trust-boundary-design-experiment"
 date: 2026-04-06T18:00:00+08:00
 draft: false
 description: "The same reflection mechanism on different platforms, their complexity differing by an order of magnitude — but the complexity itself reveals a deeper question: when should we trust AI's judgment, and when should we step in?"
-tags: ["AI", "agent", "trust", "Aristotle", "claude-code-reflect", "OpenCode", "Claude Code"]
+tags: ["AI", "agent", "trust", "Aristotle", "claude-code-reflect", "OpenCode", "Claude Code", "openai", "claude cli", "claude subscription", "claude code cli"]
 categories: ["AI Practice", "Teaching AI to Reflect"]
 series: ["Teaching AI to Reflect"]
 cover:

@@ -4,7 +4,7 @@ slug: from-warp-to-kitty
 date: 2026-07-10T07:00:00+08:00
 draft: false
 description: "在 Warp + OpenCode 下中文输入法几乎没法用，换到 Kitty 后问题消失了。顺便聊几个 GPU 终端的性能对比。"
-tags: ["终端", "kitty", "warp", "ghostty", "iterm2", "opencode", "工具链"]
+tags: ["终端", "kitty", "warp", "ghostty", "iterm2", "opencode", "工具链", "AI"]
 categories: ["技术折腾"]
 toc: true
 cover:

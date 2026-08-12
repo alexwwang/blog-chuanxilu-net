@@ -4,7 +4,7 @@ slug: "ai-path-opencode-zen-setup"
 date: 2026-07-06T06:00:00+08:00
 draft: false
 description: "AI 之路番外篇：OpenCode 安装、注册 Zen 账号、配置 API Key、选择免费 DeepSeek V4 Flash 模型，完整冷启动流程。"
-tags: ["AI", "opencode", "教程", "zen", "deepseek", "冷启动"]
+tags: ["AI", "opencode", "教程", "zen", "deepseek", "冷启动", "deepseek v4 flash", "deepseek api", "opencode go", "kimi k2.7 code"]
 categories: ["ai-path"]
 toc: true
 series: ["AI 之路进阶升级指南"]
