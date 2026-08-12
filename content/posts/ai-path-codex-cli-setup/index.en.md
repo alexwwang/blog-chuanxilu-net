@@ -3,8 +3,8 @@ title: "Codex Cold Start: From Installation to Your First Command"
 slug: "ai-path-codex-cli-setup"
 date: "2026-07-13T07:00:00+08:00"
 draft: false
-description: "AI Path bonus article: with GPT-5.6 out and Codex merged into the ChatGPT desktop app, here's how to get started — desktop or CLI, from account setup to your first instruction."
-tags: ["AI", "codex", "tutorial", "chatgpt", "openai", "cold-start", "GPT-5.6", "chatgbt", "gpt 5.6", "claude code"]
+description: "AI Path bonus article: with GPT-5.6 released and Codex merged into the ChatGPT desktop app, here's how to get started: desktop or CLI, from account setup to your first instruction."
+tags: ["AI", "codex", "tutorial", "chatgpt", "openai", "cold-start", "GPT-5.6", "gpt 5.6", "claude code"]
 categories: ["ai-path"]
 toc: true
 series: ["AI Path L1→L2 Upgrade Guide"]
@@ -19,7 +19,7 @@ On July 9, 2026, OpenAI made two announcements at once: GPT-5.6 went public, and
 
 Codex CLI was also updated on the same day to v0.144.0/v0.144.1, for terminal-first developers and CI/CD pipelines. Both paths work. Pick the one that fits your workflow.
 
-This is the first hands-on article since Day 8, from account setup to running your first instruction.
+This is the first hands-on article since Day 8, covering everything from account setup to your first instruction.
 
 ---
 
@@ -49,7 +49,7 @@ For most people, Plus is the better deal. The rest of this guide assumes you're 
 ---
 
 ![](illustration.png)
-*ChatGPT desktop app's three modes: Chat, Work, and Codex — one app that switches between conversation, productivity, and development*
+*ChatGPT desktop app's three modes: Chat, Work, and Codex, one app that switches between conversation, productivity, and development*
 
 ---
 
@@ -84,24 +84,24 @@ If your card is declined, common causes:
 - **IP region is not supported**: Make sure your IP is in a supported region
 - **Virtual cards**: Some work, but some are rejected
 
-Payment done, your account is upgraded. Codex credits are included.
+Once payment completes, your account is upgraded to Plus. Codex credits are included.
 
 ---
 
-## Part 2: Install Codex — Desktop App (Recommended)
+## Part 2: Install Codex (Desktop App, Recommended)
 
 The ChatGPT desktop app is now a more straightforward way to use Codex.
 
 ### Download and Install
 
-Go to [chatgpt.com/download](https://chatgpt.com/download) and download the version for your system. If you've already got the standalone Codex desktop app, opening it triggers an automatic update. Your projects and settings carry over.
+Go to [chatgpt.com/download](https://chatgpt.com/download) and download the version for your system. If you already have the standalone Codex app, opening it triggers an automatic update.
 
 ### Switch to Codex Mode
 
 Open the ChatGPT desktop app and switch to **Codex** mode at the top of the window. Desktop mode gives you:
 
-- **Local file system access** — work directly on project directories
-- **Inline diff editing** — every change shown as a diff
+- **Local file system access**: work directly on project directories
+- **Inline diff editing**: every change shown as a diff
 - **PR review sidebar**
 - **Multi-repo support**
 
@@ -174,7 +174,7 @@ Codex reads your project files and gives you an analysis. Try something more spe
 Translate this README.md to Spanish, keep the Markdown format
 ```
 
-Start with read-only instructions to get a feel for how Codex handles your project. Let it edit code once you're comfortable.
+Try starting with read-only instructions to get a feel for how Codex handles your project. You can let it edit code once you're comfortable.
 
 ---
 
@@ -182,11 +182,11 @@ Start with read-only instructions to get a feel for how Codex handles your proje
 
 **1. What's the difference between Codex desktop and Codex CLI?**
 
-Desktop app is built into ChatGPT, with graphical diff review and a PR review sidebar. It's a better fit for everyday coding. The CLI is a terminal tool, more for CI/CD and scripting. Under the hood they're the same; desktop just adds a GUI. For auth, the desktop app uses your ChatGPT login, but the CLI needs a one-time OAuth flow.
+The desktop app is built into ChatGPT, with graphical diff review and a PR review sidebar. It's a better fit for everyday coding. The CLI is a terminal tool, more for CI/CD and scripting. Under the hood they're the same; desktop just adds a GUI. For auth, the desktop app uses your ChatGPT login. The CLI runs a one-time OAuth flow, which completes automatically if you're already signed in on the desktop app.
 
 **2. Can Free users use Codex?**
 
-Yes, but with restrictions. You can switch to Codex mode in the ChatGPT desktop app with a Free account, but you're limited to the Terra model with a reduced quota. Free accounts can't use Codex CLI.
+Yes, but with restrictions. You can switch to Codex mode in the ChatGPT desktop app with a Free account. You're limited to the Terra model with a reduced quota. Free accounts can't use Codex CLI. If you plan heavy use, upgrade to Plus.
 
 **3. "Command not found: codex"**
 
@@ -198,7 +198,7 @@ export PATH="$PATH:$(npm prefix -g)/bin"
 
 **4. Authentication fails**
 
-For the desktop app, check that you're logged into ChatGPT. For the CLI, verify your account is on Plus or higher.
+For the desktop app, check that you're logged into ChatGPT. For the CLI, verify your account is on a plan with Codex access (Go or higher).
 
 **5. Codex won't edit files**
 
@@ -223,7 +223,7 @@ In the desktop app, you can adjust the approval policy in Settings.
 
 ### CLI (Alternative)
 
-- [ ] ChatGPT Plus or higher
+- [ ] ChatGPT Go or higher (this guide assumes Plus)
 - [ ] Node.js v18+ (`node --version`)
 - [ ] Git installed (`git --version`)
 - [ ] Codex CLI installed (`npm install -g @openai/codex`)
@@ -233,4 +233,4 @@ In the desktop app, you can adjust the approval policy in Settings.
 
 ---
 
-> This is a bonus article for the "AI Path L1→L2 Upgrade Guide." Previous: [Day 8: Autonomous Execution AI](../ai-path-l1-l2-week2-day8/) compared Codex, Claude Code, and OpenCode. If you prefer an open-source alternative, see [OpenCode Cold Start](../ai-path-opencode-zen-setup/).
+> This is a bonus article for the "AI Path L1→L2 Upgrade Guide." Previous: [Day 8: Autonomous AI, Automation Without Writing Code](../ai-path-l1-l2-week2-day8/) compared Codex, Claude Code, and OpenCode. If you prefer an open-source alternative, see [OpenCode Cold Start](../ai-path-opencode-zen-setup/).
