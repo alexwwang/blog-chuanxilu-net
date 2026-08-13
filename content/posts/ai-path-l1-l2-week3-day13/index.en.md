@@ -17,9 +17,9 @@ cover:
 
 Day 12 ended with a promise: in the next practice, we'd run the pipeline by hand. Two tools working in relay. Today, I deliver on that promise.
 
-I'm not going to show you how to use an off-the-shelf skill. I'll show you how to build one from scratch. The project is [picture-book-pipeline](https://github.com/alexwwang/picture-book-pipeline), which I use to batch-generate children's picture books. It turns a workflow into a complete skill kit: a SKILL.md overview, role prompts, and execution scripts, all in one directory.
+I'm not here to show you how to use an off-the-shelf skill; I'll show you how to build one from scratch. The project is [picture-book-pipeline](https://github.com/alexwwang/picture-book-pipeline), which I use to batch-generate children's picture books. It turns a workflow into a complete skill kit: a SKILL.md overview, role prompts, and execution scripts, all in one directory.
 
-The project took shape through six core conversations with an AI agent, plus follow-up details and fixes. The agent did the work. Six rounds, six jobs: set the goal, explain the workflow, confirm nodes and acceptance, ask for a plan, implement, test. Each round has its design, its thinking, and its prompt.
+The project took shape through six core conversations with an AI agent, along with minor follow-up tweaks. The agent executed the heavy lifting. Six rounds, six jobs: set the goal, explain the workflow, confirm nodes and acceptance, ask for a plan, implement, test. Each round has its design, its thinking, and its prompt.
 
 ![Six-round conversation building the skill kit: GOAL, FLOW, LIST, PLAN, BUILD, TEST cards in a circle around a folder, watercolor](illustration-six-rounds.jpg)
 
@@ -35,7 +35,7 @@ Defining the target end state before implementation is critical. This is Day 10'
 Goal: build a reusable skill kit for batch-generating children's picture books. Constraints: ages 3-5, fixed vocabulary list, 6 pages per story, `watercolor` style. Output: a reusable skill kit with the protocol, role prompts, and execution scripts.
 ```
 
-Without a goal, everything downstream loses direction. That's what GCO is for: the agent knows the finish line before we talk about how to get there.
+Without a goal, everything downstream drifts. That's the point of GCO: ensuring the agent sees the finish line before we discuss how to get there.
 
 ---
 
@@ -49,7 +49,7 @@ Goal set. Now tell the agent what the workflow is. The picture book generation w
 The workflow is: outline → story → image prompts → generate images page by page → review. First, restate your understanding of each stage, then we continue.
 ```
 
-Requiring the agent to restate the workflow ensures alignment before execution, preventing cascaded errors in later rounds. Day 8's task description applies here: if the job isn't described clearly, the AI can't do it.
+Requiring the agent to restate the workflow guarantees alignment before execution, preventing cascading errors down the road. Day 8's task description applies here: if the job isn't described clearly, the AI can't do it.
 
 ---
 
@@ -57,7 +57,7 @@ Requiring the agent to restate the workflow ensures alignment before execution, 
 
 Workflow confirmed. Now walk through each node's responsibility: what it does, what the intermediate result looks like, what the final result must satisfy. Before touching code, bring in Day 12's dividing line.
 
-Day 12's rule: writing prompts is judgment work; executing API scripts is pure grunt work. Judgment is for the LLM; grunt work goes to the script. The test is whether the step can be pinned down. If it can, the logic can be written as program steps and the result is deterministic. Image generation is that kind of work: prompt ready, flow fixed, then call the API, save the file, done. Every step is a fixed action. If a step can't be strictly pinned down, forcing it into hardcoded program logic yields rigid, subpar results. It needs flexible adjustment that code can't express. Writing stories is that kind of work. Word lists, sentence patterns, plots can all have standards, but all-rule writing makes every story the same. Adjust flexibly on top of standards. That's judgment work, for the agent or a human.
+Day 12's golden rule: prompt design requires judgment; script execution is pure grunt work. Judgment is for the LLM; grunt work goes to the script. The test is whether the step can be pinned down. If it can, the logic can be written as program steps and the result is deterministic. Image generation is that kind of work: prompt ready, flow fixed, then call the API, save the file, done. Every step is a fixed action. If a step can't be strictly pinned down, forcing it into hardcoded program logic yields rigid, subpar results. It needs flexible adjustment that code can't express. Writing stories is that kind of work. Word lists, sentence patterns, plots can all have standards, but all-rule writing makes every story the same. Adjust flexibly on top of standards. That's judgment work, for the agent or a human.
 
 **Input · Prompt**
 
@@ -78,7 +78,7 @@ The agent ran each node through the test and came back with the full list:
 
 I confirmed the list. No disagreement on the split. For review, the agent checks first, a human has the final say.
 
-The intermediate output is the core. The agent and the scripts hand off through a four-column table: page number, scene description, story text, image prompt. Page numbers are `p.01`, `p.02`. Parsing is position-based: the script doesn't look at column names, only column indices. Reading by column name would allow flexible column order, but a renamed column header breaks the script. I chose position, simple and direct. There's a trap with column names: the agent writes the table, and if it tweaks a header, the script dies. Why parse by position instead of column name? Because agents love tweaking headers on a whim. Locking column position is a bit rigid, but it gives the strongest constraint on the agent. Reorder the columns and the script reads the wrong cells and fails immediately. The table is Day 12's protocol. The clearer the protocol, the higher the chance the agent writes working scripts.
+The intermediate output is the core. The agent and the scripts hand off through a four-column table: page number, scene description, story text, image prompt. Page numbers are `p.01`, `p.02`. Parsing is position-based: the script doesn't look at column names, only column indices. Reading by column name would allow flexible column order, but a renamed column header breaks the script. I chose position, simple and direct. There's a trap with column names: the agent writes the table, and if it tweaks a header, the script dies. Why rely on position instead of column headers? Because agents love tweaking header names on a whim. Locking column positions feels rigid, but it imposes the strictest constraint on the agent. Reorder the columns and the script reads the wrong cells and fails immediately. The table is Day 12's protocol. The clearer the protocol, the higher the chance the agent writes working scripts.
 
 Protocol before implementation. The table comes first; role prompts and scripts all follow it.
 
@@ -133,7 +133,7 @@ Scripts: talk requirements before writing. What does `pipeline.py` do? Parse the
 `pipeline.py` parses `stories.md` line by line and generates one image per page. Image generation calls the existing `agnes-ai` skill, running the `agnes_media.py image` command with the prompt read from the fourth column. Suggest concurrency, timeout, and retry counts from your experience, with clear reasoning. Print one `ok` line per page with the story name and page number. Log one JSON line per page in `audit.log` with time, story, page, API, status, URL. If anything is uncertain, ask me before writing.
 ```
 
-The agent came back with parameter suggestions: concurrency 4, timeout 120s, 2 automatic retries on failure. The reasoning made complete sense, so I rolled with it. I added a few requirements of my own here: `audit.log` needed to use JSON with six fixed fields (time, story, page, API, status, URL). Console output provides human-readable progress, while structured JSON logs cater to machine parsing and post-run auditing. And rerun parameters: `--story` picks a story, `--pages` picks pages. This acts as a restart checkpoint for the pipeline, allowing partial runs without re-executing from scratch. Suggesting this is on me: the agent won't think of it. Requirements settled, then the agent writes code. This embodies Day 12's core principle: "turn the script into a tool." Once requirements are solid, user prompts collapse into command-line flags. You change parameters, not code.
+The agent came back with parameter suggestions: a concurrency of 4, a 120-second timeout, and 2 automatic retries. The logic was solid, so I went with it. I added a few requirements of my own here: `audit.log` needed to use JSON with six fixed fields (time, story, page, API, status, URL). Console output provides human-readable progress, while structured JSON logs cater to machine parsing and post-run auditing. And rerun parameters: `--story` picks a story, `--pages` picks pages. This acts as a restart checkpoint for the pipeline, allowing partial runs without re-executing from scratch. Proposing this was up to me; it's not something the agent would proactively introduce. Requirements settled, then the agent writes code. This embodies Day 12's core principle: "turn the script into a tool." Once requirements are solid, user prompts collapse into command-line flags. You change parameters, not code.
 
 **Input · Prompt**
 
@@ -223,11 +223,11 @@ uv run python3 skill/scripts/pipeline.py run stories.md \
   --cmd-cwd ~/agnes-ai
 ```
 
-6 images, 5 succeeded. One failed with a network resolution error (`Cannot connect to unknown`). Retries happen inside the same run; `stderr` prints `retrying ... (attempt 1/2)`. Still failing, record `errors: 1`. Verify doesn't trigger a rerun; pick the failed pages and rerun them. 6 for 6 after that. Real-world APIs don't always behave like textbook examples. Failures are part of the process. Day 9's reminder: when evaluating providers, stability is a cost.
+6 images, 5 succeeded. One failed with a network resolution error (`Cannot connect to unknown`). Retries happen inside the same run; `stderr` prints `retrying ... (attempt 1/2)`. Still failing, record `errors: 1`. Verify doesn't trigger a rerun; pick the failed pages and rerun them. 6 for 6 after that. Real-world APIs rarely behave like textbook examples; handling transient failures is just part of the engineering reality. Day 9's reminder: when evaluating providers, stability is a cost.
 
 Single-page repair relies on targeted CLI flags: `--story` selects a story, and `--pages` isolates specific pages. This allows re-running only the failed assets rather than restarting the entire batch. This requirement came from Round 5's talk. Without it, the agent would have missed the feature.
 
-AI review caught real problems. `the-red-ball` page 1: the scene description says "standing", the generated image shows "sitting". The vision model judged `consistent=false`. If the vision model flags a mismatch, that's an automatic fail. The fix: edit the scene description, rerun that single page, regenerate, and re-verify. Only then can you call it done. Looking at the end-to-end pipeline: the agent generates creative content, scripts execute bulk operations, AI conducts automated QA, and the human makes final decisions. This is Day 12's relay system in full effect, four distinct steps seamlessly chained together.
+AI review caught real problems. `the-red-ball` page 1: the scene description says "standing", the generated image shows "sitting". The vision model judged `consistent=false`. If the vision model flags a mismatch, that's an automatic fail. The fix is straightforward: edit the scene description, rerun that specific page, regenerate the image, and re-verify. Only then is it truly ready. Looking at the end-to-end pipeline: the agent generates creative content, scripts execute bulk operations, AI conducts automated QA, and the human makes final decisions. This is Day 12's relay system in full effect, four distinct steps seamlessly chained together.
 
 ---
 
@@ -240,7 +240,7 @@ AI review caught real problems. `the-red-ball` page 1: the scene description say
 - [ ] Nail down requirements and parameters first; only then let the agent write code.
 - [ ] Run tests against a clear checklist aligned with your original goals.
 
-Today, we turned a manual workflow into an automated skill kit across six conversations: Goal, Flow, List, Plan, Build, and Test. Looking back, no completely new concepts were introduced, just solid engineering patterns applied in sequence. Core concepts were logically chained: GCO came from Day 10, task descriptions from Day 8, division and protocols from Day 12, acceptance checks from Day 11, and provider evaluations from Day 9.
+Today, we turned a manual workflow into an automated skill kit across six conversations: Goal, Flow, List, Plan, Build, and Test. Looking back, no completely new concepts were introduced, just solid engineering patterns applied in sequence. Core concepts connected seamlessly: GCO from Day 10, task descriptions from Day 8, task division and protocols from Day 12, acceptance checks from Day 11, and provider evaluations from Day 9.
 
 Day 14 is next: dissect this skill further. The focus is how to write prompts, how an md document tells the agent what to do and how to do it.
 
