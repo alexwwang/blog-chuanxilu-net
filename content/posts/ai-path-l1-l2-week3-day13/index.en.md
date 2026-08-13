@@ -94,7 +94,7 @@ Nodes and acceptance confirmed. Now the agent refines the implementation plan. I
 Based on the confirmed list, propose an implementation plan: the skill directory structure, the prompt framework for each role, and script behavior with parameters. List them by node, noting the dependency order.
 ```
 
-The plan has three layers. SKILL.md is the protocol overview, covering four things: order, what each step produces, format, failure handling. roles/ holds the four role prompts. tools/ holds tool definitions (like agnes usage), tied to specific roles. scripts/ holds the execution scripts. The tree:
+The plan has three layers. SKILL.md serves as the protocol overview, defining four key aspects: execution order, node outputs, data formats, and error handling. roles/ holds the four role prompts. tools/ holds tool definitions (like agnes usage), tied to specific roles. scripts/ holds the execution scripts. The resulting file tree:
 
 **Output · Proposed tree**
 
@@ -113,7 +113,7 @@ skill/
     └── verify_images.py   # Visual review: score images against text
 ```
 
-This file tree serves as the implementation checklist. The plan locks down the structure, while the exact role of each file was already settled in Round 3. Round 5 has the agent implement file by file against the list. Every file, md or py, was written by the agent from the design.
+This directory structure acts as our implementation checklist. The plan locks down the file hierarchy, building on the node responsibilities settled in Round 3. Round 5 has the agent implement file by file against the list. Every file, md or py, was written by the agent from the design.
 
 Each role prompt is three sections: identity, input, output format. Day 14 covers how to write them.
 
@@ -121,7 +121,7 @@ Each role prompt is three sections: identity, input, output format. Day 14 cover
 
 ## Round 5: Confirm, Then Implement
 
-Plan confirmed. Let the agent work. Implementation follow-up can take two approaches: single-pass execution, or iterative micro-stepping. I chose micro-stepping for the scripts. Since they involve the most ambiguity, it's better to write and revise as you go.
+Plan confirmed. Let the agent work. When implementing, you can take two approaches: single-pass execution or iterative micro-stepping. I opted for micro-stepping when writing the scripts. Since they involve the most ambiguity, it's better to write and revise as you go.
 
 Role prompts first. Four roles, the agent wrote them one by one against the plan, and I reviewed each one. How a prompt document tells the agent what to do and how to do it: Day 14. Not here.
 
@@ -133,7 +133,7 @@ Scripts: talk requirements before writing. What does `pipeline.py` do? Parse the
 `pipeline.py` parses `stories.md` line by line and generates one image per page. Image generation calls the existing `agnes-ai` skill, running the `agnes_media.py image` command with the prompt read from the fourth column. Suggest concurrency, timeout, and retry counts from your experience, with clear reasoning. Print one `ok` line per page with the story name and page number. Log one JSON line per page in `audit.log` with time, story, page, API, status, URL. If anything is uncertain, ask me before writing.
 ```
 
-The agent came back with parameter suggestions: concurrency 4, timeout 120s, 2 automatic retries on failure. The reasoning made complete sense, so I rolled with it. I added a few requirements of my own here: `audit.log` needed to use JSON with six fixed fields (time, story, page, API, status, URL). Progress lines are for human readability; JSON logs are for script parsing and post-run auditing. And rerun parameters: `--story` picks a story, `--pages` picks pages. This acts as a restart checkpoint for the pipeline, allowing partial runs without re-executing from scratch. Suggesting this is on me: the agent won't think of it. Requirements settled, then the agent writes code. That's Day 12's "turn the script into a tool". Requirements clear, prompts become command-line parameters. Change parameters, not code.
+The agent came back with parameter suggestions: concurrency 4, timeout 120s, 2 automatic retries on failure. The reasoning made complete sense, so I rolled with it. I added a few requirements of my own here: `audit.log` needed to use JSON with six fixed fields (time, story, page, API, status, URL). Console output provides human-readable progress, while structured JSON logs cater to machine parsing and post-run auditing. And rerun parameters: `--story` picks a story, `--pages` picks pages. This acts as a restart checkpoint for the pipeline, allowing partial runs without re-executing from scratch. Suggesting this is on me: the agent won't think of it. Requirements settled, then the agent writes code. This embodies Day 12's core principle: "turn the script into a tool." Once requirements are solid, user prompts collapse into command-line flags. You change parameters, not code.
 
 **Input · Prompt**
 
@@ -198,7 +198,7 @@ Structural validation is also handled by the script. The agent ran verify:
 uv run python3 skill/scripts/pipeline.py verify stories.md --output-dir output
 ```
 
-Output: `verify: PASS` and `errors: 0`. Page numbers continuous, fields non-empty, images exist. Three invariants. Day 11 calls this invariant checking.
+Output: `verify: PASS` and `errors: 0`. Page numbers continuous, fields non-empty, images exist. These three conditions form our core invariants, a concept we established back in Day 11.
 
 Structural validation checks that files exist, not what the images contain. Checking whether the generated image actually matches the story text requires a higher-level check. The visual QA script sends image, scene description, and story text to a vision model:
 
@@ -210,7 +210,7 @@ uv run python3 skill/scripts/verify_images.py \
   --report qa-report.md --model opencode/mimo-v2.5-free
 ```
 
-Mock passing wasn't the end. The agent switched to real agnes and the first real run failed. The real command:
+Passing the mock tests was only the first step. When the agent switched to the real agnes tool, the first live run hit a snag. The real command:
 
 **Input · Command**
 
@@ -225,9 +225,9 @@ uv run python3 skill/scripts/pipeline.py run stories.md \
 
 6 images, 5 succeeded. One failed with a network resolution error (`Cannot connect to unknown`). Retries happen inside the same run; `stderr` prints `retrying ... (attempt 1/2)`. Still failing, record `errors: 1`. Verify doesn't trigger a rerun; pick the failed pages and rerun them. 6 for 6 after that. Real-world APIs don't always behave like textbook examples. Failures are part of the process. Day 9's reminder: when evaluating providers, stability is a cost.
 
-Single-page repair has parameters. `--story` picks a story, `--pages` picks pages. Redo only the bad pages, not the whole batch. This requirement came from Round 5's talk. Without it, the agent would have missed the feature.
+Single-page repair relies on targeted CLI flags: `--story` selects a story, and `--pages` isolates specific pages. This allows re-running only the failed assets rather than restarting the entire batch. This requirement came from Round 5's talk. Without it, the agent would have missed the feature.
 
-AI review caught real problems. `the-red-ball` page 1: the scene description says "standing", the generated image shows "sitting". The vision model judged `consistent=false`. If the vision model flags a mismatch, that's an automatic fail. The fix: edit the scene description, rerun that single page, regenerate, and re-verify. Only then can you call it done. Look at the pipeline end to end: agent produces content, scripts do the volume, AI reviews, human decides. Day 12's two tools in relay, four links joined.
+AI review caught real problems. `the-red-ball` page 1: the scene description says "standing", the generated image shows "sitting". The vision model judged `consistent=false`. If the vision model flags a mismatch, that's an automatic fail. The fix: edit the scene description, rerun that single page, regenerate, and re-verify. Only then can you call it done. Looking at the end-to-end pipeline: the agent generates creative content, scripts execute bulk operations, AI conducts automated QA, and the human makes final decisions. This is Day 12's relay system in full effect, four distinct steps seamlessly chained together.
 
 ---
 
@@ -235,12 +235,12 @@ AI review caught real problems. `the-red-ball` page 1: the scene description say
 
 - [ ] Use GCO to set the goal before talking to the agent.
 - [ ] Have the agent restate the workflow to confirm shared understanding.
-- [ ] Draw the line between scripts and LLM judgment: can the logic be strictly pinned down?
-- [ ] Get a plan from the agent, implement only after confirming it.
+- [ ] Draw a clear boundary between script deterministic logic and LLM judgment.
+- [ ] Request an architecture plan first, and proceed to implementation only after explicit user confirmation.
 - [ ] Nail down requirements and parameters first; only then let the agent write code.
 - [ ] Run tests against a clear checklist aligned with your original goals.
 
-Today a workflow became a skill kit. Six conversations: set the goal, explain the workflow, confirm nodes and acceptance, ask for a plan, implement, test. Looking back, no new concepts. Core concepts were logically chained: GCO came from Day 10, task descriptions from Day 8, division and protocols from Day 12, acceptance checks from Day 11, and provider evaluations from Day 9. Six rounds, and in them the principles were applied in order.
+Today, we turned a manual workflow into an automated skill kit across six conversations: Goal, Flow, List, Plan, Build, and Test. Looking back, no completely new concepts were introduced, just solid engineering patterns applied in sequence. Core concepts were logically chained: GCO came from Day 10, task descriptions from Day 8, division and protocols from Day 12, acceptance checks from Day 11, and provider evaluations from Day 9.
 
 Day 14 is next: dissect this skill further. The focus is how to write prompts, how an md document tells the agent what to do and how to do it.
 
