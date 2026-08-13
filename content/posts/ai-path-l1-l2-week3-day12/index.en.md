@@ -105,7 +105,7 @@ This is the decision everything else in the pipeline depends on: **AI's output i
 
 ### Step 3: The Script Parses the Table
 
-With the table done, the rest is labor. A Python script reads the Markdown, splits it into 10 sections by story title (`# PP01`, `# PP02`...), splits each line by the pipe, and extracts one image prompt per page:
+With the table done, the rest is labor. A Python script reads the Markdown, splits it into 10 sections by story title (`# PP01`, `# PP02`...), splits each line by pipe delimiters, and extracts one image prompt per page:
 
 ```python
 import re
