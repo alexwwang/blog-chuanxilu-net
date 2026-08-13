@@ -17,7 +17,7 @@ cover:
 
 Day 12 ended with a promise: next practice, run the pipeline once by hand. Two tools working in relay. Today I keep it.
 
-I'm not going to show you how to use a ready-made skill workflow. I'll show you how one is built from zero. The project is [picture-book-pipeline](https://github.com/alexwwang/picture-book-pipeline), which I use to batch-generate children's picture books. It turns a workflow into a complete skill kit: a SKILL.md overview, role prompts, and execution scripts, all in one directory.
+Rather than demonstrating a ready-made skill workflow, this article shows how one is built from zero. The project is [picture-book-pipeline](https://github.com/alexwwang/picture-book-pipeline), which I use to batch-generate children's picture books. It turns a workflow into a complete skill kit: a SKILL.md overview, role prompts, and execution scripts, all in one directory.
 
 The build came out of six core conversations with an AI agent, plus follow-up details and fixes. The agent did the work. Six rounds, six jobs: set the goal, explain the workflow, confirm nodes and acceptance, ask for a plan, implement, test. Each round has its design, its thinking, and its prompt.
 
@@ -27,7 +27,7 @@ The build came out of six core conversations with an AI agent, plus follow-up de
 
 ## Round 1: Set the Goal
 
-Before building, decide what the end state is. This is Day 10's GCO. Goal: batch-generate children's picture books. Constraints: ages 3-5, fixed vocabulary list, 6 pages per story, `watercolor` style. Output: a reusable skill directory. The first prompt:
+Defining the target end state before implementation is critical. This is Day 10's GCO. Goal: batch-generate children's picture books. Constraints: ages 3-5, fixed vocabulary list, 6 pages per story, `watercolor` style. Output: a reusable Skill Package structure. The first prompt:
 
 **Input · Prompt**
 
@@ -49,7 +49,7 @@ Goal set. Now tell the agent what the workflow is. Picture book generation split
 工作流如下：定大纲 → 写故事 → 写图片提示词 → 逐页生成图片 → 审核。请先复述每个环节的理解，再往下谈。
 ```
 
-Have the agent restate it first, so it can't carry a wrong understanding forward. Day 8's task description applies here: if the job isn't described clearly, the AI can't do it.
+Requiring the agent to restate the workflow ensures alignment before execution, preventing cascaded errors in later rounds. Day 8's task description applies here: if the job isn't described clearly, the AI can't do it.
 
 ---
 
@@ -57,7 +57,7 @@ Have the agent restate it first, so it can't carry a wrong understanding forward
 
 Workflow confirmed. Now walk through each node's responsibility: what it does, what the intermediate result looks like, what the final result must satisfy. Before touching code, bring in Day 12's dividing line.
 
-Day 12's rule: writing prompts is judgment work, running prompts is grunt work. Judgment happens once; grunt work goes to the script. The test is whether the step can be pinned down. If it can, the logic can be written as program steps and the result is deterministic. Image generation is that kind of work: prompt ready, flow fixed, then call the API, save the file, done. Every step is a fixed action. If it can't be pinned down, pure program logic gives stiff, lifeless results. It needs flexible adjustment that code can't express. Writing stories is that kind of work. Word lists, sentence patterns, plots can all have standards, but all-rule writing makes every story the same. Adjust flexibly on top of standards. That's judgment work, for the agent or a human.
+Day 12's rule: writing prompts is judgment work, executing scripts is grunt work. Judgment happens once; grunt work goes to the script. The test is whether the step can be pinned down. If it can, the logic can be written as program steps and the result is deterministic. Image generation is that kind of work: prompt ready, flow fixed, then call the API, save the file, done. Every step is a fixed action. When a step can't be pinned down, pure program logic produces rigid results. It needs flexible adjustment that code can't express. Writing stories is that kind of work. Word lists, sentence patterns, plots can all have standards, but all-rule writing makes every story the same. Adjust flexibly on top of standards. That's judgment work, for the agent or a human.
 
 **Input · Prompt**
 
@@ -78,7 +78,7 @@ The agent ran each node through the test and came back with the full list:
 
 I confirmed the list. No disagreement on the split. For review, the agent checks first, a human has the final say.
 
-The intermediate output is the core. The agent and the scripts hand off through a four-column table: page number, scene description, story text, image prompt. Page numbers are `p.01`, `p.02`. Parsing is by position: the script doesn't know column names, only column numbers. Reading by column name was an option with free ordering, but a renamed column breaks the script. I chose position, simple and direct. There's a trap with column names: the agent writes the table, and if it tweaks a header, the script dies. Column position is fixed; parsing by position is a stronger constraint. The cost is order sensitivity. Reorder the columns and the script reads the wrong cells and fails immediately. The table is Day 12's protocol. The clearer the protocol, the higher the chance the agent writes working scripts.
+The intermediate output is the core. The agent and the scripts hand off through a four-column table: page number, scene description, story text, image prompt. Page numbers are `p.01`, `p.02`. Parsing is by position: the script doesn't know column names, only column numbers. Reading by column name was an option with free ordering, but a renamed column breaks the script. I chose position, simple and direct. There's a trap with column names: the agent writes the table, and if it tweaks a header, the script dies. Parsing by column position introduces strict ordinal coupling: it avoids header-mutation failures at the expense of schema flexibility. Reorder the columns and the script reads the wrong cells and fails immediately. The table is Day 12's protocol. The clearer the protocol, the higher the chance the agent writes working scripts.
 
 Protocol before implementation. The table comes first; role prompts and scripts all follow it.
 
@@ -86,7 +86,7 @@ Protocol before implementation. The table comes first; role prompts and scripts 
 
 ## Round 4: Ask for a Plan
 
-Nodes and acceptance confirmed. Now the agent refines the implementation plan. This round the agent produces a plan: how many layers, what goes where, how role prompts are organized.
+Nodes and acceptance confirmed. Now the agent refines the implementation plan. In this round, the agent formulates a multi-layer deployment plan detailing component hierarchy and role prompt organization.
 
 **Input · Prompt**
 
@@ -101,7 +101,7 @@ The plan has three layers. SKILL.md is the protocol overview, covering four thin
 ```text
 skill/
 ├── SKILL.md               # 总纲：四件事，顺序、产物、格式、失败处理
-├── roles/                 # 四个判断活的角色提示词
+├── roles/                 # Judgment-based role prompts
 │   ├── outline-planner.md # 定大纲：主题与读者，出固定结构
 │   ├── story-writer.md    # 写故事：按大纲出三列表格
 │   ├── prompt-artist.md   # 补第四列：图片提示词
@@ -121,11 +121,11 @@ Each role prompt is three sections: identity, input, output format. Day 14 cover
 
 ## Round 5: Confirm, Then Implement
 
-Plan confirmed. Let the agent work. Two rhythms. One: the agent does everything in a single pass, then confirm at the end. Two: small steps, implement one, confirm one, move on. I chose small steps for the scripts. They have the most ambiguity; write and revise as you go.
+Plan confirmed. Let the agent work. Implementation follow-up can take two approaches: single-pass execution, or iterative micro-stepping. I chose micro-stepping for the scripts. They have the most ambiguity; write and revise as you go.
 
 Role prompts first. Four roles, the agent wrote them one by one against the plan, and I reviewed each one. How a prompt document tells the agent what to do and how to do it: Day 14. Not here.
 
-Scripts: talk requirements before writing. What does `pipeline.py` do? Parse the `stories.md` table, generate one image per page. It doesn't send HTTP requests itself. It calls the existing agnes-ai image skill. agnes is a skill set for calling command-line tools, with an image generation workflow inside; the agent can use it directly. The requirements prompt:
+Scripts: talk requirements before writing. What does `pipeline.py` do? Parse the `stories.md` table, generate one image per page. It doesn't send HTTP requests itself. It calls the existing `agnes-ai` image skill. `agnes-ai` is a skill set for calling command-line tools, with an image generation workflow inside; the agent can use it directly. The requirements prompt:
 
 **Input · Prompt**
 
@@ -133,7 +133,7 @@ Scripts: talk requirements before writing. What does `pipeline.py` do? Parse the
 pipeline.py 逐行解析 stories.md，每页生成一张图。生图调用现成的 agnes-ai 技能，执行 agnes_media.py image 命令，prompt 从表格第四列读。并发、超时、重试次数，你按经验给建议，理由写清楚。每页打印一行 ok 加故事名页码。audit.log 每页记一条 JSON，含时间、故事、页、API、状态、URL。有拿不准的，先问我再写。
 ```
 
-The agent came back with parameter suggestions: concurrency 4, timeout 120s, 2 automatic retries on failure. I read the reasoning, it held, done. I had my own ideas here. `audit.log` uses JSON with six fixed fields: time, story, page, API, status, URL. Progress lines are for humans; JSON is for scripts and review. And rerun parameters: `--story` picks a story, `--pages` picks pages. That's a checkpoint for the pipeline. If a run dies halfway, pick the failed pages and continue from the checkpoint instead of rerunning the whole batch. Suggesting this is on me: the agent won't think of it. Requirements settled, then the agent writes code. That's Day 12's "turn the script into a tool". Requirements clear, prompts become command-line parameters. Change parameters, not code.
+The agent came back with parameter suggestions: concurrency 4, timeout 120s, 2 automatic retries on failure. I read the reasoning and adopted the parameters. I had my own ideas here. `audit.log` uses JSON with six fixed fields: time, story, page, API, status, URL. Progress lines are for humans; JSON is for scripts and review. And rerun parameters: `--story` picks a story, `--pages` picks pages. That's a checkpoint for the pipeline. If a run dies halfway, pick the failed pages and continue from the checkpoint instead of rerunning the whole batch. Suggesting this is on me: the agent won't think of it. Requirements settled, then the agent writes code. That's Day 12's "turn the script into a tool". Requirements clear, prompts become command-line parameters. Change parameters, not code.
 
 **Input · Prompt**
 
@@ -171,7 +171,7 @@ The agent ran mock first, no cost, no network:
 uv run python3 skill/scripts/pipeline.py run stories.md --output-dir output
 ```
 
-One line per page, ok means success:
+Each processed page outputs a status line where `ok` designates successful execution:
 
 **Output · Run results**
 
@@ -223,11 +223,11 @@ uv run python3 skill/scripts/pipeline.py run stories.md \
   --cmd-cwd ~/agnes-ai
 ```
 
-6 images, 5 succeeded. One failed with `Cannot connect to unknown`. Retries happen inside the same run; `stderr` prints `retrying ... (attempt 1/2)`. Still failing, record `errors: 1`. Verify doesn't trigger a rerun; pick the failed pages and rerun them. 6 for 6 after that. Real APIs aren't textbooks. Failure is normal. Day 9's reminder: when evaluating providers, stability is a cost.
+6 images, 5 succeeded. One failed with a connection error: `Cannot connect to unknown`. Retries happen inside the same run; `stderr` prints `retrying ... (attempt 1/2)`. Still failing, record `errors: 1`. Verify doesn't trigger a rerun; pick the failed pages and rerun them. 6 for 6 after that. Real APIs aren't textbooks. Failure is normal. Day 9's reminder: when evaluating providers, stability is a cost.
 
 Single-page repair has parameters. `--story` picks a story, `--pages` picks pages. Redo only the bad pages, not the whole batch. This requirement came from Round 5's talk. Without it, the agent would have missed the feature.
 
-AI review caught real problems. the-red-ball page 1: the scene description says "standing", the generated image shows "sitting". The vision model judged `consistent=false`. AI says no, it's no. Fix: edit the scene description column, rerun just that page. Regenerate, re-verify. Only then is it truly done. Look at the pipeline from zero: agent produces content, scripts do the volume, AI reviews, human decides. Day 12's two tools in relay, four links joined.
+AI review caught real problems. `the-red-ball` page 1: the scene description says "standing", the generated image shows "sitting". The vision model judged `consistent=false`. A negative verdict is final. Fix: edit the scene description column, rerun just that page. Regenerate, re-verify. Only then is it truly done. Look at the pipeline from zero: agent produces content, scripts do the volume, AI reviews, human decides. Day 12's two tools in relay, four links joined.
 
 ---
 
@@ -235,12 +235,12 @@ AI review caught real problems. the-red-ball page 1: the scene description says 
 
 - [ ] Use GCO to set the goal before talking to the agent
 - [ ] Have the agent restate the workflow to confirm shared understanding
-- [ ] Split automation vs judgment with "can it be pinned down"
+- [ ] Split automation vs judgment by logic determinism: can the step be pinned down
 - [ ] Get a plan from the agent, implement only after confirming it
 - [ ] Talk requirements before writing scripts; parameters fixed, then code
 - [ ] Test against a checklist mapped to the goal
 
-Today a workflow became a skill kit. Six conversations: set the goal, explain the workflow, confirm nodes and acceptance, ask for a plan, implement, test. Looking back, no new concepts. GCO came from Day 10, task description from Day 8, division and protocol from Day 12, acceptance from Day 11, provider evaluation from Day 9. Six rounds, and in them the principles were applied in order.
+Today a workflow became a skill kit. Six conversations: set the goal, explain the workflow, confirm nodes and acceptance, ask for a plan, implement, test. Looking back, no new concepts. Core concepts were logically chained: GCO originates from Day 10, task specification from Day 8, protocol division from Day 12, acceptance testing from Day 11, and provider evaluation from Day 9. Six rounds, and in them the principles were applied in order.
 
 Day 14 is next: dissect this skill further. The focus is how to write prompts, how an md document tells the agent what to do and how to do it.
 
