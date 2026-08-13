@@ -19,13 +19,13 @@ Day 11 ended with a question: how do I automate these steps?
 
 Here's my answer. Pairing stateless API calls with an AI agent is the same kind of work as breaking down workflows, designing systems, and building software. I've been doing that kind of work for years. The AI picture book project I'm building right now is a clean example. I'll walk through how I designed its pipeline and tasks.
 
-Let me settle the terms first. An autonomous execution AI and an AI agent are essentially the same thing: an AI with context and state awareness. It remembers the earlier conversation and adjusts course as it works. Under the hood it runs on stateless LLM API calls: one request at a time, no memory between calls. The agent keeps its own state on top of that. I'll use both terms interchangeably from here on; they point to the same concept.
+Let's align on the terms first. Autonomous execution AIs and AI agents are essentially the same thing: systems built with context and state awareness. It remembers the earlier conversation and adjusts course as it works. Under the hood it runs on stateless LLM API calls: one request at a time, no memory between calls. The agent keeps its own state on top of that. I'll use both terms interchangeably from here on; they point to the same concept.
 
-Now the project. My kid was learning Dolch sight words and I wanted picture books that practiced them. Everything on the market was flashcards and worksheets. There were no storybooks at all.
+Now for the project itself: my kid was learning Dolch sight words, and I was looking for storybooks that reinforced them. Everything on the market was flashcards and worksheets. There were no storybooks at all.
 
 So I decided to make our own. I can't draw, so AI had to paint. The full Dolch list: 220 words, 5 levels. That's a lot of books.
 
-I started with level PP (Pre-Primer, the first reading level): 40 words, 10 books, 71 pages. Cast: Sam the kitten, Pip the chickadee, Ben the dog. Each book is 6-8 pages, with one simple English sentence and one watercolor illustration per page. Generating those 71 images by hand? I'd still be drawing.
+I started with level PP (Pre-Primer, the first reading level): 40 words, 10 books, 71 pages. Cast: Sam the kitten, Pip the chickadee, Ben the dog. Each book is 6-8 pages, with one simple English sentence and one watercolor illustration per page. Generating those 71 images manually one by one? I'd still be clicking button by button today.
 
 Before any story, there's the word plan. Sight words must appear gradually, in a controlled order. Deciding which story gets which words: 40 words alone could take me a month, and that's before writing stories around them. A job like this was a natural fit for AI.
 
@@ -111,7 +111,9 @@ Once the structured table is ready, the rest is pure mechanical execution. A Pyt
 import re
 
 def parse_pages(md_path):
-    text = open(md_path).read()
+    # Use a context manager for standard file handling
+    with open(md_path, 'r', encoding='utf-8') as f:
+        text = f.read()
     pages = []
     # Split by story title
     for part in re.split(r'\n(?=# PP\d+)', text):
@@ -149,7 +151,7 @@ Generating isn't finishing. Checklist:
 - Word counts: does every new word appear ≥3 times? A script counts faster than a human can.
 - Page and word counts: do they meet the hard targets in the design doc?
 - Image integrity: all 71 downloaded? Regenerate the failures.
-- Audit: log every API call (time, prompt, response, image URL, file size) so problems can be traced.
+- Auditability: log every API interaction (timestamp, prompt payload, JSON response, rendered URL, and output file size) to ensure complete failure traceability.
 
 I isolate any flawed images (e.g., incorrect proportions or blurry ones) and batch-regenerate only those specific pages. This is the payoff of pinning the process down: a rerun is merely a targeted API call with minimal marginal cost. If an AI agent reran the whole pipeline every time, tokens would be wasted on duplicated work.
 
