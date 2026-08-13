@@ -1,10 +1,10 @@
 ---
-title: "Day 9: API Caching Basics and Why You Shouldn't Compare Only Unit Prices"
+title: "Day 9: API Caching Basics and Why Unit Price Isn't the Whole Story"
 slug: "ai-path-l1-l2-week2-day9"
 date: "2026-06-30T07:00:00+08:00"
 draft: false
 description: "L1→L2 Week 2 Day 9: Understand how API caching works, evaluate providers by cache hit rate and pricing, and pick a provider that fits your workload."
-tags: ["AI", "toolchain", "tutorial", "API", "caching", "cost-optimization", "gpt", "chatgbt", "deepseek v4 flash", "deepseek price", "claude opus 4.8"]
+tags: ["AI", "toolchain", "tutorial", "API", "caching", "cost-optimization", "gpt", "chatgpt", "deepseek v4", "deepseek price", "claude opus 4.8"]
 categories: ["ai-path"]
 toc: true
 series: ["AI Path L1→L2 Upgrade Guide"]
@@ -13,21 +13,21 @@ cover:
   alt: "Watercolor: a scale balancing a price tag on one side and a cache symbol on the other, representing the trade-off between cost and efficiency"
 ---
 
-> This is Day 9 of Week 2 in the "AI Path L1→L2 Upgrade Guide." You should have completed [Day 7](../ai-path-l1-l2-week2-day7/) first.
+> This is Day 9 of Week 2 in the "AI Path L1→L2 Upgrade Guide." You should have completed [Day 7 Exercise: Add Error Handling to Your Script](../ai-path-l1-l2-week2-day7/) first.
 
 [Day 7](../ai-path-l1-l2-week2-day7/) added error handling to your script, so it's resilient now. But there's a bigger cost factor you might have missed: **the API provider you picked could cost a lot more than you think.**
 
-DeepSeek V4-Flash charges $0.14 per million input tokens. OpenAI GPT-5.5 charges $5.00. That's a 35x difference. If you ignore **caching**, the gap widens further.
+DeepSeek V4-Pro charges $0.435 per million input tokens. OpenAI GPT-5.5 charges $5.00. That's roughly an 11x difference. Factor in **caching** and the gap widens further.
 
 ---
 
-## What is provider prompt cache
+## What Is the Provider Prompt Cache?
 
-Prompt cache is a mechanism where the API provider caches your prompt prefix on their server. When the system prompt and context repeat, there's no need to recompute the KV cache, so responses get faster and pricing drops. The provider manages the infrastructure; you don't implement it yourself.
+Prompt cache is a mechanism where the API provider caches your prompt prefix on their server. When the system prompt and context repeat, there's no need to recompute the KV cache. Responses get faster, and pricing drops. The provider manages the infrastructure; you don't implement it yourself.
 
 ---
 
-## How caching works
+## How Caching Works
 
 Take OpenAI's prompt cache as an example. The core rule is prefix matching.
 
@@ -44,14 +44,14 @@ The provider builds a KV cache for the prefix of your entire prompt. That means 
 
 A few details worth knowing:
 
-1. OpenAI requires the entire prompt (system prompt + user input + tools + images) to be at least 1024 tokens. Anthropic's threshold varies by model: Opus 4.8 and Sonnet 4.6 require 1,024 tokens, while Fable 5 requires only 512. DeepSeek and GLM-5.2 don't publish thresholds and use a best-effort approach.
-2. OpenAI routes requests to the same machine based on a hash of the first ~256 tokens of the prompt. (Official docs note: "the exact length varies depending on the model.") Same prefix means same machine, which means a cache hit.
+1. OpenAI requires the entire prompt (system prompt + user input + tools + images) to be at least 1024 tokens. Anthropic's threshold varies by model: Opus 4.8 and Sonnet 4.6 require 1024 tokens, while Fable 5 requires only 512. DeepSeek and GLM-5.2 don't publish thresholds and use a best-effort approach.
+2. OpenAI routes requests to the same machine based on a hash of the first ~256 tokens of the prompt. (Official docs note: "the exact length varies depending on the model.") The same prefix means the same machine, which means a cache hit.
 
 So if your system prompt is short (say 50 tokens) and each file's user input is also short (say 200 tokens), the total prompt is under 300 tokens. That's well below OpenAI's 1024-token threshold and Anthropic's 1024-token threshold for Opus 4.8/Sonnet 4.6 (or 512 for Fable 5). DeepSeek and GLM-5.2 don't publish thresholds, but a prompt this short has no prefix worth caching anyway.
 
 ---
 
-## The cost impact of caching
+## The Cost Impact of Caching
 
 Suppose you're batch-translating 1000 English files, each averaging 500 words (~750 tokens). Your system prompt grows to 1100 tokens to cover detailed translation rules, format requirements, and examples:
 
@@ -97,7 +97,7 @@ With caching:
 
 That's a 59% saving.
 
-The discount magnitude varies by provider. With the same prompt and the same cache hit rate, OpenAI and Anthropic save 54%, GLM-5.2 saves 48%, DeepSeek saves 59%. DeepSeek's cache hit price is so low ($0.003625/million) that even with a smaller discount percentage, the absolute cost is the lowest.
+The discount magnitude varies by provider. With the same prompt and the same cache hit rate, OpenAI and Anthropic save 54%, GLM-5.2 saves 48%, DeepSeek saves 59%. DeepSeek's cache hit price is so low ($0.003625/million) that its absolute cost is still the lowest.
 
 The larger your batch and the longer your system prompt, the more caching matters.
 
@@ -105,7 +105,7 @@ Providers differ on thresholds, discounts, and hit rates. Caching strategy itsel
 
 ---
 
-## Proxy cache pricing
+## Proxy Cache Pricing
 
 Provider cache policies are fixed, but you rarely connect directly to a provider. You go through a proxy or gateway, and different proxies handle caching and pricing differently.
 
@@ -118,18 +118,18 @@ When you evaluate a proxy's cache pricing, look at four things:
 3. Some proxies report cache hit rates, others don't. Reporting lets you see where your money goes.
 4. Proxy-level cache TTL may differ from the provider's TTL.
 
-In practice, that means checking whether your bill distinguishes cached from non-cached tokens, whether the proxy provides hit-rate data, how long the proxy's cache lasts, and whether cache pricing is public. Opaque proxies may hide cache markups.
+In practice, check whether your bill separates cached from non-cached tokens and whether the proxy reports hit rates. Also ask how long the proxy's cache lasts and whether cache pricing is public. Opaque proxies may hide cache markups.
 
 ---
 
-## Evaluating providers by caching
+## Evaluating Providers by Caching
 
 Providers take different approaches:
 
 | Provider | Cache Method | Min Threshold | Cached Price | Hit Rate |
 |----------|-------------|---------------|--------------|----------|
 | OpenAI | Automatic prefix cache | 1024 tokens | 1/10 of regular | High (when system prompt is constant) |
-| Anthropic | Auto or manual `cache_control` | No hard threshold | Reads 0.1x, writes 1.25x-2x | Medium-High |
+| Anthropic | Auto or manual `cache_control` | Model-dependent (1024/512 tokens) | Reads 0.1x, writes 1.25x-2x | Medium-High |
 | Z.AI GLM-5.2 | Automatic prefix cache | No public threshold | $0.26/million cached | High |
 | DeepSeek V4-Pro | Automatic Context Caching on Disk | No public threshold | $0.003625/million cached | High |
 
@@ -139,11 +139,11 @@ Anthropic requires manual or top-level `cache_control` configuration. When confi
 
 DeepSeek V4-Pro's Context Caching on Disk is enabled by default with no public threshold. Cache hit costs just $0.003625/million tokens, so batch jobs get near-zero caching costs automatically.
 
-Z.AI GLM-5.2's cached input price is $0.26/million tokens. Not as extreme as DeepSeek, but lower than most other domestic models.
+Z.AI GLM-5.2's cached input price is $0.26/million tokens. It's not as steep as DeepSeek's discount, but it's still lower than most other Chinese models.
 
 ---
 
-## An evaluation framework
+## An Evaluation Framework
 
 When choosing an API provider, don't look only at unit price. Work through these questions.
 
@@ -155,11 +155,11 @@ When choosing an API provider, don't look only at unit price. Work through these
 
 4. **Is the proxy's cache pricing transparent?** Provider cache policies are fixed, but proxies may add markup or hide cache fees. Check if your bill distinguishes cached and non-cached tokens, and whether the proxy reports hit rates.
 
-5. **How do you use it?** OpenAI, DeepSeek, and GLM-5.2 caching needs no setup from you: the provider handles it. Anthropic supports both automatic and manual modes. Automatic mode requires adding one line of `cache_control` at the top level of your request. Manual mode lets you decide what to cache and what not to, but cache writes carry a premium (1.25x-2x write cost), and placing breakpoints in the wrong spot wastes money. If you're new to this, start with automatic mode.
+5. **How do you use it?** Caching for OpenAI, DeepSeek, and GLM-5.2 needs no setup from you: the provider handles it. Anthropic supports both automatic and manual modes. Automatic mode requires adding one line of `cache_control` at the top level of your request. Manual mode lets you decide what to cache and what not to. Cache writes carry a premium (1.25x-2x), and placing breakpoints in the wrong spot wastes money. If you're new to this, start with automatic mode.
 
 ---
 
-## Today's takeaway
+## Today's Takeaway
 
 - [ ] Know the minimum thresholds and hit conditions for caching
 - [ ] Understand how provider cache strategies affect real costs
@@ -172,4 +172,4 @@ What matters most to you when choosing an API provider? Price, caching, or somet
 
 ---
 
-> This is Day 9 of Week 2 in the "AI Path L1→L2 Upgrade Guide." Previous: [Day 8 Autonomous AI](../ai-path-l1-l2-week2-day8/). [Read original](https://blog.chuanxilu.net/en/ai-path-l1-l2-week2-day9/) for the full evaluation framework.
+> This is Day 9 of Week 2 in the "AI Path L1→L2 Upgrade Guide." Previous: [Day 8: Autonomous AI, Automation Without Writing Code](../ai-path-l1-l2-week2-day8/). [Read original](https://blog.chuanxilu.net/ai-path-l1-l2-week2-day9/) for the full evaluation framework.
