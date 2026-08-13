@@ -39,7 +39,7 @@ The finished books matter less than the logic behind them: why this job can run 
 
 The rule has one line:
 
-**Can this step be pinned down?** If yes: prompts, process, output format can all be fixed. I write a script and call the API. Each call is stateless: prompt in, result out, no memory between calls. Running it once or a hundred times gives the same result. If no, it goes to an AI agent with context and state awareness. Exploring, trial and error, and on-the-fly judgment are its job. It converts the task into something that can be pinned down: scripts, prompts, tables.
+**Can this step be pinned down?** If yes: the prompts, process, and output format can all be fixed. I write a script and call the API. Each call is stateless: prompt in, result out, no memory between calls. Running it once or a hundred times gives the same result. If no, it goes to an AI agent with context and state awareness. Exploring, trial and error, and on-the-fly judgment are its job. It converts the task into something that can be pinned down: scripts, prompts, tables.
 
 Here's the split in the picture book project:
 
@@ -118,7 +118,7 @@ def parse_pages(md_path):
         name = re.search(r'^# (PP\d+)', part, re.M)
         if not name:
             continue
-        # Locate the table block (header is assumed to be "| Page |"; use a more tolerant regex in production)
+        # Locate the table block (assumes '| Page |' header; use a flexible regex for production)
         table = part[part.find('| Page |'):]
         for line in table.split('\n'):
             cells = [c.strip() for c in line.strip('|').split('|')]
@@ -217,7 +217,7 @@ Have an AI agent write them. Describe the process with Day 10's GCO and verify t
 
 The division of labor matters more than the price.
 
-The AI agent's output is a script: it thinks through the process for the task and writes the prompts. Once the script exists, image generation becomes a fixed task. No more judgment, just API calls.
+The AI agent's output is a script: it thinks through the process for the workflow and writes the prompts. Once the script exists, image generation becomes a predictable, fixed job. No more judgment, just API calls.
 
 One note: a subscription model often uses the same underlying models under a different pricing structure. If the Terms of Service (TOS) permit it, you can use a subscription to drive your own scripts and AI agents for personal use. **So the dividing line comes down to whether the task can be pinned down: fixed tasks go through stateless API calls, the rest goes to an AI agent.**
 
