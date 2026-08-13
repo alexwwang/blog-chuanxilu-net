@@ -15,11 +15,9 @@ cover:
 
 > This is Day 12 of the AI Path L1→L2 Upgrade Guide. Do [Day 8]({{< relref "ai-path-l1-l2-week2-day8" >}}), [Day 10]({{< relref "ai-path-l1-l2-week3-day10" >}}) and [Day 11]({{< relref "ai-path-l1-l2-week3-day11" >}}) first.
 
-Day 11 ended with a question: how do I automate these steps?
+Day 11 ended with a crucial question: How do we automate these steps? My approach relies on a simple realization: pairing stateless API calls with an AI agent shares the same core principles as breaking down workflows, designing systems, and building software. I've been doing that kind of work for years. The AI picture book project I'm building right now is a clean example. I'll walk through how I designed its pipeline and tasks.
 
-Here's my answer. Pairing stateless API calls with an AI agent shares the same core principles as breaking down workflows, designing systems, and building software. I've been doing that kind of work for years. The AI picture book project I'm building right now is a clean example. I'll walk through how I designed its pipeline and tasks.
-
-Let's align on the terms first. Autonomous execution AIs and AI agents are essentially the same thing: systems built with context and state awareness. It remembers the earlier conversation and adjusts course as it works. Under the hood it runs on stateless LLM API calls: one request at a time, no memory between calls. The agent keeps its own state on top of that. I'll use both terms interchangeably from here on; they point to the same concept.
+Let's align on the terms first. An autonomous execution AI and an AI agent are essentially the same thing: a system built with context and state awareness. It remembers the earlier conversation and adjusts course as it works. Under the hood it runs on stateless LLM API calls: one request at a time, no memory between calls. The agent keeps its own state on top of that. I'll use both terms interchangeably from here on; they point to the same concept.
 
 Now for the project itself: my kid was learning Dolch sight words, and I was looking for storybooks that reinforced them. Everything on the market was flashcards and worksheets. There were no storybooks at all.
 
@@ -101,11 +99,11 @@ I asked the AI agent to write stories against the constraints. Each story lands 
 
 One page per row. The four columns: page number, scene description (Chinese, for humans), story text (English, the book's text), image prompt (English, fed to the image API).
 
-This is the decision everything else in the pipeline depends on: **AI's output is not a paragraph; it's a structured table.**
+This is the single decision everything else in the pipeline depends on: **AI's output is not loose narrative text; it's a structured protocol.**
 
 ### Step 3: The Script Parses the Table
 
-Once the structured table is ready, the rest is pure mechanical execution. A Python script ingests the Markdown file, segments it into 10 sections by story headers (`# PP01`, `# PP02`, etc.), splits lines using pipe delimiters, and extracts the target image prompt for each page:
+Once this structured table is ready, the remaining work becomes pure mechanical execution. A Python script ingests the Markdown file, segments it into 10 sections by story headers (`# PP01`, `# PP02`, etc.), splits lines using pipe delimiters, and extracts the target image prompt for each page:
 
 ```python
 import re
@@ -148,10 +146,10 @@ The generation script runs synchronously: it sends a request, awaits the generat
 
 Generating isn't finishing. Checklist:
 
-- Word counts: does every new word appear ≥3 times? A script counts faster than a human can.
-- Page and word counts: do they meet the hard targets in the design doc?
-- Image integrity: all 71 downloaded? Regenerate the failures.
-- Auditability: log every API interaction (timestamp, prompt payload, JSON response, rendered URL, and output file size) to ensure complete failure traceability.
+- [ ] Vocabulary frequency: Does every target new word appear at least 3 times? (A script quantifies this instantly.)
+- [ ] Structural targets: Do total page counts and text lengths match the baseline design doc?
+- [ ] Asset completeness: Are all 71 images successfully downloaded without generation artifacts, with any failures regenerated?
+- [ ] Auditability: Is every API interaction fully logged for complete failure traceability?
 
 I isolate any flawed images (e.g., incorrect proportions or blurry ones) and batch-regenerate only those specific pages. This is the payoff of pinning the process down: a rerun is merely a targeted API call with minimal marginal cost. If an AI agent reran the whole pipeline every time, tokens would be wasted on duplicated work.
 
@@ -227,7 +225,7 @@ Each new book in the project follows the same pattern: AI writes a new script, a
 
 **"Isn't this too complex?"**
 
-Taken apart, it's two actions: AI generates structured content, scripts execute in batch. The complex part is designing constraints, and that part happens once.
+At its core, the setup relies on just two actions: AI generates structured content, and automated scripts handle the labor in batch. The only complex part is designing the upfront constraints, and that only happens once.
 
 ---
 
