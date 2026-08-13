@@ -17,7 +17,7 @@ cover:
 
 Day 11 ended with a question: how do I automate these steps?
 
-Here's my answer. Pairing stateless API calls with an AI agent is the same kind of work as breaking down workflows, designing systems, and building software. I've been doing that kind of work for years. The AI picture book project I'm building right now is a clean example. I'll walk through how I designed its pipeline and tasks.
+Here's my answer. Pairing stateless API calls with an AI agent shares the same core principles as breaking down workflows, designing systems, and building software. I've been doing that kind of work for years. The AI picture book project I'm building right now is a clean example. I'll walk through how I designed its pipeline and tasks.
 
 Let's align on the terms first. Autonomous execution AIs and AI agents are essentially the same thing: systems built with context and state awareness. It remembers the earlier conversation and adjusts course as it works. Under the hood it runs on stateless LLM API calls: one request at a time, no memory between calls. The agent keeps its own state on top of that. I'll use both terms interchangeably from here on; they point to the same concept.
 
@@ -87,7 +87,7 @@ Text constraints: 1-2 sentences per page, 3-5 words per sentence, 30-60 words pe
 
 Hard targets: each new word appears at least 3 times in its story, each reused word at least once, fixed page count per book.
 
-These are Day 10's Constraints. Writing them down first gives every later step something to check against.
+These are Day 10's Constraints. Establishing them up front provides a clear benchmark for every subsequent step.
 
 ### Step 2: AI Generates Structured Content
 
@@ -142,7 +142,7 @@ Note: column 4 carries the global constraints assembled into a prompt: art style
 
 With the prompt list ready, I call the image API. The sequence for each image is straightforward: write the prompt to a temp file, call the API once, extract the image URL from the JSON response, and download the file.
 
-The generation script runs synchronously: it sends a request, awaits the generated URL, downloads the payload, and then moves to the next item. Calls queue up one by one and run strictly sequentially: 71 images finish in about half an hour, and nobody needs to watch. Doing them by hand, one at a time, would mean waiting most of a day.
+The generation script runs synchronously: it sends a request, awaits the generated URL, downloads the payload, and then moves to the next item. Requests enter a queue and execute sequentially: 71 images finish in about half an hour, and nobody needs to watch. Doing them by hand, one at a time, would mean waiting most of a day.
 
 ### Step 5: Verify and Fix
 
@@ -221,7 +221,7 @@ The division of labor matters more than the price.
 
 The AI agent's output is a script: it thinks through the process for the task and writes the prompts. Once the script exists, image generation becomes a fixed task. No more judgment, just API calls.
 
-One note: a subscription model often uses the same underlying models under a different pricing structure. If the TOS doesn't forbid it, you can use a subscription to drive your own scripts and AI agents for personal use. **So the dividing line comes down to whether the task can be pinned down: fixed tasks go through stateless API calls, the rest goes to an AI agent.**
+One note: a subscription model often uses the same underlying models under a different pricing structure. If the Terms of Service (TOS) permit it, you can use a subscription to drive your own scripts and AI agents for personal use. **So the dividing line comes down to whether the task can be pinned down: fixed tasks go through stateless API calls, the rest goes to an AI agent.**
 
 Each new book in the project follows the same pattern: AI writes a new script, and the script generates the images via the API. The repeatable part always runs programmatically; writing the script for a task happens once.
 
