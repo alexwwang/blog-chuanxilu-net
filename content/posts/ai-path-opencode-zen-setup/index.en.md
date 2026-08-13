@@ -3,7 +3,7 @@ title: "OpenCode Cold Start: DeepSeek V4 Flash Free in 5 Minutes"
 slug: "ai-path-opencode-zen-setup"
 date: "2026-07-06T06:00:00+08:00"
 draft: false
-description: "AI Path bonus article: install OpenCode, register a Zen account, configure your API key, and select the free DeepSeek V4 Flash model -- a complete cold-start walkthrough."
+description: "AI Path bonus article: a complete cold-start walkthrough. Install OpenCode, register a Zen account, configure your API key, and select the free DeepSeek V4 Flash model."
 tags: ["AI", "opencode", "tutorial", "zen", "deepseek", "cold-start", "deepseek v4 flash", "deepseek api", "opencode go", "kimi k2.7 code"]
 categories: ["ai-path"]
 toc: true
@@ -15,7 +15,7 @@ cover:
 
 > This is a bonus article for the "AI Path L1→L2 Upgrade Guide." If you have not installed OpenCode yet, this guide gets you from zero to running.
 
-In Day 8 you learned about autonomous execution AI. The next step is actually installing the thing. OpenCode is an open-source AI coding assistant. It is free, supports multiple models, and has a skill system. Paired with OpenCode Zen, you can use tested models without setting up third-party API keys, including the free DeepSeek V4 Flash.
+In Day 8 you learned about autonomous execution AI. The next step is actually installing and configuring OpenCode. OpenCode is an open-source AI coding assistant. It is free, supports multiple models, and has a skill system. Paired with OpenCode Zen, you can use tested models without setting up third-party API keys, including the free DeepSeek V4 Flash.
 
 The whole process takes five minutes.
 
@@ -70,7 +70,7 @@ On first launch, you enter the configuration flow. Type this in the input bar:
 
 Select **Zen** from the list, then paste your API key.
 
-Alternatively, add it manually to the config file at `~/.config/opencode/opencode.json`:
+Alternatively, add it manually to the config file at `~/.config/opencode/opencode.json` (macOS/Linux):
 
 ```json
 {
@@ -97,13 +97,13 @@ After configuring the provider, type this in OpenCode:
 
 Browse the model list and find **DeepSeek V4 Flash Free**. Select it.
 
-Models labeled "Free" are available at no cost for a limited time. DeepSeek V4 Flash Free has a 200K context window, enough for basic agent automation tasks.
+Models labeled "Free" are available at no cost for a limited time. DeepSeek V4 Flash Free has a 200K context window, enough for most entry-level agent automation tasks.
 
 Or try other free models:
 
-- **MiMo-V2.5 Free** -- multimodal model
-- **Nemotron 3 Ultra Free** -- NVIDIA's free offering
-- **Big Pickle** -- a stealth model, free
+- **MiMo-V2.5 Free**: multimodal model
+- **Nemotron 3 Ultra Free**: NVIDIA's free offering
+- **Big Pickle**: a stealth model, free
 
 ---
 
@@ -142,10 +142,10 @@ It should show `opencode/deepseek-v4-flash-free`.
 
 Ready? Type `opencode` in your terminal. You will see a clean interface with input at the bottom and conversation history at the top.
 
-First, the two key modes: **Plan mode** and **Build mode**. Press **Tab** to switch between them. The bottom-left corner shows the current mode.
+First, learn the two key modes: **Plan mode** and **Build mode**. Press **Tab** to switch between them. The bottom-left corner shows the current mode.
 
-- **Plan mode**: You state the goal, it proposes a plan. The agent discusses the approach without executing anything. Good for aligning on strategy first.
-- **Build mode**: You give instructions, it takes action. The agent executes and shows results step by step.
+- **Plan mode**: You state the goal; it proposes a plan. The agent discusses the approach without executing anything. Good for aligning on strategy first.
+- **Build mode**: You give instructions; it takes action. The agent executes and shows results step by step.
 
 ![Plan vs Build mode illustration](illustration.png)
 
@@ -153,7 +153,7 @@ First, the two key modes: **Plan mode** and **Build mode**. Press **Tab** to swi
 
 If you followed Day 8, here is a good way to test this workflow:
 
-1. Make sure you are in **Plan mode** (the bottom-left corner shows "Plan". Press Tab if it says "Build").
+1. Make sure you are in **Plan mode** (bottom-left corner shows "Plan"; press Tab if it says "Build").
 2. Tell it: "Organize my downloads folder, sort files by type."
 3. The agent will propose a plan. For example, it might suggest subfolders for documents, images, archives, and installers, each getting the right files.
 4. If you have different ideas, just reply with changes.
@@ -166,4 +166,4 @@ This is just the start. For everyday repetitive tasks like batch renaming, organ
 
 ---
 
-> This is a bonus article for the "AI Path L1→L2 Upgrade Guide." Previous: [Day 8: Autonomous Execution AI](../ai-path-l1-l2-week2-day8/). After setting up, check out [Triple Config for OpenCode](../opencode-triple-config-switch/) for more advanced usage.
+> This is a bonus article for the "AI Path L1→L2 Upgrade Guide." Previous: [Day 8: Autonomous AI, Automation Without Writing Code](../ai-path-l1-l2-week2-day8/). After setting up, check out [When Your AI Coding Tool Needs Three Configs](../opencode-triple-config-switch/) for more advanced usage.
