@@ -14,7 +14,7 @@ cover:
   relative: true
 ---
 
-I've been freelancing for three months. At first, lunch was the same as office life. Open the delivery app, scroll, pick something, wait. Nothing wrong with it. I'd been doing it for years.
+I've been freelancing for three months. At first, lunch was no different from my office days. Open the delivery app, scroll, pick something, wait. Nothing wrong with it. I'd been doing it for years.
 
 The shift wasn't sudden. First I noticed the monthly delivery bill added up fast. One person ordering has to meet minimum order thresholds plus packaging and delivery fees, and a decent meal runs $6-$8. By the end of the month, that wasn't pocket change. Then I noticed how heavy the oil and salt were. I'd finish eating, only to hit an immediate post-meal slump. Paying money just to feel sluggish felt like a raw deal.
 
@@ -42,7 +42,7 @@ While the tomatoes sit, wash the bok choy and crack the eggs. If you prefer dist
 
 Two dishes in under half an hour, timed with the rice cooker.
 
-Total oil and seasoning used: two teaspoons (about 8 grams) of rapeseed oil, about 2 g of salt, a knob of ginger, optionally some scallions. That's it. I asked AI to estimate the nutrition: three eggs are about 20 g protein, plus fiber and vitamins from the greens. A small side portion of Greek yogurt is saved for an afternoon snack. Total: around 340 kcal. There's no refined-carb spike or heavy oil, so it's much cleaner than delivery.
+Total oil and seasoning used: two teaspoons (~8 g) of rapeseed oil, about 2 g of salt, a knob of ginger, optionally some scallions. That's it. I asked AI to estimate the nutrition: three eggs are about 20 g protein, plus fiber and vitamins from the greens. A small side portion of Greek yogurt is saved for an afternoon snack. Total: around 340 kcal. There's no refined-carb spike or heavy oil, so it's much cleaner than delivery.
 
 ## Why Salt the Tomatoes First
 
@@ -59,7 +59,7 @@ That's the VibeCooking pattern: one question, one practical insight.
 | Eggs | 3 (150 g) | ~210 kcal | ~20 g | ~13 g | ~1 g |
 | Tomatoes | 2 (200-250 g) | ~40 kcal | ~2 g | 0 g | ~8 g |
 | Baby Bok Choy | 120 g | ~16 kcal | ~2 g | 0 g | ~2 g |
-| Rapeseed oil | 2 tsp (~8 g) | ~72 kcal | 0 g | ~8 g | 0 g |
+| Rapeseed Oil | 2 tsp (~8 g) | ~72 kcal | 0 g | ~8 g | 0 g |
 | **Total** | | **~340 kcal** | **~24 g** | **~21 g** | **~11 g** |
 
 Figures are approximate; batch variation applies.
