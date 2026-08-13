@@ -17,7 +17,7 @@ cover:
 
 Day 12 ended with a promise: in the next practice, we'd run the pipeline by hand. Two tools working in relay. Today, I deliver on that promise.
 
-I'm not here to show you how to use an off-the-shelf skill; I'll show you how to build one from scratch. The project is [picture-book-pipeline](https://github.com/alexwwang/picture-book-pipeline), which I use to batch-generate children's picture books. It turns a workflow into a complete skill kit: a SKILL.md overview, role prompts, and execution scripts, all in one directory.
+I'm not here to show you how to use an off-the-shelf skill; I'll show you how to build one from scratch. The project is [`picture-book-pipeline`](https://github.com/alexwwang/picture-book-pipeline), which I use to batch-generate children's picture books. It turns a workflow into a complete skill kit: a SKILL.md overview, role prompts, and execution scripts, all in one directory.
 
 The project took shape through six core conversations with an AI agent, along with minor follow-up tweaks. The agent executed the heavy lifting. Six rounds, six jobs: set the goal, explain the workflow, confirm nodes and acceptance, ask for a plan, implement, test. Each round has its design, its thinking, and its prompt.
 
@@ -69,12 +69,12 @@ The agent ran each node through the test and came back with the full list:
 
 **Output · Agent checklist**
 
-> Outline: agent-led. Acceptance: an outline with the vocabulary list and page count\
-> Story: agent-led. Acceptance: a table covering the full vocabulary\
-> Prompts: agent-led. Acceptance: fourth column filled, consistent style\
-> Images: script-led. Acceptance: one image per page, saved successfully\
-> Review: agent-led. Acceptance: image and text judged consistent\
-> Intermediate artifact: four-column table with page number, scene description, story text, image prompt
+- **Outline (agent-led):** Acceptance: an outline with the target vocabulary and page count.
+- **Story (agent-led):** Acceptance: a table covering the full vocabulary list.
+- **Prompts (agent-led):** Acceptance: a fourth column filled with consistent-style image prompts.
+- **Images (script-led):** Acceptance: one image generated and saved per page.
+- **Review (agent-led):** Acceptance: image and text judged consistent.
+- **Intermediate artifact:** a four-column table with page number, scene description, story text, and image prompt.
 
 I confirmed the list. No disagreement on the split. For review, the agent checks first, a human has the final say.
 
@@ -133,7 +133,7 @@ Scripts: talk requirements before writing. What does `pipeline.py` do? Parse the
 `pipeline.py` parses `stories.md` line by line and generates one image per page. Image generation calls the existing `agnes-ai` skill, running the `agnes_media.py image` command with the prompt read from the fourth column. Suggest concurrency, timeout, and retry counts from your experience, with clear reasoning. Print one `ok` line per page with the story name and page number. Log one JSON line per page in `audit.log` with time, story, page, API, status, URL. If anything is uncertain, ask me before writing.
 ```
 
-The agent came back with parameter suggestions: a concurrency of 4, a 120-second timeout, and 2 automatic retries. The logic was solid, so I went with it. I added a few requirements of my own here: `audit.log` needed to use JSON with six fixed fields (time, story, page, API, status, URL). Console output provides human-readable progress, while structured JSON logs cater to machine parsing and post-run auditing. And rerun parameters: `--story` picks a story, `--pages` picks pages. This acts as a restart checkpoint for the pipeline, allowing partial runs without re-executing from scratch. Proposing this was up to me; it's not something the agent would proactively introduce. Requirements settled, then the agent writes code. This embodies Day 12's core principle: "turn the script into a tool." Once requirements are solid, user prompts collapse into command-line flags. You change parameters, not code.
+The agent came back with parameter suggestions: a concurrency of 4, a 120-second timeout, and 2 automatic retries. The logic was solid, so I went with it. I added a few requirements of my own here: `audit.log` needed to use JSON with six fixed fields (time, story, page, API, status, URL). Console output provides human-readable progress, while structured JSON logs cater to machine parsing and post-run auditing. We also introduced execution flags: `--story` selects a story, and `--pages` specifies page numbers. This acts as a restart checkpoint for the pipeline, allowing partial runs without re-executing from scratch. Proposing this was up to me; it's not something the agent would proactively introduce. Requirements settled, then the agent writes code. This embodies Day 12's core principle: "turn the script into a tool." Once requirements are solid, user prompts collapse into command-line flags. You change parameters, not code.
 
 **Input · Prompt**
 
@@ -198,7 +198,7 @@ Structural validation is also handled by the script. The agent ran verify:
 uv run python3 skill/scripts/pipeline.py verify stories.md --output-dir output
 ```
 
-Output: `verify: PASS` and `errors: 0`. Page numbers continuous, fields non-empty, images exist. These three conditions form our core invariants, a concept we established back in Day 11.
+Output: `verify: PASS` and `errors: 0`. Verified that page numbers are continuous, fields are non-empty, and image files exist. These three conditions form our core invariants, a concept we established back in Day 11.
 
 Structural validation checks that files exist, not what the images contain. Checking whether the generated image actually matches the story text requires a higher-level check. The visual QA script sends image, scene description, and story text to a vision model:
 
