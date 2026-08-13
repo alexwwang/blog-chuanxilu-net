@@ -54,7 +54,7 @@ I keep the GCO in a note after sending the task. When results come back, I tick 
 
 Some things shouldn't change because AI processed the data. Find the properties that must stay the same regardless of what analysis happens.
 
-Back to the sales example:
+Let's go back to the sales example:
 
 - **Row count**: 1,024 rows in, 1,024 rows out. AI won't delete data intentionally, but it might decide a row looks "anomalous" and filter it.
 - **Key identifier columns**: Order IDs, user IDs. These are anchors. If they change, you can't trace back to the source.
