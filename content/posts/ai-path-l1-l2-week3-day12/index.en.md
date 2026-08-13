@@ -19,7 +19,7 @@ Day 11 ended with a question: how do I automate these steps?
 
 Here's my answer. Pairing stateless API calls with an AI agent is the same kind of work as breaking down workflows, designing systems, and building software. I've been doing that kind of work for years. The AI picture book project I'm building right now is a clean example. I'll walk through how I designed its pipeline and tasks.
 
-Let me settle the terms first. Autonomous execution AI and AI agent are the same thing: an AI with context and state awareness. It remembers the earlier conversation and adjusts course as it works. Under the hood it runs on stateless LLM API calls: one request at a time, no memory between calls. The agent keeps its own state on top of that. I'll use both terms interchangeably from here on; they point to the same concept.
+Let me settle the terms first. An autonomous execution AI and an AI agent are essentially the same thing: an AI with context and state awareness. It remembers the earlier conversation and adjusts course as it works. Under the hood it runs on stateless LLM API calls: one request at a time, no memory between calls. The agent keeps its own state on top of that. I'll use both terms interchangeably from here on; they point to the same concept.
 
 Now the project. My kid was learning Dolch sight words and I wanted picture books that practiced them. Everything on the market was flashcards and worksheets. There were no storybooks at all.
 
@@ -49,7 +49,7 @@ Here's the split in the picture book project:
 - **71 illustrations**: the same action repeated 71 times. Prompts are already written, so no judgment is needed. This goes to the API script, queued one by one.
 - **Verification**: Are the words sufficient? Are the page counts correct? Are the images any good? Human and AI check together.
 
-The dividing line is worth repeating: **writing prompts is judgment work, running prompts is labor. Judgment happens once; labor goes to the script.** That's the core of this combination.
+The dividing line is worth repeating: **writing prompts is judgment work, running prompts is labor. Judgment happens once; labor goes to scripts.** That's the core of this combination.
 
 ---
 
@@ -71,11 +71,11 @@ The constraints are fixed before the first story is written. For PP level, const
 
 Word distribution: 40 words across 10 books. Each book introduces 4-5 new words; the last one, PP10, introduces only 3. Each book reuses words from the previous one. The distribution table is fixed before any story is written:
 
-| Story | New words | Reused from |
+| Story | New words | Reused From |
 |:----:|------|---------|
-| PP01 I Can See | I, can, see, the, a | None |
-| PP02 Look! Look! | look, funny, you, we | PP01 |
-| PP03 It Is Big | is, it, big, little | PP02 |
+| "PP01: I Can See" | I, can, see, the, a | None |
+| "PP02: Look! Look!" | look, funny, you, we | PP01 |
+| "PP03: It Is Big" | is, it, big, little | PP02 |
 | PP04 Jump In | jump, in, my, and | PP03 |
 | PP05 Go Up! | go, up, down, run | PP04 |
 | PP06 Come and Play | come, here, play, find | PP05 |
@@ -132,13 +132,13 @@ def parse_pages(md_path):
     return pages
 ```
 
-Only two things matter: **splitting stories with regex, splitting columns by the pipe**. The table format is fixed, so the script can safely assume "column 1 is the page number, column 4 is the prompt."
+Only two things matter: **splitting stories with regex and splitting columns by pipe delimiters**. The table format is fixed, so the script can safely assume "column 1 is the page number, column 4 is the prompt."
 
 Note: column 4 carries the global constraints assembled into a prompt: art style, character appearance, scene rules. If the prompts are imprecise, the images suffer no matter how well the script runs. Step 2's quality directly decides Step 4's output.
 
 ### Step 4: The API Generates the Images
 
-With the prompt list ready, I call the image API. For each image: write the prompt to a temp file, call the API once, take the image URL from the JSON response, download and save.
+With the prompt list ready, I call the image API. The sequence for each image is straightforward: write the prompt to a temp file, call the API once, extract the image URL from the JSON response, and download the file.
 
 The API is synchronous: I call once, wait until it finishes generating and returns the URL, then start the next image. Calls queue up one by one and run strictly sequentially. 71 images finish in about half an hour, and nobody needs to watch. Doing them by hand, one at a time, would mean waiting most of a day.
 
@@ -162,9 +162,9 @@ The whole pipeline runs because of that four-column table.
 The table is the contract between human and AI. It's also the input protocol for every script. The script only knows "page number, prompt". AI output must land in this format before the script can touch it.
 Two payoffs:
 
-**Change one thing and everything updates.** Want to add a new word to PP01? You'd edit the story text in that row, regenerate images, and recount words. The other 9 stories are untouched.
+**Easier updates: change one input, and the pipeline updates smoothly.** Want to add a new word to PP01? You'd edit the story text in that row, regenerate images, and recount words. The other 9 stories are untouched.
 
-**Verification has a basis.** The table itself is the checklist: rows for page counts, cells for word counts.
+**Clear verification: the table is the validation checklist.** Rows for page counts, cells for word counts.
 
 Day 10 said GCO output must be explicit. At the project level, the explicit output is this table. The clearer the format, the easier the downstream scripts.
 
@@ -172,7 +172,7 @@ Day 10 said GCO output must be explicit. At the project level, the explicit outp
 
 ## Turning the Script into a Tool
 
-After the pipeline works, the script is still at the "edit code every run" stage: input path hardcoded, model name hardcoded, output dir hardcoded. A new story set means editing code.
+Once the pipeline works, the script is still stuck in the "edit code every run" stage, with input paths, model names, and output directories all hardcoded. A new story set means editing code.
 
 Two changes turn it into a reusable tool:
 
@@ -219,7 +219,7 @@ The division of labor matters more than the price.
 
 The AI agent's output is a script: it thinks through the process for the task and writes the prompts. Once the script exists, image generation becomes a fixed task. No more judgment, just API calls.
 
-One note: a subscription is essentially an API with different billing. If the TOS doesn't forbid it, you can use a subscription to drive your own scripts and AI agents for personal use. **So the dividing line comes down to whether the task can be pinned down: fixed tasks go through stateless API calls, the rest goes to an AI agent.**
+One note: a subscription model often uses the same underlying models under a different pricing structure. If the TOS doesn't forbid it, you can use a subscription to drive your own scripts and AI agents for personal use. **So the dividing line comes down to whether the task can be pinned down: fixed tasks go through stateless API calls, the rest goes to an AI agent.**
 
 Each new book in the project follows the same pattern: AI writes a new script, and the script generates the images via the API. The repeatable part always runs programmatically; writing the script for a task happens once.
 
@@ -231,10 +231,10 @@ Taken apart, it's two actions: AI generates structured content, scripts execute 
 
 ## Today's Takeaways
 
-- [ ] Can split tasks by "can it be pinned down"
-- [ ] Understand the five pipeline steps: constraints → generate → parse → execute → verify
-- [ ] Understand "the intermediate output is the protocol": a clear format makes downstream scripts easy
-- [ ] Can add command-line arguments, moving from "editing code" to "changing parameters"
+- [ ] Split tasks based on whether they can be strictly pinned down.
+- [ ] Master the five pipeline steps: constraints → generate → parse → execute → verify.
+- [ ] Use intermediate structured output as a communication protocol.
+- [ ] Refactor scripts with CLI arguments to build reusable tools instead of editing code each time.
 
 ---
 
