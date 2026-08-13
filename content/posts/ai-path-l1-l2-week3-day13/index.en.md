@@ -15,7 +15,7 @@ cover:
 
 > This is Day 13 of the AI Path L1→L2 Upgrade Guide. Do [Day 8](../ai-path-l1-l2-week2-day8/), [Day 9](../ai-path-l1-l2-week2-day9/), [Day 10](../ai-path-l1-l2-week3-day10/), [Day 11](../ai-path-l1-l2-week3-day11/), and [Day 12](../ai-path-l1-l2-week3-day12/) first.
 
-Day 12 ended with a quick promise: in this practice, we run the pipeline once by hand. Two tools working in relay. Today, I deliver on that promise.
+Day 12 ended with a promise: in the next practice, we'd run the pipeline by hand. Two tools working in relay. Today, I deliver on that promise.
 
 Rather than demonstrating a ready-made skill workflow, this article shows how one is built from scratch. The project is [picture-book-pipeline](https://github.com/alexwwang/picture-book-pipeline), which I use to batch-generate children's picture books. It turns a workflow into a complete skill kit: a SKILL.md overview, role prompts, and execution scripts, all in one directory.
 
@@ -32,7 +32,7 @@ Defining the target end state before implementation is critical. This is Day 10'
 **Input · Prompt**
 
 ```text
-目标：把「批量生成儿童绘本」构建成一套技能包。约束：面向 3-5 岁儿童，词表范围固定，每个故事 6 页，画风 watercolor。产出：一个可复用的 skill 目录，含协议、角色提示词、执行脚本。
+Goal: build a reusable Skill Package for batch-generating children's picture books. Constraints: ages 3-5, fixed vocabulary list, 6 pages per story, `watercolor` style. Output: a reusable Skill Package with the protocol, role prompts, and execution scripts.
 ```
 
 Without a goal, everything downstream loses direction. That's what GCO is for: the agent knows the finish line before we talk about how to get there.
@@ -46,7 +46,7 @@ Goal set. Now tell the agent what the workflow is. The picture book generation w
 **Input · Prompt**
 
 ```text
-工作流如下：定大纲 → 写故事 → 写图片提示词 → 逐页生成图片 → 审核。请先复述每个环节的理解，再往下谈。
+The workflow is: outline → story → image prompts → generate images page by page → review. First, restate your understanding of each stage, then we continue.
 ```
 
 Requiring the agent to restate the workflow ensures alignment before execution, preventing cascaded errors in later rounds. Day 8's task description applies here: if the job isn't described clearly, the AI can't do it.
@@ -62,19 +62,19 @@ Day 12's rule: writing prompts is judgment work; executing API scripts is pure g
 **Input · Prompt**
 
 ```text
-逐节点分析每个环节：能不能用脚本程序实现，验收标准是什么。节点间的交接格式一起定。能实现的，用脚本程序实现。不能实现的，写提示词交给 agent。先给全量清单，我来确认。
+Analyze each node: can it be implemented as a script, and what is its acceptance criterion. Define the handoff format between nodes together. Scriptable nodes go to scripts; the rest get prompts for the agent. Give the full list first; I'll confirm.
 ```
 
 The agent ran each node through the test and came back with the full list:
 
 **Output · Agent checklist**
 
-> 定大纲：不能脚本实现，归 agent。验收：产出大纲，含词汇表与页数\
-> 写故事：不能脚本实现，归 agent。验收：产出表格，词汇全覆盖\
-> 写提示词：不能脚本实现，归 agent。验收：补第四列，画风一致\
-> 生成图片：能脚本实现，归脚本。验收：每页一张图，落盘成功\
-> 审核：不能脚本实现，归 agent。验收：图与文本判定一致\
-> 中间产物：四列表格，页码、画面描述、故事文本、图片提示词
+> Outline: not scriptable, assigned to the agent. Acceptance: an outline with the vocabulary list and page count\
+> Story: not scriptable, assigned to the agent. Acceptance: a table covering the full vocabulary\
+> Prompts: not scriptable, assigned to the agent. Acceptance: fourth column filled, consistent style\
+> Images: scriptable, assigned to the script. Acceptance: one image per page, saved successfully\
+> Review: not scriptable, assigned to the agent. Acceptance: image and text judged consistent\
+> Intermediate artifact: four-column table with page number, scene description, story text, image prompt
 
 I confirmed the list. No disagreement on the split. For review, the agent checks first, a human has the final say.
 
@@ -91,7 +91,7 @@ Nodes and acceptance confirmed. Now the agent refines the implementation plan. I
 **Input · Prompt**
 
 ```text
-基于确认的清单，给出实现方案：skill 目录结构、每个角色的提示词框架、脚本行为与参数。分节点列出，注明先后依赖。
+Based on the confirmed list, propose an implementation plan: the skill directory structure, the prompt framework for each role, and script behavior with parameters. List them by node, noting the dependency order.
 ```
 
 The plan has three layers. SKILL.md is the protocol overview, covering four things: order, what each step produces, format, failure handling. roles/ holds the four role prompts. tools/ holds the agnes usage, tied to a role. scripts/ holds the execution scripts. The tree:
@@ -100,17 +100,17 @@ The plan has three layers. SKILL.md is the protocol overview, covering four thin
 
 ```text
 skill/
-├── SKILL.md               # 总纲：四件事，顺序、产物、格式、失败处理
+├── SKILL.md               # Overview: order, output, format, failure handling
 ├── roles/                 # Judgment-based role prompts
-│   ├── outline-planner.md # 定大纲：主题与读者，出固定结构
-│   ├── story-writer.md    # 写故事：按大纲出三列表格
-│   ├── prompt-artist.md   # 补第四列：图片提示词
-│   └── image-qa.md        # 审核：判图与文本是否一致
-├── tools/                 # 角色 4 的 agnes 用法
-│   └── agnes-generate.md  # 调用现成 agnes 生图技能
-└── scripts/               # 执行工具，随技能一起走
-    ├── pipeline.py        # 解析表格、批量生成、机械验收
-    └── verify_images.py   # 视觉审核：图片对照文本打分
+│   ├── outline-planner.md # Outline: topic and audience, fixed structure
+│   ├── story-writer.md    # Story: three-column table from the outline
+│   ├── prompt-artist.md   # Fourth column: image prompts
+│   └── image-qa.md        # Review: judge image-text consistency
+├── tools/                 # Agnes usage for role 4
+│   └── agnes-generate.md  # Call the existing agnes image skill
+└── scripts/               # Execution tools that ship with the skill
+    ├── pipeline.py        # Parse the table, batch generate, mechanical acceptance
+    └── verify_images.py   # Visual review: score images against text
 ```
 
 This file tree serves as the implementation checklist. The plan locks down the structure, while the exact role of each file was already settled in Round 3. Round 5 has the agent implement file by file against the list. Every file, md or py, was written by the agent from the design.
@@ -130,7 +130,7 @@ Scripts: talk requirements before writing. What does `pipeline.py` do? Parse the
 **Input · Prompt**
 
 ```text
-pipeline.py 逐行解析 stories.md，每页生成一张图。生图调用现成的 agnes-ai 技能，执行 agnes_media.py image 命令，prompt 从表格第四列读。并发、超时、重试次数，你按经验给建议，理由写清楚。每页打印一行 ok 加故事名页码。audit.log 每页记一条 JSON，含时间、故事、页、API、状态、URL。有拿不准的，先问我再写。
+`pipeline.py` parses `stories.md` line by line and generates one image per page. Image generation calls the existing `agnes-ai` skill, running the `agnes_media.py image` command with the prompt read from the fourth column. Suggest concurrency, timeout, and retry counts from your experience, with clear reasoning. Print one `ok` line per page with the story name and page number. Log one JSON line per page in `audit.log` with time, story, page, API, status, URL. If anything is uncertain, ask me before writing.
 ```
 
 The agent came back with parameter suggestions: concurrency 4, timeout 120s, 2 automatic retries on failure. The reasoning made complete sense, so I rolled with it. I had my own ideas here. `audit.log` uses JSON with six fixed fields: time, story, page, API, status, URL. Progress lines are for human readability; JSON logs are for script parsing and post-run auditing. And rerun parameters: `--story` picks a story, `--pages` picks pages. That's a checkpoint for the pipeline. If a run dies halfway, pick the failed pages and continue from the checkpoint instead of rerunning the whole batch. Suggesting this is on me: the agent won't think of it. Requirements settled, then the agent writes code. That's Day 12's "turn the script into a tool". Requirements clear, prompts become command-line parameters. Change parameters, not code.
@@ -138,7 +138,7 @@ The agent came back with parameter suggestions: concurrency 4, timeout 120s, 2 a
 **Input · Prompt**
 
 ```text
-按谈好的需求实现 pipeline.py 和 verify_images.py。图片生成用 agnes-ai 的图片生成技能。TDD 开发：先写测试，再实现，测试通过才算完成。
+Implement `pipeline.py` and `verify_images.py` per the agreed requirements. Use the `agnes-ai` image generation skill. TDD: write the tests first, then implement; done only when the tests pass.
 ```
 
 When the scripts were done, the agent ran them first and only handed them to me after they passed. The agent runs the commands; nobody types manually. The implementation flow: talk requirements, fix parameters, agent writes, agent self-tests, user accepts.
@@ -152,7 +152,7 @@ Implementation done. Does the output meet Round 1's goal? Have the agent list a 
 **Input · Prompt**
 
 ```text
-列出测试清单：覆盖第 1 轮目标与第 3 轮验收条件，逐项说明怎么测、预期结果。
+List a test plan covering Round 1's goal and Round 3's acceptance criteria; for each item, explain how to test it and the expected result.
 ```
 
 Plan listed. Run it:
@@ -160,7 +160,7 @@ Plan listed. Run it:
 **Input · Prompt**
 
 ```text
-按清单执行测试。命令和输出都贴给我：逐页输出、audit.log、verify 结果。跑完我来判读。
+Run the tests per the plan. Paste the commands and output: per-page output, `audit.log`, verify results. I'll interpret the results.
 ```
 
 The agent ran mock first, no cost, no network:
