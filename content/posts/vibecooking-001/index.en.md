@@ -16,7 +16,7 @@ cover:
 
 I've been freelancing for three months. At first, lunch was the same as office life. Open the delivery app, scroll, pick something, wait. Nothing wrong with it. I'd been doing it for years.
 
-The shift wasn't sudden. First I noticed the monthly delivery bill added up fast. One person ordering has to meet minimum order thresholds plus packaging and delivery fees, and a decent meal runs $6-$8. At month's end it wasn't pocket change. Then I noticed how heavy the oil and salt were. I'd finish eating, only to hit an immediate post-meal slump. Paying money just to feel sluggish felt like a raw deal.
+The shift wasn't sudden. First I noticed the monthly delivery bill added up fast. One person ordering has to meet minimum order thresholds plus packaging and delivery fees, and a decent meal runs $6-$8. By the end of the month, that wasn't pocket change. Then I noticed how heavy the oil and salt were. I'd finish eating, only to hit an immediate post-meal slump. Paying money just to feel sluggish felt like a raw deal.
 
 Two thoughts stacked up: save some money, eat cleaner. The "just order it" option slid down the priority list.
 
