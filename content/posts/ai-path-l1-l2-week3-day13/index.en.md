@@ -15,9 +15,9 @@ cover:
 
 > This is Day 13 of the AI Path L1→L2 Upgrade Guide. Do [Day 8](../ai-path-l1-l2-week2-day8/), [Day 9](../ai-path-l1-l2-week2-day9/), [Day 10](../ai-path-l1-l2-week3-day10/), [Day 11](../ai-path-l1-l2-week3-day11/), and [Day 12](../ai-path-l1-l2-week3-day12/) first.
 
-Day 12 ended with a quick promise: in this practice, we run the pipeline once by hand. Two tools working in relay. Today I keep it.
+Day 12 ended with a quick promise: in this practice, we run the pipeline once by hand. Two tools working in relay. Today, I deliver on that promise.
 
-Rather than demonstrating a ready-made skill workflow, this article shows how one is built from zero. The project is [picture-book-pipeline](https://github.com/alexwwang/picture-book-pipeline), which I use to batch-generate children's picture books. It turns a workflow into a complete skill kit: a SKILL.md overview, role prompts, and execution scripts, all in one directory.
+Rather than demonstrating a ready-made skill workflow, this article shows how one is built from scratch. The project is [picture-book-pipeline](https://github.com/alexwwang/picture-book-pipeline), which I use to batch-generate children's picture books. It turns a workflow into a complete skill kit: a SKILL.md overview, role prompts, and execution scripts, all in one directory.
 
 The build came out of six core conversations with an AI agent, plus follow-up details and fixes. The agent did the work. Six rounds, six jobs: set the goal, explain the workflow, confirm nodes and acceptance, ask for a plan, implement, test. Each round has its design, its thinking, and its prompt.
 
@@ -35,13 +35,13 @@ Defining the target end state before implementation is critical. This is Day 10'
 目标：把「批量生成儿童绘本」构建成一套技能包。约束：面向 3-5 岁儿童，词表范围固定，每个故事 6 页，画风 watercolor。产出：一个可复用的 skill 目录，含协议、角色提示词、执行脚本。
 ```
 
-Without a goal, everything downstream is empty. That's what GCO is for: the agent knows the finish line before we talk about how to get there.
+Without a goal, everything downstream loses direction. That's what GCO is for: the agent knows the finish line before we talk about how to get there.
 
 ---
 
 ## Round 2: Explain the Workflow
 
-Goal set. Now tell the agent what the workflow is. Picture book generation splits into five stages: outline, story, prompts, images, review. This round writes no plan. It confirms the agent's understanding first.
+Goal set. Now tell the agent what the workflow is. The picture book generation workflow is divided into five stages: outline, story, prompts, images, and review. This round writes no plan. It confirms the agent's understanding first.
 
 **Input · Prompt**
 
@@ -78,7 +78,7 @@ The agent ran each node through the test and came back with the full list:
 
 I confirmed the list. No disagreement on the split. For review, the agent checks first, a human has the final say.
 
-The intermediate output is the core. The agent and the scripts hand off through a four-column table: page number, scene description, story text, image prompt. Page numbers are `p.01`, `p.02`. Parsing is by position: the script doesn't know column names, only column numbers. Reading by column name was an option with free ordering, but a renamed column breaks the script. I chose position, simple and direct. There's a trap with column names: the agent writes the table, and if it tweaks a header, the script dies. Why parse by position instead of column name? Because agents love tweaking headers on a whim. Locking column position is a bit rigid, but it gives the strongest constraint on the agent. Reorder the columns and the script reads the wrong cells and fails immediately. The table is Day 12's protocol. The clearer the protocol, the higher the chance the agent writes working scripts.
+The intermediate output is the core. The agent and the scripts hand off through a four-column table: page number, scene description, story text, image prompt. Page numbers are `p.01`, `p.02`. Parsing is position-based: the script doesn't look at column names, only column indices. Reading by column name would allow flexible column order, but a renamed column header breaks the script. I chose position, simple and direct. There's a trap with column names: the agent writes the table, and if it tweaks a header, the script dies. Why parse by position instead of column name? Because agents love tweaking headers on a whim. Locking column position is a bit rigid, but it gives the strongest constraint on the agent. Reorder the columns and the script reads the wrong cells and fails immediately. The table is Day 12's protocol. The clearer the protocol, the higher the chance the agent writes working scripts.
 
 Protocol before implementation. The table comes first; role prompts and scripts all follow it.
 
@@ -113,7 +113,7 @@ skill/
     └── verify_images.py   # 视觉审核：图片对照文本打分
 ```
 
-The tree is the implementation checklist. The plan fixes structure; what each file does was already written in Round 3's list. Round 5 has the agent implement file by file against the list. Every file, md or py, was written by the agent from the design.
+This file tree serves as the implementation checklist. The plan locks down the structure, while the exact role of each file was already settled in Round 3. Round 5 has the agent implement file by file against the list. Every file, md or py, was written by the agent from the design.
 
 Each role prompt is three sections: identity, input, output format. Day 14 covers how to write them.
 
@@ -121,7 +121,7 @@ Each role prompt is three sections: identity, input, output format. Day 14 cover
 
 ## Round 5: Confirm, Then Implement
 
-Plan confirmed. Let the agent work. Implementation follow-up can take two approaches: single-pass execution, or iterative micro-stepping. I chose micro-stepping for the scripts. They have the most ambiguity; write and revise as you go.
+Plan confirmed. Let the agent work. Implementation follow-up can take two approaches: single-pass execution, or iterative micro-stepping. I chose micro-stepping for the scripts. Since they involve the most ambiguity, it's better to write and revise as you go.
 
 Role prompts first. Four roles, the agent wrote them one by one against the plan, and I reviewed each one. How a prompt document tells the agent what to do and how to do it: Day 14. Not here.
 
@@ -133,7 +133,7 @@ Scripts: talk requirements before writing. What does `pipeline.py` do? Parse the
 pipeline.py 逐行解析 stories.md，每页生成一张图。生图调用现成的 agnes-ai 技能，执行 agnes_media.py image 命令，prompt 从表格第四列读。并发、超时、重试次数，你按经验给建议，理由写清楚。每页打印一行 ok 加故事名页码。audit.log 每页记一条 JSON，含时间、故事、页、API、状态、URL。有拿不准的，先问我再写。
 ```
 
-The agent came back with parameter suggestions: concurrency 4, timeout 120s, 2 automatic retries on failure. The reasoning made complete sense, so I rolled with it. I had my own ideas here. `audit.log` uses JSON with six fixed fields: time, story, page, API, status, URL. Progress lines are for humans; JSON is for scripts and review. And rerun parameters: `--story` picks a story, `--pages` picks pages. That's a checkpoint for the pipeline. If a run dies halfway, pick the failed pages and continue from the checkpoint instead of rerunning the whole batch. Suggesting this is on me: the agent won't think of it. Requirements settled, then the agent writes code. That's Day 12's "turn the script into a tool". Requirements clear, prompts become command-line parameters. Change parameters, not code.
+The agent came back with parameter suggestions: concurrency 4, timeout 120s, 2 automatic retries on failure. The reasoning made complete sense, so I rolled with it. I had my own ideas here. `audit.log` uses JSON with six fixed fields: time, story, page, API, status, URL. Progress lines are for human readability; JSON logs are for script parsing and post-run auditing. And rerun parameters: `--story` picks a story, `--pages` picks pages. That's a checkpoint for the pipeline. If a run dies halfway, pick the failed pages and continue from the checkpoint instead of rerunning the whole batch. Suggesting this is on me: the agent won't think of it. Requirements settled, then the agent writes code. That's Day 12's "turn the script into a tool". Requirements clear, prompts become command-line parameters. Change parameters, not code.
 
 **Input · Prompt**
 
@@ -190,7 +190,7 @@ Each processed page outputs a status line where `ok` designates successful execu
 
 Run the same mock command from the repo root to verify. The result should match the article.
 
-Mechanical verification is the script's job too. The agent ran verify:
+Structural validation is also handled by the script. The agent ran verify:
 
 **Input · Command**
 
@@ -200,7 +200,7 @@ uv run python3 skill/scripts/pipeline.py verify stories.md --output-dir output
 
 Output: `verify: PASS` and `errors: 0`. Page numbers continuous, fields non-empty, images exist. Three invariants. Day 11 calls this invariant checking.
 
-Mechanical verification checks that files exist, not what the images contain. Whether the picture matches the text is another layer. The visual QA script sends image, scene description, and story text to a vision model:
+Structural validation checks that files exist, not what the images contain. Whether the picture matches the text is another layer. The visual QA script sends image, scene description, and story text to a vision model:
 
 **Input · Command**
 
@@ -223,7 +223,7 @@ uv run python3 skill/scripts/pipeline.py run stories.md \
   --cmd-cwd ~/agnes-ai
 ```
 
-6 images, 5 succeeded. One failed with a network resolution error (`Cannot connect to unknown`). Retries happen inside the same run; `stderr` prints `retrying ... (attempt 1/2)`. Still failing, record `errors: 1`. Verify doesn't trigger a rerun; pick the failed pages and rerun them. 6 for 6 after that. Real APIs aren't textbooks. Failure is normal. Day 9's reminder: when evaluating providers, stability is a cost.
+6 images, 5 succeeded. One failed with a network resolution error (`Cannot connect to unknown`). Retries happen inside the same run; `stderr` prints `retrying ... (attempt 1/2)`. Still failing, record `errors: 1`. Verify doesn't trigger a rerun; pick the failed pages and rerun them. 6 for 6 after that. Real-world APIs don't always behave like textbook examples. Failures are part of the process. Day 9's reminder: when evaluating providers, stability is a cost.
 
 Single-page repair has parameters. `--story` picks a story, `--pages` picks pages. Redo only the bad pages, not the whole batch. This requirement came from Round 5's talk. Without it, the agent would have missed the feature.
 
