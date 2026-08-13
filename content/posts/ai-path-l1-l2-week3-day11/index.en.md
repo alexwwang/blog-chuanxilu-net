@@ -15,7 +15,7 @@ cover:
 
 > This is Day 11 of the AI Path L1→L2 Upgrade Guide, a practice article. Do [Day 8]({{< relref "ai-path-l1-l2-week2-day8" >}}) and [Day 10]({{< relref "ai-path-l1-l2-week3-day10" >}}) first.
 
-Day 10 ended with a note: description and verification are the same coin. If you can't describe what you want, you can't check whether you got it.
+Day 10 ended with a note: description and verification are two sides of the same coin. If you can't describe what you want, you can't check whether you got it.
 
 I default to trusting AI output, especially when it sounds confident. It's well structured, clear, and sounds right. Day 10 mentioned an example: I asked AI to "organize these files by category." It sorted them alphabetically by name. The result looked organized, but it wasn't the kind of organization I meant. At the time I thought "I need to describe it better next time," not "let me check whether what it delivered is actually correct."
 
@@ -75,7 +75,7 @@ AI lists them. You review, confirm the right ones, and add missing ones. Two min
 
 ## Reverse Checking
 
-GCO-as-checklist checks completeness. Invariant checks check correctness. Reverse checking goes further: it assumes the result is wrong, then finds where it broke.
+GCO checklist checks completeness. Invariant checks check correctness. Reverse checking goes further: it assumes the result is wrong, then finds where it broke.
 
 **Method 1: Likelihood list.**
 
@@ -110,7 +110,7 @@ GCO's value closes the loop here. You used it to say what you wanted. You used i
 
 Pick a task you'd give AI today, preferably with data output or text generation. Run it through:
 
-1. **GCO checklist**: Flip your original GCO into a verification table, tick through each item
+1. **GCO checklist**: Flip your original GCO into an acceptance checklist, tick through each item
 2. **Invariant check**: Ask AI to list immutable properties and verify each one
 3. **Reverse check (optional)**: Have AI attack its own result
 
