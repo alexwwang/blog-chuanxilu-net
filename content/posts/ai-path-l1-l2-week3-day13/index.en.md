@@ -15,7 +15,7 @@ cover:
 
 > This is Day 13 of the AI Path L1→L2 Upgrade Guide. Do [Day 8](../ai-path-l1-l2-week2-day8/), [Day 9](../ai-path-l1-l2-week2-day9/), [Day 10](../ai-path-l1-l2-week3-day10/), [Day 11](../ai-path-l1-l2-week3-day11/) and [Day 12](../ai-path-l1-l2-week3-day12/) first.
 
-Day 12 ended with a promise: next practice, run the pipeline once by hand. Two tools working in relay. Today I keep it.
+Day 12 ended with a quick teaser: next time, we run the pipeline once by hand. Two tools working in relay. Today I keep it.
 
 Rather than demonstrating a ready-made skill workflow, this article shows how one is built from zero. The project is [picture-book-pipeline](https://github.com/alexwwang/picture-book-pipeline), which I use to batch-generate children's picture books. It turns a workflow into a complete skill kit: a SKILL.md overview, role prompts, and execution scripts, all in one directory.
 
@@ -57,7 +57,7 @@ Requiring the agent to restate the workflow ensures alignment before execution, 
 
 Workflow confirmed. Now walk through each node's responsibility: what it does, what the intermediate result looks like, what the final result must satisfy. Before touching code, bring in Day 12's dividing line.
 
-Day 12's rule: writing prompts is judgment work, executing scripts is grunt work. Judgment happens once; grunt work goes to the script. The test is whether the step can be pinned down. If it can, the logic can be written as program steps and the result is deterministic. Image generation is that kind of work: prompt ready, flow fixed, then call the API, save the file, done. Every step is a fixed action. When a step can't be pinned down, pure program logic produces rigid results. It needs flexible adjustment that code can't express. Writing stories is that kind of work. Word lists, sentence patterns, plots can all have standards, but all-rule writing makes every story the same. Adjust flexibly on top of standards. That's judgment work, for the agent or a human.
+Day 12's rule: writing prompts is judgment work; executing API scripts is pure grunt work. Judgment happens once; grunt work goes to the script. The test is whether the step can be pinned down. If it can, the logic can be written as program steps and the result is deterministic. Image generation is that kind of work: prompt ready, flow fixed, then call the API, save the file, done. Every step is a fixed action. If a step can't be strictly pinned down, forcing it into hardcoded program logic yields rigid, subpar results. It needs flexible adjustment that code can't express. Writing stories is that kind of work. Word lists, sentence patterns, plots can all have standards, but all-rule writing makes every story the same. Adjust flexibly on top of standards. That's judgment work, for the agent or a human.
 
 **Input · Prompt**
 
@@ -78,7 +78,7 @@ The agent ran each node through the test and came back with the full list:
 
 I confirmed the list. No disagreement on the split. For review, the agent checks first, a human has the final say.
 
-The intermediate output is the core. The agent and the scripts hand off through a four-column table: page number, scene description, story text, image prompt. Page numbers are `p.01`, `p.02`. Parsing is by position: the script doesn't know column names, only column numbers. Reading by column name was an option with free ordering, but a renamed column breaks the script. I chose position, simple and direct. There's a trap with column names: the agent writes the table, and if it tweaks a header, the script dies. Parsing by column position introduces strict ordinal coupling: it avoids header-mutation failures at the expense of schema flexibility. Reorder the columns and the script reads the wrong cells and fails immediately. The table is Day 12's protocol. The clearer the protocol, the higher the chance the agent writes working scripts.
+The intermediate output is the core. The agent and the scripts hand off through a four-column table: page number, scene description, story text, image prompt. Page numbers are `p.01`, `p.02`. Parsing is by position: the script doesn't know column names, only column numbers. Reading by column name was an option with free ordering, but a renamed column breaks the script. I chose position, simple and direct. There's a trap with column names: the agent writes the table, and if it tweaks a header, the script dies. Why parse by position instead? Because header names are mutable; column position is not. Locking position is rigid, but it gives the strongest constraint on the agent. Reorder the columns and the script reads the wrong cells and fails immediately. The table is Day 12's protocol. The clearer the protocol, the higher the chance the agent writes working scripts.
 
 Protocol before implementation. The table comes first; role prompts and scripts all follow it.
 
@@ -223,11 +223,11 @@ uv run python3 skill/scripts/pipeline.py run stories.md \
   --cmd-cwd ~/agnes-ai
 ```
 
-6 images, 5 succeeded. One failed with a connection error: `Cannot connect to unknown`. Retries happen inside the same run; `stderr` prints `retrying ... (attempt 1/2)`. Still failing, record `errors: 1`. Verify doesn't trigger a rerun; pick the failed pages and rerun them. 6 for 6 after that. Real APIs aren't textbooks. Failure is normal. Day 9's reminder: when evaluating providers, stability is a cost.
+6 images, 5 succeeded. One failed with a network resolution error (`Cannot connect to unknown`). Retries happen inside the same run; `stderr` prints `retrying ... (attempt 1/2)`. Still failing, record `errors: 1`. Verify doesn't trigger a rerun; pick the failed pages and rerun them. 6 for 6 after that. Real APIs aren't textbooks. Failure is normal. Day 9's reminder: when evaluating providers, stability is a cost.
 
 Single-page repair has parameters. `--story` picks a story, `--pages` picks pages. Redo only the bad pages, not the whole batch. This requirement came from Round 5's talk. Without it, the agent would have missed the feature.
 
-AI review caught real problems. `the-red-ball` page 1: the scene description says "standing", the generated image shows "sitting". The vision model judged `consistent=false`. A negative verdict is final. Fix: edit the scene description column, rerun just that page. Regenerate, re-verify. Only then is it truly done. Look at the pipeline from zero: agent produces content, scripts do the volume, AI reviews, human decides. Day 12's two tools in relay, four links joined.
+AI review caught real problems. `the-red-ball` page 1: the scene description says "standing", the generated image shows "sitting". The vision model judged `consistent=false`. A flagged mismatch is an automatic fail. Fix: edit the scene description column, rerun just that page. Regenerate, re-verify. Only then is it truly done. Look at the pipeline from zero: agent produces content, scripts do the volume, AI reviews, human decides. Day 12's two tools in relay, four links joined.
 
 ---
 
@@ -235,10 +235,10 @@ AI review caught real problems. `the-red-ball` page 1: the scene description say
 
 - [ ] Use GCO to set the goal before talking to the agent
 - [ ] Have the agent restate the workflow to confirm shared understanding
-- [ ] Split automation vs judgment by logic determinism: can the step be pinned down
+- [ ] Draw the line between scripts and LLM judgment: can the logic be strictly pinned down?
 - [ ] Get a plan from the agent, implement only after confirming it
-- [ ] Talk requirements before writing scripts; parameters fixed, then code
-- [ ] Test against a checklist mapped to the goal
+- [ ] Nail down requirements and parameters first; only then let the agent write code
+- [ ] Run tests against a clear checklist mapped back to your original goal
 
 Today a workflow became a skill kit. Six conversations: set the goal, explain the workflow, confirm nodes and acceptance, ask for a plan, implement, test. Looking back, no new concepts. Core concepts were logically chained: GCO originates from Day 10, task specification from Day 8, protocol division from Day 12, acceptance testing from Day 11, and provider evaluation from Day 9. Six rounds, and in them the principles were applied in order.
 
