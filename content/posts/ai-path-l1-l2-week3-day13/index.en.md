@@ -227,7 +227,7 @@ uv run python3 skill/scripts/pipeline.py run stories.md \
 
 Single-page repair has parameters. `--story` picks a story, `--pages` picks pages. Redo only the bad pages, not the whole batch. This requirement came from Round 5's talk. Without it, the agent would have missed the feature.
 
-AI review caught real problems. `the-red-ball` page 1: the scene description says "standing", the generated image shows "sitting". The vision model judged `consistent=false`. If the vision model flags a mismatch, that's an automatic fail. The fix: edit the scene description column and rerun just that page. Regenerate, re-verify. Only then is it truly done. Look at the pipeline from zero: agent produces content, scripts do the volume, AI reviews, human decides. Day 12's two tools in relay, four links joined.
+AI review caught real problems. `the-red-ball` page 1: the scene description says "standing", the generated image shows "sitting". The vision model judged `consistent=false`. If the vision model flags a mismatch, that's an automatic fail. The fix: edit the scene description column and rerun just that page. Regenerate, re-verify. Only then is it truly done. Look at the pipeline end to end: agent produces content, scripts do the volume, AI reviews, human decides. Day 12's two tools in relay, four links joined.
 
 ---
 
