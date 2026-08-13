@@ -69,20 +69,20 @@ Each step's output is the next step's input. Break anywhere in the middle and ev
 
 The constraints are fixed before the first story is written. For PP level, constraints center on two things: **word distribution** and **text shape**.
 
-Word distribution: 40 words across 10 books. Each book introduces 4-5 new words; the last one, PP10, introduces only 3. Each book reuses words from the previous one. The distribution table is fixed before any story is written:
+Word distribution: 40 words across 10 books. Each book introduces 4-5 new words (with the final book, PP10, introducing 3), while systematically reusing vocabulary from earlier titles. The distribution table is fixed before any story is written:
 
 | Story | New words | Reused From |
 |:----:|------|---------|
 | "PP01: I Can See" | I, can, see, the, a | None |
 | "PP02: Look! Look!" | look, funny, you, we | PP01 |
 | "PP03: It Is Big" | is, it, big, little | PP02 |
-| PP04 Jump In | jump, in, my, and | PP03 |
-| PP05 Go Up! | go, up, down, run | PP04 |
-| PP06 Come and Play | come, here, play, find | PP05 |
-| PP07 Help Me! | help, not, for, make | PP06 |
-| PP08 One, Two, Said | one, two, said, me | PP07 |
-| PP09 Away We Go | away, red, blue, yellow | PP08 |
-| PP10 Where Is Three? | where, three, to | PP09 + earlier books |
+| "PP04: Jump In" | jump, in, my, and | PP03 |
+| "PP05: Go Up!" | go, up, down, run | PP04 |
+| "PP06: Come and Play" | come, here, play, find | PP05 |
+| "PP07: Help Me!" | help, not, for, make | PP06 |
+| "PP08: One, Two, Said" | one, two, said, me | PP07 |
+| "PP09: Away We Go" | away, red, blue, yellow | PP08 |
+| "PP10: Where Is Three?" | where, three, to | PP09 + earlier books |
 Text constraints: 1-2 sentences per page, 3-5 words per sentence, 30-60 words per book, simple patterns only (like `I can see...`, S + can + V). Character style guide: Sam is an orange tabby kitten with a white chest and green eyes; Pip is a blue chickadee; Ben is a brown dog. Every page's image prompt must follow it.
 
 Hard targets: each new word appears at least 3 times in its story, each reused word at least once, fixed page count per book.
@@ -105,7 +105,7 @@ This is the decision everything else in the pipeline depends on: **AI's output i
 
 ### Step 3: The Script Parses the Table
 
-With the table done, the rest is labor. A Python script reads the Markdown, splits it into 10 sections by story title (`# PP01`, `# PP02`...), splits each line by pipe delimiters, and extracts one image prompt per page:
+Once the structured table is ready, the rest is pure mechanical execution. A Python script ingests the Markdown file, segments it into 10 sections by story headers (`# PP01`, `# PP02`, etc.), splits lines using pipe delimiters, and extracts the target image prompt for each page:
 
 ```python
 import re
@@ -140,7 +140,7 @@ Note: column 4 carries the global constraints assembled into a prompt: art style
 
 With the prompt list ready, I call the image API. The sequence for each image is straightforward: write the prompt to a temp file, call the API once, extract the image URL from the JSON response, and download the file.
 
-The API is synchronous: I call once, wait until it finishes generating and returns the URL, then start the next image. Calls queue up one by one and run strictly sequentially. 71 images finish in about half an hour, and nobody needs to watch. Doing them by hand, one at a time, would mean waiting most of a day.
+The generation script runs synchronously: it sends a request, awaits the generated URL, downloads the payload, and then moves to the next item. Calls queue up one by one and run strictly sequentially: 71 images finish in about half an hour, and nobody needs to watch. Doing them by hand, one at a time, would mean waiting most of a day.
 
 ### Step 5: Verify and Fix
 
@@ -151,7 +151,7 @@ Generating isn't finishing. Checklist:
 - Image integrity: all 71 downloaded? Regenerate the failures.
 - Audit: log every API call (time, prompt, response, image URL, file size) so problems can be traced.
 
-I pick out the bad images (wrong proportions, blurry) and regenerate them together; there's no need to rerun the whole batch. This is the payoff of pinning the process down: a rerun is just another API call, nearly zero cost. If an AI agent reran the whole pipeline every time, tokens would be wasted on duplicated work.
+I isolate any flawed images (e.g., incorrect proportions or blurry ones) and batch-regenerate only those specific pages. This is the payoff of pinning the process down: a rerun is merely a targeted API call with minimal marginal cost. If an AI agent reran the whole pipeline every time, tokens would be wasted on duplicated work.
 
 ---
 
@@ -199,7 +199,7 @@ python batch_generate.py --input pp-storybook-complete.md
 python batch_generate.py --input pp-storybook-complete.md --story pp01 --pages 3,5
 ```
 
-Script vs tool: a script is written for one use; a tool is reusable, accepts new inputs, and can be shared.
+Script vs. Tool: A script handles a specific, single-use task; a tool is parameterized, reusable, resilient to changing inputs, and easy to share across workflows.
 
 The refactor is two steps: the parts that change (input path, output dir, which book, which pages) go into variables; then argparse wraps them. An AI agent can do it in a few minutes. Once the tool exists, every similar task reuses it. The time and tokens saved pay for the refactor quickly.
 
