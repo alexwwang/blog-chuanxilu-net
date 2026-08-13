@@ -13,9 +13,9 @@ cover:
   alt: "Watercolor: six cards arranged in a circle labeled GOAL, FLOW, LIST, PLAN, BUILD, TEST, with a folder in the middle. Six conversations turning a workflow into a skill kit."
 ---
 
-> This is Day 13 of the AI Path L1→L2 Upgrade Guide. Do [Day 8](../ai-path-l1-l2-week2-day8/), [Day 9](../ai-path-l1-l2-week2-day9/), [Day 10](../ai-path-l1-l2-week3-day10/), [Day 11](../ai-path-l1-l2-week3-day11/) and [Day 12](../ai-path-l1-l2-week3-day12/) first.
+> This is Day 13 of the AI Path L1→L2 Upgrade Guide. Do [Day 8](../ai-path-l1-l2-week2-day8/), [Day 9](../ai-path-l1-l2-week2-day9/), [Day 10](../ai-path-l1-l2-week3-day10/), [Day 11](../ai-path-l1-l2-week3-day11/), and [Day 12](../ai-path-l1-l2-week3-day12/) first.
 
-Day 12 ended with a quick teaser: next time, we run the pipeline once by hand. Two tools working in relay. Today I keep it.
+Day 12 ended with a quick promise: in this practice, we run the pipeline once by hand. Two tools working in relay. Today I keep it.
 
 Rather than demonstrating a ready-made skill workflow, this article shows how one is built from zero. The project is [picture-book-pipeline](https://github.com/alexwwang/picture-book-pipeline), which I use to batch-generate children's picture books. It turns a workflow into a complete skill kit: a SKILL.md overview, role prompts, and execution scripts, all in one directory.
 
@@ -78,7 +78,7 @@ The agent ran each node through the test and came back with the full list:
 
 I confirmed the list. No disagreement on the split. For review, the agent checks first, a human has the final say.
 
-The intermediate output is the core. The agent and the scripts hand off through a four-column table: page number, scene description, story text, image prompt. Page numbers are `p.01`, `p.02`. Parsing is by position: the script doesn't know column names, only column numbers. Reading by column name was an option with free ordering, but a renamed column breaks the script. I chose position, simple and direct. There's a trap with column names: the agent writes the table, and if it tweaks a header, the script dies. Why parse by position instead? Because header names are mutable; column position is not. Locking position is rigid, but it gives the strongest constraint on the agent. Reorder the columns and the script reads the wrong cells and fails immediately. The table is Day 12's protocol. The clearer the protocol, the higher the chance the agent writes working scripts.
+The intermediate output is the core. The agent and the scripts hand off through a four-column table: page number, scene description, story text, image prompt. Page numbers are `p.01`, `p.02`. Parsing is by position: the script doesn't know column names, only column numbers. Reading by column name was an option with free ordering, but a renamed column breaks the script. I chose position, simple and direct. There's a trap with column names: the agent writes the table, and if it tweaks a header, the script dies. Why parse by position instead of column name? Because agents love tweaking headers on a whim. Locking column position is a bit rigid, but it gives the strongest constraint on the agent. Reorder the columns and the script reads the wrong cells and fails immediately. The table is Day 12's protocol. The clearer the protocol, the higher the chance the agent writes working scripts.
 
 Protocol before implementation. The table comes first; role prompts and scripts all follow it.
 
@@ -133,7 +133,7 @@ Scripts: talk requirements before writing. What does `pipeline.py` do? Parse the
 pipeline.py 逐行解析 stories.md，每页生成一张图。生图调用现成的 agnes-ai 技能，执行 agnes_media.py image 命令，prompt 从表格第四列读。并发、超时、重试次数，你按经验给建议，理由写清楚。每页打印一行 ok 加故事名页码。audit.log 每页记一条 JSON，含时间、故事、页、API、状态、URL。有拿不准的，先问我再写。
 ```
 
-The agent came back with parameter suggestions: concurrency 4, timeout 120s, 2 automatic retries on failure. I read the reasoning and adopted the parameters. I had my own ideas here. `audit.log` uses JSON with six fixed fields: time, story, page, API, status, URL. Progress lines are for humans; JSON is for scripts and review. And rerun parameters: `--story` picks a story, `--pages` picks pages. That's a checkpoint for the pipeline. If a run dies halfway, pick the failed pages and continue from the checkpoint instead of rerunning the whole batch. Suggesting this is on me: the agent won't think of it. Requirements settled, then the agent writes code. That's Day 12's "turn the script into a tool". Requirements clear, prompts become command-line parameters. Change parameters, not code.
+The agent came back with parameter suggestions: concurrency 4, timeout 120s, 2 automatic retries on failure. The reasoning made complete sense, so I rolled with it. I had my own ideas here. `audit.log` uses JSON with six fixed fields: time, story, page, API, status, URL. Progress lines are for humans; JSON is for scripts and review. And rerun parameters: `--story` picks a story, `--pages` picks pages. That's a checkpoint for the pipeline. If a run dies halfway, pick the failed pages and continue from the checkpoint instead of rerunning the whole batch. Suggesting this is on me: the agent won't think of it. Requirements settled, then the agent writes code. That's Day 12's "turn the script into a tool". Requirements clear, prompts become command-line parameters. Change parameters, not code.
 
 **Input · Prompt**
 
@@ -227,7 +227,7 @@ uv run python3 skill/scripts/pipeline.py run stories.md \
 
 Single-page repair has parameters. `--story` picks a story, `--pages` picks pages. Redo only the bad pages, not the whole batch. This requirement came from Round 5's talk. Without it, the agent would have missed the feature.
 
-AI review caught real problems. `the-red-ball` page 1: the scene description says "standing", the generated image shows "sitting". The vision model judged `consistent=false`. A flagged mismatch is an automatic fail. Fix: edit the scene description column, rerun just that page. Regenerate, re-verify. Only then is it truly done. Look at the pipeline from zero: agent produces content, scripts do the volume, AI reviews, human decides. Day 12's two tools in relay, four links joined.
+AI review caught real problems. `the-red-ball` page 1: the scene description says "standing", the generated image shows "sitting". The vision model judged `consistent=false`. If the vision model flags a mismatch, that's an automatic fail. The fix: edit the scene description column and rerun just that page. Regenerate, re-verify. Only then is it truly done. Look at the pipeline from zero: agent produces content, scripts do the volume, AI reviews, human decides. Day 12's two tools in relay, four links joined.
 
 ---
 
@@ -240,7 +240,7 @@ AI review caught real problems. `the-red-ball` page 1: the scene description say
 - [ ] Nail down requirements and parameters first; only then let the agent write code
 - [ ] Run tests against a clear checklist mapped back to your original goal
 
-Today a workflow became a skill kit. Six conversations: set the goal, explain the workflow, confirm nodes and acceptance, ask for a plan, implement, test. Looking back, no new concepts. Core concepts were logically chained: GCO originates from Day 10, task specification from Day 8, protocol division from Day 12, acceptance testing from Day 11, and provider evaluation from Day 9. Six rounds, and in them the principles were applied in order.
+Today a workflow became a skill kit. Six conversations: set the goal, explain the workflow, confirm nodes and acceptance, ask for a plan, implement, test. Looking back, no new concepts. Core concepts were logically chained: GCO came from Day 10, task descriptions from Day 8, division and protocols from Day 12, acceptance checks from Day 11, and provider evaluations from Day 9. Six rounds, and in them the principles were applied in order.
 
 Day 14 is next: dissect this skill further. The focus is how to write prompts, how an md document tells the agent what to do and how to do it.
 
