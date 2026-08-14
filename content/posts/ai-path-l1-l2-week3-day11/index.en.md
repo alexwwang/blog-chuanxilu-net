@@ -17,7 +17,7 @@ cover:
 
 Day 10 ended with a note: description and verification are two sides of the same coin. If you can't describe what you want, you can't check whether you got it.
 
-I default to trusting AI output, especially when it sounds confident. It's well structured, clear, and sounds right. Day 10 mentioned an example: I asked AI to "organize these files by category." It sorted them alphabetically by name. The result looked organized, but it wasn't the kind of organization I meant. At the time, I thought, "I need to describe it better next time," rather than, "I should verify whether what it delivered is actually correct."
+I default to trusting AI output, especially when it sounds confident. The generated text is well-structured, clear, and sounds right. Day 10 mentioned an example: I asked AI to "organize these files by category." It sorted them alphabetically by name. The result looked organized, but it wasn't the kind of organization I meant. At the time, I thought, "I need to describe it better next time," rather than, "I should verify whether it actually delivered what I asked for."
 
 That pattern keeps repeating. AI produces something that looks reasonable at a glance; I skim it and move on. By the time a detail goes wrong enough to notice, I've already built on top of the mistake.
 
@@ -29,7 +29,7 @@ None of these methods require writing code.
 
 ## GCO as a Checklist
 
-The GCO you wrote to describe the task works as acceptance criteria. You just switch the direction.
+The GCO you wrote to describe the task doubles as your acceptance criteria. You just switch the direction.
 
 Day 10 exercise 2 asked AI to analyze 2025 sales data: trends by product line, growth rates, and recommendations. Day 10 showed the difference between vague and clear descriptions. Today, I pick up where Day 10 left off: how to check the result.
 
@@ -42,28 +42,28 @@ Say AI finished the analysis and handed you a report. Verification starts by pul
 | Constraints | Quarterly aggregation | Consistent quarterly granularity → pass |
 | Constraints | Independent analysis per product line | Lines `A` and `B` aren't conflated → pass |
 | Constraints | Flag growth below 10% | Product `C` (growth < 10%) explicitly flagged → pass |
-| Output | Table, line chart, three key findings (one sentence each) | Table and chart present; five findings returned, but two exceed one sentence → fail, ask AI to condense |
+| Output | Table, line chart, three key findings (one sentence each) | Table and chart present; five findings returned, but two exceed the one-sentence limit → fail, ask AI to condense |
 
 One pass through the checklist and you know exactly what's off. No more "something feels wrong about this." You point at "Output says three findings, you gave me five, please consolidate."
 
-I keep the GCO in a note after sending the task; when the results come back, ticking through the checklist takes about three minutes.
+I keep the original GCO in a quick note. When the results come back, ticking through the checklist takes less than three minutes.
 
 ---
 
 ## Invariant Checks
 
-Some things shouldn't change simply because AI processed the data. Find the properties that must stay the same regardless of what analysis happens.
+Some things shouldn't change simply because AI processed the data. Identify the core properties that must remain unchanged regardless of the analysis performed.
 
 Let's go back to the sales example:
 
-- **Row count**: 1,024 rows in, 1,024 rows out. AI won't delete data intentionally, but it might decide a row looks "anomalous" and filter it out.
+- **Row count**: 1,024 rows in, 1,024 rows out. AI won't delete data intentionally, but it might unilaterally decide a row looks "anomalous" and silently filter it out.
 - **Key identifier columns**: Order IDs, user IDs. These are anchors. If they change, you can't trace back to the source.
 - **Raw values**: AI can compute aggregates, but it shouldn't round individual values to the point where the underlying data is distorted.
 - **Source categories**: Raw data has `A`, `B`, and `C` categories. The result shouldn't invent category `D`.
 
 The most straightforward approach is to have the AI verify its own output.
 
-> Check your analysis: did the total row count change, were any order IDs modified, or were any raw categories altered? Answer each point, and if any invariant was broken, halt processing and list the affected rows.
+> Check your analysis: did the total row count change, were any order IDs modified, or were any raw categories altered? Answer each point, and if any invariant has been broken, halt processing immediately and list the affected rows.
 
 Not sure what's invariant? Have AI figure it out:
 
@@ -75,7 +75,7 @@ AI lists the properties, allowing you to review them, confirm the right ones, an
 
 ## Reverse Checking
 
-GCO checklist checks completeness. Invariant checks check correctness. Reverse checking goes further: it assumes the result is wrong, then finds where it broke.
+The GCO checklist ensures completeness, while invariant checks verify correctness. Reverse checking goes further: it assumes the result is wrong, then finds where it broke.
 
 **Method 1: Likelihood list.**
 
@@ -87,14 +87,14 @@ AI will likely list issues such as an incorrect data source, a faulty aggregatio
 
 > Now act as a reviewer. Find every issue in this report, the more detailed, the better. Tag each with a risk level and a fix recommendation.
 
-AI will produce some false positives, but skimming its feedback allows you to filter them out and find problems you might have missed even with a more thorough description.
+AI will surface some false positives, but a quick skim lets you filter those out and find problems you might have missed even with a more thorough description.
 
 ---
 
 ## Human in the Loop
 
 ![Verification gradation: GCO checklist → Invariant checks → Reverse checks](illustration-verification.png)
-The depth of these three methods depends on how critical the task is:
+Match your verification depth to the stakes of the task: use quick checklist passes for routine drafts, invariant checks for production data, and full reverse-checks before touching financial figures.
 
 - 🟢 **GCO checklist**: Every task. 3 minutes. Since your GCO is already written from the prompt stage, simply use it as your verification baseline.
 - 🟡 **Invariant checks**: Critical tasks. 5 minutes. It's worth it for anything involving data, configuration, or batch operations.
@@ -102,7 +102,7 @@ The depth of these three methods depends on how critical the task is:
 
 You are not the one doing the manual checking. AI handles the bulk of verification: scanning a thousand rows in under a minute, listing possible failure modes, and questioning its own output from different angles. Your job is judgment. Is this deviation acceptable? Does that risk need action?
 
-This completes the loop: you use GCO to define your specifications on the way in, and return to it to verify your deliverables on the way out.
+This completes the loop: GCO guides your request on the way in, and serves as your benchmark on the way out. You stay in control of the final judgment, without doing any of the manual grunt work.
 
 ---
 
