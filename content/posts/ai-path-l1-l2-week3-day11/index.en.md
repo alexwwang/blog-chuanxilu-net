@@ -31,7 +31,7 @@ None of these methods require writing code.
 
 The GCO you wrote to describe the task works as an acceptance checklist. You just switch the direction.
 
-Day 10 exercise 2 asked AI to analyze 2025 sales data: trends by product line, growth rates, and recommendations. Day 10 showed the difference between vague and clear descriptions. Today picks up where that left off: how to check the result.
+Day 10 exercise 2 asked AI to analyze 2025 sales data: trends by product line, growth rates, and recommendations. Day 10 showed the difference between vague and clear descriptions. Today, I pick up where Day 10 left off: how to check the result.
 
 Say AI finished the analysis and handed you a report. Verification starts by pulling out the original GCO and going line by line:
 
@@ -52,11 +52,11 @@ I keep the GCO in a note after sending the task. When results come back, I tick 
 
 ## Invariant Checks
 
-Some things shouldn't change because AI processed the data. Find the properties that must stay the same regardless of what analysis happens.
+Some things shouldn't change simply because AI processed the data. Find the properties that must stay the same regardless of what analysis happens.
 
 Let's go back to the sales example:
 
-- **Row count**: 1,024 rows in, 1,024 rows out. AI won't delete data intentionally, but it might decide a row looks "anomalous" and filter it.
+- **Row count**: 1,024 rows in, 1,024 rows out. AI won't delete data intentionally, but it might decide a row looks "anomalous" and filter it out.
 - **Key identifier columns**: Order IDs, user IDs. These are anchors. If they change, you can't trace back to the source.
 - **Raw values**: AI can compute aggregates, but it shouldn't round individual values to the point of distortion.
 - **Source categories**: Raw data has A, B, C categories. The result shouldn't invent category D.
@@ -81,7 +81,7 @@ GCO checklist checks completeness. Invariant checks check correctness. Reverse c
 
 > Pretend this analysis result is already wrong. List 10 ways it could have gone wrong, ordered by probability.
 
-AI will probably write: wrong data source, wrong aggregation formula, wrong time range, unhandled null values. If any of these are directions you haven't checked, you now have a to-do.
+AI will probably write: wrong data source, wrong aggregation formula, wrong time range, unhandled null values. If any of these are directions you haven't checked, you now have a to-do list.
 
 **Method 2: Sabotage testing.** Have AI play auditor against its own work.
 
@@ -110,7 +110,7 @@ GCO's value closes the loop here. You used it to say what you wanted. You used i
 
 Pick a task you'd give AI today, preferably with data output or text generation. Run it through:
 
-1. **GCO checklist**: Flip your original GCO into an acceptance checklist, tick through each item
+1. **GCO checklist**: Flip your original GCO into an acceptance checklist and tick through each item
 2. **Invariant check**: Ask AI to list immutable properties and verify each one
 3. **Reverse check (optional)**: Have AI attack its own result
 
