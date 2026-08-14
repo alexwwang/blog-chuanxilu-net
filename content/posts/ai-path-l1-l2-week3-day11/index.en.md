@@ -21,7 +21,7 @@ I default to trusting AI output, especially when it sounds confident. It's well 
 
 That pattern keeps repeating. AI produces something that looks reasonable at a glance; I skim it and move on. By the time a detail goes wrong enough to notice, I've already built on top of the mistake.
 
-Today I flip GCO around. It functions as a spec on the way in and a checklist on the way back. Same three fields, different direction.
+Today, I flip GCO around. It functions as a spec on the way in and a checklist on the way back. Same three fields, different direction.
 
 None of these methods require writing code.
 
@@ -37,11 +37,11 @@ Say AI finished the analysis and handed you a report. Verification starts by pul
 
 | GCO Field | As Description | As Verification |
 |-----------|---------------|-----------------|
-| Goal | Analyze sales trends by product line with growth rates | Report covers trends and growth by product line → pass |
+| Goal | Analyze sales trends by product line with growth rates. | Report covers trends and growth by product line → pass |
 | Constraints | Use 2025 data only | No 2024 data mixed in → pass |
 | Constraints | Quarterly aggregation | Consistent quarterly granularity → pass |
-| Constraints | Independent analysis per product line | Lines A and B aren't conflated → pass |
-| Constraints | Flag growth below 10% | Product C marked "slowing" → pass |
+| Constraints | Independent analysis per product line | Lines `A` and `B` aren't conflated → pass |
+| Constraints | Flag growth below 10% | Product `C` marked "slowing" → pass |
 | Output | Table, line chart, three key findings (one sentence each) | Table and chart present. Five findings; two exceed one sentence → fail, ask AI to condense |
 
 One pass through the checklist and you know exactly what's off. No more "something feels wrong about this." You point at "Output says three findings, you gave me five, please consolidate."
@@ -59,7 +59,7 @@ Let's go back to the sales example:
 - **Row count**: 1,024 rows in, 1,024 rows out. AI won't delete data intentionally, but it might decide a row looks "anomalous" and filter it out.
 - **Key identifier columns**: Order IDs, user IDs. These are anchors. If they change, you can't trace back to the source.
 - **Raw values**: AI can compute aggregates, but it shouldn't round individual values to the point where data is distorted.
-- **Source categories**: Raw data has `A`, `B`, and `C` categories. The result shouldn't invent category D.
+- **Source categories**: Raw data has `A`, `B`, and `C` categories. The result shouldn't invent category `D`.
 
 The most straightforward approach is to have the AI verify its own output.
 
@@ -67,7 +67,7 @@ The most straightforward approach is to have the AI verify its own output.
 
 Not sure what's invariant? Have AI figure it out:
 
-> You're about to process this dataset. First, list the properties that must never change no matter what analysis you perform. Then explain how you will verify each one.
+> You're about to process this dataset. First, list the properties that must never change no matter what analysis you perform. Then, explain how you will verify each one.
 
 AI lists them. You review, confirm the right ones, and add missing ones. Two minutes.
 
@@ -116,7 +116,7 @@ Pick a task you'd give AI today, preferably with data output or text generation.
 
 ### Today's Takeaways
 
-- [ ] GCO works both ways: a description tool and a verification tool.
+- [ ] GCO works both ways: as a description tool and a verification tool.
 - [ ] Can use GCO as a checklist to verify AI output line by line.
 - [ ] Can identify invariants and have AI self-verify critical properties.
 - [ ] Know two reverse-checking methods: likelihood lists and sabotage testing.
