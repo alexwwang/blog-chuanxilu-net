@@ -96,13 +96,13 @@ AI will produce some false positives. You skim the reviewer's output, filter out
 ![Verification gradation: GCO checklist → Invariant checks → Reverse checks](illustration-verification.png)
 The depth of these three methods depends on how critical the task is:
 
-- 🟢 **GCO checklist**: Every task. 3 minutes. The GCO is already written. Just tick through it.
+- 🟢 **GCO checklist**: Every task. 3 minutes. Since your GCO is already written from the prompt stage, simply use it as your verification baseline.
 - 🟡 **Invariant checks**: Critical tasks. 5 minutes. It's worth it for anything involving data, configuration, or batch operations.
 - 🔴 **Reverse checks**: High-risk tasks. 10 minutes. Anything involving money, permissions, or external delivery.
 
 You are not the one doing the manual checking. AI handles the bulk of verification: scanning a thousand rows in under a minute, listing possible failure modes, and questioning its own output from different angles. Your job is judgment. Is this deviation acceptable? Does that risk need action?
 
-GCO's value closes the loop here. You used it to say what you wanted. You used it to confirm that's what you got.
+This completes the loop: you use GCO to specify what you want on the input side, and return to it to verify what you received on the output side.
 
 ---
 
