@@ -3,7 +3,7 @@ title: "Day 10: Your AI Feels Like an Intern? Try the GCO Framework"
 slug: "ai-path-l1-l2-week3-day10"
 date: 2026-07-21T07:00:00+08:00
 draft: false
-description: 'Here are three exercises that show how vague versus clear task descriptions change AI output, along with the GCO framework that fixes the issue.'
+description: 'Here are three exercises that show how vague versus clear task descriptions change AI output, along with the GCO framework that resolves the problem.'
 tags: ["AI", "tutorial", "prompt-engineering", "task-description"]
 categories: ["ai-path"]
 toc: true
@@ -79,13 +79,13 @@ Then there's the data source problem: where's the file? What format are the colu
 >
 > Output: A table (product_line | annual_total | quarterly_detail | growth_rate), a line chart by quarter, and three findings (one sentence each).
 
-I tested both versions on the same dataset. The vague version generated a heatmap for an unrequested timeframe alongside a generic summary. The clear one returned exactly what I specified: table, chart, and findings, ready to put in a report.
+I tested both versions on the same dataset. The vague version generated a heatmap covering an unrequested timeframe alongside a generic summary. The clear one returned exactly what I specified: table, chart, and findings, ready to put in a report.
 
 ## Exercise 3: "Write a Monitoring Script"
 
 Consider a common automation task that begins with a vague prompt: "Write a script to monitor disk space."
 
-This prompt leaves out three critical pieces of information: the alert threshold, the notification channel, and the target environment with its scheduler.
+This prompt leaves out three critical pieces of information: the alert threshold, the notification channel, and the target execution environment along with its scheduler.
 
 The AI might write a Python script requiring `psutil` on a minimal Ubuntu 22.04 image, or it might generate an email alert when no SMTP server exists.
 
@@ -124,7 +124,7 @@ All three clear versions share the same structure. I call it **GCO**:
 
 **G (Goal):** What to do, and only that. One sentence defining the finish line.
 
-**C (Constraints):** What not to do. Define strict execution guardrails and explicitly prohibit invalid tools or side effects.
+**C (Constraints):** What not to do. Set strict execution guardrails and explicitly disallow unapproved tools or unintended side effects.
 
 **O (Output):** What counts as done. Define the deliverable so validation is objective.
 
@@ -144,6 +144,6 @@ Output: Give me [format: table/code/list/summary]
 
 ---
 
-This is Day 10 of the AI Path L1→L2 Upgrade Guide series. Day 8 introduced the three elements conceptually; today was about building the habit. Day 11 covers how to verify AI output quality. Describing clearly is only half the equation; knowing when it is right is the other half.
+This is Day 10 of the AI Path L1→L2 Upgrade Guide series. Day 8 introduced the three elements conceptually, while today focuses on building the habit. Day 11 covers how to verify AI output quality. Describing clearly is only half the equation; knowing when it is right is the other half.
 
 What type of task do you delegate to AI most often? I'm planning follow-up articles with scenario-specific templates.
