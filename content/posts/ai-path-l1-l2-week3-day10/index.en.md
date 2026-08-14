@@ -1,9 +1,9 @@
 ---
-title: "Your AI Feels Like an Intern? Try the GCO Framework"
+title: "Day 10: Your AI Feels Like an Intern? Try the GCO Framework"
 slug: "ai-path-l1-l2-week3-day10"
 date: 2026-07-21T07:00:00+08:00
 draft: false
-description: "Three exercises that show how vague vs clear task descriptions change AI output, and the GCO framework that fixes it."
+description: 'Here are three exercises that show how vague versus clear task descriptions change AI output, along with the GCO framework that fixes the issue.'
 tags: ["AI", "tutorial", "prompt-engineering", "task-description"]
 categories: ["ai-path"]
 toc: true
@@ -25,7 +25,7 @@ What I got back: all `.md` and `.py` files mixed together, sorted alphabetically
 
 Another time I said: "Show me the directory structure." I wanted a tree view. The AI gave me `ls -lh` output: file sizes, timestamps, permissions, everything I didn't ask for.
 
-The same request, described vaguely or clearly, can produce two completely different results. The gap wasn't in the tool. It was in how I described what I wanted.
+Refining how you describe a task can completely transform the outcome. The gap wasn't in the tool. It was in how I described what I wanted.
 
 A vague description and a clear one can mean the difference between three iterations and zero. Here are three exercises from everyday scenarios. Each starts with a vague version, breaks down what's missing, and builds up to a clear version.
 
@@ -35,11 +35,9 @@ If you read these and think "wait, I write prompts like the vague version too," 
 
 ## Exercise 1: "Organize My Files"
 
-The vague version most people write:
+Most people start with a vague request: "Clean up my Downloads folder."
 
-> Clean up my Downloads folder.
-
-This sentence has three holes.
+This prompt has three critical flaws.
 
 First, "clean up" is too broad. Sort by type? Archive by date? Delete duplicates? Rename for consistency? The AI guesses one interpretation. If it guesses wrong, you redo everything.
 
@@ -59,19 +57,17 @@ The fix is straightforward: state the goal, set constraints, define the output.
 >
 > Output: Print a migration manifest showing each file's origin and destination.
 
-With this version, the AI gets it right on the first try nine times out of ten. Even if something is off, say SVGs end up in documents/ instead of images/, you correct one category, not the whole task.
+With this version, the AI gets it right on the first try nine times out of ten. Even if an output is misplaced (for example, if SVG files end up in documents/ instead of images/), you only need to correct that single category rather than redoing the entire task.
 
-A vague description costs more than a few extra edits. The AI may end up doing something completely different from what you had in mind.
+A vague description costs far more than a few wasted minutes, forcing you to re-engineer the entire task.
 
 ## Exercise 2: "Analyze This Data"
 
-**Vague version:**
-
-> Analyze this sales data.
+Consider how a typical vague request handles data analysis, starting with a prompt like: "Analyze this sales data."
 
 "Analyze" is a black hole. Trend analysis, anomaly detection, YoY comparison, summary stats, distribution overview: they are all "analysis." Without specifying which, the AI picks one at random. You might care about growth rate gaps between product lines; the AI charts a heatmap of the entire dataset.
 
-Then there's the data source problem: where's the file? What format are the columns? Without this, the AI needs a round of clarifying questions, or worse, guesses a path and errors out.
+Then there's the data source problem: where's the file? What format are the columns? Without these details, the AI must either ask for clarification or, worse, guess a file path and fail.
 
 **Clear version:**
 
@@ -87,13 +83,11 @@ I tested both versions on the same dataset. The vague one returned a heatmap of 
 
 ## Exercise 3: "Write a Monitoring Script"
 
-**Vague version:**
+Consider a common automation task that begins with a vague prompt: "Write a script to monitor disk space."
 
-> Write a script to monitor disk space.
+This prompt leaves out three critical pieces of information: the alert threshold, the notification channel, and the target environment with its scheduler.
 
-Three missing pieces: What threshold triggers the alert? What's the notification channel? What's the target environment and scheduler?
-
-The AI might write a Python script that depends on `psutil`. But your server runs Ubuntu 22.04 with a minimal base image and no extra packages. Or it writes an email alert, but you don't have SMTP configured.
+The AI might write a Python script requiring `psutil` on a minimal Ubuntu 22.04 image, or it might generate an email alert when no SMTP server exists.
 
 **Clear version (platform-agnostic):**
 
@@ -120,7 +114,7 @@ This version drops platform assumptions. The AI can use Bash, PowerShell, or any
 > Constraints: Use Get-PSDrive C for usage. Write alerts to Event Log. Schedule via Task Scheduler.
 > Output: Monitor-Disk.ps1 + Task Scheduler import config.
 
-Every constraint eliminates a risk that comes from assuming the AI would guess correctly. The vague version might output a Python script that emails you. Except you don't have SMTP set up. Dead on arrival.
+Every constraint eliminates a risk that comes from assuming the AI would guess correctly. By leaving those choices to chance, the vague version almost guarantees a script that fails on first run.
 
 ## The Pattern: GCO
 
@@ -134,7 +128,7 @@ All three clear versions share the same structure. I call it **GCO**:
 
 **O (Output):** What counts as done. Define the deliverable so validation is objective.
 
-These three elements are sequential. Goal sets direction. Constraints narrow the path. Output defines the finish line. Without Goal, Constraints and Output have no anchor. Without Constraints, the AI can hit the target but cross your boundaries, deleting files you wanted kept or using a library your environment does not have. Without Output, the AI finishes but you have no way to tell whether it is done, and you accept whatever it gives you.
+These three elements are sequential. Goal sets direction. Constraints narrow the path. Output defines the finish line. Without a Goal, Constraints, and Output have no anchor. Without Constraints, the AI can hit the target but cross your boundaries, deleting files you wanted kept or using a library your environment does not have. Without Output, the AI finishes but you have no way to tell whether it is done, and you accept whatever it gives you.
 
 ## Try It Yourself
 
