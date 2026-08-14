@@ -29,7 +29,7 @@ None of these methods require writing code.
 
 ## GCO as a Checklist
 
-The GCO you wrote to describe the task works as an acceptance checklist. You just switch the direction.
+The GCO you wrote to describe the task works as acceptance criteria. You just switch the direction.
 
 Day 10 exercise 2 asked AI to analyze 2025 sales data: trends by product line, growth rates, and recommendations. Day 10 showed the difference between vague and clear descriptions. Today, I pick up where Day 10 left off: how to check the result.
 
@@ -46,7 +46,7 @@ Say AI finished the analysis and handed you a report. Verification starts by pul
 
 One pass through the checklist and you know exactly what's off. No more "something feels wrong about this." You point at "Output says three findings, you gave me five, please consolidate."
 
-I keep the GCO in a note after sending the task. When results come back, I tick through. Three minutes.
+I keep the GCO in a note after sending the task. When results come back, I tick through the checklist; the process takes about three minutes.
 
 ---
 
