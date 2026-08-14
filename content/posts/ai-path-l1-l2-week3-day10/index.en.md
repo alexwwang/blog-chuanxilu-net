@@ -15,7 +15,7 @@ cover:
 
 > This is Day 10 of the AI Path L1→L2 Upgrade Guide. You should complete [Day 8](../ai-path-l1-l2-week2-day8/) and [Day 9](../ai-path-l1-l2-week2-day9/) first.
 
-I learned this the hard way. "I thought I was clear" is a lie I have told myself more often than I care to admit when prompting AI.
+I learned this the hard way. "I thought I was clear" is a lie I've told myself more often than I care to admit while writing AI prompts.
 
 I once asked an AI to organize project documents:
 
@@ -43,7 +43,7 @@ First, "clean up" is too broad. Sort by type? Archive by date? Delete duplicates
 
 Second, it lacks explicit classification rules. By file type or by project topic? What naming convention? Whatever the AI defaults to probably doesn't match your workflow.
 
-Third, it defines no expected deliverable or output format. What counts as done? Do you require a dry-run execution manifest for pre-execution verification before files are moved?
+Third, it defines no expected deliverable or output format. What counts as done? Do you need a dry-run manifest to verify the changes before moving any files?
 
 The fix is straightforward: state the goal, set constraints, define the output.
 
@@ -65,7 +65,7 @@ A vague description costs far more than a few wasted minutes, forcing you to re-
 
 Consider how a typical vague request handles data analysis, starting with a prompt like: "Analyze this sales data."
 
-"Analyze" is a black hole. Trend analysis, anomaly detection, year-over-year (YoY) comparison, summary statistics and distribution overviews are all distinct analytical tasks. Without specifying which, the AI picks one at random. You might care about growth rate gaps between product lines; the AI charts a heatmap of the entire dataset.
+"Analyze" is a black hole. Trend analysis, anomaly detection, year-over-year (YoY) comparisons, summary statistics and distribution overviews are all distinct analytical tasks. Without specifying which, the AI picks one at random. You might care about growth rate gaps between product lines; the AI charts a heatmap of the entire dataset.
 
 Then there's the data source problem: where's the file? What format are the columns? Without these details, the AI must either ask for clarification or, worse, guess a file path and fail.
 
@@ -77,7 +77,7 @@ Then there's the data source problem: where's the file? What format are the colu
 >
 > Constraints: 2024 data only. Quarterly aggregation. Each product line analyzed independently. Flag growth rates below 10% as "needs attention."
 >
-> Output: A table (`product_line` | `annual_total` | `quarterly_detail` | `growth_rate`), a line chart by quarter, and three findings (one sentence each).
+> Output: A table (`product_line` | `annual_total` | `quarterly_detail` | `growth_rate` | `needs_attention_flag`), a line chart by quarter, and three findings (one sentence each).
 
 I tested both versions on the same dataset. The vague version generated a heatmap covering an unrequested timeframe alongside a generic summary. The clear one returned exactly what I specified: table, chart, and findings, ready to put in a report.
 
@@ -114,7 +114,7 @@ This version drops platform assumptions. The AI can use Bash, PowerShell, or any
 > Constraints: Use `Get-PSDrive C` for usage. Write alerts to Event Log. Schedule via Task Scheduler.
 > Output: `Monitor-Disk.ps1` + Task Scheduler import config.
 
-Every constraint eliminates a failure mode driven by implicit model assumptions. Leaving these technical requirements unspecified almost guarantees execution failure on the first run.
+Every constraint prevents a specific failure mode driven by implicit model assumptions. Leaving these technical boundaries unspecified frequently leads to scripts that fail on their very first execution.
 
 ## The Pattern: GCO
 
@@ -124,7 +124,7 @@ All three clear versions share the same structure. I call it **GCO**:
 
 **G (Goal):** What to do, and only that. One sentence defining the finish line.
 
-**C (Constraints):** What not to do. Set strict execution guardrails and explicitly disallow unapproved tools or unintended side effects.
+**C (Constraints):** What not to do. Establish strict guardrails to prevent unapproved tools, unintended side effects or destructive file operations.
 
 **O (Output):** What counts as done. Define the deliverable so validation is objective.
 
