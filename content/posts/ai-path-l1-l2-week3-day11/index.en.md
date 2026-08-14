@@ -13,7 +13,7 @@ cover:
   alt: "Watercolor: a beam of light passes through GCO (Goal, Constraints, Output) through a magnifying glass, landing on a verified report"
 ---
 
-> This is Day 11 of the AI Path L1→L2 Upgrade Guide. If you haven't yet, complete [Day 8]({{< relref "ai-path-l1-l2-week2-day8" >}}) and [Day 10]({{< relref "ai-path-l1-l2-week3-day10" >}}) before diving into this practice session.
+> This is Day 11 of the AI Path L1→L2 Upgrade Guide; if you haven't done so yet, complete [Day 8]({{< relref "ai-path-l1-l2-week2-day8" >}}) and [Day 10]({{< relref "ai-path-l1-l2-week3-day10" >}}) before diving into this practice session.
 
 Day 10 ended with a note: description and verification are two sides of the same coin. If you can't describe what you want, you can't check whether you got it.
 
@@ -29,7 +29,7 @@ None of these methods require writing code.
 
 ## GCO as a Checklist
 
-The GCO you wrote to describe the task doubles as your set of acceptance criteria; you simply flip the direction.
+The GCO you wrote to describe the task doubles as your set of acceptance criteria; you simply flip its direction.
 
 Day 10 exercise 2 asked AI to analyze 2025 sales data: trends by product line, growth rates, and recommendations. Day 10 showed the difference between vague and clear descriptions. Today, I pick up where Day 10 left off: how to check the result.
 
@@ -52,7 +52,7 @@ I keep the original GCO in a quick note. When the results come back, ticking thr
 
 ## Invariant Checks
 
-Some things shouldn't change simply because AI processed the data. Identify the core properties that must remain unchanged regardless of the analysis performed.
+Some things shouldn't change simply because AI processed the data. Identify the core properties that must remain unchanged regardless of the analysis.
 
 Let's go back to the sales example:
 
@@ -69,7 +69,7 @@ Not sure what's invariant? Have AI figure it out:
 
 > You're about to process this dataset. First, list the properties that must never change no matter what analysis you perform. Then, explain how you will verify each one.
 
-AI lists the properties so you can review them, confirm the right ones, and add missing ones; all in about two minutes.
+AI lists the properties so you can review them, confirm the right ones, and add missing ones, all in about two minutes.
 
 ---
 
@@ -87,14 +87,14 @@ AI will likely list issues such as an incorrect data source, a faulty aggregatio
 
 > Now act as a reviewer. Find every issue in this report, the more detailed, the better. Tag each with a risk level and a fix recommendation.
 
-AI will surface a few false positives, but a quick skim lets you filter those out and catch logic flaws you might have missed during your initial prompt setup.
+AI will surface a few false positives, but a quick skim lets you filter out the noise and catch logic flaws you might have missed during your initial prompt setup.
 
 ---
 
 ## Human in the Loop
 
 ![Verification gradation: GCO checklist → Invariant checks → Reverse checks](illustration-verification.png)
-Match your verification depth to the stakes of the task: use quick checklist passes for routine drafts, invariant checks for production data, and full reverse-checks before touching financial figures.
+Match your verification depth to the task's stakes: use quick checklist passes for routine drafts, invariant checks for production data, and full reverse-checks before touching financial figures.
 
 - 🟢 **GCO checklist**: Every task. 3 minutes. Since your GCO is already written from the prompt stage, simply use it as your verification baseline.
 - 🟡 **Invariant checks**: Critical tasks. 5 minutes. This step is essential for any task involving raw data, system configurations, or batch processing.
@@ -102,7 +102,7 @@ Match your verification depth to the stakes of the task: use quick checklist pas
 
 You are not the one doing the manual checking. AI handles the bulk of verification: scanning a thousand rows in under a minute, listing possible failure modes, and questioning its own output from different angles. Your job is judgment. Is this deviation acceptable? Does that risk need action?
 
-This completes the loop: GCO guides your request on the way in and serves as your benchmark on the way out. You stay in control of the final judgment, without doing any of the manual grunt work.
+This completes the loop: GCO guides your request on the way in, and it serves as your benchmark on the way out. You stay in control of the final judgment, without doing any of the manual grunt work.
 
 ---
 
@@ -116,10 +116,10 @@ Pick a task you'd give AI today, preferably with data output or text generation.
 
 ### Today's Takeaways
 
-- [ ] I can use GCO both ways: as a description tool and a verification tool.
+- [ ] I can use GCO as a specification tool on the way in and a checklist on the way out.
 - [ ] I can use GCO as a checklist to verify AI output line by line.
 - [ ] I can identify invariants and have AI self-verify critical properties.
-- [ ] I know two reverse-checking methods: likelihood lists and sabotage testing.
+- [ ] I can apply two reverse-checking methods: likelihood lists and sabotage testing.
 - [ ] I can choose verification depth based on task importance (3 / 5 / 10 minute tiers).
 
 ---
