@@ -53,11 +53,11 @@ The fix is straightforward: state the goal, set constraints, define the output.
 >
 > Goal: Sort files by extension into subfolders.
 >
-> Constraints: Move only, no deletions or modifications. Images → images/, documents → documents/, archives → archives/, everything else → misc/. Create folders if missing. Ignore hidden files.
+> Constraints: Move only, no deletions or modifications. Images → `images/`, documents → `documents/`, archives → `archives/`, everything else → `misc/`. Create folders if missing. Ignore hidden files.
 >
 > Output: Print a migration manifest showing each file's origin and destination.
 
-With this version, the AI gets it right on the first try nine times out of ten. Even if a file is miscategorized (for example, if SVG files end up in documents/ instead of images/), you only need to adjust that specific file-type mapping rule rather than restructuring the entire prompt.
+With this version, the AI gets it right on the first try nine times out of ten. Even if a file is miscategorized (for example, if `SVG` files end up in `documents/` instead of `images/`), you only need to adjust that specific file-type mapping rule rather than restructuring the entire prompt.
 
 A vague description costs far more than a few wasted minutes, forcing you to re-engineer the entire task.
 
@@ -71,13 +71,13 @@ Then there's the data source problem: where's the file? What format are the colu
 
 **Clear version:**
 
-> I have 2024 sales data in `data/sales_2024.csv` (CSV). Fields: product_line, quarter, revenue, growth_rate.
+> I have 2024 sales data in `data/sales_2024.csv` (CSV). Fields: `product_line`, `quarter`, `revenue`, `growth_rate`.
 >
 > Goal: Identify sales trends and anomalies per product line.
 >
 > Constraints: 2024 data only. Quarterly aggregation. Each product line analyzed independently. Flag growth rates below 10% as "needs attention."
 >
-> Output: A table (product_line | annual_total | quarterly_detail | growth_rate), a line chart by quarter, and three findings (one sentence each).
+> Output: A table (`product_line` | `annual_total` | `quarterly_detail` | `growth_rate`), a line chart by quarter, and three findings (one sentence each).
 
 I tested both versions on the same dataset. The vague version generated a heatmap covering an unrequested timeframe alongside a generic summary. The clear one returned exactly what I specified: table, chart, and findings, ready to put in a report.
 
@@ -93,26 +93,26 @@ The AI might write a Python script requiring `psutil` on a minimal Ubuntu 22.04 
 
 > Goal: Check disk usage daily and alert when above 85%.
 >
-> Constraints: System commands only, no third-party tools. Log alerts to syslog; no external notification channel.
+> Constraints: System commands only, no third-party tools. Log alerts to `syslog`; no external notification channel.
 >
 > Output: A runnable script plus a scheduler config example.
 
 This version drops platform assumptions. The AI can use Bash, PowerShell, or any language. For more precision, here are platform-specific versions you can use without edits:
 
 **Linux (Bash), copy-paste ready:**
-> Goal: Check /dev/sda daily, alert above 85%.
-> Constraints: Ubuntu 22.04. Alert via logger. Schedule via crontab. No third-party dependencies.
-> Output: monitor_disk.sh + crontab config.
+> Goal: Check `/dev/sda` daily, alert above 85%.
+> Constraints: Ubuntu 22.04. Alert via `logger`. Schedule via `crontab`. No third-party dependencies.
+> Output: `monitor_disk.sh` + `crontab` config.
 
 **macOS (Bash), copy-paste ready:**
 > Goal: Check Macintosh HD daily, alert above 85%.
-> Constraints: Check /dev/disk1s1. Alert via logger. Schedule via launchd.
-> Output: monitor_disk.sh + plist config.
+> Constraints: Check `/dev/disk1s1`. Alert via `logger`. Schedule via `launchd`.
+> Output: `monitor_disk.sh` + `plist` config.
 
 **Windows (PowerShell), copy-paste ready:**
-> Goal: Check C: drive daily, alert above 85%.
-> Constraints: Use Get-PSDrive C for usage. Write alerts to Event Log. Schedule via Task Scheduler.
-> Output: Monitor-Disk.ps1 + Task Scheduler import config.
+> Goal: Check `C:` drive daily, alert above 85%.
+> Constraints: Use `Get-PSDrive C` for usage. Write alerts to Event Log. Schedule via Task Scheduler.
+> Output: `Monitor-Disk.ps1` + Task Scheduler import config.
 
 Every constraint eliminates a failure mode driven by implicit model assumptions. Leaving these technical requirements unspecified almost guarantees execution failure on the first run.
 
