@@ -25,9 +25,9 @@ What I got back: all `.md` and `.py` files mixed together, sorted alphabetically
 
 Another time I said: "Show me the directory structure." I wanted a tree view. The AI gave me `ls -lh` output: file sizes, timestamps, permissions, everything I didn't ask for.
 
-Refining how you describe a task can completely transform the outcome. The gap wasn't in the tool. It was in how I described what I wanted.
+Refining how you describe a task can completely transform the outcome. The root cause wasn't model capability. It was prompt specification.
 
-A vague description and a clear one can mean the difference between three iterations and zero. Here are three exercises from everyday scenarios. Each starts with a vague version, breaks down what's missing, and builds up to a clear version.
+Refining your task description can mean the difference between three back-and-forth prompt iterations and getting it right on the first turn. Here are three exercises from everyday scenarios. Each starts with a vague version, breaks down what's missing, and builds up to a clear version.
 
 If you read these and think "wait, I write prompts like the vague version too," that is exactly why this article exists.
 
@@ -41,9 +41,9 @@ This prompt has three critical flaws.
 
 First, "clean up" is too broad. Sort by type? Archive by date? Delete duplicates? Rename for consistency? The AI guesses one interpretation. If it guesses wrong, you redo everything.
 
-Second, no classification rule. By file type or by project topic? What naming convention? Whatever the AI defaults to probably doesn't match your workflow.
+Second, it lacks explicit classification rules. By file type or by project topic? What naming convention? Whatever the AI defaults to probably doesn't match your workflow.
 
-Third, no deliverable. What counts as done? Do you want a manifest to review?
+Third, it defines no expected deliverable or output format. What counts as done? Do you require a dry-run execution manifest for pre-execution verification before files are moved?
 
 The fix is straightforward: state the goal, set constraints, define the output.
 
@@ -57,7 +57,7 @@ The fix is straightforward: state the goal, set constraints, define the output.
 >
 > Output: Print a migration manifest showing each file's origin and destination.
 
-With this version, the AI gets it right on the first try nine times out of ten. Even if an output is misplaced (for example, if SVG files end up in documents/ instead of images/), you only need to correct that single category rather than redoing the entire task.
+With this version, the AI gets it right on the first try nine times out of ten. Even if a file is miscategorized (for example, if SVG files end up in documents/ instead of images/), you only need to adjust that specific file-type mapping rule rather than restructuring the entire prompt.
 
 A vague description costs far more than a few wasted minutes, forcing you to re-engineer the entire task.
 
@@ -65,7 +65,7 @@ A vague description costs far more than a few wasted minutes, forcing you to re-
 
 Consider how a typical vague request handles data analysis, starting with a prompt like: "Analyze this sales data."
 
-"Analyze" is a black hole. Trend analysis, anomaly detection, YoY comparison, summary stats, distribution overview: they are all "analysis." Without specifying which, the AI picks one at random. You might care about growth rate gaps between product lines; the AI charts a heatmap of the entire dataset.
+"Analyze" is a black hole. Trend analysis, anomaly detection, year-over-year (YoY) comparison, summary statistics and distribution overviews are all distinct analytical tasks. Without specifying which, the AI picks one at random. You might care about growth rate gaps between product lines; the AI charts a heatmap of the entire dataset.
 
 Then there's the data source problem: where's the file? What format are the columns? Without these details, the AI must either ask for clarification or, worse, guess a file path and fail.
 
@@ -79,7 +79,7 @@ Then there's the data source problem: where's the file? What format are the colu
 >
 > Output: A table (product_line | annual_total | quarterly_detail | growth_rate), a line chart by quarter, and three findings (one sentence each).
 
-I tested both versions on the same dataset. The vague one returned a heatmap of a year I did not ask for plus a generic summary. The clear one returned exactly what I specified: table, chart, and findings, ready to put in a report.
+I tested both versions on the same dataset. The vague version generated a heatmap for an unrequested timeframe alongside a generic summary. The clear one returned exactly what I specified: table, chart, and findings, ready to put in a report.
 
 ## Exercise 3: "Write a Monitoring Script"
 
@@ -114,7 +114,7 @@ This version drops platform assumptions. The AI can use Bash, PowerShell, or any
 > Constraints: Use Get-PSDrive C for usage. Write alerts to Event Log. Schedule via Task Scheduler.
 > Output: Monitor-Disk.ps1 + Task Scheduler import config.
 
-Every constraint eliminates a risk that comes from assuming the AI would guess correctly. By leaving those choices to chance, the vague version almost guarantees a script that fails on first run.
+Every constraint eliminates a failure mode driven by implicit model assumptions. Leaving these technical requirements unspecified almost guarantees execution failure on the first run.
 
 ## The Pattern: GCO
 
@@ -124,15 +124,15 @@ All three clear versions share the same structure. I call it **GCO**:
 
 **G (Goal):** What to do, and only that. One sentence defining the finish line.
 
-**C (Constraints):** What not to do. Draw the boundaries, exclude the unwanted options.
+**C (Constraints):** What not to do. Define strict execution guardrails and explicitly prohibit invalid tools or side effects.
 
 **O (Output):** What counts as done. Define the deliverable so validation is objective.
 
-These three elements are sequential. Goal sets direction. Constraints narrow the path. Output defines the finish line. Without a Goal, Constraints, and Output have no anchor. Without Constraints, the AI can hit the target but cross your boundaries, deleting files you wanted kept or using a library your environment does not have. Without Output, the AI finishes but you have no way to tell whether it is done, and you accept whatever it gives you.
+These three elements are sequential. Goal sets direction. Constraints narrow the path. Output defines the finish line. Without a Goal, Constraints and Output have no anchor. Without Constraints, the AI may achieve the goal while violating system safety, such as permanently removing critical files or introducing unapproved third-party dependencies. Without a defined output format, you lack an objective baseline for structural validation and must manually parse unstructured responses.
 
 ## Try It Yourself
 
-Open your autonomous AI tool and pick a real task for today. Ask with a vague description first, then see what comes back. Then roll back, fill in GCO, and ask again. The gap between the two results will be larger than you expect.
+Open your autonomous AI tool and pick a real task for today. Ask with a vague description first, then see what comes back. Then reset the session, apply the GCO framework to your prompt and re-run the request. The gap between the two results will be larger than you expect.
 
 Here's a GCO template you can copy:
 
