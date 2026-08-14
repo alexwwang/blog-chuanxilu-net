@@ -17,7 +17,7 @@ cover:
 
 Day 10 ended with a note: description and verification are two sides of the same coin. If you can't describe what you want, you can't check whether you got it.
 
-I default to trusting AI output, especially when it sounds confident. It's well structured, clear, and sounds right. Day 10 mentioned an example: I asked AI to "organize these files by category." It sorted them alphabetically by name. The result looked organized, but it wasn't the kind of organization I meant. At the time, I thought "I need to describe it better next time," rather than "let me check whether what it delivered is actually correct."
+I default to trusting AI output, especially when it sounds confident. It's well structured, clear, and sounds right. Day 10 mentioned an example: I asked AI to "organize these files by category." It sorted them alphabetically by name. The result looked organized, but it wasn't the kind of organization I meant. At the time, I thought, "I need to describe it better next time," rather than, "I should verify whether what it delivered is actually correct."
 
 That pattern keeps repeating. AI produces something that looks reasonable at a glance; I skim it and move on. By the time a detail goes wrong enough to notice, I've already built on top of the mistake.
 
@@ -41,12 +41,12 @@ Say AI finished the analysis and handed you a report. Verification starts by pul
 | Constraints | Use 2025 data only | No 2024 data mixed in → pass |
 | Constraints | Quarterly aggregation | Consistent quarterly granularity → pass |
 | Constraints | Independent analysis per product line | Lines `A` and `B` aren't conflated → pass |
-| Constraints | Flag growth below 10% | Product `C` marked "slowing" → pass |
+| Constraints | Flag growth below 10% | Product `C` (growth < 10%) explicitly flagged → pass |
 | Output | Table, line chart, three key findings (one sentence each) | Table and chart present; five findings returned, but two exceed one sentence → fail, ask AI to condense |
 
 One pass through the checklist and you know exactly what's off. No more "something feels wrong about this." You point at "Output says three findings, you gave me five, please consolidate."
 
-I keep the GCO in a note after sending the task. When results come back, I tick through the checklist; the process takes about three minutes.
+I keep the GCO in a note after sending the task; when the results come back, ticking through the checklist takes about three minutes.
 
 ---
 
@@ -63,13 +63,13 @@ Let's go back to the sales example:
 
 The most straightforward approach is to have the AI verify its own output.
 
-> Check your analysis: did the total row count change? Were any order IDs modified? Are there categories in the output that don't exist in the source data? Answer each one.
+> Check your analysis: did the total row count change, were any order IDs modified, or were any raw categories altered? Answer each point, and if any invariant was broken, halt processing and list the affected rows.
 
 Not sure what's invariant? Have AI figure it out:
 
 > You're about to process this dataset. First, list the properties that must never change no matter what analysis you perform. Then, explain how you will verify each one.
 
-AI lists the properties. You review them, confirm the right ones, and add missing ones. Two minutes.
+AI lists the properties, allowing you to review them, confirm the right ones, and add missing ones. Two minutes.
 
 ---
 
@@ -79,7 +79,7 @@ GCO checklist checks completeness. Invariant checks check correctness. Reverse c
 
 **Method 1: Likelihood list.**
 
-> Pretend this analysis result is already wrong. List 10 potential failure points, ordered by probability.
+> Pretend this analysis result is already wrong. List 10 potential failure points stemming strictly from data transformations, formula errors, or logic flaws, ordered from most to least likely.
 
 AI will likely list issues such as an incorrect data source, a faulty aggregation formula, an improper time range, or unhandled null values. If any of these are directions you haven't checked, you now have a to-do list.
 
@@ -87,7 +87,7 @@ AI will likely list issues such as an incorrect data source, a faulty aggregatio
 
 > Now act as a reviewer. Find every issue in this report, the more detailed, the better. Tag each with a risk level and a fix recommendation.
 
-AI will produce some false positives. You skim the reviewer's output, filter out the false positives, and find problems you might have missed even with a more thorough description.
+AI will produce some false positives, but skimming its feedback allows you to filter them out and find problems you might have missed even with a more thorough description.
 
 ---
 
@@ -102,7 +102,7 @@ The depth of these three methods depends on how critical the task is:
 
 You are not the one doing the manual checking. AI handles the bulk of verification: scanning a thousand rows in under a minute, listing possible failure modes, and questioning its own output from different angles. Your job is judgment. Is this deviation acceptable? Does that risk need action?
 
-This completes the loop: you use GCO to specify what you want on the input side, and return to it to verify what you received on the output side.
+This completes the loop: you use GCO to define your specifications on the way in, and return to it to verify your deliverables on the way out.
 
 ---
 
