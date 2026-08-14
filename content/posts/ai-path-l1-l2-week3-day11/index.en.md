@@ -17,7 +17,7 @@ cover:
 
 Day 10 ended with a note: description and verification are two sides of the same coin. If you can't describe what you want, you can't check whether you got it.
 
-I default to trusting AI output, especially when it sounds confident. It's well structured, clear, and sounds right. Day 10 mentioned an example: I asked AI to "organize these files by category." It sorted them alphabetically by name. The result looked organized, but it wasn't the kind of organization I meant. At the time I thought "I need to describe it better next time," not "let me check whether what it delivered is actually correct."
+I default to trusting AI output, especially when it sounds confident. It's well structured, clear, and sounds right. Day 10 mentioned an example: I asked AI to "organize these files by category." It sorted them alphabetically by name. The result looked organized, but it wasn't the kind of organization I meant. At the time, I thought "I need to describe it better next time," not "let me check whether what it delivered is actually correct."
 
 That pattern keeps repeating. AI produces something that looks reasonable at a glance; I skim it and move on. By the time a detail goes wrong enough to notice, I've already built on top of the mistake.
 
@@ -42,7 +42,7 @@ Say AI finished the analysis and handed you a report. Verification starts by pul
 | Constraints | Quarterly aggregation | Consistent quarterly granularity → pass |
 | Constraints | Independent analysis per product line | Lines A and B aren't conflated → pass |
 | Constraints | Flag growth below 10% | Product C marked "slowing" → pass |
-| Output | Table, line chart, three key findings (one sentence each) | Table and chart present. Five findings, two exceed one sentence → fail, ask AI to condense |
+| Output | Table, line chart, three key findings (one sentence each) | Table and chart present. Five findings; two exceed one sentence → fail, ask AI to condense |
 
 One pass through the checklist and you know exactly what's off. No more "something feels wrong about this." You point at "Output says three findings, you gave me five, please consolidate."
 
@@ -59,7 +59,7 @@ Let's go back to the sales example:
 - **Row count**: 1,024 rows in, 1,024 rows out. AI won't delete data intentionally, but it might decide a row looks "anomalous" and filter it out.
 - **Key identifier columns**: Order IDs, user IDs. These are anchors. If they change, you can't trace back to the source.
 - **Raw values**: AI can compute aggregates, but it shouldn't round individual values to the point where data is distorted.
-- **Source categories**: Raw data has A, B, C categories. The result shouldn't invent category D.
+- **Source categories**: Raw data has `A`, `B`, and `C` categories. The result shouldn't invent category D.
 
 The most straightforward approach is to have the AI verify its own output.
 
@@ -85,7 +85,7 @@ AI will likely list issues such as an incorrect data source, a faulty aggregatio
 
 **Method 2: Sabotage testing.** Have AI play auditor against its own work.
 
-> Now act as a reviewer. Find every issue in this report, the more the better. Tag each with a risk level and a fix recommendation.
+> Now act as a reviewer. Find every issue in this report, the more detailed, the better. Tag each with a risk level and a fix recommendation.
 
 AI will produce some false positives. You skim the list, pick out the real issues, and find problems you might have missed even with a more thorough description.
 
@@ -110,17 +110,17 @@ GCO's value closes the loop here. You used it to say what you wanted. You used i
 
 Pick a task you'd give AI today, preferably with data output or text generation. Run it through:
 
-1. **GCO checklist**: Turn your original GCO into an acceptance checklist and check off each item
-2. **Invariant check**: Ask AI to list immutable properties and verify each one
-3. **Reverse check (optional)**: Have AI attack its own result
+1. **GCO checklist**: Turn your original GCO into an acceptance checklist and check off each item.
+2. **Invariant check**: Ask AI to list immutable properties and verify each one.
+3. **Reverse check (optional)**: Have AI attack its own result.
 
 ### Today's Takeaways
 
-- [ ] GCO works both ways: a description tool and a verification tool
-- [ ] Can use GCO as a checklist to verify AI output line by line
-- [ ] Can identify invariants and have AI self-verify critical properties
-- [ ] Know two reverse-checking methods: likelihood lists and sabotage testing
-- [ ] Can choose verification depth based on task importance (3 / 5 / 10 minute tiers)
+- [ ] GCO works both ways: a description tool and a verification tool.
+- [ ] Can use GCO as a checklist to verify AI output line by line.
+- [ ] Can identify invariants and have AI self-verify critical properties.
+- [ ] Know two reverse-checking methods: likelihood lists and sabotage testing.
+- [ ] Can choose verification depth based on task importance (3 / 5 / 10 minute tiers).
 
 ---
 
