@@ -93,7 +93,7 @@ This calls for a buffering strategy. The TypeScript side buffers violation signa
 This strategy has a technical prerequisite. `onToolBefore` doesn't need to wait asynchronously for Python to make its decision. It can detect violations and throw on its own. Only Intervention decisions (quarantine, rollback, suspend, instruct) need Python processing. Those don't need to happen in real time on the tool call path.
 
 1. `onToolBefore` / `onToolAfter` detect violations synchronously and write signals to the audit log.
-2. When `tdd_checkpoint` is called, the violation gate reads the audit log in bulk and sends it to Python via subprocess.
+2. When `tdd_checkpoint` is called, the violation gate reads the accumulated audit logs in bulk and sends them to Python via subprocess.
 3. Python returns an `InterventionResult` and TypeScript applies the decision.
 4. When there are zero violations, there's no overhead from signals or subprocess launches.
 
@@ -117,7 +117,7 @@ The "cross-language adds complexity" argument overlooks the role MCP's protocol 
 
 One more decision deserves mention. v1.6 added 15 new MCP tools (from stub to full implementation). Combined with the 10 from v1.5, the total reached 25.
 
-The 15 new tools (10 for rule lifecycle, 2 for KI doc, 3 for rollback) started as stubs in early development. They appeared in the tool list, but calls returned "not implemented." This might look incomplete. If all of them were going to be implemented anyway, why not do it all at once?
+The 15 new tools (10 for rule lifecycle, 2 for KI doc, 3 for rollback) started as stubs in early development. They appeared in the tool list, but calls returned "not implemented." This might look incomplete. If all 15 tools were going to be implemented anyway, why not build them completely from the start?
 
 v1.6's main line was the Watchdog-Intervention Bridge. The MCP tools were infrastructure enhancements. There was no point implementing all 15 tools before the Watchdog was working.
 
