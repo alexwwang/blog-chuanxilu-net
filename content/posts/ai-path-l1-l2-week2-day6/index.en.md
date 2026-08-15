@@ -205,7 +205,7 @@ Key parts of the script:
 
 **Translation prompt**: The `system` prompt tells the model to translate to Chinese and preserve the original format.
 
-**Sentence-boundary splitting**: The `split_into_sentences()` function splits by paragraph (`\n\n`) first, then by sentence punctuation (`.!?。！？`) within paragraphs. No mid-sentence cuts. This is the core of translation chunking — you cannot split arbitrarily like you would for summarization.
+**Sentence-boundary splitting**: The `split_into_sentences()` function splits by paragraph (`\n\n`) first, then by sentence punctuation (`.!?。！？`) within paragraphs. No mid-sentence cuts. This is the core of translation chunking: you cannot split arbitrarily like you would for summarization.
 
 **Progress display**: `[1/4]`, `[2/4]`... When running a batch job, knowing the progress beats staring at a blank screen.
 
@@ -262,7 +262,7 @@ uv run python batch_translate.py
 
 You will see progress-style output, with `OK` after each file finishes. Check the `translations/` folder for results.
 
-Try switching scenarios — change the prompt to summarization or rewriting and run it again. See how the same script, with a different prompt, produces completely different output.
+Try switching scenarios: change the prompt to summarization or rewriting and run it again. See how the same script, with a different prompt, produces completely different output.
 
 ---
 
@@ -270,7 +270,7 @@ Try switching scenarios — change the prompt to summarization or rewriting and 
 
 If you have English ebooks in `.epub` format, try writing code to translate them.
 
-Approach: search for "Python read epub file", find a library that extracts each chapter's HTML content from `.epub`, then pipe it into today's translation script. `split_into_sentences()` needs a small tweak — HTML sentences are broken by `<p>`, `<br>`, and other tags, so you can't split on `\n\n` directly.
+Approach: search for "Python read epub file", find a library that extracts each chapter's HTML content from `.epub`, then pipe it into today's translation script. `split_into_sentences()` needs a small tweak: HTML sentences are broken by `<p>`, `<br>`, and other tags, so you can't split on `\n\n` directly.
 
 This is a scenario Day 6 doesn't cover, but it uses the same pattern you learned today: **chunk, call API, join**: You already have the template. See if you can make it run.
 
