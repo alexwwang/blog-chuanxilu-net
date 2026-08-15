@@ -76,7 +76,7 @@ There are several common approaches to cross-language communication:
 - **HTTP server:** Requires starting a lightweight server, managing ports, handling request queuing, and handling service crashes.
 - **Subprocess:** A child process starts when needed, runs, and exits, with no state management.
 
-Adding Inter-Process Communication (IPC) or HTTP to an existing project introduces new failure modes, including socket disconnections, unexpected process exits, and port conflicts. All of these have standard solutions, but the complexity doesn't go away. You still need to manage it.
+Adding IPC or HTTP to an existing project introduces new failure modes, including socket disconnections, unexpected process exits, and port conflicts. All of these have standard solutions, but the complexity doesn't go away. You still need to manage it.
 
 Running a subprocess is the most direct option because it executes on demand without requiring connection pools, persistent state, or port allocations. Failure detection is straightforward: a non-zero exit code means failure. There's no need to distinguish between "the service is down" and "the request timed out."
 
