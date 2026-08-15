@@ -78,7 +78,7 @@ There are several common approaches to cross-language communication:
 
 Adding IPC or HTTP to an existing project means introducing new failure modes: socket disconnections, unexpected server exits, and port conflicts. All of these have standard solutions, but the complexity doesn't go away. You still need to manage it.
 
-Subprocess is the more direct option. A process starts when needed, runs, and exits, with no state management, connection pools, or port configuration. Failure detection is straightforward: a non-zero exit code means failure. There's no need to distinguish between "the service is down" and "the request timed out."
+Subprocess is the more direct option because it executes on demand without maintaining connection pools, state, or port configurations. Failure detection is straightforward: a non-zero exit code means failure. There's no need to distinguish between "the service is down" and "the request timed out."
 
 Aristotle also already had the `callMCP()` pattern in `idle-handler.ts`, which calls Python modules through subprocess. This pattern had proven stable in production. There was no reason to introduce new infrastructure.
 
