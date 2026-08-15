@@ -55,7 +55,7 @@ Model quality drops on very long inputs. Many APIs enforce token limits. Force i
 
 The right approach: **chunked translation**: Split the document into segments. Call the API for each segment separately. Then stitch the results back together.
 
-But translation differs from summarization. **You cannot cut at fixed character counts, you must preserve sentence boundaries**: Cut mid-sentence and the output becomes nonsense.
+But translation differs from summarization. **You cannot cut at fixed character counts; you must preserve sentence boundaries**: Cut mid-sentence and the output becomes nonsense.
 
 The script below implements this logic:
 
@@ -279,7 +279,7 @@ This is a scenario Day 6 doesn't cover, but it uses the same pattern you learned
 ## What You Did Today
 
 - [ ] Picked a batch processing scenario (translation / summarization / rewriting)
-- [ ] Wrote a complete batch script that walks the folder, processes files one by one, saves results
+- [ ] Wrote a complete batch script that walks the folder, processes files one by one, and saves results
 - [ ] Added progress display so you know where the batch job stands
 - [ ] Understood that APIs have length limits and long files need chunking
 
