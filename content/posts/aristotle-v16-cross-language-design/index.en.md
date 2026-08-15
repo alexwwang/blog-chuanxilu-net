@@ -117,7 +117,7 @@ The "cross-language adds complexity" argument overlooks the role MCP's protocol 
 
 One more decision deserves mention. v1.6 added 15 new MCP tool definitions (moving them from initial concept to defined stubs). Combined with the 10 active tools from v1.5, the total reached 25.
 
-The 15 new tools (10 for rule lifecycle, 2 for KI doc, 3 for rollback) started as stubs in early development. They appeared in the tool list, but calls returned "not implemented." This might look incomplete. If all 15 tools were going to be implemented anyway, why not build them completely from the start?
+The 15 new tools (10 for rule lifecycle, 2 for KI documents, 3 for rollback) started as stubs in early development. They appeared in the tool list, but calls returned "not implemented." This might look incomplete. If all 15 tools were going to be implemented anyway, why not build them completely from the start?
 
 The core objective of v1.6 was to implement the Watchdog-Intervention Bridge. The MCP tools were infrastructure enhancements. There was no point building all 15 tool stubs before Watchdog was operational.
 
