@@ -16,7 +16,7 @@ cover:
 
 This started with a very specific, very annoying problem: **Chinese IME freezing**.
 
-Inside Warp running OpenCode, typing Chinese was nearly unusable. Every three to five characters, the system would freeze for seconds. Input stopped responding. When it recovered, it would swallow some of the characters I'd typed. At first I blamed OpenCode, thinking maybe it was consuming too many resources. But I checked other applications and typing was perfectly fine there.
+Inside Warp running OpenCode, typing Chinese was nearly unusable. Every three to five characters, the system would freeze for seconds. Input stopped responding. When it recovered, it would swallow some of the characters I'd typed. At first, I blamed OpenCode, thinking maybe it was consuming too many resources. But I checked other applications and typing was perfectly fine there.
 
 That narrowed it down to something specific to **Warp + OpenCode + Chinese input**. Neither the system nor the input method alone was the problem.
 
@@ -52,7 +52,7 @@ The result far exceeded my expectations. I sat there for a moment. Weeks of frus
 
 The feeling was a mix of relief and confusion: relief that I could finally work normally, and confusion about why Warp couldn't do the same.
 
-At that point I didn't know Kitty's performance numbers. I just knew it felt fast, stable, and unobtrusive.
+At that point, I didn't know Kitty's performance numbers. I just knew it felt fast, stable, and unobtrusive.
 
 ![Watercolor debug matrix: frozen red Warp at top, sluggish yellow diagnosis in middle, smooth green Kitty at bottom](debug-matrix.png)
 
@@ -62,7 +62,7 @@ After the switch, I looked up Kitty's official performance docs and third-party 
 
 ### Kitty Official Benchmarks (Linux/X11)
 
-Kitty ships a built-in benchmark tool (`kitten __benchmark__`) that measures parser throughput. Higher is better (MB/s)[^1]:
+Kitty ships a built-in benchmark tool (`kitten __benchmark__`) that measures parser throughput. Higher is better (MB/s):[^1]
 
 | Terminal | Total throughput |
 |----------|-----------------|
@@ -73,13 +73,13 @@ Kitty ships a built-in benchmark tool (`kitten __benchmark__`) that measures par
 | Konsole 23.08.04 | 27.48 |
 | Alacritty + tmux | 24.73 |
 
-Kitty's throughput is **more than 2x** that of the next best terminal. These measurements are on Linux/X11 and focus on pure parser speed (rendering suppressed). On macOS the relative ranking may differ, but the architecture, with SIMD-accelerated escape code parsing and GPU-cached character rendering, is the same.
+Kitty's throughput is **more than 2x** that of the next best terminal. These measurements are on Linux/X11 and focus on pure parser speed (rendering suppressed). On macOS the relative ranking may differ, but the underlying architecture remains the same, featuring SIMD-accelerated escape code parsing and GPU-cached character rendering.
 
 Kitty's docs also cite third-party measurements showing it has "best in class keyboard to screen latency."
 
 ### Third-Party Benchmarks (macOS, 2026)
 
-[DevToolReviews](https://www.devtoolreviews.com/) ran a thorough test on an M3 MacBook Pro[^2]:
+[DevToolReviews](https://www.devtoolreviews.com/) ran a thorough test on an M3 MacBook Pro:[^2]
 
 | Benchmark | Ghostty | Kitty | Alacritty | Warp | iTerm2 |
 |-----------|---------|-------|-----------|------|--------|
@@ -93,11 +93,11 @@ Observations:
 
 - **Throughput**: Ghostty and Kitty are nearly tied. Warp is ~2x slower. iTerm2 is ~3x slower.
 - **Input latency**: Ghostty at 2ms and Kitty at 3ms, both below perception threshold. Warp's 8ms is noticeable to fast typists. iTerm2's 12ms is clearly felt. The Chinese IME freezing I experienced was far worse than these numbers suggest: *full seconds* of unresponsiveness, not milliseconds.
-- **Memory**: Warp uses **6x** the idle RAM of Kitty, **7.5x** of Ghostty. I routinely run 5-6 tabs each with an OpenCode session. That difference adds up to hundreds of MB.
+- **Memory**: Warp uses **6x** the idle RAM of Kitty and **7.5x that** of Ghostty. I routinely run 5-6 tabs each with an OpenCode session. That difference adds up to hundreds of MB.
 - **Pure parser throughput (Kitty official Linux test)**: 134.55 MB/s vs Alacritty's 54.05 MB/s.
 
-Kitty's official Linux benchmarks and third-party macOS benchmarks rank differently because they measure different things:
-- Kitty's own benchmark measures **pure parser throughput** (escape code parsing, no rendering), where its SIMD-parallel parser dominates.
+Kitty's official Linux benchmarks and third-party macOS tests rank differently because they measure different metrics:
+- Kitty's own benchmark measures **pure parser throughput** (escape code parsing, no rendering), where its SIMD-accelerated escape code parser dominates.
 - Third-party tests measure **end-to-end rendering** (cat a file → display on screen), where the GPU rendering pipeline becomes the bottleneck. Ghostty's custom Metal engine is optimized for this path.
 
 For heavy TUI refresh cycles (like OpenCode's frequent partial re-renders), Kitty's parser advantage matters. For scrolling through large file dumps, Ghostty is marginally faster. The real-world difference is small; both feel instant.
@@ -174,7 +174,7 @@ I had tried several other GPU-accelerated terminals 4+ years ago. Kitty and iTer
 
 **Ghostty** leads on raw performance: lowest latency (~2ms), near-lowest memory (28MB idle), and the fastest cold start. It was created by Mitchell Hashimoto (HashiCorp). I have a fondness for HashiCorp (I did some ecosystem development around it). But I tried Ghostty when it launched in late 2023 and deleted it, keeping Kitty instead. Maybe I'll give it another shot someday.
 
-**Alacritty** has the lowest memory footprint (22MB idle) and an ultra-minimalist design. But Shift+Enter and similar modifier-key combos often don't register correctly in AI terminal apps[^3]. This isn't an Alacritty-exclusive issue: every terminal handles the Kitty keyboard protocol differently, and most need manual escape sequence configuration.
+**Alacritty** boasts the lowest memory footprint (22MB idle) and an ultra-minimalist design, but key combinations like Shift+Enter often fail to register correctly in AI terminal apps like OpenCode[^3]. This isn't an Alacritty-exclusive issue: every terminal handles the Kitty keyboard protocol differently, and most of them need manual escape sequence configuration.
 
 **iTerm2** is the feature-rich veteran, with Metal GPU rendering. But the numbers speak: 22.1s for 1M lines, 12ms input latency, 290MB RAM after sustained multi-tab usage[^2], slowest in the speed and latency categories.
 
@@ -192,7 +192,7 @@ Kitty's philosophy: the terminal should be efficient, reliable, and extensible. 
 
 It comes down to which philosophy fits your workflow.
 
-If the terminal runs **your own commands** (git, docker, ssh, npm), Warp's AI completion and block output genuinely boost productivity.
+If the terminal runs **your own commands** (`git`, `docker`, `ssh`, `npm`), Warp's AI completion and block output genuinely boost productivity.
 
 But if the workflow looks like mine, where **the terminal runs an AI agent and that agent handles all CLI interaction**, then the terminal's own AI is redundant. What's needed is a stable, lightweight, well-rendered *host*.
 
@@ -202,7 +202,7 @@ Kitty is that host.
 
 ## When a Tool Becomes a Platform
 
-Warp went from a terminal emulator to an "agentic development environment." This transition may make sense for their business model. For someone who just needs a terminal, it means constant bloat, distraction, and friction.
+Warp went from a terminal emulator to an "agentic development environment." This transition may make sense for Warp's business model. For someone who just needs a terminal, it means constant bloat, distraction, and friction.
 
 Kitty did the opposite: it spent a decade doing one thing well. It stays focused on terminal emulation. It avoids hype-chasing, feature bloat, and platform lock-in. It wins on the fundamentals: GPU-accelerated rendering, keyboard protocol, graphics protocol, and extensibility. It lets users decide what to do with it.
 
