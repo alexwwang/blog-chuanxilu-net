@@ -52,7 +52,7 @@ Putting Intervention in Python means these assets survive intact. The rule engin
 So why not TypeScript? Breaking down the tradeoff shows why the system ends up with two languages.
 
 **Intervention in Python:**
-- Zero rewrite cost: all 1166 tests, the rule engine, violation handlers, and KI document management are preserved.
+- Zero rewrite cost: all 1166 tests, the rule engine, violation handlers, and Knowledge Item (KI) document management are preserved.
 - Then there's the pytest parametrize and fixture ecosystem. pytest's `@pytest.mark.parametrize` supports stacking multiple decorators for Cartesian products, and fixtures support dependency injection with automatic teardown. Vitest's `it.each` only handles single-level parameterization with no equivalent to pytest's fixture system. For 13 violation types tested in combination, `@pytest.mark.parametrize` makes the test code significantly more compact.
 
 **Intervention in TypeScript:**
@@ -86,7 +86,7 @@ The Bridge uses subprocess. Startup costs about 400ms per launch.
 
 ## Constraint 4: 400ms can't block every tool call
 
-Subprocess takes about 400ms per launch. If every tool call triggered a subprocess to communicate with Intervention, the accumulated latency would slow pipeline response times noticeably.
+Subprocess takes about 400ms per launch. If every tool call triggered a subprocess to communicate with Intervention, the accumulated overhead would increase pipeline latency noticeably.
 
 This calls for a buffering strategy. The TypeScript side buffers violation signals in the audit log first. When a checkpoint is called, it sends them to Python in a batch.
 
