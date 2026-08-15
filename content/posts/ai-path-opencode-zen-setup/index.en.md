@@ -50,7 +50,7 @@ OpenCode Zen is a model gateway from the OpenCode team. You do not need third-pa
 4. Name your key (e.g., `my-zen-key`) and click Create
 5. Copy the generated API key (format: `sk-zen-xxxxxxxx`)
 
-> The full key is only shown once. After closing the prompt, only a masked version is displayed, so make sure to copy and save the key immediately upon creation.
+> The full key is only shown once. After closing the dialog, only a masked version is displayed, so make sure to copy and save the key immediately upon creation.
 
 ---
 
@@ -97,7 +97,7 @@ After configuring the provider, type this in OpenCode:
 
 Browse the model list and find **DeepSeek V4 Flash Free**. Select it.
 
-Models labeled "Free" are available at no cost for a limited time. DeepSeek V4 Flash Free has a 200K context window, enough for most entry-level agent automation tasks.
+Models labeled "Free" are available at no cost for a limited time. DeepSeek V4 Flash Free has a 200K context window, which is sufficient for single-folder organization and small script tasks, though larger codebases may require a higher context limit.
 
 Or try other free models:
 
