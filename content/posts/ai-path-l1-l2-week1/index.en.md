@@ -177,7 +177,6 @@ if not api_key:
 # Create client
 # The only difference is base_url needs to point to DeepSeek's address
 # Model name: deepseek-v4-flash (deepseek-chat is the old name, still works but will be deprecated)
-# The only difference is base_url needs to point to DeepSeek's address
 client = OpenAI(
     api_key=api_key,
     base_url="https://api.deepseek.com"  # DeepSeek's API address
