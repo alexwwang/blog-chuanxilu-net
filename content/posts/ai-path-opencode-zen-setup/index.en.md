@@ -36,7 +36,7 @@ bun install -g opencode
 
 Verify with `opencode --version` (v1.14.x+). Prefer npm? `npm install -g opencode`.
 
-> `opencode` not found: add the global bin dir to your PATH. For bun: `~/.bun/bin` (Windows: `%USERPROFILE%\.bun\bin`). For npm: `$(npm prefix -g)/bin` (Windows: the `node_modules\.bin` subdirectory under it).
+> `opencode` not found: add the global bin dir to your PATH. For bun: `~/.bun/bin` (Windows: `%USERPROFILE%\.bun\bin`). For npm: `$(npm prefix -g)/bin` (Windows: `%APPDATA%\npm`).
 
 ---
 
