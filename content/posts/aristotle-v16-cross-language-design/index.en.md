@@ -119,7 +119,7 @@ One more decision deserves mention. v1.6 added 15 new MCP tool definitions (movi
 
 The 15 new tools (10 for rule lifecycle, 2 for KI doc, 3 for rollback) started as stubs in early development. They appeared in the tool list, but calls returned "not implemented." This might look incomplete. If all 15 tools were going to be implemented anyway, why not build them completely from the start?
 
-v1.6's main line was the Watchdog-Intervention Bridge. The MCP tools were infrastructure enhancements. There was no point implementing all 15 tools before the Watchdog was working.
+The core objective of v1.6 was implementing the Watchdog-Intervention Bridge. The MCP tools were infrastructure enhancements. There was no point implementing all 15 tools before the Watchdog was working.
 
 The stub-first approach reserves a spot on the roadmap. The AI sees the list and knows the tools are coming. For everyone else, the stubs signal what's planned without pretending the work is done.
 
