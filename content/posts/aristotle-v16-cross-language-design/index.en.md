@@ -53,7 +53,7 @@ So why not TypeScript? Breaking down the tradeoff shows why the system ends up w
 
 **Intervention in Python:**
 - Zero rewrite cost: all 1166 tests, the rule engine, violation handlers, and KI document management are preserved.
-- Then there's the pytest parametrize and fixture ecosystem. pytest's `@pytest.mark.parametrize` supports stacking multiple decorators for Cartesian products, and fixtures support dependency injection with automatic teardown. Vitest's `it.each` only handles single-level parameterization with no equivalent to pytest's fixture system. For 13 violation types tested in combination, parametrize makes the test code significantly more compact.
+- Then there's the pytest parametrize and fixture ecosystem. pytest's `@pytest.mark.parametrize` supports stacking multiple decorators for Cartesian products, and fixtures support dependency injection with automatic teardown. Vitest's `it.each` only handles single-level parameterization with no equivalent to pytest's fixture system. For 13 violation types tested in combination, `@pytest.mark.parametrize` makes the test code significantly more compact.
 
 **Intervention in TypeScript:**
 The benefit is a unified development experience:
@@ -108,7 +108,7 @@ The answer is no, because Intervention exposes itself as an MCP tool. MCP tools 
 In practice:
 
 - When the Bridge's subprocess call fails, it returns an empty envelope. The TypeScript side handles it as a standard MCP response, with no special fault tolerance needed for Python.
-- The violation gate on the TypeScript side writes to the audit log without checking whether Python is alive. A failed subprocess affects intervention completeness, not interception.
+- When a violation occurs, the TypeScript violation gate writes to the audit log without checking whether Python is alive. A failed subprocess affects intervention completeness, not interception.
 - Whether Intervention is in Python or TypeScript, MCP's protocol defines the boundary between it and Watchdog. That boundary already includes failure handling.
 
 The "cross-language adds complexity" argument overlooks the role MCP's protocol plays. Intervention uses Python because MCP's protocol already handles the cross-language part.
@@ -132,7 +132,7 @@ The stub-first approach reserves a spot on the roadmap. The AI sees the list and
 | Watchdog language | Synchronous interception, host environment | TypeScript |
 | Intervention language | Existing assets, testing ecosystem | Python |
 | Bridge mechanism | Zero new infrastructure | Subprocess |
-| Communication mode | 400ms can't block every tool call | Buffering + batching |
+| Communication mode | Tool-call execution overhead (400ms startup) | Buffering + batching |
 | Fault tolerance | MCP's subprocess model handles cross-language risk | Empty envelope + independent log writing |
 
 None of these five decisions were ideal. Each was the least bad option the constraints allowed.
