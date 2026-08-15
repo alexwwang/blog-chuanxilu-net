@@ -323,6 +323,8 @@ if __name__ == "__main__":
     main()
 ```
 
+Sentence splitting relies on standard punctuation marks; if a single line or code block exceeds MAX_CHARS without punctuation, it will be passed as a single large chunk.
+
 Key improvements in this script:
 
 Use the `logging` module instead of `print`. `print` gives you output. `logging` gives you severity levels (INFO, WARNING, ERROR). After the batch finishes, review the log to find exactly where things went wrong.
