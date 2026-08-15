@@ -18,7 +18,7 @@ cover:
 
 Part 1 taught you to make one API call. Today you're going bigger: make your program ask AI 100 questions.
 
-Manually pasting text into a chat window a hundred times is grunt work. Writing a ten-minute script to automate the task is leverage. You get the time back.
+Manually pasting text into a chat window a hundred times is grunt work. Writing a 10-minute script to automate the task is leverage. You get the time back.
 
 You'll cover four things today: reading files, writing loops, putting it all together into a script that processes an entire folder of documents, and adding basic error handling.
 
@@ -323,7 +323,7 @@ Grab 3 to 5 of your own documents and run it. If the documents are long, keep an
 
 ## Error Handling Basics: Making Scripts Resilient
 
-Real-world scripts hit problems. Network hiccups, temporary API outages, locked files. These aren't "if" questions. They're "when." A script without error handling crashes on the first exception and forces you to start over.
+Real-world scripts hit problems. Network hiccups, temporary API outages, locked files. These aren't "if" questions. They're "when." A script without error handling crashes on the first exception, forcing you to start over.
 
 The code above already wraps each file in `try/except`, but that's just a safety net. A production script needs to handle several common scenarios: network timeouts, API error responses, file I/O failures.
 
@@ -378,7 +378,7 @@ One more thing you'll run into with batch processing (covered in detail on Day 7
 
 Read files with Python and sent them to the API. Used `glob` plus a `for` loop to batch-process an entire folder. Assembled a complete script that handles any document folder, with `try/except` to ensure one failed file doesn't bring down the whole run.
 
-The code isn't long, but conceptually this is a real leap. Going from "make one API call" to "batch-process a folder" means you're no longer just using an API. You're building tools with one. That difference is what separates L1 from L2.
+The code isn't long, but conceptually this shift is a real leap. Going from "make one API call" to "batch-process a folder" means you're no longer just using an API. You're building tools with one. That difference is what separates L1 from L2.
 
 ---
 
