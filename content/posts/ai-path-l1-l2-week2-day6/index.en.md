@@ -14,7 +14,7 @@ cover:
   relative: true
 ---
 
-> This is the Day 6 exercise for Week 2 of the "AI Path: Level Up Guide" series. Complete [Day 5: Teach Your Script to Read More File Formats](../ai-path-l1-l2-week2-day5/) first, then come back here to work through this one.
+> This is the Day 6 exercise for Week 2 of the "AI Path: Level Up Guide" series. Complete [Day 5: Teach Your Script to Read More File Formats](../ai-path-l1-l2-week2-day5/) first, then come back here to work through Day 6.
 
 In [Day 5: Teach Your Script to Read More File Formats](../ai-path-l1-l2-week2-day5/), you built the `read_file()` function and the skeleton of a batch script. Your script recognizes files in various formats now. But you haven't run a full pipeline from start to finish yet. You still need to pick a scenario, call the API, and save the results. That loop is missing.
 
