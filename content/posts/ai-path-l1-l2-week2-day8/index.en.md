@@ -15,7 +15,7 @@ cover:
 
 > This is Day 8 of Week 2 in the "AI Path L1→L2 Upgrade Guide." You should have completed [Day 7](../ai-path-l1-l2-week2-day7/) first.
 
-[Day 7](../ai-path-l1-l2-week2-day7/) you added error handling to your script. It now runs reliably in real network conditions. But there's a more fundamental limitation: **you still have to write code.**
+On [Day 7](../ai-path-l1-l2-week2-day7/), you added error handling to your script. It now runs reliably in real network conditions. But there's a more fundamental limitation: **you still have to write code.**
 
 Writing code to call APIs is one kind of automation. There's a lighter one: **describe the task, and let AI write the code, run it, and fix the bugs itself.** That's autonomous execution AI.
 
@@ -24,7 +24,7 @@ Writing code to call APIs is one kind of automation. There's a lighter one: **de
 ## What Is Autonomous Execution AI?
 
 In API mode, you're the programmer. You write Python scripts, call OpenAI-compatible endpoints, handle timeouts, rate limits, file I/O. It's powerful, but you need to code.
-An API call is a single round-trip from your script: you send the request, wait for the response, and the connection closes with no state or context retained between calls. The same call gives the same result at the same cost, whether you run it once or a hundred times.
+An API call is a single round-trip from your script: you send the request, wait for the response, and close the connection without retaining state or context between calls. The same call gives the same result at the same cost, whether you run it once or a hundred times.
 
 In autonomous execution AI mode, you're the project manager. You tell AI what you want, and it writes the code, debugs it, and hands you the result. You don't need Python. You just need to understand your own problem.
 It's the opposite of an API call: the agent has context and state awareness. It remembers what you've said so far and adjusts course as it works.
@@ -138,7 +138,7 @@ AI will fix it.
 
 **"Will AI delete my files?"**
 
-Good autonomous execution tools ask before destructive operations. If it deleted files directly, your task description probably lacked constraints. Build the habit: always add "do not delete any files" to your task description.
+Good autonomous execution tools ask before performing destructive operations. If a tool deleted files directly, your task description probably lacked constraints. Build the habit: always add "do not delete any files" to your task description.
 
 **"Which tool should I use?"**
 
