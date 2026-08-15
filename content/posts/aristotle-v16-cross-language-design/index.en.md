@@ -115,7 +115,7 @@ The "cross-language adds complexity" argument overlooks the role MCP's protocol 
 
 ## Bonus: Stub-first decision
 
-One more decision deserves mention. v1.6 added 15 new MCP tools (from stub to full implementation). Combined with the 10 from v1.5, the total reached 25.
+One more decision deserves mention. v1.6 added 15 new MCP tool definitions (moving them from initial concept to defined stubs). Combined with the 10 active tools from v1.5, the total reached 25.
 
 The 15 new tools (10 for rule lifecycle, 2 for KI doc, 3 for rollback) started as stubs in early development. They appeared in the tool list, but calls returned "not implemented." This might look incomplete. If all 15 tools were going to be implemented anyway, why not build them completely from the start?
 
@@ -133,7 +133,7 @@ The stub-first approach reserves a spot on the roadmap. The AI sees the list and
 | Intervention language | Existing assets, testing ecosystem | Python |
 | Bridge mechanism | Zero new infrastructure | Subprocess |
 | Communication mode | 400ms can't block every tool call | Buffering + batching |
-| Fault tolerance | MCP's subprocess model handles cross-language risk | Empty envelope + independent operation |
+| Fault tolerance | MCP's subprocess model handles cross-language risk | Empty envelope + independent log writing |
 
 None of these five decisions were ideal. Each was the least bad option the constraints allowed.
 
