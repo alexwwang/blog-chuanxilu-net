@@ -50,7 +50,7 @@ OpenCode Zen is a model gateway from the OpenCode team. You do not need third-pa
 4. Name your key (e.g., `my-zen-key`) and click Create
 5. Copy the generated API key (format: `sk-zen-xxxxxxxx`)
 
-> The full key is only shown once. After closing the dialog, only a masked version is displayed, so make sure to copy and save the key immediately upon creation.
+> Copy and save your API key immediately, as the full key will not be displayed again after you close the dialog.
 
 ---
 
