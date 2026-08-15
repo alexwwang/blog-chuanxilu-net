@@ -209,7 +209,7 @@ Key parts of the script:
 
 **Progress display**: `[1/4]`, `[2/4]`... When running a batch job, knowing the progress beats staring at a blank screen.
 
-**Output filename gets `.zh` suffix**: For example, `feature-overview.md` becomes `feature-overview.zh.md`, where `.zh` is inserted between the original name and extension to mark it as a translation.
+**Output filenames get a `.zh` suffix**: For example, `feature-overview.md` becomes `feature-overview.zh.md`, where `.zh` is inserted between the original name and extension to mark it as a translation.
 
 **Chunked translation**: Split by sentence, call the API for each chunk, loop until the file is done. Long files get split into multiple segments and translated separately, then joined. When the original exceeds 4000 characters, a note is added to the output to warn the reader.
 
