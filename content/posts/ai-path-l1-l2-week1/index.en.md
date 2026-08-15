@@ -235,7 +235,7 @@ Before diving into API parameters, you need to understand one concept: Token. It
 
 A token is the smallest unit the AI uses to process text. Think of it as roughly equivalent to a word or character: in English, one word is about 1 token; in Chinese, one character is about 1–2 tokens (Chinese encoding is more complex).
 
-**Input and output are billed separately.** The question you send AI is input tokens, AI's reply is output tokens. For example, your question is 100 tokens, AI replies 200 tokens, this call consumes 300 tokens total.
+**Input and output are billed separately.** The question you send AI is input tokens, AI's reply is output tokens. For example, if your question is 100 tokens and the AI replies with 200 tokens, this call consumes 300 tokens total.
 
 Different platforms have different billing methods (May 2026 prices, subject to change):
 
