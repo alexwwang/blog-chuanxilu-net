@@ -26,7 +26,7 @@ You'll cover four things today: reading files, writing loops, putting it all tog
 
 ## File I/O + API: Feeding Data to the API
 
-The code in Part 1 hardcoded the question right in the source (`content="Hello..."`). That works for learning, but real tasks don't look like that. You might need to process 10 meeting notes or 50 pieces of user feedback, all stored in files. Your program needs to read those files, send their content to the API, and save each response.
+The code in Part 1 hardcoded the question right in the source (`content="Hello..."`). That works for learning, but real tasks don't look like that. You might need to process 10 meeting notes or 50 pieces of user feedback, all stored in files. Your program needs to read those files, send their content to the API, and save the responses.
 
 Think of it this way. Hardcoding the question is like talking to AI face to face, one sentence at a time. Reading from a file is like handing AI a stack of papers and saying "read these first." Writing the response to a file means you can come back and read the answer later without the chat window.
 
@@ -348,7 +348,7 @@ except Exception as e:
 
 **Auto-retry on network issues**
 
-Day 7 will cover a more complete retry mechanism (with exponential backoff and max retry count). For now, a simple version:
+Day 7 will cover a more complete retry mechanism (with exponential backoff and a max retry count). For now, a simple version:
 
 ```python
 import time
