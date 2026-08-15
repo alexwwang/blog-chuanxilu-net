@@ -41,7 +41,7 @@ TypeScript is the host language for LLM tool calls. Putting Watchdog on the Type
 
 If Watchdog were on the Python side, every tool call would need cross-process communication just to check for violations. The communication overhead alone would make synchronous interception impractical, before even accounting for Python-side latency.
 
-Watchdog had to be TypeScript because the runtime environment required it.
+Watchdog had to be written in TypeScript because the runtime environment required it.
 
 ## Constraint 2: Intervention's assets and ecosystem are in Python
 
@@ -76,7 +76,7 @@ There are several common approaches to cross-language communication:
 - **HTTP server:** Requires starting a lightweight server, managing ports, handling request queuing, and handling service crashes.
 - **Subprocess:** A child process starts when needed, runs, and exits, with no state management.
 
-Adding IPC or HTTP to an existing project means introducing new failure modes: socket disconnections, unexpected server exits, and port conflicts. All of these have standard solutions, but the complexity doesn't go away. You still need to manage it.
+Adding IPC or HTTP to an existing project introduces new failure modes, including socket disconnections, unexpected process exits, and port conflicts. All of these have standard solutions, but the complexity doesn't go away. You still need to manage it.
 
 Subprocess is the more direct option because it executes on demand without maintaining connection pools, state, or port configurations. Failure detection is straightforward: a non-zero exit code means failure. There's no need to distinguish between "the service is down" and "the request timed out."
 
