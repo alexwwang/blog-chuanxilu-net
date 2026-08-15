@@ -86,7 +86,7 @@ The Bridge uses subprocess. Startup costs about 400ms per launch.
 
 ## Constraint 4: 400ms can't block every tool call
 
-Subprocess takes about 400ms per launch. If every tool call triggered a subprocess to communicate with Intervention, the accumulated overhead would increase pipeline latency noticeably.
+Subprocess takes about 400ms per launch. If every tool call triggered a subprocess to communicate with Intervention, the accumulated overhead would noticeably increase pipeline latency.
 
 This calls for a buffering strategy. The TypeScript side buffers violation signals in the audit log first. When a checkpoint is called, it sends them to Python in a batch.
 
