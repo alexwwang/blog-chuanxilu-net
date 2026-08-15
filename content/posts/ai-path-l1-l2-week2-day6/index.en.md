@@ -32,7 +32,7 @@ Batch processing automates repetitive work. Three common scenarios:
 
 **Batch rewriting**: A set of documents that need uniform formatting or tone. Turning informal notes into formal reports, or standardizing product descriptions.
 
-Pick whichever you need most right now, and follow along with that one.
+Pick the option you need most right now, and follow along with it.
 
 ---
 
@@ -47,7 +47,7 @@ docs/
   changelog-v2.md
 ```
 
-Goal: translate each document into Chinese, save results to a `translations/` folder.
+Goal: translate each document into Chinese and save the results to a `translations/` folder.
 
 **API calls have input length limits**: You can't shove an entire long document in at once.
 
