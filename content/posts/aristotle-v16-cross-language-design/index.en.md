@@ -53,7 +53,7 @@ So why not TypeScript? Breaking down the tradeoff shows why the system ends up w
 
 **Intervention in Python:**
 - Zero rewrite cost: all 1166 tests, the rule engine, violation handlers, and Knowledge Item (KI) document management are preserved.
-- Then there's the pytest parametrize and fixture ecosystem. pytest's `@pytest.mark.parametrize` supports stacking multiple decorators for Cartesian products, and fixtures support dependency injection with automatic teardown. Vitest's `it.each` only handles single-level parameterization with no equivalent to pytest's fixture system. For 13 violation types tested in combination, `@pytest.mark.parametrize` makes the test code significantly more compact.
+- Then there's the pytest parametrize and fixture ecosystem. pytest's `@pytest.mark.parametrize` supports stacking decorators for Cartesian products, and fixtures support dependency injection with automatic teardown. Vitest's `it.each` only handles single-level parameterization with no equivalent to pytest's fixture system. For 13 violation types tested in combination, `@pytest.mark.parametrize` makes the test code significantly more compact.
 
 **Intervention in TypeScript:**
 The benefit is a unified development experience:
