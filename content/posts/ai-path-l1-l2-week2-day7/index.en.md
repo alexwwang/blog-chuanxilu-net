@@ -147,7 +147,7 @@ def process_file_safe(filepath, output_dir, prompt, results_log):
         logging.error(f"Failed: {filename} — {e}")
 ```
 
-Every failure log entry records three things: which file failed, what the error was, and when it happened. The timestamp is useful for cross-referencing with the API console at that time.
+Every failure log entry records three things: which file failed, what error occurred, and when the failure happened. The timestamp is useful for cross-referencing with the API console at that time.
 
 ---
 
