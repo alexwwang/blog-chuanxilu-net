@@ -100,7 +100,7 @@ Try swapping `input.txt` with any text file of your own and see what the summary
 
 The previous section handled one file. What if a folder has 10? You could copy-paste the code 10 times, changing the filename each time. Obviously not. Use a loop to iterate through the folder and let the program handle each file.
 
-Python has two common ways to list files: `os.listdir()` and `glob`. `glob` is more flexible because it supports wildcards to match specific file types. I recommend it.
+Python has two common ways to list files: `os.listdir()` and `glob`. `glob` is more flexible because it supports wildcards (like `input/*.txt`) to match specific file types relative to your current directory. I recommend it.
 
 Create `batch_basic.py` in your project directory:
 
