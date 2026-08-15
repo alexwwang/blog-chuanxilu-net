@@ -295,7 +295,7 @@ The context window is the maximum content an API can "see" at once. Different mo
 - Claude Sonnet 4.6: 1M tokens
 - GPT-5.5: 1M tokens
 
-All three models have a 1M token context window. Using the 1 character ≈ 1.5 tokens estimate, that's roughly 650,000 Chinese characters.
+All three models have a 1M token context window. Using the 1 character ≈ 1.5 tokens estimate, a 1M context window conservatively handles roughly 650,000 Chinese characters.
 
 If your input exceeds the model's context window, the API will throw an error. Even without error, input too long causes AI to "forget" early content, like people forgetting what they talked about after chatting too long.
 
