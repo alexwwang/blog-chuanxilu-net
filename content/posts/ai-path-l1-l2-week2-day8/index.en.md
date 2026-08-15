@@ -82,7 +82,7 @@ What does "organize" mean? Delete? Categorize? Rename? By what standard? How big
 
 > Organize files in ~/Downloads by type. Put images in images/, videos in videos/, documents in documents/, installers in installers/. Sort within each category by date. Do not delete anything. Output a report showing where each file went.
 
-All three elements show up: goal is categorize files, constraint is no deletion, expected output is an organized folder structure plus a report.
+All three elements show up: goal is to categorize files, constraint is no deletion, expected output is an organized folder structure plus a report.
 
 ---
 
