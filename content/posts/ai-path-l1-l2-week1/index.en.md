@@ -80,7 +80,7 @@ The process is similar across platforms: register → add credits → get API Ke
 
 China has several aggregation platforms. Their underlying frameworks are all NewAPI or OneAPI, so the process is similar:
 
-1. Register → 2. Add credits → 3. Get API Key → 4. Select model in "Model List."
+1. Register → 2. Add credits → 3. Get API Key → 4. Select and copy your target model name from the platform's "Model List" (note that proxy platforms often use custom string prefixes instead of official model IDs).
 
 These platforms primarily offer OpenAI and Anthropic models, letting you switch between them on one platform. Prices are usually a bit higher than using the original platform directly.
 
@@ -154,7 +154,7 @@ uv pip install openai python-dotenv
 The same applies when running Python scripts later:
 
 ```bash
-uv run python chat.py
+uv run python hello_api.py
 ```
 ### Your First Code
 
