@@ -231,7 +231,7 @@ prompt = "You are a summarization assistant. Summarize the user-provided text in
 output_dir = "summaries"
 ```
 
-One important difference from translation: **summarization can use fixed-character chunking**: Translation must respect sentence boundaries because a half-sentence is gibberish in any language. But summarization is lossy by design: you are already discarding information. Cutting at a fixed character count (say, every 4000 characters) and summarizing each chunk separately works fine. The final output is a summary of summaries, not a word-for-word reconstruction, so boundary precision matters less.
+One important difference from translation: **summarization can use fixed-character chunking**. Translation must respect sentence boundaries because a half-sentence is gibberish in any language. But summarization is lossy by design: you are already discarding information. Cutting at a fixed character count (say, every 4000 characters) and summarizing each chunk separately works fine. The final output is a summary of summaries, not a word-for-word reconstruction, so boundary precision matters less.
 
 If you want, you can simplify `split_into_sentences()` to a basic fixed-size chunker for summarization. But keeping the sentence-based version works too. It just splits more conservatively than necessary.
 
