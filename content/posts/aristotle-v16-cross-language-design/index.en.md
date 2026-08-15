@@ -76,7 +76,7 @@ There are several common approaches to cross-language communication:
 - **HTTP server:** Requires starting a lightweight server, managing ports, handling request queuing, and handling service crashes.
 - **Subprocess:** A child process starts when needed, runs, and exits, with no state management.
 
-Adding IPC or HTTP to an existing project introduces new failure modes, including socket disconnections, unexpected process exits, and port conflicts. All of these have standard solutions, but the complexity doesn't go away. You still need to manage it.
+Adding Inter-Process Communication (IPC) or HTTP to an existing project introduces new failure modes, including socket disconnections, unexpected process exits, and port conflicts. All of these have standard solutions, but the complexity doesn't go away. You still need to manage it.
 
 Subprocess is the more direct option because it executes on demand without maintaining connection pools, state, or port allocations. Failure detection is straightforward: a non-zero exit code means failure. There's no need to distinguish between "the service is down" and "the request timed out."
 
@@ -119,7 +119,7 @@ One more decision deserves mention. v1.6 added 15 new MCP tool definitions (movi
 
 The 15 new tools (10 for rule lifecycle, 2 for KI doc, 3 for rollback) started as stubs in early development. They appeared in the tool list, but calls returned "not implemented." This might look incomplete. If all 15 tools were going to be implemented anyway, why not build them completely from the start?
 
-The core objective of v1.6 was implementing the Watchdog-Intervention Bridge. The MCP tools were infrastructure enhancements. There was no point building all 15 tool stubs before Watchdog was working.
+The core objective of v1.6 was implementing the Watchdog-Intervention Bridge. The MCP tools were infrastructure enhancements. There was no point building all 15 tool stubs before Watchdog was operational.
 
 The stub-first approach reserves a spot on the roadmap. The AI sees the list and knows the tools are coming. For everyone else, the stubs signal what's planned without pretending the work is done.
 
