@@ -97,7 +97,7 @@ After configuring the provider, type this in OpenCode:
 
 Browse the model list and find **DeepSeek V4 Flash Free**. Select it.
 
-Models labeled **Free** are available at no cost for a limited time. DeepSeek V4 Flash Free has a 200K context window, which is sufficient for single-folder organization and small script tasks, though larger codebases may require a larger context window.
+Models labeled **Free** are available at no cost for a limited time. DeepSeek V4 Flash Free has a 200K context window, which is sufficient for single-folder organization and small script tasks, though larger codebases may require an expanded context window.
 
 Or try other free models:
 
@@ -155,7 +155,7 @@ If you followed Day 8, here is a good way to test this workflow:
 
 1. Make sure you are in **Plan mode** (bottom-left corner shows "Plan"; press Tab if it says "Build").
 2. Tell it: "Organize my downloads folder, sort files by type."
-3. The agent will propose a plan. For example, it might suggest subfolders for documents, images, archives, and installers, each getting the right files.
+3. The agent will propose a plan. For example, it might suggest subfolders for documents, images, archives, and installers so each receives the right files.
 4. If you have different ideas, just reply with changes.
 5. If it looks good, press **Tab to switch to Build mode** and say "Execute the plan."
 6. Watch the agent create folders and move files in real time.
