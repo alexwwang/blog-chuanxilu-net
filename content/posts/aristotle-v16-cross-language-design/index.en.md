@@ -53,7 +53,7 @@ So why not TypeScript? Breaking down the tradeoff shows why the system ends up w
 
 **Intervention in Python:**
 - Zero rewrite cost: all 1166 tests, the rule engine, violation handlers, and KI document management are preserved.
-- Then there's the pytest parametrize and fixture ecosystem. pytest's `@pytest.mark.parametrize` supports stacking decorators to generate Cartesian products, and fixtures support dependency injection with automatic teardown. Vitest's `it.each` only handles single-level parameterization with no equivalent to pytest's fixture system. For 13 violation types tested in combination, `@pytest.mark.parametrize` makes the test code significantly more compact.
+- Then there's the pytest parametrize and fixture ecosystem. pytest's `@pytest.mark.parametrize` supports stacking decorators to generate Cartesian products, while fixtures provide dependency injection with automatic teardown. Vitest's `it.each` only handles single-level parameterization with no equivalent to pytest's fixture system. For 13 violation types tested in combination, `@pytest.mark.parametrize` makes the test code significantly more compact.
 
 **Intervention in TypeScript:**
 The benefit is a unified development experience:
@@ -101,7 +101,7 @@ Batching keeps latency acceptable by absorbing the fixed 400ms cost at checkpoin
 
 ## Constraint 5: MCP's subprocess model makes cross-language risk manageable
 
-Does placing Intervention in Python instead of TypeScript introduce more complexity than it saves?
+Does placing Intervention in Python instead of TypeScript introduce more complexity than it eliminates?
 
 The answer is no, because Intervention exposes itself as an MCP tool. MCP tools run as subprocesses by design: the host sends a request, the tool executes, returns a result, and exits. If the call times out or the process crashes, it returns an empty result and the host decides what to do. This contract works well with cross-language communication.
 
