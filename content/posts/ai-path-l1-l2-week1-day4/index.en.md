@@ -20,7 +20,7 @@ Part 1 taught you to make one API call. Today you're going bigger: make your pro
 
 Manually pasting text into a chat window a hundred times is grunt work. Writing a ten-minute script that does it for you is leverage. You get the time back.
 
-You'll cover three things today: reading files, writing loops, and putting it all together into a script that processes an entire folder of documents.
+You'll cover four things today: reading files, writing loops, putting it all together into a script that processes an entire folder of documents, and adding basic error handling.
 
 ---
 
