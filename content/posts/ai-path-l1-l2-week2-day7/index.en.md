@@ -331,7 +331,7 @@ Success and failure are tracked separately. After the script finishes, `results.
 
 Each file is wrapped in its own `try/except`. One failure does not prevent the rest from processing.
 
-`APIConnectionError`, `APITimeoutError`, `TimeoutError`, `RateLimitError` all go into the retry pool. Rate limiting, timeouts, and network jitter are all transient. A retry usually recovers them.
+`APIConnectionError`, `APITimeoutError`, `TimeoutError`, `RateLimitError` all go into the retry pool because timeouts, short-term network jitter and burst rate limits are transient, though hard quota caps will still exhaust all retries and fail safely.
 
 ---
 
@@ -390,7 +390,7 @@ You can:
 - [ ] Added exception logging and failure tracking (`results.json`)
 - [ ] Understood why `logging` beats `print` for batch processing
 
-**Next step**: The script is more robust now. Day 8 takes a different approach—no code, let AI handle automation tasks autonomously. Introduction to autonomous execution AI.
+**Next step**: The script is more robust now. Day 8 takes a different approach: no code, let AI handle automation tasks autonomously. Introduction to autonomous execution AI.
 
 ---
 
