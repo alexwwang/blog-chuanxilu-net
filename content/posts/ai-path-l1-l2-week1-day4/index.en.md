@@ -298,7 +298,7 @@ This script has a few upgrades over the previous version:
 
 **System prompt added.** The `messages` list now includes a `"role": "system"` entry to set the AI's identity and task rules. System prompts are billed as regular input tokens. They take up a bit of the conversation length, but they improve output quality and stability, saving you from rework. `temperature=0.3` produces more uniform summaries. `max_tokens=500` caps output length.
 
-**Error handling.** Each file's processing is wrapped in `try/except`. One file failing won't crash the whole program. It prints the error and moves on to the next.
+**Error handling.** Each file's processing is wrapped in `try/except`. One file failing won't crash the whole program; it reports the error, skips writing an output file for that item, and moves on to the next document.
 
 Expected folder structure:
 
