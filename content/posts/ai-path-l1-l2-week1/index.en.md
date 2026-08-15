@@ -70,7 +70,7 @@ The process is similar across platforms: register → add credits → get API Ke
 | Platform | Sign-up URL | Payment | Notes |
 |----------|-------------|---------|-------|
 | **DeepSeek** | [platform.deepseek.com](https://platform.deepseek.com) | Alipay/WeChat, ¥10 goes far | Cheap, great for beginners |
-| **OpenRouter** | [openrouter.ai](https://openrouter.ai) | Credit card / crypto | One Key, dozens of models |
+| **OpenRouter** | [openrouter.ai](https://openrouter.ai) | Credit card / crypto | One Key, access to hundreds of models |
 | **Claude (Anthropic)** | [console.anthropic.com](https://console.anthropic.com) | Credit card | Claude model family |
 | **OpenAI** | [platform.openai.com](https://platform.openai.com) | Credit card | GPT model family |
 
