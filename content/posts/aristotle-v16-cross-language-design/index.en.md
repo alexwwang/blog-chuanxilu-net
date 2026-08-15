@@ -14,7 +14,7 @@ cover:
 toc: true
 ---
 
-> **TL;DR:** Five constraints shaped the Watchdog-Intervention Bridge's cross-language architecture. Watchdog must intercept LLM tool calls synchronously, so it runs in TypeScript. Intervention has to reuse the existing reflection engine and rule system, so it stays in Python. The Bridge adds zero new infrastructure, so it uses subprocess. Communication can't block every tool call, so batching replaces real-time streaming. MCP's subprocess model already handles failure, so cross-language risk stays contained. Each decision was the least bad option under the circumstances.
+> **TL;DR:** Five constraints shaped the Watchdog-Intervention Bridge's cross-language architecture. Watchdog must intercept LLM tool calls synchronously, so it runs in TypeScript. Intervention must reuse the existing reflection engine and rule system, so it stays in Python. The Bridge adds zero new infrastructure, so it uses subprocess. Communication can't block every tool call, so batching replaces real-time streaming. MCP's subprocess model already handles failure, so cross-language risk stays contained. Each decision was the least bad option under the circumstances.
 
 The last post covered [what the Watchdog-Intervention Bridge does in Aristotle v1.6](/en/posts/2026/07/aristotle-v16-watchdog-intervention-bridge/). This one is about why it looks the way it does.
 
@@ -108,7 +108,7 @@ The answer is no, because Intervention exposes itself as an MCP tool. MCP tools 
 In practice:
 
 - When the Bridge's subprocess call fails, the Bridge returns an empty envelope. The TypeScript side handles it as a standard MCP response, with no special fault tolerance needed for Python.
-- When a violation occurs, the TypeScript violation gate writes to the audit log without checking whether the Python process is running. A failed subprocess affects intervention completeness, not interception.
+- When a violation occurs, the violation gate writes to the audit log without checking whether the Python process is running. A failed subprocess affects intervention completeness, not interception.
 - Whether Intervention is in Python or TypeScript, MCP's protocol defines the boundary between it and Watchdog. That boundary already includes failure handling.
 
 The "cross-language adds complexity" argument overlooks the role MCP's protocol plays. Intervention uses Python because MCP's protocol already handles the cross-language part.
