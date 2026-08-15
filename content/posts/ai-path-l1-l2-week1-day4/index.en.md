@@ -18,7 +18,7 @@ cover:
 
 Part 1 taught you to make one API call. Today you're going bigger: make your program ask AI 100 questions.
 
-Manually pasting text into a chat window a hundred times is grunt work. Writing a ten-minute script that does it for you is leverage. You get the time back.
+Manually pasting text into a chat window a hundred times is grunt work. Writing a ten-minute script to automate the task is leverage. You get the time back.
 
 You'll cover four things today: reading files, writing loops, putting it all together into a script that processes an entire folder of documents, and adding basic error handling.
 
@@ -185,7 +185,7 @@ Open the `output/` folder. Each input file has a corresponding output file.
 
 `glob.glob("input/*.txt")` returns all matching file paths. Change `"*.txt"` to `"*.md"` to process Markdown files instead. `enumerate(input_files, 1)` adds a counter to the loop, starting at 1. `os.path.basename(filepath)` extracts just the filename from the full path.
 
-One thing about speed: this script calls the API for one file after another, which is serial processing. With 10 files and roughly 2 seconds per request, the whole thing takes about 20 seconds. Day 6 covers parallel processing (sending multiple requests at once), but serial is simpler, more stable, and easier to debug. Learn serial first.
+One thing about speed: this script calls the API for one file after another, which is serial processing. With 10 files taking roughly 2 seconds per request, the whole run finishes in about 20 seconds. Day 6 covers parallel processing (sending multiple requests at once), but serial is simpler, more stable, and easier to debug. Learn serial first.
 
 Try changing `glob.glob("input/*.txt")` to `"input/*.md"`, put a few Markdown files in `input/`, and run it again.
 
@@ -296,7 +296,7 @@ This script has a few upgrades over the previous version:
 
 **Breaking it into functions.** `summarize_file()` wraps the full "read, call, write" logic. `main()` handles flow control. Functions keep code clear and make reuse easy.
 
-**System prompt added.** The `messages` list now includes a `"role": "system"` entry to set the AI's identity and task rules. System prompts are billed as regular input tokens. They take up a bit of the conversation length, but they improve output quality and stability, saving you from rework. `temperature=0.3` produces more uniform summaries. `max_tokens=500` caps output length.
+**System prompt added.** The `messages` list now includes a `"role": "system"` entry to set the AI's identity and task rules. System prompts are billed as regular input tokens. They count toward your input token limit, but they improve output quality and stability, saving you from rework. `temperature=0.3` produces more uniform summaries. `max_tokens=500` caps output length.
 
 **Error handling.** Each file's processing is wrapped in `try/except`. One file failing won't crash the whole program; the script reports the error, skips writing an output file for that item, and moves on to the next document.
 
