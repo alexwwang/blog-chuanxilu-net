@@ -95,13 +95,13 @@ This strategy has a technical prerequisite. `onToolBefore` doesn't need to wait 
 1. `onToolBefore` / `onToolAfter` detect violations synchronously and write signals to the audit log.
 2. When `tdd_checkpoint` is called, the violation gate reads the accumulated audit logs in bulk and sends them to Python via subprocess.
 3. Python returns an `InterventionResult` and TypeScript applies the decision.
-4. When there are zero violations, there's no overhead from signals or subprocess launches.
+4. When no violations occur, there's no overhead from signals or subprocess launches.
 
 Batching keeps latency acceptable by absorbing the fixed 400ms cost at checkpoints rather than at every tool call.
 
 ## Constraint 5: MCP's subprocess model makes cross-language risk manageable
 
-Doesn't putting Intervention in Python instead of TypeScript add more complexity than it saves?
+Does placing Intervention in Python instead of TypeScript introduce more complexity than it saves?
 
 The answer is no, because Intervention exposes itself as an MCP tool. MCP tools run as subprocesses by design: the host sends a request, the tool executes, returns a result, and exits. If the call times out or the process crashes, it returns an empty result and the host decides what to do. This contract works well with cross-language communication.
 
@@ -133,7 +133,7 @@ The stub-first approach reserves a spot on the roadmap. The AI sees the list and
 | Intervention language | Existing assets, testing ecosystem | Python |
 | Bridge mechanism | Zero new infrastructure | Subprocess |
 | Communication mode | Tool-call execution overhead (400ms startup) | Buffering + batching |
-| Fault tolerance | MCP's subprocess model handles cross-language risk | Empty envelope + independent log writing |
+| Fault tolerance | MCP's subprocess model handles cross-language risk | Empty envelope + decoupled audit logging |
 
 None of these five decisions were ideal. Each was the least bad option the constraints allowed.
 
