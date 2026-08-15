@@ -70,7 +70,7 @@ def call_api_with_retry(client, prompt, text, temperature=0.3, max_tokens=500):
             time.sleep(wait)
 ```
 
-**Exponential backoff**: First failure waits 2 seconds. Second waits 4. Third waits 6. The wait time grows because if the API is temporarily down, waiting longer makes recovery more likely.
+**Exponential backoff**: First failure waits 2 seconds. Second waits 4. Third waits 6. The wait time grows with each failure; if the API is temporarily down, progressive delay gives the service time to recover.
 
 **Only retry recoverable errors**: Network timeouts, connection errors, `TimeoutError`. These are transient. A retry might succeed. But 400 errors mean your request is wrong, and 401 means a bad key. Retrying these changes nothing.
 
