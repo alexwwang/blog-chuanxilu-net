@@ -50,7 +50,7 @@ Three tools are common in this space right now:
 
 **Claude Code** (Anthropic). Built on Claude, tightly integrated with terminal operations. It's good at understanding complex context, handling large files, and running multi-step tasks. The Pro plan costs $20/month, while Max tiers start at $100/month for higher usage limits.
 
-**OpenCode** (OpenCLI). Open-source autonomous execution framework with multi-model switching, a skill system, and parallel agent scheduling. The OpenCode framework itself is free and open source, while hosted subscription plans start at $10/month ($5 for the first month) alongside your backend model API costs. Best for technical users who want to customize their workflow.
+**OpenCode** (OpenCode.ai). Open-source autonomous execution framework with multi-model switching, a skill system, and parallel agent scheduling. The OpenCode framework itself is free and open source, while hosted subscription plans start at $10/month ($5 for the first month) alongside your backend model API costs. Best for technical users who want to customize their workflow.
 
 **Codex** (OpenAI). Built into ChatGPT, handles file read/write, code execution, and web browsing to complete complex tasks. The Plus plan is $20/month, while the Pro plan offers 5x and 20x usage tiers at $100 and $200 per month.
 
