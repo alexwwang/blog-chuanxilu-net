@@ -79,7 +79,7 @@ def read_csv(filepath):
     return "\n".join([" | ".join(row) for row in rows])
 ```
 
-CSV is tabular data. Joining each row's cells with `|` turns it into structured text that AI can understand. If the CSV contains non-ASCII characters, remember to include `encoding="utf-8"` when calling `open()`.
+CSV is tabular data. Joining each row's cells with `|` turns it into structured text that the AI can understand. If the CSV contains non-ASCII characters, remember to include `encoding="utf-8"` when calling `open()`.
 
 ### 4. JSON: json module (built-in)
 
