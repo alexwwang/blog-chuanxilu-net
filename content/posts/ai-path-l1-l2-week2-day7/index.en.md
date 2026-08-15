@@ -74,7 +74,7 @@ def call_api_with_retry(client, prompt, text, temperature=0.3, max_tokens=500):
 
 **Only retry recoverable errors**: Network timeouts, connection errors, `TimeoutError`. These are transient. A retry might succeed. But 400 errors mean your request is wrong, and 401 means a bad key. Retrying these changes nothing.
 
-**Set a generous timeout**: The default 30 seconds is too short. Long text processing and model cold starts can exceed that. 120 seconds is safer.
+**Set a generous timeout**: The default 30-second timeout is too short. Long text processing and model cold starts can exceed that. 120 seconds is safer.
 
 ---
 
