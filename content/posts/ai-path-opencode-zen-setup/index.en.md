@@ -97,7 +97,7 @@ After configuring the provider, type this in OpenCode:
 
 Browse the model list and find **DeepSeek V4 Flash Free**. Select it.
 
-Models labeled "Free" are available at no cost for a limited time. DeepSeek V4 Flash Free has a 200K context window, which is sufficient for single-folder organization and small script tasks, though larger codebases may require a higher context limit.
+Models labeled "Free" are available at no cost for a limited time. DeepSeek V4 Flash Free has a 200K context window, which is sufficient for single-folder organization and small script tasks, though larger codebases may require a larger context window.
 
 Or try other free models:
 
