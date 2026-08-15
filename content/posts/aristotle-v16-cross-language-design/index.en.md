@@ -14,7 +14,7 @@ cover:
 toc: true
 ---
 
-> **TL;DR:** Five constraints shaped the Watchdog-Intervention Bridge's cross-language architecture. Watchdog has to intercept LLM tool calls synchronously, so it runs in TypeScript. Intervention has to reuse the existing reflection engine and rule system, so it stays in Python. The Bridge adds zero new infrastructure, so it uses subprocess. Communication can't block every tool call, so batching replaces real-time streaming. MCP's subprocess model already handles failure, so cross-language risk stays contained. Each decision was the least bad option under the circumstances.
+> **TL;DR:** Five constraints shaped the Watchdog-Intervention Bridge's cross-language architecture. Watchdog must intercept LLM tool calls synchronously, so it runs in TypeScript. Intervention has to reuse the existing reflection engine and rule system, so it stays in Python. The Bridge adds zero new infrastructure, so it uses subprocess. Communication can't block every tool call, so batching replaces real-time streaming. MCP's subprocess model already handles failure, so cross-language risk stays contained. Each decision was the least bad option under the circumstances.
 
 The last post covered [what the Watchdog-Intervention Bridge does in Aristotle v1.6](/en/posts/2026/07/aristotle-v16-watchdog-intervention-bridge/). This one is about why it looks the way it does.
 
@@ -45,14 +45,14 @@ Watchdog had to be written in TypeScript because the runtime environment require
 
 ## Constraint 2: Intervention's assets and ecosystem are in Python
 
-Intervention's core logic is matching rules, detecting violations, and dispatching interventions. Aristotle v1.0 through v1.5 accumulated a rule system, KI document management, and root cause analysis logic on the Python side, with 1166 test cases written in pytest.
+Intervention's core logic is matching rules, detecting violations, and dispatching interventions. Aristotle v1.0 through v1.5 accumulated a rule system, Knowledge Item (KI) document management, and root cause analysis logic on the Python side, with 1166 test cases written in pytest.
 
 Putting Intervention in Python means these assets survive intact. The rule engine carries over, along with the violation type handlers and all 1166 tests.
 
 So why not TypeScript? Breaking down the tradeoff shows why the system ends up with two languages.
 
 **Intervention in Python:**
-- Zero rewrite cost: all 1166 tests, the rule engine, violation handlers, and Knowledge Item (KI) document management are preserved.
+- Zero rewrite cost: all 1166 tests, the rule engine, violation handlers, and KI document management are preserved.
 - Then there's the pytest parametrize and fixture ecosystem. pytest's `@pytest.mark.parametrize` supports stacking decorators for Cartesian products, and fixtures support dependency injection with automatic teardown. Vitest's `it.each` only handles single-level parameterization with no equivalent to pytest's fixture system. For 13 violation types tested in combination, `@pytest.mark.parametrize` makes the test code significantly more compact.
 
 **Intervention in TypeScript:**
