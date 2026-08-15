@@ -21,7 +21,7 @@ If you finished the L0→L1 graduation checklist, you might remember one line fr
 
 Chat windows have two limitations. First, they're one-off. Each task starts fresh. Second, they require you at the keyboard. No automation.
 
-The core difference at L2 is **programs call AI instead of you**. You write the logic once; it runs a hundred times, a thousand times. You have 100 documents to summarize? L0→L1 means sending 100 manual requests. L2 means writing a script that processes all 100 automatically. You just wait for the results.
+The core difference at L2 is that **programs call AI instead of you**. You write the logic once; it runs a hundred times, a thousand times. You have 100 documents to summarize? L0→L1 means sending 100 manual requests. L2 means writing a script that processes all 100 automatically. You just wait for the results.
 
 From L1 to L2, the key step is learning APIs. An API is the bridge between your program and AI, like you talking to AI in a chat window, except this time your program does the talking.
 
