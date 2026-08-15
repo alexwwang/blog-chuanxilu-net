@@ -90,7 +90,7 @@ An API Key is like your bank card password: **never leak it**. Once leaked, othe
 
 Three security rules:
 
-1. **Don't write API Keys in code.** Use environment variables or config files, and don't commit to Git repos.
+1. **Don't write API Keys directly in code.** Store them in a `.env` file, and add `.env` to your `.gitignore` so your keys never get committed to Git repos.
 2. **Don't paste API Keys in public chat windows, blog posts, or Stack Overflow.**
 3. **Rotate API Keys regularly.** If your Key is accidentally leaked, revoke it immediately in the console and generate a new one.
 
@@ -242,7 +242,7 @@ Different platforms have different billing methods (May 2026 prices, subject to 
 | Platform / Model | Input Price (/ 1M tokens) | Output Price (/ 1M tokens) |
 |-----------------|--------------------------|---------------------------|
 | DeepSeek V4-Flash | $0.14 | $0.28 |
-| OpenRouter | Same as official prices | Plus 5.5% platform fee |
+| OpenRouter | Official rates + 5.5% platform fee | Official rates + 5.5% platform fee |
 | Claude Sonnet 4.6 | $3 | $15 |
 | Claude Opus 4.8 | $5 | $25 |
 | GPT-5.5 | $5 | $30 |
