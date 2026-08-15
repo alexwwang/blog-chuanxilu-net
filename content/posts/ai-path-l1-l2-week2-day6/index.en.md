@@ -205,7 +205,7 @@ Key parts of the script:
 
 **Translation prompt**: The `system` prompt tells the model to translate to Chinese and preserve the original format.
 
-**Sentence-boundary splitting**: The `split_into_sentences()` function splits by paragraph (`\n\n`) first, then by sentence punctuation (`.!?。！？`) within paragraphs. No mid-sentence cuts. This is the core of translation chunking: you cannot split arbitrarily like you would for summarization.
+**Sentence-boundary splitting**: The `split_into_sentences()` function splits by paragraph (`\n\n`) first, then by sentence punctuation (`.!?。！？`) within paragraphs. No mid-sentence cuts. Preserving sentence boundaries is the core of translation chunking: you cannot split arbitrarily like you would for summarization.
 
 **Progress display**: `[1/4]`, `[2/4]`... When running a batch job, knowing the progress beats staring at a blank screen.
 
@@ -248,7 +248,11 @@ Prompt becomes:
 prompt = "You are a rewriting assistant. Rewrite the user-provided text into formal, professional written report style, preserving all key information."
 ```
 
-Output directory: `output_dir = "rewrites"`.
+Output directory changes:
+
+```python
+output_dir = "rewrites"
+```
 
 ---
 
