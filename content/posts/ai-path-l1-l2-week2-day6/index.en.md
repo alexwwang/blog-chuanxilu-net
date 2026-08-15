@@ -291,4 +291,4 @@ This is a scenario Day 6 doesn't cover, but it uses the same pattern you learned
 
 ---
 
-*Script not running? Check the error message (don't paste your API Key), verify your .env file location, folder names, and network connection.*
+*Script not running? Check the error message (don't paste your API key), verify your .env file location, folder names, and network connection.*
