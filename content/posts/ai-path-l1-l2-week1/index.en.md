@@ -127,16 +127,6 @@ If you've never opened a terminal: macOS users should try [Warp](https://www.war
 
 You'll need a plain text editor to write code. macOS's built-in "TextEdit" doesn't work (it adds formatting). I recommend VS Code (free, download and use) or just type `nano hello_api.py` in terminal to create and edit files. When I say "create a file" or "run a command" later, you'll know what to do.
 
-### Install openai Library
-
-Run in terminal:
-
-```bash
-uv pip install openai python-dotenv
-```
-
-`openai` is the core library for calling APIs, `python-dotenv` is for loading `.env` files.
-
 ### Create a Virtual Environment
 
 Before installing packages, create an isolated Python environment for this project:
@@ -149,11 +139,17 @@ This creates a `.venv` folder in the current directory containing a clean Python
 
 **Why use a virtual environment?** Two reasons. First, the packages you install won't pollute your system Python—if something breaks, just delete `.venv` and recreate it. Second, different projects can use different package versions without conflicting. This is a fundamental Python development habit worth building from day one.
 
-No need to manually activate the virtual environment—`uv` looks for `.venv` in the current directory. So make sure you're in your project directory first:
+No need to manually activate the virtual environment—`uv` looks for `.venv` in the current directory. So make sure you're in your project directory first.
+
+### Install openai Library
+
+Run in terminal:
 
 ```bash
 uv pip install openai python-dotenv
 ```
+
+`openai` is the core library for calling APIs, `python-dotenv` is for loading `.env` files.
 
 The same applies when running Python scripts later:
 
