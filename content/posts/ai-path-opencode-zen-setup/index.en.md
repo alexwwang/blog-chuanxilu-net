@@ -50,7 +50,7 @@ OpenCode Zen is a model gateway from the OpenCode team. You do not need third-pa
 4. Name your key (e.g., `my-zen-key`) and click Create
 5. Copy the generated API key (format: `sk-zen-xxxxxxxx`)
 
-> Copy and save your API key immediately, as the full key will not be displayed again after you close the dialog.
+> Copy and save your API key immediately, as the dialog will not display the full key again once closed.
 
 ---
 
@@ -162,7 +162,7 @@ If you followed Day 8, here is a good way to test this workflow:
 
 This is just the start. For everyday repetitive tasks like batch renaming, organizing projects, or writing scripts, the same flow works: Plan to align on approach, Build to get it done.
 
-**If DeepSeek V4 Flash Free's context window is not enough, or you want to try other models**, OpenCode also has a subscription-based [Go plan](https://opencode.ai/docs/go/#usage-limits). It includes the latest open-source models like GLM-5.2, DeepSeek V4 Pro, Qwen3.7, Kimi K2.7/2.6, Mimo 2.5, and Minimax M3, with 1M context windows or multimodal support. If you would like to subscribe, signing up through this invite link gives you **$5 off your first month**: <https://opencode.ai/go?ref=CGNQ69YARZ>
+**If DeepSeek V4 Flash Free's context window is not enough, or you want to try other models**, OpenCode also has a subscription-based [Go plan](https://opencode.ai/docs/go/#usage-limits). It includes the latest open-source models like GLM-5.2, DeepSeek V4 Pro, Qwen3.7, Kimi K2.7/2.6, Mimo 2.5, and Minimax M3, with 1M context windows or multimodal support. If you would like to subscribe, sign up through this invite link to get **$5 off your first month**: <https://opencode.ai/go?ref=CGNQ69YARZ>
 
 ---
 
