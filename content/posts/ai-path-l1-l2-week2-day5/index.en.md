@@ -32,7 +32,7 @@ Run this in your project directory:
 uv add pypdf python-docx
 ```
 
-`pypdf` reads PDFs (the old name was `PyPDF2`, now it's just `pypdf`). `python-docx` reads Word documents. `csv` and `json` are built-in Python modules, so nothing extra to install.
+`pypdf` reads PDFs (the old name was `PyPDF2`, but now it's just `pypdf`). `python-docx` reads Word documents. `csv` and `json` are built-in Python modules, so nothing extra to install.
 
 ---
 
