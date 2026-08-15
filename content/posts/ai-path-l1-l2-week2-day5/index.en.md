@@ -92,7 +92,7 @@ def read_json(filepath):
     return json.dumps(data, ensure_ascii=False, indent=2)
 ```
 
-`json.load()` parses the file into a Python object (a dict or list). `json.dumps()` converts it back to a readable string. `ensure_ascii=False` prevents non-ASCII characters from being escaped into `\uXXXX` sequences — without it, you'd see things like `\u4f60\u597d` instead of actual text.
+`json.load()` parses the file into a Python object (a dict or list). `json.dumps()` converts it back to a readable string. `ensure_ascii=False` prevents non-ASCII characters from being escaped into `\uXXXX` sequences. Without it, you'd see things like `\u4f60\u597d` instead of actual text.
 
 ---
 
