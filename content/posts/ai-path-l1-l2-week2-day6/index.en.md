@@ -272,7 +272,7 @@ If you have English ebooks in `.epub` format, try writing code to translate them
 
 Approach: search for "Python read epub file", find a library that extracts each chapter's HTML content from `.epub`, then pipe it into today's translation script. The `split_into_sentences()` function needs a small tweak: HTML sentences are broken up by `<p>`, `<br>`, and other tags, so you can't split on `\n\n` directly.
 
-This is a scenario Day 6 doesn't cover, but it uses the same pattern you learned today: **chunk, call API, join**: You already have the template. See if you can make it run.
+This is a scenario Day 6 doesn't cover, but it uses the same pattern you learned today: **chunk, call API, join**. You already have the template. See if you can make it run.
 
 ---
 
