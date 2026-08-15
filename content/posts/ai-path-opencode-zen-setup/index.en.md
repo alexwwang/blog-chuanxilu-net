@@ -15,7 +15,7 @@ cover:
 
 > This is a bonus article for the "AI Path L1→L2 Upgrade Guide." If you have not installed OpenCode yet, this guide gets you from zero to running.
 
-In Day 8 you learned about autonomous execution AI. The next step is actually installing and configuring OpenCode. OpenCode is an open-source AI coding assistant. It is free, supports multiple models, and has a skill system. Paired with OpenCode Zen, you can use tested models without setting up third-party API keys, including the free DeepSeek V4 Flash.
+On Day 8, you learned about autonomous execution AI. The next step is actually installing and configuring OpenCode. OpenCode is an open-source AI coding assistant. It is free, supports multiple models, and has a skill system. When paired with OpenCode Zen, it allows you to use tested models without setting up third-party API keys, including the free DeepSeek V4 Flash.
 
 The whole process takes five minutes.
 
