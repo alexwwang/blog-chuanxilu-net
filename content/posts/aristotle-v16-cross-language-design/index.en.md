@@ -88,7 +88,7 @@ The Bridge uses subprocess. Startup costs about 400ms per launch.
 
 Subprocess takes about 400ms per launch. If every tool call triggered a subprocess to communicate with Python Intervention, the accumulated latency would slow pipeline response times noticeably.
 
-This calls for a caching strategy. The TypeScript side caches violation signals in the audit log first. When a checkpoint is called, it sends them to Python in a batch.
+This calls for a buffering strategy. The TypeScript side buffers violation signals in the audit log first. When a checkpoint is called, it sends them to Python in a batch.
 
 This strategy has a technical prerequisite. `onToolBefore` doesn't need to wait asynchronously for Python to make its decision. It can detect violations and throw on its own. Only Intervention decisions (quarantine, rollback, suspend, instruct) need Python processing. Those don't need to happen in real time on the tool call path.
 
@@ -132,7 +132,7 @@ The stub-first approach reserves a spot on the roadmap. The AI sees the list and
 | Watchdog language | Synchronous interception, host environment | TypeScript |
 | Intervention language | Existing assets, testing ecosystem | Python |
 | Bridge mechanism | Zero new infrastructure | Subprocess |
-| Communication mode | 400ms can't block every tool call | Batching + caching |
+| Communication mode | 400ms can't block every tool call | Buffering + batching |
 | Fault tolerance | MCP's subprocess model handles cross-language risk | Empty envelope + independent operation |
 
 None of these five decisions were ideal. Each was the least bad option the constraints allowed.
