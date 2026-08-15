@@ -13,17 +13,17 @@ cover:
   alt: "Watercolor: chat bubbles dissolving into a token stream flowing into a notebook and brass key on a desk"
 ---
 
-> **TL;DR:** This is Part 1 of the "AI Path L1→L2 Upgrade Guide" series. Four parts total, one per week of practice. This article takes you from chat windows to APIs—automating your AI interactions through code, laying the foundation for batch processing and autonomous task-execution AI.
+> **TL;DR:** This is Part 1 of the "AI Path L1→L2 Upgrade Guide" series. Four parts total, one per week of practice. This article takes you from chat windows to APIs, automating your AI interactions through code, laying the foundation for batch processing and autonomous task-execution AI.
 
 ## Introduction: From "I Ask AI" to "Programs Ask AI"
 
 If you finished the L0→L1 graduation checklist, you might remember one line from the graduation post: "Register for an API account and use Python to print your first AI reply." Today is that day.
 
-Chat windows have two limitations. First, they're one-off—each task starts fresh. Second, they require you at the keyboard. No automation.
+Chat windows have two limitations. First, they're one-off. Each task starts fresh. Second, they require you at the keyboard. No automation.
 
 The core difference at L2 is **programs call AI instead of you**. You write the logic once; it runs a hundred times, a thousand times. You have 100 documents to summarize? L0→L1 means sending 100 manual requests. L2 means writing a script that processes all 100 automatically. You just wait for the results.
 
-From L1 to L2, the key step is learning APIs. An API is the bridge between your program and AI—like you talking to AI in a chat window, except this time your program does the talking.
+From L1 to L2, the key step is learning APIs. An API is the bridge between your program and AI, like you talking to AI in a chat window, except this time your program does the talking.
 
 This guide takes 4 weeks to walk you through this path:
 
@@ -40,9 +40,9 @@ Ready? Let's begin.
 
 ## What Is an API, and How Is It Different From a Chat Window?
 
-**Why it matters:** This is the hurdle you must cross from L1 to L2. Many people think APIs are just "advanced chat windows," but they're built for fundamentally different users—one for humans, the other for programs.
+**Why it matters:** This is the hurdle you must cross from L1 to L2. Many people think APIs are just "advanced chat windows," but they're built for fundamentally different users: one for humans, the other for programs.
 
-**How to think about it:** A chat window is simple—you type, AI replies. You ask questions, add instructions, ask AI to adjust the output, back and forth.
+**How to think about it:** A chat window is simple: you type, AI replies. You ask questions, add instructions, ask AI to adjust the output, back and forth.
 
 | | Chat Window | API |
 |---|------------|-----|
@@ -51,19 +51,19 @@ Ready? Let's begin.
 | Automatable | No | Yes |
 | Best for | Exploration, trial-and-error, daily Q&A | Batch processing, scheduled tasks, embedding in tools |
 
-Use an analogy: chat window = you stand at the counter and order in person, one item at a time. API = you send a written order to the kitchen—they prepare everything and deliver it when ready. You write the order once; they handle the rest.
+Use an analogy: chat window = you stand at the counter and order in person, one item at a time. API = you send a written order to the kitchen: they prepare everything and deliver it when ready. You write the order once; they handle the rest.
 
-![Chat Window vs API](illustration-chat-vs-api.jpeg "Left: chat window—manual, one at a time; Right: API—automated batch processing")
+![Chat Window vs API](illustration-chat-vs-api.jpeg "Left: chat window, manual, one at a time; Right: API, automated batch processing")
 
-**Practice:** No need to write code yet, just build intuition. Later I'll give you complete code—copy, paste, change a few parameters, and run. No need to start from scratch. For now, think back to the last AI task you manually repeated 3+ times—like translating 10 text segments to English, summarizing 5 articles, writing personalized welcome emails for 20 clients. Imagine if a program could do this automatically. How much time would that save? That scenario is your goal in learning APIs.
+**Practice:** No need to write code yet, just build intuition. Later I'll give you complete code: copy, paste, change a few parameters, and run. No need to start from scratch. For now, think back to the last AI task you manually repeated 3+ times, like translating 10 text segments to English, summarizing 5 articles, writing personalized welcome emails for 20 clients. Imagine if a program could do this automatically. How much time would that save? That scenario is your goal in learning APIs.
 
 ---
 
 ## Registering for API Accounts
 
-**Why it matters:** Without an API Key, your program can't talk to AI services. The process of getting one also helps you understand the basic flow—adding credits, choosing models, billing methods. These concepts will directly affect how efficiently you use APIs later.
+**Why it matters:** Without an API Key, your program can't talk to AI services. The process of getting one also helps you understand the basic flow: adding credits, choosing models, billing methods. These concepts will directly affect how efficiently you use APIs later.
 
-**How to think about it:** API accounts and chat accounts are usually separate. You need to register a "developer account," then get an API Key—a credential string that your program uses to authenticate.
+**How to think about it:** API accounts and chat accounts are usually separate. You need to register a "developer account," then get an API Key, a credential string that your program uses to authenticate.
 
 The process is similar across platforms: register → add credits → get API Key → choose model.
 
@@ -86,7 +86,7 @@ These platforms primarily offer OpenAI and Anthropic models, letting you switch 
 
 ### API Key Security Rules
 
-An API Key is like your bank card password—**never leak it**. Once leaked, others can use your account for billing, even malicious use leading to account suspension.
+An API Key is like your bank card password: **never leak it**. Once leaked, others can use your account for billing, even malicious use leading to account suspension.
 
 Three security rules:
 
@@ -94,7 +94,7 @@ Three security rules:
 2. **Don't paste API Keys in public chat windows, blog posts, or Stack Overflow.**
 3. **Rotate API Keys regularly.** If your Key is accidentally leaked, revoke it immediately in the console and generate a new one.
 
-**Practice:** Pick a platform—I recommend starting with DeepSeek; it's cheap and simple. Complete registration and get an API Key. Save the Key to a text file named `.env`, content like this:
+**Practice:** Pick a platform: I recommend starting with DeepSeek; it's cheap and simple. Complete registration and get an API Key. Save the Key to a text file named `.env`, content like this:
 
 ```
 DEEPSEEK_API_KEY=paste your key here
@@ -106,18 +106,18 @@ This file will be used next.
 
 ## Python Environment Setup
 
-**Why it matters:** Python is the most straightforward language for calling APIs. Node.js or curl work too, but Python has the shortest path from zero to running code. The `openai` library provides a unified interface—almost all mainstream AI platforms are compatible. Once you learn the DeepSeek call pattern, switching to OpenRouter or Claude only requires changing two parameters.
+**Why it matters:** Python is the most straightforward language for calling APIs. Node.js or curl work too, but Python has the shortest path from zero to running code. The `openai` library provides a unified interface. Almost all mainstream AI platforms are compatible. Once you learn the DeepSeek call pattern, switching to OpenRouter or Claude only requires changing two parameters.
 
 **How to think about it:** You need three things: Python interpreter, `openai` library, your API Key.
 
 ### Install Python
 
-I recommend using [uv](https://docs.astral.sh/uv/)—a Python toolchain manager that handles both Python installation and package management.
+I recommend using [uv](https://docs.astral.sh/uv/), a Python toolchain manager that handles both Python installation and package management.
 
 - **macOS / Linux:** Run `curl -LsSf https://astral.sh/uv/install.sh | sh` in terminal.
 - **Windows:** Run `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"` in PowerShell.
 
-After installing uv, run `uv python install 3.12`—it automatically downloads and installs Python 3.12. Confirm with `python3 --version`.
+After installing uv, run `uv python install 3.12`; it automatically downloads and installs Python 3.12. Confirm with `python3 --version`.
 
 If you prefer not to use uv, you can install Python directly: `brew install python3` on macOS, download the installer from python.org on Windows, or use your system package manager on Linux. Same result; uv just makes ongoing management easier.
 
@@ -137,9 +137,9 @@ uv venv --python 3.12 .venv
 
 This creates a `.venv` folder in the current directory containing a clean Python environment.
 
-**Why use a virtual environment?** Two reasons. First, the packages you install won't pollute your system Python—if something breaks, just delete `.venv` and recreate it. Second, different projects can use different package versions without conflicting. This is a fundamental Python development habit worth building from day one.
+**Why use a virtual environment?** Two reasons. First, the packages you install won't pollute your system Python: if something breaks, just delete `.venv` and recreate it. Second, different projects can use different package versions without conflicting. This is a fundamental Python development habit worth building from day one.
 
-No need to manually activate the virtual environment—`uv` looks for `.venv` in the current directory. So make sure you're in your project directory first.
+No need to manually activate the virtual environment; `uv` looks for `.venv` in the current directory. So make sure you're in your project directory first.
 
 ### Install openai Library
 
@@ -202,7 +202,7 @@ uv run python hello_api.py
 
 If everything works, you'll see the AI reply with a sentence.
 
-**One thing worth noting:** Although we're using DeepSeek's API, the code uses OpenAI's `openai` library. This is because most modern AI platforms are compatible with OpenAI's API interface standard. Once you learn this calling pattern, switching to other platforms only requires changing `base_url` and `model` parameters.
+**One thing worth noting:** Although you're using DeepSeek's API, the code uses OpenAI's `openai` library. This is because most modern AI platforms are compatible with OpenAI's API interface standard. Once you learn this calling pattern, switching to other platforms only requires changing `base_url` and `model` parameters.
 
 For example, switching to OpenRouter:
 
@@ -231,9 +231,9 @@ However, Anthropic (Claude) is an exception. It has its own API format that isn'
 
 ## Billing: Token
 
-Before diving into API parameters, you need to understand one concept—Token. It's not a parameter you pass to the API, but the billing unit AI platforms use. Without understanding tokens, you can't read your bill.
+Before diving into API parameters, you need to understand one concept: Token. It's not a parameter you pass to the API, but the billing unit AI platforms use. Without understanding tokens, you can't read your bill.
 
-A token is the smallest unit the AI uses to process text. Think of it as roughly equivalent to a word or character—in English, one word is about 1 token; in Chinese, one character is about 1–2 tokens (Chinese encoding is more complex).
+A token is the smallest unit the AI uses to process text. Think of it as roughly equivalent to a word or character: in English, one word is about 1 token; in Chinese, one character is about 1–2 tokens (Chinese encoding is more complex).
 
 **Input and output are billed separately.** The question you send AI is input tokens, AI's reply is output tokens. For example, your question is 100 tokens, AI replies 200 tokens, this call consumes 300 tokens total.
 
@@ -247,21 +247,21 @@ Different platforms have different billing methods (May 2026 prices, subject to 
 | Claude Opus 4.8 | $5 | $25 |
 | GPT-5.5 | $5 | $30 |
 
-**How to check the latest prices:** Every platform has a pricing page—DeepSeek at [api-docs.deepseek.com/quick_start/pricing](https://api-docs.deepseek.com/quick_start/pricing), Anthropic at [docs.anthropic.com](https://docs.anthropic.com), OpenAI at [platform.openai.com](https://platform.openai.com) under Pricing. Can't find it? Just ask AI.
+**How to check the latest prices:** Every platform has a pricing page: DeepSeek at [api-docs.deepseek.com/quick_start/pricing](https://api-docs.deepseek.com/quick_start/pricing), Anthropic at [docs.anthropic.com](https://docs.anthropic.com), OpenAI at [platform.openai.com](https://platform.openai.com) under Pricing. Can't find it? Just ask AI.
 
-**How to estimate:** A simple rule of thumb—Chinese roughly 1 character = 1.5 tokens, English roughly 1 word = 1 token. If you send AI a 1000-character article, it consumes about 1500 tokens.
+**How to estimate:** A simple rule of thumb: Chinese roughly 1 character = 1.5 tokens, English roughly 1 word = 1 token. If you send AI a 1000-character article, it consumes about 1500 tokens.
 
-![Token Billing Illustration](illustration-token-billing.jpeg "Input and output are billed separately—your question and AI's reply each count separately")
+![Token Billing Illustration](illustration-token-billing.jpeg "Input and output are billed separately; your question and AI's reply each count separately")
 
 ---
 
 ## Understanding API Parameters
 
-**Why it matters:** API parameters directly determine output quality, cost, and speed. Building intuition for them helps you tune settings for different scenarios—when to set temperature low, when to set max_tokens high.
+**Why it matters:** API parameters directly determine output quality, cost, and speed. Building intuition for them helps you tune settings for different scenarios: when to set temperature low, when to set max_tokens high.
 
-Here are the three most commonly used parameters: temperature, max_tokens, and model. We'll also cover a related concept—context window—which isn't a parameter you pass to the API, but directly affects how much content you can send.
+Here are the three most commonly used parameters: temperature, max_tokens, and model. I'll also cover a related concept: context window, which isn't a parameter you pass to the API, but directly affects how much content you can send.
 
-**A good habit:** Parameter names and value ranges differ across platforms, and they change with version updates. Before using one, check the official docs—or just ask AI: "What's the valid range for the temperature parameter on DeepSeek's V4-Flash API?" That's faster than guessing.
+**A good habit:** Parameter names and value ranges differ across platforms, and they change with version updates. Before using one, check the official docs, or just ask AI: "What's the valid range for the temperature parameter on DeepSeek's V4-Flash API?" That's faster than guessing.
 
 ### Temperature: Control Randomness
 
@@ -269,13 +269,13 @@ Temperature controls AI output's "creativity" level. Range is 0 to 2, but common
 
 | Value | Effect | Best for |
 |-------|--------|----------|
-| **0** | Deterministic—same question 100 times gives 100 identical answers | Code generation, data extraction |
+| **0** | Deterministic: same question 100 times gives 100 identical answers | Code generation, data extraction |
 | **0.7** (recommended) | Some randomness, but not divergent | Most scenarios |
-| **1** | Very random—same question can yield very different answers | Creative writing, brainstorming |
+| **1** | Very random: same question can yield very different answers | Creative writing, brainstorming |
 
-Another way to put it: low temperature makes the AI a photocopier—same input, same output, every time. High temperature makes it an improviser.
+Another way to put it: low temperature makes the AI a photocopier: same input, same output, every time. High temperature makes it an improviser.
 
-**Practice:** Run this code twice—once with `temperature=0`, once with `temperature=1`—using the same prompt both times. Observe the difference:
+**Practice:** Run this code twice: once with `temperature=0`, once with `temperature=1`, using the same prompt both times. Observe the difference:
 
 ```python
 response = client.chat.completions.create(
@@ -297,9 +297,9 @@ The context window is the maximum content an API can "see" at once. Different mo
 
 All three models have a 1M token context window. Using the 1 character ≈ 1.5 tokens estimate, that's roughly 650,000 Chinese characters.
 
-If your input exceeds the model's context window, the API will throw an error. Even without error, input too long causes AI to "forget" early content—like people forgetting what they talked about after chatting too long.
+If your input exceeds the model's context window, the API will throw an error. Even without error, input too long causes AI to "forget" early content, like people forgetting what they talked about after chatting too long.
 
-**Practical advice:** If your input exceeds 5K tokens, consider chunked processing or using a long-context model.
+**Practical advice:** Even though modern models support up to 1M tokens, if your input exceeds 5K tokens, consider chunked processing to keep costs down and latency low.
 
 ### max_tokens: Control Output Length
 
@@ -316,10 +316,10 @@ If your input exceeds the model's context window, the API will throw an error. E
 
 ## What's Next
 
-Today you did two things: understood the essential difference between APIs and chat windows, and ran your first piece of code. Along the way, you learned the billing unit Token, three API parameters (temperature, max_tokens, model), and the context window concept. They directly determine your future API cost and effectiveness. This is just the beginning—your script is still single-call, processing one task per run.
+Today you did two things: understood the essential difference between APIs and chat windows, and ran your first piece of code. Along the way, you learned the billing unit Token, three API parameters (temperature, max_tokens, model), and the context window concept. They directly determine your future API cost and effectiveness. This is just the beginning: your script is still single-call, processing one task per run.
 
-Next article, we'll learn **batch processing**: how to write loops to handle 100 documents, how to design batch prompts, how to handle retry mechanisms after API call failures. That's where APIs really show their power.
+Next article, you'll learn **batch processing**: how to write loops to handle 100 documents, how to design batch prompts, how to handle retry mechanisms after API call failures. That's where APIs really show their power.
 
 ---
 
-*Week 1 wraps up here. Next week we enter batch processing—where your program handles 100 tasks automatically. (Part 2 coming soon)*
+*Week 1 wraps up here. Next week you enter batch processing, where your program handles 100 tasks automatically. (Part 2 coming soon)*
