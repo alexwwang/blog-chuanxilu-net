@@ -50,7 +50,7 @@ OpenCode Zen is a model gateway from the OpenCode team. You do not need third-pa
 4. Name your key (e.g., `my-zen-key`) and click Create
 5. Copy the generated API key (format: `sk-zen-xxxxxxxx`)
 
-> The full key is only shown once. After that, only a masked version is displayed (but you can still copy it). Save it somewhere safe right after creation.
+> The full key is only shown once. After closing the prompt, only a masked version is displayed, so make sure to copy and save the key immediately upon creation.
 
 ---
 
@@ -70,7 +70,7 @@ On first launch, you enter the configuration flow. Type this in the input bar:
 
 Select **Zen** from the list, then paste your API key.
 
-Alternatively, add it manually to the config file at `~/.config/opencode/opencode.json` (macOS/Linux):
+Alternatively, add it manually to the config file at `~/.config/opencode/opencode.json` on macOS/Linux or `%USERPROFILE%\.config\opencode\opencode.json` on Windows:
 
 ```json
 {
