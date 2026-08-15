@@ -16,7 +16,7 @@ cover:
 
 > This is Day 5 of Week 2 in the "AI Path L1→L2 Upgrade Guide" exercises. Read [Part 2](../ai-path-l1-l2-week1-day4/) first, then come back here.
 
-The `batch_summarize.py` from [Part 2](../ai-path-l1-l2-week1-day4/) handles `.md` and `.txt` files. But real files come in many more formats. PDF reports, Word contracts, CSV data tables, JSON config files. They're sitting on your desktop right now, and the script can't touch them.
+The `batch_summarize.py` script from [Part 2](../ai-path-l1-l2-week1-day4/) handles `.md` and `.txt` files. But real files come in many more formats. PDF reports, Word contracts, CSV data tables, JSON config files. They're sitting on your desktop right now, and the script can't touch them.
 
 Today's goal: **write a `read_file()` function that picks the right reader based on file extension, then plug it into the Part 2 batch script.**
 
@@ -92,7 +92,7 @@ def read_json(filepath):
     return json.dumps(data, ensure_ascii=False, indent=2)
 ```
 
-`json.load()` parses the file into a Python object (a dict or list). `json.dumps()` converts it back to a readable string. `ensure_ascii=False` prevents non-ASCII characters from being escaped into `\uXXXX` sequences. Without it, you'd see things like `\u4f60\u597d` instead of actual text.
+`json.load()` parses the file into a Python object (a dict or list). `json.dumps()` converts it back to a readable string. `ensure_ascii=False` prevents non-ASCII characters from being escaped into `\uXXXX` sequences. Without it, you'd see strings like `\u4f60\u597d` instead of actual text.
 
 ---
 
