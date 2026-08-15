@@ -130,7 +130,7 @@ It should show `opencode/deepseek-v4-flash-free`.
 - [ ] Bun installed (`curl -fsSL https://bun.sh/install | bash`)
 - [ ] OpenCode installed (`bun install -g opencode`)
 - [ ] Installation verified (`opencode --version`)
-- [ ] Zen account registered (opencode.ai/zen)
+- [ ] Zen account registered ([opencode.ai/zen](https://opencode.ai/zen))
 - [ ] API key created and saved
 - [ ] Zen provider configured in OpenCode (`/connect`)
 - [ ] DeepSeek V4 Flash Free selected (`/model`)
