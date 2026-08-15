@@ -185,7 +185,7 @@ Open the `output/` folder. Each input file has a corresponding output file.
 
 `glob.glob("input/*.txt")` returns all matching file paths. Change `"*.txt"` to `"*.md"` to process Markdown files instead. `enumerate(input_files, 1)` adds a counter to the loop, starting at 1. `os.path.basename(filepath)` extracts just the filename from the full path.
 
-One thing about speed: this script calls the API one after another, which is serial processing. With 10 files and roughly 2 seconds per request, the whole thing takes about 20 seconds. Day 6 covers parallel processing (sending multiple requests at once), but serial is simpler, more stable, and easier to debug. Learn serial first.
+One thing about speed: this script calls the API for one file after another, which is serial processing. With 10 files and roughly 2 seconds per request, the whole thing takes about 20 seconds. Day 6 covers parallel processing (sending multiple requests at once), but serial is simpler, more stable, and easier to debug. Learn serial first.
 
 Try changing `glob.glob("input/*.txt")` to `"input/*.md"`, put a few Markdown files in `input/`, and run it again.
 
@@ -317,7 +317,7 @@ your-project/
     └── notes.txt
 ```
 
-Grab 3 to 5 of your own documents and run it. If the documents are long, keep an eye on cost. Long texts consume more input tokens. At DeepSeek V4-Flash pricing ($0.14/1M input tokens, roughly ¥1/1M), even a batch of 100 files should cost under $0.50 (roughly ¥3.60). But it adds up faster than you'd expect.
+Grab 3 to 5 of your own documents and run it. If the documents are long, keep an eye on cost. Long texts consume more input tokens. At DeepSeek V4-Flash pricing ($0.14/1M input tokens, roughly RMB ¥1/1M), even a batch of 100 files should cost under $0.50 (roughly RMB ¥3.60). But it adds up faster than you'd expect.
 
 ---
 
@@ -394,4 +394,4 @@ Part 3 enters new territory: autonomous AI. Not just reading and writing files, 
 
 ---
 
-*Script won't run? Read the error message first (don't paste your API key), then check your `.env` file location, folder name, and network connection.*
+*Script won't run? Read the error message first (don't paste your API key), then check your `.env` file's location, folder name, and network connection.*
