@@ -26,7 +26,7 @@ You'll cover four things today: reading files, writing loops, putting it all tog
 
 ## File I/O + API: Feeding Data to the API
 
-The code in Part 1 hardcoded the question right in the source (`content="Hello..."`). That works for learning, but real tasks don't look like that. You might need to process 10 meeting notes or 50 pieces of user feedback, all stored in files. Your program needs to read those files, send the content to the API, and save the response.
+The code in Part 1 hardcoded the question right in the source (`content="Hello..."`). That works for learning, but real tasks don't look like that. You might need to process 10 meeting notes or 50 pieces of user feedback, all stored in files. Your program needs to read those files, send their content to the API, and save each response.
 
 Think of it this way. Hardcoding the question is like talking to AI face to face, one sentence at a time. Reading from a file is like handing AI a stack of papers and saying "read these first." Writing the response to a file means you can come back and read the answer later without the chat window.
 
@@ -193,7 +193,7 @@ Try changing `glob.glob("input/*.txt")` to `"input/*.md"`, put a few Markdown fi
 
 ## Complete Script: Batch Summarize Documents
 
-The previous two sections built up the pieces. Now assemble them into something you'd actually use. The scenario is simple: you have a folder of documents, and you want AI to generate a summary for each one, saving the results to a new folder.
+The previous two sections built up the pieces. Now assemble them into something you'd actually use. The scenario is simple: you have a folder of documents and want AI to generate a summary for each file and save the results to a new folder.
 
 Meeting notes, article drafts, user feedback, research notes. Any collection of text files works.
 
