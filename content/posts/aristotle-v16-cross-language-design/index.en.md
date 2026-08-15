@@ -107,7 +107,7 @@ The answer is no, because Intervention exposes itself as an MCP tool. MCP tools 
 
 In practice:
 
-- When the Bridge's subprocess call fails, the Bridge returns an empty envelope. The TypeScript side handles it as a standard MCP response, with no special fault tolerance needed for Python failures.
+- When the Bridge's subprocess call fails, the Bridge returns an empty MCP envelope. The TypeScript side handles it as a standard MCP response, with no special fault tolerance needed for Python failures.
 - When a violation occurs, the violation gate writes to the audit log without checking whether the Python process is running. A failed subprocess affects intervention completeness, not interception.
 - Whether Intervention is in Python or TypeScript, MCP's protocol defines the boundary between it and Watchdog. That boundary already includes failure handling.
 
@@ -119,7 +119,7 @@ One more decision deserves mention. v1.6 added 15 new MCP tool definitions (movi
 
 The 15 new tools (10 for rule lifecycle, 2 for KI doc, 3 for rollback) started as stubs in early development. They appeared in the tool list, but calls returned "not implemented." This might look incomplete. If all 15 tools were going to be implemented anyway, why not build them completely from the start?
 
-The core objective of v1.6 was implementing the Watchdog-Intervention Bridge. The MCP tools were infrastructure enhancements. There was no point building all 15 tool stubs before Watchdog was operational.
+The core objective of v1.6 was to implement the Watchdog-Intervention Bridge. The MCP tools were infrastructure enhancements. There was no point building all 15 tool stubs before Watchdog was operational.
 
 The stub-first approach reserves a spot on the roadmap. The AI sees the list and knows the tools are coming. For everyone else, the stubs signal what's planned without pretending the work is done.
 
