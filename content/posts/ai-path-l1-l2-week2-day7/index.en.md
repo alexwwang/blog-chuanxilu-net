@@ -80,7 +80,7 @@ def call_api_with_retry(client, prompt, text, temperature=0.3, max_tokens=500):
 
 ## Problem 2: Rate-limit handling
 
-APIs have rate limits. Send requests too fast and the API returns a 429 status code.
+APIs have rate limits. If you send requests too fast, the API will return a 429 status code.
 
 If your script fires requests as fast as possible, it will almost certainly hit rate limits. Add handling logic:
 
@@ -323,7 +323,7 @@ if __name__ == "__main__":
     main()
 ```
 
-Sentence splitting relies on standard punctuation marks; if a single line or code block exceeds MAX_CHARS without punctuation, it will be passed as a single large chunk.
+Sentence splitting relies on standard punctuation marks, so any line or code block that lacks punctuation and exceeds MAX_CHARS will be passed as a single large chunk.
 
 Key improvements in this script:
 
