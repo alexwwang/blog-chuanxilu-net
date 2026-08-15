@@ -16,11 +16,11 @@ cover:
 
 > This is Part 2 of the "AI Path L1→L2 Upgrade Guide" series. Complete [Part 1](../ai-path-l1-l2-week1/) and the first three days of exercises ([Day 1](../ai-path-l1-l2-week1-day1/), [Day 2](../ai-path-l1-l2-week1-day2/), [Day 3](../ai-path-l1-l2-week1-day3/)) before continuing.
 
-Part 1 taught you to make one API call. Today we're going bigger: make your program ask AI a hundred questions.
+Part 1 taught you to make one API call. Today you're going bigger: make your program ask AI a hundred questions.
 
 Manually pasting text into a chat window a hundred times is grunt work. Writing a ten-minute script that does it for you is leverage. You get the time back.
 
-We'll cover three things today: reading files, writing loops, and putting it all together into a script that processes an entire folder of documents.
+You'll cover three things today: reading files, writing loops, and putting it all together into a script that processes an entire folder of documents.
 
 ---
 
@@ -193,7 +193,7 @@ Try changing `glob.glob("input/*.txt")` to `"input/*.md"`, put a few Markdown fi
 
 ## Complete Script: Batch Summarize Documents
 
-The previous two sections built up the pieces. Now we assemble them into something you'd actually use. The scenario is simple: you have a folder of documents, and you want AI to generate a summary for each one, saving the results to a new folder.
+The previous two sections built up the pieces. Now assemble them into something you'd actually use. The scenario is simple: you have a folder of documents, and you want AI to generate a summary for each one, saving the results to a new folder.
 
 Meeting notes, article drafts, user feedback, research notes. Any collection of text files works.
 
