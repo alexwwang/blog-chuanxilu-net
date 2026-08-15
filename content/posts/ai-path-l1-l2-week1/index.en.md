@@ -224,7 +224,7 @@ However, Anthropic (Claude) is an exception. It has its own API format that isn'
 
 1. Run the above `hello_api.py`, make sure it outputs normally.
 2. Modify the question content, like change to "Write a Python function to determine if a number is prime."
-3. Try changing `max_tokens` to 500, observe output length changes.
+3. Try adding `max_tokens=500` inside the `completions.create` request and observe how the output length changes.
 4. (Optional) If you have an OpenRouter account, try modifying `base_url` and `model`, use OpenRouter to call DeepSeek.
 
 ---
