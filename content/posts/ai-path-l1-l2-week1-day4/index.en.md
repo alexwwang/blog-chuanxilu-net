@@ -18,7 +18,7 @@ cover:
 
 Part 1 taught you to make one API call. Today you're going bigger: make your program ask AI 100 questions.
 
-Manually pasting text into a chat window a hundred times is grunt work. Writing a 10-minute script to automate the task is leverage. You get the time back.
+Manually pasting text into a chat window 100 times is grunt work. Writing a 10-minute script to automate the task is leverage. You get the time back.
 
 You'll cover four things today: reading files, writing loops, putting it all together into a script that processes an entire folder of documents, and adding basic error handling.
 
@@ -193,7 +193,7 @@ Try changing `glob.glob("input/*.txt")` to `"input/*.md"`, put a few Markdown fi
 
 ## Complete Script: Batch Summarize Documents
 
-The previous two sections built up the pieces. Now assemble them into something you'd actually use. The scenario is simple: you have a folder of documents and want AI to generate a summary for each file and save the results to a new folder.
+The previous two sections built up the pieces. Now assemble them into something you'd actually use. The scenario is simple: you have a folder of documents and want AI to summarize each file and save the results to a new folder.
 
 Meeting notes, article drafts, user feedback, research notes. Any collection of text files works.
 
