@@ -38,7 +38,7 @@ It's the opposite of an API call: the agent has context and state awareness. It 
 | Programming knowledge needed | Yes | No |
 | Best for | Structured workflows with fixed logic | Multi-step tasks requiring execution and problem-solving |
 | Control granularity | Precise | Rough direction |
-| Call state | Stateless, one-shot | Stateful, remembers context |
+| Execution State | Stateless (single request-response) | Stateful (persistent session context) |
 
 The two modes don't conflict. When AI completes a task autonomously, you can save its generated code and call it via API later. That's the combo approach Part 4 will cover.
 
