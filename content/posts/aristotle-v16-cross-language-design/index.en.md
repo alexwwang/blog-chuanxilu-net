@@ -33,7 +33,7 @@ Constraints shaped every decision here. Each choice was the least bad option ava
 
 ## Constraint 1: Watchdog must be synchronous
 
-Watchdog's job is to intercept the LLM's tool call path. Specifically, `onToolBefore` needs to check conditions **before** a tool runs. If there's a violation, it uses `throw` to stop the tool synchronously.
+Watchdog's job is to intercept the LLM's tool call path. Specifically, `onToolBefore` needs to evaluate rules **before** a tool runs. If there's a violation, it uses `throw` to stop the tool synchronously.
 
 This requirement rules out almost every cross-process approach. You can't `await` a remote call result in the middle of a tool call path. Every wait stalls the LLM's next operation. Even a few milliseconds of latency per communication adds up quickly across the whole pipeline.
 
@@ -86,7 +86,7 @@ The Bridge uses subprocess. Startup costs about 400ms per launch.
 
 ## Constraint 4: 400ms can't block every tool call
 
-Subprocess takes about 400ms per launch. If every tool call triggered a subprocess to communicate with Python Intervention, the accumulated latency would slow pipeline response times noticeably.
+Subprocess takes about 400ms per launch. If every tool call triggered a subprocess to communicate with Intervention, the accumulated latency would slow pipeline response times noticeably.
 
 This calls for a buffering strategy. The TypeScript side buffers violation signals in the audit log first. When a checkpoint is called, it sends them to Python in a batch.
 
@@ -119,7 +119,7 @@ One more decision deserves mention. v1.6 added 15 new MCP tool definitions (movi
 
 The 15 new tools (10 for rule lifecycle, 2 for KI doc, 3 for rollback) started as stubs in early development. They appeared in the tool list, but calls returned "not implemented." This might look incomplete. If all 15 tools were going to be implemented anyway, why not build them completely from the start?
 
-The core objective of v1.6 was implementing the Watchdog-Intervention Bridge. The MCP tools were infrastructure enhancements. There was no point implementing all 15 tools before the Watchdog was working.
+The core objective of v1.6 was implementing the Watchdog-Intervention Bridge. The MCP tools were infrastructure enhancements. There was no point implementing all 15 tools before Watchdog was working.
 
 The stub-first approach reserves a spot on the roadmap. The AI sees the list and knows the tools are coming. For everyone else, the stubs signal what's planned without pretending the work is done.
 
