@@ -36,7 +36,7 @@ It's the opposite of an API call: the agent has context and state awareness. It 
 | What you do | Write code | Describe tasks |
 | Who writes code | You | AI |
 | Programming knowledge needed | Yes | No |
-| Best for | Repetitive, predictable tasks | Exploratory, judgment-heavy tasks |
+| Best for | Structured workflows with fixed logic | Multi-step tasks requiring execution and problem-solving |
 | Control granularity | Precise | Rough direction |
 | Call state | Stateless, one-shot | Stateful, remembers context |
 
@@ -48,9 +48,9 @@ The two modes don't conflict. When AI completes a task autonomously, you can sav
 
 Three tools are common in this space right now:
 
-**Claude Code** (Anthropic). Built on Claude, tightly integrated with terminal operations. It's good at understanding complex context, handling large files, and running multi-step tasks. Pro plan: $20/month. Max starts at $100/month, tiered by usage multiplier.
+**Claude Code** (Anthropic). Built on Claude, tightly integrated with terminal operations. It's good at understanding complex context, handling large files, and running multi-step tasks. Pro plan: $20/month. Max tiers start at $100/month, scaling with higher usage limits.
 
-**OpenCode** (OpenCLI). Open-source autonomous execution framework with multi-model switching, a skill system, and parallel agent scheduling. Go plan: $10/month ($5 first month). The framework itself is free and open source; you only pay for the backend model APIs. Best for technical users who want to customize their workflow.
+**OpenCode** (OpenCLI). Open-source autonomous execution framework with multi-model switching, a skill system, and parallel agent scheduling. The OpenCode framework itself is free and open source, while hosted subscription plans start at $10/month ($5 for the first month) alongside your backend model API costs. Best for technical users who want to customize their workflow.
 
 **Codex** (OpenAI). Built into ChatGPT, handles file read/write, code execution, and web browsing to complete complex tasks. Plus plan: $20/month. Pro has two tiers: 5x at $100/month, 20x at $200/month.
 
@@ -148,7 +148,7 @@ Good autonomous execution tools ask before destructive operations. If it deleted
 
 **"Wouldn't a Python script be faster for organizing files?"**
 
-Yes, if you already have one. But the real question is: **when would you ever spend the time to write that script?** The value of autonomous execution AI is that you don't have to. Describe the task, and AI writes the code, runs it, and fixes the bugs itself. That saves more time than writing the script ever would.
+Yes, if you already have one. But the real question is: **when would you ever spend the time to write that script?** The value of autonomous execution AI is that you don't have to. Describe the task, and AI writes the code, runs it, and fixes the bugs itself. For one-off or occasional tasks, that saves far more time than writing and maintaining a custom script.
 
 ---
 
