@@ -16,7 +16,7 @@ cover:
 
 > This is Part 2 of the "AI Path L1→L2 Upgrade Guide" series. Complete [Part 1](../ai-path-l1-l2-week1/) and the first three days of exercises ([Day 1](../ai-path-l1-l2-week1-day1/), [Day 2](../ai-path-l1-l2-week1-day2/), [Day 3](../ai-path-l1-l2-week1-day3/)) before continuing.
 
-Part 1 taught you to make one API call. Today you're going bigger: make your program ask AI a hundred questions.
+Part 1 taught you to make one API call. Today you're going bigger: make your program ask AI 100 questions.
 
 Manually pasting text into a chat window a hundred times is grunt work. Writing a ten-minute script that does it for you is leverage. You get the time back.
 
@@ -298,7 +298,7 @@ This script has a few upgrades over the previous version:
 
 **System prompt added.** The `messages` list now includes a `"role": "system"` entry to set the AI's identity and task rules. System prompts are billed as regular input tokens. They take up a bit of the conversation length, but they improve output quality and stability, saving you from rework. `temperature=0.3` produces more uniform summaries. `max_tokens=500` caps output length.
 
-**Error handling.** Each file's processing is wrapped in `try/except`. One file failing won't crash the whole program; it reports the error, skips writing an output file for that item, and moves on to the next document.
+**Error handling.** Each file's processing is wrapped in `try/except`. One file failing won't crash the whole program; the script reports the error, skips writing an output file for that item, and moves on to the next document.
 
 Expected folder structure:
 
