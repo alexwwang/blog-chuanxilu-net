@@ -1,5 +1,5 @@
 ---
-title: "Day 6 Exercise: Batch Processing Practice — Pick a Scenario and Run It"
+title: "Day 6 Exercise: Batch Processing Practice: Pick a Scenario and Run It"
 slug: "ai-path-l1-l2-week2-day6"
 date: 2026-06-13T07:00:00+08:00
 draft: false
@@ -231,9 +231,9 @@ prompt = "You are a summarization assistant. Summarize the user-provided text in
 output_dir = "summaries"
 ```
 
-One important difference from translation: **summarization can use fixed-character chunking**: Translation must respect sentence boundaries because a half-sentence is gibberish in any language. But summarization is lossy by design — you are already discarding information. Cutting at a fixed character count (say, every 4000 characters) and summarizing each chunk separately works fine. The final output is a summary of summaries, not a word-for-word reconstruction, so boundary precision matters less.
+One important difference from translation: **summarization can use fixed-character chunking**: Translation must respect sentence boundaries because a half-sentence is gibberish in any language. But summarization is lossy by design: you are already discarding information. Cutting at a fixed character count (say, every 4000 characters) and summarizing each chunk separately works fine. The final output is a summary of summaries, not a word-for-word reconstruction, so boundary precision matters less.
 
-If you want, you can simplify `split_into_sentences()` to a basic fixed-size chunker for summarization. But keeping the sentence-based version works too — it just splits more conservatively than necessary.
+If you want, you can simplify `split_into_sentences()` to a basic fixed-size chunker for summarization. But keeping the sentence-based version works too. It just splits more conservatively than necessary.
 
 ---
 
@@ -283,7 +283,7 @@ This is a scenario Day 6 doesn't cover, but it uses the same pattern you learned
 - [ ] Added progress display so you know where the batch job stands
 - [ ] Understood that APIs have length limits and long files need chunking
 
-**Next step:** Once your script runs, you will hit real-world problems — network timeouts, API errors, a single file failure killing the entire batch. Day 7 adds error handling: timeout retries, rate-limit backoff, and exception logging.
+**Next step:** Once your script runs, you will hit real-world problems: network timeouts, API errors, a single file failure killing the entire batch. Day 7 adds error handling: timeout retries, rate-limit backoff, and exception logging.
 
 ---
 
