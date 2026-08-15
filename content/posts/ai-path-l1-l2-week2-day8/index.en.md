@@ -3,7 +3,7 @@ title: "Day 8: Autonomous AI, Automation Without Writing Code"
 slug: "ai-path-l1-l2-week2-day8"
 date: "2026-06-28T07:00:00+08:00"
 draft: false
-description: "L1 to L2 Week 2 Day 8: understand autonomous execution AI (Claude Code, OpenCode, Codex), learn to describe tasks and let AI handle the coding, with a hands-on file organization exercise."
+description: "L1 to L2 Week 2 Day 8: Understand autonomous execution AI (Claude Code, OpenCode, Codex), learn to describe tasks to let AI handle the coding, and complete a hands-on file organization exercise."
 tags: ["AI", "toolchain", "tutorial", "autonomous-execution", "automation", "chatgpt", "chatgbt", "codex", "openai", "claude code"]
 categories: ["ai-path"]
 toc: true
@@ -23,7 +23,7 @@ Writing code to call APIs is one kind of automation. There's a lighter one: **de
 
 ## What Is Autonomous Execution AI?
 
-In API mode, you're the programmer. You write Python scripts, call OpenAI-compatible endpoints, handle timeouts, rate limits, file I/O. It's powerful, but you need to code.
+In API mode, you're the programmer. You write Python scripts, call OpenAI-compatible endpoints, and handle timeouts, rate limits, and file I/O. It's powerful, but you need to code.
 An API call is a single round-trip from your script: you send the request, wait for the response, and close the connection without retaining state or context between calls. The same call gives the same result at the same cost, whether you run it once or a hundred times.
 
 In autonomous execution AI mode, you're the project manager. You tell AI what you want, and it writes the code, debugs it, and hands you the result. You don't need Python. You just need to understand your own problem.
