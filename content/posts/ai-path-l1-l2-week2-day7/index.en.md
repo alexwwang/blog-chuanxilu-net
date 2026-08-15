@@ -323,7 +323,7 @@ if __name__ == "__main__":
     main()
 ```
 
-Sentence splitting relies on standard punctuation marks, so the script passes any unpunctuated block exceeding MAX_CHARS as a single large chunk.
+Sentence splitting relies on standard punctuation marks, so the script passes any unpunctuated block exceeding `MAX_CHARS` as a single large chunk.
 
 Key improvements in this script:
 
