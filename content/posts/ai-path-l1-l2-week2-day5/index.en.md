@@ -311,4 +311,4 @@ Run it again and see how the AI summarizes JSON content.
 
 ---
 
-*Script won't run? Check the error message first (don't paste your API key). Verify your .env file location, folder names, and network connection.*
+*Script won't run? Check the error message first (don't paste your API key). Verify your `.env` file location, folder names, and network connection.*
