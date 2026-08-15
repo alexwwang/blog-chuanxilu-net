@@ -108,7 +108,7 @@ The answer is no, because Intervention exposes itself as an MCP tool. MCP tools 
 In practice:
 
 - When the Bridge's subprocess call fails, the Bridge returns an empty envelope. The TypeScript side handles it as a standard MCP response, with no special fault tolerance needed for Python.
-- When a violation occurs, the TypeScript violation gate writes to the audit log without checking whether Python is alive. A failed subprocess affects intervention completeness, not interception.
+- When a violation occurs, the TypeScript violation gate writes to the audit log without checking whether the Python process is running. A failed subprocess affects intervention completeness, not interception.
 - Whether Intervention is in Python or TypeScript, MCP's protocol defines the boundary between it and Watchdog. That boundary already includes failure handling.
 
 The "cross-language adds complexity" argument overlooks the role MCP's protocol plays. Intervention uses Python because MCP's protocol already handles the cross-language part.
