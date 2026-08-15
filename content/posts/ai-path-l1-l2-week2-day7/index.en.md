@@ -115,7 +115,7 @@ def call_api_with_rate_limit(client, prompt, text, temperature=0.3, max_tokens=5
 
 **Double the wait time**: After hitting a rate limit, wait longer than for a regular timeout. A rate limit is the API telling you "you're going too fast." You need to slow down more aggressively.
 
-**Log the event**: When rate limiting hits, you should know about it. Not silently skip. Not crash. Leave a record. `logging.warning()` writes to the log so you can review how many times rate limiting occurred after the batch finishes.
+**Log the event**: When rate limiting hits, you should know about it. Not silently skip. Not crash. Leave a record. `logging.warning()` writes to the log so that once the batch finishes, you can review how many times rate limiting occurred.
 
 ---
 
