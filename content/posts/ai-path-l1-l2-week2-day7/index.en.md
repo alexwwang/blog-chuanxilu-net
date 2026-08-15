@@ -392,7 +392,7 @@ You can:
 - [ ] Added exception logging and failure tracking (`results.json`)
 - [ ] Understood why `logging` beats `print` for batch processing
 
-**Next step**: The script is more robust now. Day 8 takes a different approach: no code, let AI handle automation tasks autonomously. Introduction to autonomous execution AI.
+**Next step**: The script is more reliable now. Day 8 takes a different approach: no code, let AI handle automation tasks autonomously. Introduction to autonomous execution AI.
 
 ---
 
