@@ -323,7 +323,7 @@ if __name__ == "__main__":
     main()
 ```
 
-Sentence splitting relies on standard punctuation marks, so any line or code block that lacks punctuation and exceeds MAX_CHARS will be passed as a single large chunk.
+Sentence splitting relies on standard punctuation marks, so the script passes any unpunctuated block exceeding MAX_CHARS as a single large chunk.
 
 Key improvements in this script:
 
@@ -333,7 +333,7 @@ Success and failure are tracked separately. After the script finishes, `results.
 
 Each file is wrapped in its own `try/except`. One failure does not prevent the rest from processing.
 
-`APIConnectionError`, `APITimeoutError`, `TimeoutError`, `RateLimitError` all go into the retry pool because timeouts, short-term network jitter and burst rate limits are transient, though hard quota caps will still exhaust all retries and fail safely.
+`APIConnectionError`, `APITimeoutError`, `TimeoutError`, `RateLimitError` all go into the retry pool because timeouts, short-term network jitter, and burst rate limits are transient, though hard quota caps will still exhaust all retries and fail safely.
 
 ---
 
