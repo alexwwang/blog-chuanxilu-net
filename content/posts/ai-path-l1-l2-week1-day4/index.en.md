@@ -92,7 +92,7 @@ A few details worth knowing:
 - `with open(...)` is a context manager. The file closes automatically when the block ends, so you don't need to call `f.close()` yourself.
 - The `f"...{file_content}"` in the prompt is an f-string, Python's most convenient way to format strings. It plugs the variable right into the string.
 
-Try swapping `input.txt` with any text file of your own and see what the summary looks like. You can also change the prompt. Replace "Summarize the following in 3 bullet points" with "Extract action items from the following" or "Translate the following into Chinese" and watch how the output changes.
+Try swapping `input.txt` for any text file of your own and see what the summary looks like. You can also change the prompt. Replace "Summarize the following in 3 bullet points" with "Extract action items from the following" or "Translate the following into Chinese" and watch how the output changes.
 
 ---
 
