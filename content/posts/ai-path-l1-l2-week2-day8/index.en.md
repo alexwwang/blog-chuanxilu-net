@@ -24,7 +24,7 @@ Writing code to call APIs is one kind of automation. There's a lighter one: **de
 ## What Is Autonomous Execution AI?
 
 In API mode, you're the programmer. You write Python scripts, call OpenAI-compatible endpoints, handle timeouts, rate limits, file I/O. It's powerful, but you need to code.
-An API call here is a single round-trip from your script: send the prompt, wait for the result, done. No memory, no context between calls. The same call gives the same result at the same cost, whether you run it once or a hundred times.
+An API call is a single round-trip from your script: you send the request, wait for the response, and the connection closes with no state or context retained between calls. The same call gives the same result at the same cost, whether you run it once or a hundred times.
 
 In autonomous execution AI mode, you're the project manager. You tell AI what you want, and it writes the code, debugs it, and hands you the result. You don't need Python. You just need to understand your own problem.
 It's the opposite of an API call: the agent has context and state awareness. It remembers what you've said so far and adjusts course as it works.
@@ -37,7 +37,7 @@ It's the opposite of an API call: the agent has context and state awareness. It 
 | Who writes code | You | AI |
 | Programming knowledge needed | Yes | No |
 | Best for | Structured workflows with fixed logic | Multi-step tasks requiring execution and problem-solving |
-| Control granularity | Precise | Rough direction |
+| Control granularity | Precise | High-level direction |
 | Execution State | Stateless (single request-response) | Stateful (persistent session context) |
 
 The two modes don't conflict. When AI completes a task autonomously, you can save its generated code and call it via API later. That's the combo approach Part 4 will cover.
@@ -48,13 +48,13 @@ The two modes don't conflict. When AI completes a task autonomously, you can sav
 
 Three tools are common in this space right now:
 
-**Claude Code** (Anthropic). Built on Claude, tightly integrated with terminal operations. It's good at understanding complex context, handling large files, and running multi-step tasks. Pro plan: $20/month. Max tiers start at $100/month, scaling with higher usage limits.
+**Claude Code** (Anthropic). Built on Claude, tightly integrated with terminal operations. It's good at understanding complex context, handling large files, and running multi-step tasks. The Pro plan costs $20/month, while Max tiers start at $100/month for higher usage limits.
 
 **OpenCode** (OpenCLI). Open-source autonomous execution framework with multi-model switching, a skill system, and parallel agent scheduling. The OpenCode framework itself is free and open source, while hosted subscription plans start at $10/month ($5 for the first month) alongside your backend model API costs. Best for technical users who want to customize their workflow.
 
-**Codex** (OpenAI). Built into ChatGPT, handles file read/write, code execution, and web browsing to complete complex tasks. Plus plan: $20/month. Pro has two tiers: 5x at $100/month, 20x at $200/month.
+**Codex** (OpenAI). Built into ChatGPT, handles file read/write, code execution, and web browsing to complete complex tasks. The Plus plan is $20/month, while the Pro plan offers 5x and 20x usage tiers at $100 and $200 per month.
 
-They share one core capability: **you describe a task, it writes the code, runs it, debugs, and delivers.** The differences are the model backing, integration depth, and pricing.
+They share one core capability: **you describe a task, it writes the code, runs it, debugs, and delivers.** The main differences lie in their underlying models, system integration depth, and pricing structures.
 
 ---
 
@@ -70,7 +70,7 @@ An effective task description has three elements: **goal, constraints, expected 
 
 **Expected output** is what the deliverable looks like. A file? Code? A report? Tell AI the final shape.
 
-{{< figure src="illustration.png" alt="Three-element triptych: Goal, Constraints, Expected Output" class="img-medium" caption="An effective task description has three elements: state your goal, set clear constraints, and define the expected output so AI executes precisely" >}}
+{{< figure src="illustration.png" alt="Three-element triptych: Goal, Constraints, Expected Output" class="img-medium" caption="An effective task description has three elements: state your goal, set clear constraints, and define the expected output so AI executes precisely." >}}
 
 **A bad example:**
 
