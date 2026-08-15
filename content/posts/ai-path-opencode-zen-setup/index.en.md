@@ -36,7 +36,7 @@ bun install -g opencode
 
 Verify with `opencode --version` (v1.14.x+). Prefer npm? `npm install -g opencode`.
 
-> `opencode` not found: add the global bin dir to your PATH. For bun: `~/.bun/bin` (Windows: `%USERPROFILE%\.bun\bin`). For npm: `$(npm prefix -g)/bin` (Windows: `%APPDATA%\npm`).
+> `opencode` not found: add the global bin dir to your PATH. For bun: `~/.bun/bin` (Windows: `%USERPROFILE%\.bun\bin`). For npm: `$(npm prefix -g)/bin` (Windows: `%APPDATA%\npm`), and restart your terminal after updating PATH.
 
 ---
 
@@ -70,7 +70,7 @@ On first launch, you enter the configuration flow. Type this in the input bar:
 
 Select **Zen** from the list, then paste your API key.
 
-Alternatively, add it manually to the config file at `~/.config/opencode/opencode.json` on macOS/Linux or `%USERPROFILE%\.config\opencode\opencode.json` on Windows:
+Alternatively, merge the zen object into the provider section of your config file at `~/.config/opencode/opencode.json` on macOS/Linux or `%USERPROFILE%\.config\opencode\opencode.json` on Windows:
 
 ```json
 {
