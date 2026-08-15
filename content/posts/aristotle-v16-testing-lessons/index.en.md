@@ -16,19 +16,19 @@ toc: true
 
 ## Prologue: 1,754 Perfect Green Lights
 
-Late on the night Aristotle v1.6.0 shipped, the team watched the test panel.
+The team watched the test panel late on the night `Aristotle v1.6.0` shipped.
 
 Green indicators lit up like dominoes. Python side: 1,166 assertions. TypeScript side: 588 checks. Total: 1,754 automated test cases. All green.
 
-In code terms, that's cameras and infrared sensors on every wall. A fly couldn't sneak through without setting off alarms. The team leaned back. The system looked like an iron fortress.
+In code terms, that's like having cameras and infrared sensors on every wall. A fly couldn't sneak through without setting off alarms. The team leaned back. The system looked like an iron fortress.
 
 They didn't know a ghost was already inside the castle.
 
 ## The Detective Arrives, and the Victim That Wasn't There
 
-To be safe, the team brought in an independent code reviewer. Call him Oracle. He had a peculiar habit: he never looked at the green test reports. He only read the code itself.
+To be safe, the team brought in an independent code reviewer. Call him Oracle. He had a peculiar habit: he never looked at the green test reports, choosing to read only the code itself.
 
-Oracle walked the castle, tapped a wall, and made his diagnosis: "Your tests catch every bad guy you expected. They miss the blind spots you couldn't see."
+Oracle walked the castle, tapped a wall, and made his diagnosis: "Your tests catch every bad guy you expected. They miss the blind spots you couldn't anticipate."
 
 A few hours later, he pulled **6 hidden bugs** out of a system everyone thought was clean. The best one was a double agent that had fooled the automated tests completely.
 
@@ -37,7 +37,7 @@ A few hours later, he pulled **6 hidden bugs** out of a system everyone thought 
 There was a guard at the castle gate called `_should_return_result`. It had a clever design, maybe too clever:
 
 * **In test mode (drill environment):** it was lenient. It handed out passes and logged results.
-* **In production (real battlefield):** it turned strict. It threw exceptions on any anomaly.
+* **In production mode (real battlefield):** it turned strict. It threw exceptions on any anomaly.
 
 Sound good? Drill is drill, combat is combat. But this double standard set a trap in the dark.
 
@@ -47,11 +47,11 @@ Oracle followed the guard's output to the counter, the logic that tallies failur
 
 **The chain reaction unfolded:**
 
-In test mode (drill environment), an anomaly occurred that should have been intercepted. But the guard was on its lenient setting. It didn't raise the alarm. Instead, it quietly issued a pass marked "anomaly" and let the request through.
+In test mode (drill environment), the guard encountered an anomaly it should have intercepted. But the guard was on its lenient setting. It didn't raise the alarm. Instead, it quietly issued a pass marked "anomaly" and let the request through.
 
 The counter's blind spot: the counter looked up, saw no alarm had been raised, and dutifully recorded: "All clear, no failures."
 
-The absurd outcome: the automated test saw the counter's report reading "no failures" and happily declared: "test passed!" The test saw a green light, but for the wrong reason. It mistook an "unflagged hazard" for "system healthy."
+The absurd outcome: the automated test saw the counter's report reading "no failures" and happily declared: "test passed!" It saw a green light, but for the wrong reason. It mistook an "unflagged hazard" for "system healthy."
 
 Think of it as a military drill gone absurd. To make record-keeping easy, command decided that soldiers hit by simulated fire wouldn't leave the field. They would carry a "hit card" and keep marching. The counter only counted soldiers carried off the field. Nobody was carried off, so the report read: "Zero casualties. Mission success."
 
@@ -81,10 +81,10 @@ Tests passed because the test environment only had one copy of everything. In a 
 
 This bug was a relative path, hardcoded to a specific working directory. It was a guide who relied entirely on familiar surroundings.
 
-In the drill (test environment), everyone worked from the same office (the current working directory, CWD). The guide sent maintenance workers to fix things and always found the right spot. Tests passed.
+In the test environment drill, everyone worked from the same office: the current working directory, `CWD`. The guide sent maintenance workers to fix things and always found the right spot. Tests passed.
 
 **In production:**
-Problems could appear anywhere: on the roof, in the basement. The guide still sent workers "three steps forward then left" based on office memory. The workers either couldn't find the pipe to fix, or fixed the wrong thing and brought down the security system.
+Problems could appear anywhere: on the roof, in the basement. The guide still sent workers "three steps forward then left" based on office memory. The workers either couldn't find the pipe to fix, or they fixed the wrong thing and brought down the security system.
 
 Tests proved it worked in the office. They didn't prove it could survive outside it.
 
@@ -118,7 +118,7 @@ Oracle pulled both out. The team's faces went red. All 1,754 tests were marching
 
 Story over. If you were the team lead watching Oracle pull out 6 hidden assassins, you might be thinking: fire the engineer who wrote the tests?
 
-Hold that thought. Before Oracle left, he stopped the manager who was reaching for the firing button.
+Hold that thought. Before Oracle left, he stopped the manager reaching for the firing button.
 
 > "Don't blame the tests. Without those 1,754 automated guards holding the gates, without them catching every routine intruder, I wouldn't have walked into a castle with 6 hidden assassins. I would have walked into 60 rioters, or 600. And I never would have found the double agent. I never would have noticed Agent 0."
 
