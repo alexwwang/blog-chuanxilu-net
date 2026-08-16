@@ -3,7 +3,7 @@ title: "Long Conversation Failures: Lessons from 3 Drift Disasters"
 slug: "ai-3-long-conversation-fails"
 date: 2026-05-23T06:00:00+08:00
 draft: false
-description: "AI conversations often start drifting around turns 10–15 — but not always in the same way. Three real failures: work directions cross-contaminating, data citations going wrong, and requirements bleeding across strategy documents — each broken down into what happened, why, and how to prevent it."
+description: "AI conversations often start drifting around turns 10–15, but not always in the same way. Three real failures: work directions cross-contaminating, data citations going wrong, and requirements bleeding across strategy documents, each broken down into what happened, why, and how to prevent it."
 tags: ["AI", "toolchain", "evolution-path", "prompt engineering"]
 categories: ["ai-path"]
 toc: false
@@ -13,7 +13,7 @@ cover:
   alt: "Watercolor style: a winding paper trail across a desk, with three stations symbolizing mixed directions, data citation errors, and requirement bleed-through"
 ---
 
-The previous exercise was to run a 15-turn conversation with AI, using progress summaries and new conversations as checkpoints. If you actually did it, you probably noticed something else too — drift doesn't always look the same.
+The previous exercise was to run a 15-turn conversation with AI, using progress summaries and new conversations as checkpoints. If you actually did it, you probably noticed something else too: drift doesn't always look the same.
 
 The three cases below are all failures I've run into myself. Here's what happened, why it happened, and how to avoid it.
 
@@ -21,13 +21,13 @@ The three cases below are all failures I've run into myself. Here's what happene
 
 **What Happened**
 
-I was figuring out the approach for a project. I first discussed Approach A with AI — building a data dashboard. After 4 turns, it didn't feel deep enough, so I switched to Approach B — automated reports — for another 3 turns. Then I thought maybe we could combine Approach C's real-time push capability. Three directions kept jumping around in the same conversation for a dozen turns.
+I was figuring out the approach for a project. I first discussed Approach A with AI, building a data dashboard. After 4 turns, it didn't feel deep enough, so I switched to Approach B, automated reports, for another 3 turns. Then I thought maybe I could combine Approach C's real-time push capability. Three directions kept jumping around in the same conversation for a dozen turns.
 
 When I finally asked AI for a consolidated proposal, it paired Approach A's data source with Approach B's display logic, then added Approach C's push triggers. The three directions' individual logic got stirred together. It looked complete, but it was internally contradictory: the dashboard needed real-time querying, while the reports were generated offline at T+1. They had fundamentally different data source requirements.
 
 **Why**
 
-LLMs automatically look for connections inside one context window. For a single task, this is useful — it keeps the conversation coherent. But when multiple directions are mixed together, the model can combine arguments from different contexts and produce a "reasonable-looking" answer, even when those arguments only made sense in their original context.
+LLMs automatically look for connections inside one context window. For a single task, this is useful: it keeps the conversation coherent. But when multiple directions are mixed together, the model can combine arguments from different contexts and produce a "reasonable-looking" answer, even when those arguments only made sense in their original context.
 
 The dangerous part is that the result often looks persuasive at first glance. Each piece is correct on its own, but the combination doesn't hold together.
 
@@ -37,7 +37,7 @@ Don't pile multiple directions into one conversation. Open a separate conversati
 
 The rule is simple: **if two directions may affect each other's conclusion, clarify them separately first and compare later; if they don't affect each other, they shouldn't be in the same conversation at all.**
 
-If you must compare multiple directions in one conversation — for example, when doing a side-by-side evaluation — ask AI to produce conclusions for each direction independently first, then compare those conclusions. Don't jump back and forth during the discussion.
+If you must compare multiple directions in one conversation, for example when doing a side-by-side evaluation, ask AI to produce conclusions for each direction independently first, then compare those conclusions. Don't jump back and forth during the discussion.
 
 ## Failure 2: Data Citations Went Wrong
 
@@ -45,13 +45,13 @@ If you must compare multiple directions in one conversation — for example, whe
 
 I was doing a user behavior analysis. In the first 5 turns, AI and I clarified the analysis framework. In turns 6–10, I had it look at specific data and produce a few findings. By turn 11, I asked it to summarize the key findings, and one number made me pause: "Daily active users: 120K, up 8% from last month."
 
-I scrolled back to turn 7. The original text was: "Daily active users: 112K, up 3.2% from last month." In turn 9, there was another metric called "active visiting accounts," close to 120K, measured over the last 7 days. In the summary, AI mixed together two similarly named metrics with different time windows. Worse, it also included a conversion-rate number I couldn't find anywhere. When I asked, "Which turn did this number come from?" it admitted there was no source — it had generated it. The analysis framework was still there, but the data filling that framework no longer came from the same source.
+I scrolled back to turn 7. The original text was: "Daily active users: 112K, up 3.2% from last month." In turn 9, there was another metric called "active visiting accounts," close to 120K, measured over the last 7 days. In the summary, AI mixed together two similarly named metrics with different time windows. Worse, it also included a conversion-rate number I couldn't find anywhere. When I asked, "Which turn did this number come from?" it admitted there was no source: it had generated it. The analysis framework was still there, but the data filling that framework no longer came from the same source.
 
 **Why**
 
 There were two problems here.
 
-The first was **source confusion**. LLMs processing long conversations have positional bias — information in the middle of the conversation is more likely to get lost. The original data and later supplemental data were scattered across different turns, and the metric names were similar. In the summary, AI failed to distinguish "daily active users" from "active visiting accounts," and it failed to preserve the difference between "last month" and "last 7 days."
+The first was **source confusion**. LLMs processing long conversations have positional bias: information in the middle of the conversation is more likely to get lost. The original data and later supplemental data were scattered across different turns, and the metric names were similar. In the summary, AI failed to distinguish "daily active users" from "active visiting accounts," and it failed to preserve the difference between "last month" and "last 7 days."
 
 The second was **hallucinated completion**. When it needed to produce a complete analysis but couldn't find a number in the context, it didn't necessarily stop and say "I don't know." More often, it kept generating a plausible, confident, source-less number. That number wasn't a bad calculation. It was filled in without evidence.
 
@@ -91,15 +91,15 @@ In one sentence: **when writing adjacent topics back to back, start a new conver
 
 Three failures, three different mechanisms:
 
-- **Failure 1 (directions got mixed)** — multiple directions cross-contaminate inside one context window, and AI assembles "reasonable-looking" combinations. One direction, one conversation
-- **Failure 2 (data citations went wrong)** — similar metrics and different measurement windows get mixed together, and source-less hallucinated numbers can appear. Archive data outside the conversation + cite source turns
-- **Failure 3 (requirements bled across documents)** — adjacent topics are written consecutively, and methods from the first two documents bleed into the third. Start a new conversation from the third one onward, then make a plan
+- **Failure 1 (directions got mixed)**: multiple directions cross-contaminate inside one context window, and AI assembles "reasonable-looking" combinations. One direction, one conversation
+- **Failure 2 (data citations went wrong)**: similar metrics and different measurement windows get mixed together, and source-less hallucinated numbers can appear. Archive data outside the conversation + cite source turns
+- **Failure 3 (requirements bled across documents)**: adjacent topics are written consecutively, and methods from the first two documents bleed into the third. Start a new conversation from the third one onward, then make a plan
 
-The previous exercise let you experience long-conversation drift directly. This article categorizes common drift patterns by symptom and cause. Next time, we'll talk about advanced follow-up questions — moving from "asking" to "probing."
+The previous exercise let you experience long-conversation drift directly. This article categorizes common drift patterns by symptom and cause. Next time, I'll talk about advanced follow-up questions, moving from "asking" to "probing."
 
 ---
 
 📖 **Series Navigation**
 
 - Previous: [Today's Practice: A 15-Turn Conversation Experiment](/en/posts/2026/05/ai-practice-15-turn-conversation/)
-- Next: Advanced Follow-ups — Using 3 Questions to Expose Hidden Assumptions in AI's Answers (coming soon)
+- Next: Advanced Follow-ups, Using 3 Questions to Expose Hidden Assumptions in AI's Answers (coming soon)
