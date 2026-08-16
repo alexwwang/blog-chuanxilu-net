@@ -128,7 +128,7 @@ Providers take different approaches:
 
 | Provider | Cache Method | Min Threshold | Cached Price | Hit Rate |
 |----------|-------------|---------------|--------------|----------|
-| OpenAI | Automatic prefix cache | 1024 tokens | 1/10 of regular | High (when system prompt is constant) |
+| OpenAI | Automatic prefix cache | 1024 tokens | 0.1x regular rate ($0.50/million) | High (when system prompt is constant) |
 | Anthropic | Auto or manual `cache_control` | Model-dependent (1024/512 tokens) | Reads 0.1x, writes 1.25x-2x | Medium-High |
 | Z.AI GLM-5.2 | Automatic prefix cache | No public threshold | $0.26/million cached | High |
 | DeepSeek V4-Pro | Automatic Context Caching on Disk | No public threshold | $0.003625/million cached | High |
@@ -137,7 +137,7 @@ OpenAI's cache threshold is 1024 tokens for all models. If your system prompt is
 
 Anthropic supports automatic caching or explicit `cache_control` block configuration. When configured correctly, cache reads cost 0.1x and writes cost 1.25x-2x.
 
-DeepSeek V4-Pro's Context Caching on Disk is enabled by default with no public threshold. Cached reads cost just $0.003625/million tokens, so batch jobs get near-zero caching costs automatically.
+DeepSeek V4-Pro's automatic Context Caching on Disk is enabled by default with no public threshold. Cached reads cost just $0.003625/million tokens, so batch jobs get near-zero caching costs automatically.
 
 Z.AI GLM-5.2's cached input price is $0.26/million tokens. It's not as steep as DeepSeek's discount, but it's still lower than most other Chinese models.
 
