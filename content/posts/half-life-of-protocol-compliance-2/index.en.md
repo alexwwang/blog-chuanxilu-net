@@ -49,7 +49,7 @@ During R2'-R5', the agent wrote "Fact-Gather+Precision(1)" in its Goal block. It
 
 The model lacks a "cross-check" capability: read its own output, compare against the protocol's original text, and detect inconsistency. In traditional programming, this is the compiler's or type checker's job. In an LLM, the same model must do both within the same token stream. The model naturally tends toward internal consistency in its own output, rather than detecting discrepancies between itself and external constraints.
 
-This is likely a metacognitive gap. The proliferation of papers in 2024-2025 synthesizing metacognitive training data (ReflectEvo, Meta-CoT, etc.) suggests exactly that such content is scarce in standard training data. The model needs to reason about its own behavioral process ("does my Goal block match the protocol?"), but this capability hasn't been trained sufficiently.
+This is likely a metacognitive gap. The proliferation of papers in 2024-2025 synthesizing metacognitive training data (ReflectEvo, Meta-CoT, etc.) suggests that such content is scarce in standard training data. The model needs to reason about its own behavioral process ("does my Goal block match the protocol?"), but this capability hasn't been trained sufficiently.
 
 ## The Model Has Motivation to Simplify
 
@@ -89,7 +89,7 @@ When shipping v0.21.0, I had the agent draft the GitHub Release notes. It wrote 
 
 It's not entirely wrong. Compression does happen. Periodic reload does reduce confirmation requests. The fix attempts to solve the problem, and within its scope, it works. The problem is it's incomplete and can't be complete: it only refreshes attention share, it doesn't stop the constraint from being bypassed.
 
-What's harder to detect is the severity of protocol drift. In a long-running development project, attention is focused on project progress: test plan quality, whether defects are fixed, when the stop condition will be met. The agent's output format is clean, numbers look good, the process appears to be running correctly. The change from five roles to four is hidden in a single line of the Goal block, buried in a large volume of normal intermediate output. It's not that you don't want to check. Under the pace of project progress, this kind of deviation is too easy to miss.
+What's harder to detect is the severity of protocol drift. In a long-running development project, attention is focused on project progress: test plan quality, whether defects are fixed, when the stop condition will be met. The agent's output format is clean, numbers look good, the process appears to be running correctly. The change from five roles to four is hidden in a single line of the Goal block, buried in a large volume of normal intermediate output. It's not that you don't want to check. At the pace of project progress, this kind of deviation is too easy to miss.
 
 SELF-MONITORING is correct engineering practice: acknowledge the limitation, compensate externally. But it's a band-aid. It solves the most observable symptom (protocol text disappearing) while leaving deeper root causes untouched: the weight-level P(EOS) prior, the "answer then stop" training distribution bias, architectural statelessness, softmax attention competition, RLHF's blanket confirmation-seeking policy.
 
