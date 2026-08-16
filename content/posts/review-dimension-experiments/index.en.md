@@ -32,7 +32,7 @@ Code review originally had 8 dimensions. The controlled experiment found only 1 
 
 Added 3 dimensions (security depth, test gap analysis, resource safety), bringing the total to 11.
 
-Result: **6/6, all found.**
+Result: **6/6, all found** (after refining the specific prompt guidance for the new dimensions).
 
 ### Experiment 2: Design review dimension enhancement
 
@@ -40,7 +40,7 @@ Design review originally had 11 dimensions. Only 1 out of 6 known issues was fou
 
 Introduced Axiomatic Design, adding 3 dimensions (independence axiom, information axiom, requirement purity), bringing the total to 14.
 
-Result: **6/6, all found.**
+Result: **6/6, all found** (after refining the specific prompt guidance for the new dimensions).
 
 Both experiments seem to reach the same conclusion: add dimensions, get better results, but the story does not end there. A third experiment reached the opposite conclusion; more on that below.
 
