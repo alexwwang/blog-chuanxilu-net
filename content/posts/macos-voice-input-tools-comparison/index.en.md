@@ -132,7 +132,7 @@ Three permissions required:
 - **Accessibility**: for text injection
 - **Speech Recognition**: for Apple Speech fallback
 
-Default hotkey is Fn. But Fn is also needed for function keys (F1-F12), so I changed it to Control+Fn. Double-press Fn is the default input source switch in macOS, so I mapped Ask Anything (voice Q&A or content rewriting) to double-press Option instead.
+Default hotkey is Fn. But Fn is also needed for function keys (F1-F12), so I changed it to Control+Fn. Double-pressing Fn is the default input source switch in macOS, so I mapped Ask Anything (voice Q&A or content rewriting) to double-pressing Option instead.
 
 One thing about Apple Speech: it is in Settings → Advanced Settings, the last item, "Enable Apple Fallback." It is off by default. You need to toggle it on manually. Once enabled, Apple Speech steps in as a system-level fallback when all other STT options fail. A few caveats:
 
