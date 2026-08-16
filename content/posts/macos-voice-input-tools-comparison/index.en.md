@@ -59,7 +59,7 @@ openquack also uses WhisperKit and Core ML. Its project page is upfront about it
 - Stack: Swift, multiple STT backends
 - Focus: "Hold to talk, release to insert" for zero context-switch voice input
 
-typeflux originally only supported Apple Silicon, but PR #65 (May 2026) added native Intel Mac support.[4] Instead of baking in one inference engine, it abstracts an STT provider layer:
+typeflux originally supported only Apple Silicon, but PR #65 (May 2026) added native Intel Mac support.[4] Instead of baking in one inference engine, it abstracts an STT provider layer:
 
 ![Typeflux STT provider abstraction layer architecture](typeflux-architecture.png)
 
