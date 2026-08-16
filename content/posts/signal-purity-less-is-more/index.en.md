@@ -38,7 +38,7 @@ After removing inferable redundancy, review quality improved by 29%. That change
 
 Wang et al. proposed the concept of "strategy genes" in a 2026 arXiv paper: procedural skills can be compressed into smaller, more stable, reusable strategy units for experience accumulation and strategy optimization during test-time evolution.[1]
 
-When I read the paper, it reminded me of Holland's "building blocks" from half a century ago. In genetic algorithms, better solutions are assembled by recombining short, composable, repeatedly useful fragments.[2] The structural echo is what mattered: Wang's "strategy genes" and Holland's "building blocks" both ask the same question — **what is the irreducible unit?**
+When I read the paper, it reminded me of Holland's "building blocks" from half a century ago. In genetic algorithms, better solutions are assembled by recombining short, composable, repeatedly useful fragments.[2] The structural echo is what mattered: Wang's "strategy genes" and Holland's "building blocks" both ask the same question: **what is the irreducible unit?**
 
 This article uses Holland's building blocks as an interpretive lens for understanding how Wang et al.'s strategy genes map onto my prompt experiment. Two pieces of work separated by half a century share a structural shape. That gives a useful way to think about what a prompt should keep and what it should cut.
 
@@ -72,7 +72,7 @@ Together: 550 lines → 135 lines, -75%. Review quality +29%. Token usage also d
 
 In *Adaptation in Natural and Artificial Systems*, Holland introduced the idea of "building blocks": complex solutions are not built from scratch. They are assembled by recombining short, composable, repeatedly useful fragments. These fragments are the basic units of the solution. Remove them, and the solution is no longer the same solution.
 
-Wang et al. proposed strategy genes: compact, structured, reusable units distilled from procedural skills — the parts that actually control behavior. The point is not documentary completeness, but signal density, applicability boundaries, and failure awareness.
+Wang et al. proposed strategy genes: compact, structured, reusable units distilled from procedural skills, the parts that actually control behavior. The point is not documentary completeness, but signal density, applicability boundaries, and failure awareness.
 
 EvoMap's Gene format engineers this idea further: a Gene is a reusable strategy template with trigger signals, constraints, and validation.[3] It is not a full manual. It is an action template that can be reused and recombined.
 
@@ -156,7 +156,7 @@ What went wrong? I cut too much. Constraints are strategy genes, but they are no
 
 ### Second experiment: constraints + negative examples
 
-I made the second experimental version: keep constraints, add negative examples back. But this was not just adding content to the 215-line version. I also rewrote the constraints themselves — merging redundant rules and shortening wording. Final result: 135 lines.
+I made the second experimental version: keep constraints, add negative examples back. But this was not just adding content to the 215-line version. I also rewrote the constraints themselves, merging redundant rules and shortening wording. Final result: 135 lines.
 
 So 135 lines did not become shorter "because adding negative examples magically made it shorter." It was the result of two changes at once: negative examples came back, and constraint wording was compressed hard.
 
@@ -164,7 +164,7 @@ Score: 7.70. +29% over the control group. Much better than constraints-only (+27
 
 The key finding: positive examples were redundant content; negative examples were strategy genes.
 
-Positive examples make the model imitate, which limits reasoning. Removing them gave the model more room to think about what is right. Negative examples tell the model where the boundary is without constraining the path. Remove them, and the model does not know where the trap is — so it falls in. Negative examples define an irreplaceable boundary constraint.
+Positive examples make the model imitate, which limits reasoning. Removing them gave the model more room to think about what is right. Negative examples tell the model where the boundary is without constraining the path. Remove them, and the model does not know where the trap is, so it falls in. Negative examples define an irreplaceable boundary constraint.
 
 ### Method takeaway
 
