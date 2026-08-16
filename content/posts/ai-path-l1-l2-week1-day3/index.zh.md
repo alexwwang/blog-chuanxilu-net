@@ -76,7 +76,7 @@ uv run python experiment_temp.py
 
 **观察什么**：
 
-- `temperature=0`：每次跑出来的结果几乎一样。AI 选了概率最高的词，没有随机性。
+- `temperature=0`：每次跑出来的结果几乎一样。AI 选了概率最高的 token，没有随机性。
 - `temperature=0.5`：有些变化，但逻辑依然连贯。
 - `temperature=1.0`：每次跑出来差异明显。用词、风格、故事走向都可能不同。
 

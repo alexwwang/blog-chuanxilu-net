@@ -76,7 +76,7 @@ uv run python experiment_temp.py
 
 **What to observe**:
 
-- `temperature=0`: Nearly identical output every time. AI picks the highest-probability word. No randomness.
+- `temperature=0`: Nearly identical output every time. AI picks the highest-probability token. No randomness.
 - `temperature=0.5`: Some variation, but the logic remains coherent.
 - `temperature=1.0`: Noticeably different each run. Word choice, style, and story direction may vary.
 
@@ -134,7 +134,7 @@ uv run python experiment_tokens.py
 
 **What to observe**:
 
-- `max_tokens=50`: AI starts explaining but gets cut off mid-sentence, returning a `finish_reason` of `"length"` in the response payload.
+- `max_tokens=50`: AI starts explaining but gets truncated mid-sentence, returning a `finish_reason` of `"length"` in the response payload.
 - `max_tokens=200`: A short answer, but probably not enough room for all three examples.
 - `max_tokens=1000`: Full answer with all three examples expanded.
 
