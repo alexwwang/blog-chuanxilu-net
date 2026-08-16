@@ -92,7 +92,7 @@ For Intel Mac users, freeflow is the lowest-friction option: register a Groq acc
 
 | | purr | openquack | typeflux | freeflow |
 |---|---|---|---|---|
-| CPU Inference | ❌ (cannot run on Intel) | ❌ (unusable) | ~2-3s | ❌ (cloud-only) |
+| CPU Inference | ❌ (cannot run on Intel) | ❌ (cannot run on Intel) | ~2-3s | ❌ (cloud-only) |
 | Apple Silicon Experience | ✅ | ✅ | ✅ | — (cloud only) |
 | Chinese + English | ✅ | ✅ | ✅ | ✅ |
 | Chinese-Specific Optimization | None | None | Yes (AliCloud/Doubao/SenseVoice) | None |
