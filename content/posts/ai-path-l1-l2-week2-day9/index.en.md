@@ -155,7 +155,7 @@ When choosing an API provider, don't look only at unit price. Work through these
 
 4. **Is the proxy's cache pricing transparent?** Provider cache policies are fixed, but proxies may add markup or hide cache fees. Check if your bill distinguishes cached and non-cached tokens, and whether the proxy reports hit rates.
 
-5. **How do you use it?** Caching for OpenAI, DeepSeek, and GLM-5.2 needs no setup from you: the provider handles it. Anthropic supports both automatic and manual modes. Automatic mode requires adding one line of `cache_control` at the top level of your request. Manual mode lets you decide what to cache and what not to. Cache writes carry a premium (1.25x-2x), and placing breakpoints in the wrong spot wastes money. If you're new to this, start with automatic mode.
+5. **How do you use it?** Caching for OpenAI, DeepSeek, and GLM-5.2 needs no setup from you: the provider handles it. Anthropic supports both automatic and manual modes. Automatic mode requires adding a `cache_control` block to your request payload so the provider knows which prefix to retain. Manual mode lets you decide what to cache and what not to. Cache writes carry a premium (1.25x-2x), and placing breakpoints in the wrong spot wastes money. If you're new to this, start with automatic mode.
 
 ---
 
