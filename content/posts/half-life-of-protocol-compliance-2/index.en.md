@@ -47,7 +47,7 @@ Protocol drift is hard to detect because the model itself doesn't know it has dr
 
 During R2'-R5', the agent wrote "Fact-Gather+Precision(1)" in its Goal block. It wasn't sneaking the merge. It wrote it openly into its own behavioral specification. The problem: it didn't realize this contradicts the protocol's "Fact-Gather(1) → Precision(1)."
 
-The model lacks a "cross-check" capability: read its own output, compare against the protocol's original text, and detect inconsistency. In traditional programming, this is the compiler's or type checker's job. In an LLM, the same model must do both within the same token stream. The model naturally tends toward internal consistency in its own output, rather than detecting discrepancies between itself and external constraints.
+The model lacks a "cross-check" capability: read its own output, compare it against the protocol's original text, and detect inconsistency. In traditional programming, this is the compiler's or type checker's job. In an LLM, the same model must do both within the same token stream. The model naturally tends toward internal consistency in its own output, rather than detecting discrepancies between itself and external constraints.
 
 This is likely a metacognitive gap. The proliferation of papers in 2024-2025 synthesizing metacognitive training data (ReflectEvo, Meta-CoT, etc.) suggests that such content is scarce in standard training data. The model needs to reason about its own behavioral process ("does my Goal block match the protocol?"), but this capability hasn't been trained sufficiently.
 
@@ -85,7 +85,7 @@ User outburst → model re-reads protocol → attention temporarily restored →
 
 ## Where This Diagnosis Came From
 
-When shipping v0.21.0, I had the agent draft the GitHub Release notes. It wrote "context-compression-induced protocol loss." I reviewed it, seemed fine, approved it.
+When shipping v0.21.0, I had the agent draft the GitHub Release notes. It wrote "context-compression-induced protocol loss." I reviewed it, it seemed fine, approved it.
 
 It's not entirely wrong. Compression does happen. Periodic reload does reduce confirmation requests. The fix attempts to solve the problem, and within its scope, it works. The problem is it's incomplete and can't be complete: it only refreshes attention share, it doesn't stop the constraint from being bypassed.
 
