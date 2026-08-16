@@ -153,7 +153,7 @@ When choosing an API provider, don't look only at unit price. Work through these
 
 3. **How large is your batch workload?** With 10 files, caching barely matters. With 1000 files, it can cut costs by half or more.
 
-4. **Is the proxy's cache pricing transparent?** Provider cache policies are fixed, but proxies may add a cache fee or bill at the provider's regular rate. Check if your bill distinguishes cached and non-cached tokens, and whether the proxy reports hit rates.
+4. **Is the proxy's cache pricing transparent?** Provider cache policies are fixed, but proxies may add a cache fee or bill at the provider's regular rate. Check whether your bill distinguishes between cached and non-cached tokens, and whether the proxy reports hit rates.
 
 5. **How do you use it?** Caching for OpenAI, DeepSeek, and GLM-5.2 needs no setup from you: the provider handles it. Anthropic supports both automatic and manual modes. Manual mode requires adding a `cache_control` block to your request payload to explicitly mark prompt breakpoints, while automatic mode relies on provider-level prefix matching. Cache writes carry a premium (1.25x-2x), and placing breakpoints in the wrong spot wastes money. If you're new to this, start with automatic mode.
 
