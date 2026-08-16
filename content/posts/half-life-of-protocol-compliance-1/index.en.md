@@ -133,7 +133,7 @@ This is a structural consequence of the training paradigm, not a bug in any part
 
 ## Deeper Still
 
-That's just the surface. The agent can't distinguish two kinds of uncertainty because RLHF trained it that way. But "why does protocol compliance start degrading only after 3-4 rounds, not immediately?" The answer lies deeper, in the mathematical structure of attention, the EOS (End Of Sequence) bias that makes the model want to stop after completing each round, and the fact that transformers have no mutable state.
+That's just the surface. The agent can't distinguish two kinds of uncertainty because RLHF trained it that way. But "why does protocol compliance start degrading only after 3-4 rounds, not immediately?" The answer lies deeper: in the mathematical structure of attention, the EOS (End Of Sequence) bias that makes the model want to stop after completing each round, and the fact that transformers have no mutable state.
 
 [Part 2](/en/posts/half-life-of-protocol-compliance-2/) digs into these from the half-life data.
 
