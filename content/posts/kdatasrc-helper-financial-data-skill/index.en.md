@@ -15,7 +15,7 @@ cover:
 
 ## Problem: Data Sources Exist, But Agents Can't Use Them
 
-kimi CLI's datasource plugin is a good piece of work. A-share, HK, and US stock quotes, macroeconomic indicators, corporate registries, academic paper search: six data sources covering most day-to-day investment research needs. Install it, type one command in kimi, and you get results.
+kimi CLI's datasource plugin is a good piece of work. A-share, HK, and US stock quotes, macroeconomic indicators, corporate registries, and academic papers: six data sources covering most day-to-day investment research needs. Install it, type one command in kimi, and you get results.
 
 But I work in opencode, not directly in kimi. When an AI agent needs to query financial data, a few things get in the way.
 
