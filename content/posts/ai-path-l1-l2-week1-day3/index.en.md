@@ -83,7 +83,7 @@ uv run python experiment_temp.py
 **Try it**: Run the same code two or three times and compare the stability of `temperature=0` vs `temperature=1.0`.
 
 **When to use which**:
-- Deterministic output (code, data extraction) → `temperature=0`
+- Nearly deterministic output (code, data extraction) → `temperature=0`
 - Some variation but controlled (daily conversation, translation) → `temperature=0.5-0.7`
 - Creative work (writing, brainstorming) → `temperature=0.8-1.0`
 
@@ -134,7 +134,7 @@ uv run python experiment_tokens.py
 
 **What to observe**:
 
-- `max_tokens=50`: AI starts explaining but gets cut off mid-sentence.
+- `max_tokens=50`: AI starts explaining but gets cut off mid-sentence, returning a `finish_reason` of `"length"` in the response payload.
 - `max_tokens=200`: A short answer, but probably not enough room for all three examples.
 - `max_tokens=1000`: Full answer with all three examples expanded.
 

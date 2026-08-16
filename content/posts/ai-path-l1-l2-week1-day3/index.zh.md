@@ -83,7 +83,7 @@ uv run python experiment_temp.py
 **动手试**：把同一段代码跑两三遍，对比 `temperature=0` 和 `temperature=1.0` 的输出稳定性。
 
 **什么时候用哪个**：
-- 要确定性结果（代码、数据提取）→ `temperature=0`
+- 要近乎确定的结果（代码、数据提取）→ `temperature=0`
 - 要有点变化但可控（日常对话、翻译）→ `temperature=0.5-0.7`
 - 要创意发散（写作、头脑风暴）→ `temperature=0.8-1.0`
 
@@ -134,7 +134,7 @@ uv run python experiment_tokens.py
 
 **观察什么**：
 
-- `max_tokens=50`：AI 刚开始解释就被截断了，句子可能不完整。
+- `max_tokens=50`：AI 刚开始解释就被截断了，句子可能不完整，响应里的 `finish_reason` 是 `"length"`。
 - `max_tokens=200`：能给出一个简短的回答，但三个例子可能写不完。
 - `max_tokens=1000`：完整回答，三个例子都能展开。
 
