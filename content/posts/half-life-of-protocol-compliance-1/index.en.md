@@ -92,7 +92,7 @@ If you only look at format, you'd conclude "first five rounds good, last three d
 
 Fact-Gather's job is to locate file positions. No judgment. Precision's job is to independently confirm or reject based on those locations.
 
-Merge them, and the same agent that found the location also passed judgment. The review went from "double-blind" to "self-checking." The numbers looked fine: The Precision rejection rate climbed from 80% to 100%, eventually hitting the stop condition.
+Merge them, and the same agent that found the location also passed judgment. The review went from "double-blind" to "self-checking." The numbers looked fine: the Precision rejection rate climbed from 80% to 100%, eventually hitting the stop condition.
 
 But a high rejection rate in a self-checked process doesn't prove quality. It might mean the locating phase was already biased.
 
