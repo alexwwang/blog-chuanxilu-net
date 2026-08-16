@@ -71,7 +71,7 @@ These four types share one thing in common: if you only discover them after the 
 | suspend | Pause pipeline, wait for human | Multiple consecutive severe violations |
 | instruct | Return specific fix guidance, AI continues | Minor violation, fixable on the spot |
 
-Python process startup takes about 400ms, so real-time communication would add perceptible latency to every tool call. Batching solves this, but it relies on a technical prerequisite: `onToolBefore` is synchronous. It reads cached state and throws to block tool calls without awaiting any async operation. Only `tdd_checkpoint`'s `handle()` is async and can wait for a subprocess. The checkpoint batches and sends violation signals from the audit log. With zero violations, there is no overhead and no subprocess is started.
+Python process startup takes about 400 ms, so real-time communication would add perceptible latency to every tool call. Batching solves this, but it relies on a technical prerequisite: `onToolBefore` is synchronous. It reads cached state and throws to block tool calls without awaiting any async operation. Only `tdd_checkpoint`'s `handle()` is async and can wait for a subprocess. The checkpoint batches and sends violation signals from the audit log. With zero violations, there is no overhead and no subprocess is started.
 
 ```
 ┌─────────────────────────────────────────────────┐
@@ -102,13 +102,13 @@ I considered three options.
 
 **HTTP:** Requires a persistent server on the Python side (FastAPI/Flask), managing port allocation, lifecycle, and crash recovery. The server runs even when there are zero violations, wasting resources. It introduces a full network stack. Even for localhost communication, you still deal with port conflicts, process daemonization, and graceful shutdown. The irony: the pipeline's watchdog monitors AI behavior, but an HTTP-based bridge would require another watchdog to monitor whether the communication layer is healthy.
 
-**IPC (Unix Domain Socket / named pipe):** Also requires a persistent process. Lighter than HTTP but still involves connection management, heartbeat detection, and crash recovery. Debugging is limited. You cannot test with curl, and issues require low-level tracing tools (strace, dtrace, lldb, etc.). That infrastructure cost is too heavy for a communication path that is non-critical (degradation does not affect the main flow) and triggers only when a checkpoint contains pending violations.
+**IPC (Unix Domain Socket / named pipe):** Also requires a persistent process. Lighter than HTTP but still involves connection management, heartbeat detection, and crash recovery. Debugging is limited. You cannot test with curl, and issues require low-level tracing tools (`strace`, `dtrace`, `lldb`, etc.). That infrastructure cost is too heavy for a communication path that is non-critical (degradation does not affect the main flow) and triggers only when a checkpoint contains pending violations.
 
-**Subprocess (chosen):** Spawns on demand, zero cost when there are no violations. No persistent process, ports, or connection management to maintain. Each call is a fresh process with natural isolation. A Python crash does not affect other components. Startup latency is ~400ms, but checkpoint frequency is low (once per interaction cycle).
+**Subprocess (chosen):** Spawns on demand, zero cost when there are no violations. No persistent process, ports, or connection management to maintain. Each call is a fresh process with natural isolation. A Python crash does not affect other components. Startup latency is ~400 ms, but checkpoint frequency is low (once per interaction cycle).
 
 Three factors decided it:
 
-1. **Low call frequency:** Checkpoints execute once per interaction cycle, and subprocesses spawn only when violations exist, so the ~400ms startup cost is rarely incurred.
+1. **Low call frequency:** Checkpoints execute once per interaction cycle, and subprocesses spawn only when violations exist, so the ~400 ms startup cost is rarely incurred.
 2. **Simple communication pattern:** Input is an audit log snapshot, output is an intervention decision. One-way, stateless, single round-trip. No streaming, duplex, or persistent connection needed.
 3. **Fault tolerance over latency:** When the Python process fails, the bridge returns an empty envelope and the pipeline continues. HTTP and IPC require their own fault tolerance for their persistent processes. Who restarts the crashed server? Spawning a subprocess avoids this problem entirely.
 
