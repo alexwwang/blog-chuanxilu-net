@@ -91,7 +91,7 @@ For example, a prompt entry might look like this:
 
 **A few extra notes for Chinese users:**
 
-- **Code assistance:** If you write code, Trae and Lingma are better fits for developers in China: they work directly on the domestic network, and their free tiers are far more generous than Copilot Free (which caps you at just **50 requests per month**). Pick whichever one matches your tech stack and ecosystem preference.
+- **Code assistance:** If you write code, Trae and Lingma are better fits for developers in China: they work directly on the domestic network, and their free tiers are far more generous than Copilot Free (which caps free chat at just **50 messages a month**). Pick whichever one matches your tech stack and ecosystem preference.
 - **Office documents:** WPS Lingxi handles Chinese government memos and contracts far more natively than Copilot; Lark AI and DingTalk AI deliver a smoother experience in enterprise collaboration scenarios.
 - **Don't ignore international tools:** Even in China, if you produce English content or work on international projects, Claude and ChatGPT remain the go-to choices for long-form writing and code review. Many advanced users run both tracks in parallel.
 
