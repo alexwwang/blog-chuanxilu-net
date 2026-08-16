@@ -56,7 +56,7 @@ These four types share one thing in common: if you only discover them after the 
 
 **Intervention (Python):** Receives violation signals and executes intervention. 13 violation types, each handled by a dedicated handler that decides the strategy: quarantine, rollback, suspend, or instruct. 8 use the new handler path; the rest go through a legacy path.
 
-**Bridge:** Connects the two layers. TypeScript detects a violation and caches it in the audit log, then batch-sends at the checkpoint; Python returns an intervention decision that TypeScript applies.
+**Bridge:** Connects the two layers. TypeScript detects a violation and caches it in the audit log, then batch-sends the signals at the checkpoint; Python returns an intervention decision that TypeScript applies.
 
 **onToolBefore:** Before a tool call, the Interceptor checks if the operation is legal. For example, AI writes code in Phase 5 while Phase 4 tests are not yet complete, or it modifies test files during GREEN to make tests pass instead of fixing the implementation.
 
