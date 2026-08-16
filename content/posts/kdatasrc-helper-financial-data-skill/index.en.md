@@ -152,7 +152,7 @@ The tool itself does not produce data. Data comes from kimi's datasource plugin.
 
 | Data Source | Capability | Constraint |
 |-------------|-----------|------------|
-| `stock_finance_data` | A-share/HK/US quotes and financials | Real-time max 3 tickers, historical max 10 |
+| `stock_finance_data` | A-share/HK/US quotes and financials | Real-time max 3 tickers, historical max 10 tickers per request |
 | `yahoo_finance` | Global financial data | - |
 | `world_bank_open_data` | Macro indicators (189 countries, 50+ years) | Max 5 countries |
 | `tianyancha` | Corporate registry info | Max 3 companies, full legal name required |
@@ -204,7 +204,7 @@ A few decisions run through the entire design.
 
 **Separate tool code from prompts.** Parsing, batching, and merging are deterministic logic: regex-matching CSV paths, subprocess parallel scheduling, csv module merging. These are written in Python, not delegated to AI via prompts. The AI's job is understanding user intent, constructing query prompts, and handling edge cases. Deterministic work goes to code. Fuzzy work goes to AI.
 
-**stream-json first.** Text mode loses information. stream-json preserves the MCP tool's original structured data. CSV paths are extracted precisely from the `notice` field. Success/failure is determined from `is_success`. You can run in text mode, but the parse results are unreliable: paths may be omitted in the narrative, status may be paraphrased. stream-json is the only output format that guarantees data integrity.
+**stream-json first.** Text mode loses information. stream-json preserves the MCP tool's original structured data. CSV paths are extracted precisely from the `notice` field. Success/failure is determined from `is_success`. You can run in text mode, but the parse results are unreliable: paths may be omitted in the narrative, status may be paraphrased. stream-json is the only output format that preserves structured machine-readable data without narrative truncation.
 
 **Market-aware, not format-aware.** The core logic of the merge tool is "understanding which market a file came from", not mechanically aligning CSV columns. The `_a.csv` and `_hk.csv` suffixes are semantic signals telling the tool that these files come from different data sources with potentially different schemas. During merge, each row is tagged with its market based on the suffix, and missing columns are left blank rather than misaligned. This is why market awareness matters.
 
