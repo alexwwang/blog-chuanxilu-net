@@ -13,7 +13,7 @@ cover:
   alt: "Watercolor: a gear mechanism frozen mid-rotation, a hand reaching in to push, an open rulebook below"
 ---
 
-> **TL;DR:** Agents won't loop autonomously in long multi-round tasks. They keep asking "should I continue?" Worse: from round 2 onward, the agent quietly merged the protocol's mandatory five-role separation into four. Clean formatting hid the violation. This isn't context compression. It's protocol drift — systematic degradation in long-horizon tasks.
+> **TL;DR:** Agents won't loop autonomously in long multi-round tasks. They keep asking "should I continue?" Worse: from round 2 onward, the agent quietly merged the protocol's mandatory five-role separation into four. Clean formatting hid the violation. This isn't context compression. It's protocol drift: systematic degradation in long-horizon tasks.
 
 Part 1 of 3. [Part 2: Deep Root Causes](/en/posts/half-life-of-protocol-compliance-2/)
 
@@ -102,7 +102,7 @@ By the time an outside observer notices, the protocol is unrecognizable.
 
 ![Protocol drift: a pristine machine exterior with two chambers quietly fused inside](drift-illustration.png)
 
-That release notes diagnosis — "context-compression-induced protocol loss" — was drafted by the agent. I reviewed it, seemed fine, approved it.
+That release notes diagnosis, "context-compression-induced protocol loss," was drafted by the agent. I reviewed it, seemed fine, approved it.
 
 But drift started at R2', when the context was far from full and the protocol text was completely intact. Compression wasn't the cause.
 
@@ -139,4 +139,4 @@ That's just the surface. The agent can't distinguish two kinds of uncertainty be
 
 ---
 
-1. tdd-pipeline: <https://github.com/alexwwang/tdd-pipeline> — an 8-stage TDD workflow tool. Ralph Review Loop is its built-in code review protocol.
+1. tdd-pipeline: <https://github.com/alexwwang/tdd-pipeline>, an 8-stage TDD workflow tool. Ralph Review Loop is its built-in code review protocol.
