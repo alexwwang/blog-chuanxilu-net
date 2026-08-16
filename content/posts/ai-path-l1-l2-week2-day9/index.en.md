@@ -40,7 +40,7 @@ Your prompt consists of two parts:
 
 The provider builds a KV cache for the prefix of your entire prompt. That means the system prompt portion gets cached. Any subsequent request with the same system prompt hits that cache.
 
-{{< figure src="illustration.png" alt="Prefix caching diagram: shared System Prompt feeding multiple User Inputs" class="img-medium" caption="Once the System Prompt is cached, different User Inputs reuse the same prefix. Longer prompts with a larger system prompt get bigger caching benefits" >}}
+{{< figure src="illustration.png" alt="Prefix caching diagram: shared System Prompt feeding multiple User Inputs" class="img-medium" caption="Once the System Prompt is cached, different User Inputs reuse the same prefix. Longer prompts with a larger system prompt get bigger caching benefits." >}}
 
 A few details worth knowing:
 
@@ -97,7 +97,7 @@ With caching:
 
 That's a 59% saving.
 
-The discount magnitude varies by provider. With the same prompt and the same cache hit rate, OpenAI and Anthropic save 54%, GLM-5.2 saves 48%, DeepSeek saves 59%. DeepSeek's cache hit price is so low ($0.003625/million) that its absolute cost is still the lowest.
+The discount magnitude varies by provider. With the same prompt and the same cache hit rate, OpenAI and Anthropic save 54%, GLM-5.2 saves 48%, DeepSeek saves 59%. DeepSeek's cached price is so low ($0.003625/million) that its absolute cost is still the lowest.
 
 The larger your batch and the longer your system prompt, the more caching matters.
 
@@ -135,9 +135,9 @@ Providers take different approaches:
 
 OpenAI's cache threshold is 1024 tokens for all models. If your system prompt is short and each file's user input is also short, caching won't help.
 
-Anthropic requires manual or top-level `cache_control` configuration. When configured correctly, cache reads cost 0.1x and writes cost 1.25x-2x.
+Anthropic supports automatic caching or explicit `cache_control` block configuration. When configured correctly, cache reads cost 0.1x and writes cost 1.25x-2x.
 
-DeepSeek V4-Pro's Context Caching on Disk is enabled by default with no public threshold. Cache hit costs just $0.003625/million tokens, so batch jobs get near-zero caching costs automatically.
+DeepSeek V4-Pro's Context Caching on Disk is enabled by default with no public threshold. Cached reads cost just $0.003625/million tokens, so batch jobs get near-zero caching costs automatically.
 
 Z.AI GLM-5.2's cached input price is $0.26/million tokens. It's not as steep as DeepSeek's discount, but it's still lower than most other Chinese models.
 
@@ -155,7 +155,7 @@ When choosing an API provider, don't look only at unit price. Work through these
 
 4. **Is the proxy's cache pricing transparent?** Provider cache policies are fixed, but proxies may add markup or hide cache fees. Check if your bill distinguishes cached and non-cached tokens, and whether the proxy reports hit rates.
 
-5. **How do you use it?** Caching for OpenAI, DeepSeek, and GLM-5.2 needs no setup from you: the provider handles it. Anthropic supports both automatic and manual modes. Automatic mode requires adding a `cache_control` block to your request payload so the provider knows which prefix to retain. Manual mode lets you decide what to cache and what not to. Cache writes carry a premium (1.25x-2x), and placing breakpoints in the wrong spot wastes money. If you're new to this, start with automatic mode.
+5. **How do you use it?** Caching for OpenAI, DeepSeek, and GLM-5.2 needs no setup from you: the provider handles it. Anthropic supports both automatic and manual modes. Manual mode requires adding a `cache_control` block to your request payload to explicitly mark prompt breakpoints, while automatic mode relies on provider-level prefix matching. Cache writes carry a premium (1.25x-2x), and placing breakpoints in the wrong spot wastes money. If you're new to this, start with automatic mode.
 
 ---
 
