@@ -104,7 +104,7 @@ uv run python hello_api.py
 - 模型名写错了。确认是 `deepseek-v4-flash`，不是 `deepseek-chat`（旧名仍可用但建议用新名）
 
 **"Authentication failed" / "Invalid API key"**
-- Key 复制不完整或有多余空格
+- API Key 复制不完整或有多余空格
 - 重新到控制台创建一个新 Key，替换 `.env` 里的值
 
 ---
