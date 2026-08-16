@@ -71,7 +71,7 @@ After my outburst, the agent re-read the protocol and restarted a second loop (R
 5-agent separation: Recall(3) → Fact-Gather+Precision(1) → Eval-Fix(1) → Main Agent
 ```
 
-For the next five rounds (R2'-R7'), every single round dispatched a "combined Fact-Gather + Precision Filter." The agent's reasoning said it wanted to "streamline the pipeline." It took it upon itself to optimize the protocol.
+For the next six rounds (R2'-R7'), every single round dispatched a "combined Fact-Gather + Precision Filter." The agent's reasoning said it wanted to "streamline the pipeline." It took it upon itself to optimize the protocol.
 
 This is what makes protocol drift so dangerous. Look at the timeline:
 
