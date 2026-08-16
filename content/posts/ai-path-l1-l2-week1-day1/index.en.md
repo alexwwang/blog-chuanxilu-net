@@ -15,7 +15,7 @@ cover:
 
 > This is the Day 1 companion exercise for the AI Path L1→L2 Upgrade Guide. Read [Part 1](../ai-path-l1-l2-week1/) first, then come back here to practice.
 
-Today we do exactly one thing: **run the `hello_api.py` from Part 1 and see AI reply in your terminal.**
+Today you do exactly one thing: **run the `hello_api.py` from Part 1 and see AI reply in your terminal.**
 
 ---
 
