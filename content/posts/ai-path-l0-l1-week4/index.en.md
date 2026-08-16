@@ -76,7 +76,7 @@ For example, a prompt entry might look like this:
 | Long-form writing | Claude Projects | Upload reference materials for persistent context; excellent long-text quality |
 | Everyday Q&A | Any of ChatGPT / Claude / Gemini | All-rounders, more than sufficient for daily use |
 | Code assistance (autocomplete) | Copilot / Cursor | Deep IDE integration; great autocomplete and refactoring experience |
-| Office documents | Copilot for Office / Notion AI | Seamless integration with your office environment |
+| Office documents | Copilot for Office / Notion AI | Easy integration with your office environment |
 
 #### Option B: Chinese Users
 
