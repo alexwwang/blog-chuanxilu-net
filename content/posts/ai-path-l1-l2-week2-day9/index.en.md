@@ -129,7 +129,7 @@ Providers take different approaches:
 | Provider | Cache Method | Min Threshold | Cached Price | Hit Rate |
 |----------|-------------|---------------|--------------|----------|
 | OpenAI | Automatic prefix cache | 1024 tokens | 0.1x regular rate ($0.50/million) | High (when system prompt is constant) |
-| Anthropic | Auto or manual `cache_control` | Model-dependent (1024/512 tokens) | Reads 0.1x, writes 1.25x-2x | Medium-High |
+| Anthropic | Auto or manual `cache_control` | Model-dependent (1024/512 tokens) | 0.1x regular rate (reads), 1.25x-2x regular rate (writes) | Medium-High |
 | Z.AI GLM-5.2 | Automatic prefix cache | No public threshold | $0.26/million cached | High |
 | DeepSeek V4-Pro | Automatic Context Caching on Disk | No public threshold | $0.003625/million cached | High |
 
