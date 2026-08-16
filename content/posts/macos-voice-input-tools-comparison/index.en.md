@@ -123,7 +123,7 @@ I went with typeflux for three reasons.
 
 The latest release offers two download options: the full bundle (about 190MB, including SenseVoice model files) and the app-only version (about 12MB, with models downloaded on first launch).
 
-I installed the app-only version. Drag to /Applications. Local models are not automatic though. Go to Settings, Model, and click "Prepare Local Model." It downloads in a few minutes. Model files land in ~/Library/Application Support/Typeflux/. Total disk usage is about 377MB (45MB app plus 332MB models and data).
+I installed the app-only version. Drag to `/Applications`. Local models are not automatic though. Go to Settings, Model, and click "Prepare Local Model." It downloads in a few minutes. Model files land in `~/Library/Application Support/Typeflux/`. Total disk usage is about 377MB (45MB app plus 332MB models and data).
 
 If you use OpenCode or similar AI coding tools, you can offload the download and installation: open a new session and tell the agent "download typeflux and install it to /Applications." It handles the rest. Configuration is still manual.
 
@@ -132,7 +132,7 @@ Three permissions required:
 - **Accessibility**: for text injection
 - **Speech Recognition**: for Apple Speech fallback
 
-Default hotkey is Fn. But Fn is also needed for function keys (F1-F12), so I changed it to Control+Fn. Double-pressing Fn is the default input source switch in macOS, so I mapped Ask Anything (voice Q&A or content rewriting) to double-pressing Option instead.
+Default hotkey is `Fn`. But Fn is also needed for function keys (F1-F12), so I changed it to `Control+Fn`. Double-pressing Fn is the default input source switch in macOS, so I mapped Ask Anything (voice Q&A or content rewriting) to double-pressing `Option` instead.
 
 One thing about Apple Speech: it is in Settings → Advanced Settings, the last item, "Enable Apple Fallback." It is off by default. You need to toggle it on manually. Once enabled, Apple Speech steps in as a system-level fallback when all other STT options fail. A few caveats:
 
