@@ -213,7 +213,3 @@ cp -r skills/kdatasrc-helper ~/.config/opencode/skills/
 项目已在 [GitHub](https://github.com/alexwwang/kdatasrc-helper) 开源，MIT 协议。
 
 有一点需要说明：MIT 协议覆盖的是工具代码本身。通过本工具访问的所有数据（金融行情、宏观经济、企业工商、学术论文等）版权归各自数据源所有，使用受 Kimi/Moonshot AI 服务条款及相应数据源条款约束。工具只提供查询能力，不对数据的合法使用承担责任。
-
----
-
-> kdatasrc-helper 项目在 [GitHub](https://github.com/alexwwang/kdatasrc-helper) 开源，MIT 协议。

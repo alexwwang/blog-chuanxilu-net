@@ -119,7 +119,7 @@ A few design decisions worth explaining.
 
 **Label validation.** The label is used as the output filename, so `/`, `\`, and `..` must be rejected. This is not over-defensive. AI-generated config files occasionally contain path traversal characters.
 
-**Timeout layer.** At the subprocess level, not the future level. `proc.communicate(timeout=N)` directly controls the kimi process's lifetime. On timeout, the process is killed and the result is marked as failed. Cleaner than future-level timeout, with no orphan processes.
+**Timeout layer.** At the subprocess level, not the future level. `proc.communicate(timeout=N)` enforces process timeouts by raising an exception when exceeded, allowing the script to kill the hanging process and record the failure. Cleaner than future-level timeout, with no orphan processes.
 
 ### kdatasrc-merge.py: Market-Aware Merging
 
@@ -159,7 +159,7 @@ The tool itself does not produce data. Data comes from kimi's datasource plugin.
 | `arxiv` | Preprint papers | - |
 | `scholar` | Highly-cited papers | - |
 
-These constraints are on the data source side, not the tool side. What the tool can do is help you spend quota wisely: batch queries run multiple compliant requests in parallel, and mixed templates query multiple data types in one call.
+These constraints are on the data source side, not the tool side. What the tool can do is maximize throughput within provider limits: batch queries execute multiple compliant requests in parallel, while mixed templates pull multiple data types in a single call.
 
 ## Template System
 
@@ -213,7 +213,3 @@ A few decisions run through the entire design.
 The project is open source on [GitHub](https://github.com/alexwwang/kdatasrc-helper) under the MIT license.
 
 One caveat: the MIT license covers the tool code itself. All data accessed through this tool (financial quotes, macro indicators, corporate registries, academic papers, etc.) is copyrighted by the respective data sources. Usage is subject to the Kimi/Moonshot AI terms of service and the terms of the corresponding data sources. The tool provides query capability only and assumes no responsibility for the lawful use of the data.
-
----
-
-> kdatasrc-helper is open source on [GitHub](https://github.com/alexwwang/kdatasrc-helper) under the MIT license.
