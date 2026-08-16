@@ -17,7 +17,7 @@ cover:
 
 [Day 7](../ai-path-l1-l2-week2-day7/) added error handling to your script, so it's resilient now. But there's a bigger cost factor you might have missed: **the API provider you picked could cost a lot more than you think.**
 
-DeepSeek V4-Pro charges $0.435 per million input tokens. OpenAI GPT-5.5 charges $5.00. That's roughly an 11x difference. Factor in **caching** and the gap widens further.
+DeepSeek V4-Pro charges $0.435 per million input tokens. OpenAI GPT-5.5 charges $5.00. That's roughly an 11.5x difference. Factor in **caching** and the gap widens further.
 
 ---
 
