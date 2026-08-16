@@ -163,7 +163,7 @@ Add this to the end of experiment 2:
 
 **Build Your Intuition**
 
-- A simple Q&A (100 input + 200 output tokens) costs about $0.00008 (roughly ¥0.0006)
+- A single-turn API request (100 input + 200 output tokens) costs about $0.00008 (roughly ¥0.0006)
 - $1.50 (roughly ¥10) can fund roughly 15,000–20,000 such requests
 - Long texts are where costs add up: summarizing a 5,000-character article may consume 7,500 input tokens
 
