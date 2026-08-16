@@ -23,7 +23,7 @@ DeepSeek V4-Pro charges $0.435 per million input tokens. OpenAI GPT-5.5 charges 
 
 ## What Is the Provider Prompt Cache?
 
-Prompt cache is a mechanism where the API provider caches your prompt prefix on their server. When the system prompt and context repeat, there's no need to recompute the KV cache. Responses get faster, and pricing drops. The provider manages the infrastructure; you don't implement it yourself.
+Prompt caching is a mechanism where the API provider caches your prompt prefix on their server. When the system prompt and context repeat, there's no need to recompute the KV cache. Responses get faster, and pricing drops. The provider manages the infrastructure; you don't implement it yourself.
 
 ---
 
