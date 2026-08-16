@@ -114,7 +114,7 @@ The same provider can show different cache prices depending on the proxy. Proxy 
 When you evaluate a proxy's cache pricing, look at four things:
 
 1. Does the proxy forward cache hits to the provider, or intercept at its own layer?
-2. Even with passthrough, the proxy may add a cache fee or bill at the provider's raw rate.
+2. Even with passthrough, the proxy may add a cache fee or bill at the provider's regular rate.
 3. Some proxies report cache hit rates, others don't. Reporting lets you see where your money goes.
 4. Proxy-level cache TTL may differ from the provider's TTL.
 
