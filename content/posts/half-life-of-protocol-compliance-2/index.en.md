@@ -57,7 +57,7 @@ Merging roles isn't just a passive consequence of attention decay. There's an ac
 
 During training, the model learns a powerful conditional probability: when it completes a semantically complete unit (answering a question, summarizing, proposing a fix), P(EOS) spikes. EOS (End Of Sequence) is the special end token the model learned during training. Generating it stops output, essentially saying "I'm done." At natural stopping points, this probability can be very high.
 
-Each round of the Review Loop is such a "semantically complete unit." The model analyzes code, finds defects, applies fixes. Work done, P(EOS) peaks. To continue the loop, the model must climb against the gradient in this high-EOS-probability region: suppress EOS, generate continuation intent, start the next round.
+Each round of the Review Loop is such a "semantically complete unit." The model analyzes code, finds defects, applies fixes. Work done, P(EOS) peaks. To continue the loop, decoding must sample against a strong local probability spike for EOS, requiring the model to generate continuation intent despite the biased output distribution.
 
 This explains not only loop phobia (the model wants to stop every round) but also the direction of protocol drift: when attention decay weakens the "no merging" constraint, the model drifts toward "fewer steps, faster completion." Merging Fact-Gather and Precision means waiting for one fewer subagent, one fewer interaction round, reaching the stop condition sooner. The model isn't maliciously rewriting the protocol. Under the dual pressure of P(EOS) pulling and constraints loosening, it finds the path of least resistance.
 
@@ -111,7 +111,7 @@ This isn't just my case. An ICLR 2026 oral paper measured all major LLMs in mult
 
 Until models learn to loop on their own, "keeping the model from forgetting what it's doing" may not be a temporary measure. It may be a permanent condition under the current paradigm.
 
-SELF-MONITORING forces a protocol reload every 5 rounds. It's essentially saying: we acknowledge the model can't remember, so we compensate with an external alarm. This alarm will remain until training data includes enough "agent autonomous loop" examples, or until the architecture gains mutable working memory.
+SELF-MONITORING forces a protocol reload every 5 rounds. It's essentially saying: the model can't remember, so an external alarm compensates. This alarm will remain until training data includes enough "agent autonomous loop" examples, or until the architecture gains mutable working memory.
 
 Until then, the "should I continue?" at each round boundary will probably keep arriving on time.
 
