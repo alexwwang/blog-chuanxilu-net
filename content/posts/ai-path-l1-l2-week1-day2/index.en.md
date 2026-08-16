@@ -25,7 +25,7 @@ You'll see that learning one platform's API means you've learned them all, as lo
 
 An aggregator platform is a middle layer. You register one account, top up once, and get access to dozens of AI models (OpenAI, Anthropic, Google, etc.) without signing up at each official platform separately.
 
-Under the hood, most aggregators run on NewAPI or OneAPI frameworks, so the workflow is nearly identical across platforms:
+Under the hood, most aggregators run on NewAPI or OneAPI management systems, so the workflow is nearly identical across platforms:
 
 1. Register an account
 2. Top up your balance
