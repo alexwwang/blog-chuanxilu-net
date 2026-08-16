@@ -102,4 +102,4 @@ The previous exercise let you experience long-conversation drift directly. This 
 📖 **Series Navigation**
 
 - Previous: [Today's Practice: A 15-Turn Conversation Experiment](/en/posts/2026/05/ai-practice-15-turn-conversation/)
-- Next: Advanced Follow-ups, Using 3 Questions to Expose Hidden Assumptions in AI's Answers (coming soon)
+- Next: Advanced Follow-Up: 3 Questions That Expose AI's Hidden Assumptions
