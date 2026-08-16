@@ -259,7 +259,7 @@ Different platforms have different billing methods (May 2026 prices, subject to 
 
 **Why it matters:** API parameters directly determine output quality, cost, and speed. Building intuition for them helps you tune settings for different scenarios: when to set temperature low, when to set max_tokens high.
 
-Here are the three most commonly used parameters: temperature, max_tokens, and model. I'll also cover a related concept: context window, which isn't a parameter you pass to the API, but directly affects how much content you can send.
+Here are the three most commonly used parameters: `temperature`, `max_tokens`, and `model`. I'll also cover a related concept: context window, which isn't a parameter you pass to the API, but directly affects how much content you can send.
 
 **A good habit:** Parameter names and value ranges differ across platforms, and they change with version updates. Before using one, check the official docs, or just ask AI: "What's the valid range for the temperature parameter on DeepSeek's V4-Flash API?" That's faster than guessing.
 
