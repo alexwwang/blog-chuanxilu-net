@@ -15,9 +15,9 @@ cover:
 
 > This is the Day 2 companion exercise. Complete [Day 1](../ai-path-l1-l2-week1-day1/) first.
 
-Yesterday you ran your first API call through DeepSeek's official API. Today we do one thing: **switch to a different platform, change two parameters in the same code, and run it again.**
+Yesterday you ran your first API call through DeepSeek's official API. Today you do one thing: **switch to a different platform, change two parameters in the same code, and run it again.**
 
-You'll see that learning one platform's API means you've learned them all—as long as they're compatible with the OpenAI interface.
+You'll see that learning one platform's API means you've learned them all, as long as they're compatible with the OpenAI interface.
 
 ---
 
@@ -102,7 +102,7 @@ Aggregators usually need a `/v1` suffix, e.g. `https://example.com/v1`. Official
 
 **When in doubt, ask AI**
 
-In L0→L1 you learned how to chat with AI—now put that to use. Not sure about something? Ask in a chat window: "How do I set the base_url for [platform name] using the Python openai library?" or "What's the model name for deepseek-v4-flash on this platform?" It's faster than digging through docs yourself.
+In L0→L1 you learned how to chat with AI. Now put that to use. Not sure about something? Ask in a chat window: "How do I set the base_url for [platform name] using the Python openai library?" or "What's the model name for deepseek-v4-flash on this platform?" It's faster than digging through docs yourself.
 
 ---
 
@@ -124,7 +124,7 @@ In L0→L1 you learned how to chat with AI—now put that to use. Not sure about
 ## Troubleshooting
 
 **"Model not found"**
-- Model names differ from official APIs—check the aggregator's documentation
+- Model names differ from official APIs. Check the aggregator's documentation
 
 **"Invalid API key"**
 - Make sure you're using the aggregator's key, not DeepSeek's
@@ -144,4 +144,4 @@ In L0→L1 you learned how to chat with AI—now put that to use. Not sure about
 - [ ] Changed two parameters in yesterday's code and ran it on the aggregator
 - [ ] Understood the difference between aggregator and official APIs
 
-**Next up**: Day 3 is all about parameters—turn `temperature` from 0 to 1 and see how the AI's responses change.
+**Next up**: Day 3 is all about parameters. Turn `temperature` from 0 to 1 and see how the AI's responses change.
