@@ -24,7 +24,7 @@ Today we do exactly one thing: **run the `hello_api.py` from Part 1 and see AI r
 Complete these steps from Part 1 (skip if already done):
 
 - [ ] Register a DeepSeek developer account (Part 1, "Register for API Accounts")
-- [ ] Get your API Key and save it to a `.env` file (Part 1, "API Key Safety")
+- [ ] Get your API key and save it to a `.env` file (Part 1, "API Key Safety")
 - [ ] Install uv and Python 3.12 (Part 1, "Install Python")
 - [ ] Create a virtual environment and install dependencies (Part 1, "Create a Virtual Environment")
 
@@ -104,7 +104,7 @@ AI replied with a sentence? You're done. Now try this: **change the question to 
 - Double-check the model name: `deepseek-v4-flash`. The old name `deepseek-chat` still works but the new name is recommended.
 
 **"Authentication failed" / "Invalid API key"**
-- Key might be incomplete or have trailing spaces.
+- The API key might be incomplete or have trailing spaces.
 - Create a new Key in the console and replace the value in `.env`.
 
 ---
