@@ -101,7 +101,7 @@ For example, a prompt entry might look like this:
 
 ### Day 26–28: Knowledge Management, Not Every AI Output Is Worth Saving
 
-**Why it matters:** This is a topic many people don't want to confront. You instinctively feel that "good stuff should be saved," so you hoard AI's best outputs, building elaborate knowledge bases, and then never open them again. Three months later you have an enormous bookmark collection, but your actual skills haven't improved one bit.
+**Why it matters:** This is a topic many people don't want to confront. You instinctively feel that "good stuff should be saved," so you hoard AI's best outputs, build elaborate knowledge bases, and then never open them again. Three months later you have an enormous bookmark collection, but your actual skills haven't improved one bit.
 
 **First, ask yourself: do you actually *need* a "knowledge base"?**
 
