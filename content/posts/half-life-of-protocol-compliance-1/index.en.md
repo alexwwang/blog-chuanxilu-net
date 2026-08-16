@@ -19,7 +19,7 @@ Part 1 of 3. [Part 2: Deep Root Causes](/en/posts/half-life-of-protocol-complian
 
 ## June 11, 8 PM
 
-I told my agent to run a Ralph Review Loop on six module test plans. This is a multi-round review protocol I defined in my open-source tool tdd-pipeline [1]: each round dispatches independent subagents to find issues, locate files, confirm defects, and evaluate fixes. The loop stops after two consecutive rounds with zero Critical/High/Medium findings. The protocol was unambiguous: "Fixes do not require user confirmation."
+I told my agent to run a Ralph Review Loop on six module test plans. This is a multi-round review protocol I defined in my open-source tool tdd-pipeline [1]: each round dispatches independent subagents to find issues, locate files, confirm defects, and evaluate fixes. The loop stops after two consecutive rounds with zero Critical/High/Medium (CHM) findings. The protocol was unambiguous: "Fixes do not require user confirmation."
 
 Round one done. "Shall I continue to the next round?"
 
