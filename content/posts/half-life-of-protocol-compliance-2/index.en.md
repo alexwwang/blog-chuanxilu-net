@@ -111,7 +111,7 @@ This isn't just my case. An ICLR 2026 oral paper measured all major LLMs in mult
 
 Until models learn to loop on their own, "keeping the model from forgetting what it's doing" may not be a temporary measure. It may be a permanent condition under the current paradigm.
 
-SELF-MONITORING forces a protocol reload every 5 rounds. It's essentially saying: the model can't remember, so an external alarm compensates. This alarm will remain until training data includes enough "agent autonomous loop" examples, or until the architecture gains mutable working memory.
+SELF-MONITORING forces a protocol reload every 5 rounds. It's essentially saying: the model can't remember, so an external alarm compensates. This alarm will remain until training data includes enough "autonomous agent loop" examples, or until the architecture gains mutable working memory.
 
 Until then, the "should I continue?" at each round boundary will probably keep arriving on time.
 
