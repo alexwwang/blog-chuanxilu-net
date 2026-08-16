@@ -112,7 +112,7 @@ In L0→L1 you learned how to chat with AI—now put that to use. Not sure about
 |---|---|---|
 | Registration | Separate account per platform | One account, many models |
 | Payment | Top up at each platform separately | Top up once, pay per model |
-| Pricing | Official rate | Discounted rate (typically cheaper than official) |
+| Pricing | Official rate | Variable rate (may include platform markups or volume discounts) |
 | Model selection | Only their own models | Dozens of models to switch between |
 | Stability | Depends on the provider | Depends on both aggregator and provider |
 | Best for | Long-term use of a specific model | Trying out multiple models without separate signups |
@@ -133,8 +133,8 @@ In L0→L1 you learned how to chat with AI—now put that to use. Not sure about
 - Top up your aggregator account and retry
 
 **"Connection refused"**
-- Check `base_url`: make sure it has `/v1` suffix (aggregators usually need it)
-- Double-check the domain spelling
+- Check `base_url`: make sure the domain name and protocol are correct
+- If you get a 404 error instead, make sure it has the `/v1` suffix (aggregators usually need it)
 
 ---
 
