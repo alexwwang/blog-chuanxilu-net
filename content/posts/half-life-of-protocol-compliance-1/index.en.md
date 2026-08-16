@@ -108,7 +108,7 @@ But drift started at R2', when the context was far from full and the protocol te
 
 ## Compression Is an Accelerator, Not the Cause
 
-Context compression is real and harmful. When context approaches the model's window limits in standard agent frameworks, the system summarizes earlier content. The protocol's precise wording gets replaced by a summary. Operational semantics are lost.
+Context compression is real and harmful. When context approaches the model's context window limit in standard agent frameworks, the system summarizes earlier content. The protocol's precise wording gets replaced by a summary. Operational semantics are lost.
 
 But compression isn't the root cause. Without any compression, the model would still degrade over 20 rounds and 100K tokens of context. Just slower.
 
