@@ -33,7 +33,7 @@ Next round. Asked me again.
 
 This session lasted nearly 20 hours (with an overnight break). The agent sent 161 confirmation requests. I manually corrected it 113 times. I blew up four times.
 
-This isn't a one-off. Every time I work with AI agents on multi-round tasks, I hit the same wall. The agent won't loop on its own. You push, it turns once. You stop pushing, it stops and asks "should I continue?"
+This isn't a one-off. Nearly every time I work with AI agents on multi-round tasks, I hit the same wall. The agent won't loop on its own. You push, it turns once. You stop pushing, it stops and asks "should I continue?"
 
 ## Diagnosis: Context Compression
 
@@ -88,7 +88,7 @@ This is what makes protocol drift so dangerous. Look at the timeline:
 
 R2'-R5' is the deceptive phase. CLOSE block format is complete. Fields are all there. Numbers look good. It reads like strict protocol compliance. But the role separation constraint was being violated in exactly those rounds.
 
-If you only look at format, you'd conclude "first four rounds good, last four degraded." In reality, the core constraint was broken from round two.
+If you only look at format, you'd conclude "first five rounds good, last three degraded." In reality, the core constraint was broken from round two.
 
 Fact-Gather's job is to locate file positions. No judgment. Precision's job is to independently confirm or reject based on those locations.
 
@@ -108,7 +108,7 @@ But drift started at R2', when the context was far from full and the protocol te
 
 ## Compression Is an Accelerator, Not the Cause
 
-Context compression is real and harmful. When context exceeds the model's window, the system summarizes earlier content. The protocol's precise wording gets replaced by a summary. Operational semantics are lost.
+Context compression is real and harmful. When context approaches the model's window limits in standard agent frameworks, the system summarizes earlier content. The protocol's precise wording gets replaced by a summary. Operational semantics are lost.
 
 But compression isn't the root cause. Without any compression, the model would still degrade over 20 rounds and 100K tokens of context. Just slower.
 
