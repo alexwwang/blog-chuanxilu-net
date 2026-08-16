@@ -45,7 +45,7 @@ The provider builds a KV cache for the prefix of your entire prompt. That means 
 A few details worth knowing:
 
 1. OpenAI requires the entire prompt (system prompt + user input + tools + images) to be at least 1024 tokens. Anthropic's threshold varies by model: Opus 4.8 and Sonnet 4.6 require 1024 tokens, while Fable 5 requires only 512. DeepSeek and GLM-5.2 don't publish thresholds and use a best-effort approach.
-2. OpenAI routes requests to the same machine based on a hash of the first ~256 tokens of the prompt. (Official docs note: "the exact length varies depending on the model.") The same prefix means the same machine, which means a cache hit.
+2. OpenAI routes requests to the same machine based on a hash of the first ~256 tokens of the prompt. (Official docs note: "the exact length varies depending on the model.") The same prefix routes to the same machine, enabling high cache hit rates.
 
 So if your system prompt is short (say 50 tokens) and each file's user input is also short (say 200 tokens), the total prompt is under 300 tokens. That's well below OpenAI's 1024-token threshold and Anthropic's 1024-token threshold for Opus 4.8/Sonnet 4.6 (or 512 for Fable 5). DeepSeek and GLM-5.2 don't publish thresholds, but a prompt this short has no prefix worth caching anyway.
 
@@ -128,7 +128,7 @@ Providers take different approaches:
 
 | Provider | Cache Method | Min Threshold | Cached Price | Hit Rate |
 |----------|-------------|---------------|--------------|----------|
-| OpenAI | Automatic prefix cache | 1024 tokens | 0.1x regular rate ($0.50/million) | High (when system prompt is constant) |
+| OpenAI | Automatic prefix cache | 1024 tokens | $0.50/million cached (0.1x regular rate) | High (when system prompt is constant) |
 | Anthropic | Auto or manual `cache_control` | Model-dependent (1024/512 tokens) | 0.1x regular rate (reads), 1.25x-2x regular rate (writes) | Medium-High |
 | Z.AI GLM-5.2 | Automatic prefix cache | No public threshold | $0.26/million cached | High |
 | DeepSeek V4-Pro | Automatic Context Caching on Disk | No public threshold | $0.003625/million cached | High |
