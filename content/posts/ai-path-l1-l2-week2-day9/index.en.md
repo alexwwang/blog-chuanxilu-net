@@ -97,7 +97,7 @@ With caching:
 
 That's a 59% saving.
 
-The discount magnitude varies by provider. With the same prompt and the same cache hit rate, OpenAI and Anthropic save 54%, GLM-5.2 saves 48%, DeepSeek saves 59%. DeepSeek's cached price is so low ($0.003625/million) that its absolute cost is still the lowest.
+The discount magnitude varies by provider. With the same prompt and the same cache hit rate, OpenAI and Anthropic save 54%, GLM-5.2 saves 48%, and DeepSeek saves 59%. DeepSeek's cached price is so low ($0.003625/million) that its absolute cost is still the lowest.
 
 The larger your batch and the longer your system prompt, the more caching matters.
 
