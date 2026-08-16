@@ -30,7 +30,7 @@ But in real Agent scenarios, certain types of mistakes cost too much to wait for
 
 Files are being written in the wrong phases, work lands without a corresponding commit in the Git repository, and tests are being skipped as they happen. No amount of reflection can undo that. The problem is timing. Reflection happens after the fact, so it can only do cleanup.
 
-In v1.6, I stopped asking "how do we make reflection deeper" and started asking "why wait until after the fact at all?"
+In v1.6, I stopped asking "how do I make reflection deeper" and started asking "why wait until after the fact at all?"
 
 ## Four Violations That Need Instant Interception
 
