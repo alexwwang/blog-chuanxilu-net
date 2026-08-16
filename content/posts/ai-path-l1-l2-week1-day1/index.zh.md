@@ -25,7 +25,7 @@ cover:
 
 - [ ] 注册 DeepSeek 开发者账号（Part 1「注册 API 账号」）
 - [ ] 获取 API Key，保存到 `.env` 文件（Part 1「API Key 安全须知」）
-- [ ] 安装 uv 和 Python 3.12（Part 1「安装 Python」）
+- [ ] 安装 `uv` 和 `Python 3.12`（Part 1「安装 Python」）
 - [ ] 创建虚拟环境并安装依赖（Part 1「创建虚拟环境」）
 
 确认一下你的项目目录结构长这样：

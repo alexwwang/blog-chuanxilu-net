@@ -25,7 +25,7 @@ Complete these steps from Part 1 (skip if already done):
 
 - [ ] Register a DeepSeek developer account (Part 1, "Register for API Accounts")
 - [ ] Get your API key and save it to a `.env` file (Part 1, "API Key Safety")
-- [ ] Install uv and Python 3.12 (Part 1, "Install Python")
+- [ ] Install `uv` and `Python 3.12` (Part 1, "Install Python")
 - [ ] Create a virtual environment and install dependencies (Part 1, "Create a Virtual Environment")
 
 Confirm your project directory looks like this:
