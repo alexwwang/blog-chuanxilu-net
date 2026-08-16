@@ -14,7 +14,7 @@ cover:
   relative: true
 ---
 
-> This is the Day 3 companion exercise. Complete [Day 1](../ai-path-l1-l2-week1-day1/) first. Part 1 covers the theory ("Understanding API Parameters")—today you verify it with your own eyes.
+> This is the Day 3 companion exercise. Complete [Day 1](../ai-path-l1-l2-week1-day1/) first. Part 1 covers the theory ("Understanding API Parameters"). Today you verify it with your own eyes.
 
 Part 1 explained parameters in theory. But theory without practice is just noise. Today you run three experiments and **see for yourself how parameters affect output**.
 
@@ -177,4 +177,4 @@ Add this to the end of experiment 2:
 
 **Tip**: Not sure how to tune parameters? Describe the output you want in plain language and ask AI: "I want more stable/creative/shorter output, what should I set temperature and max_tokens to?"
 
-**Next up**: Day 4 is Part 2 of the main tutorial—moving from single calls to batch processing. You'll learn to have the API process 100 files automatically.
+**Next up**: Day 4 is Part 2 of the main tutorial, moving from single calls to batch processing. You'll learn to have the API process 100 files automatically.
