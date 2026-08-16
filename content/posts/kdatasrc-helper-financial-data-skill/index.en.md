@@ -159,7 +159,7 @@ The tool itself does not produce data. Data comes from kimi's datasource plugin.
 | `arxiv` | Preprint papers | - |
 | `scholar` | Highly-cited papers | - |
 
-These constraints are on the data source side, not the tool side. What the tool can do is help you spend quota wisely: batch queries resolve multiple tickers in one call, and mixed templates query multiple data types in one call.
+These constraints are on the data source side, not the tool side. What the tool can do is help you spend quota wisely: batch queries run multiple compliant requests in parallel, and mixed templates query multiple data types in one call.
 
 ## Template System
 
