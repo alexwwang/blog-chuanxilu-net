@@ -65,8 +65,8 @@ scorer 的原始评分出来了：X 均分 2.44，Y 均分 2.41，差 0.03。满
 
 ### 第一步：定义变体
 
-- **Variant A**：当前版 ralph-review-loop.md，159 行
-- **Variant B**：Signal Purity 精简版，89 行（删除了可推导内容）
+- **Variant A**：当前版 [ralph-review-loop.md](/posts/ralph-loop-ai-errors-converge/)，159 行
+- **Variant B**：[Signal Purity](/posts/signal-purity-less-is-more/) 精简版，89 行（删除了可推导内容）
 
 ### 第二步：设计 rubric
 
@@ -127,9 +127,9 @@ S4（Node.js cache）里，Variant A 在 Defect Discovery 和 Suggestion Quality
 
 ## Variant B 的真实优势
 
-对比 8 个维度，B 的核心优势在 **Dual-Pass Adherence**：
+对比 8 个维度，B 的核心优势在 **[Dual-Pass Adherence](/posts/dual-pass-review-recall-precision-tradeoff/)**：
 
-- B 明确展示了三阶段流程（Recall→facts→Precision）
+- B 明确展示了[三阶段流程（Recall→facts→Precision）](/posts/dual-pass-review-recall-precision-tradeoff/)
 - A 经常跳过事实收集步骤，直接进入 Precision 阶段
 
 这个差异在数据里很明显：
