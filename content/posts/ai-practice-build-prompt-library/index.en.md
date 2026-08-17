@@ -3,7 +3,7 @@ title: "Today's Practice: Organize Your First 5 Prompts"
 slug: "ai-practice-build-prompt-library"
 date: 2026-05-27T06:00:00+08:00
 draft: false
-description: "Series companion practice: pick 5 Prompts that actually worked from your recent AI conversations, record them using the template. Starting your Prompt library from 0 to 5 is the hardest step."
+description: "Series companion practice: pick 5 prompts that actually worked from your recent AI conversations, record them using the template. Starting your Prompt library from 0 to 5 is the hardest step."
 tags: ["AI", "toolchain", "evolution-path", "practice"]
 categories: ["ai-path"]
 toc: false
@@ -33,8 +33,8 @@ Group them by scenario: writing, analysis, daily tasks — or whatever works for
 
 ## What to Observe
 
-1. Do these 5 Prompts naturally cluster by scenario, or are they all mixed together? This tells you how you think about problems.
-2. Are there any you can't remember why they worked? If so, next time write down a quick effectiveness note right after using a Prompt — even just three words like "fast, accurate, thorough."
+1. Do these 5 prompts naturally cluster by scenario, or are they all mixed together? This tells you how you think about problems.
+2. Are there any you can't remember why they worked? If so, next time write down a quick effectiveness note right after using a prompt — even just three words like "fast, accurate, thorough."
 3. After writing them down, which category has the most prompts? That's your high-frequency scenario.
 
 > 💡 **Tip**: You can do this organizing manually, or let AI help. Paste your chat history and say "Find 5 effective prompts from these conversations and organize them using the template" — then review and filter the results yourself.
