@@ -15,13 +15,13 @@ cover:
 
 ## Today's Practice
 
-From your recent AI conversations — coding, writing, analysis — pick 5 prompts that actually worked well. Record them using the template from Part 4: original prompt + effectiveness rating + iteration notes.
+From your recent AI conversations (coding, writing, analysis), pick 5 prompts that actually worked well. Record them using the template from Part 4: original prompt + effectiveness rating + iteration notes.
 
-Where you record them doesn't matter — a notes app, Notion, a plain text file. Don't overthink the tool.
+Where you record them doesn't matter. A notes app, Notion, or a plain text file all work. Don't overthink the tool.
 
 If you can't find your chat history, spend 20 minutes creating 5 prompts you'll definitely use at work. For example: "Check the edge cases in this code," "Rewrite this technical article for beginners," "Extract the 3 main issues from these 100 pieces of user feedback."
 
-Group them by scenario: writing, analysis, daily tasks — or whatever works for you. The point is getting 5 written down first. Directory structure comes later.
+Group them by scenario: writing, analysis, daily tasks, or whatever works for you. The point is getting 5 written down first. Directory structure comes later.
 
 > **Prompt Record Template** (from Part 4):
 >
@@ -34,18 +34,18 @@ Group them by scenario: writing, analysis, daily tasks — or whatever works for
 ## What to Observe
 
 1. Do these 5 prompts naturally cluster by scenario, or are they all mixed together? This tells you how you think about problems.
-2. Are there any you can't remember why they worked? If so, next time write down a quick effectiveness note right after using a prompt — even just three words like "fast, accurate, thorough."
+2. Are there any you can't remember why they worked? If so, next time write down a quick effectiveness note right after using a prompt, even just three words like "fast, accurate, thorough."
 3. After writing them down, which category has the most prompts? That's your high-frequency scenario.
 
-> 💡 **Tip**: You can do this organizing manually, or let AI help. Paste your chat history and say "Find 5 effective prompts from these conversations and organize them using the template" — then review and filter the results yourself.
+> 💡 **Tip**: You can do this organizing manually, or let AI help. Paste your chat history and say "Find 5 effective prompts from these conversations and organize them using the template." Then review and filter the results yourself.
 
 ## Why This Matters
 
-This connects to Part 4's prompt library concept. Going from 0 to 5 is the hardest step — an empty library feels pointless, but with 5 entries, the structure starts to emerge. 5 curated prompts beat 50 unorganized ones.
+This connects to Part 4's prompt library concept. Going from 0 to 5 is the hardest step. An empty library feels pointless, but with 5 entries, the structure starts to emerge. 5 curated prompts beat 50 unorganized ones.
 
 ## Today's Takeaway
 
-**A prompt library isn't about collecting — it's about curating.**
+**A prompt library isn't about collecting. It's about curating.**
 
 ---
 
