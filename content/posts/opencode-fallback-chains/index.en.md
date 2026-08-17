@@ -94,7 +94,7 @@ Use case: Daily development. The hardcoded chain's primary providers occasionall
 
 **Pattern 3: Fine-grained control (mixed format + runtime_fallback)**
 
-Use object format to configure different parameters for different backups, and enable runtime degradation:
+Use object format to configure different parameters for different backups, and enable runtime fallback:
 
 ```jsonc
 "fallback_models": [
