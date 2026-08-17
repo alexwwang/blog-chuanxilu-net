@@ -31,7 +31,7 @@ cover:
 
 ## Graduation Checklist: Have You Reached L1?
 
-Four weeks of practice — and here we are. Before I declare you "graduated," go through this checklist honestly:
+Four weeks of practice — this is the final checkpoint. Before I declare you "graduated," go through this checklist honestly:
 
 - [ ] Can you explain the core working principle of an LLM (probabilistic text generation, finite context window)?
 - [ ] Do you understand the difference between working memory and long-term memory, and know which your current platform supports and how to manage it?
@@ -64,7 +64,7 @@ L2 means you're no longer just chatting with AI — you're starting to make AI *
 
 **And if neither path appeals to you right now — that's completely fine.** L1 skills already cover the vast majority of everyday scenarios. Knowing how to drive doesn't mean you need to build a car; knowing how to use AI doesn't mean you must call APIs. When you eventually hit a genuine "I really wish I could automate this workflow" moment, L2 will come naturally.
 
-The planned L1→L2 upgrade guide will involve command-line operations or basic programming. We'll meet again when that time comes.
+The planned L1→L2 upgrade guide will involve command-line operations or basic programming. More on that when it lands.
 
 ---
 
