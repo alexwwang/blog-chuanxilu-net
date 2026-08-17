@@ -55,7 +55,7 @@ omo 的模型解析是一个 **五层管线**[1]，按优先级从高到低：
 ]
 ```
 
-对象格式支持的字段[2]：`model`（必填）、`variant`、`reasoningEffort`（none/minimal/low/medium/high/xhigh/max）、`temperature`、`top_p`、`maxTokens`、`thinking`（type + budgetTokens）。这意味着 fallback 不仅是换个模型，还能换推理模式——主模型用高推理，备选切到中等推理省 token。
+对象格式支持的字段[2]：`model`（必填）、`variant`、`reasoningEffort`（none/minimal/low/medium/high/xhigh/max）、`temperature`、`top_p`、`maxTokens`、`thinking`（type + budgetTokens）。这意味着 fallback 不仅是换个模型，还能切换推理等级——主模型用高推理，备选切到中等推理省 token。
 
 omo 还有运行时 fallback（`runtime_fallback`）[3]：session 中途遇到 429、500、502、503、504 等 HTTP 错误，或者 rate-limit、quota-exceeded 等错误模式时，自动切换到链中下一个模型，不需要重启 session。默认参数：
 
@@ -105,7 +105,7 @@ omo 还有**模糊匹配**能力[4]：模型名称会被规范化（小写、版
 "runtime_fallback": { "enabled": true, "max_fallback_attempts": 5 }
 ```
 
-适用场景：长 session 编码（比如 omo 模式下的 Sisyphus 编排任务持续几十分钟）。runtime_fallback 保证 session 中途不会因为单次 API 故障中断。mixed 格式允许主模型用高推理，降级时自动切到低推理省 token——强模型挂了不意味着整个 session 报废，用弱一点的模型也能继续。
+适用场景：长 session 编码（比如 omo 模式下的 Sisyphus 编排任务持续几十分钟）。runtime_fallback 在配置的尝试次数上限内，防止 session 中途因瞬时 API 故障中断。mixed 格式允许主模型用高推理，降级时自动切到低推理省 token——强模型挂了不意味着整个 session 报废，用弱一点的模型也能继续。
 
 **模式四：链为空时 runtime_fallback 不生效**
 
@@ -118,7 +118,7 @@ omo 还有**模糊匹配**能力[4]：模型名称会被规范化（小写、版
 oms 的 fallback 是**两层架构**[6]：
 
 1. **启动时选择**：在 `config()` hook 里从有效链中取第一个模型作为首选（内联数组在前，`fallback.chains` 追加在后）。这一步不检测 provider 是否在线——直接取第一个，能用就用，不能用等运行时再切
-2. **运行时故障切换**：`ForegroundFallbackManager`[7] 监听 OpenCode 事件（`message.updated`、`session.error`、`session.status`）[8]，检测到 rate-limit 错误后 abort 当前 session 并用链中下一个模型重新 prompt[16]
+2. **运行时故障切换**：`ForegroundFallbackManager`[7] 监听 OpenCode 事件（`message.updated`、`session.error`、`session.status`）[8]，检测到 rate-limit 错误后 abort 当前请求，用链中下一个模型重新 prompt[16]
 
 ```jsonc
 "fallback": {
@@ -191,7 +191,7 @@ Model Array 和 `fallback.chains` 会合并[13]（Array 在前，chains 追加�
 }
 ```
 
-适用场景：某些 agent 需要特殊参数。oracle 用高推理模式（variant: high），降级时不需要 variant。内联链和 fallback.chains 合并后 oracle 的有效链是 `[model-x/high, provider-c/model-x, model-d]`。
+适用场景：某些 agent 需要特殊参数。oracle 用高推理模式（variant: high），降级时不需要 variant。内联链和 fallback.chains 合并后 oracle 的有效链是 `[provider-a/model-x (variant: high), provider-c/model-x, provider-c/model-d]`。
 
 **模式三：部分 agent 不配链——严格隔离**
 
@@ -222,7 +222,7 @@ Model Array 和 `fallback.chains` 会合并[13]（Array 在前，chains 追加�
 | 配置格式 | string / string[] / object[] / mixed[]（可带 variant、thinking） | string[] 映射（chains）+ object[]（内联） |
 | 运行时切换 | `runtime_fallback`（可配冷却时间、最大次数、超时） | `ForegroundFallbackManager`（事件驱动） |
 | 空响应重试 | 不支持 | 支持（`retry_on_empty`） |
-| Agent 隔离 | 无严格隔离（可能跨 agent 降级） | 严格隔离（无链 = 不降级） |
+| Agent 隔离 | 分类级继承（fallback 链可在 agent 间共享） | 严格隔离（无链 = 不降级） |
 | 模糊匹配 | 有（名称规范化 + 子串匹配） | 无（精确匹配） |
 | 兜底模型 | `opencode/gpt-5-nano` | 无（链用完就停） |
 | Preset 联动 | 无 | 有（链随 preset 重建） |

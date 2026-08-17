@@ -55,7 +55,7 @@ Key point: Your `fallback_models` doesn't replace the hardcoded chain—it **tak
 ]
 ```
 
-Object format supports fields[2]: `model` (required), `variant`, `reasoningEffort` (none/minimal/low/medium/high/xhigh/max), `temperature`, `top_p`, `maxTokens`, `thinking` (type + budgetTokens). This means fallback isn't just switching models—it can switch reasoning modes too. Use high reasoning on the primary, medium reasoning on the backup to save tokens.
+Object format supports fields[2]: `model` (required), `variant`, `reasoningEffort` (none/minimal/low/medium/high/xhigh/max), `temperature`, `top_p`, `maxTokens`, `thinking` (type + budgetTokens). This means fallback isn't just switching models; it can switch reasoning effort levels too. Use high reasoning on the primary, medium reasoning on the backup to save tokens.
 
 omo also has runtime fallback (`runtime_fallback`)[3]: when HTTP errors like 429, 500, 502, 503, 504 occur mid-session, or rate-limit/quota-exceeded error patterns, it automatically switches to the next model in the chain without restarting the session. Default parameters:
 
@@ -105,7 +105,7 @@ Use object format to configure different parameters for different backups, and e
 "runtime_fallback": { "enabled": true, "max_fallback_attempts": 5 }
 ```
 
-Use case: Long coding sessions (e.g., Sisyphus orchestration tasks in omo mode lasting tens of minutes). runtime_fallback guarantees the session won't be interrupted by a single API failure mid-session. Mixed format allows high reasoning on primary, auto-switch to low reasoning on degradation to save tokens—when the strong model goes down, the whole session isn't scrapped; a weaker model can still continue.
+Use case: Long coding sessions (e.g., Sisyphus orchestration tasks in omo mode lasting tens of minutes). runtime_fallback prevents mid-session interruption from transient API failures up to the configured attempt limit. Mixed format allows high reasoning on primary, auto-switch to low reasoning on degradation to save tokens—when the strong model goes down, the whole session isn't scrapped; a weaker model can still continue.
 
 **Pattern 4: Empty chain disables runtime fallback**
 
@@ -118,7 +118,7 @@ Use case: Provider rate-limits but doesn't limit quota. 429 errors, wait a few s
 oms's fallback is a **2-layer architecture**[6]:
 
 1. **Startup selection**: In the `config()` hook, the system takes the first model from the effective chain (inline array first, `fallback.chains` appended) as primary. This step doesn't check if the provider is online—it just takes the first one, uses it if it works, otherwise waits for runtime to switch
-2. **Runtime failure switching**: `ForegroundFallbackManager`[7] listens to OpenCode events (`message.updated`, `session.error`, `session.status`)[8], detects rate-limit errors then aborts the current session and re-prompts with the next model in the chain[16]
+2. **Runtime failure switching**: `ForegroundFallbackManager`[7] listens to OpenCode events (`message.updated`, `session.error`, `session.status`)[8], detects rate-limit errors, aborts the active request turn, and re-issues the prompt using the next model in the chain[16]
 
 ```jsonc
 "fallback": {
@@ -191,7 +191,7 @@ Use case: Standard usage. Each agent has 3 backups, cross-provider (provider-a i
 }
 ```
 
-Use case: Some agents need special parameters. oracle uses high reasoning mode (variant: high), doesn't need variant when degrading. After merging inline chain and fallback.chains, oracle's effective chain is `[model-x/high, provider-c/model-x, model-d]`.
+Use case: Some agents need special parameters. oracle uses high reasoning mode (variant: high), doesn't need variant when degrading. After merging inline chain and fallback.chains, oracle's effective chain is `[provider-a/model-x (variant: high), provider-c/model-x, provider-c/model-d]`.
 
 **Pattern 3: Partial agents without chain—strict isolation**
 
@@ -222,7 +222,7 @@ Use case: Using unstable providers (e.g., domestic providers during peak hours).
 | Config format | string / string[] / object[] / mixed[] (with variant, thinking) | map of string[] (chains) + object[] (inline) |
 | Runtime switching | `runtime_fallback` (configurable cooldown, max attempts, timeout) | `ForegroundFallbackManager` (event-driven) |
 | Empty response retry | Not supported | Supported (`retry_on_empty`) |
-| Agent isolation | No strict isolation (may degrade across agents) | Strict isolation (no chain = no degradation) |
+| Agent isolation | Category-level inheritance (fallback chains can be shared across agents) | Strict isolation (no chain = no degradation) |
 | Fuzzy matching | Yes (name normalization + substring matching) | No (exact matching) |
 | Safety net model | `opencode/gpt-5-nano` | None (stop when chain exhausted) |
 | Preset linkage | No | Yes (chains rebuild with preset) |
