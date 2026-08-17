@@ -3,7 +3,7 @@ title: "Today's Practice: Organize Your First 5 Prompts"
 slug: "ai-practice-build-prompt-library"
 date: 2026-05-27T06:00:00+08:00
 draft: false
-description: "Series companion practice: pick 5 prompts that actually worked from your recent AI conversations, record them using the template. Starting your Prompt library from 0 to 5 is the hardest step."
+description: "Series companion practice: pick 5 prompts that actually worked from your recent AI conversations, record them using the template. Starting your prompt library from 0 to 5 is the hardest step."
 tags: ["AI", "toolchain", "evolution-path", "practice"]
 categories: ["ai-path"]
 toc: false
@@ -19,7 +19,7 @@ From your recent AI conversations — coding, writing, analysis — pick 5 promp
 
 Where you record them doesn't matter — a notes app, Notion, a plain text file. Don't overthink the tool.
 
-If you can't find your chat history, spend 20 minutes creating 5 prompts you'll definitely use at work. For example: "Check the edge cases in this code," "Rewrite this technical article for beginners," "Extract the 3 main issues from these 100 user feedbacks."
+If you can't find your chat history, spend 20 minutes creating 5 prompts you'll definitely use at work. For example: "Check the edge cases in this code," "Rewrite this technical article for beginners," "Extract the 3 main issues from these 100 pieces of user feedback."
 
 Group them by scenario: writing, analysis, daily tasks — or whatever works for you. The point is getting 5 written down first. Directory structure comes later.
 
@@ -41,11 +41,11 @@ Group them by scenario: writing, analysis, daily tasks — or whatever works for
 
 ## Why This Matters
 
-This connects to Part 4's Prompt library concept. Going from 0 to 5 is the hardest step — an empty library feels pointless, but with 5 entries, the structure starts to emerge. 5 curated prompts beat 50 unorganized ones.
+This connects to Part 4's prompt library concept. Going from 0 to 5 is the hardest step — an empty library feels pointless, but with 5 entries, the structure starts to emerge. 5 curated prompts beat 50 unorganized ones.
 
 ## Today's Takeaway
 
-**A Prompt library isn't about collecting — it's about curating.**
+**A prompt library isn't about collecting — it's about curating.**
 
 ---
 
