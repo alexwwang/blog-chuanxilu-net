@@ -216,7 +216,7 @@ Use case: Using unstable providers (e.g., domestic providers during peak hours).
 
 | Feature | omo | oms |
 |---------|-----|-----|
-| Resolution layers | 5-layer pipeline (override → category → user → hardcoded → system) | 2 layers (startup select + runtime switch) |
+| Resolution layers | 5-layer pipeline (override → category → user → hardcoded → system) | 2 layers (startup selection + runtime switching) |
 | Built-in hardcoded chain | Yes | No |
 | User chain length | Usually 1-2 (hardcoded fallback) | Usually 3-5 (fully self-configured) |
 | Config format | string / string[] / object[] / mixed[] (with variant, thinking) | map of string[] (chains) + object[] (inline) |

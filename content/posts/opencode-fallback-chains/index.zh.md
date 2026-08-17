@@ -216,7 +216,7 @@ Model Array 和 `fallback.chains` 会合并[13]（Array 在前，chains 追加�
 
 | 特性 | omo | oms |
 |------|-----|-----|
-| 解析层级 | 5 层管线（override → category → user → hardcoded → system） | 2 层（启动选 + 运行时切换） |
+| 解析层级 | 5 层管线（override → category → user → hardcoded → system） | 2 层（启动时选择 + 运行时切换） |
 | 内置硬编码链 | 有 | 无 |
 | 用户链长度 | 通常 1-2 个（硬编码兜底） | 通常 3-5 个（全部自配） |
 | 配置格式 | string / string[] / object[] / mixed[]（可带 variant、thinking） | string[] 映射（chains）+ object[]（内联） |
