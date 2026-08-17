@@ -117,7 +117,7 @@ Use case: Provider rate-limits but doesn't limit quota. 429 errors, wait a few s
 
 oms's fallback is a **2-layer architecture**[6]:
 
-1. **Startup selection**: In the `config()` hook, the system takes the first model from the chain as primary. This step doesn't check if the provider is online—it just takes the first one, uses it if it works, otherwise waits for runtime to switch
+1. **Startup selection**: In the `config()` hook, the system takes the first model from the effective chain (inline array first, `fallback.chains` appended) as primary. This step doesn't check if the provider is online—it just takes the first one, uses it if it works, otherwise waits for runtime to switch
 2. **Runtime failure switching**: `ForegroundFallbackManager`[7] listens to OpenCode events (`message.updated`, `session.error`, `session.status`)[8], detects rate-limit errors then aborts the current session and re-prompts with the next model in the chain[16]
 
 ```jsonc

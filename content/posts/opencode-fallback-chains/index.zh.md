@@ -117,7 +117,7 @@ omo 还有**模糊匹配**能力[4]：模型名称会被规范化（小写、版
 
 oms 的 fallback 是**两层架构**[6]：
 
-1. **启动时选择**：在 `config()` hook 里从链中取第一个模型作为首选。这一步不检测 provider 是否在线——直接取第一个，能用就用，不能用等运行时再切
+1. **启动时选择**：在 `config()` hook 里从有效链中取第一个模型作为首选（内联数组在前，`fallback.chains` 追加在后）。这一步不检测 provider 是否在线——直接取第一个，能用就用，不能用等运行时再切
 2. **运行时故障切换**：`ForegroundFallbackManager`[7] 监听 OpenCode 事件（`message.updated`、`session.error`、`session.status`）[8]，检测到 rate-limit 错误后 abort 当前 session 并用链中下一个模型重新 prompt[16]
 
 ```jsonc
