@@ -55,7 +55,7 @@ omo 的模型解析是一个 **五层管线**[1]，按优先级从高到低：
 ]
 ```
 
-对象格式支持的字段[2]：`model`（必填）、`variant`、`reasoningEffort`（none/minimal/low/medium/high/xhigh/max）、`temperature`、`top_p`、`maxTokens`、`thinking`（type + budgetTokens）。这意味着 fallback 不仅是换个模型，还能切换推理等级——主模型用高推理，备选切到中等推理省 token。
+对象格式支持的字段[2]：`model`（必填）、`variant`、`reasoningEffort`（none/minimal/low/medium/high/xhigh/max）、`temperature`、`top_p`、`maxTokens`、`thinking`（type + `budgetTokens`）。这意味着 fallback 不仅是换个模型，还能切换推理等级——主模型用高推理，备选切到中等推理省 token。
 
 omo 还有运行时 fallback（`runtime_fallback`）[3]：session 中途遇到 429、500、502、503、504 等 HTTP 错误，或者 rate-limit、quota-exceeded 等错误模式时，自动切换到链中下一个模型，不需要重启 session。默认参数：
 
