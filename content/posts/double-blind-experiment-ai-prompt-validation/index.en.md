@@ -25,7 +25,7 @@ The raw scores came back: X averaged 2.44, Y averaged 2.41. A difference of 0.03
 
 Two weeks of work. 8 evaluator instances. 4 scenarios. 8 dimensions in the rubric. The conclusion: "no difference."
 
-I didn't buy it. Not because I'm stubborn—I looked at the scores per scenario. In every scenario, X and Y each had wins. No scenario was a tie. So how could the averages be so close?
+I didn't buy it. Not because I'm stubborn, but because I looked at the scores per scenario. In every scenario, X and Y each had wins. No scenario was a tie. So how could the averages be so close?
 
 I checked secret-mapping.txt and saw the problem.
 
@@ -138,7 +138,7 @@ The data makes this clear:
 |-----------|-----------|-----------|-----|
 | Dual-Pass Adherence | 2.00 | 3.00 | +1.00 |
 
-All other dimensions had gaps under 0.5. B didn't win because it was "simpler"—it won because it more strictly enforced the two-stage protocol.
+All other dimensions had gaps under 0.5. B didn't win because it was "simpler". It won because it more strictly enforced the two-stage protocol.
 
 ## Five Failure Modes
 
@@ -164,7 +164,7 @@ Most items in your ground truth directly test your variable. If you suspect "sim
 
 Same agent runs evaluator first, then scorer. Context leakage contaminates the results.
 
-![Five failure modes: Phantom Delivery, Self-Scoring, Single-Scenario Claims, Ground Truth Favoritism, Context Contamination — five experiment traps arranged in an arc with a protective protocol shield hovering above](five-failure-modes.png)
+![Five failure modes: Phantom Delivery, Self-Scoring, Single-Scenario Claims, Ground Truth Favoritism, Context Contamination, five experiment traps arranged in an arc with a protective protocol shield hovering above](five-failure-modes.png)
 
 These five failure modes are now in a skill (`/double-blind-experiment`). Every time I run an experiment, I check against them.
 
@@ -172,10 +172,10 @@ These five failure modes are now in a skill (`/double-blind-experiment`). Every 
 
 The double-blind protocol solves one problem: **preventing contamination in the comparison process.** It doesn't solve these:
 
-1. **Rubric design bias**—your rubric may favor certain characteristics
-2. **Scenario selection bias**—the scenarios you choose may favor your variable
-3. **Ground truth quality**—reference answers may contain errors
-4. **Aggregation logic errors**—like the 0.03 gap in this article, an AI scorer may aggregate scores incorrectly
+1. **Rubric design bias**: your rubric may favor certain characteristics
+2. **Scenario selection bias**: the scenarios you choose may favor your variable
+3. **Ground truth quality**: reference answers may contain errors
+4. **Aggregation logic errors**: like the 0.03 gap in this article, an AI scorer may aggregate scores incorrectly
 
 This isn't about proving the simplified version is better. It's about making a point: **when you change a skill, you need a reliable testing framework. Otherwise you don't know if you're improving or just getting lucky.**
 
