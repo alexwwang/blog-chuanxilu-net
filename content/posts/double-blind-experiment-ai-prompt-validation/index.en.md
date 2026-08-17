@@ -65,8 +65,8 @@ Why did 0.03 turn into 4/4 wins? Because the scorer only saw X and Y labels, not
 
 ### Step 1: Define Variants
 
-- **Variant A**: Current version ralph-review-loop.md, 159 lines
-- **Variant B**: Signal Purity simplified version, 89 lines (removed derivable content)
+- **Variant A**: Current version [ralph-review-loop.md](/en/posts/ralph-loop-ai-errors-converge/), 159 lines
+- **Variant B**: [Signal Purity](/en/posts/signal-purity-less-is-more/) simplified version, 89 lines (removed derivable content)
 
 ### Step 2: Design Rubric
 
@@ -127,9 +127,9 @@ This proves "simplification" isn't a cure-all. Signal Purity removed derivable c
 
 ## B's Real Advantage
 
-Comparing 8 dimensions, B's core strength is in **Dual-Pass Adherence**:
+Comparing 8 dimensions, B's core strength is in **[Dual-Pass Adherence](/en/posts/dual-pass-review-recall-precision-tradeoff/)**:
 
-- B explicitly shows the three-stage flow (Recall→facts→Precision)
+- B explicitly shows the [three-stage flow (Recall→facts→Precision)](/en/posts/dual-pass-review-recall-precision-tradeoff/)
 - A often skips the fact collection step, going straight to Precision phase
 
 The data makes this clear:
