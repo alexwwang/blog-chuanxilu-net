@@ -20,7 +20,7 @@ cover:
 
 omo 和 oms 都支持 fallback——首选模型不可用时自动切到备选。但机制完全不同：omo 是多层管线逐层降级，oms 是启动选模型 + 运行时 abort 重试。理解这个差异，才能配出靠谱的链。
 
-我自己的触发场景：主力 provider 有每 5 小时的配额限制，用完返回 429。不配 fallback 的话，配额耗尽直接报错，整个 session 中断。配了 fallback + runtime_fallback，配额用完自动切到备选 provider 继续干活，无感切换。
+我自己的触发场景：主力 provider 有每 5 小时的配额限制，用完返回 429。不配 fallback 的话，配额耗尽直接报错，整个 session 中断。开了 runtime_fallback，配额用完自动切到备选 provider 继续干活，无感切换。
 
 ## omo 的 Fallback 架构
 
@@ -238,7 +238,7 @@ omo 有硬编码链和 system default 两层兜底，用户配置是锦上添花
 1. **链别超过 3 个**。用户链之后还有硬编码链，配太多只是增加无意义的尝试。主备各一个够了，最多加第三个做极端情况兜底。
 2. **`runtime_fallback` 一定要开**。omo 的 session 通常持续几十分钟（Sisyphus 编排），不开的话一次 429 就中断整个任务。`max_fallback_attempts` 建议调到 5，`cooldown_seconds` 保持 60。
 3. **交叉 provider，别堆同一家**。三个同 provider 模型堆一起，这家一挂全完。至少跨两个 provider。
-4. **别在 fallback 链里放专用模型**。带自定义重试逻辑的专用分析 agent（如 `oracle-ds4f`/`oracle-ds4p`）有自己的重试机制；把它们放进 fallback 链会干扰自动降级。
+4. **别在 fallback 链里放专用模型**。带自定义重试逻辑的专用分析 agent（如 `oracle-ds4f`/`oracle-ds4p`）有自己的重试机制；把它们放进跨模型 fallback 链会干扰自动降级。
 5. **用 mixed 格式降级省 token**。主模型 `variant: "high"`，备选 `variant: "medium"` 或 `reasoningEffort: "low"`。强模型挂了不意味着 session 报废，弱推理也比没推理强。
 
 **omo 实战配置示例**

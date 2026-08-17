@@ -20,7 +20,7 @@ cover:
 
 omo and oms both support fallback: automatic switching to backup when the primary model is unavailable. But their mechanisms differ completely: omo is a multi-layer pipeline that degrades step by step; oms uses startup model selection + runtime abort retry. You need to understand this difference to configure a reliable chain.
 
-My own trigger: my primary provider has a quota limit every 5 hours. When the quota runs out, it returns 429. Without fallback, I get an error as soon as quota is exhausted, and the whole session gets interrupted. With fallback + runtime_fallback, the system automatically switches to a backup provider when the quota is exhausted and continues working. Seamless.
+My own trigger: my primary provider has a quota limit every 5 hours. When the quota runs out, it returns 429. Without fallback, I get an error as soon as quota is exhausted, and the whole session gets interrupted. With runtime fallback enabled, the system automatically switches to a backup provider when the quota is exhausted and continues working. Seamless.
 
 ## omo's Fallback Architecture
 
@@ -238,7 +238,7 @@ omo has two layers of safety net: hardcoded chain and system default. Your confi
 1. **Don't exceed 3 models in chain**. After your chain, there's still the hardcoded chain. Configuring too many just adds meaningless attempts. One primary and one backup is enough, at most add a third as an extreme-case fallback.
 2. **Must enable `runtime_fallback`**. omo sessions usually last tens of minutes (Sisyphus orchestration). If not enabled, a single 429 interrupts the whole task. I suggest setting `max_fallback_attempts` to 5, and keeping `cooldown_seconds` at 60.
 3. **Cross providers, don't stack same provider**. Three models from the same provider stacked together: when that provider goes down, all are down. At least cross two providers.
-4. **Don't put specialized models in fallback chain**. Dedicated analysis agents with custom retry routines (such as `oracle-ds4f` or `oracle-ds4p`) keep their own retry logic; putting them in a fallback chain interferes with automatic degradation.
+4. **Don't put specialized models in fallback chain**. Dedicated analysis agents with custom retry routines (such as `oracle-ds4f` or `oracle-ds4p`) keep their own retry logic; putting them in a cross-model fallback chain interferes with automatic degradation.
 5. **Use mixed format to degrade and save tokens**. Primary model `variant: "high"`, backup `variant: "medium"` or `reasoningEffort: "low"`. When strong model goes down, session isn't scrapped; weaker reasoning is better than no reasoning.
 
 **omo real-world config example**
