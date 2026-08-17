@@ -107,9 +107,9 @@ Use object format to configure different parameters for different backups, and e
 
 Use case: Long coding sessions (e.g., Sisyphus orchestration tasks in omo mode lasting tens of minutes). runtime_fallback guarantees the session won't be interrupted by a single API failure mid-session. Mixed format allows high reasoning on primary, auto-switch to low reasoning on degradation to save tokens—when the strong model goes down, the whole session isn't scrapped; a weaker model can still continue.
 
-**Pattern 4: Single model retry—special usage of runtime_fallback**
+**Pattern 4: Empty chain disables runtime fallback**
 
-Enable `runtime_fallback` without writing `fallback_models`. Effect: the same model is retried within the session (retry after the cooldown period), no model switching.
+Enable `runtime_fallback` without writing `fallback_models`. Effect: nothing. Runtime fallback only engages when `fallback_models` is non-empty, so with an empty list the error interrupts the session directly.
 
 Use case: Provider rate-limits but doesn't limit quota. 429 errors, wait a few seconds and retry, no need to switch models.
 

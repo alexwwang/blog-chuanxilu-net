@@ -107,9 +107,9 @@ omo 还有**模糊匹配**能力[4]：模型名称会被规范化（小写、版
 
 适用场景：长 session 编码（比如 omo 模式下的 Sisyphus 编排任务持续几十分钟）。runtime_fallback 保证 session 中途不会因为单次 API 故障中断。mixed 格式允许主模型用高推理，降级时自动切到低推理省 token——强模型挂了不意味着整个 session 报废，用弱一点的模型也能继续。
 
-**模式四：单模型重试——runtime_fallback 的特殊用法**
+**模式四：链为空时 runtime_fallback 不生效**
 
-只开 `runtime_fallback` 不写 `fallback_models`。效果是：同一个模型在 session 内被重试（跳过冷却期后的重试），不切换模型。
+只开 `runtime_fallback` 不写 `fallback_models`。效果是：无。runtime fallback 只在 `fallback_models` 非空时才介入；链为空时，错误会直接中断 session。
 
 适用场景：provider 限频但不限额度。429 错误等几秒重试就能过，不需要换模型。
 
