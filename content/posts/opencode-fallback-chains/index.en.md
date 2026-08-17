@@ -109,7 +109,7 @@ Use case: Long coding sessions (e.g., Sisyphus orchestration tasks in omo mode l
 
 **Pattern 4: Empty chain disables runtime fallback**
 
-Enable `runtime_fallback` without writing `fallback_models`. Effect: nothing. Runtime fallback only engages when `fallback_models` is non-empty, so with an empty list the error interrupts the session directly.
+Enable `runtime_fallback` without writing `fallback_models`. Effect: nothing. Runtime fallback only engages when `fallback_models` is non-empty, so with an empty list a mid-session error interrupts the session directly. The hardcoded chain still applies at initial model resolution, but it doesn't participate in mid-session switching.
 
 Use case: Provider rate-limits but doesn't limit quota. 429 errors, wait a few seconds and retry, no need to switch models.
 
@@ -219,7 +219,7 @@ Use case: Using unstable providers (e.g., domestic providers during peak hours).
 | Resolution layers | 5-layer pipeline (override → category → user → hardcoded → system) | 2 layers (startup select + runtime switch) |
 | Built-in hardcoded chain | Yes | No |
 | User chain length | Usually 1-2 (hardcoded fallback) | Usually 3-5 (fully self-configured) |
-| Config format | string / string[] / object[] / mixed[] (with variant, thinking) | string[] (chains) + object[] (inline) |
+| Config format | string / string[] / object[] / mixed[] (with variant, thinking) | map of string[] (chains) + object[] (inline) |
 | Runtime switching | `runtime_fallback` (configurable cooldown, max attempts, timeout) | `ForegroundFallbackManager` (event-driven) |
 | Empty response retry | Not supported | Supported (`retry_on_empty`) |
 | Agent isolation | No strict isolation (may degrade across agents) | Strict isolation (no chain = no degradation) |

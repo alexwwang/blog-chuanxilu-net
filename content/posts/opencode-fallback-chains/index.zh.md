@@ -109,7 +109,7 @@ omo 还有**模糊匹配**能力[4]：模型名称会被规范化（小写、版
 
 **模式四：链为空时 runtime_fallback 不生效**
 
-只开 `runtime_fallback` 不写 `fallback_models`。效果是：无。runtime fallback 只在 `fallback_models` 非空时才介入；链为空时，错误会直接中断 session。
+只开 `runtime_fallback` 不写 `fallback_models`。效果是：无。runtime fallback 只在 `fallback_models` 非空时才介入；链为空时，session 中途的错误会直接中断。硬编码链只在初始模型解析时生效，不参与运行中途的切换。
 
 适用场景：provider 限频但不限额度。429 错误等几秒重试就能过，不需要换模型。
 
@@ -219,7 +219,7 @@ Model Array 和 `fallback.chains` 会合并[13]（Array 在前，chains 追加�
 | 解析层级 | 5 层管线（override → category → user → hardcoded → system） | 2 层（启动选 + 运行时切换） |
 | 内置硬编码链 | 有 | 无 |
 | 用户链长度 | 通常 1-2 个（硬编码兜底） | 通常 3-5 个（全部自配） |
-| 配置格式 | string / string[] / object[] / mixed[]（可带 variant、thinking） | string[]（chains）+ object[]（内联） |
+| 配置格式 | string / string[] / object[] / mixed[]（可带 variant、thinking） | string[] 映射（chains）+ object[]（内联） |
 | 运行时切换 | `runtime_fallback`（可配冷却时间、最大次数、超时） | `ForegroundFallbackManager`（事件驱动） |
 | 空响应重试 | 不支持 | 支持（`retry_on_empty`） |
 | Agent 隔离 | 无严格隔离（可能跨 agent 降级） | 严格隔离（无链 = 不降级） |
