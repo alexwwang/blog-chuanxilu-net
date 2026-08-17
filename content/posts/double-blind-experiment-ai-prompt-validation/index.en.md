@@ -129,7 +129,7 @@ This proves "simplification" isn't a cure-all. Signal Purity removed derivable c
 
 Comparing 8 dimensions, B's core strength is in **Dual-Pass Adherence**:
 
-- B explicitly shows the three-stage flow (Recall→Facts→Precision)
+- B explicitly shows the three-stage flow (Recall→facts→Precision)
 - A often skips the fact collection step, going straight to Precision phase
 
 The data makes this clear:
