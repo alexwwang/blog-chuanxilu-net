@@ -55,7 +55,7 @@ Key point: Your `fallback_models` doesn't replace the hardcoded chain; it **take
 ]
 ```
 
-Object format supports fields[2]: `model` (required), `variant`, `reasoningEffort` (none/minimal/low/medium/high/xhigh/max), `temperature`, `top_p`, `maxTokens`, `thinking` (type + budgetTokens). This means fallback isn't just switching models; it can switch reasoning effort levels too. Use high reasoning on the primary, medium reasoning on the backup to save tokens.
+The object format supports fields[2]: `model` (required), `variant`, `reasoningEffort` (none/minimal/low/medium/high/xhigh/max), `temperature`, `top_p`, `maxTokens`, `thinking` (type + budgetTokens). This means fallback isn't just switching models; it can switch reasoning effort levels too. Use high reasoning on the primary, medium reasoning on the backup to save tokens.
 
 omo also has runtime fallback (`runtime_fallback`)[3]: when HTTP errors like 429, 500, 502, 503, 504 occur mid-session, or rate-limit/quota-exceeded error patterns, it automatically switches to the next model in the chain without restarting the session. Default parameters:
 
