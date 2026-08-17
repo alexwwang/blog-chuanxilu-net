@@ -3,7 +3,7 @@ title: "Role-Playing in Practice: Make AI Your Devil's Advocate"
 slug: "ai-devils-advocate-role-play"
 date: 2026-05-25T07:00:00+08:00
 draft: false
-description: "Follow-up questions let you dig for assumptions yourself. Role-playing lets AI dig for you. Use one prompt to make AI a harsh critic of your plan — far faster than self-review, far more convenient than asking a friend."
+description: "Follow-up questions let you dig for assumptions yourself. Role-playing lets AI dig for you. Use one prompt to make AI a harsh critic of your plan: far faster than self-review, far more convenient than asking a friend."
 tags: ["AI", "toolchain", "evolution-path", "prompt engineering"]
 categories: ["ai-path"]
 toc: false
@@ -13,7 +13,7 @@ cover:
   alt: "Watercolor style: a proposal document on a wooden desk surrounded by three theatrical masks (green supporter, red critic, amber neutral) in triangular formation, symbolizing role-playing to expose blind spots"
 ---
 
-Yesterday's discussion covered follow-up questions — three questions to dig out the hidden assumptions behind an AI answer. The catch is, you need to know what to ask. Some blind spots you simply can't see from your own perspective.
+Yesterday's discussion covered follow-up questions: three questions to dig out the hidden assumptions behind an AI answer. The catch is, you need to know what to ask. Some blind spots you simply can't see from your own perspective.
 
 That's when you give AI a different identity.
 
@@ -31,7 +31,7 @@ This isn't about getting a "balanced take." Each role surfaces different argumen
 
 I have a habit when writing proposals: I get excited about "this is a great idea." Every time I finish a plan, I run this three-part prompt to get the defense, critique, and neutral synthesis all in a single pass. After that one pass, most of the weaknesses I can think of are already on the table.
 
-Role-playing and follow-up questions are two ways of doing the same thing. They help you see what you can't see on your own. Follow-up relies on you asking actively; role-playing makes AI challenge you proactively. Use both, and your blind spots shrink. Once these techniques feel natural, you'll want a place to organize them. Tomorrow we'll talk about building that system.
+Role-playing and follow-up questions are two ways of doing the same thing. They help you see what you can't see on your own. Follow-up relies on you asking actively; role-playing makes AI challenge you proactively. Use both, and your blind spots shrink. Once these techniques feel natural, you'll want a place to organize them. Tomorrow I'll talk about building that system.
 
 ---
 
