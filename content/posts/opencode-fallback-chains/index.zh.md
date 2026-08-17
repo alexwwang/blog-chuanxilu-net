@@ -171,7 +171,7 @@ Model Array 和 `fallback.chains` 会合并[13]（Array 在前，chains 追加�
 }
 ```
 
-适用场景：标准使用。每个 agent 3 个备选，交叉 provider（provider-a 是主力，provider-c 是备选，provider-b/provider-c 的不同模型是兜底）。链里的模型按顺序尝试，第一个可用就停。
+适用场景：标准使用。每个 agent 3 个备选，交叉 provider（`provider-a` 是主力，`provider-c` 是备选，`provider-b`/`provider-c` 的不同模型是兜底）。链里的模型按顺序尝试，第一个可用就停。
 
 **模式二：内联优先链——agent 级别精细控制**
 
@@ -191,7 +191,7 @@ Model Array 和 `fallback.chains` 会合并[13]（Array 在前，chains 追加�
 }
 ```
 
-适用场景：某些 agent 需要特殊参数。oracle 用高推理模式（variant: high），降级时不需要 variant。内联链和 fallback.chains 合并后 oracle 的有效链是 `[provider-a/model-x (variant: high), provider-c/model-x, provider-c/model-d]`。
+适用场景：某些 agent 需要特殊参数。oracle 用高推理模式（`variant: high`），降级时不需要 variant。内联链和 `fallback.chains` 合并后 oracle 的有效链是 `[provider-a/model-x (variant: high), provider-c/model-x, provider-c/model-d]`。
 
 **模式三：部分 agent 不配链——严格隔离**
 

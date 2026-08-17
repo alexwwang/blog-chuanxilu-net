@@ -171,7 +171,7 @@ Model Array and `fallback.chains` are merged[13] (Array first, chains appended, 
 }
 ```
 
-Use case: Standard usage. Each agent has 3 backups, cross-provider (provider-a is primary, provider-c is backup, different models from provider-b/provider-c are the safety net). Models in the chain are tried in order, stopping when the first available model is found.
+Use case: Standard usage. Each agent has 3 backups, cross-provider (`provider-a` is primary, `provider-c` is backup, different models from `provider-b`/`provider-c` are the safety net). Models in the chain are tried in order, stopping when the first available model is found.
 
 **Pattern 2: Inline priority chain (agent-level fine-grained control)**
 
@@ -191,7 +191,7 @@ Use case: Standard usage. Each agent has 3 backups, cross-provider (provider-a i
 }
 ```
 
-Use case: Some agents need special parameters. oracle uses high reasoning mode (variant: high), doesn't need variant when degrading. After merging inline chain and fallback.chains, oracle's effective chain is `[provider-a/model-x (variant: high), provider-c/model-x, provider-c/model-d]`.
+Use case: Some agents need special parameters. oracle uses high reasoning mode (`variant: high`), doesn't need variant when degrading. After merging inline chain and `fallback.chains`, oracle's effective chain is `[provider-a/model-x (variant: high), provider-c/model-x, provider-c/model-d]`.
 
 **Pattern 3: Partial agents without chain (strict isolation)**
 
