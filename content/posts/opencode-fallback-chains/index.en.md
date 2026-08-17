@@ -239,7 +239,7 @@ omo has two layers of safety net: hardcoded chain and system default. Your confi
 2. **Must enable `runtime_fallback`**. omo sessions usually last tens of minutes (Sisyphus orchestration). If not enabled, a single 429 interrupts the whole task. I suggest setting `max_fallback_attempts` to 5, and keeping `cooldown_seconds` at 60.
 3. **Cross providers, don't stack same provider**. Three models from the same provider stacked together: when that provider goes down, all are down. At least cross two providers.
 4. **Don't put specialized models in fallback chain**. Dedicated analysis agents with custom retry routines (such as `oracle-ds4f` or `oracle-ds4p`) keep their own retry logic; putting them in a cross-model fallback chain interferes with automatic degradation.
-5. **Use mixed format to degrade and save tokens**. Primary model `variant: "high"`, backup `variant: "medium"` or `reasoningEffort: "low"`. When strong model goes down, session isn't scrapped; weaker reasoning is better than no reasoning.
+5. **Use mixed format to degrade and save tokens**. Primary model `variant: "high"`, backup `variant: "medium"` or `reasoningEffort: "low"`. When the strong model goes down, the session isn't scrapped; weaker reasoning is better than no reasoning.
 
 **omo real-world config example**
 
