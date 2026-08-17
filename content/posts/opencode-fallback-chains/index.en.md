@@ -26,7 +26,7 @@ My own trigger: my primary provider has a quota limit every 5 hours. When the qu
 
 omo's model resolution is a **5-layer pipeline**[1], in priority order from highest to lowest:
 
-1. **Override**: Model explicitly selected by the user via UI, returned directly, skipping all subsequent layers
+1. **Override**: Model explicitly selected by the user via the UI, returned directly, skipping all subsequent layers
 2. **Category Default**: Default model configured for agent category, with fuzzy matching[4] (`model-alpha` can match `provider-e/model-alpha`)
 3. **User Fallback Models**: `fallback_models` written by the user in the config, tried one by one until an available model is found
 4. **Hardcoded Chain**: omo's built-in per-agent and per-category hardcoded chain[5], cross-provider matching
@@ -78,7 +78,7 @@ omo also has **fuzzy matching** capability[4]: model names are normalized (lower
 
 **Pattern 1: Zero config (purely relying on hardcoded chain)**
 
-Set only primary model, don't write `fallback_models`, don't enable `runtime_fallback`. Rely purely on the built-in hardcoded chain; omo finds available models automatically.
+Set only the primary model, don't write `fallback_models`, don't enable `runtime_fallback`. Rely purely on the built-in hardcoded chain; omo finds available models automatically.
 
 Use case: Just getting started with omo, not familiar with config yet. Or using default providers, since the hardcoded chain is designed for them. The benefit is zero maintenance: when a provider goes down, omo finds a replacement model on its own. The cost is lack of precision: the hardcoded chain doesn't know which provider accounts you have, so it might waste time on expired providers.
 
@@ -105,7 +105,7 @@ Use object format to configure different parameters for different backups, and e
 "runtime_fallback": { "enabled": true, "max_fallback_attempts": 5 }
 ```
 
-Use case: Long coding sessions (e.g., Sisyphus orchestration tasks in omo mode lasting tens of minutes). runtime_fallback prevents mid-session interruption from transient API failures up to the configured attempt limit. Mixed format allows high reasoning on primary, auto-switch to low reasoning on degradation to save tokens. When the strong model goes down, the whole session isn't scrapped; a weaker model can still continue.
+Use case: Long coding sessions (e.g., Sisyphus orchestration tasks in omo mode lasting tens of minutes). runtime_fallback prevents mid-session interruption from transient API failures, up to the configured attempt limit. Mixed format allows high reasoning on primary, auto-switch to low reasoning on degradation to save tokens. When the strong model goes down, the whole session isn't scrapped; a weaker model can still continue.
 
 **Pattern 4: Empty chain disables runtime fallback**
 
