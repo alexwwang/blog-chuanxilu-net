@@ -21,7 +21,7 @@ That's when you give AI a different identity.
 
 > Please act as a strict reviewer. Go through this plan point by point and identify every risk and weakness. Don't hold back — the sharper, the better.
 
-This prompt does one thing: it shifts AI from "help you finish the task" to "help you find what's wrong with it." The same plan, AI as an assistant will agree with you; AI as a reviewer will push back. You need the version that pushes back.
+This prompt does one thing: it shifts AI from "help you finish the task" to "help you find what's wrong with it." The same plan, AI as an assistant tends to agree with you; AI as a reviewer is more likely to push back. You need the version that pushes back.
 
 ## Level Up: Make the Sides Debate
 
