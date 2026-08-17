@@ -197,7 +197,7 @@ Use case: Some agents need special parameters. oracle uses high reasoning mode (
 
 Only configure chains for orchestrator and oracle, don't configure for high-frequency agents like explorer/librarian. When these agents' primary models go down, they error directly, won't degrade.
 
-Use case: Control costs. Explorer and librarian have high call frequency (tens of times per session), a weak model (model-z) is enough. If the weak model goes down, erroring is better than secretly switching to an expensive model (model-x); the latter can consume tens of times more tokens in a single session. Strict isolation guarantees this leakage won't happen.
+Use case: Control costs. explorer and librarian have high call frequency (tens of times per session), a weak model (model-z) is enough. If the weak model goes down, erroring is better than secretly switching to an expensive model (model-x); the latter can consume tens of times more tokens in a single session. Strict isolation guarantees this leakage won't happen.
 
 **Pattern 4: retry_on_empty + timeout tuning**
 
