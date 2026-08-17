@@ -13,7 +13,7 @@ cover:
   alt: "Watercolor style: a proposal document on a wooden desk surrounded by three theatrical masks (green supporter, red critic, amber neutral) in triangular formation, symbolizing role-playing to expose blind spots"
 ---
 
-Yesterday we talked about follow-up questions — three questions to dig out the hidden assumptions behind an AI answer. The catch is, you need to know what to ask. Some blind spots you simply can't see from your own perspective.
+Yesterday's discussion covered follow-up questions — three questions to dig out the hidden assumptions behind an AI answer. The catch is, you need to know what to ask. Some blind spots you simply can't see from your own perspective.
 
 That's when you give AI a different identity.
 
