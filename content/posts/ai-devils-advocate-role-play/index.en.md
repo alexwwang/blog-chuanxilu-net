@@ -29,7 +29,7 @@ This prompt does one thing: it shifts AI from "help you finish the task" to "hel
 
 This isn't about getting a "balanced take." Each role surfaces different arguments. You see the same question from three angles, and whichever argument you didn't think of is your blind spot.
 
-I have a habit when writing proposals: I get excited about "this is a great idea." Every time I finish a plan, I have AI play the critic first, then the neutral advisor. After two rounds, most of the weaknesses I can think of are already on the table.
+I have a habit when writing proposals: I get excited about "this is a great idea." Every time I finish a plan, I run this three-part prompt to get the defense, critique, and neutral synthesis all in a single pass. After that one pass, most of the weaknesses I can think of are already on the table.
 
 Role-playing and follow-up questions are two ways of doing the same thing. They help you see what you can't see on your own. Follow-up relies on you asking actively; role-playing makes AI challenge you proactively. Use both, and your blind spots shrink. Once these techniques feel natural, you'll want a place to organize them. Tomorrow we'll talk about building that system.
 
