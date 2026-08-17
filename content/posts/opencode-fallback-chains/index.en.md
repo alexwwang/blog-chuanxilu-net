@@ -155,7 +155,7 @@ oms has several features omo doesn't have:
 }
 ```
 
-Model Array and `fallback.chains` are merged[13] (Array first, chains appended, deduplicated). This means you can put your main preferences in agent config (with variant), and put the safety net list in chains.
+Model Array and `fallback.chains` are merged[13] (Array first, chains appended, deduplicated keeping the first occurrence, so inline variant settings take precedence). This means you can put your main preferences in agent config (with variant), and put the safety net list in chains.
 
 **Preset linkage**: oms has a preset system (switch at runtime via `/preset` command)[14]. When switching preset, the `config()` hook re-executes, chains rebuild[15]. `ForegroundFallbackManager` retains session state (tried-set isn't lost), but chain content updates. This is useful in "use expensive models by day, switch to cheap models by night" scenarios.
 
@@ -210,7 +210,7 @@ Use case: Control costs. Explorer and librarian have high call frequency (tens o
 }
 ```
 
-Use case: Using unstable providers (e.g., domestic providers during peak hours). `retry_on_empty` handles occasional empty content from models; `timeoutMs` tuned to 30s gives slow providers some room. The trade-off is waiting 30s extra per timeout before switching—if 5 models in the chain all timeout, the worst case is 150s of waiting.
+Use case: Using unstable providers (e.g., domestic providers during peak hours). `retry_on_empty` handles occasional empty content from models; `timeoutMs` tuned to 30s gives slow providers some room. The trade-off is waiting 30s extra per timeout before switching; if 5 models in the chain all timeout, the worst case is about 152s of waiting (the 500ms re-prompt delay between attempts).
 
 ## Comparison
 

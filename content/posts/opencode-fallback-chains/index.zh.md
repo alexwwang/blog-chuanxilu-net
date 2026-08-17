@@ -155,7 +155,7 @@ oms 有 omo 没有的几个特性：
 }
 ```
 
-Model Array 和 `fallback.chains` 会合并[13]（Array 在前，chains 追加，去重）。这意味着你可以在 agent 配置里写主要偏好（带 variant），在 chains 里写兜底列表。
+Model Array 和 `fallback.chains` 会合并[13]（Array 在前，chains 追加，去重时保留首次出现的条目，因此内联的 variant 设置优先）。这意味着你可以在 agent 配置里写主要偏好（带 variant），在 chains 里写兜底列表。
 
 **Preset 联动**：oms 有 preset 系统（`/preset` 命令运行时切换）[14]。切换 preset 时 `config()` hook 重新执行，链会重建[15]。`ForegroundFallbackManager` 保留 session 状态（tried-set 不丢），但链内容更新了。这在"白天用贵模型，晚上切便宜模型"的场景下很有用。
 
@@ -210,7 +210,7 @@ Model Array 和 `fallback.chains` 会合并[13]（Array 在前，chains 追加�
 }
 ```
 
-适用场景：使用不太稳定的 provider（比如国内 provider 的高峰期）。`retry_on_empty` 处理模型偶尔返回空内容的情况；`timeoutMs` 调高到 30s 给慢 provider 留余地。代价是每次超时要多等 30s 才切到下一个模型——如果链里 5 个模型都超时，最坏情况等 150s。
+适用场景：使用不太稳定的 provider（比如国内 provider 的高峰期）。`retry_on_empty` 处理模型偶尔返回空内容的情况；`timeoutMs` 调高到 30s 给慢 provider 留余地。代价是每次超时要多等 30s 才切到下一个模型——如果链里 5 个模型都超时，最坏情况等约 152s（每次切换之间还有 500ms 的 re-prompt 延迟）。
 
 ## 对比
 
