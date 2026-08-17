@@ -139,7 +139,7 @@ oms has several features omo doesn't have:
 
 **Strict agent isolation**[9]: Each agent only uses its own chain. If explorer isn't configured with a chain, it absolutely won't get the orchestrator's strong model. Each session maintains a tried-set[10], recording models already tried, so it won't retry the same model in a loop. When the chain is exhausted, the session stays in a failed state and won't secretly degrade.
 
-**Empty response retry** (`retry_on_empty`)[11]: When a model returns empty content with 0 tokens, oms treats it as failure. This is particularly useful for council review scenarios, where weak models occasionally generate empty responses, auto-retry is less hassle than manual resend.
+**Empty response retry** (`retry_on_empty`)[11]: When a model returns empty content with 0 tokens, oms treats it as failure. This is particularly useful for council review scenarios, where weak models occasionally generate empty responses. Auto-retry is less hassle than manual resend.
 
 **Inline priority chain** (Model Array syntax)[12]: Besides `fallback.chains`, oms supports writing model arrays directly in agent config:
 
