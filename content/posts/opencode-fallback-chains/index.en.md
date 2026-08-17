@@ -20,7 +20,7 @@ cover:
 
 omo and oms both support fallback: automatic switching to backup when the primary model is unavailable. But their mechanisms differ completely: omo is a multi-layer pipeline that degrades step by step; oms uses startup model selection + runtime abort retry. You need to understand this difference to configure a reliable chain.
 
-My own trigger: my primary provider has a quota limit every 5 hours. When the quota runs out, it returns 429. Without fallback, I get an error as soon as the quota is exhausted, and the whole session gets interrupted. With runtime fallback enabled, the system automatically switches to a backup provider when the quota is exhausted and continues working. Seamless.
+My own trigger: my primary provider has a quota limit every 5 hours. When the quota is exhausted, the primary provider returns a 429 error. Without fallback, I get an error as soon as the quota is exhausted, and the whole session gets interrupted. With runtime fallback enabled, the system automatically switches to a backup provider when the quota is exhausted and continues working. Seamless.
 
 ## omo's Fallback Architecture
 
