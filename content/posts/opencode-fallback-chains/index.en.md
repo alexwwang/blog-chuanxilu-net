@@ -28,7 +28,7 @@ omo's model resolution is a **5-layer pipeline**[1], in priority order from high
 
 1. **Override**: Model explicitly selected by the user via UI, returned directly, skipping all subsequent layers
 2. **Category Default**: Default model configured for agent category, with fuzzy matching[4] (`model-alpha` can match `provider-e/model-alpha`)
-3. **User Fallback Models**: `fallback_models` written by the user in config, tried one by one until an available model is found
+3. **User Fallback Models**: `fallback_models` written by the user in the config, tried one by one until an available model is found
 4. **Hardcoded Chain**: omo's built-in per-agent and per-category hardcoded chain[5], cross-provider matching
 5. **System Default**: Final safety net when all layers fail (`opencode/gpt-5-nano`)
 
@@ -117,7 +117,7 @@ Use case: Provider rate-limits but doesn't limit quota. 429 errors, wait a few s
 
 oms's fallback is a **2-layer architecture**[6]:
 
-1. **Startup selection**: In the `config()` hook, the system takes the first model from the effective chain (inline array first, `fallback.chains` appended) as primary. This step doesn't check if the provider is online; it just takes the first one, uses it if it works, otherwise waits for runtime to switch
+1. **Startup selection**: In the `config()` hook, the system takes the first model from the effective chain (inline array first, `fallback.chains` appended) as primary. This step doesn't check if the provider is online; it just takes the first one, uses it if it works, otherwise waits for the runtime to switch
 2. **Runtime failure switching**: `ForegroundFallbackManager`[7] listens to OpenCode events (`message.updated`, `session.error`, `session.status`)[8], detects rate-limit errors, aborts the active request turn, and re-issues the prompt using the next model in the chain[16]
 
 ```jsonc
@@ -157,7 +157,7 @@ oms has several features omo doesn't have:
 
 Model Array and `fallback.chains` are merged[13] (Array first, chains appended, deduplicated keeping the first occurrence, so inline variant settings take precedence). This means you can put your main preferences in agent config (with variant), and put the safety net list in chains.
 
-**Preset linkage**: oms has a preset system (switch at runtime via `/preset` command)[14]. When switching preset, the `config()` hook re-executes, chains rebuild[15]. `ForegroundFallbackManager` retains session state (tried-set isn't lost), but chain content updates. This is useful in "use expensive models by day, switch to cheap models by night" scenarios.
+**Preset linkage**: oms has a preset system (switch at runtime via the `/preset` command)[14]. When switching preset, the `config()` hook re-executes, chains rebuild[15]. `ForegroundFallbackManager` retains session state (tried-set isn't lost), but chain content updates. This is useful in "use expensive models by day, switch to cheap models by night" scenarios.
 
 ## oms Fallback Patterns & Scenarios
 
@@ -197,7 +197,7 @@ Use case: Some agents need special parameters. oracle uses high reasoning mode (
 
 Only configure chains for orchestrator and oracle, don't configure for high-frequency agents like explorer/librarian. When these agents' primary models go down, they error directly, won't degrade.
 
-Use case: Control costs. Explorer and librarian have high call frequency (tens of times per session), weak model (model-z) is enough. If weak model goes down, erroring is better than secretly switching to an expensive model (model-x); the latter can consume tens of times more tokens in a single session. Strict isolation guarantees this leakage won't happen.
+Use case: Control costs. Explorer and librarian have high call frequency (tens of times per session), a weak model (model-z) is enough. If the weak model goes down, erroring is better than secretly switching to an expensive model (model-x); the latter can consume tens of times more tokens in a single session. Strict isolation guarantees this leakage won't happen.
 
 **Pattern 4: retry_on_empty + timeout tuning**
 
