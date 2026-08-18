@@ -80,7 +80,7 @@ Phase 6 is a forensic pathologist — skilled at producing a complete autopsy re
 
 ## Depth and Breadth
 
-| | Phase 6 | Phase 7 |
+| Dimension | Phase 6 | Phase 7 |
 |---|---------|---------|
 | Activity type | Diagnosing individual defects | Systematic scan |
 | Core method | Drill-down (Five-Layer Deep Inquiry + evidence chain) | Scan (pattern catalog + grep) |
