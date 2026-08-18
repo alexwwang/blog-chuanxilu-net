@@ -16,7 +16,7 @@ cover:
 > Series: Classic Theory Meets Agent Practice (Part 3)
 > [Part 1: Dual-Pass Review: Why You Can't Have Both Recall and Precision](/en/posts/2026/05/dual-pass-review-recall-precision-tradeoff/) · [Part 2: Strategy Genes: Pruning Review Prompts with Genetic Algorithm Thinking](/en/posts/2026/05/signal-purity-less-is-more/)
 
-> **TL;DR:** Two controlled experiments. Code review dimensions went from 8 to 11, and known-issue detection went from 1/6 to 6/6. Design review introduced axiomatic design dimensions, and detection also went from 1/6 to 6/6. But the version with a math formula proved that more dimensions are not always better: computation consumed review attention, and findings dropped 35%. Run controlled experiments with known issues as reference, and you learn which dimensions actually work.
+> **TL;DR:** Two controlled experiments. Code review dimensions went from 8 to 11, and known-issue detection went from 1/6 to 6/6. Design review introduced Axiomatic Design dimensions, and detection also went from 1/6 to 6/6. But the version with a math formula proved that more dimensions are not always better: computation consumed review attention, and findings dropped 35%. Run controlled experiments with known issues as reference, and you learn which dimensions actually work.
 
 The previous post solved "what to put in the prompt": remove inferable redundant content, keep only strategy genes, and review quality improved 29%, but one question remained: are the review dimensions complete enough?
 
