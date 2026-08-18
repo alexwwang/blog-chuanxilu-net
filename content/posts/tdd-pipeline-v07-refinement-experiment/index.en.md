@@ -32,7 +32,7 @@ The TDD Pipeline ran for a while. The skill files for Phases 1 through 5 kept ge
 
 Every single rule was useful — distilled from real bugs. But "every rule is useful" and "the whole set is optimal" are two different things.
 
-This echoed a finding that had already shown up repeatedly in this series: **the more rigid the step-by-step instructions, the more the model tends to take shortcuts.** In the Why Articulation A/B experiments [2], positive examples made the model's analysis converge. Removing those examples improved independent reasoning quality. In Anthropic's alignment research [3], teaching principles outperformed teaching behaviors by roughly seven times.
+This echoed a finding that had already shown up repeatedly in this series: **the more rigid the step-by-step instructions, the more the model tends to take shortcuts.** In the Why Articulation A/B experiments [2], positive examples made the model's analysis converge. Removing those examples improved independent reasoning quality. In Anthropic's alignment research [3], teaching high-level principles outperformed teaching specific behaviors by roughly seven times in generalizing to unseen scenarios.
 
 That raised a question. Were the step-by-step instructions, template filling guides, and checklist prompts in the skill files just another form of positive examples? Were they all giving the model an exit ramp from thinking?
 
@@ -97,7 +97,7 @@ The fix wasn't to restore all the steps. I added two lines to the end of each re
 
 A more interesting detail came from Round A. Running with the skill file that had its operational steps removed, the model derived those steps on its own. The original version said "Step 1: use deep-interview to gather requirements. Step 2: classify user stories." The refined version only said "understand what to build and why, eliminate ambiguity."
 
-The model's analysis spontaneously produced a reasoning chain: gather requirements → user stories → acceptance criteria → priority classification. Same steps as the original version. But the model organized them itself.
+The model's analysis spontaneously produced a reasoning chain: gather requirements → classify user story priorities → write acceptance criteria → verify testability. Same steps as the original version. But the model organized them itself.
 
 This maps directly onto a finding from the Why Articulation experiments: removing scaffolding led the model to self-organize the same dimensions [2]. Two experiments, different scenarios, same signal.
 
