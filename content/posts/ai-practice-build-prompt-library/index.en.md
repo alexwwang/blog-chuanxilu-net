@@ -3,7 +3,7 @@ title: "Today's Practice: Organize Your First 5 Prompts"
 slug: "ai-practice-build-prompt-library"
 date: 2026-05-27T06:00:00+08:00
 draft: false
-description: "Series companion practice: pick 5 prompts that actually worked from your recent AI conversations, record them using the template. Starting your prompt library from 0 to 5 is the hardest step."
+description: "Series companion practice: Pick 5 prompts that actually worked from your recent AI conversations, record them using the template. Starting your prompt library from 0 to 5 is the hardest step."
 tags: ["AI", "toolchain", "evolution-path", "practice"]
 categories: ["ai-path"]
 toc: false
@@ -15,7 +15,7 @@ cover:
 
 ## Today's Practice
 
-From your recent AI conversations (coding, writing, analysis), pick 5 prompts that actually worked well. Record them using the template from Part 4: original prompt + effectiveness rating + iteration notes.
+From your recent AI conversations (coding, writing, analysis), pick 5 prompts that actually worked well. Record them using the template from Part 4: Original Prompt + Effectiveness + Iteration.
 
 Where you record them doesn't matter. A notes app, Notion, or a plain text file all work. Don't overthink the tool.
 
