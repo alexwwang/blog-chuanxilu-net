@@ -175,7 +175,7 @@ The double-blind protocol solves one problem: **preventing contamination in the 
 1. **Rubric design bias**: your rubric may favor certain characteristics
 2. **Scenario selection bias**: the scenarios you choose may favor your variable
 3. **Ground truth quality**: reference answers may contain errors
-4. **Aggregation logic errors**: like the 0.03 gap in this article, an AI scorer may aggregate scores incorrectly
+4. **Aggregation logic errors**: like the 0.03 gap in this article, aggregating masked X/Y scores across scenarios before unblinding can erase the real difference
 
 This isn't about proving the simplified version is better. It's about making a point: **when you change a skill, you need a reliable testing framework. Otherwise you don't know if you're improving or just getting lucky.**
 
