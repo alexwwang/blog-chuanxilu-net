@@ -129,7 +129,7 @@ S4（Node.js cache）里，Variant A 在 Defect Discovery 和 Suggestion Quality
 
 对比 8 个维度，B 的核心优势在 **[Dual-Pass Adherence](/posts/dual-pass-review-recall-precision-tradeoff/)**：
 
-- B 明确展示了[三阶段流程（Recall→facts→Precision）](/posts/dual-pass-review-recall-precision-tradeoff/)
+- B 明确展示了[两阶段流程（Recall→facts→Precision）](/posts/dual-pass-review-recall-precision-tradeoff/)
 - A 经常跳过事实收集步骤，直接进入 Precision 阶段
 
 这个差异在数据里很明显：
