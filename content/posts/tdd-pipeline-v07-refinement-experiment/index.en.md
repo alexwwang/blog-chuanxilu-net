@@ -13,8 +13,8 @@ cover:
   alt: "A ruler measuring its own scale marks for redundancy, then trimming the excess marks away"
 ---
 
-> Series: Breaking to Build: TDD Process Iterations (second post)
-> Previous: [What a Failed Experiment Got Right](/en/posts/tdd-pipeline-v08-failed-experiment-discovery/)
+> Series: Breaking to Build: TDD Process Iterations (Post 2 of 3)
+> Previous: [What a Failed Experiment Got Right](/en/posts/tdd-pipeline-v08-failed-experiment-discovery/) · Next: [The Invisible Blank Layer](/en/posts/tdd-pipeline-phase7-invisible-gap/)
 
 > **TL;DR:** The TDD Pipeline taught "give principles, not steps" — but it had grown into a step-driven tool itself. I stripped the operational steps from Phases 1 through 5, keeping only principles, risk hints, and counterexamples. The model independently derived the steps I had deleted. Output quality held. The reason: Phases 1 through 5 are creative phases that need room to diverge. Removing the fixed track actually helped. The same strategy failed on Phase 6 — next post explains why.
 

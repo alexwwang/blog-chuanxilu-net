@@ -14,7 +14,7 @@ cover:
 ---
 
 > 系列：破而后立的 TDD 流程迭代（第二篇）
-> [上一篇：失之东隅，收之桑榆的实验](/posts/tdd-pipeline-v08-failed-experiment-discovery/)
+> [上一篇：失之东隅，收之桑榆的实验](/posts/tdd-pipeline-v08-failed-experiment-discovery/) · [下一篇：看不见的空白层——Phase 7 诞生](/posts/tdd-pipeline-phase7-invisible-gap/)
 
 > **TL;DR:** TDD Pipeline 自己教的是"给原则不给步骤"，但自己却长成了步骤驱动的工具。把阶段一到阶段五的操作步骤删掉，只保留原则、风险提示和反面例子。模型自己推导出了被删掉的步骤，输出质量不降。原因：阶段一到阶段五是创作阶段，需要发散空间，去掉固定轨道反而更好。同样的策略用在阶段六上失败了——下一篇讲为什么。
 
