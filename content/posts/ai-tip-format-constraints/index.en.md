@@ -41,7 +41,7 @@ Best for: content that needs to be processed, stored, or parsed by a program.
 
 Best for: reports or analysis documents that need a fixed paragraph logic.
 
-> "Use the following structure: conclusion first (under 100 words), then 3 supporting arguments (200 words each), ending with action items (3 items, numbered list)."
+> "Use the following structure: conclusion first (under 100 words), then 3 supporting arguments (around 200 words each), ending with action items (3 items, numbered list)."
 
 ### 5. Dialogue Format
 
@@ -53,7 +53,7 @@ Best for: mock interviews, role-playing, teaching scenarios.
 
 Best for: code, config files, or scripts meant to run directly.
 
-> "Put the complete code inside a ```code block```. Include comments explaining key steps. The code should be runnable as-is."
+> "Put the complete code inside a ```code block```. Include comments explaining key steps. The code should be runnable as-is, with all necessary imports included."
 
 ---
 
