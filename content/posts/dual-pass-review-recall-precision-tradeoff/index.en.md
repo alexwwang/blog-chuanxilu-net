@@ -56,7 +56,7 @@ Same thing with reviews. Loosen the review criteria, you find more issues, but m
 
 This is a core tradeoff in search engines, spam filters, medical diagnosis. Over 60 years of literature — the 1966 Cranfield II experiments conclusively proved the inverse relationship between Recall and Precision [4], and it's been foundational in IR evaluation ever since.
 
-### Cascade Retrieval: how search engines solved it
+### Cascade retrieval: how search engines solved it
 
 Information retrieval's answer to this tension is **Cascade Retrieval** — splitting one retrieval task into multiple stages, each with a different objective.
 
@@ -90,7 +90,7 @@ What does fact gathering do?
 
 - Read the requirements doc from prior stages (verify cross-stage consistency)
 - Check completeness against the requirements checklist
-- Read the project's coding conventions / RULES.md (verify best-practice findings)
+- Read the project's coding conventions / `RULES.md` (verify best-practice findings)
 
 With those facts, the Precision Pass shifts from "I have a hunch this requirement is missing something" to "the requirements doc has no acceptance criterion for this case — CONFIRM." The former is a guess. The latter is a check.
 
@@ -114,7 +114,7 @@ This told me the model understands the difference between "find everything" and 
 
 Each review round is independent — the model doesn't know what round it is or how many rounds are left. But as the design doc gets revised, the obvious issues get fixed. What's left is the edge cases the model itself isn't sure about. Under a single prompt asking for both recall and precision, the model hesitates on these "report or not?" calls and leans conservative.
 
-Instead of letting the model balance both objectives on its own, I split the balance. The first pass is fixed to "cast wide." The second pass is fixed to "filter hard."
+Instead of letting the model balance both objectives on its own, I split the balance. The Recall Pass is fixed to "cast wide." The Precision Pass is fixed to "filter hard."
 
 I'm not the first to apply this to LLM reviews. G-Research's Data and Analytics team wrote a blog post in May 2026 [5] about building an internal code review tool, where they use a two-pass LLM call — first pass for recall, second pass for precision. Their key takeaway is exactly that: "separate recall and precision; two simple passes outperform one complex prompt." When I read it, a light went on — that's cascade retrieval. I took the same idea from code review to design review, and connected it back to the 15-year-old cascade retrieval literature in IR — which itself rests on a 60-year-old Recall/Precision tradeoff.
 
