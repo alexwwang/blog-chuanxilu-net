@@ -24,7 +24,7 @@ Here are 6 of the most useful format constraints, each with a prompt template yo
 
 Best for: structured information that needs comparison or summarization.
 
-> "Output as a Markdown table with the following columns: Name, Description, Use Case, Notes"
+> "Output as a Markdown table with the following columns: Name, Description, Use Case, Notes."
 
 ### 2. Numbered List
 
