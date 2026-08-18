@@ -38,7 +38,7 @@ Over three weeks you've picked up follow-up questions, context management, role-
 
 **How to think about it:** A prompt library doesn't need to be complicated. The core idea is simple: **write down the prompts you've verified as effective, organize them by category, and make them easy to reuse.**
 
-**How to build one**: pick one of these two approaches:
+**How to build one:** pick one of these two approaches:
 
 - **Option A** (recommended if you already use a note-taking app): Create a categorized notebook in Notion or Obsidian. Each prompt is one note, tagged by category.
 - **Option B** (simplest possible): Create a folder on your computer with Markdown files, one file per category.
@@ -128,7 +128,7 @@ Six months is a rough window; the point is to force a decision. Don't let your c
 
 1. Set up two zones in Obsidian or Notion: "Core" and "Reference"
 2. For every item you archive, note the source (which platform, which prompt generated it)
-3. **Review your core library regularly**: at least once a month, check whether you're actually learning from and using the material. If something has been sitting in your core library untouched for three months, be honest with yourself and demote it to reference material.
+3. **Review your core library regularly:** at least once a month, check whether you're actually learning from and using the material. If something has been sitting in your core library untouched for three months, be honest with yourself and demote it to reference material.
 
 **Practice** (optional): From all your AI conversations this week, pick **no more than 3** items you believe you'll genuinely use in the next six months, and organize them into your core library. Notice I said "no more than 3"; that cap is deliberate. It forces you to think hard about what's truly worth saving.
 
