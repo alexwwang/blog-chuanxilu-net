@@ -14,7 +14,7 @@ cover:
 ---
 
 > 系列：破而后立的 TDD 流程迭代（第二篇）
-> [上一篇：失之东隅，收之桑榆的实验](/posts/tdd-pipeline-v08-failed-experiment-discovery/) · [下一篇：看不见的空白层——Phase 7 诞生](/posts/tdd-pipeline-phase7-invisible-gap/)
+> [上一篇：失之东隅，收之桑榆的实验](/posts/2026/05/tdd-pipeline-v08-failed-experiment-discovery/) · [下一篇：看不见的空白层——Phase 7 诞生](/posts/2026/05/tdd-pipeline-phase7-invisible-gap/)
 
 > **TL;DR:** TDD Pipeline 自己教的是"给原则不给步骤"，但自己却长成了步骤驱动的工具。把阶段一到阶段五的操作步骤删掉，只保留原则、风险提示和反面例子。模型自己推导出了被删掉的步骤，输出质量不降。原因：阶段一到阶段五是创作阶段，需要发散空间，去掉固定轨道反而更好。同样的策略用在阶段六上失败了——下一篇讲为什么。
 
@@ -119,14 +119,14 @@ V0.7 成功了，说明"原则驱动"不只适用于 prompt 设计，也适用�
 
 ---
 
-> 系列下一篇：[看不见的空白层——Phase 7 诞生](/posts/tdd-pipeline-phase7-invisible-gap/)
+> 系列下一篇：[看不见的空白层——Phase 7 诞生](/posts/2026/05/tdd-pipeline-phase7-invisible-gap/)
 
 ---
 
 ## 参考
 
-1. 失之东隅，收之桑榆的实验：[tdd-pipeline-v08-failed-experiment-discovery](/posts/tdd-pipeline-v08-failed-experiment-discovery/)
-2. 4 变量 A/B 实验——正面示例为什么有害：[ab-test-positive-examples-harm](/posts/ab-test-positive-examples-harm/)
-3. 从 Anthropic 的对齐研究到一个 Prompt 设计思路：[anthropic-alignment-to-prompt-design](/posts/anthropic-alignment-to-prompt-design/)
-4. 升级落地——新模板与三个可迁移建议：[why-articulation-upgrade-and-takeaways](/posts/why-articulation-upgrade-and-takeaways/)
-5. AI 辅助 TDD 全流程：从需求到代码的完整防线：[ai-tdd-full-pipeline-from-requirements-to-code](/posts/ai-tdd-full-pipeline-from-requirements-to-code/)
+1. 失之东隅，收之桑榆的实验：[tdd-pipeline-v08-failed-experiment-discovery](/posts/2026/05/tdd-pipeline-v08-failed-experiment-discovery/)
+2. 4 变量 A/B 实验——正面示例为什么有害：[ab-test-positive-examples-harm](/posts/2026/05/ab-test-positive-examples-harm/)
+3. 从 Anthropic 的对齐研究到一个 Prompt 设计思路：[anthropic-alignment-to-prompt-design](/posts/2026/05/anthropic-alignment-to-prompt-design/)
+4. 升级落地——新模板与三个可迁移建议：[why-articulation-upgrade-and-takeaways](/posts/2026/05/why-articulation-upgrade-and-takeaways/)
+5. AI 辅助 TDD 全流程：从需求到代码的完整防线：[ai-tdd-full-pipeline-from-requirements-to-code](/posts/2026/04/ai-tdd-full-pipeline-from-requirements-to-code/)

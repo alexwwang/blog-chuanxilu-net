@@ -14,7 +14,7 @@ cover:
 ---
 
 > Series: Breaking to Build: TDD Process Iterations (Post 2 of 3)
-> Previous: [What a Failed Experiment Got Right](/en/posts/tdd-pipeline-v08-failed-experiment-discovery/) · Next: [The Invisible Blank Layer](/en/posts/tdd-pipeline-phase7-invisible-gap/)
+> Previous: [What a Failed Experiment Got Right](/en/posts/2026/05/tdd-pipeline-v08-failed-experiment-discovery/) · Next: [The Invisible Blank Layer](/en/posts/2026/05/tdd-pipeline-phase7-invisible-gap/)
 
 > **TL;DR:** The TDD Pipeline taught "give principles, not steps" — but it had grown into a step-driven tool itself. I stripped the operational steps from Phases 1 through 5, keeping only principles, risk hints, and counterexamples. The model independently derived the steps I had deleted. Output quality held. The reason: Phases 1 through 5 are creative phases that need room to diverge. Removing the fixed track actually helped. The same strategy failed on Phase 6 — next post explains why.
 
@@ -127,14 +127,14 @@ Then V0.8 failed. But the failure pointed to a problem V0.7 never encountered. N
 
 ---
 
-> Next in the series: [The Invisible Blank Layer](/en/posts/tdd-pipeline-phase7-invisible-gap/)
+> Next in the series: [The Invisible Blank Layer](/en/posts/2026/05/tdd-pipeline-phase7-invisible-gap/)
 
 ---
 
 ## References
 
-1. What a Failed Experiment Got Right: [tdd-pipeline-v08-failed-experiment-discovery](/en/posts/tdd-pipeline-v08-failed-experiment-discovery/)
-2. A 4-Variable A/B Test — Why Positive Examples Harm Prompt Performance: [ab-test-positive-examples-harm](/en/posts/ab-test-positive-examples-harm/)
-3. From Anthropic's Alignment Research to a Prompt Design Insight: [anthropic-alignment-to-prompt-design](/en/posts/anthropic-alignment-to-prompt-design/)
-4. The Upgrade — New Template and Three Transferable Lessons: [why-articulation-upgrade-and-takeaways](/en/posts/why-articulation-upgrade-and-takeaways/)
-5. The Full Pipeline: Five Stages from Requirements to Code: [ai-tdd-full-pipeline-from-requirements-to-code](/en/posts/ai-tdd-full-pipeline-from-requirements-to-code/)
+1. What a Failed Experiment Got Right: [tdd-pipeline-v08-failed-experiment-discovery](/en/posts/2026/05/tdd-pipeline-v08-failed-experiment-discovery/)
+2. A 4-Variable A/B Test — Why Positive Examples Harm Prompt Performance: [ab-test-positive-examples-harm](/en/posts/2026/05/ab-test-positive-examples-harm/)
+3. From Anthropic's Alignment Research to a Prompt Design Insight: [anthropic-alignment-to-prompt-design](/en/posts/2026/05/anthropic-alignment-to-prompt-design/)
+4. The Upgrade — New Template and Three Transferable Lessons: [why-articulation-upgrade-and-takeaways](/en/posts/2026/05/why-articulation-upgrade-and-takeaways/)
+5. The Full Pipeline: Five Stages from Requirements to Code: [ai-tdd-full-pipeline-from-requirements-to-code](/en/posts/2026/04/ai-tdd-full-pipeline-from-requirements-to-code/)
