@@ -65,7 +65,7 @@ Why did 0.03 turn into 4/4 wins? Because the scorer only saw X and Y labels, not
 
 ### Step 1: Define Variants
 
-- **Variant A**: Current version [ralph-review-loop.md](/en/posts/ralph-loop-ai-errors-converge/), 159 lines
+- **Variant A**: Original version [ralph-review-loop.md](/en/posts/ralph-loop-ai-errors-converge/), 159 lines
 - **Variant B**: [Signal Purity](/en/posts/signal-purity-less-is-more/) simplified version, 89 lines (removed derivable content)
 
 ### Step 2: Design Rubric
@@ -97,10 +97,10 @@ Each scenario runs once per variant, 8 evaluator runs total.
 Randomly assign X/Y labels. Independent scorer doesn't know the correspondence:
 
 ```
-S1: X=A (current)  Y=B (simplified)
-S2: X=B (simplified)  Y=A (current)
-S3: X=A (current)  Y=B (simplified)
-S4: X=B (simplified)  Y=A (current)
+S1: X=A (original)  Y=B (simplified)
+S2: X=B (simplified)  Y=A (original)
+S3: X=A (original)  Y=B (simplified)
+S4: X=B (simplified)  Y=A (original)
 ```
 
 ![Blind mapping board: four scenario slots with X/Y labels, behind which crossing colored lines randomly connect to A/B identities; one corner of the frosted overlay is lifted to peek through](blind-mapping-table.png)
@@ -117,7 +117,7 @@ The experiment wasn't smooth. I hit two real problems.
 
 First run S1-A scored 0.625, far below other scenarios. The output file was contaminated with ANSI escape sequences, terminal color codes mixed into the text, making the file nearly unreadable.
 
-Not a protocol flaw, an execution issue. After re-running, the score normalized: 2.500.
+Not a protocol flaw, an execution issue: after stripping the ANSI escape sequences and re-running Scenario 1 for both variants through the same blind pipeline, the score normalized: 2.500.
 
 ### S4's Reversal
 

@@ -65,7 +65,7 @@ scorer 的原始评分出来了：X 均分 2.44，Y 均分 2.41，差 0.03。满
 
 ### 第一步：定义变体
 
-- **Variant A**：当前版 [ralph-review-loop.md](/posts/ralph-loop-ai-errors-converge/)，159 行
+- **Variant A**：原始版 [ralph-review-loop.md](/posts/ralph-loop-ai-errors-converge/)，159 行
 - **Variant B**：[Signal Purity](/posts/signal-purity-less-is-more/) 精简版，89 行（删除了可推导内容）
 
 ### 第二步：设计 rubric
@@ -97,10 +97,10 @@ scorer 的原始评分出来了：X 均分 2.44，Y 均分 2.41，差 0.03。满
 随机分配 X/Y 标签，独立 scorer 不知道对应关系：
 
 ```
-S1: X=A (当前版)  Y=B (精简版)
-S2: X=B (精简版)  Y=A (当前版)
-S3: X=A (当前版)  Y=B (精简版)
-S4: X=B (精简版)  Y=A (当前版)
+S1: X=A (原始版)  Y=B (精简版)
+S2: X=B (精简版)  Y=A (原始版)
+S3: X=A (原始版)  Y=B (精简版)
+S4: X=B (精简版)  Y=A (原始版)
 ```
 
 ![盲映射解码板：四个场景的 X/Y 标签背后，交叉连接线随机分配到 A/B 身份，磨砂遮罩一角被揭开](blind-mapping-table.png)
@@ -117,7 +117,7 @@ S4: X=B (精简版)  Y=A (当前版)
 
 第一轮 S1-A 分数是 0.625，远低于其他场景。原因是输出文件被 ANSI escape sequences 污染了 —— 终端颜色代码混入了文本，文件几乎无法阅读。
 
-这不是协议缺陷，是执行问题。re-run 后分数恢复正常：2.500。
+这不是协议缺陷，是执行问题：剥离 ANSI 转义序列后，对两个变体重新通过同一盲评流水线运行场景 1，分数恢复正常：2.500。
 
 ### S4 的反转
 
