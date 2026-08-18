@@ -35,7 +35,7 @@ cover:
 
 适合：需要程序处理、存储或二次解析的内容。
 
-> "请以 JSON 数组格式输出，每个对象包含 name、description、priority 三个字段"
+> "请以 JSON 数组格式输出，不要用 Markdown 代码块包裹。每个对象包含 name、description、priority 三个字段"
 
 ### 4. 分段结构
 

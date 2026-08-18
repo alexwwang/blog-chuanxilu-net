@@ -35,7 +35,7 @@ Best for: steps, key points, quick scanning.
 
 Best for: content that needs to be processed, stored, or parsed by a program.
 
-> "Output as a JSON array. Each object should have three fields: name, description, priority."
+> "Output as a JSON array with no Markdown code blocks. Each object should have three fields: name, description, priority."
 
 ### 4. Sectioned Structure
 
