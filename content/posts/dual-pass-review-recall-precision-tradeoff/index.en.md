@@ -38,7 +38,7 @@ Measured results from a quant trading project's design review — same design do
 
 The call count doubled, but review rounds dropped 30-40%. Total tokens spent are roughly the same, while the valid find rate climbed from 75% to 92%. Tokens spent per real issue found actually decreased.
 
-More importantly, review behavior stabilized. The first pass always casts wide. The second pass always filters hard. No more of the single-pass pattern — aggressive reporting in early rounds, timid reporting in later rounds, behavior all over the place.
+More importantly, review behavior stabilized. The Recall Pass always casts wide. The Precision Pass always filters hard. No more of the single-pass pattern — aggressive reporting in early rounds, timid reporting in later rounds, behavior all over the place.
 
 Design issues caught early mean less rework downstream. The dual-pass review intercepts problems at the design stage — no need to wait until code is written to discover a design flaw.
 
