@@ -58,7 +58,7 @@ When grep finds nothing, that's more important than when it finds something. It 
 
 **Execution Order Analysis.** When multiple validation stages run in sequence, an early return from one stage prevents later stages from executing. Concrete case: a set of financial data runs through a median reasonableness check. The check detects an anomaly and returns early, marking every stock as invalid. The downstream per-stock check never runs.
 
-Every validation function looks correct on its own. The problem only becomes visible when you examine the entire chain from the execution order dimension. Bug fixes can't solve this. The validation chain needs architectural redesign.
+Every validation function looks correct on its own. The problem only becomes visible when you examine the entire chain from the execution order dimension. Execution order flaws across the full chain cannot be resolved by patching single functions and instead require redesigning the validation pipeline.
 
 ### Three Directions, One Destination
 
@@ -86,7 +86,7 @@ Phase 6 is a forensic pathologist — skilled at producing a complete autopsy re
 | Core method | Drill-down (Five-Layer Deep Inquiry + evidence chain) | Scan (pattern catalog + grep) |
 | Attention direction | One bug, all the way down | The whole project, one pass |
 | Problems found | Root cause of a single bug | Cross-bug shared patterns, uncovered component gaps, execution order defects |
-| Output orientation | Bug fix | Build test infrastructure, harden CI rules, or drive architectural evolution |
+| Output orientation | Single-defect root cause diagnosis and fix proposal | Build test infrastructure, harden CI rules, or drive architectural evolution |
 | When it runs | Pre-release testing stage | After Phase 6 completes |
 
 Both layers are necessary. With only Phase 6, every bug gets drilled to root cause — but nobody looks for shared patterns across bugs. With only Phase 7, pattern matching finds suspected issues — but there's no drill-down chain to confirm causation.
