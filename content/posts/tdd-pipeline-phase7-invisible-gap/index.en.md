@@ -54,7 +54,7 @@ In a small system, you patch it with one more test. In a large system, the numbe
 
 **Pattern Defect Scan.** A defect pattern catalog distilled from 18 real bugs, each paired with a grep command. Design principle: systematic coverage beats intuition.
 
-When grep finds nothing, that's more important than when it finds something. It means this pattern doesn't exist in your project — move on safely. If the same pattern keeps appearing, it's not individual bugs — it's the architecture encouraging that class of defects. The pattern needs to be hardened into a CI rule, or the design needs to change.
+When grep finds nothing, that's more important than when it finds something. It means the specific syntax pattern defined in your catalog is absent from the codebase — you can move on to the next one safely. If the same pattern keeps appearing, it's not individual bugs — it's the architecture encouraging that class of defects. The pattern needs to be hardened into a CI rule, or the design needs to change.
 
 **Execution Order Analysis.** When multiple validation stages run in sequence, an early return from one stage prevents later stages from executing. Concrete case: a set of financial data runs through a median reasonableness check. The check detects an anomaly and returns early, marking every stock as invalid. The downstream per-stock check never runs.
 
