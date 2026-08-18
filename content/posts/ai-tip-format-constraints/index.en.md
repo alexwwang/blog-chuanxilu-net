@@ -53,7 +53,7 @@ Best for: mock interviews, role-playing, teaching scenarios.
 
 Best for: code, config files, or scripts meant to run directly.
 
-> "Put the complete code inside a ```code block```. Include comments explaining key steps. The code should be runnable as-is, with all necessary imports included."
+> "Put the complete code inside a \`\`\`code block\`\`\`. Include comments explaining key steps. The code should be runnable as-is, with all necessary imports included."
 
 ---
 
