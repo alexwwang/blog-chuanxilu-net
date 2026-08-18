@@ -141,4 +141,4 @@ Your Prompt library is built. Tomorrow's graduation assessment is where you put 
 📖 **Series Navigation**
 
 - Previous: [Today's Practice: Organize Your First 5 Prompts](/en/posts/2026/05/ai-practice-build-prompt-library/)
-- Next: [AI Path L0→L1 Upgrade Guide (Part 5): Graduation Assessment & Next Steps](/en/posts/2026/05/ai-path-l0-l1-graduation/)
+- Next: [AI Path L0→L1 Upgrade Guide (Part 5): Graduation Checklist & Next Steps](/en/posts/2026/05/ai-path-l0-l1-graduation/)

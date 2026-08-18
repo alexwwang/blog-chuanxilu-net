@@ -141,4 +141,4 @@ Prompt 库建起来了，明天的毕业考核就是验收你四周积累的时�
 📖 **系列导航**
 
 - 上一篇：[今日实践：整理你的前 5 条 Prompt](/posts/2026/05/ai-practice-build-prompt-library/)
-- 下一篇：AI 之路初阶升级指南（五）：毕业考核与下一步（即将发布）
+- 下一篇：[AI 之路初阶升级指南（五）：毕业考核与下一步](/posts/2026/05/ai-path-l0-l1-graduation/)
