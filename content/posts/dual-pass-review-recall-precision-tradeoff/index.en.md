@@ -27,7 +27,7 @@ Originally one review agent was enough. The problem: it had to both find every i
 
 Measured results from a quant trading project's design review — same design doc, single-pass vs. dual-pass head-to-head. Caveat: this is one task's observation, not large-scale statistics. Trust the direction, don't fixate on the exact numbers.
 
-| Metric | Single Pass | Dual Pass | Change |
+| Metric | Single-Pass | Dual-Pass | Change |
 |--------|-------------|-----------|--------|
 | Raw findings per round | 16 | 25→12 (after filtering) | More found, 12 kept |
 | Critical real issues | 2 | 2 | Same, but higher confidence |
