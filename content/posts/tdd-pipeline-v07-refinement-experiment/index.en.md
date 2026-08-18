@@ -113,7 +113,7 @@ Phases 1 through 5 are **creative phases**. They produce requirements documents,
 
 Step-by-step guidance gave the model a fixed track. The model followed the track without structural errors — but never reasoned beyond it. Removing the track let the model reason freely within the boundaries set by principles. It found paths that fit the current task better.
 
-This is the same logic as "give principles, not examples." Principles tell the model what the goal is and where the boundaries are. Examples tell the model "just do it this way."
+This is the same logic as "give principles, not examples." Principles tell the model what the goal is and where the boundaries are. Step-by-step instructions tell the model "just do it this way."
 
 The former forces the model to think about how to reach the goal. The latter gives it a ready-made path to copy.
 
