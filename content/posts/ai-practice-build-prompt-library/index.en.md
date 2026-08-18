@@ -29,7 +29,7 @@ Group them by scenario: writing, analysis, daily tasks, or whatever works for yo
 >
 > **Effectiveness**: [What worked, what didn't]
 >
-> **Iteration**: [A more stable revised version]
+> **Iteration**: [A refined version designed for more consistent output]
 
 ## What to Observe
 
