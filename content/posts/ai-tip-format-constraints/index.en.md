@@ -60,7 +60,7 @@ Best for: code, config files, or scripts meant to run directly.
 
 **One habit:** Before every prompt, spend 5 seconds deciding what format you want the answer in—and write that format into the prompt. The long-term payoff is enormous.
 
-> One-liner to remember: You decide the format of AI output. If you don't specify one, you're giving the AI permission to improvise.
+> One-liner to remember: You decide the format of AI output—if you don't specify one, the model defaults to its own formatting choices.
 
 ---
 
