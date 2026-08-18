@@ -23,7 +23,7 @@ Example tasks:
 - "Help me set up a personal blog from scratch (pick a platform, choose a theme, write the first post)"
 - "Help me analyze a career decision (take stock of where I am, pros and cons, action plan)"
 
-Don't try to steer the conversation deliberately; let it unfold naturally. When the conversation reaches around turn 10, pause and send this message:
+Let the conversation unfold naturally without forcing strict structure at first, but do pause around turn 10 and run the progress-summary checkpoint. Send this message:
 
 > "Let's pause for a moment. What key points have we settled on so far? What questions are still unresolved?"
 
@@ -31,7 +31,7 @@ Copy and save the AI's summary, then continue past turn 15.
 
 ## What to Observe
 
-1. **Did it drift?** Does the summary at turn 10 match the direction you wanted at turn 5?
+1. **Did it drift?** Does the summary at turn 10 still match your original goal from turn 1, or has the topic drifted off-track?
 2. **Was the summary effective?** After the progress summary, did the AI's subsequent responses become more focused?
 3. **When should you stop?** By turns 15–20, is the quality of the AI's responses improving or declining?
 
