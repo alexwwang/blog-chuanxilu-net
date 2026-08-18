@@ -74,7 +74,7 @@ You are a project manager reporting to a CTO. Write a concise email covering: 1.
 You are a project manager reporting to a CTO. Write a concise email covering: 1. Features completed this week 2. Technical blockers encountered 3. Next week's plan. Professional but not stiff tone, no more than two sentences per section. Subject line: "Project Update - [Project Name] - [Date]". End with "If you need more details, I can set up a brief meeting to discuss."
 ```
 
-**Final rating**: 5/5: Fully meets the need, ready to send.
+**Effect change**: 5/5: Fully meets the need, ready to send.
 
 I've used this Prompt for six months. It went from one sentence to three paragraphs of constraints, each revision driven by a real pain point from actual use.
 
@@ -101,7 +101,7 @@ Output as a numbered list, each recommendation no more than 30 words.
 **RBGO Breakdown**:
 - **Role**: Data analyst
 - **Background**: Excel data with date, product category, and sales amount columns
-- **Goal**: Find growth months, declining categories, and provide strategies
+- **Goal**: Find months with >20% MoM growth, declining categories, and provide strategies
 - **Output**: Numbered list, each item under 30 words
 
 **Effect change**: 4/5: Clear output structure, specific insights, but occasionally misses edge cases. After adjusting column name descriptions for different data formats, rating stabilized at 4.5/5.
