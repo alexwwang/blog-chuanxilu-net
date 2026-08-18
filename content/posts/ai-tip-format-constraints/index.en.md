@@ -7,6 +7,7 @@ description: "Tired of reformatting AI responses every time? Six common format c
 tags: ["AI", "toolchain", "evolution-path", "tip-card"]
 categories: ["ai-path"]
 toc: false
+showPostNavLinks: false
 series: ["AI Path L0→L1 Upgrade Guide"]
 cover:
   image: "cover.png"

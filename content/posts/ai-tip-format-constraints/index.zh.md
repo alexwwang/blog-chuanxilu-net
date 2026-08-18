@@ -7,6 +7,7 @@ description: "每次拿到 AI 的回答都要重新排版？6 种常用格式约
 tags: ["AI", "工具链", "进化路径", "技巧卡"]
 categories: ["ai-path"]
 toc: false
+showPostNavLinks: false
 series: ["AI 之路初阶升级指南"]
 cover:
   image: "cover.png"
