@@ -32,7 +32,7 @@ Measured results from a quant trading project's design review — same design do
 | Raw findings per round | 16 | 25→12 (after filtering) | More found, 12 kept |
 | Critical real issues | 2 | 2 | Same, but higher confidence |
 | Critical false positives | 1 | 0 | Eliminated |
-| Valid find rate | ~75% | ~92% | +17 percentage points |
+| Valid find rate | 75% | 92% | +17 percentage points |
 | AI calls per round | 1 | 2 | Doubled |
 | Expected review rounds | 5-7 | 3-5 | 30~40% fewer |
 
