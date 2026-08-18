@@ -24,13 +24,13 @@ The previous post explored the V0.8 experiment. Refining Phase 6 didn't meet exp
 
 That experiment had a prerequisite. Refining Phases 1 through 5 had already succeeded. V0.8 was an extension attempt built on top of V0.7's success.
 
-To understand why V0.8 failed — and why that failure was valuable — you first need to see why V0.7 succeeded.
+To understand why V0.8 failed, and why that failure was valuable, you first need to see why V0.7 succeeded.
 
 ## Where I Got Stuck
 
 The TDD Pipeline ran for a while. The skill files for Phases 1 through 5 kept getting longer. Each file contained operational steps, template formats, checklists, and counterexamples. Thousands of lines total.
 
-Every single rule was useful — distilled from real bugs. But "every rule is useful" and "the whole set is optimal" are two different things.
+Every single rule was useful, distilled from real bugs. But "every rule is useful" and "the whole set is optimal" are two different things.
 
 This echoed a finding that had already surfaced repeatedly in this series: **the more rigid the step-by-step instructions, the more the model tends to take shortcuts.** In the Why Articulation A/B experiments [2], positive examples made the model's analysis converge. Removing those examples improved independent reasoning quality. In Anthropic's alignment research [3], teaching high-level principles outperformed teaching specific behaviors by roughly seven times in generalizing to unseen scenarios.
 
@@ -76,7 +76,7 @@ Surface all ambiguity before a single line of code is considered.
 
 The refined version kept only the principles, risk hints, and counterexamples. The entire Detailed Process section was gone.
 
-Comparison method: same tasks, run with both the original skill and the refined skill. An independent evaluation agent did blind A/B comparison. Six dimensions — deliverable completeness, review quality, boundary coverage, counter logic, triggers, and phase transitions.
+Comparison method: same tasks, run with both the original skill and the refined skill. An independent evaluation agent did blind A/B comparison. Six dimensions: deliverable completeness, review quality, boundary coverage, counter logic, triggers, and phase transitions.
 
 ## Results: The Refined Version Held Its Own
 
@@ -91,9 +91,9 @@ Four rounds of independent blind testing across four different task types:
 
 Round C's finding deserves attention. The refined version had removed the "trigger review when done" and "proceed to next phase" instructions at the end of each phase file. Running independently, the model didn't know whether to trigger a review or which phase to enter next.
 
-This wasn't an output quality problem. It was a flow continuity problem. Some removed steps weren't things the model could derive — the review trigger and next-phase pointer are workflow protocol, not domain logic. They were things it needed to be told.
+This wasn't an output quality problem. It was a flow continuity problem. Some removed steps weren't things the model could derive: the review trigger and next-phase pointer are workflow protocol, not domain logic. They were things it needed to be told.
 
-The fix wasn't to restore all the steps. I added two lines to the end of each refined file — the review trigger instruction and the next phase's filename. Round D verified the fix with Policy Engine. All dimensions passed.
+The fix wasn't to restore all the steps. I added two lines to the end of each refined file: the review trigger instruction and the next phase's filename. Round D verified the fix with Policy Engine. All dimensions passed.
 
 A more interesting detail emerged during Round A. Running with the skill file that had its operational steps removed, the model derived those steps on its own. The original version said "Step 1: use deep-interview to gather requirements. Step 2: classify user stories." The refined version only said "understand what to build and why, eliminate ambiguity."
 
@@ -103,7 +103,7 @@ This maps directly onto a finding from the Why Articulation experiments: removin
 
 ![Fixed track vs free reasoning: two paths through the same nodes](illustration-1.png)
 
-One side benefit. Total lines dropped from 1,617 to 1,360 after refinement — a 16% reduction. Over time, that means less context injected per run — and lower cost, provided the model's autonomous step derivation doesn't significantly lengthen its output.
+One side benefit. Total lines dropped from 1,617 to 1,360 after refinement, a 16% reduction. Over time, that means less context injected per run, and lower cost, provided the model's autonomous step derivation doesn't significantly lengthen its output.
 
 ## Why It Worked
 
@@ -111,7 +111,7 @@ Looking back, the success of refining Phases 1 through 5 connects directly to th
 
 Phases 1 through 5 are **creative phases**. They produce requirements documents, design proposals, test plans, test code, and business code. Creative work needs room to diverge.
 
-Step-by-step guidance gave the model a fixed track. The model followed the track without structural errors — but never reasoned beyond it. Removing the track let the model reason freely within the boundaries set by principles. It found paths that fit the current task better.
+Step-by-step guidance gave the model a fixed track. The model followed the track without structural errors, but never reasoned beyond it. Removing the track let the model reason freely within the boundaries set by principles. It found paths that fit the current task better.
 
 This is the same logic as "give principles, not examples." Principles tell the model what the goal is and where the boundaries are. Step-by-step instructions tell the model "just do it this way."
 
@@ -121,7 +121,7 @@ The former forces the model to think about how to reach the goal. The latter giv
 
 Using your own methodology to improve your own tool is the strongest validation of that methodology.
 
-V0.7 succeeded. That showed "principle-driven" doesn't just apply to prompt design — it applies to skill architecture as a whole. This success motivated V0.8: apply the same strategy to Phase 6.
+V0.7 succeeded. That showed "principle-driven" doesn't just apply to prompt design; it applies to skill architecture as a whole. This success motivated V0.8: apply the same strategy to Phase 6.
 
 Then V0.8 failed. But the failure pointed to a problem V0.7 never encountered. Next post covers that problem.
 
