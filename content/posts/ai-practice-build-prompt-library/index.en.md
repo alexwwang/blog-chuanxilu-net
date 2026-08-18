@@ -51,5 +51,5 @@ This connects to Part 4's prompt library concept. Going from 0 to 5 is the harde
 
 📖 **Series Navigation**
 
-- Previous: [AI Path L0→L1 Upgrade Guide (Part 4): Building a Personal System](/en/posts/2026/05/ai-path-l0-l1-week4/)
+- Previous: [AI Path L0→L1 Upgrade Guide (Part 4): Building Your Personal System](/en/posts/2026/05/ai-path-l0-l1-week4/)
 - Next: [What My Prompt Library Looks Like: A Real Template](/en/posts/2026/05/ai-prompt-library-template/)
