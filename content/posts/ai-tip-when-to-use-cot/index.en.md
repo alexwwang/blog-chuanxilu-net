@@ -58,4 +58,4 @@ Simple factual lookups ("how to write a list comprehension in Python"), format c
 **Series Navigation:**
 
 - Previous: [5 Real-World RBGO Rewrites](/en/posts/2026/05/ai-5-rbgo-examples/)
-- Next: [Format Constraints Quick Reference: 6 Common Output Formats](/en/posts/2026/05/ai-tip-format-constraints/)
+- Next: [Format Constraints Cheat Sheet: 6 Prompt Templates for Ready-to-Use AI Output](/en/posts/2026/05/ai-tip-format-constraints/)

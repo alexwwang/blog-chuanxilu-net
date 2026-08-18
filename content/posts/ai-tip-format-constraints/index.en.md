@@ -39,7 +39,7 @@ Best for: content that needs to be processed, stored, or parsed by a program.
 
 ### 4. Sectioned Structure
 
-Best for: reports or analysis documents that need a fixed paragraph logic.
+Best for: reports or analysis documents that need a fixed structure.
 
 > "Use the following structure: conclusion first (under 100 words), then 3 supporting arguments (around 200 words each), ending with action items (3 items, numbered list)."
 
@@ -65,5 +65,5 @@ Best for: code, config files, or scripts meant to run directly.
 
 **Series Navigation:**
 
-- Previous: [When Should You Ask AI to "Think Step by Step"? Three Signals](/en/posts/2026/05/ai-tip-when-to-use-cot/)
-- Next: [AI Path L0→L1 Upgrade Guide (Part 3): Turning AI into a Collaboration Partner](/en/posts/2026/05/ai-path-l0-l1-week3/)
+- Previous: [When Should You Ask AI to 'Think Step by Step'? Three Signals](/en/posts/2026/05/ai-tip-when-to-use-cot/)
+- Next: [AI Path L0→L1 Upgrade Guide (3): Turning AI Into Your Collaboration Partner](/en/posts/2026/05/ai-path-l0-l1-week3/)

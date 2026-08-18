@@ -58,4 +58,4 @@ cover:
 **系列导航:**
 
 - 上一篇：[5 个真实场景的 RBGO 改写](/posts/2026/05/ai-5-rbgo-examples/)
-- 下一篇：[格式约束速查：6 种常用输出格式](/posts/2026/05/ai-tip-format-constraints/)
+- 下一篇：[格式约束速查：6 种让 AI 输出直接可用的 Prompt 模板](/posts/2026/05/ai-tip-format-constraints/)
