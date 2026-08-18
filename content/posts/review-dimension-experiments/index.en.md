@@ -28,7 +28,7 @@ Two controlled experiments. Same approach: collect previously confirmed issues t
 
 ### Experiment 1: Code review dimension enhancement
 
-Code review originally had 8 dimensions. The controlled experiment found only 1 out of 6 known issues.
+Code review originally had 8 dimensions. The controlled experiment found only 1 out of 6 known issues before the prompt guidance was refined.
 
 Added 3 dimensions (security depth, test gap analysis, resource safety), bringing the total to 11.
 
@@ -36,7 +36,7 @@ Result: **6/6, all found** (after refining the specific prompt guidance for the 
 
 ### Experiment 2: Design review dimension enhancement
 
-Design review originally had 11 dimensions. Only 1 out of 6 known issues was found.
+Design review originally had 11 dimensions. Only 1 out of 6 known issues was found before the prompt guidance was refined.
 
 Introduced Axiomatic Design, adding 3 dimensions (independence axiom, information axiom, requirement purity), bringing the total to 14.
 
@@ -101,7 +101,7 @@ Pure correctness review does not check this: "is the function correct?" and "is 
 
 ### Two versions of the Information Axiom
 
-The Information Axiom says: if multiple solutions all satisfy independence, choose the simplest one. I=-log₂(p), where p is the probability of success. Higher success probability = simpler solution.
+The Information Axiom says: if multiple solutions all satisfy independence, choose the simplest one. I=-log₂(p), where p is the probability of satisfying the functional requirement. Higher success probability = simpler solution.
 
 I made two versions: the concise version is just one line: "choose the simplest solution." The formula version requires the model to do the full I=-log₂(p) calculation. Which is better? I will leave that as a cliffhanger for now; more on this later.
 
