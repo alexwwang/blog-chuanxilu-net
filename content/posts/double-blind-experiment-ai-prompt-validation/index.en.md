@@ -15,6 +15,9 @@ cover:
 
 > **TL;DR:** You changed a skill. How do you know it's actually better, not just confirmation bias? I ran a double-blind experiment: two versions, four scenarios, independent blind scoring. The scorer saw X=2.44, Y=2.41 and said "can't tell them apart." After unblinding: simplified version won 4/0.
 
+> Series: AI Agent Experiment Methodology (Part 1)
+> [Next: The Experiment Design Was Fine. The LLM Still Failed.](/en/posts/2026/05/execution-context-design/)
+
 ---
 
 ## The 0.03 Gap
@@ -65,8 +68,8 @@ Why did 0.03 turn into 4/4 wins? Because the scorer only saw X and Y labels, not
 
 ### Step 1: Define Variants
 
-- **Variant A**: Original version [ralph-review-loop.md](/en/posts/ralph-loop-ai-errors-converge/), 159 lines
-- **Variant B**: [Signal Purity](/en/posts/signal-purity-less-is-more/) simplified version, 89 lines (removed derivable content)
+- **Variant A**: Original version [ralph-review-loop.md](/en/posts/2026/04/ralph-loop-ai-errors-converge/), 159 lines
+- **Variant B**: [Signal Purity](/en/posts/2026/05/signal-purity-less-is-more/) simplified version, 89 lines (removed derivable content)
 
 ### Step 2: Design Rubric
 
@@ -127,9 +130,9 @@ This proves "simplification" isn't a cure-all. Signal Purity removed derivable c
 
 ## B's Real Advantage
 
-Comparing 8 dimensions, B's core strength is in **[Dual-Pass Adherence](/en/posts/dual-pass-review-recall-precision-tradeoff/)**:
+Comparing 8 dimensions, B's core strength is in **[Dual-Pass Adherence](/en/posts/2026/05/dual-pass-review-recall-precision-tradeoff/)**:
 
-- B explicitly shows the [two-stage flow (Recall→facts→Precision)](/en/posts/dual-pass-review-recall-precision-tradeoff/)
+- B explicitly shows the [two-stage flow (Recall→facts→Precision)](/en/posts/2026/05/dual-pass-review-recall-precision-tradeoff/)
 - A often skips the fact collection step, going straight to Precision phase
 
 The data makes this clear:

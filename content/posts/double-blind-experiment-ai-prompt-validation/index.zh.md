@@ -15,6 +15,9 @@ cover:
 
 > **TL;DR:** 改了 skill，怎么知道是真的变好了还是自我感觉良好？我跑了一个双盲实验：两个版本、四个场景、独立评审盲打分。评审看到 X=2.44、Y=2.41，说分不出来。揭盲后精简版 4/0 全胜。
 
+> 系列：AI Agent 实验方法论（第一篇）
+> [下一篇：实验设计没毛病，LLM 为什么还是翻车了](/posts/2026/05/execution-context-design/)
+
 ---
 
 ## 0.03 差距
@@ -65,8 +68,8 @@ scorer 的原始评分出来了：X 均分 2.44，Y 均分 2.41，差 0.03。满
 
 ### 第一步：定义变体
 
-- **Variant A**：原始版 [ralph-review-loop.md](/posts/ralph-loop-ai-errors-converge/)，159 行
-- **Variant B**：[Signal Purity](/posts/signal-purity-less-is-more/) 精简版，89 行（删除了可推导内容）
+- **Variant A**：原始版 [ralph-review-loop.md](/posts/2026/04/ralph-loop-ai-errors-converge/)，159 行
+- **Variant B**：[Signal Purity](/posts/2026/05/signal-purity-less-is-more/) 精简版，89 行（删除了可推导内容）
 
 ### 第二步：设计 rubric
 
@@ -127,9 +130,9 @@ S4（Node.js cache）里，Variant A 在 Defect Discovery 和 Suggestion Quality
 
 ## Variant B 的真实优势
 
-对比 8 个维度，B 的核心优势在 **[Dual-Pass Adherence](/posts/dual-pass-review-recall-precision-tradeoff/)**：
+对比 8 个维度，B 的核心优势在 **[Dual-Pass Adherence](/posts/2026/05/dual-pass-review-recall-precision-tradeoff/)**：
 
-- B 明确展示了[两阶段流程（Recall→facts→Precision）](/posts/dual-pass-review-recall-precision-tradeoff/)
+- B 明确展示了[两阶段流程（Recall→facts→Precision）](/posts/2026/05/dual-pass-review-recall-precision-tradeoff/)
 - A 经常跳过事实收集步骤，直接进入 Precision 阶段
 
 这个差异在数据里很明显：
