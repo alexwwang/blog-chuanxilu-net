@@ -62,7 +62,7 @@ Every validation function looks correct on its own. The problem only becomes vis
 
 ### Three Directions, One Destination
 
-In a small system, Phase 7's findings amount to catching a few more bugs. As the system grows, those same three tasks produce something different. Not bug fixes.
+In a small system, Phase 7's findings amount to catching a few more bugs. As the system grows, those same three tasks produce something different — not bug fixes.
 
 Test infrastructure needs building. Patterns need to become CI rules. Architecture needs redesign.
 
@@ -89,7 +89,7 @@ Phase 6 is a forensic pathologist — skilled at producing a complete autopsy re
 | Output orientation | Single-defect root cause diagnosis and fix proposal | Build test infrastructure, harden CI rules, or drive architectural evolution |
 | When it runs | Pre-release testing stage | After Phase 6 completes |
 
-Both layers are necessary. With only Phase 6, every bug gets drilled to root cause — but nobody looks for shared patterns across bugs. With only Phase 7, pattern matching finds suspected issues — but there's no drill-down chain to confirm causation.
+Both layers are necessary. With only Phase 6, every bug gets drilled to root cause — but nobody looks for shared patterns across bugs. With only Phase 7, pattern matching finds suspected issues — but there's no drill-down chain to confirm causation, and no mechanism to feed those suspects back to Phase 6 for validation.
 
 ## Closing
 
