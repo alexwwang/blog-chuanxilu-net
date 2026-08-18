@@ -15,7 +15,7 @@ cover:
 
 > 📖 This is Part 3 of 5 in the "AI Path L0→L1 Upgrade Guide" series.
 >
-> [Part 1: Understanding Your Tools](/en/posts/2026/05/ai-path-l0-l1-week1/) · [Part 2: From Vague Questions to Precise Instructions](/en/posts/2026/05/ai-path-l0-l1-week2/) · Part 3: Turning AI Into Your Collaboration Partner · Part 4: Building Your Personal System (coming soon) · Part 5: Graduation & Next Steps (coming soon)
+> [Part 1: Understanding Your Tools](/en/posts/2026/05/ai-path-l0-l1-week1/) · [Part 2: From Vague Questions to Precise Instructions](/en/posts/2026/05/ai-path-l0-l1-week2/) · Part 3: Turning AI Into Your Collaboration Partner · [Part 4: Building Your Personal System](/en/posts/2026/05/ai-path-l0-l1-week4/) · [Part 5: Graduation & Next Steps](/en/posts/2026/05/ai-path-l0-l1-graduation/)
 
 > **TL;DR:** Three core skills — follow-up iteration (the first answer is almost never the best), context management (periodic summaries, start fresh after ~20 turns, split complex tasks), and role-playing (assigning a role changes output depth). This week's practice focus: deliberately run a 15+ turn long conversation and proactively do a progress summary.
 
@@ -123,4 +123,4 @@ Combined, these three techniques turn AI from a "Q&A machine" into a "collaborat
 
 ---
 
-*That wraps up Week 3. Next week is the final week — building your prompt library, choosing the right tools, managing knowledge, and establishing your personal AI usage system. (Part 4 coming soon)*
+*That wraps up Week 3. Next week is the final week — building your prompt library, choosing the right tools, managing knowledge, and establishing your personal AI usage system. ([Part 4: Building Your Personal System](/en/posts/2026/05/ai-path-l0-l1-week4/))*
