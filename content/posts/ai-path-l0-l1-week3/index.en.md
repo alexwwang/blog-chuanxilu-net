@@ -19,7 +19,7 @@ cover:
 
 > **TL;DR:** Three core skills — follow-up iteration (the first answer is almost never the best), context management (periodic summaries, start fresh after ~20 turns, split complex tasks), and role-playing (assigning a role changes output depth). This week's practice focus: deliberately run a 15+ turn long conversation and proactively do a progress summary.
 
-In the first two weeks we built a solid cognitive foundation and sharpened our prompt-writing fundamentals. This week we move into a more important dimension: **conversation management** — how to use multi-turn interaction to turn AI from a "one-shot Q&A machine" into a "sustained collaboration partner."
+The first two weeks built a solid cognitive foundation and sharpened prompt-writing fundamentals. This week covers a more important dimension: **conversation management** — how to use multi-turn interaction to turn AI from a "one-shot Q&A machine" into a "sustained collaboration partner."
 
 **📋 Week 2 Recap:**
 
@@ -97,13 +97,13 @@ This gives AI a clean starting point in the new conversation — no interference
 
 ### Day 19–21: Role-Playing and Expert Simulation
 
-Remember the RBGO framework from Week 2? The **R (Role)** in that framework is actually the simplest form of role assignment. Now we're going to pull out the "role" dimension on its own and explore what else it can do.
+Remember the RBGO framework from Week 2? The **R (Role)** in that framework is actually the simplest form of role assignment. This post pulls out the "role" dimension on its own and explores what else it can do.
 
 **Why it matters:** Assigning AI a role is one of the most effective ways to change the style and quality of its output. Ask the same question to a "general-purpose assistant" versus a "senior product manager," and you may get completely different depth and professionalism.
 
 **How to think about it:** The essence of role assignment is providing AI with a **frame of reference for its output.** When you tell it "you are a senior product manager," it activates the knowledge patterns and communication styles associated with product managers in its training data — more data-driven, more user-experience-focused, more inclined to use PRD language.
 
-**Basic usage:** You already practiced basic role assignment in Week 2 (the R in RBGO) — you know that adding "You are a senior product manager" to the start of a prompt changes AI's output style. This time we'll go deeper.
+**Basic usage:** You already practiced basic role assignment in Week 2 (the R in RBGO) — you know that adding "You are a senior product manager" to the start of a prompt changes AI's output style. This post goes deeper.
 
 **Advanced technique: Make two roles "debate."** You can have AI play both sides of an argument on a controversial topic. "First, as the pro side (supporting remote work), give 3 arguments. Then switch roles — as the con side (opposing remote work), rebut each point one by one. Finally, as a neutral consultant, give your balanced recommendation." This kind of "multi-role dialogue" helps you understand complex issues from multiple angles.
 
