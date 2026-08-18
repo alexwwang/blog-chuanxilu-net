@@ -14,7 +14,8 @@ cover:
 ---
 
 > Series: Classic Theory Meets Agent Practice (Part 2)
-> [Previous: Dual-Pass Review: Why Recall and Precision Cannot Both Win](/en/posts/dual-pass-review-recall-precision-tradeoff/)
+> [Previous: Dual-Pass Review: Why Recall and Precision Cannot Both Win](/en/posts/2026/05/dual-pass-review-recall-precision-tradeoff/)
+> [Next: Dimension Experiments: Can a 36-Year-Old Book Fix Your Review Coverage?](/en/posts/2026/05/review-dimension-experiments/)
 
 > **TL;DR:** A review prompt went from 317 lines to 135 lines (-58%), and review quality improved by 29%. What I removed was not useful procedure, but redundant content the model could infer on its own. What stayed were strategy genes: irreplaceable constraints, negative examples, and tone locks.
 

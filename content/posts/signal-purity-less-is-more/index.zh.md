@@ -14,7 +14,8 @@ cover:
 ---
 
 > 系列：用经典理论指导 Agent 实践（第二篇）
-> [上一篇：双轮审查：召回和精确为什么不能兼得](/posts/dual-pass-review-recall-precision-tradeoff/)
+> [上一篇：双轮审查：召回和精确为什么不能兼得](/posts/2026/05/dual-pass-review-recall-precision-tradeoff/)
+> [下一篇：维度实验：30多年前的奇书能搞定审查维度？](/posts/2026/05/review-dimension-experiments/)
 
 > **TL;DR:** 审查 prompt 从 317 行砍到 135 行（-58%），审查质量反升 29%。删掉的不是流程步骤，是模型自己能推导出来的冗余内容。留下的才是策略基因——不可替代的约束、反面例子和语气锁。
 
