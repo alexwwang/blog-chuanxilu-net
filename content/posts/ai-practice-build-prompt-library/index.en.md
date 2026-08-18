@@ -15,7 +15,7 @@ cover:
 
 ## Today's Practice
 
-From your recent AI conversations (coding, writing, analysis), pick 5 prompts that actually worked well. Record them using the template from Part 4: Original Prompt + Effectiveness + Iteration.
+From your recent AI conversations (coding, writing, analysis), pick 5 prompts that actually worked well. Record them using the template from [Part 4](/en/posts/2026/05/ai-path-l0-l1-week4/): Original Prompt + Effectiveness + Iteration.
 
 Where you record them doesn't matter. A notes app, Notion, or a plain text file all work. Don't overthink the tool.
 
@@ -41,7 +41,7 @@ Group them by scenario: writing, analysis, daily tasks, or whatever works for yo
 
 ## Why This Matters
 
-This connects to Part 4's prompt library concept. Going from 0 to 5 is the hardest step. An empty library feels pointless, but with 5 entries, the structure starts to emerge. 5 curated prompts beat 50 unorganized ones.
+This connects to [Part 4's prompt library concept](/en/posts/2026/05/ai-path-l0-l1-week4/). Going from 0 to 5 is the hardest step. An empty library feels pointless, but with 5 entries, the structure starts to emerge. 5 curated prompts beat 50 unorganized ones.
 
 ## Today's Takeaway
 
@@ -51,5 +51,5 @@ This connects to Part 4's prompt library concept. Going from 0 to 5 is the harde
 
 📖 **Series Navigation**
 
-- Previous: [AI Path L0→L1 Upgrade Guide (Part 4): Building Your Personal System](/en/posts/2026/05/ai-path-l0-l1-week4/)
+- Previous: [AI Path L0→L1 Upgrade Guide (4): Building Your Personal System](/en/posts/2026/05/ai-path-l0-l1-week4/)
 - Next: [What My Prompt Library Looks Like: A Real Template](/en/posts/2026/05/ai-prompt-library-template/)
