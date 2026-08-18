@@ -20,7 +20,7 @@ cover:
 
 ## Why I Went Back to V0.7
 
-The previous post covered the V0.8 experiment. Refining Phase 6 didn't meet expectations, but it unexpectedly revealed that the refined version had better project-level awareness [1].
+The previous post explored the V0.8 experiment. Refining Phase 6 didn't meet expectations, but it unexpectedly revealed that the refined version had better project-level awareness [1].
 
 That experiment had a prerequisite. Refining Phases 1 through 5 had already succeeded. V0.8 was an extension attempt built on top of V0.7's success.
 
@@ -28,11 +28,11 @@ To understand why V0.8 failed — and why that failure was valuable — you firs
 
 ## Where I Got Stuck
 
-The TDD Pipeline ran for a while. The skill files for Phases 1 through 5 kept getting longer. Each file packed in operational steps, template formats, checklists, and counterexamples. Thousands of lines total.
+The TDD Pipeline ran for a while. The skill files for Phases 1 through 5 kept getting longer. Each file contained operational steps, template formats, checklists, and counterexamples. Thousands of lines total.
 
 Every single rule was useful — distilled from real bugs. But "every rule is useful" and "the whole set is optimal" are two different things.
 
-This echoed a finding that had already shown up repeatedly in this series: **the more rigid the step-by-step instructions, the more the model tends to take shortcuts.** In the Why Articulation A/B experiments [2], positive examples made the model's analysis converge. Removing those examples improved independent reasoning quality. In Anthropic's alignment research [3], teaching high-level principles outperformed teaching specific behaviors by roughly seven times in generalizing to unseen scenarios.
+This echoed a finding that had already surfaced repeatedly in this series: **the more rigid the step-by-step instructions, the more the model tends to take shortcuts.** In the Why Articulation A/B experiments [2], positive examples made the model's analysis converge. Removing those examples improved independent reasoning quality. In Anthropic's alignment research [3], teaching high-level principles outperformed teaching specific behaviors by roughly seven times in generalizing to unseen scenarios.
 
 That raised a question. Were the step-by-step instructions, template filling guides, and checklist prompts in the skill files just another form of positive examples? Were they all giving the model an exit ramp from thinking?
 
@@ -57,7 +57,7 @@ The refinement strategy was straightforward. Keep four things, cut three things.
 - Template filling guides ("fill your content into the template below")
 - Redundant rules (the same rule stated in multiple places)
 
-A concrete before-and-after. The original version of Phase 1 opened like this:
+Here is a concrete before-and-after. The original version of Phase 1 opened like this:
 
 ```markdown
 ## Objective
@@ -95,7 +95,7 @@ This wasn't an output quality problem. It was a flow continuity problem. Some re
 
 The fix wasn't to restore all the steps. I added two lines to the end of each refined file — the review trigger instruction and the next phase's filename. Round D verified the fix with Policy Engine. All dimensions passed.
 
-A more interesting detail came from Round A. Running with the skill file that had its operational steps removed, the model derived those steps on its own. The original version said "Step 1: use deep-interview to gather requirements. Step 2: classify user stories." The refined version only said "understand what to build and why, eliminate ambiguity."
+A more interesting detail emerged during Round A. Running with the skill file that had its operational steps removed, the model derived those steps on its own. The original version said "Step 1: use deep-interview to gather requirements. Step 2: classify user stories." The refined version only said "understand what to build and why, eliminate ambiguity."
 
 The model's analysis spontaneously produced a reasoning chain: gather requirements → classify user story priorities → write acceptance criteria → verify testability. Same steps as the original version. But the model organized them itself.
 
