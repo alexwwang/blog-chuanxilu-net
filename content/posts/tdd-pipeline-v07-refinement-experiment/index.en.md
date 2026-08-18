@@ -32,7 +32,7 @@ The TDD Pipeline ran for a while. The skill files for Phases 1 through 5 kept ge
 
 Every single rule was useful — distilled from real bugs. But "every rule is useful" and "the whole set is optimal" are two different things.
 
-This echoed a finding that had already shown up repeatedly in this series: **the more specific the constraint, the more the model tends to take shortcuts.** In the Why Articulation A/B experiments [2], positive examples made the model's analysis converge. Removing those examples improved independent reasoning quality. In Anthropic's alignment research [3], teaching principles outperformed teaching behaviors by roughly seven times.
+This echoed a finding that had already shown up repeatedly in this series: **the more rigid the step-by-step instructions, the more the model tends to take shortcuts.** In the Why Articulation A/B experiments [2], positive examples made the model's analysis converge. Removing those examples improved independent reasoning quality. In Anthropic's alignment research [3], teaching principles outperformed teaching behaviors by roughly seven times.
 
 That raised a question. Were the step-by-step instructions, template filling guides, and checklist prompts in the skill files just another form of positive examples? Were they all giving the model an exit ramp from thinking?
 
@@ -91,7 +91,7 @@ Four rounds of independent blind testing across four different task types:
 
 Round C's finding deserves attention. The refined version had removed the "trigger review when done" and "proceed to next phase" instructions at the end of each phase file. Running independently, the model didn't know whether to trigger a review or which phase to enter next.
 
-This wasn't an output quality problem. It was a flow continuity problem. Some removed steps weren't things the model could derive. They were things it needed to be told.
+This wasn't an output quality problem. It was a flow continuity problem. Some removed steps weren't things the model could derive — the review trigger and next-phase pointer are workflow protocol, not domain logic. They were things it needed to be told.
 
 The fix wasn't to restore all the steps. I added two lines to the end of each refined file — the review trigger instruction and the next phase's filename. Round D verified the fix with Policy Engine. All dimensions passed.
 
@@ -103,7 +103,7 @@ This maps directly onto a finding from the Why Articulation experiments: removin
 
 ![Fixed track vs free reasoning: two paths through the same nodes](illustration-1.png)
 
-One side benefit. Total lines dropped from 1,617 to 1,360 after refinement — a 16% reduction. Over time, that means less context injected per run and lower cost.
+One side benefit. Total lines dropped from 1,617 to 1,360 after refinement — a 16% reduction. Over time, that means less context injected per run — and lower cost, provided the model's autonomous step derivation doesn't significantly lengthen its output.
 
 ## Why It Worked
 
@@ -111,7 +111,7 @@ Looking back, the success of refining Phases 1 through 5 connects directly to th
 
 Phases 1 through 5 are **creative phases**. They produce requirements documents, design proposals, test plans, test code, and business code. Creative work needs room to diverge.
 
-Step-by-step guidance gave the model a fixed track. The model followed the track without errors — but never went beyond it. Removing the track let the model reason freely within the boundaries set by principles. It found paths that fit the current task better.
+Step-by-step guidance gave the model a fixed track. The model followed the track without structural errors — but never reasoned beyond it. Removing the track let the model reason freely within the boundaries set by principles. It found paths that fit the current task better.
 
 This is the same logic as "give principles, not examples." Principles tell the model what the goal is and where the boundaries are. Examples tell the model "just do it this way."
 
