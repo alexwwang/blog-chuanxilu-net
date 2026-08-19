@@ -3,7 +3,7 @@ title: "Green Tests, Broken System: Six Bug Patterns AI Left at the Integration 
 slug: "six-bug-patterns-and-integration-gaps"
 date: 2026-05-07T10:00:00+08:00
 draft: false
-description: "Before releasing Aristotle v1.1, I found 18 bugs. Unit tests caught four. The rest lived at the integration layer. After root cause analysis, six patterns emerged — not because the problems got harder, but because AI bypassed the defenses I'd built through years of experience."
+description: "Before releasing Aristotle v1.1, I found 18 bugs. Unit tests caught four. The rest lived at the integration layer. After root cause analysis, six patterns emerged: not because the problems got harder, but because AI bypassed the defenses I'd built through years of experience."
 tags: ["AI", "bug patterns", "integration testing", "Aristotle", "AI-assisted development", "TDD"]
 categories: ["AI Practice"]
 series: ["Teaching AI to Reflect", "Taming AI Coding Agents with TDD"]
@@ -20,21 +20,21 @@ cover:
 
 I kept hitting the same scenario during the Aristotle release in the early stage. All automated tests green. Lint clean. Type checks passing. I'd breathe easy and prepare to ship.
 
-Then I'd run the full workflow manually. The system didn't work. Not some edge case — the most basic path was broken. Tests covered each function's logic. Put them together, nothing fit.
+Then I'd run the full workflow manually. The system didn't work. Not some edge case; the most basic path was broken. Tests covered each function's logic. Put them together, nothing fit.
 
-Aristotle is a multi-process tool orchestration platform built on the MCP protocol. Registration mechanism, inter-process communication, lifecycle management. Not a toy project, not a massive system — a medium-complexity tool.
+Aristotle is a multi-process tool orchestration platform built on the MCP protocol. Registration mechanism, inter-process communication, lifecycle management. Not a toy project, not a massive system; a medium-complexity tool.
 
 I found 18 bugs before release. Unit tests caught four. Twenty-two percent.
 
-Unit tests covered the logical correctness of each function. That's fine. But 14 of the 18 bugs weren't at the function level. They lived at the seams — component wiring, config propagation, process startup intersections. Every component looked correct in isolation. Bolt them together, and things exploded.
+Unit tests covered the logical correctness of each function. That's fine. But 14 of the 18 bugs weren't at the function level. They lived at the seams: component wiring, config propagation, process startup intersections. Every component looked correct in isolation. Bolt them together, and things exploded.
 
 ## 2. I Wouldn't Have Made These Mistakes Before
 
 Several of these 18 bugs, I wouldn't have made writing code by hand. Manual coding has review built in. When I write registration logic, I think as I go: this service needs an entry in the main file, that tool goes in the route table. Writing and checking wiring happen in the same breath.
 
-With AI, I can generate a complete registration system in three minutes. The code looks polished — good comments, clean naming, better formatted than what I'd write myself. I'd glance at it and move on. Not because I'm lazy. Because my review speed can't keep up with its generation speed. That's layer one — the velocity gap.
+With AI, I can generate a complete registration system in three minutes. The code looks polished: good comments, clean naming, better formatted than what I'd write myself. I'd glance at it and move on. Not because I'm lazy. Because my review speed can't keep up with its generation speed. That's layer one: the velocity gap.
 
-Then comes trust. If an intern wrote the same logic, I'd check line by line. But AI-generated code looks so professional. Type annotations, error handling, reasonable abstractions. That polish lowers your guard. I'd see "logging is there" and feel satisfied — without checking whether the log level was actually correct.
+Then comes trust. If an intern wrote the same logic, I'd check line by line. But AI-generated code looks so professional. Type annotations, error handling, reasonable abstractions. That polish lowers your guard. I'd see "logging is there" and feel satisfied, without checking whether the log level was actually correct.
 
 The third layer is the most subtle. In traditional development, integration is an explicit act. You wire a new module into the existing system, and that act itself forces you to check connections, paths, configs. With AI, multiple components land almost simultaneously. The assembly step gets compressed. You think AI generated a complete system. What it actually generated is a pile of parts that each run fine on their own.
 
@@ -48,7 +48,7 @@ After root cause analysis on all 18 bugs, they clustered into six patterns. I hi
 
 ### Right Path, Wrong Environment (5/18)
 
-Imagine ordering something online while traveling. You type in your home address out of habit. The package arrives at your house — not lost, not misdelivered — just not where you actually are.
+Imagine ordering something online while traveling. You type in your home address out of habit. The package arrives at your house, not lost, not misdelivered, just not where you actually are.
 
 The root cause: AI lacks awareness of the deployment environment. Paths that work in development break in production. This was the largest category (5/18, 28%) and the most frustrating one.
 
@@ -75,9 +75,9 @@ Hardcoded paths and unexpanded tildes get caught in CI.
 
 Imagine hiring someone but never setting up their system access. They sit at their desk, fully capable, but the company's systems don't know they exist. They can't do any work.
 
-The mechanism: feature implementation and system registration are disconnected. The feature is written, tests pass, but when a real user tries to call it — the tool doesn't exist. More subtle than the path issue.
+The mechanism: feature implementation and system registration are disconnected. The feature is written, tests pass, but when a real user tries to call it, the tool doesn't exist. More subtle than the path issue.
 
-In Aristotle, tool functions were exported but never appeared in the MCP server's tool registration list. Unit tests passed because tests call functions directly — the test framework auto-discovers and registers exported functions. In production, nobody does this. The function is there. The system doesn't know it exists.
+In Aristotle, tool functions were exported but never appeared in the MCP server's tool registration list. Unit tests passed because tests call functions directly; the test framework auto-discovers and registers exported functions. In production, nobody does this. The function is there. The system doesn't know it exists.
 
 Before AI, wiring and implementation were two steps of the same action. Write the function, then register it in the entry file. When AI generates code, the wiring step lives in a different file, a different context. Registration drops out of its context window.
 
@@ -96,13 +96,13 @@ Cross-reference the two outputs. Exported but unregistered means invisible at ru
 
 Imagine waiting for a friend who said "I'm on my way." You keep waiting. You don't know their car broke down. No call, no text. Just waiting. Waiting for Godot.
 
-The root cause: initialization dependencies lack timeout protection. Component A starts slowly. Component B's `await` has no timeout, so it waits along with it. Path issues at least produce error messages. Registration problems can be found with diagnostic tools. A startup hang gives you nothing — the system is stuck. No error, no timeout. It just waits forever.
+The root cause: initialization dependencies lack timeout protection. Component A starts slowly. Component B's `await` has no timeout, so it waits along with it. Path issues at least produce error messages. Registration problems can be found with diagnostic tools. A startup hang gives you nothing; the system is stuck. No error, no timeout. It just waits forever.
 
-When AI generates initialization code, it writes the happy path for each component — assumes dependencies exist, networks are up, resources are available. When multiple components have initialization dependencies, AI doesn't proactively build timeout cascades. Reality violates the assumptions. The system doesn't error. It just waits.
+When AI generates initialization code, it writes the happy path for each component, assuming dependencies exist, networks are up, resources are available. When multiple components have initialization dependencies, AI doesn't proactively build timeout cascades. Reality violates the assumptions. The system doesn't error. It just waits.
 
 Before AI, deployment environments were never as clean as dev environments, so these issues surfaced during deployment. But with AI-assisted development, local test environments are also too clean. All dependencies are local. The dev server never starts without network access.
 
-Later I had AI do two things. First, assert in CI that startup completes within five seconds — fail if it doesn't. Second, grep for unprotected calls:
+Later I had AI do two things. First, assert in CI that startup completes within five seconds; fail if it doesn't. Second, grep for unprotected calls:
 
 ```sh
 # Measure startup time
@@ -115,11 +115,11 @@ grep -rn 'await\|fetch\|connect' src/init.ts | grep -v 'timeout'
 
 Imagine a smoke alarm that, when there's a fire, just quietly mumbles "there's smoke." The fire is burning. You don't know.
 
-The mechanism: errors get swallowed by catch blocks, only producing low-level log output. A hang at least tells you something is wrong — the system is stuck. A silent failure is worse: the operation failed, but the user sees zero feedback. The log has one line: `debug: task completed with errors`. A background task failed. The user waited five minutes with nothing happening.
+The mechanism: errors get swallowed by catch blocks, only producing low-level log output. A hang at least tells you something is wrong: the system is stuck. A silent failure is worse: the operation failed, but the user sees zero feedback. The log has one line: `debug: task completed with errors`. A background task failed. The user waited five minutes with nothing happening.
 
-When AI generates catch blocks, it prioritizes keeping the flow uninterrupted. It uses `logger.debug` or `logger.info` for severe errors. It swallows exceptions with `catch` and `continue`. Not throw, not error — silent skip. AI isn't deliberately hiding problems. It just chose a "don't break the flow" strategy when generating the code.
+When AI generates catch blocks, it prioritizes keeping the flow uninterrupted. It uses `logger.debug` or `logger.info` for severe errors. It swallows exceptions with `catch` and `continue`. Not throw, not error; silent skip. AI isn't deliberately hiding problems. It just chose a "don't break the flow" strategy when generating the code.
 
-Before AI, I'd add proper logging and notifications for silent failures. But AI-generated code "already has logging" — just at the wrong level. During review, seeing `logger.info(...)` doesn't trigger alarm. You don't realize it should be `logger.error(...)`. The defense never activates because you didn't realize you needed one.
+Before AI, I'd add proper logging and notifications for silent failures. But AI-generated code "already has logging", just at the wrong level. During review, seeing `logger.info(...)` doesn't trigger alarm. You don't realize it should be `logger.error(...)`. The defense never activates because you didn't realize you needed one.
 
 Later I had AI add a grep to the review pipeline:
 
@@ -128,7 +128,7 @@ Later I had AI add a grep to the review pipeline:
 grep -rn 'logger\.\(debug\|info\)' src/ | grep -v test
 ```
 
-Check each line: is this log level adequate? Background task failures, scheduled task exceptions — these should be `warn` or `error`, not `debug`.
+Check each line: is this log level adequate? Background task failures, scheduled task exceptions should be `warn` or `error`, not `debug`.
 
 ### Tests Green, Production Broken (2/18)
 
@@ -136,13 +136,13 @@ Imagine practicing parallel parking in an empty lot until you're flawless. Then 
 
 The root cause: test coverage paths don't match production paths. The tests aren't buggy. They just exercise different paths than real users do. All tests pass. Production breaks.
 
-In Aristotle, some tests triggered graceful shutdown via `stdin`. Tests covered the full graceful shutdown flow — cleanup resources, save state, notify downstream. All passed. But in production, processes got killed by `SIGKILL`. The cleanup handler never ran. The graceful shutdown path covered by tests never actually happens in production.
+In Aristotle, some tests triggered graceful shutdown via `stdin`. Tests covered the full graceful shutdown flow: cleanup resources, save state, notify downstream. All passed. But in production, processes got killed by `SIGKILL`. The cleanup handler never ran. The graceful shutdown path covered by tests never actually happens in production.
 
-When AI generates tests, it tends to follow its own calling path — direct function calls, test-specific APIs, simplified inputs. These tests effectively verify logical correctness. But they skip the full path real users take.
+When AI generates tests, it tends to follow its own calling path: direct function calls, test-specific APIs, simplified inputs. These tests effectively verify logical correctness. But they skip the full path real users take.
 
 Before AI, I'd deliberately simulate real scenarios when writing tests. That deliberation came from understanding the system as a whole. When AI generates tests, its understanding is limited to the current component's interface definition. It doesn't know how users actually trigger the feature.
 
-The check is intuitive — compare the test's activation mechanism with what real users do:
+The check is intuitive: compare the test's activation mechanism with what real users do:
 
 ```sh
 # Check what activation mechanism tests use
@@ -153,15 +153,15 @@ If real users trigger via CLI, tests should use CLI. If real users send HTTP req
 
 ### Individually Correct, Together Wrong (4/18)
 
-Imagine two contractors building a bridge from opposite banks. Each half is structurally sound. But they don't meet in the middle — one team followed a different spec.
+Imagine two contractors building a bridge from opposite banks. Each half is structurally sound. But they don't meet in the middle; one team followed a different spec.
 
 The root cause: AI implements component by component, without cross-component interface consistency checks. Each component looks fine in isolation. Put them together, things break. Second largest category (4/18, 22%).
 
-AI generates two components separately. Each time, the code is "correct." Combined, it's not. Parameter format mismatches, IDs not properly passed, boundary conditions in inter-process communication — these live in the gaps between components.
+AI generates two components separately. Each time, the code is "correct." Combined, it's not. Parameter format mismatches, IDs not properly passed, boundary conditions in inter-process communication live in the gaps between components.
 
-In Aristotle, one place used `execFile` for inter-process communication. `execFile` doesn't support bidirectional IPC — you need `spawn` for that. AI chose `execFile` when writing the individual call — no interaction needed, seemed reasonable. But the overall architecture requires bidirectional communication. AI couldn't see that global requirement.
+In Aristotle, one place used `execFile` for inter-process communication. `execFile` doesn't support bidirectional IPC; you need `spawn` for that. AI chose `execFile` when writing the individual call; no interaction needed, seemed reasonable. But the overall architecture requires bidirectional communication. AI couldn't see that global requirement.
 
-Before AI, integration was an explicit act. Two hand-written modules bolted together — interface mismatches surface immediately. With AI, multiple components land almost simultaneously. Each has tests, passes lint, has type definitions. "Should be fine" becomes the default assumption.
+Before AI, integration was an explicit act. Two hand-written modules bolted together, interface mismatches surface immediately. With AI, multiple components land almost simultaneously. Each has tests, passes lint, has type definitions. "Should be fine" becomes the default assumption.
 
 Later I had AI check with these commands:
 
@@ -176,7 +176,7 @@ grep -rn 'parentId\|sessionId\|ownerId' src/ | grep -v test
 
 ## 4. The Checklist I Built After
 
-After the release, I had AI compile these lessons into a checklist. Not a theoretical framework — actual bugs I hit. Each row maps to a real failure.
+After the release, I had AI compile these lessons into a checklist. Not a theoretical framework; actual bugs I hit. Each row maps to a real failure.
 
 Every time AI generates a new set of components, I run this checklist against them. Generation is fast. Review quality comes from structured checks.
 
@@ -193,7 +193,7 @@ For every pair of interacting components in the project, check row by row. Any "
 | Lifecycle | Are startup resources cleaned up at shutdown? | Kill the process, check for residual files/processes | `PID` file not deleted, next startup thinks "already running" |
 | Freshness | Does it run in a clean environment? In a dirty one? | Test separately in clean and dirty environments | Works on dev machine (cached from last run), fails in CI |
 
-One dimension isn't on this checklist: test-production divergence. Integration checks can't catch it. You need to address it at test design time — ensuring tests use the same activation paths as real users.
+One dimension isn't on this checklist: test-production divergence. Integration checks can't catch it. You need to address it at test design time, ensuring tests use the same activation paths as real users.
 
 ---
 
@@ -215,12 +215,12 @@ Eighteen bugs covered six patterns. But in multi-component systems, I've encount
 | Version skew (component A upgraded, B still uses old interface) <sup>1,2</sup> | ❌ | Add contract tests, lock interface contracts between components |
 | Graceful degradation (non-critical dependency goes down, what then?) <sup>7</sup> | ❌ | Need fallback strategy design, not just timeouts |
 | Auth/permission boundaries (inconsistent access control between components) <sup>4,8</sup> | ❌ | Only appears in multi-tenant scenarios, not yet in scope |
-| Error handling defects (the error handling code itself has bugs) <sup>9</sup> | ❌ | Distinct from silent failure: silent failure means no handling; this means handling done wrong — errors amplified, fallback logic flawed, exception type mismatch |
-| Performance logic defects (sharp degradation in specific scenarios) <sup>6,10</sup> | ❌ | Distinct from resource leaks: not a leak, but logic-driven — N+1 queries, unoptimized slow paths, batch ops going single-item |
-| Cascading failures (single-point failure spreads through dependency chain) <sup>2,11</sup> | ❌ | Distinct from graceful degradation: degradation is desired behavior, cascading failure is actual disaster — one component dies, retry storm takes down downstream too |
-| Implicit contract violations (undocumented semantic assumptions broken) <sup>5</sup> | ❌ | Distinct from integration seam errors: seam errors are explicit interface mismatches, these are implicit assumptions — call order, thread safety, sync/async semantics |
+| Error handling defects (the error handling code itself has bugs) <sup>9</sup> | ❌ | Distinct from silent failure: silent failure means no handling; this means handling done wrong: errors amplified, fallback logic flawed, exception type mismatch |
+| Performance logic defects (sharp degradation in specific scenarios) <sup>6,10</sup> | ❌ | Distinct from resource leaks: not a leak, but logic-driven: N+1 queries, unoptimized slow paths, batch ops going single-item |
+| Cascading failures (single-point failure spreads through dependency chain) <sup>2,11</sup> | ❌ | Distinct from graceful degradation: degradation is desired behavior, cascading failure is actual disaster: one component dies, retry storm takes down downstream too |
+| Implicit contract violations (undocumented semantic assumptions broken) <sup>5</sup> | ❌ | Distinct from integration seam errors: seam errors are explicit interface mismatches, these are implicit assumptions: call order, thread safety, sync/async semantics |
 
-The first six rows are bugs I hit. The next ten are ones I haven't hit yet but will eventually. Resource leaks and race conditions, for instance — nearly inevitable in long-running and concurrent scenarios. Aristotle v1.1 just hasn't reached that complexity yet.
+The first six rows are bugs I hit. The next ten are ones I haven't hit yet but will eventually. Resource leaks and race conditions, for instance, nearly inevitable in long-running and concurrent scenarios. Aristotle v1.1 just hasn't reached that complexity yet.
 
 ---
 
@@ -231,7 +231,7 @@ These six patterns came from 18 real bugs in a medium-complexity project. Your p
 If you're also coding with AI, I'd love to hear from you in the comments:
 
 - Which bug patterns have you hit? Any that aren't on this list?
-- The eight-dimension checklist at the end — what's missing?
+- The eight-dimension checklist at the end: what's missing?
 - Do you have your own review or checking process? How's it working?
 
 ---
@@ -248,4 +248,4 @@ If you're also coding with AI, I'd love to hear from you in the comments:
 8. MITRE CWE (Common Weakness Enumeration). CWE-862: Missing Authorization; CWE-863: Incorrect Authorization. Standardized weakness classification for auth/permission boundaries. [CWE-862](https://cwe.mitre.org/data/definitions/862.html) · [CWE-863](https://cwe.mitre.org/data/definitions/863.html)
 9. Gunawi et al., "What Bugs Live in the Cloud? A Study of Bugs in Distributed Systems", *ACM Computing Surveys*, 2016. Error handling accounts for 18% of distributed system software bugs. The Linux kernel's `eBugs` dataset records 210 error handling defect cases. [DOI](https://doi.org/10.1145/2670979.2670986)
 10. Jin et al., "Understanding and Solving Real-World Performance Bugs in Software", *ASPLOS*, 2012. Root cause classification of 109 performance bugs across five major open-source projects (Apache, Mozilla, GCC, MySQL, PostgreSQL). [DOI](https://doi.org/10.1145/2254064.2254075)
-11. Google SRE Book, Chapter 22: "Addressing Cascading Failures". Defense strategies for cascading failures: rate limiting, degradation, request cancellation — preventing single-point failures from spreading through dependency chains. [sre.google](https://sre.google/sre-book/addressing-cascading-failures/)
+11. Google SRE Book, Chapter 22: "Addressing Cascading Failures". Defense strategies for cascading failures: rate limiting, degradation, request cancellation: preventing single-point failures from spreading through dependency chains. [sre.google](https://sre.google/sre-book/addressing-cascading-failures/)
