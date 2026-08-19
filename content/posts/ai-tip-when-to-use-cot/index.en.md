@@ -23,7 +23,7 @@ The answer is straightforward. Watch for three signals. If any apply, add it.
 
 ### Signal 1: The Problem Requires Multi-Step Reasoning
 
-"If I save 30% of my monthly income at 4% annual interest, compounded, how much will I have after 10 years?"
+"If I save $1,000 per month at a 4% annual interest rate compounded monthly, how much will I have after 10 years?"
 
 Problems like this depend on intermediate calculation steps. Without CoT, the AI may just give you a number — and you have no way to verify it. Add "please calculate step by step," and you can check each step along the reasoning chain to spot where things went wrong.
 
