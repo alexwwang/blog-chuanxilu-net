@@ -30,7 +30,7 @@ Each stage has its own inputs, outputs, and review rules:
 - **Design**: Acceptance criteria go in. A tech spec backed by API research comes out.
 - **Test planning**: The tech spec goes in. Full-coverage test cases come out.
 - **Coding**: Test cases go in. Passing production code comes out.
-- **Review**: Every stage ends with a Ralph Loop. C/H/M issues must hit zero before moving on. Two consecutive rounds with zero issues at any level (C/H/M/L) trigger an early exit[1].
+- **Review**: Every stage ends with a Ralph Loop. C/H/M issues must hit zero before moving on. Two consecutive rounds with zero issues at any level (C/H/M/L) trigger an early stop[1].
 
 The pipeline runs on **priority propagation**. During product design, each acceptance criterion gets tagged as either `key` (must have full test coverage) or `peripheral` (happy-path is enough). That tag flows downstream. Key ACs require boundary tests and error-path tests. Peripheral ACs only need the main scenario. Decisions made early ripple through every downstream stage.
 
