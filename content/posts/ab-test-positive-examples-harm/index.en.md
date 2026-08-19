@@ -56,7 +56,7 @@ Four questions. Four variables. Time for data.
 
 ## Experiment Design
 
-I used the controlled variable method — change one variable at a time. A full factorial design (2⁴ = 16 groups) was too many runs. Five conditions total:
+I used the controlled variable method — change one variable at a time. Running a full factorial design (2⁴ = 16 groups) would have been too many runs. Five conditions total:
 
 - **Control**: original template — structured three-question prompt + mandatory tone + top of file + no positive example
 - **V1**: structured three-question prompt → open-ended prompt (structure variable)
@@ -159,7 +159,7 @@ V4 reproduced exactly this. The positive example covered URL validation and test
 
 Put another way: the positive example wasn't "teaching" the model how to think. It was giving the model an escape hatch from thinking. The model no longer needed to analyze the current task's risks and approach from scratch. It just dressed the example's framework in new clothes.
 
-This contrasts sharply with V1. V1 removed scaffolding (the mandatory three-question prompt), and the model organized deeper analysis on its own. V4 added a positive example, and the model's analysis became homogeneous. Both variables point the same direction: the less concrete the guidance — the more abstract the constraint — the more the model leans into independent reasoning. The more the guidance looks like an "answer template," the more the model takes shortcuts.
+This contrasts sharply with V1. V1 removed scaffolding (the mandatory three-question prompt), and the model organized deeper analysis on its own. V4 added a positive example, and the model's analysis became homogeneous. Both variables point in the same direction: the less concrete the guidance — the more abstract the constraint — the more the model leans into independent reasoning. The more the guidance looks like an "answer template," the more the model takes shortcuts.
 
 This doesn't mean all examples are harmful. The experiment tested one specific scenario: adding examples to a prompt that demands independent reasoning. In classification, formatting, and code generation, few-shot examples are clearly effective. But the **"think before you act"** scenario is different. **The goal is to make the model produce original reasoning — not to copy patterns.**
 
