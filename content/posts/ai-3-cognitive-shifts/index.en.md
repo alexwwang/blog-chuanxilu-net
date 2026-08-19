@@ -27,7 +27,7 @@ Then I closed the tab.
 
 Classic search behavior: one exchange, grab the result, done. Not wrong, exactly. But you walk away with a one-sentence definition and nothing else — no context, no use cases, no comparison with alternatives.
 
-Try a different approach. Get the definition, but don't close the window. Follow up:
+Try a different approach. Get the definition, but don't close the tab. Follow up:
 
 - "Which scenarios absolutely require a human vs full automation?"
 - "Design a HITL content moderation flow: AI filters first, humans review flagged items"
