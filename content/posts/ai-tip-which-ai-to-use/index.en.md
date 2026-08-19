@@ -29,9 +29,9 @@ Here's the thing: that's the wrong question. There is no universally best AI —
 
 - **"I work with very long Chinese-language documents"** → Kimi. A 256K context window and natural Chinese understanding mean you can toss in an entire report and it actually reads it all. Deep research capability is strong too.
 
-- **"I want AI that actually gets things done — book tickets, reserve hotels, track packages"** → Qwen (千问). Deeply integrated with Taobao, Alipay, Fliggy, and Amap — complete tasks end-to-end without switching apps. The closest thing to a true "AI errand runner" right now.
+- **"I want AI that actually gets things done — book tickets, reserve hotels, track packages"** → Qwen (千问). Deeply integrated with Taobao, Alipay, Fliggy, and Amap — within these services and your linked accounts, it can complete tasks end-to-end without switching apps. The closest thing to a true "AI errand runner" right now.
 
-- **"I write in Chinese and I'm worried about AI making things up"** → Zhipu Qingyan (智谱清言). Hallucination rate among the lowest of any major model (GLM-5.1), exceptional reliability and accuracy for Chinese writing, strong coding ability too.
+- **"I write in Chinese and I'm worried about AI making things up"** → Zhipu Qingyan (智谱清言). Very low hallucination rate (GLM-5.1), exceptional reliability and accuracy for Chinese writing, strong coding ability too.
 
 ---
 
