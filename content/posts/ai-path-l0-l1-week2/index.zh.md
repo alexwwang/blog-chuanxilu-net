@@ -21,11 +21,11 @@ cover:
 
 **📋 第一周回顾:**
 
-- [Part 1：理解你手里的工具](/posts/2026/05/ai-path-l0-l1-week1/) — LLM 不是搜索引擎，它每次都在"重新想一遍"
-- [今日实践：问 AI 同一个问题 3 遍](/posts/2026/05/ai-practice-same-question-3-times/) — 亲手验证概率性生成
-- [别再把 AI 当搜索引擎了：3 个认知转变](/posts/2026/05/ai-3-cognitive-shifts/) — 从搜答案到对话、从信答案到验证、从要答案到要思考
-- [AI 的「桌面」和「文件柜」](/posts/2026/05/ai-tip-working-vs-long-term-memory/) — 工作记忆 vs 长期记忆
-- [选 AI，看场景不看排名](/posts/2026/05/ai-tip-which-ai-to-use/) — 7 个平台的场景匹配逻辑
+- [Part 1：理解你手里的工具](/posts/2026/05/ai-path-l0-l1-week1/)：LLM 不是搜索引擎，它每次都在"重新想一遍"
+- [今日实践：问 AI 同一个问题 3 遍](/posts/2026/05/ai-practice-same-question-3-times/)：亲手验证概率性生成
+- [别再把 AI 当搜索引擎了：3 个认知转变](/posts/2026/05/ai-3-cognitive-shifts/)：从搜答案到对话、从信答案到验证、从要答案到要思考
+- [AI 的「桌面」和「文件柜」](/posts/2026/05/ai-tip-working-vs-long-term-memory/)：工作记忆 vs 长期记忆
+- [选 AI，看场景不看排名](/posts/2026/05/ai-tip-which-ai-to-use/)：7 个平台的场景匹配逻辑
 
 ![从模糊提问到精确指令——RBGO 框架让 AI 听懂你](l0-l1-2m.png)
 
