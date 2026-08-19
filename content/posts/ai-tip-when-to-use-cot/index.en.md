@@ -15,7 +15,7 @@ cover:
 
 ## Tip Card: When Should You Ask AI to "Think Step by Step"?
 
-Adding "please reason step by step" at the end of your prompt — that's Chain-of-Thought (CoT). Deceptively simple, yet remarkably effective in the right situations.
+Adding "please reason step by step" at the end of your prompt: that's Chain-of-Thought (CoT). Deceptively simple, yet remarkably effective in the right situations.
 
 The question is: **when should you add it?**
 
@@ -25,15 +25,15 @@ The answer is straightforward. Watch for three signals. If any apply, add it.
 
 "If I save $1,000 per month at a 4% annual interest rate compounded monthly, how much will I have after 10 years?"
 
-Problems like this depend on intermediate calculation steps. Without CoT, the AI may just give you a number — and you have no way to verify it. Add "please calculate step by step," and you can check each step along the reasoning chain to spot where things went wrong.
+Problems like this depend on intermediate calculation steps. Without CoT, the AI may just give you a number, and you have no way to verify it. Add "please calculate step by step," and you can check each step along the reasoning chain to spot where things went wrong.
 
-**Test:** The answer can't be produced in one step — it requires 2 or more steps of derivation.
+**Test:** The answer can't be produced in one step; it requires 2 or more steps of derivation.
 
 ### Signal 2: The Question Involves Trade-Offs
 
 "Should I go with Plan A or Plan B?"
 
-Any question that requires comparison or trade-offs benefits from CoT. The AI will lay out the pros and cons of each option, weigh them, and then reach a conclusion — rather than jumping straight to a verdict.
+Any question that requires comparison or trade-offs benefits from CoT. The AI will lay out the pros and cons of each option, weigh them, and then reach a conclusion, rather than jumping straight to a verdict.
 
 **Test:** The question contains comparative language like "which is better," "should I," or "pros and cons."
 
@@ -41,9 +41,9 @@ Any question that requires comparison or trade-offs benefits from CoT. The AI wi
 
 "Can this product succeed?"
 
-Answers to these questions inevitably rest on assumptions — market size, user demand, competitive landscape… Without CoT, the AI gives you a conclusion, but you can't see what it assumed. Add "please list your assumptions first, then analyze based on them," and those assumptions become visible — you can directly challenge any that seem unreasonable.
+Answers to these questions inevitably rest on assumptions: market size, user demand, competitive landscape… Without CoT, the AI gives you a conclusion, but you can't see what it assumed. Add "please list your assumptions first, then analyze based on them," and those assumptions become visible; you can directly challenge any that seem unreasonable.
 
-**Test:** The question has no objectively correct answer — it depends on predictions about the future or subjective judgments about unstated conditions.
+**Test:** The question has no objectively correct answer; it depends on predictions about the future or subjective judgments about unstated conditions.
 
 ---
 
