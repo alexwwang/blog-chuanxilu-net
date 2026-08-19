@@ -33,7 +33,7 @@ Sounds great — but there's a catch. The AI might file away something wrong, or
 
 1. **Chat going off the rails? Open a new conversation.** A cluttered desk helps no one. Start fresh and bring only what you need.
 
-2. **In long chats, ask the AI to summarize every 10–15 turns.** Something like *"Summarize our progress so far in three bullet points."* This gathers scattered papers into a neat page and frees up desk space for the next stretch.
+2. **In long chats, ask the AI to summarize every 10–15 turns.** Something like *"Summarize our progress so far in three bullet points."* This gathers scattered papers into a neat page — so even when older pages slide off the desk, the key points stay within reach.
 
 3. **Need to pick up where you left off? Stay in the same chat.** Don't switch desks — your stuff is still sitting right there.
 
