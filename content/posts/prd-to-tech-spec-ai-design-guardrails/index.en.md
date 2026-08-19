@@ -61,7 +61,7 @@ US-2 (main session remains usable) expanded into acceptance criteria:
 
 AC-2's Edge Case already flagged "when reflection fails." A formal PRD expands each criterion's boundary conditions into standalone items:
 
-1. Reflection session creation fails → display error, prompt retry
+1. Reflection session creation fails → execute in an isolated main-session fallback scope and tag output as degraded mode
 2. Rule generation times out → save draft, notify user for later processing
 3. User corrects multiple times in one conversation → trigger reflection only once
 4. Conversation history is empty → do not trigger reflection
