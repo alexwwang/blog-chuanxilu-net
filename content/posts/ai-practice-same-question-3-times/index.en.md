@@ -41,7 +41,7 @@ Exactly.
 
 ## Why This Matters
 
-In the last post we covered the core idea: **LLMs generate, they don't retrieve.** They don't look up an answer in a database. They produce a new response from scratch each time.
+In the last post we covered the core idea: **LLMs generate, they don't retrieve.** The model itself doesn't look up an answer in a database; it produces a new response from scratch each time. Even when a tool searches the web or a database first, the answer is still generated fresh.
 
 This exercise lets you verify it yourself. Not by memorizing a fact, but by **feeling** it. Three answers in front of you. You don't need anyone to explain — you can see for yourself that every response is generated fresh.
 
