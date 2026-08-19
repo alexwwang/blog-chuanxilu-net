@@ -81,7 +81,7 @@ The two periods couldn't be more different in what I was doing.
 | **Aristotle** | **21.4** | **20.5%** | **1.4** | **1.2%** | **-19.3pp** |
 | **Total** | **104.4** | **100%** | **118.9** | **100%** | |
 
-During the OMO period, I was mostly writing blog posts, designing solutions, and running Aristotle reflections. The SLIM period shifted heavily toward TDD coding and review, with debug volume climbing too. The two periods couldn't be more different in what I was doing.
+During the OMO period, I was mostly writing blog posts, designing solutions, and running Aristotle reflections. The SLIM period shifted heavily toward TDD coding and review, with debug volume climbing too. These weren't even the same kind of work.
 
 A few cross-cutting facts stand out.
 
