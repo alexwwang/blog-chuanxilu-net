@@ -49,7 +49,7 @@ Answers to these questions inevitably rest on assumptions — market size, user 
 
 ### When NOT to Use It
 
-Simple factual lookups ("how to write a list comprehension in Python"), format conversions ("translate this passage"), clear single-step tasks — adding CoT just makes the response longer without adding useful information.
+For simple factual lookups ("how to write a list comprehension in Python"), format conversions ("translate this passage"), or clear single-step tasks, adding CoT just makes the response longer without adding useful information.
 
 > One line to remember: if the answer requires derivation, comparison, or assumptions — use CoT. Otherwise, don't.
 
