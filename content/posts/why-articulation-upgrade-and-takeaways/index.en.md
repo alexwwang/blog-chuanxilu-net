@@ -129,7 +129,7 @@ These limitations mean the findings are directional signals, not confirmations. 
 
 Three posts, one thread: Anthropic's alignment research discovered that teaching *why* beats teaching *what*. I tested that insight at the prompt level and confirmed it holds. Then I upgraded the template based on data. The starting point was someone else's research. The landing point is something you can use directly.
 
-One more thing worth mentioning: Anthropic isn't the only group reaching this conclusion. Wang et al. [2] independently arrived at highly consistent findings in their work on experience representation — they showed through 4,590 controlled experiments that a compact control-oriented representation (Gene, ~230 tokens) outperformed a full documentation package (Skill, ~2,500 tokens) by +3.0pp vs. -1.1pp. Adding documentation materials back to the compact representation (including examples and API notes) actually weakened results. This maps precisely onto our findings: less is more. Adding more material doesn't always make things better.
+One more thing worth mentioning: Anthropic isn't the only group reaching this conclusion. Wang et al. [2] independently arrived at highly consistent findings in their work on experience representation — they showed through 4,590 controlled experiments that a compact control-oriented representation (Gene, ~230 tokens) outperformed a full documentation package (Skill, ~2,500 tokens) by +3.0pp versus -1.1pp for the full package. Adding documentation materials back to the compact representation (including examples and API notes) actually weakened results. This maps precisely onto our findings: less is more. Adding more material doesn't always make things better.
 
 ---
 
