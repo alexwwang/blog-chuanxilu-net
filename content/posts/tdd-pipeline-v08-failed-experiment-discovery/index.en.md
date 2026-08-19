@@ -21,7 +21,7 @@ cover:
 
 I built a skill called TDD Pipeline. It came out of pain — real pain from debugging over a dozen bugs. The skill defines every stage of development, from requirements to delivery, with an independent review gate at the end of each stage.
 
-When I added Why Articulation to the TDD skill, I ran a set of A/B experiments [2]. One finding surprised me: giving the AI positive examples actually reduced output quality. The model took a shortcut — it mimicked the examples instead of reasoning independently. A better approach was to give it principles. Tell it what to protect, where the risks are, and why the method works. Let it figure out the how on its own.
+When I added "Why Articulation" to the TDD skill, I ran a set of A/B experiments [2]. One finding surprised me: giving the AI positive examples actually reduced output quality. The model took a shortcut — it mimicked the examples instead of reasoning independently. A better approach was to give it principles. Tell it what to protect, where the risks are, and why the method works. Let it figure out the how on its own.
 
 That finding only applied to one stage of the Pipeline. But it raised a bigger question. If "principles, not steps" works at the prompt level, does it work at the level of an entire rules file?
 
