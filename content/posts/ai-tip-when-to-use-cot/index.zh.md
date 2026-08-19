@@ -3,7 +3,7 @@ title: "什么时候该让 AI「一步步思考」？三个信号"
 slug: "ai-tip-when-to-use-cot"
 date: 2026-05-19T06:00:00+08:00
 draft: false
-description: "Chain-of-Thought 能让 AI 的回答质量飞跃，但不是每次都该用。三个信号帮你判断：什么时候加「请一步步推理」有用，什么时候反而浪费时间。"
+description: "虽然 Chain-of-Thought 能让 AI 的回答质量飞跃，但不是每次都该用。三个信号帮你判断：什么时候加「请一步步推理」有用，什么时候反而浪费时间。"
 tags: ["AI", "工具链", "进化路径", "技巧卡"]
 categories: ["ai-path"]
 toc: false

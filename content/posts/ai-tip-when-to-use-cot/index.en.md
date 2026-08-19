@@ -3,7 +3,7 @@ title: "When Should You Ask AI to 'Think Step by Step'? Three Signals"
 slug: "ai-tip-when-to-use-cot"
 date: 2026-05-19T06:00:00+08:00
 draft: false
-description: "Chain-of-Thought can dramatically improve AI output quality — but you shouldn't use it every time. Three signals to help you decide: when adding 'please reason step by step' helps, and when it just wastes time."
+description: "While Chain-of-Thought can dramatically improve AI output quality, you shouldn't use it every time. Three signals to help you decide: when adding 'please reason step by step' helps, and when it just wastes time."
 tags: ["AI", "toolchain", "evolution-path", "tip-card"]
 categories: ["ai-path"]
 toc: false
