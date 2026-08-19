@@ -66,7 +66,7 @@ Compare the quality of the answers before and after rewriting. The difference is
 
 The technique itself is incredibly simple: add a sentence to the end of your prompt like "Please reason through this step by step" or "Analyze first, then give your conclusion."
 
-**When to use it**: Analytical questions ("What are the risks of this business model?"), logical reasoning ("If A is true, does B necessarily follow?"), multi-step tasks ("Help me develop a go-to-market strategy").
+**When to use it**: Analytical questions ("What are the risks of this business model?"), logical reasoning ("If A is true, does B necessarily follow?"), multi-step analytical tasks ("Help me develop a go-to-market strategy").
 
 **When not to use it**: Simple factual queries ("What's the capital of France?"), format conversions ("Translate this text into English"), straightforward single-step tasks. Adding CoT in these scenarios just wastes time and tokens.
 
