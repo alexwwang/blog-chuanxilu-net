@@ -187,8 +187,8 @@ v0.3.0 改动不止这些，本文聚焦三个最核心的机制：结构化审�
 ## 参考
 
 1. tdd-pipeline v0.3.0：[github.com/alexwwang/tdd-pipeline](https://github.com/alexwwang/tdd-pipeline)（tag v0.3.0）
-2. sindresorhus/ky — prefixUrl 前缀斜杠争议：[issue #70](https://github.com/sindresorhus/ky/issues/70)、[discussion #468](https://github.com/sindresorhus/ky/discussions/468)、[PR #561](https://github.com/sindresorhus/ky/pull/561)、[PR #606](https://github.com/sindresorhus/ky/pull/606)
-3. psf/requests — URL 解析回归与 IPv6 zone ID：[issue #6735](https://github.com/psf/requests/issues/6735)、[PR #6927](https://github.com/psf/requests/pull/6927)、[PR #7065](https://github.com/psf/requests/pull/7065)
+2. sindresorhus/ky——prefixUrl 前缀斜杠争议：[issue #70](https://github.com/sindresorhus/ky/issues/70)、[discussion #468](https://github.com/sindresorhus/ky/discussions/468)、[PR #561](https://github.com/sindresorhus/ky/pull/561)、[PR #606](https://github.com/sindresorhus/ky/pull/606)
+3. psf/requests——URL 解析回归与 IPv6 zone ID：[issue #6735](https://github.com/psf/requests/issues/6735)、[PR #6927](https://github.com/psf/requests/pull/6927)、[PR #7065](https://github.com/psf/requests/pull/7065)
 4. Robert, Henry M., *Robert's Rules of Order*, 1876（中文版：袁天鹏、孙涤译，上海人民出版社）
 5. 第 4 篇 审核层防线：[Ralph Loop：AI 的错误不是随机的，是收敛的](/posts/2026/04/ralph-loop-ai-errors-converge/)
 
