@@ -59,7 +59,7 @@ The first three rounds weren't hallucinations. Each step had supporting evidence
 
 Looking back at those three rounds, I see three distinct problems.
 
-**Stopping too early—every round quit before reaching the root.** Round 1 stopped at the testing-method level, round 2 at "model non-compliance," round 3 at "file exists." Every direction was correct, but every round was one layer short—stuck at the operational level rather than reaching the semantic level. The root cause lived in the semantics of instruction formatting, and AI missed it three rounds in a row. AI defaults to 2-3 layers and decides that's enough. It doesn't push further on its own.
+**Stopping too early: every round quit before reaching the root cause.** Round 1 stopped at the testing-method level, round 2 at "model non-compliance," round 3 at "file exists." Every direction was correct, but every round was one layer short—stuck at the operational level rather than reaching the semantic level. The root cause lived in the semantics of instruction formatting, and AI missed it three rounds in a row. AI defaults to 2-3 layers and decides that's enough. It doesn't push further on its own.
 
 **Single-path tracking—chasing one thread, ignoring branches.** Round 2 is the clearest example. AI had already narrowed the direction to `SKILL.md`, but only pursued "model isn't cooperating." It never touched the "is the instruction format wrong?" branch.
 
