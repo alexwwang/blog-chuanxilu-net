@@ -119,7 +119,7 @@ But not every category stayed flat.
 
 **Writing +61%** is worth watching. During the SLIM period, writing sessions involving @zh-writer, @en-writer, and @observer subagents may have heavier context construction — more background material pulled in per writing task, or higher overhead from multi-agent collaboration. The exact cause needs more data.
 
-**Review -53%** is cheaper per round, not cheaper overall. In the OMO period, review was done by @oracle/@Momus performing deep audits, each round carrying heavy context — full files, history, project rules. One review round was very expensive. In the SLIM period, most review happened inside ralph loops as quick confirmations: "anything wrong this round?" Much lighter. But subjectively, I ran more review rounds with SLIM. Cheaper per round, more rounds to compensate. Daily tokens still went up.
+**Review -53%** is cheaper per round, not cheaper overall. In the OMO period, review was done by @oracle/@Momus performing deep audits, each round carrying heavy context — full files, history, project rules. One review round was very expensive. In the SLIM period, most review happened inside Ralph loops as quick confirmations: "anything wrong this round?" Much lighter. But subjectively, I ran more review rounds with SLIM. Cheaper per round, more rounds to compensate. Daily tokens still went up.
 
 **Debug +121%** — don't take this number seriously. The OMO period had only 16 debug messages. Too small a sample for any reliable conclusion. The SLIM period's 1,041 messages are the real data. In debug scenarios, the model reads code, runs commands, and analyzes output repeatedly. Context accumulates fast. High token consumption is expected.
 

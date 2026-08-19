@@ -119,7 +119,7 @@ Aristotle 消息量降到了原来的 39%，日均 token 从 21.4 M 缩减到 1.
 
 **写作贵 61%** 值得注意。SLIM 期写作 session 中 @zh-writer、@en-writer、@observer 子 agent 的上下文构建可能更重——每次写作任务拉入的背景材料更多，或者多 agent 协作的开销更高。具体原因还需要更多数据才能判断。
 
-**review 省 53%** 是单轮省。OMO 期 review 由 @oracle/@Momus 做深度审核，每次带大量上下文——完整文件、历史记录、项目规则，一轮 review 下来上下文非常重。SLIM 期的 review 大部分是 ralph loop 中的快速确认，问的是「这轮还有没有问题」，轻量得多。但体感上用 SLIM 之后 review 的轮次变多了——单轮轻量，轮次补上，日均 Token 还是涨了。
+**review 省 53%** 是单轮省。OMO 期 review 由 @oracle/@Momus 做深度审核，每次带大量上下文——完整文件、历史记录、项目规则，一轮 review 下来上下文非常重。SLIM 期的 review 大部分是 Ralph loop 中的快速确认，问的是「这轮还有没有问题」，轻量得多。但体感上用 SLIM 之后 review 的轮次变多了——单轮轻量，轮次补上，日均 Token 还是涨了。
 
 **debug 贵 121%** 不用太当真。OMO 期只有 16 条 debug 消息，样本太小，任何结论都不可靠。SLIM 期 1041 条才是真实数据。调试场景下模型需要反复读取代码、执行命令、分析输出，上下文累积快，token 消耗高是正常的。
 
