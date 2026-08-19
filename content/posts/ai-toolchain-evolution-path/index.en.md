@@ -12,7 +12,7 @@ cover:
   alt: "AI Toolchain Evolution Path panorama — five levels from First Contact to AI Native"
 ---
 
-> **TL;DR:** How does a person grow with AI? This post maps the journey from "opening a chat box for the first time" to "thinking in AI-native ways" across five stages—First Contact, Power User, Engineer, Architect, and Native. The essence of each stage isn't learning more tools, but a shift in mindset: from passively accepting outputs, to actively designing inputs, to orchestrating multi-agent collaboration, and ultimately reshaping your own cognitive framework. The [interactive path map](/en/ai-evolution-path/) at the end lets you explore each stage in full detail.
+> **TL;DR:** How does a person grow with AI? This post maps the journey from "opening a chat box for the first time" to "thinking in AI-native ways" across five stages—First Contact, Power User, Engineer, Architect, and Native. The essence of each stage isn't about learning more tools, but about a shift in mindset: from passively accepting outputs, to actively designing inputs, to orchestrating multi-agent collaboration, and ultimately reshaping your own cognitive framework. The [interactive path map](/en/ai-evolution-path/) at the end lets you explore each stage in full detail.
 
 ## Introduction
 
@@ -34,7 +34,7 @@ It all starts with curiosity. The core task at this stage is understanding the n
 
 ### L1 · Power User — Putting AI to Real Work
 
-When you start maintaining your own prompt library and choosing different tools based on task type, you've entered L1. This stage calls for mastery of prompt engineering (few-shot, system prompts, chain-of-thought), conversation context management, and understanding the trade-offs between speed and quality across different models. Claude Projects, Workspace Agents, and the like for writing scenarios; Copilot, Cursor, and similar tools for coding—picking the right tool for the right job is the core habit of this stage. The sign you're ready to move up: you start craving automation and reaching the edges of APIs.
+When you start maintaining your own prompt library and choosing different tools based on task type, you've entered L1. This stage calls for mastering prompt engineering (few-shot, system prompts, chain-of-thought), managing conversation context, and understanding the trade-offs between speed and quality across different models. Claude Projects, Workspace Agents, and the like for writing scenarios; Copilot, Cursor, and similar tools for coding—picking the right tool for the right job is the core habit of this stage. The sign you're ready to move up: you start craving automation and reaching the edges of APIs.
 
 ### L2 · Engineer — Building AI-Powered Tools
 
