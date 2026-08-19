@@ -63,7 +63,7 @@ The grading defines exit conditions. Only when C/H/M reach zero can the review e
 ```
 Ralph Loop has three outcomes:
 
-1. Early Stop: 2 consecutive rounds with zero issues (C/H/M/L all zero) → pass immediately
+1. Early Stop: 2 consecutive rounds with zero Critical, High, or Major issues (C/H/M = 0) → pass immediately
 2. Gate Pass: From round 5 onward, current round has C/H/M = 0 (L acceptable) → pass
    (Most reviews converge in 3-4 rounds. Rounds 5+ with only L-level noise is normal tail behavior.)
 3. Max Rounds: After 10 rounds, C/H/M issues remain → pause, escalate to human
@@ -123,7 +123,7 @@ After fixing all 26 issues, **Round 2 found 0 new issues.** All 16 fixes passed 
 
 But what if Round 1's fixes introduced new problems? The developer patches the path traversal with a regex, but the regex itself is wrong. This "fix one bug, introduce another" pattern is common in AI-generated code. A single clean round could be a false negative: the reviewer happened not to cover the new issue, or the fix's side effects are invisible in the current review dimension.
 
-Two consecutive clean rounds rule out this false negative. The first zero proves the previous round's fixes introduced no new issues. The second zero proves the first round's review itself missed nothing. Double confirmation of convergence.
+Two consecutive clean rounds rule out this false negative. The first zero proves the previous round's fixes introduced no new issues. The second zero confirms the review process has stabilized and produced no new findings. Double confirmation of convergence.
 
 ### Structural Isomorphism with Cauchy Convergence
 
