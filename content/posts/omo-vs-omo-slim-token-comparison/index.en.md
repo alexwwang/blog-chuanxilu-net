@@ -25,7 +25,7 @@ On April 22, 2026, I switched. Disabled OMO, installed SLIM. Ten minutes, done. 
 
 ## Evaluation Method
 
-Where does the data come from? OpenCode's session database, sitting at `~/.local/share/opencode/opencode.db` — a SQLite file. I wrote a Python script called `opencode-daily-stats` (with AI assistance, naturally) to extract token consumption records from it.
+Where does the data come from? OpenCode's session database, sitting at `~/.local/share/opencode/opencode.db`, a SQLite file. I wrote a Python script called `opencode-daily-stats` (with AI assistance, naturally) to extract token consumption records from it.
 
 The core metric is **average Tokens per message** (`∑tokens / messages`). Why not just look at totals? Because the two periods had different usage intensity. Total token counts get distorted by message volume. Average Tokens per message is what actually reflects how efficiently a plugin builds context.
 
@@ -34,7 +34,7 @@ Time windows:
 - OMO period: 2026-04-15 ~ 2026-04-21 (7 days)
 - SLIM period: 2026-04-23 ~ 2026-05-05 (13 days)
 
-Why start from April 15 and not earlier? Usage intensity stabilized after that date. Daily message counts between the two periods are close — OMO averaged 1,108 messages/day, SLIM averaged 1,339/day, a 1.21x ratio. Small enough to avoid intensity differences biasing the conclusions.
+Why start from April 15 and not earlier? Usage intensity stabilized after that date. Daily message counts between the two periods are close: OMO averaged 1,108 messages/day, SLIM averaged 1,339/day, a 1.21x ratio. Small enough to avoid intensity differences biasing the conclusions.
 
 I labeled every session by task type and excluded automated test sessions. Labeling methodology is in [Appendix B](#appendix-b-labeling-methodology). Below I present three dimensions: total messages, total Tokens, and average Tokens per message.
 
@@ -50,7 +50,7 @@ Overall numbers first:
 | Daily Messages | 1,108/day | 1,339/day |
 | Daily Tokens (M/day) | 105.3 | 122.5 |
 
-Average Tokens per message dropped 3.7%. Practically flat. Daily Tokens went up 16%, but daily messages also went up 21% — SLIM period saw slightly heavier use.
+Average Tokens per message dropped 3.7%. Practically flat. Daily Tokens went up 16%, but daily messages also went up 21%; SLIM period saw slightly heavier use.
 
 "Looks like no difference." If I stopped here, the conclusion would be: saving tokens is a myth. But this average hides a lot.
 
@@ -85,7 +85,7 @@ During the OMO period, I was mostly writing blog posts, designing solutions, and
 
 A few cross-cutting facts stand out.
 
-Coding accounts for 51.4% of SLIM's daily token spend — over half. Daily tokens for coding rose from 17.8 M to 61.1 M. The main driver isn't the plugin being more expensive. It's that coding messages surged 6.8x.
+Coding accounts for 51.4% of SLIM's daily token spend: over half. Daily tokens for coding rose from 17.8 M to 61.1 M. The main driver isn't the plugin being more expensive. It's that coding messages surged 6.8x.
 
 Writing messages increased 1.6x. Daily tokens climbed in step.
 
@@ -113,25 +113,25 @@ Three categories cheaper. Two more expensive. One flat. Aristotle's 68% drop cam
 
 The data is on the table. Let me break each one down.
 
-**Coding flat (-6.6%)** is no surprise. SLIM's coding subagent builds context much the same way OMO does — pull code, run tests, read output. Token costs land in the same ballpark. Coding ate 51.4% of SLIM's daily token budget. This category didn't get more expensive, which means SLIM didn't make the biggest cost item worse.
+**Coding flat (-6.6%)** is no surprise. SLIM's coding subagent builds context much the same way OMO does: pull code, run tests, read output. Token costs land in the same ballpark. Coding ate 51.4% of SLIM's daily token budget. This category didn't get more expensive, which means SLIM didn't make the biggest cost item worse.
 
 But not every category stayed flat.
 
-**Writing +61%** is worth watching. During the SLIM period, writing sessions involving @zh-writer, @en-writer, and @observer subagents may have heavier context construction — more background material pulled in per writing task, or higher overhead from multi-agent collaboration. The exact cause needs more data.
+**Writing +61%** is worth watching. During the SLIM period, writing sessions involving @zh-writer, @en-writer, and @observer subagents may have heavier context construction: more background material pulled in per writing task, or higher overhead from multi-agent collaboration. The exact cause needs more data.
 
-**Review -53%** is cheaper per round, not cheaper overall. In the OMO period, review was done by @oracle/@Momus performing deep audits, each round carrying heavy context — full files, history, project rules. One review round was very expensive. In the SLIM period, most review happened inside Ralph loops as quick confirmations: "anything wrong this round?" Much lighter. But subjectively, I ran more review rounds with SLIM. Cheaper per round, more rounds to compensate. Daily tokens still went up.
+**Review -53%** is cheaper per round, not cheaper overall. In the OMO period, review was done by @oracle/@Momus performing deep audits, each round carrying heavy context: full files, history, project rules. One review round was very expensive. In the SLIM period, most review happened inside Ralph loops as quick confirmations: "anything wrong this round?" Much lighter. But subjectively, I ran more review rounds with SLIM. Cheaper per round, more rounds to compensate. Daily tokens still went up.
 
-**Debug +121%** — don't take this number seriously. The OMO period had only 16 debug messages. Too small a sample for any reliable conclusion. The SLIM period's 1,041 messages are the real data. In debug scenarios, the model reads code, runs commands, and analyzes output repeatedly. Context accumulates fast. High token consumption is expected.
+**Debug +121%**: don't take this number seriously. The OMO period had only 16 debug messages. Too small a sample for any reliable conclusion. The SLIM period's 1,041 messages are the real data. In debug scenarios, the model reads code, runs commands, and analyzes output repeatedly. Context accumulates fast. High token consumption is expected.
 
 The most interesting finding comes last.
 
-**Aristotle -68%**, but the main cause isn't the plugin. SLIM doesn't support async subagent execution. The Aristotle project therefore rewrote its bridge plugin, migrating a lot of work that previously depended on LLM calls into MCP — file reads and writes, rule queries, state management all shifted from LLM invocations to local tool calls. This rewrite accidentally slashed token consumption — a live example of constraint driving innovation.
+**Aristotle -68%**, but the main cause isn't the plugin. SLIM doesn't support async subagent execution. The Aristotle project therefore rewrote its bridge plugin, migrating a lot of work that previously depended on LLM calls into MCP: file reads and writes, rule queries, state management all shifted from LLM invocations to local tool calls. This rewrite accidentally slashed token consumption: a live example of constraint driving innovation.
 
 ## User Experience Differences
 
 Some differences don't show up in quantitative data.
 
-Under OMO, subagents process tasks in parallel. The main session stays unblocked. I can run multiple directions at once — one agent writes code, another researches docs, and I keep chatting about next steps in the main session. Under SLIM, the main session blocks when a subagent starts. I wait, or I switch to something else. The interrupted workflow is noticeable.
+Under OMO, subagents process tasks in parallel. The main session stays unblocked. I can run multiple directions at once: one agent writes code, another researches docs, and I keep chatting about next steps in the main session. Under SLIM, the main session blocks when a subagent starts. I wait, or I switch to something else. The interrupted workflow is noticeable.
 
 But SLIM brought an unexpected gain too.
 
@@ -143,7 +143,7 @@ Also, under SLIM's task prompt environment, I noticed the model's thinking depth
 
 Grouping by task type is more complete, nuanced, and objective than looking at the total average. But it still has limitations.
 
-The ideal approach would be concurrent A/B testing — same time period, same tasks, two plugins. In practice, once you switch, you don't switch back to run a control. This experimental design is hard to implement given current constraints.
+The ideal approach would be concurrent A/B testing: same time period, same tasks, two plugins. In practice, once you switch, you don't switch back to run a control. This experimental design is hard to implement given current constraints.
 
 A more ideal approach would also include: stratified comparison by task type, controlling for task type before comparing costs within each category; factoring in task completion rate and rework rate (saving tokens but reworking more means no real savings); quantifying the parallel vs. blocking capability as an experience dimension.
 
