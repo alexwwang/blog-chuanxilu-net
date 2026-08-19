@@ -16,7 +16,7 @@ cover:
 
 My Ralph Loop review mechanism had a hidden problem.
 
-v0.2's flow was straightforward: find issues → fix → confirm convergence. In [part 4](/en/posts/2026/04/ralph-loop-ai-errors-converge/) of this series, I mentioned that if the creator disagrees with the reviewer's judgment, they can present evidence in the next round for reassessment. But that was one sentence in the rules — not a formal protocol. Nobody was checking whether the review itself was sound. The reviewer might mislabel severity. The main agent might blindly accept bad suggestions.
+v0.2's flow was straightforward: find issues → fix → confirm convergence. In [Part 4](/en/posts/2026/04/ralph-loop-ai-errors-converge/) of this series, I mentioned that if the creator disagrees with the reviewer's judgment, they can present evidence in the next round for reassessment. But that was one sentence in the rules — not a formal protocol. Nobody was checking whether the review itself was sound. The reviewer might mislabel severity. The main agent might blindly accept bad suggestions.
 
 Today I released tdd-pipeline v0.3.0[1]. The design principle for v0.3 fits on a single line: **every decision in the review process must be verifiable.** Is the issue the reviewer flagged a real issue? Is the fix the main agent accepted a real fix? If the main agent rejects something, does the reason hold up? Every step needs evidence, a record, and rule-based constraints.
 
