@@ -12,7 +12,9 @@ cover:
   image: "cover.png"
   relative: true
   alt: "Ralph Loop: multi-round convergent review, two consecutive clean rounds to exit"
---- in "Taming AI Coding Agents with TDD." The first covered [test-driven requirements anchoring](/en/posts/2026/04/test-doc-before-test-code-reverse-anchoring/), the second introduced [the GEAR protocol for disambiguation](/en/posts/2026/04/why-aristotle-vibe-development-needs-gear-protocol/), the third laid out [what the tech spec must nail down](/en/posts/2026/04/prd-to-tech-spec-ai-design-guardrails/). This one covers the last line of defense: review.
+---
+
+This is article 4 in "Taming AI Coding Agents with TDD." The first covered [test-driven requirements anchoring](/en/posts/2026/04/test-doc-before-test-code-reverse-anchoring/), the second introduced [the GEAR protocol for disambiguation](/en/posts/2026/04/why-aristotle-vibe-development-needs-gear-protocol/), the third laid out [what the tech spec must nail down](/en/posts/2026/04/prd-to-tech-spec-ai-design-guardrails/). This one covers the last line of defense: review.
 
 ## The Problem the Tech Spec Cannot Solve
 
@@ -30,7 +32,7 @@ The common move is "ask the AI to review its own work." Same session, same conte
 
 **Problem one: the AI reviewing its own work has confirmation bias.** The AI that wrote the code already made a chain of implicit assumptions — "this API parameter exists," "this framework supports async callbacks," "this data structure is thread-safe." When the same AI reviews its own output, it validates conclusions using the same assumptions. If the assumption is wrong, the review will not catch it.
 
-**Problem two: line-by-line human review creates the illusion of thoroughness.** When a person reads an AI-generated document, checking each factual claim one by one, attention starts to decay around the third item. By the tenth item, even obvious errors slip through. This is not a discipline problem. It is a structural limit of human attention.
+**Problem two: line-by-line human review creates the illusion of thoroughness.** When a person reads an AI-generated document, checking each factual claim one by one, their attention starts to decay around the third item. By the tenth item, even obvious errors slip through. This is not a discipline problem. It is a structural limit of human attention.
 
 Both problems share a root cause: **AI errors are not random. They are systematic.** A single wrong assumption — say, `task()` supports async execution — does not affect one module. It spreads. The reflection module uses it. The notification module uses it. The state manager builds on it. Spot-checking catches random errors. Systematic errors need systematic review.
 
