@@ -177,7 +177,7 @@ Four layers, each solving a specific AI problem:
 3. **Testing:** The AI writes happy-path tests and skips boundary cases. Test documents anchor to requirements, not to implementation.
 4. **Review:** An AI reviewing its own work lacks the independence to catch its own errors. Independent reviewers, a contested issue protocol, and two consecutive rounds with zero issues at any level (C/H/M/L) prove convergence — every step backed by evidence, records, and rule-based constraints.
 
-Process is not a straightjacket. It is the wall that stops the AI from going off the rails.
+Process is not a straitjacket. It is the wall that stops the AI from going off the rails.
 
 ## References
 
