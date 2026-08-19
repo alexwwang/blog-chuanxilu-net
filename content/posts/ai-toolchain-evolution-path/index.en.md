@@ -38,7 +38,7 @@ When you start maintaining your own prompt library and choosing different tools 
 
 ### L2 · Engineer — Building AI-Powered Tools
 
-L2 is the watershed. You're no longer just an AI user—you've started building tools with APIs. The Messages API, token accounting, streaming, and function calling become part of your daily work; foundational RAG (embedding, vector databases, chunking) lets you inject private knowledge into AI; n8n or LangChain help you string scattered calls into coherent workflows. The most important habit at this stage is **CLAUDE.md-driven development**—writing project context as machine-readable documentation so AI truly integrates into the development loop. When you move from single AI calls to multi-agent collaboration, you're ready for the next level.
+L2 is the watershed. You're no longer just an AI user—you've started building tools with APIs. The Messages API, token accounting, streaming, and function calling become part of your daily work; foundational RAG (embedding, vector databases, chunking) lets you inject private knowledge into AI; n8n or LangChain helps you string scattered calls into coherent workflows. The most important habit at this stage is **CLAUDE.md-driven development**—writing project context as machine-readable documentation so AI truly integrates into the development loop. When you move from single AI calls to multi-agent collaboration, you're ready for the next level.
 
 ### L3 · Architect — Designing Multi-Agent Systems
 
