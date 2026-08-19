@@ -3,7 +3,7 @@ title: "The Full Pipeline: Five Stages from Requirements to Code"
 slug: "ai-tdd-full-pipeline-from-requirements-to-code"
 date: 2026-04-30T14:00:00+08:00
 draft: false
-description: 'Article 6 in the series. The previous five articles each covered one layer — requirements, design, testing, review, procedural justice. This one connects them into a working pipeline. Checklists for every stage, a real-project retrospective, and a blunt assessment of when this process is worth the overhead.'
+description: 'Article 6 in the series. The previous five articles each covered one layer: requirements, design, testing, review, procedural justice. This one connects them into a working pipeline. Checklists for every stage, a real-project retrospective, and a blunt assessment of when this process is worth the overhead.'
 tags: ["AI", "TDD", "AI-Assisted Development", "Engineering Methodology", "Full Pipeline"]
 categories: ["AI Practice", "Taming AI Coding Agents with TDD"]
 series: ["Taming AI Coding Agents with TDD"]
@@ -104,7 +104,7 @@ The entire requirement was one sentence: "Add a reflection feature to Aristotle.
 
 ### Version 2: PRD Written, API Research Skipped
 
-I wrote a structured PRD this time. Requirements were clear. But I skipped API research in the tech spec. The AI designed an entire async architecture around `task(run_in_background=true)` — an API that does not exist[2]. The reflection module, the notification module, and the state manager were all built on that assumption. Integration testing revealed the gap. Full rewrite.
+I wrote a structured PRD this time. Requirements were clear. But I skipped API research in the tech spec. The AI designed an entire async architecture around `task(run_in_background=true)`, an API that does not exist[2]. The reflection module, the notification module, and the state manager were all built on that assumption. Integration testing revealed the gap. Full rewrite.
 
 **Root cause:** No design stage. The PRD locked down "what to build" but not "how to build it." The AI improvised the "how," basing an entire system on a nonexistent platform capability.
 
@@ -137,7 +137,7 @@ This method is not a silver bullet. Apply it where it fits.
 ### Good Fit
 
 - **AI generates more than 50% of the code.** You review and steer. The more code the AI writes, the wider a systematic error can spread.
-- **Complex business domains with ambiguous requirements.** "The system should support high concurrency" — the AI will interpret that as whatever pattern dominates its training data, not ask you for specific targets.
+- **Complex business domains with ambiguous requirements.** "The system should support high concurrency", the AI will interpret that as whatever pattern dominates its training data, not ask you for specific targets.
 - **Tech specs involve uncertain platform APIs.** AI knowledge of platform APIs can be outdated or fabricated. Explicit verification is non-negotiable.
 - **Long-lived production projects.** The process documents are the best onboarding material you will ever write.
 
@@ -151,7 +151,7 @@ The core judgment:
 
 > **The marginal cost of strict process decreases with project complexity. The necessity of strict process increases with AI participation.**
 
-The more complex the project, the more rework time the process saves — far exceeding the process overhead. The more code the AI writes, the higher the risk of systematic error propagation. Structured defenses become non-negotiable.
+The more complex the project, the more rework time the process saves, far exceeding the process overhead. The more code the AI writes, the higher the risk of systematic error propagation. Structured defenses become non-negotiable.
 
 ## Relationship to Existing Methodologies
 
@@ -175,7 +175,7 @@ Four layers, each solving a specific AI problem:
 1. **Requirements:** The AI does not ask follow-up questions. Structured clarification questions close the ambiguity gaps.
 2. **Design:** The AI designs around APIs that do not exist. Explicit research checklists verify every assumption.
 3. **Testing:** The AI writes happy-path tests and skips boundary cases. Test documents anchor to requirements, not to implementation.
-4. **Review:** An AI reviewing its own work lacks the independence to catch its own errors. Independent reviewers, a contested issue protocol, and two consecutive rounds with zero issues at any level (C/H/M/L) prove convergence — every step backed by evidence, records, and rule-based constraints.
+4. **Review:** An AI reviewing its own work lacks the independence to catch its own errors. Independent reviewers, a contested issue protocol, and two consecutive rounds with zero issues at any level (C/H/M/L) prove convergence, every step backed by evidence, records, and rule-based constraints.
 
 Process is not a straitjacket. It is the wall that stops the AI from going off the rails.
 
@@ -186,10 +186,10 @@ Process is not a straitjacket. It is the wall that stops the AI from going off t
 
 ### Series Articles
 
-- Article 1 — Requirements layer: [Why AI-Assisted Development Needs Structured Requirements First](/en/posts/2026/04/why-aristotle-vibe-development-needs-gear-protocol/)
-- Article 2 — Design layer: [PRD to Tech Spec](/en/posts/2026/04/prd-to-tech-spec-ai-design-guardrails/)
-- Article 3 — Testing layer: [Test Documents Before Test Code](/en/posts/2026/04/test-doc-before-test-code-reverse-anchoring/)
-- Article 4 — Review layer: [AI Errors Converge, They Don't Randomize](/en/posts/2026/04/ralph-loop-ai-errors-converge/)
-- Article 5 — Procedural justice layer: [Procedural Justice Encoded](/en/posts/2026/04/adversarial-review-critical-thinking-ai-quality/)
+- Article 1: Requirements layer: [Why AI-Assisted Development Needs Structured Requirements First](/en/posts/2026/04/why-aristotle-vibe-development-needs-gear-protocol/)
+- Article 2: Design layer: [PRD to Tech Spec](/en/posts/2026/04/prd-to-tech-spec-ai-design-guardrails/)
+- Article 3: Testing layer: [Test Documents Before Test Code](/en/posts/2026/04/test-doc-before-test-code-reverse-anchoring/)
+- Article 4: Review layer: [AI Errors Converge, They Don't Randomize](/en/posts/2026/04/ralph-loop-ai-errors-converge/)
+- Article 5: Procedural justice layer: [Procedural Justice Encoded](/en/posts/2026/04/adversarial-review-critical-thinking-ai-quality/)
 
 > *The Aristotle project is open source on [GitHub](https://github.com/alexwwang/aristotle) under the MIT license. Issues and PRs welcome.*
