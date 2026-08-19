@@ -3,7 +3,7 @@ title: "Pick Your AI by the Job, Not the Ranking"
 slug: "ai-tip-which-ai-to-use"
 date: 2026-05-15T06:00:00+08:00
 draft: false
-description: "Tried ChatGPT, Claude, Gemini — still not sure which one to use? A scenario-based framework to find the right fit."
+description: "Tried ChatGPT, Claude, Gemini, DeepSeek — still not sure which one to use? A scenario-based framework to find the right fit."
 tags: ["AI", "toolchain", "evolution-path", "tip-card", "chatgpt", "gemini", "gpt", "chatgbt", "claude", "kimi", "deepseek", "deepseek api pricing"]
 categories: ["ai-path"]
 toc: false
@@ -21,7 +21,7 @@ Here's the thing: that's the wrong question. There is no universally best AI —
 
 - **"I want a general-purpose assistant for everything"** → ChatGPT. As of May 2026 the default is GPT-5.5 — well-rounded, with the richest plugin ecosystem. If you pick just one, this is a solid choice.
 
-- **"I write, analyze long documents, or review code"** → Claude. High-quality text processing, and the Projects feature lets you upload reference materials and maintain context across sessions. Ideal for iterative, long-running work. Free tier includes Sonnet; current model version is 4.6.
+- **"I write, analyze long documents, or review code"** → Claude. High-quality text processing, and the Projects feature lets you upload reference materials and maintain context across sessions. Ideal for iterative, long-running work. Free tier includes Claude Sonnet; current Claude version is 4.6.
 
 - **"My whole workflow lives in Google"** → Gemini. Email, Docs, Calendar — seamless integration across the board. The Deep Research feature is handy when you need to go deep on a topic.
 
