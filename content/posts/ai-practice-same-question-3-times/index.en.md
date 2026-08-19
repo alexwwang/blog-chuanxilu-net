@@ -23,7 +23,7 @@ The question is up to you. Some examples:
 - "Python tips for a complete beginner"
 - "How can I run better meetings?"
 
-You can rephrase it each time or paste the exact same wording. The key rule: **start a fresh conversation each time.** Don't follow up inside the same thread. Three new chats.
+You can rephrase it each time or paste the exact same wording. The key rule: **start a fresh chat each time.** Don't follow up inside the same chat. Three new chats.
 
 **Save all three answers.** Copy-paste into a note. That's it.
 
@@ -32,7 +32,7 @@ You can rephrase it each time or paste the exact same wording. The key rule: **s
 Put the three responses side by side:
 
 - Is the structure the same? (bullet points? how many? headings?)
-- Are the examples the same? (same advice, different illustrations — or totally different advice?)
+- Are the examples the same? (same advice, different examples — or totally different advice?)
 - Which answer do you like best? Why?
 
 Most people's first reaction: *"Wait, I asked the same thing three times. Why are the answers so different?"*
