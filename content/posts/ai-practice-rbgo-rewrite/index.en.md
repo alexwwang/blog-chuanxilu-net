@@ -3,7 +3,7 @@ title: "Practice: Rewrite Your First Question with RBGO"
 slug: "ai-practice-rbgo-rewrite"
 date: 2026-05-17T06:00:00+08:00
 draft: false
-description: "Series practice challenge: rewrite your first AI question of the day using the RBGO framework. Same need, four extra lines of context — see how dramatically the answer improves."
+description: "Series practice challenge: rewrite your first AI question of the day using the RBGO framework. Same need, four extra lines of context: see how dramatically the answer improves."
 tags: ["AI", "toolchain", "evolution-path", "practice"]
 categories: ["ai-path"]
 toc: false
@@ -15,7 +15,7 @@ cover:
 
 ## Today's Practice
 
-Recall the first question you asked AI today (or recently) — the more casual, the better. Don't cherry-pick.
+Recall the first question you asked AI today (or recently), the more casual, the better. Don't cherry-pick.
 
 Ask it again **exactly as-is.** Save the answer.
 
@@ -43,9 +43,9 @@ That's the point.
 
 ## Why It Matters
 
-The last article taught the RBGO framework. But "knowing" and "doing" are separated by **one round of hands-on practice.** This exercise lets you verify with YOUR question, YOUR scenario — that adding four extra lines of info can change answer quality dramatically.
+The last article taught the RBGO framework. But "knowing" and "doing" are separated by **one round of hands-on practice.** This exercise lets you verify, with YOUR question, YOUR scenario, that adding four extra lines of info can change answer quality dramatically.
 
-RBGO isn't theory — it's a tool you can pocket right now.
+RBGO isn't theory: it's a tool you can pocket right now.
 
 ## Today's Takeaway
 
