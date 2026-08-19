@@ -30,7 +30,7 @@ Each stage has its own inputs, outputs, and review rules:
 - **Design**: Acceptance criteria go in. A tech spec backed by API research comes out.
 - **Test planning**: The tech spec goes in. Full-coverage test cases come out.
 - **Coding**: Test cases go in. Passing production code comes out.
-- **Review**: Every stage ends with a Ralph Loop. C/H/M issues must hit zero before moving on. Two consecutive rounds with zero issues at any level (C/H/M/L) triggers early exit[1].
+- **Review**: Every stage ends with a Ralph Loop. C/H/M issues must hit zero before moving on. Two consecutive rounds with zero issues at any level (C/H/M/L) trigger an early exit[1].
 
 The pipeline runs on **priority propagation**. During product design, each acceptance criterion gets tagged as either `key` (must have full test coverage) or `peripheral` (happy-path is enough). That tag flows downstream. Key ACs require boundary tests and error-path tests. Peripheral ACs only need the main scenario. Decisions made early ripple through every downstream stage.
 
@@ -80,7 +80,7 @@ Each layer exists to catch what the layer above missed. Skip one, and errors flo
 
 - [ ] Is the reviewer independent from the creator (different session)?
 - [ ] Have C/H/M issues hit zero (gate pass condition)?
-- [ ] Do two consecutive rounds with zero issues at any level (C/H/M/L) trigger early stop?
+- [ ] Do two consecutive rounds with zero issues at any level (C/H/M/L) trigger an early stop?
 - [ ] Can every change be traced to a requirement?
 - [ ] Did the reviewer output in three structured categories (defects / suggestions / critique)?
 - [ ] Did the main agent make ADOPT/MODIFY/REJECT decisions for each item with documented rationale?
@@ -104,7 +104,7 @@ The entire requirement was one sentence: "Add a reflection feature to Aristotle.
 
 ### Version 2: PRD Written, API Research Skipped
 
-I wrote a structured PRD this time. Requirements were clear. But I skipped API research in the tech spec. The AI designed an entire async architecture around `task(run_in_background=true)` — an API that does not exist[2]. The reflection module, the notification module, the state manager, all built on that assumption. Integration testing revealed the gap. Full rewrite.
+I wrote a structured PRD this time. Requirements were clear. But I skipped API research in the tech spec. The AI designed an entire async architecture around `task(run_in_background=true)` — an API that does not exist[2]. The reflection module, the notification module, and the state manager were all built on that assumption. Integration testing revealed the gap. Full rewrite.
 
 **Root cause:** No design stage. The PRD locked down "what to build" but not "how to build it." The AI improvised the "how," basing an entire system on a nonexistent platform capability.
 
