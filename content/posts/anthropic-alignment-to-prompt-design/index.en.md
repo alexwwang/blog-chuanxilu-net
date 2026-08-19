@@ -33,7 +33,7 @@ They ran four experiments. The first three trace a clear line.
 
 ### Experiment 1: Teach the Right Behavior Directly
 
-The most natural approach: train the model on honeypot scenarios similar to the evaluation. Let it learn "don't make bad choices when you see something like this."
+The most natural approach was to train the model on honeypot scenarios similar to the evaluation. Let it learn "don't make bad choices when you see something like this."
 
 Error rate dropped from 22% to 15%. Progress, but nowhere near enough. The model learned "don't blackmail in *this* kind of scene." Change the scene, and confidence vanished.
 
@@ -73,7 +73,7 @@ Anthropic's research targets safety training. But three lessons inside it apply 
 
 Telling AI "do A, not B" is weaker than telling it "here is why A is the right call." Behaviors are specific and finite. Reasons are abstract and transferable. A model that understands the reason can make sound judgments in scenes it has never seen. A model that only memorized the behavior gets lost outside the training distribution.
 
-This mirrors how humans learn. Driving instructor says "stop at red lights." That is a behavior. But if the instructor says "red means cross traffic is flowing, so stopping prevents collisions" — that is a reason. The first rule stops you at red lights. The second one helps you make safe decisions at flashing yellows, broken signals, or any ambiguous situation.
+This mirrors how humans learn. A driving instructor says "stop at red lights." That is a behavior. But if the instructor says "red means cross traffic is flowing, so stopping prevents collisions" — that is a reason. The first rule stops you at red lights. The second one helps you make safe decisions at flashing yellows, broken signals, or any ambiguous situation.
 
 ![Stop at red is a behavior; understanding why keeps you safe even when the signal is ambiguous](whywhy-1-n3.png "Reasons transfer, behaviors don't")
 
