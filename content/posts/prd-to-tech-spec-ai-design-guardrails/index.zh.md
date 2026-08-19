@@ -168,7 +168,7 @@ coroutine-O 的教训直接体现在这行里。如果第二次重构的技术�
 
 | Failure Scenario | Priority | Design Response |
 |-----------------|----------|----------------|
-| 子 session 创建失败 | Key | 主 session 内执行，标记"降级模式" |
+| 子 session 创建失败 | Key | 保存执行状态，在主 session 的隔离回退作用域中运行反思，并将输出标记为"降级模式" |
 | 规则生成超时 | Key | 保存草稿，通知用户后续处理 |
 | Git 仓库未初始化 | Peripheral | 启动时自动检测并初始化 |
 

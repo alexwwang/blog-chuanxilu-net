@@ -166,7 +166,7 @@ List possible failure scenarios and design responses.
 
 | Failure Scenario | Priority | Design Response |
 |-----------------|----------|----------------|
-| Child session creation fails | Key | Execute in main session, mark "degraded mode" |
+| Child session creation fails | Key | Save execution state, run reflection in an isolated fallback scope of the main session, and tag output as "degraded mode" |
 | Rule generation timeout | Key | Save draft asynchronously, notify user for later processing |
 | Git repository uninitialized | Peripheral | Auto-detect on startup and initialize |
 
