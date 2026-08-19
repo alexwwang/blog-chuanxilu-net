@@ -35,7 +35,7 @@ Lay the two answers next to each other and compare:
 - **Accuracy:** Does the rewritten answer fit your actual scenario better?
 - **Actionability:** Which one can you pick up and use immediately?
 - **Fluff:** How much "correct but useless" content is in the vague version vs. the RBGO version?
-- **Information density:** Same length — which gives you more useful info?
+- **Information density:** At the same length, which gives you more useful info?
 
 Most people's first reaction: *"That's a huge difference."*
 
@@ -43,7 +43,7 @@ That's the point.
 
 ## Why It Matters
 
-Last article taught the RBGO framework. But "knowing" and "doing" are separated by **one round of hands-on practice.** This exercise lets you verify with YOUR question, YOUR scenario — that adding four extra lines of info changes answer quality dramatically.
+Last article taught the RBGO framework. But "knowing" and "doing" are separated by **one round of hands-on practice.** This exercise lets you verify with YOUR question, YOUR scenario — that adding four extra lines of info can change answer quality dramatically.
 
 RBGO isn't theory — it's a tool you can pocket right now.
 
