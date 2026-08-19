@@ -14,7 +14,7 @@ cover:
   alt: "Ralph Loop：多轮收敛审核，连续两轮零问题才退出"
 ---
 
-这是"用 TDD 驯服 AI 编码代理"系列的第四篇。前三篇按管线顺序讲了[需求层](/posts/2026/04/why-aristotle-vibe-development-needs-gear-protocol/)、[设计层](/posts/2026/04/prd-to-tech-spec-ai-design-guardrails/)和[测试层](/posts/2026/04/test-doc-before-test-code-reverse-anchoring/)。本篇讲最后一道防线——审核机制。
+这是"用 TDD 驯服 AI 编码代理"系列的第四篇。第一篇讲了[测试驱动的需求锚定](/posts/2026/04/test-doc-before-test-code-reverse-anchoring/)，第二篇介绍了[消除歧义的 GEAR 协议](/posts/2026/04/why-aristotle-vibe-development-needs-gear-protocol/)，第三篇讲了[技术方案必须锁死什么](/posts/2026/04/prd-to-tech-spec-ai-design-guardrails/)。本篇讲最后一道防线——审核机制。
 
 ## 第三篇留下的问题
 
@@ -187,7 +187,7 @@ tdd-pipeline 的协议文档甚至明确列出了"常见错误"[1]，其中最�
 
 这不是因为 AI 审查比人类更可靠。而是因为 AI 审查的注意力不衰减——第 100 行和第 1 行的审查强度相同。人类的注意力在第 10 行就开始衰减了。对于一个有几十个事实声明的技术方案，这个差异是决定性的。
 
-Ralph Loop 的本质是：**用 AI 的无限注意力弥补人类的有限注意力，用独立审查弥补自我审查的确认偏误，用双重确认弥补单轮审查的假阳性风险。**
+Ralph Loop 的本质是：**用 AI 的无限注意力弥补人类的有限注意力，用独立审查弥补自我审查的确认偏误，用双重确认弥补单轮审查的假收敛。**
 
 ## 参考
 
