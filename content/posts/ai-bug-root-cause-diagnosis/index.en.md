@@ -3,7 +3,7 @@ title: "The Bug Loop You Can't Escape: Root Cause Diagnosis with AI"
 slug: "ai-bug-root-cause-diagnosis"
 date: 2026-05-01T10:00:00+08:00
 draft: false
-description: 'Fix #13, and old bugs come back. This isn''t a "how I fixed a bug with AI" anecdote. It''s a full post-mortem of a 15+ bug battle — four rounds of attribution, regression traps, and how TDD was forced out by pain.'
+description: 'Fix #13, and old bugs come back. This isn''t a "how I fixed a bug with AI" anecdote. It''s a full post-mortem of a 15+ bug battle — four rounds of attribution, regression traps, and how TDD was forced into existence by pain.'
 tags: ["AI", "bug diagnosis", "root cause analysis", "regression testing", "Aristotle", "AI-Assisted Development"]
 categories: ["AI Practice"]
 series: ["Teaching AI to Reflect"]
@@ -125,7 +125,7 @@ On April 21, I started testing. Within an hour, 4 bugs:
 - **Bug #3:** The main session displayed `$(date +%s)` as a literal command. Root cause: `rule_id` generation was assigned to the Reflector instead of being handled by MCP. Dug into the code and found AI had written Shell commands directly into the prompt.
 - **Bug #2:** The model output "According to protocol, executing REFLECT operation." Root cause: SKILL.md lacked a constraint against outputting protocol reasoning.
 - **Bug #5:** Clicking "review" during testing threw "Reflector session no longer exists." Root cause: DRAFT content lived only in the volatile session. When the session closed, everything disappeared. This one took AI two full days — a complete refactoring of persistence logic, writing DRAFTs to disk at `~/.config/opencode/aristotle-drafts/`.
-- **Bug #8:** Testing a fresh install scenario, the first `write_rule` call immediately reported "repo not initialized." Root cause: `install.sh` forgot to call `init_repo_tool()`. Checking commit history, AI had simply missed this step when writing the install script — the script wasn't covered by any test flow.
+- **Bug #8:** In a fresh install scenario, the first `write_rule` call immediately reported "repo not initialized." Root cause: `install.sh` forgot to call `init_repo_tool()`. The commit history showed AI had simply missed this step when writing the install script — the script wasn't covered by any test flow.
 
 By April 25, AI had fixed all 8 functional test issues. I breathed a sigh of relief and asked it to run E2E tests, preparing for release. More problems surfaced.
 
@@ -133,7 +133,7 @@ By April 25, AI had fixed all 8 functional test issues. I breathed a sigh of rel
 
 **Bug #13** was a concurrency issue. With multiple instances running concurrently, reconciliation would hang on stale sessions and block startup. An audit also found that `saveToDisk` risked overwriting data from other instances. AI added instance ID isolation and timeout mechanisms. Tested #13 three times. All passed. But there was no regression test suite — testing #13 meant testing only #13, without running through everything else to confirm existing fixes still held. So I moved forward with high hopes.
 
-Then the notification mechanism broke again. I asked AI to analyze the cause. It went off on tangents — various possible explanations, none matching the actual symptom. It suddenly hit me: this might be an old bug coming back. I had AI write regression tests for every previously fixed bug. Ran them. Sure enough — old bug regression confirmed. Checking commit history, AI had modified session isolation logic while fixing #13, and that change had touched notification-related code. The modification had nothing to do with #13's fix objective.
+Then the notification mechanism broke again. I asked AI to analyze the cause. It went off on tangents — various possible explanations, none matching the actual symptom. It suddenly hit me: this might be an old bug coming back. I had AI write regression tests for every previously fixed bug. Ran them. Sure enough — old bug regression confirmed. The commit history showed AI had modified session isolation logic while fixing #13, and that change had touched notification-related code. The modification had nothing to do with #13's fix objective.
 
 Worse: this wasn't the first time. One or two minor regressions had happened before, caught by manual testing. At the time, they felt like flukes. The third time, I realized this wasn't luck — every time something went wrong, I had to first spend time figuring out "new bug or regression?" Wasting both energy and tokens. Three strikes. The process had to be systematized.
 
