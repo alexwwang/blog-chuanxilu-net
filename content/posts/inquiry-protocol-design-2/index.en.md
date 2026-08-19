@@ -56,7 +56,7 @@ The difference between these two angles: one asks from the patch perspective, lo
 
 **Design note: you must use preventive framing.** If you use patch framing ("would adding a null check fix it?"), T2 passes at a shallow level and fails to do its job as a check. That's why the protocol explicitly requires preventive framing.
 
-**Edge case.** The point of preventive framing isn't to require that every root cause be a system-level overhaul. Sometimes the answer to a preventive framing question reveals that the root cause isn't on the path you've been tracking. For example: you've traced down to "missing a concurrency lock" as the root cause. Preventive framing asks, "If we had a proper locking mechanism, would this class of bugs still occur?" The answer might be, "Locks prevent races, but this bug's real cause is event-handling order, which has nothing to do with locks." That tells you the root cause lies in another dimension — chasing the current path deeper won't help. Time to switch direction.
+**Edge case.** The point of preventive framing isn't to require that every root cause be a system-level overhaul. Sometimes the answer to a preventive framing question reveals that the root cause isn't on the path you've been tracking. For example, you've traced down to "missing a concurrency lock" as the root cause. Preventive framing asks, "If we had a proper locking mechanism, would this class of bugs still occur?" The answer might be, "Locks prevent races, but this bug's real cause is event-handling order, which has nothing to do with locks." That tells you the root cause lies in another dimension — chasing the current path deeper won't help. Time to switch direction.
 
 ### T3: Explanatory Power
 
