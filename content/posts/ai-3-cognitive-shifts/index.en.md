@@ -77,7 +77,7 @@ Same AI. Same underlying capability. Completely different output quality. Approa
 
 The difference? Approach A asks for an answer and gets something "correct but not useful." Approach B asks for a thinking process. You feed the problem's structure and constraints to the AI, and it reasons within those boundaries.
 
-The output quality isn't higher because the AI got smarter. It's higher because **your thinking framework gave its capabilities something to grip.**
+The output quality is higher not because the AI got smarter. It's higher because **your thinking framework gave its capabilities something to grip.**
 
 Moving from "give me the answer" to "help me think" isn't a phrasing trick. It's a fundamental shift in your relationship with AI. You're not querying an encyclopedia. You're collaborating with something that can reason — and the more specific your framework, the more valuable the output.
 
