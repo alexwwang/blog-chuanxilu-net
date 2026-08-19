@@ -26,7 +26,7 @@ v0.3.0 includes other changes too. This article focuses on the three core mechan
 
 The reviewer can no longer dump a loose list of issues. Output must fall into three categories:
 
-- **Severity-graded defects**: C (Critical) / H (High) / M (Major) / L (Low) / I (Info)
+- **Severity-graded defects**: C (Critical) / H (High) / M (Medium) / L (Low) / I (Info)
 - **Actionable fix suggestions**: Not "consider improving X" — but what to change, how to change it, and why
 - **Strategic critique**: Challenging assumptions, identifying risks, questioning the reasoning behind design decisions
 
