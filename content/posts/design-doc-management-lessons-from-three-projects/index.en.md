@@ -74,7 +74,7 @@ After losing documents twice, I systematically considered every option:
 | Cloud sync (iCloud/Dropbox) | Put `design_plan/` in a synced directory | Multi-device sync conflicts, awkward for command-line workflows |
 | Separate git repository | Create a standalone repo for design docs | High maintenance overhead, need to keep two repos in sync |
 | Symlink to a safe directory | `design_plan/` → `/safe/dir/` | The symlink itself can get deleted during rebase |
-| rsync to /tmp or elsewhere | Manual rsync before risky operations | Relies on human memory—forget once and there's no protection |
+| `rsync` to `/tmp` or elsewhere | Manual `rsync` before risky operations | Relies on human memory—forget once and there's no protection |
 | **Git Worktree** | Independent local branch tracking documents | Zero extra dependencies, native git integration, branch-level isolation is a structural guarantee |
 
 Git Worktree won for a simple reason: **it's a native git feature. No installation, no workflow changes, and the isolation between branches is structural—the main worktree's rebase, checkout, and reset are physically incapable of touching files in another worktree.**
