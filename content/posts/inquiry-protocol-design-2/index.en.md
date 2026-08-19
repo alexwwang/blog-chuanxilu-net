@@ -82,7 +82,7 @@ Prevents the inquiry from diverging endlessly and keeps the search space bounded
 
 ### HC3: Evidence Anchoring
 
-If 2 consecutive Whys have no new evidence to back them up, the inquiry must stop.
+If 2 consecutive Whys have no new evidence to back them up, the current branch must be abandoned.
 
 Note that HC3 only guarantees each step has evidence — it doesn't guarantee the evidence is deep. Evidence depth is still enforced by the T1–T3 thresholds. For example, "a reproduction experiment confirmed the race condition exists" is specific evidence that satisfies HC3. But that alone won't pass T1–T3 — you haven't traced down to why the race condition occurred in the first place.
 
