@@ -42,7 +42,7 @@ L2 is the watershed. You're no longer just an AI user—you've started building 
 
 ### L3 · Architect — Designing Multi-Agent Systems
 
-At L3, the question is no longer "how do I call AI" but "how do I make multiple AI agents collaborate reliably." Orchestrator/subagent patterns, ReAct loops, and plan-and-execute strategies become your design language; cross-session persistent memory, knowledge graphs, and error-learning mechanisms make the system progressively smarter; trust boundaries, degradation strategies, and idempotency design ensure system reliability. The iron rule of this stage: **system diagrams before code**. Map out data flows and decision boundaries first, then start implementing.
+At L3, the question is no longer "How do I call AI?" but "How do I make multiple AI agents collaborate reliably?" Orchestrator/subagent patterns, ReAct loops, and plan-and-execute strategies become your design language; cross-session persistent memory, knowledge graphs, and error-learning mechanisms make the system progressively smarter; trust boundaries, degradation strategies, and idempotency design ensure system reliability. The iron rule of this stage: **system diagrams before code**. Map out data flows and decision boundaries first, then start implementing.
 
 ### L4 · Native — AI-Native Thinking
 
