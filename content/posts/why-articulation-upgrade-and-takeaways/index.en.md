@@ -3,7 +3,7 @@ title: "The Upgrade — New Template and Three Transferable Lessons"
 slug: "why-articulation-upgrade-and-takeaways"
 date: 2026-05-17T09:00:00+08:00
 draft: false
-description: "Upgrading the Why Articulation template based on A/B test data: replacing explicit questions with open-ended reasoning plus self-check, keeping mandatory tone and negative-only examples. Three transferable prompt engineering lessons."
+description: "Upgrading the Why Articulation template based on A/B test data: replacing explicit questions with open-ended reasoning plus self-check, keeping a mandatory tone and negative-only examples. Three transferable prompt engineering lessons."
 tags: ["AI", "prompt engineering", "AB testing", "TDD", "Why Articulation"]
 categories: ["AI Practice", "Why Make AI Articulate Why Before Acting"]
 series: ["Why Make AI Articulate Why Before Acting"]
@@ -20,7 +20,7 @@ cover:
 
 ## Recap
 
-[Article 1](/posts/anthropic-alignment-to-prompt-design/) started from Anthropic's alignment research: teaching a model *why* rather than *what* cut misalignment from 22% to 3% (about 7×), and achieved equivalent results with 1/28 the data [1]. I adapted this into Why Articulation — a mechanism that forces AI to explain purpose, risks, and approach before writing any code.
+[Article 1](/posts/anthropic-alignment-to-prompt-design/) started from Anthropic's alignment research: teaching a model *why* rather than *what* cut misalignment from 22% to 3% (about 7×), and achieved equivalent results with 1/28 of the data [1]. I adapted this into Why Articulation — a mechanism that forces AI to explain purpose, risks, and approach before writing any code.
 
 [Article 2](/posts/ab-test-positive-examples-harm/) tested four template variables with A/B experiments. Removing explicit questions: quality nudged up, tokens dropped 33%. Adding positive examples: quality dropped 0.33 points, tokens rose 50%. Softening tone: quality dropped 0.33 points. The optimal configuration based on single-variable tests was no scaffolding + mandatory tone + negative-only examples.
 
@@ -95,7 +95,7 @@ The decisions above are specific to Why Articulation. Below, I abstract the find
 
 In your prompt, describe the thinking dimensions you expect ("explain what this protects, where the risks lie, and why your approach works") rather than showing "what good output looks like." Positive examples seem helpful, but the model takes an imitation shortcut — it maps the example's pattern onto the current task instead of doing independent analysis.
 
-This isn't just the V4 finding. Anthropic's "Teaching Claude Why" [1] research reached the same conclusion: teaching principles (constitution documents, ethical reasoning) outperformed teaching behaviors (correct-answer examples) by roughly 7×. We replicated the same pattern at the prompt level.
+This isn't just the V4 finding. Anthropic's "Teaching Claude Why" research [1] reached the same conclusion: teaching principles (constitution documents, ethical reasoning) outperformed teaching behaviors (correct-answer examples) by roughly 7×. We replicated the same pattern at the prompt level.
 
 ### 2. Lock Critical Steps with Mandatory Tone
 
@@ -107,7 +107,7 @@ If your prompt has steps that *must* happen — writing a test plan before codin
 
 I assumed the explicit three-question prompt gave the model a useful structure. The experiment surprised me: removing the explicit structure let the model organize the same three dimensions (goal, risk, approach) on its own, and it analyzed more deeply on complex tasks.
 
-This recommendation is the flip side of the first. Giving principles is "tell it what to think about." Giving structure is "tell it how to think." Scaffolding isn't useless — but it has a cost. It constrains the directions the model might explore. Describe the dimensions you want, then let go. The model often produces better results when you stop arranging its thinking for it. Input (what you provide), execution (how you lock it), structure (how much you let go) — the fewer decisions you make for the model, the more it has to think on its own, and self-generated thinking tends to be higher quality.
+This recommendation is the flip side of the first. Giving principles is "tell it what to think about." Giving structure is "tell it how to think." Scaffolding isn't useless — but it has a cost. It constrains the directions the model might explore. Describe the dimensions you want, then let go. The model often produces better results when you stop arranging its thinking for it. Input (what you provide), execution (how you lock it), structure (how much you let go) — the fewer decisions you make for the model, the more it has to think on its own. Self-generated thinking tends to be higher quality.
 
 ## Limitations of This Experiment
 
@@ -121,7 +121,7 @@ The recommendations above have directional experimental support, but no statisti
 
 **Non-blind scoring.** The evaluator knew which condition produced each output. Implicit bias is possible — even with conscious effort to stay objective.
 
-**Ordinal scale averaging.** Averaging 1–4 ordinal data is statistically questionable. Strictly speaking, non-parametric tests should be used — but with sample sizes this small, testing is meaningless anyway.
+**Ordinal scale averaging.** Averaging data from a 1–4 ordinal scale is statistically questionable. Strictly speaking, non-parametric tests should be used — but with sample sizes this small, testing is meaningless anyway.
 
 These limitations mean the findings are directional signals, not confirmations. They point in clear directions (de-scaffolding beats explicit structure, positive examples harm, mandatory tone has a depth effect), but if you apply them in your own context, run a small-scale validation first.
 
