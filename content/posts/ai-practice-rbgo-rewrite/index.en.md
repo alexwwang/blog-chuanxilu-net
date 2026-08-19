@@ -43,7 +43,7 @@ That's the point.
 
 ## Why It Matters
 
-Last article taught the RBGO framework. But "knowing" and "doing" are separated by **one round of hands-on practice.** This exercise lets you verify with YOUR question, YOUR scenario — that adding four extra lines of info can change answer quality dramatically.
+The last article taught the RBGO framework. But "knowing" and "doing" are separated by **one round of hands-on practice.** This exercise lets you verify with YOUR question, YOUR scenario — that adding four extra lines of info can change answer quality dramatically.
 
 RBGO isn't theory — it's a tool you can pocket right now.
 
