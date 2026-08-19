@@ -20,7 +20,7 @@ Open whatever AI you normally use — ChatGPT, Claude, DeepSeek, anything. Pick 
 The question is up to you. Some examples:
 
 - "How do I build a reading habit?"
-- "Python tips for a complete beginner"
+- "What are some Python tips for a complete beginner?"
 - "How can I run better meetings?"
 
 You can rephrase it each time or paste the exact same wording. The key rule: **start a fresh chat each time.** Don't follow up inside the same chat. Three new chats.
