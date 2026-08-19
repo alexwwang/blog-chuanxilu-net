@@ -3,7 +3,7 @@ title: "Why AI Can't Do 5-Why Right: Stopping Too Early, Single-Path Tracking, a
 slug: "inquiry-protocol-design-1"
 date: 2026-05-05T10:00:00+08:00
 draft: false
-description: "5-Why handed to AI fails not because the method is outdated, but because AI thinks shallow—stopping early, chasing one thread, seeking only confirming evidence. A real case where all four rounds of attribution went wrong."
+description: "5-Why handed to AI fails not because the method is outdated, but because AI thinks shallowly: stopping early, chasing one thread, seeking only confirming evidence. A real case where all four rounds of attribution went wrong."
 tags: ["AI", "5-Why", "root cause analysis", "inquiry protocol", "AI-assisted development"]
 categories: ["AI Practice", "AI Root Cause Diagnosis", "Inquiry Protocol Design"]
 series: ["Taming AI Coding Agents with TDD", "AI Root Cause Diagnosis"]
