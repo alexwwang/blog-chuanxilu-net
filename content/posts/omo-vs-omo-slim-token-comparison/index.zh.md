@@ -25,7 +25,7 @@ OMO 走「全家桶」路线，11 个 agent，prompt 能到 1100 行，batteries
 
 ## 评估方法
 
-数据从哪来？OpenCode 的 session 数据库，路径在 `~/.local/share/opencode/opencode.db`，一个 SQLite 文件。我用亲自写的 Python 脚本 opencode-daily-stats（当然是亲自指导 AI 写的啦）从里面提取 token 消耗记录。
+数据从哪来？OpenCode 的 session 数据库，路径在 `~/.local/share/opencode/opencode.db`，一个 SQLite 文件。我用亲自写的 Python 脚本 `opencode-daily-stats`（当然是亲自指导 AI 写的啦）从里面提取 token 消耗记录。
 
 核心指标是**每消息平均 Token 数**（`∑tokens / messages`）。为什么不直接看总量？因为两个时期的使用强度不同，总量会被消息数量带跑。每消息平均 Token 数才能反映插件本身的上下文构建效率。
 

@@ -25,7 +25,7 @@ On April 22, 2026, I switched. Disabled OMO, installed SLIM. Ten minutes, done. 
 
 ## Evaluation Method
 
-Where does the data come from? OpenCode's session database, sitting at `~/.local/share/opencode/opencode.db` — a SQLite file. I wrote a Python script called opencode-daily-stats (with AI assistance, naturally) to extract token consumption records from it.
+Where does the data come from? OpenCode's session database, sitting at `~/.local/share/opencode/opencode.db` — a SQLite file. I wrote a Python script called `opencode-daily-stats` (with AI assistance, naturally) to extract token consumption records from it.
 
 The core metric is **average Tokens per message** (`∑tokens / messages`). Why not just look at totals? Because the two periods had different usage intensity. Total token counts get distorted by message volume. Average Tokens per message is what actually reflects how efficiently a plugin builds context.
 
