@@ -208,7 +208,7 @@ workspace/
 └── design_plan/      # Outside the repo, git can't touch it
 ```
 
-This avoids the rebase problem—rebase only operates inside the repository, so files outside are unaffected. But the cost is **the correspondence between documents and code is maintained by human memory.** Which design document corresponds to which refactor? Which technical proposal was written after which commit? git log won't tell you. You're left inferring from dates and filenames.
+This avoids the rebase problem—rebase only operates inside the repository, so files outside are unaffected. But the cost is that **the correspondence between documents and code is maintained by human memory.** Which design document corresponds to which refactor? Which technical proposal was written after which commit? git log won't tell you. You're left inferring from dates and filenames.
 
 After using this setup for a while, I migrated to the worktree approach. It's not that "outside the repo" doesn't work—it's that the information density is too low. The git repository knows the context of every code change but nothing about any design change. Worktree at least gives design documents a commit history.
 
