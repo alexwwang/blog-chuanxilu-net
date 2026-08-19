@@ -117,7 +117,7 @@ Imagine a smoke alarm that, when there's a fire, just quietly mumbles "there's s
 
 The mechanism: errors get swallowed by catch blocks, only producing low-level log output. A hang at least tells you something is wrong — the system is stuck. A silent failure is worse: the operation failed, but the user sees zero feedback. The log has one line: `debug: task completed with errors`. A background task failed. The user waited five minutes with nothing happening.
 
-When AI generates catch blocks, it prioritizes keeping the flow uninterrupted. It uses `logger.debug` or `logger.info` for severe errors. It swallows exceptions with catch and `continue`. Not throw, not error — silent skip. AI isn't deliberately hiding problems. It just chose a "don't break the flow" strategy when generating the code.
+When AI generates catch blocks, it prioritizes keeping the flow uninterrupted. It uses `logger.debug` or `logger.info` for severe errors. It swallows exceptions with `catch` and `continue`. Not throw, not error — silent skip. AI isn't deliberately hiding problems. It just chose a "don't break the flow" strategy when generating the code.
 
 Before AI, I'd add proper logging and notifications for silent failures. But AI-generated code "already has logging" — just at the wrong level. During review, seeing `logger.info(...)` doesn't trigger alarm. You don't realize it should be `logger.error(...)`. The defense never activates because you didn't realize you needed one.
 
@@ -136,7 +136,7 @@ Imagine practicing parallel parking in an empty lot until you're flawless. Then 
 
 The root cause: test coverage paths don't match production paths. The tests aren't buggy. They just exercise different paths than real users do. All tests pass. Production breaks.
 
-In Aristotle, some tests triggered graceful shutdown via `stdin`. Tests covered the full graceful shutdown flow — cleanup resources, save state, notify downstream. All passed. But in production, processes got killed by SIGKILL. The cleanup handler never ran. The graceful shutdown path covered by tests never actually happens in production.
+In Aristotle, some tests triggered graceful shutdown via `stdin`. Tests covered the full graceful shutdown flow — cleanup resources, save state, notify downstream. All passed. But in production, processes got killed by `SIGKILL`. The cleanup handler never ran. The graceful shutdown path covered by tests never actually happens in production.
 
 When AI generates tests, it tends to follow its own calling path — direct function calls, test-specific APIs, simplified inputs. These tests effectively verify logical correctness. But they skip the full path real users take.
 
@@ -190,7 +190,7 @@ For every pair of interacting components in the project, check row by row. Any "
 | Error propagation | Can A's errors surface in B? | Inject errors in A, verify B detects and handles them | A's process crashes, B waits forever without error |
 | Config propagation | Does the same config reach all components? | Compare each component's resolved config (not the config file) | Config file is correct, but env var overrides one component's value |
 | Registration chain | Can every consumer find its provider? | Enumerate registered tools/services, compare with expected list | Tool function written but unregistered, invisible at runtime |
-| Lifecycle | Are startup resources cleaned up at shutdown? | Kill the process, check for residual files/processes | PID file not deleted, next startup thinks "already running" |
+| Lifecycle | Are startup resources cleaned up at shutdown? | Kill the process, check for residual files/processes | `PID` file not deleted, next startup thinks "already running" |
 | Freshness | Does it run in a clean environment? In a dirty one? | Test separately in clean and dirty environments | Works on dev machine (cached from last run), fails in CI |
 
 One dimension isn't on this checklist: test-production divergence. Integration checks can't catch it. You need to address it at test design time — ensuring tests use the same activation paths as real users.

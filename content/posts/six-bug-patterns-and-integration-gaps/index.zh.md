@@ -117,7 +117,7 @@ grep -rn 'await\|fetch\|connect' src/init.ts | grep -v 'timeout'
 
 机制是错误被 catch 吞掉，只输出低级别日志。阻塞至少能让你知道有问题——系统卡住了嘛。静默失败是：操作失败了，但用户看不到任何反馈。日志里只有一行 `debug: task completed with errors`。一个后台任务失败了，用户等了五分钟什么都没发生。
 
-AI 生成 catch 块时，优先保证"流程不中断"。用 `logger.debug` 或 `logger.info` 记录严重错误，用 catch 吞掉异常然后 `continue`。不是 throw，不是 error，是静默跳过。这不是 AI 有意在隐藏问题，它只是在生成代码时选择了"不破坏流程"的策略。
+AI 生成 catch 块时，优先保证"流程不中断"。用 `logger.debug` 或 `logger.info` 记录严重错误，用 `catch` 吞掉异常然后 `continue`。不是 throw，不是 error，是静默跳过。这不是 AI 有意在隐藏问题，它只是在生成代码时选择了"不破坏流程"的策略。
 
 以前遇到静默失败会加日志、加通知。但 AI 生成的代码"已经有日志了"——只是级别不对。review 时看到 `logger.info(...)`，不会立刻意识到这应该是 `logger.error(...)`。防线没启动，因为没意识到需要防御。
 
@@ -136,7 +136,7 @@ grep -rn 'logger\.\(debug\|info\)' src/ | grep -v test
 
 根因是测试覆盖的路径和生产实际路径不一致。不是测试有 bug，是测试走的路径和真实用户走的路径不一样。测试全部通过，生产环境出问题。
 
-在 Aristotle 里，有测试用 `stdin` 触发 graceful shutdown。测试覆盖了优雅关闭的完整流程——清理资源、保存状态、通知下游。全部通过。但真实场景中进程被 SIGKILL 直接杀死，连 cleanup handler 都来不及执行。测试覆盖的 graceful shutdown 路径，在生产中根本不会被走到。
+在 Aristotle 里，有测试用 `stdin` 触发 graceful shutdown。测试覆盖了优雅关闭的完整流程——清理资源、保存状态、通知下游。全部通过。但真实场景中进程被 `SIGKILL` 直接杀死，连 cleanup handler 都来不及执行。测试覆盖的 graceful shutdown 路径，在生产中根本不会被走到。
 
 AI 生成测试时，倾向于走"AI 自己的调用路径"——直接调用函数、使用测试专用的 API、模拟一个简化的输入。这些测试在验证逻辑正确性上是有效的，但它们跳过了真实用户经历的完整路径。
 
@@ -190,7 +190,7 @@ grep -rn 'parentId\|sessionId\|ownerId' src/ | grep -v test
 | Error propagation | A 的错误能在 B 中体现吗？ | 在 A 注入错误，验证 B 能检测并处理 | A 的进程崩了，B 永远等下去不报错 |
 | Config propagation | 同一份配置到达所有组件了吗？ | 比较每个组件的已解析配置（不是配置文件） | 配置文件写对了，但环境变量覆盖了一个组件的值 |
 | Registration chain | 每个服务消费者能找到它需要的提供者吗？ | 枚举已注册的工具/服务，和预期列表对比 | 工具函数写了但没注册，运行时不存在 |
-| Lifecycle | 启动创建的东西关停时清理了吗？ | Kill 进程，检查残留文件/进程 | PID 文件没删，下次启动认为"已在运行" |
+| Lifecycle | 启动创建的东西关停时清理了吗？ | Kill 进程，检查残留文件/进程 | `PID` 文件没删，下次启动认为"已在运行" |
 | Freshness | 全新环境能跑吗？有残留状态的环境也能跑吗？ | 分别在干净和脏环境中测试 | 开发机上能跑（有上次运行的缓存），CI 上挂了 |
 
 有一个维度不在这个清单里：测试-生产差异。它不是集成检查能发现的，需要在测试设计阶段就介入——确保测试用和真实用户一样的激活路径。
