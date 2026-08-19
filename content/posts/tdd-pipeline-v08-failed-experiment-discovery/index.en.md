@@ -43,7 +43,7 @@ Pre-release testing isn't just about finding bugs in individual components. It's
 
 The original version checked 3 component interaction pairs. The refined version checked 6 — double.
 
-The original version only looked at direct calls between adjacent components. The refined version also caught indirect data flows — Component A writes data, Component B reads it from shared storage, no direct call between them but an implicit dependency. One of those implicit data flows exposed a real architectural issue.
+The original version only looked at direct calls between adjacent components. The refined version also caught indirect data flows — Component A writes data; Component B reads it from shared storage. No direct call between them, but an implicit dependency. One of those implicit data flows exposed a real architectural issue.
 
 There was another difference. Same bug, different framing. The original version flagged "this file has risk." The refined version flagged "this pattern appears in multiple places across the project."
 
@@ -69,7 +69,7 @@ Comparing the two dimensional profiles, a shape emerged. Phase 6 is good at dril
 
 Once I recognized that shape, Phase 7 had a definition: systematic scanning. Check the gaps between components. Analyze execution order. Scan for bug patterns that appear in multiple places. Phase 7 wasn't refined out of Phase 6. It was identified from the direction the refined version drifted toward.
 
-Once Phase 7 was defined, the question became: how do I add it without losing Phase 6's drilling precision?
+Once Phase 7 was defined, the question became: How do I add it without losing Phase 6's drilling precision?
 
 The answer isn't "refine Phase 6." The refined version was genuinely worse at its core job. The answer is: roll Phase 6 back to the original version, and add Phase 7 as an independent stage on top. Two layers, each doing its own thing. Phase 6 drills deep. Phase 7 scans wide.
 
