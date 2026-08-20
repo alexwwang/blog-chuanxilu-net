@@ -137,7 +137,7 @@ oms 有一个 orchestrator 作为主 agent，负责接收任务、调用工具�
 | 插件 | 无 | oh-my-openagent | oh-my-opencode-slim |
 | Agent 数量 | OpenCode 默认 | 插件内置 + 自定义 | 插件内置 + 自定义 |
 | 编排方式 | 无 | Sisyphus 中心编排 | orchestrator + council 评审 |
-| 适用场景 | 插件测试（排除干扰） | 复杂项目，多 agent 协作 | 快速任务，单一 agent 执行 |
+| 适用场景 | 插件测试（排除干扰） | 复杂项目，多 agent 协作 | 快速任务，council 评审 |
 
 ![三种编排模式对比](illustration-2.png)
 
