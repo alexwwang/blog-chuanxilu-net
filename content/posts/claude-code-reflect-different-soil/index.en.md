@@ -22,7 +22,7 @@ My previous post, [Aristotle: Teaching AI to Reflect on Its Mistakes](/en/posts/
 
 Claude Code's plugin and OpenCode's skill are completely different systems. Just getting the plugin installed and recognized took several rounds of struggle.
 
-The marketplace.json format was wrong. Plugin installed but wasn't recognized. Skill call path was wrong, system couldn't find the entry point. Loading mechanism misunderstood, configuration changes wouldn't take effect. AI repeatedly failed installation. It took multiple rounds to figure out the correct format and location.
+The `marketplace.json` format was wrong. Plugin installed but wasn't recognized. Skill call path was wrong, system couldn't find the entry point. Loading mechanism misunderstood, configuration changes wouldn't take effect. AI repeatedly failed installation. It took multiple rounds to figure out the correct format and location.
 
 This raises a question: why does the same model-driven Vibe Coding, when designing tasks with the same goals in Claude Code, not even get the plugin system right?
 
@@ -73,11 +73,11 @@ OMC brings two core capabilities:
 Standalone is completely sufficient. The OMC dependency in the main branch isn't cost-effective:
 * First, standalone's file-based solution is more transparent—which file gets written, what gets written, users can see and control completely, fitting this project's human-in-the-loop design philosophy.
 * Second, the benefits OMC brings have already been marginalized—after the v3 write path redesign, the notepad notification's value dropped significantly, and project memory using the Write tool to write JSON directly is functionally equivalent. This isn't "giving up something valuable for convenience"—it's "the value was already marginal to begin with."
-* Third, OMC itself needs separate installation, an extra step and cognitive burden for users, plus the ongoing cost of maintaining two branches (every SKILL.md change needs to be synchronized)—and I already have the write path redesign big change to do.
+* Third, OMC itself needs separate installation, an extra step and cognitive burden for users, plus the ongoing cost of maintaining two branches (every `SKILL.md` change needs to be synchronized)—and I already have the write path redesign big change to do.
 
 So I had the v3 solution:
 
-| Phase | Session Type | bypassPermissions | Write Scope |
+| Phase | Session Type | `bypassPermissions` | Write Scope |
 |---|---|---|---|
 | Preparation | Main session (1 atomic Bash call) | Yes—for atomicity | `.reflect/reflections/` |
 | Background Analysis | Background sub-session | Yes—required for non-interactive writes | `.reflect/reflections/{id}/` |
@@ -104,14 +104,14 @@ A table to review the V1→V3 iteration. Looking back, it's simple, but figuring
 | Preparation Phase | Multi-step independent calls, can be interrupted | Multi-step independent calls (same as V1) | Single atomic Bash command |
 | Background Write Location | Tried to write `~/.claude/` (rejected) | Only write to project root | Only write to project root |
 | Final Write Location | Background sub-session writes directly | Moved to resumed session | Moved to resumed session |
-| bypassPermissions | Introduced—suppress popups | Tried to remove—theoretically not needed | Added back—actually required |
+| `bypassPermissions` | Introduced—suppress popups | Tried to remove—theoretically not needed | Added back—actually required |
 | OMC Dependency | Yes | Yes | Abandoned, standalone only |
 
 Iteration isn't linear progress, but constant trade-offs between atomicity, permission safety, and dependency complexity. Each solution solves the previous version's problems, then exposes new boundary conditions.
 
 ### Testing Revealed API Concurrency Errors
 
-Another problem surfaced during testing. Main session and sub-session share the API endpoint. Concurrent requests triggered ECONNRESET errors.
+Another problem surfaced during testing. Main session and sub-session share the API endpoint. Concurrent requests triggered `ECONNRESET` errors.
 
 Troubleshooting took a few detours. First I tried specifying a different model — suspected a model switching issue. Checked third-party API configuration — suspected a routing problem. Finally confirmed: the API I was using had a concurrency limit. Concurrent requests to the same endpoint get rejected. Switched to an API with looser limits, problem gone.
 
