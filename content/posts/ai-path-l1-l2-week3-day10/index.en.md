@@ -65,7 +65,7 @@ A vague description costs far more than a few wasted minutes because it forces y
 
 A typical vague request starts with a simple prompt: "Analyze this sales data."
 
-"Analyze" is a black hole. Trend analysis, anomaly detection, year-over-year (YoY) comparisons, summary statistics and distribution overviews are all distinct analytical tasks. Without specifying which, the AI picks one at random. You might care about growth rate gaps between product lines; the AI charts a heatmap of the entire dataset.
+"Analyze" is a black hole. Trend analysis, anomaly detection, year-over-year (YoY) comparisons, summary statistics and distribution overviews are all distinct analytical tasks. When the prompt does not specify which, the AI picks one at random. You might care about growth rate gaps between product lines; the AI charts a heatmap of the entire dataset.
 
 Then there's the data source problem: where's the file? What format are the columns? Without these details, the AI must either ask for clarification or, worse, guess a file path and fail.
 
