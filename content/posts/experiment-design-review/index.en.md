@@ -16,7 +16,7 @@ cover:
 > Series: AI Agent Experiment Methodology (Part 3)
 > [Previous: The Experiment Design Was Fine, So Why Did the LLM Still Fail?](/en/posts/2026/05/execution-context-design/)
 
-> **TL;DR:** In a double-blind experiment, Variant B won 4/4 scenarios with clean data. But design review revealed the rubric had 3/8 dimensions directly testing the target variable, exceeding the 1/3 ceiling and nearly becoming a self-fulfilling prophecy. In a separate validation, one scenario scored perfectly while another exposed a defect—if we had run only the first, the defect would have shipped. Both traps were caught by reviewing the design, not by running the experiment.
+> **TL;DR:** In a double-blind experiment, Variant B won 4/4 scenarios and generated clean data. But design review revealed the rubric had 3/8 dimensions directly testing the target variable, exceeding the 1/3 ceiling and nearly becoming a self-fulfilling prophecy. In a separate validation, one scenario scored perfectly while another exposed a defect—if we had run only the first, the defect would have shipped. Both traps were caught by reviewing the design, not by running the experiment.
 
 ---
 
