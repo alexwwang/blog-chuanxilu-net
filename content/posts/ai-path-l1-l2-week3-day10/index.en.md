@@ -43,7 +43,7 @@ First, "clean up" is too broad. Sort by type? Archive by date? Delete duplicates
 
 Second, it lacks explicit classification rules. By file type or by project topic? What naming convention? Whatever the AI defaults to probably doesn't match your workflow.
 
-Third, it defines no expected deliverable or output format. What counts as done? Do you need a dry-run manifest to verify the changes before moving any files?
+Third, it defines no expected deliverable or output format. What counts as done? Do you need a migration manifest to verify the changes before moving any files?
 
 The fix is straightforward: state the goal, set constraints, define the output.
 
