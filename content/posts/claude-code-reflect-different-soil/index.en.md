@@ -3,7 +3,7 @@ title: "claude-code-reflect: Same Metacognition, Different Soil"
 slug: "claude-code-reflect-different-soil"
 date: 2026-04-06T14:56:00+08:00
 draft: false
-description: "The same reflection mechanism lands on different platform foundations with very different landing postures and paths—from plugin installation to permission pitfalls to API concurrency, documenting the actual development process on Claude Code."
+description: "The same reflection mechanism lands on different platform foundations with very different landing postures and paths: from plugin installation to permission pitfalls to API concurrency, documenting the actual development process on Claude Code."
 tags: ["AI", "agent", "claude-code", "reflection", "claude-code-reflect", "claude"]
 categories: ["AI Practice", "Teaching AI to Reflect"]
 series: ["Teaching AI to Reflect"]
@@ -41,9 +41,9 @@ The subagent often failed to start entirely. Reflection tasks that did start oft
 <details>
 <summary><strong>Why does this happen?</strong> (Click to expand technical details)</summary>
 
-The root cause is non-atomic preparation. Starting a reflection task involves multiple independent steps: generating a session UUID, creating a directory, writing state.json, writing the prompt file, launching a background subprocess. In Claude Code's default `ask` permission mode, each Bash or Write call triggers a user confirmation popup. Between each popup, control returns to the main session. The user's next message might slip in—at best the preparation flow is interrupted, at worst the reflection task starts directly in the main session and the context is completely polluted.
+The root cause is non-atomic preparation. Starting a reflection task involves multiple independent steps: generating a session UUID, creating a directory, writing state.json, writing the prompt file, launching a background subprocess. In Claude Code's default `ask` permission mode, each Bash or Write call triggers a user confirmation popup. Between each popup, control returns to the main session. The user's next message might slip in. At best the preparation flow is interrupted; at worst the reflection task starts directly in the main session and the context is completely polluted.
 
-The V1 solution introduced `bypassPermissions`: skip all confirmation popups and let the preparation flow complete in one go. This did solve the interruption problem, but `bypassPermissions` does more than that—it changes the entire reflection flow's permission model. When background sub-sessions run in non-interactive mode, without it even basic file writes are rejected. In other words, `bypassPermissions` on one hand guarantees atomicity, on the other hand becomes the source of subsequent permission issues. I'll continue discussing this detail below.
+The V1 solution introduced `bypassPermissions`: skip all confirmation popups and let the preparation flow complete in one go. This did solve the interruption problem, but `bypassPermissions` does more than that: it changes the entire reflection flow's permission model. When background sub-sessions run in non-interactive mode, without it even basic file writes are rejected. In other words, `bypassPermissions` on one hand guarantees atomicity, on the other hand becomes the source of subsequent permission issues. I'll continue discussing this detail below.
 
 </details>
 
@@ -66,14 +66,14 @@ So I continued with a v3 solution, merging all preparation steps into a single B
 ### Why Abandon OMC Dependency
 
 OMC brings two core capabilities:
-1. `notepad_write_priority`, for cross-compaction notification—when the background subagent completes analysis, it injects a priority notification through notepad, ensuring the reminder is still visible after context compression. But in the v3 version's redesigned write path, users need to actively resume the subagent session to do review and writing, so the value of this notification mechanism has greatly decreased—users already know they triggered a reflection. `/reflect inspect` and `/reflect list` are enough.
+1. `notepad_write_priority`, for cross-compaction notification: when the background subagent completes analysis, it injects a priority notification through notepad, ensuring the reminder is still visible after context compression. But in the v3 version's redesigned write path, users need to actively resume the subagent session to do review and writing, so the value of this notification mechanism has greatly decreased: users already know they triggered a reflection. `/reflect inspect` and `/reflect list` are enough.
 
 2. `project_memory_add_note` / `project_memory_add_directive`, providing structured project memory management. Standalone uses the Write tool to directly write `.reflect/project-memory.json`, functionally equivalent, just without OMC's unified management layer. For this project's usage scenario, the difference is barely perceptible.
 
 Standalone is completely sufficient. The OMC dependency in the main branch isn't cost-effective:
-* First, standalone's file-based solution is more transparent—which file gets written, what gets written, users can see and control completely, fitting this project's human-in-the-loop design philosophy.
-* Second, the benefits OMC brings have already been marginalized—after the v3 write path redesign, the notepad notification's value dropped significantly, and project memory using the Write tool to write JSON directly is functionally equivalent. This isn't "giving up something valuable for convenience"—it's "the value was already marginal to begin with."
-* Third, OMC itself needs separate installation, an extra step and cognitive burden for users, plus the ongoing cost of maintaining two branches (every `SKILL.md` change needs to be synchronized)—and I already have the write path redesign big change to do.
+* First, standalone's file-based solution is more transparent: which file gets written, what gets written, users can see and control completely, fitting this project's human-in-the-loop design philosophy.
+* Second, the benefits OMC brings have already been marginalized: after the v3 write path redesign, the notepad notification's value dropped significantly, and project memory using the Write tool to write JSON directly is functionally equivalent. This isn't "giving up something valuable for convenience"; it's "the value was already marginal to begin with."
+* Third, OMC itself needs separate installation, an extra step and cognitive burden for users, plus the ongoing cost of maintaining two branches (every `SKILL.md` change needs to be synchronized), and I already have the write path redesign big change to do.
 
 So I had the v3 solution:
 
@@ -85,7 +85,7 @@ So I had the v3 solution:
 
 ## Implementing v3: More Pitfalls Ahead
 
-I used a Ralph Loop to execute the v3 solution changes. Cross-platform path compatibility is a detail—Windows Git Bash and POSIX systems handle paths differently.
+I used a Ralph Loop to execute the v3 solution changes. Cross-platform path compatibility is a detail: Windows Git Bash and POSIX systems handle paths differently.
 
 This step went relatively smoothly. The v3 solution drew a clear boundary between "preparation" and "analysis," concentrating on solving write permission issues. What came next was where I really stepped into pitfalls.
 
@@ -113,7 +113,7 @@ Iteration isn't linear progress, but constant trade-offs between atomicity, perm
 
 Another problem surfaced during testing. Main session and sub-session share the API endpoint. Concurrent requests triggered `ECONNRESET` errors.
 
-Troubleshooting took a few detours. First I tried specifying a different model — suspected a model switching issue. Checked third-party API configuration — suspected a routing problem. Finally confirmed: the API I was using had a concurrency limit. Concurrent requests to the same endpoint get rejected. Switched to an API with looser limits, problem gone.
+Troubleshooting took a few detours. First I tried specifying a different model, suspecting a model switching issue. Checked third-party API configuration, suspecting a routing problem. Finally confirmed: the API I was using had a concurrency limit. Concurrent requests to the same endpoint get rejected. Switched to an API with looser limits, problem gone.
 
 ### Solution: Retry Mechanism
 
@@ -152,14 +152,14 @@ Not every problem has an elegant solution. Let's honestly face the unresolved pr
 5. Insufficient error recovery options
 6. Cross-compaction notification reliability
 
-Solving these problems requires platform-level support, or making trade-offs under current constraints. Engineering is like this—not all problems have perfect solutions.
+Solving these problems requires platform-level support, or making trade-offs under current constraints. Engineering is like this: not all problems have perfect solutions.
 
 ## The Value of AI-Driven Testing
 
 The entire testing process was completed by AI. This isn't the point. The point is that several problems discovered during testing were in the blind spot of the original solution documentation: `bypassPermissions` permission is a platform characteristic, not a design problem. API concurrency is an environment limitation, also not a design problem. `heredoc` variable not expanding is a Bash implementation detail, and certainly not a design problem.
 
-If designed in traditional ways, these problems might only be exposed after launch. Letting AI test the system, AI can discover unforeseen edge cases in human solutions. This point is worth emphasizing—if you're designing a system, let AI test it. AI isn't just an executor, it's also a participant in design verification.
+If designed in traditional ways, these problems might only be exposed after launch. Letting AI test the system, AI can discover unforeseen edge cases in human solutions. This point is worth emphasizing: if you're designing a system, let AI test it. AI isn't just an executor, it's also a participant in design verification.
 
 ## Next Post Preview
 
-Next post: [Trust Boundaries: The Same Idea on Open and Closed Platforms](/en/posts/2026/04/a-trust-boundary-design-experiment/) — systematically comparing the differences between the two systems, from skill systems to permission models to concurrency control to underlying design philosophy, seeing what the same metacognitive mechanism grows into on different soil, and what insights it gives us for future AI practice.
+Next post: [Trust Boundaries: The Same Idea on Open and Closed Platforms](/en/posts/2026/04/a-trust-boundary-design-experiment/), systematically comparing the differences between the two systems, from skill systems to permission models to concurrency control to underlying design philosophy, seeing what the same metacognitive mechanism grows into on different soil, and what insights it offers for future AI practice.
