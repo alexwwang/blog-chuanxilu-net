@@ -38,11 +38,11 @@ This wasn't as simple as "delete one line." Finding a specific rule in mixed Mar
 
 The first design did distinguish between user-level and project-level — user-level rules in `~/.config/opencode/aristotle-learnings.md`, project-level rules in each project's `.opencode/aristotle-project-learnings.md`. Separating the two files was the right idea.
 
-But after separation, both had identical dilemmas — both append-only, neither had version control. Worse, project-level rules were scattered. When I accumulated five lessons across ten projects, those fifty rules were distributed across ten different directories. Searching and managing became a nightmare. Want to check "which project previously hit a data leak pitfall"? You had to flip through directories one by one.
+But after separation, both had identical dilemmas — both append-only, neither had version control. Worse, project-level rules were scattered. When I accumulated five lessons per project across ten projects, those fifty rules were distributed across ten different directories. Searching and managing became a nightmare. Want to check "which project previously hit a data leak pitfall"? You had to flip through directories one by one.
 
 ### Problem Three: No Structure Between Rules
 
-Dozens of rules laid flat in a Markdown file, each just a heading plus a few lines. No category tags, no confidence scores, no "how this rule came to be." When I wanted to find "all lessons related to data cleaning," I had to keyword search — but the wording AI used when generating rules, and the wording I used when searching, often didn't match. Rule says "null value handling omission." I search for "missing values." No match.
+Dozens of rules lay flat in a Markdown file, each just a heading plus a few lines. No category tags, no confidence scores, no "how this rule came to be." When I wanted to find "all lessons related to data cleaning," I had to keyword search — but the wording AI used when generating rules, and the wording I used when searching, often didn't match. Rule says "null value handling omission." I search for "missing values." No match.
 
 Common root of all three problems: **flat append-only files can't support "stateful knowledge management."** Even with user-level and project-level separation, without version management, without structured metadata, without unified search entry points, separation is just physical isolation, not true governance capability.
 
