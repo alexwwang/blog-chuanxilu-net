@@ -48,7 +48,7 @@ AI has no intrinsic motivation to ask "what do you mean?" You have to close the 
 
 GEAR stands for Git-backed Error Analysis & Reflection. It wasn't planned from the start. It was forced out by the four failures of v1.
 
-V1 had a single agent role. All logic crammed into one 371-line SKILL.md. After the failure, I split it into four files: routing logic stayed in SKILL.md (84 lines), reflection launch moved to REFLECT.md, review to REVIEW.md, and the subagent analysis protocol to REFLECTOR.md. Each file loads only in its own scenario.
+v1 had a single agent role. All logic crammed into one 371-line SKILL.md. After the failure, I split it into four files: routing logic stayed in SKILL.md (84 lines), reflection launch moved to REFLECT.md, review to REVIEW.md, and the subagent analysis protocol to REFLECTOR.md. Each file loads only in its own scenario.
 
 Splitting files solved context pollution. But a deeper problem remained: **who writes the rules, who reviews them, who consumes them** — these role responsibilities were undefined. After the split, I realized I needed a protocol to define the relationships between roles. That's where GEAR started.
 
@@ -60,7 +60,7 @@ This article is about requirement gaps. GEAR's value here isn't in directly guid
 
 ## How to Write Requirements That Leave No Room for Guessing
 
-V1 had a one-line requirement. What should a structured requirement document include? Working backward from the v1 failures, at least four parts.
+v1 had a one-line requirement. What should a structured requirement document include? Working backward from the v1 failures, at least four parts.
 
 Take the reflection trigger feature as an example.
 
@@ -109,7 +109,7 @@ These four parts aren't defined by GEAR. They're standard industry practice for 
 
 Knowing you should write four parts doesn't mean you can. During v1, I didn't even realize "platform constraints" was a thing worth writing down. I didn't know what I didn't know.
 
-The tdd-pipeline project[5] uses a method to solve this: **Socratic questioning**. During the requirements phase (Phase 1), the workflow mandates a deep-interview with the user — at least 3 clarifying questions, targeting 3-5. The questions include:
+The tdd-pipeline project[5] uses a method to solve this: **Socratic questioning**. During the requirements phase (Phase 1), the workflow mandates an in-depth interview with the user — at least 3 clarifying questions, targeting 3-5. The questions include:
 
 - What problem does this solve?
 - Who are the participants?
