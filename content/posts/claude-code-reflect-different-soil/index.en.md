@@ -49,7 +49,7 @@ The V1 solution introduced `bypassPermissions`: skip all confirmation popups and
 
 <p></p>
 
-After finally getting the subagent to start (V1 version refactoring introduced the bypassPermissions solution), file writes were rejected again. After some investigation, I discovered:
+After the subagent finally started (the V1 refactoring introduced the `bypassPermissions` solution), file writes were rejected again. After some investigation, I discovered:
 
 > Claude Code's background sub-sessions have a confirmed bug: `bypassPermissions` silently rejects writes outside the project root directory.
 
@@ -85,7 +85,7 @@ So I had the v3 solution:
 
 ## Implementing v3: More Pitfalls Ahead
 
-I used a ralph loop to execute the v3 solution changes. Cross-platform path compatibility is a detail—Windows Git Bash and POSIX systems handle paths differently.
+I used a Ralph Loop to execute the v3 solution changes. Cross-platform path compatibility is a detail—Windows Git Bash and POSIX systems handle paths differently.
 
 This step went relatively smoothly. The v3 solution drew a clear boundary between "preparation" and "analysis," concentrating on solving write permission issues. What came next was where I really stepped into pitfalls.
 
@@ -156,7 +156,7 @@ Solving these problems requires platform-level support, or making trade-offs und
 
 ## The Value of AI-Driven Testing
 
-The entire testing process was completed by AI. This isn't the point. The point is that several problems discovered during testing were in the blind spot of the original solution documentation: `bypassPermissions` permission is a platform characteristic, not a design problem. API concurrency is an environment limitation, also not a design problem. `heredoc` variable not expanding is a Bash implementation detail, let alone a design problem.
+The entire testing process was completed by AI. This isn't the point. The point is that several problems discovered during testing were in the blind spot of the original solution documentation: `bypassPermissions` permission is a platform characteristic, not a design problem. API concurrency is an environment limitation, also not a design problem. `heredoc` variable not expanding is a Bash implementation detail, and certainly not a design problem.
 
 If designed in traditional ways, these problems might only be exposed after launch. Letting AI test the system, AI can discover unforeseen edge cases in human solutions. This point is worth emphasizing—if you're designing a system, let AI test it. AI isn't just an executor, it's also a participant in design verification.
 

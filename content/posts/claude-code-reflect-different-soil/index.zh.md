@@ -42,7 +42,7 @@ V1 版的解决方案是引入 `bypassPermissions`：跳过所有确认弹窗，
 </details>
 
 <p></p>
-好不容易启动了 subagent（V1 版重构引入 bypassPermissions 方案），文件写入又被拒绝。一番调查之后，发现：
+好不容易启动了 subagent（V1 版重构引入 `bypassPermissions` 方案），文件写入又被拒绝。一番调查之后，发现：
 
 > Claude Code 的后台子会话有一个已确认的 bug：`bypassPermissions` 会静默拒绝项目根目录外的写入。
 
@@ -78,7 +78,7 @@ OMC 带来两个核心能力：
 
 ## 基于 v3 方案的坎坷实现
 
-用 ralph loop 执行 v3 方案变更。跨平台路径兼容性是一个细节——Windows Git Bash 和 POSIX 系统的路径处理方式不同，需要统一处理。
+用 Ralph Loop 执行 v3 方案变更。跨平台路径兼容性是一个细节——Windows Git Bash 和 POSIX 系统的路径处理方式不同，需要统一处理。
 
 这一步比较顺，v3 方案的核心是把"准备"和"分析"的边界划清楚，把写入权限问题集中解决。接下来才是真正踩的坑。
 
