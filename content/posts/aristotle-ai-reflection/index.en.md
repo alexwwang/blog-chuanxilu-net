@@ -70,7 +70,7 @@ Rules are divided into two levels: user-level and project-level. User-level rule
 
 The specific scope judgment mechanism is an engineering detail, so I won't go into it here. What matters is that the layered rules let the results of reflection be reused in the appropriate scope — neither over-generalized nor limited to one person's experience.
 
-oh-my-opencode's background tasks naturally support isolated sub-sessions. The main session triggers a background task. The Reflector reads the conversation history in a completely isolated environment, does root cause analysis, and generates rule suggestions.
+oh-my-opencode (omo) background tasks naturally support isolated sub-sessions. The main session triggers a background task. The Reflector reads the conversation history in a completely isolated environment, does root cause analysis, and generates rule suggestions.
 
 The entire process is transparent to the user and doesn't interrupt the workflow.
 
