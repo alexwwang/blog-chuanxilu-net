@@ -38,7 +38,7 @@ Same core logic: detect correction signals → spawn a subagent for 5-Why root c
 |---|---|---|
 | System primitives | `task()`, `session_read()` fully transparent, paths visible | Interfaces opaque; `session_read()` unavailable under some model/provider combos |
 | Permission model | Full system access; skills can do whatever the system can do | Skill system is a sandbox; `bypassPermissions` is a forced choice — the `auto` mode's safety classifier may be unavailable in background sessions, causing deadlock |
-| Concurrency control | `task()` is atomic; subagent launch can't be interrupted | Multi-step preparation calls can be interleaved by user requests; must merge into a single Bash command |
+| Concurrency control | `task()` is atomic; subagent launch can't be interrupted | Multi-step preparation calls can be interleaved with user requests; must merge into a single Bash command |
 | State management | Built-in notification system | `state.json` + manual session resume |
 | Implementation time | 3 commits | V1→V2→V3, continuous iteration |
 
@@ -114,7 +114,7 @@ Aristotle's flow is crystal clear as a result: user triggers → Coordinator col
 
 Claude Code is a closed-source commercial product. The skill system is a sandbox Anthropic gives you within boundaries it deems safe — you can do what Anthropic decides to expose.
 
-Implementing the same flow, complexity goes into fighting system boundaries. `bypassPermissions` is a forced choice — ideally, background subagents should use `auto` permission mode. But `auto` mode relies on an internal safety classifier that evaluates each tool call's risk level. This classifier needs an interactive session to display permission dialogs and receive user decisions. Background sessions run in non-interactive mode — the classifier can't complete its decision loop, so all tool calls in the subagent deadlock. I had to use `bypassPermissions` and compensate with hand-written path restrictions in prompts. Concurrency control has no system primitives — multi-step preparation can be interrupted by user requests. State management emulates via the filesystem. Notifications rely on users manually resuming sessions.
+When implementing the same flow, the complexity goes into fighting system boundaries. `bypassPermissions` is a forced choice — ideally, background subagents should use `auto` permission mode. But `auto` mode relies on an internal safety classifier that evaluates each tool call's risk level. This classifier needs an interactive session to display permission dialogs and receive user decisions. Background sessions run in non-interactive mode — the classifier can't complete its decision loop, so all tool calls in the subagent deadlock. I had to use `bypassPermissions` and compensate with hand-written path restrictions in prompts. Concurrency control has no system primitives — multi-step preparation can be interrupted by user requests. State management is emulated via the filesystem. Notifications rely on users manually resuming sessions.
 
 The Known Issues list honestly records these problems — UUID collisions, cross-compaction notification loss, incomplete error recovery... each one a scar from patching at the system's edge.
 
@@ -140,7 +140,7 @@ The two layers of trust discussed above aren't abstract theorizing. Two events f
 
 ### The OpenClaw Incident: Where Platform Trust Ends
 
-OpenClaw is an open-source autonomous AI agent platform with over 340,000 GitHub stars. It can execute shell commands, read and write files, automate browsers, manage email and calendars. Users connected their Claude subscription OAuth tokens through OpenClaw, turning a $200/month subscription into $1,000-5,000 of API-equivalent usage.
+OpenClaw is an open-source autonomous AI agent platform with over 340,000 GitHub stars. It can execute shell commands, read and write files, automate browsers, manage email and calendars. Users connected their Claude subscription OAuth tokens through OpenClaw, turning a $200/month subscription into $1,000–5,000 of API-equivalent usage.
 
 Anthropic's response came in three steps. January 2026: silent technical block — subscription OAuth tokens stopped working outside the Claude Code CLI, no advance notice. February: legal compliance documentation explicitly prohibiting subscription tokens for third-party tools. April: subscriptions no longer cover third-party tool usage; pay-as-you-go required.
 

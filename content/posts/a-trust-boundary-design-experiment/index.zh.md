@@ -140,7 +140,7 @@ Known Issues 列表诚实地记录了这些问题——UUID 碰撞、跨 compact
 
 ### OpenClaw 事件：平台信任的边界
 
-OpenClaw 是一个开源自主 AI agent 平台，GitHub 上超过 34 万 stars。它可以执行 shell 命令、读写文件、自动化浏览器、管理邮件和日历。用户通过 OpenClaw 把 Claude 订阅的 OAuth token 接入，$200/月的订阅跑出 $1,000-5,000 的 API 等价用量。
+OpenClaw 是一个开源自主 AI agent 平台，GitHub 上超过 34 万 stars。它可以执行 shell 命令、读写文件、自动化浏览器、管理邮件和日历。用户通过 OpenClaw 把 Claude 订阅的 OAuth token 接入，$200/月的订阅跑出 $1,000–5,000 的 API 等价用量。
 
 Anthropic 的反应分三步。2026 年 1 月，静默技术封堵——订阅 OAuth token 在 Claude Code CLI 外失效，无事先通知。2 月，发布法律合规文档，明确禁止订阅 token 用于第三方工具。4 月，订阅不再覆盖第三方工具用量，需额外按量付费。
 
