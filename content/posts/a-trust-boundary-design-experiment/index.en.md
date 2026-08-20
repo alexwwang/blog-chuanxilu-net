@@ -96,7 +96,7 @@ That review step? I didn't do it.
 
 My excuse was "claude-code-reflect isn't done yet, limited bandwidth." But this behavior itself proves the point: **when tools are smooth enough, humans naturally treat review as optional** — even when the system design requires it.
 
-This isn't criticism. It's an honest observation about human-AI collaboration. Trust boundaries drift quietly in practice. Faster tools make lowering guard easier than slower ones.
+This isn't criticism. It's an honest observation about human-AI collaboration. Trust boundaries drift quietly in practice. Faster tools make lowering one's guard easier than slower ones.
 
 ---
 
