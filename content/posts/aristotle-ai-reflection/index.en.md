@@ -58,7 +58,7 @@ AI might mistake a temporary correction for a general rule. Or treat a special c
 
 The core is 5-Why root cause analysis. Starting from the surface error, ask "why" layer by layer to find the true root cause.
 
-For example. If the model outputs incorrect code, the first layer asks why — it might be misunderstanding the requirement. The second layer asks why the requirement was misunderstood — maybe context information is insufficient. The third layer asks why insufficient — maybe the user didn't explicitly state a constraint.
+For example. If the model outputs incorrect code, the first layer asks why — it might be misunderstanding the requirement. The second layer asks why the requirement was misunderstood — maybe context information is insufficient. The third layer asks why it was insufficient — maybe the user didn't explicitly state a constraint.
 
 Asking five times usually pinpoints the problem.
 
