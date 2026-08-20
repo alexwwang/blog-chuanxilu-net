@@ -139,7 +139,7 @@ The benefit of this mode: the review phase reduces single-model error rates thro
 | Plugins | None | oh-my-openagent | oh-my-opencode-slim |
 | Agent count | OpenCode default | Plugin built-in + custom | Plugin built-in + custom |
 | Orchestration | None | Sisyphus central orchestration | Orchestrator + council review |
-| Use case | Plugin testing (rule out interference) | Complex projects, multi-agent collaboration | Fast tasks, single agent execution |
+| Use case | Plugin testing (rule out interference) | Complex projects, multi-agent collaboration | Fast tasks with council review |
 
 ![Comparison of three orchestration modes](illustration-2.png)
 
