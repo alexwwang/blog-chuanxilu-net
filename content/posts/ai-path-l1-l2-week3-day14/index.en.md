@@ -31,7 +31,7 @@ One is technical. A skill grows out of someone else's environment. The driver mo
 
 Their acceptance criteria suit the original author's workflow, not yours. The quality requirements encode what the original author calls correct. Your project might check different things. If you adopt the skill as-is, defects can easily slip through, or the output may fall far short of your expectations.
 
-The intermediate artifact protocol is worse. It comes with a fixed format, like Day 13's stories.md, a four-column table read by position. That format belongs to someone else, and your workflow has to consume it. If it doesn't fit, you have to add a converter or change your interface.
+The intermediate artifact protocol is worse. It comes with a fixed format, like Day 13's stories.md, a three-column table read by position. That format belongs to someone else, and your workflow has to consume it. If it doesn't fit, you have to add a converter or change your interface.
 
 The other risk is security. A skill could harbor malicious prompt injections, potentially wiping your root directory, exfiltrating API keys or credentials, or planting a trojan. If you skip sandboxing to save effort, the consequences could be disastrous. 🙈
 
@@ -70,7 +70,7 @@ Four blocks answer four core questions: who the agent is, what inputs to use, wh
 
 The output requirements have no adjectives. No "write carefully", no "write well". Every item is a verifiable short sentence: header fixed as X, page numbers start at 1, tables only.
 
-AI agents ignore vague adjectives but thrive on explicit checklists. Saying "write carefully" leaves the model guessing. Specify "Header fixed as | Page | Scene Description | Story Text |", and it knows exactly what each column requires.
+AI agents ignore vague adjectives but thrive on explicit checklists. Saying "write carefully" leaves the model guessing. Specify "Header fixed as | page | scene description | story text |", and it knows exactly what each column requires.
 
 Day 13's Round 6 test checklist runs on the same logic. Acceptance conditions listed item by item. The agent follows them. You check them.
 
