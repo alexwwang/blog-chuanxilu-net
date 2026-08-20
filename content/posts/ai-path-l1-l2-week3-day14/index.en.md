@@ -31,7 +31,7 @@ One is technical. A skill grows out of someone else's environment. The driver mo
 
 Their acceptance criteria suit the original author's workflow, not yours. The quality requirements encode what the original author calls correct. Your project might check different things. If you adopt the skill as-is, defects can easily slip through, or the output may fall far short of your expectations.
 
-The intermediate artifact protocol is worse. It comes with a fixed format, like Day 13's stories.md, a three-column table read by position. That format belongs to someone else, and your workflow has to consume it. If it doesn't fit, you have to add a converter or change your interface.
+The intermediate artifact protocol is worse. It comes with a fixed format, like Day 13's `stories.md`, a three-column table read by position. That format belongs to someone else, and your workflow has to consume it. If it doesn't fit, you have to add a converter or change your interface.
 
 The other risk is security. A skill could harbor malicious prompt injections, potentially wiping your root directory, exfiltrating API keys or credentials, or planting a trojan. If you skip sandboxing to save effort, the consequences could be disastrous. 🙈
 
@@ -39,7 +39,7 @@ So don't simply grab one skill and run it without checking. By understanding the
 
 ## The Skeleton of a Role Document
 
-Take story-writer.md, one of the skill's role documents. It's Role 2 in the picture-book pipeline. Its job is to write each page's story text from the outline.
+Take `story-writer.md`, one of the skill's role documents. It's Role 2 in the picture-book pipeline. Its job is to write each page's story text from the outline.
 
 **Block 1: Identity.** The heading says "Role 2: story-writer (story content)". The driver model is `opencode-zen/deepseek-v4-flash-free` (free tier). Two lines. They tell the agent who it is and which model to use.
 
@@ -74,15 +74,15 @@ AI agents ignore vague adjectives but thrive on explicit checklists. Saying "wri
 
 Day 13's Round 6 test checklist runs on the same logic. Acceptance conditions listed item by item. The agent follows them. You check them.
 
-Consider prompt-artist.md as another example. It explicitly mandates: "keep the first 3 columns as-is, add the prompt in column 4" and "page numbers, scene description, and story text must match the input exactly." Every item is fully verifiable. Use concrete checklists instead of descriptive adjectives.
+Consider `prompt-artist.md` as another example. It explicitly mandates: "keep the first 3 columns as-is, add the prompt in column 4" and "page numbers, scene description, and story text must match the input exactly." Every item is fully verifiable. Use concrete checklists instead of descriptive adjectives.
 
 ## Technique 2: Quality Requirements = Acceptance Criteria Up Front
 
-Defining acceptance criteria up front eliminates the need for manual post-checks. Day 11 covered three kinds of verification. They line up: format, content, consistency. story-writer.md's quality requirements cover all three.
+Defining acceptance criteria up front eliminates the need for manual post-checks. Day 11 covered three kinds of verification. They line up: format, content, consistency. `story-writer.md`'s quality requirements cover all three.
 
-Day 12 introduced the judgment work vs. labor test: can it be standardized into rules? Judgment work can't be scripted, but it can become a checklist inside a prompt. story-writer.md is the example. The checklist gets nailed down. The content stays open, for the agent to write on the spot.
+Day 12 introduced the judgment work vs. labor test: can it be standardized into rules? Judgment work can't be scripted, but it can become a checklist inside a prompt. `story-writer.md` is the example. The checklist gets nailed down. The content stays open, for the agent to write on the spot.
 
-outline-planner.md works the same way. Vocabulary must stay in the word list. Style stays unique across the whole piece. Role 1 guards the vocabulary when planning the outline.
+`outline-planner.md` works the same way. Vocabulary must stay in the word list. Style stays unique across the whole piece. Role 1 guards the vocabulary when planning the outline.
 
 ## Technique 3: Input = Protocol Artifact
 
@@ -90,9 +90,9 @@ The previous role's output becomes the next role's input. The prompt body embeds
 
 ![Pipeline passing: previous role's output embedded in next role's prompt](illustration-1.png)
 
-The prompt serves as the primary consumer of the protocol. The clearer the protocol structure, the less boilerplate the prompt needs. Day 12 said intermediate artifacts are the protocol. outline.md's format is fixed in SKILL.md. story-writer.md doesn't re-explain the format. It just embeds the file.
+The prompt serves as the primary consumer of the protocol. The clearer the protocol structure, the less boilerplate the prompt needs. Day 12 said intermediate artifacts are the protocol. `outline.md`'s format is fixed in `SKILL.md`. `story-writer.md` doesn't re-explain the format. It just embeds the file.
 
-prompt-artist.md is the same. Input is stories.md. The prompt body embeds `{full text of stories.md}`. Role 2's table, Role 3 adds column 4. The prompt enforces the protocol. First 3 columns stay untouched.
+`prompt-artist.md` is the same. Input is `stories.md`. The prompt body embeds `{full text of stories.md}`. Role 2's table, Role 3 adds column 4. The prompt enforces the protocol. First 3 columns stay untouched.
 
 ## Where Judgment Work vs. Labor Land in the Skill
 
@@ -118,15 +118,15 @@ Role 4 doesn't write a prompt. It writes invocation parameters. The dividing lin
 
 Role 5 (image-qa) occupies a hybrid middle ground. It runs as a script, `verify_images.py`. The judgment criteria live in the script's JSON protocol: `{"consistent": bool, "quality": 1-5, "issues": [...]}`. consistent=false or quality<3, that page fails. This is the half where criteria can be nailed down, handed to the script. The visual evaluation step is still performed by the model.
 
-SKILL.md's five-role table draws the line:
+`SKILL.md`'s five-role table draws the line:
 
 | # | Role | Invocation |
 |---|------|------------|
 | 1 | outline-planner | Direct Agent / Subagent / CLI (by priority) |
 | 2 | story-writer | Direct Agent / Subagent / CLI (by priority) |
 | 3 | prompt-artist | Direct Agent / Subagent / CLI (by priority) |
-| 4 | image-generator | skill/scripts/pipeline.py run |
-| 5 | image-qa | skill/scripts/verify_images.py |
+| 4 | image-generator | `skill/scripts/pipeline.py` run |
+| 5 | image-qa | skill/scripts/`verify_images.py` |
 
 ## Writing a Role Document Is Judgment Work, Too
 

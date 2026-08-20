@@ -27,7 +27,7 @@ cover:
 
 省事，但有两类风险。
 
-一类是技术风险。技能长在别人的环境里，驱动模型、命令行、API key、脚本路径全按别人的习惯写死。照搬过来，跑不动是小，用错模型、串了凭证是大。验收标准也是别人的，质量要求是原作者对「算对」的定义。你的项目该验收什么，它不知道。中间产物协议更麻烦。技能把格式定死了，比如 Day 13 的 stories.md 表格，三列按位置读。协议是别人定的，你的流程要消费它。格式对不上，就得加转换层，或者改接口。
+一类是技术风险。技能长在别人的环境里，驱动模型、命令行、API key、脚本路径全按别人的习惯写死。照搬过来，跑不动是小，用错模型、串了凭证是大。验收标准也是别人的，质量要求是原作者对「算对」的定义。你的项目该验收什么，它不知道。中间产物协议更麻烦。技能把格式定死了，比如 Day 13 的 `stories.md` 表格，三列按位置读。协议是别人定的，你的流程要消费它。格式对不上，就得加转换层，或者改接口。
 
 一类是安全风险。万一遇到恶意提示词注入，给你自动清除根目录，或者上传你的 API Key、登录凭证，要么给你电脑里埋个木马，而你恰好图省事没用沙盒，画面太美难以想象🙈……
 
@@ -35,7 +35,7 @@ cover:
 
 ## 一份角色文档的骨架
 
-以 story-writer.md 为例，它是 skill 里的角色文档。这是绘本流水线的角色 2，任务是根据大纲写每页故事文本。
+以 `story-writer.md` 为例，它是 skill 里的角色文档。这是绘本流水线的角色 2，任务是根据大纲写每页故事文本。
 
 **第一块：身份**。标题写"角色 2：story-writer（故事内容）"。驱动模型写 `opencode-zen/deepseek-v4-flash-free`（免费档）。两行，告诉 agent 它是谁、用什么模型。
 
@@ -70,15 +70,15 @@ agent 对形容词免疫，对清单敏感。"认真写"四个字，模型读完
 
 这跟 Day 13 第 6 轮的测试清单是同一个逻辑。验收条件逐项列出。agent 照着做，人照着查。
 
-再对比 prompt-artist.md。它写"原样保留前 3 列，在第 4 列加提示词"，还有"页号、画面描述、故事文本与输入完全一致"。每条都能验证。不靠形容词，靠清单。
+再对比 `prompt-artist.md`。它写"原样保留前 3 列，在第 4 列加提示词"，还有"页号、画面描述、故事文本与输入完全一致"。每条都能验证。不靠形容词，靠清单。
 
 ## 技巧二：质量要求 = 验收标准前置
 
-验收标准前置，省掉事后检查。Day 11 讲过三种验证，正好对得上。验证分三层：格式、内容、一致性。story-writer.md 的质量要求覆盖这三层。
+验收标准前置，省掉事后检查。Day 11 讲过三种验证，正好对得上。验证分三层：格式、内容、一致性。`story-writer.md` 的质量要求覆盖这三层。
 
-Day 12 讲过判断活和体力活的判据：能不能定下来。判断活不能定成脚本，但能定成提示词里的验收清单。story-writer.md 正好是例子，清单定下来了，内容让 agent 现场写。
+Day 12 讲过判断活和体力活的判据：能不能定下来。判断活不能定成脚本，但能定成提示词里的验收清单。`story-writer.md` 正好是例子，清单定下来了，内容让 agent 现场写。
 
-outline-planner.md 也一样：vocabulary 必须落在词表范围内，style 全篇唯一。角色 1 规划大纲时就要守住词表。
+`outline-planner.md` 也一样：vocabulary 必须落在词表范围内，style 全篇唯一。角色 1 规划大纲时就要守住词表。
 
 ## 技巧三：输入 = 协议产物
 
@@ -86,9 +86,9 @@ outline-planner.md 也一样：vocabulary 必须落在词表范围内，style �
 
 ![管道式输入：上一角色产物嵌进下一角色提示词](illustration-1.png)
 
-提示词是协议的第一个消费者。协议定义得越清楚，提示词越省事。Day 12 说过中间产物即协议。outline.md 的格式在 SKILL.md 的"中间产物协议"里定死了。story-writer.md 不用再解释格式，直接嵌进来就行。
+提示词是协议的第一个消费者。协议定义得越清楚，提示词越省事。Day 12 说过中间产物即协议。`outline.md` 的格式在 `SKILL.md` 的"中间产物协议"里定死了。`story-writer.md` 不用再解释格式，直接嵌进来就行。
 
-prompt-artist.md 也一样。输入是 stories.md（角色 2 产物，3 列表格），提示词里嵌 `{stories.md 全文}`。角色 2 的表格，角色 3 直接补第 4 列。协议靠提示词强制执行，前 3 列不许动。
+`prompt-artist.md` 也一样。输入是 `stories.md`（角色 2 产物，3 列表格），提示词里嵌 `{stories.md 全文}`。角色 2 的表格，角色 3 直接补第 4 列。协议靠提示词强制执行，前 3 列不许动。
 
 ## 判断活 vs 体力活在 skill 里的落点
 
@@ -114,15 +114,15 @@ uv run python3 skill/scripts/pipeline.py run stories.md \
 
 角色 5 image-qa 是灰色地带。它用脚本跑（`verify_images.py`），判定标准也写进脚本：`{"consistent": bool, "quality": 1-5, "issues": [...]}`。consistent=false 或 quality<3，该页就不通过。这是"标准能定下来的一半交给脚本"。看图判断本身还是模型做。
 
-SKILL.md 的五角色表清楚地标注了这条线：
+`SKILL.md` 的五角色表清楚地标注了这条线：
 
 | # | 角色 | 调用方式 |
 |---|------|----------|
 | 1 | outline-planner | agent 直接 / subagent / CLI（按优先级） |
 | 2 | story-writer | agent 直接 / subagent / CLI（按优先级） |
 | 3 | prompt-artist | agent 直接 / subagent / CLI（按优先级） |
-| 4 | image-generator | skill/scripts/pipeline.py run |
-| 5 | image-qa | skill/scripts/verify_images.py |
+| 4 | image-generator | `skill/scripts/pipeline.py` run |
+| 5 | image-qa | skill/scripts/`verify_images.py` |
 
 ## 写角色文档也是判断活
 
