@@ -3,7 +3,7 @@ title: "Why PRD Alone Is Not Enough: What the Tech Spec Must Cover in AI-Assiste
 slug: "prd-to-tech-spec-ai-design-guardrails"
 date: 2026-04-29T10:00:00+08:00
 draft: false
-description: 'The second Aristotle refactor had clear requirements, clean code structure, passing tests. But the async background mechanism still did not work. The problem was not in the PRD—it was in the tech spec. This article covers what a PRD should contain, what a tech spec should add, and why both are non-negotiable when AI writes your code.'
+description: 'The second Aristotle refactor had clear requirements, clean code structure, passing tests. But the async background mechanism still did not work. The problem was not in the PRD; it was in the tech spec. This article covers what a PRD should contain, what a tech spec should add, and why both are non-negotiable when AI writes your code.'
 tags: ["AI", "TDD", "design-docs", "AI-Assisted Development", "Engineering Methodology", "PRD", "tech spec", "requirements engineering", "GEAR"]
 categories: ["AI Practice", "Taming AI Coding Agents with TDD"]
 series: ["Taming AI Coding Agents with TDD"]
@@ -20,7 +20,7 @@ This is the third article in the "Taming AI Coding Agents with TDD" series. The 
 
 Before the second Aristotle refactor, I spent two full days writing requirements. Following the structured approach from the previous article, I captured every acceptance criterion, boundary condition, error path, and platform constraint[1]. The AI consumed the document, passed all 37 static assertions plus end-to-end tests. The codebase was split into four files by responsibility. Information flow was switched from push to pull.
 
-To clarify what "looked correct" means: the first article said the second refactor "solved the context contamination and review breakage problems"[2]—this was relative to the first version's 371-line SKILL.md. The second version reduced the context load to 84 lines, a significant improvement. But "reduced" is not "eliminated." Those 84 lines were still injected into the main session, and the async background mechanism still did not work as designed.
+To clarify what "looked correct" means: the first article said the second refactor "solved the context contamination and review breakage problems"[2]: this was relative to the first version's 371-line SKILL.md. The second version reduced the context load to 84 lines, a significant improvement. But "reduced" is not "eliminated." Those 84 lines were still injected into the main session, and the async background mechanism still did not work as designed.
 
 I installed it and ran it. The reflection feature still did not do what the requirements described.
 
@@ -32,7 +32,7 @@ No matter how good the requirements layer is, it only answers *what* to build. I
 
 ## What the PRD Should Cover
 
-The PRD's job is to define the **user-observable behavior boundary**—what the user does, how the system responds, where the edges are, what happens when things go wrong.
+The PRD's job is to define the **user-observable behavior boundary**: what the user does, how the system responds, where the edges are, what happens when things go wrong.
 
 The tdd-pipeline project's Phase 1 deliverable includes User Stories (with Priority), Acceptance Criteria (with Edge Cases column), and Constraints & Assumptions[3]. For clarity of exposition, this article separates Edge Cases and Priority into standalone sections, reorganized into five aspects:
 
@@ -50,7 +50,7 @@ For Aristotle's reflection feature:
 
 ### 2. Acceptance Criteria
 
-Expand each User Story into testable Given-When-Then. Binary—pass or fail, no "mostly passing."
+Expand each User Story into testable Given-When-Then. Binary: pass or fail, no "mostly passing."
 
 US-2 (main session remains usable) expanded into acceptance criteria:
 
@@ -72,13 +72,13 @@ AC-2's Edge Case already flagged "when reflection fails." A formal PRD expands e
 
 Declare known limitations and assumptions:
 
-- OpenCode's `task()` creates non-interactive child sessions—review cannot happen in a child session
-- After reflection completes, the system can only notify the user, not push full output back to the main session—information flow must be pull-based
+- OpenCode's `task()` creates non-interactive child sessions: review cannot happen in a child session
+- After reflection completes, the system can only notify the user, not push full output back to the main session: information flow must be pull-based
 - Claude Code environment is not currently supported
 
 ### 5. Priority Classification
 
-Every User Story and Acceptance Criterion labeled as core or secondary. Core is must-have; secondary is nice-to-have. This classification drives test depth in later stages—core items get happy path + edge cases + error scenarios; secondary items get basic coverage only.
+Every User Story and Acceptance Criterion labeled as core or secondary. Core is must-have; secondary is nice-to-have. This classification drives test depth in later stages: core items get happy path + edge cases + error scenarios; secondary items get basic coverage only.
 
 ---
 
@@ -90,29 +90,29 @@ But they do not answer **"how to build it."**
 
 The second refactor's PRD did follow this structure. Acceptance criteria explicitly stated "zero main-session contamination" and "async non-blocking." Boundary conditions and platform constraints were documented.
 
-But the coroutine-O branch—Aristotle's async orchestration prototype—exposed the PRD's limit.
+But the coroutine-O branch (Aristotle's async orchestration prototype) exposed the PRD's limit.
 
-The goal of coroutine-O was non-blocking reflection workflows: the user triggers `/aristotle`, the main session returns immediately, the reflection task runs in the background. The PRD was clear—"zero main-session contamination," "async non-blocking." The AI consumed the requirements and started coding.
+The goal of coroutine-O was non-blocking reflection workflows: the user triggers `/aristotle`, the main session returns immediately, the reflection task runs in the background. The PRD was clear: "zero main-session contamination," "async non-blocking." The AI consumed the requirements and started coding.
 
 The problem: the PRD only stated *what* to build, not *how*. The AI had to answer a critical design question: **what mechanism implements the background task?**
 
 The AI found the most common answer in its training data: call `task(run_in_background=true)`. This parameter appears countless times in training data, the most direct implementation path. The AI did not ask: "Does OpenCode's `task()` API actually support `run_in_background`?"
 
-Later platform investigation revealed that OpenCode's `task()` does not have a `run_in_background` parameter at all. The current version of `task()` is synchronous and blocking—the parent agent waits for the child agent to complete; it does not return immediately. The "non-blocking" requirement in the PRD could not be fulfilled with this approach.
+Later platform investigation revealed that OpenCode's `task()` does not have a `run_in_background` parameter at all. The current version of `task()` is synchronous and blocking: the parent agent waits for the child agent to complete; it does not return immediately. The "non-blocking" requirement in the PRD could not be fulfilled with this approach.
 
 The coroutine-O branch was eventually deleted, but it left a clear lesson:
 
-**The PRD locks down "what to build," not "how to build it."** No matter how precise the requirements document is, it cannot replace the tech spec. AI fills design blanks with training data—if the tech spec does not explicitly state "use this mechanism for background tasks," the AI defaults to the most common pattern in its training data, even if that pattern does not exist on the current platform.
+**The PRD locks down "what to build," not "how to build it."** No matter how precise the requirements document is, it cannot replace the tech spec. AI fills design blanks with training data: if the tech spec does not explicitly state "use this mechanism for background tasks," the AI defaults to the most common pattern in its training data, even if that pattern does not exist on the current platform.
 
 ## What the Tech Spec Should Cover
 
 The tech spec's job is to answer **"how to build it."** It takes every acceptance criterion from the PRD and outputs actionable engineering decisions.
 
-The tdd-pipeline's Phase 2 deliverable template includes Architecture Overview, Component Breakdown, Data Models / API Contracts, Key Decisions, Failure Mode Handling, Non-functional Constraints, Observability Design, Cost Estimation, Priority Downgrade Justifications, and Open Technical Questions—ten sections in total[3]. This article selects the core sections most relevant to AI-assisted development, ordered by necessity.
+The tdd-pipeline's Phase 2 deliverable template includes Architecture Overview, Component Breakdown, Data Models / API Contracts, Key Decisions, Failure Mode Handling, Non-functional Constraints, Observability Design, Cost Estimation, Priority Downgrade Justifications, and Open Technical Questions: ten sections in total[3]. This article selects the core sections most relevant to AI-assisted development, ordered by necessity.
 
 ### 1. Architecture Overview (mandatory)
 
-Describe component boundaries and data flow. No need for polished architecture diagrams—ASCII art works. The key is letting the reader (including the AI) know what the system consists of and how information flows before writing a single line of code.
+Describe component boundaries and data flow. No need for polished architecture diagrams: ASCII art works. The key is letting the reader (including the AI) know what the system consists of and how information flows before writing a single line of code.
 
 Sequence diagram for Aristotle's reflection flow:
 
@@ -136,7 +136,7 @@ Independent Session ←─── Reflection task (background execution)
 User ←──notification─── Main Session (pulls result)
 ```
 
-This diagram resolves a critical question: information flow is pull-based. Both the first and second refactors broke this design—the first with full pullback, the second with the AI assuming callback notifications were available.
+This diagram resolves a critical question: information flow is pull-based. Both the first and second refactors broke this design: the first with full pullback, the second with the AI assuming callback notifications were available.
 
 ### 2. Component Breakdown (mandatory)
 
@@ -148,7 +148,7 @@ Decompose the Architecture Overview into concrete components, each with clear re
 | Bridge Plugin | Key | Async task execution, R→C chain driving | AC-1, AC-2 | promptAsync, idle events |
 | MCP Server | Key | Rule lifecycle management, state machine | AC-1 | Git, YAML frontmatter |
 
-Note the "Serves ACs" column—every component must trace back to a PRD acceptance criterion. This is the mapping between PRD and tech spec.
+Note the "Serves ACs" column: every component must trace back to a PRD acceptance criterion. This is the mapping between PRD and tech spec.
 
 ### 3. Key Decisions (mandatory)
 
@@ -172,7 +172,7 @@ List possible failure scenarios and design responses.
 | Rule generation timeout | Key | Save draft asynchronously, notify user for later processing |
 | Git repository uninitialized | Peripheral | Auto-detect on startup and initialize |
 
-The PRD's Error Scenarios listed "what if reflection fails." The tech spec expands this into concrete design responses—what mechanism saves the draft, what channel delivers the notification, what degraded mode looks like.
+The PRD's Error Scenarios listed "what if reflection fails." The tech spec expands this into concrete design responses: what mechanism saves the draft, what channel delivers the notification, what degraded mode looks like.
 
 ### 5. Non-functional Constraints (project-dependent)
 
@@ -188,11 +188,11 @@ Aristotle's key constraints:
 
 ### 6. Observability (project-dependent)
 
-Health indicators, logging strategy, alert conditions. Aristotle does not need this currently—the rule repository's Git history serves as a natural audit log.
+Health indicators, logging strategy, alert conditions. Aristotle does not need this currently: the rule repository's Git history serves as a natural audit log.
 
 ### 7. Cost Estimation (project-dependent)
 
-Infrastructure, third-party services, development overhead. Aristotle's cost is zero—purely local, no external dependencies.
+Infrastructure, third-party services, development overhead. Aristotle's cost is zero: purely local, no external dependencies.
 
 ---
 
@@ -218,19 +218,19 @@ Test Plan:
 
 This mapping is the core of the Requirements Traceability Matrix (RTM)[4]. Every test case in the test plan traces back to both a PRD acceptance criterion and a tech spec design decision.
 
-Without traceable mappings, the AI freely "optimizes" the design during implementation—swapping option A for option B, changing pull to push—because it cannot see the constraint relationship between design decisions and acceptance criteria. RTM makes these constraints explicit.
+Without traceable mappings, the AI freely "optimizes" the design during implementation, swapping option A for option B, changing pull to push, because it cannot see the constraint relationship between design decisions and acceptance criteria. RTM makes these constraints explicit.
 
 ## The Core Insight: Docs Are Constraint Space for AI
 
 This series keeps returning to one point: AI does not ask questions. When requirements are ambiguous, it does not ask. When design is missing, it does not ask either. It fills blanks with the most common pattern from its training data.
 
-The PRD shrinks the "what to build" blank space. The tech spec shrinks the "how to build it" blank space. Together, the AI's improvisation space is compressed to implementation details only—this is the range humans can tolerate.
+The PRD shrinks the "what to build" blank space. The tech spec shrinks the "how to build it" blank space. Together, the AI's improvisation space is compressed to implementation details only; this is the range humans can tolerate.
 
-This mechanism reduces the error space, but does not eliminate it. The tech spec itself is a collection of assumptions—if it contains incorrect assumptions, the AI faithfully executes a flawed design. The coroutine-O lesson: the AI and I together assumed a non-existent API parameter.
+This mechanism reduces the error space, but does not eliminate it. The tech spec itself is a collection of assumptions; if it contains incorrect assumptions, the AI faithfully executes a flawed design. The coroutine-O lesson: the AI and I together assumed a non-existent API parameter.
 
-Since assumptions in the spec may be wrong, who catches them? Verifying each claim one by one—at Aristotle's scale, the tech spec contains at least a dozen factual assertions—is neither reliable nor sustainable. The PRD may contain errors, tech spec investigation conclusions may be outdated, test plans may miss boundary conditions. Every layer can introduce errors, and humans lack the bandwidth to check every layer.
+Since assumptions in the spec may be wrong, who catches them? Verifying each claim one by one: at Aristotle's scale, the tech spec contains at least a dozen factual assertions, is neither reliable nor sustainable. The PRD may contain errors, tech spec investigation conclusions may be outdated, test plans may miss boundary conditions. Every layer can introduce errors, and humans lack the bandwidth to check every layer.
 
-What is needed is a **structured review mechanism**: not one person reading end-to-end, but another AI independently reviewing from a different angle, finding factual errors, logical gaps, and missing boundary conditions. Review results must be actionable—not "suggest improvement," but specific "line X's claim contradicts the official documentation."
+What is needed is a **structured review mechanism**: not one person reading end-to-end, but another AI independently reviewing from a different angle, finding factual errors, logical gaps, and missing boundary conditions. Review results must be actionable: not "suggest improvement," but specific "line X's claim contradicts the official documentation."
 
 The next article covers Ralph Loop: a multi-round review mechanism that uses independent AI subagents to review each phase's deliverable, intercepting systematic errors at every stage.
 
