@@ -114,7 +114,7 @@ Human learning largely depends on metacognitive ability. When we encounter diffi
 
 This reflection isn't accidental. It's a core link in the learning process.
 
-What AI was missing is exactly this link. The model can learn and adjust in real-time during conversations, but this learning is temporary and situational. After the session ends, the experience is lost.
+What AI has been missing is exactly this link. The model can learn and adjust in real-time during conversations, but this learning is temporary and situational. After the session ends, the experience is lost.
 
 Aristotle structures this link. It lets the model "know what it doesn't know" and transforms this awareness into persistent knowledge.
 
