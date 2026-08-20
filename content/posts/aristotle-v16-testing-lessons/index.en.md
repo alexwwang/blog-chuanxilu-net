@@ -61,7 +61,7 @@ Because drill rules and combat rules run on separate tracks, the 1,754 automated
 
 ---
 
-Let's turn our attention to the other cases Oracle caught.
+Let's turn to the other cases Oracle caught.
 
 The original report listed 5 more bugs Oracle found across the castle. None are as mind-bending as the double agent, but each one shows how automated testing can be fooled by its own assumptions.
 
