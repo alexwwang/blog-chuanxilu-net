@@ -186,10 +186,10 @@ Reflect Phase                    Review Phase
 371 行到 84 行，77% 的削减。功能没有减少——反而增加了（`--focus` 参数、状态追踪、跨 session 联合反思、已写入规则的修订）。
 
 最终由 4 个文件构成：
-- `SKILL.md`（84 行）— 路由层，参数解析和 phase 分发
-- `REFLECT.md`（110 行）— 反思阶段协议，启动子 agent 和状态追踪
-- `REVIEW.md`（167 行）— 审核阶段协议，DRAFT 审阅、规则写入、修订
-- `REFLECTOR.md`（172 行）— 子 agent 分析协议，错误分析、DRAFT 生成
+- `SKILL.md`（84 行）—— 路由层，参数解析和 phase 分发
+- `REFLECT.md`（110 行）—— 反思阶段协议，启动子 agent 和状态追踪
+- `REVIEW.md`（167 行）—— 审核阶段协议，DRAFT 审阅、规则写入、修订
+- `REFLECTOR.md`（172 行）—— 子 agent 分析协议，错误分析、DRAFT 生成
 
 测试断言也从 37 个扩展到 63 个，覆盖了文件结构、progressive disclosure、`SKILL.md` 内容、hook 逻辑、错误模式检测（中英文）、以及架构保证。
 
