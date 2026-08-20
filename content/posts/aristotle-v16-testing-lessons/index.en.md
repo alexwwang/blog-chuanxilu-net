@@ -84,7 +84,7 @@ This bug was a relative path, hardcoded to a specific working directory. It was 
 In the test environment drill, everyone worked from the same office: the current working directory, `CWD`. The guide sent maintenance workers to fix things and always found the right spot. Tests passed.
 
 **In production:**
-Problems could appear anywhere: on the roof, in the basement. The guide still sent workers "three steps forward then left" based on office memory. The workers either couldn't find the pipe to fix, or they fixed the wrong thing and brought down the security system.
+Problems could appear anywhere, on the roof or in the basement. The guide still sent workers "three steps forward then left" based on office memory. The workers either couldn't find the pipe to fix, or they fixed the wrong thing and brought down the security system.
 
 Tests proved it worked in the office. They didn't prove it could survive outside it.
 
