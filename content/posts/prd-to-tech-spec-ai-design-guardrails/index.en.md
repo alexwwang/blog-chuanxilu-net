@@ -12,7 +12,9 @@ cover:
   image: "cover.png"
   relative: true
   alt: "PRD to tech spec: documents as guardrails, not burden"
---- in the "Taming AI Coding Agents with TDD" series. The first covered [test-driven requirements anchoring](/en/posts/2026/04/test-doc-before-test-code-reverse-anchoring/), the second covered [the GEAR protocol for requirements disambiguation](/en/posts/2026/04/why-aristotle-vibe-development-needs-gear-protocol/). This one fills the gap between them: after the PRD is done, what must the tech spec cover?
+---
+
+This is the third article in the "Taming AI Coding Agents with TDD" series. The first covered [test-driven requirements anchoring](/en/posts/2026/04/test-doc-before-test-code-reverse-anchoring/), the second covered [the GEAR protocol for requirements disambiguation](/en/posts/2026/04/why-aristotle-vibe-development-needs-gear-protocol/). This one fills the gap between them: after the PRD is done, what must the tech spec cover?
 
 ## Requirements Locked, Code Still Wrong
 
@@ -96,7 +98,7 @@ The problem: the PRD only stated *what* to build, not *how*. The AI had to answe
 
 The AI found the most common answer in its training data: call `task(run_in_background=true)`. This parameter appears countless times in training data, the most direct implementation path. The AI did not ask: "Does OpenCode's `task()` API actually support `run_in_background`?"
 
-Later platform investigation revealed: OpenCode's `task()` does not have a `run_in_background` parameter at all. The current version of `task()` is synchronous and blocking—the parent agent waits for the child agent to complete, it does not return immediately. The "non-blocking" requirement in the PRD could not be fulfilled with this approach.
+Later platform investigation revealed that OpenCode's `task()` does not have a `run_in_background` parameter at all. The current version of `task()` is synchronous and blocking—the parent agent waits for the child agent to complete; it does not return immediately. The "non-blocking" requirement in the PRD could not be fulfilled with this approach.
 
 The coroutine-O branch was eventually deleted, but it left a clear lesson:
 
