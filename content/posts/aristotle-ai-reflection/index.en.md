@@ -44,7 +44,7 @@ Don't make them actively think, "Oh, I should record this mistake." The user mig
 
 But full automatic reflection carries a risk. If the user hasn't finished entering the full correction before reflection starts, the reflection will likely be incomplete.
 
-**Second**, complete session isolation. The reflection process happens in a background sub-session with zero pollution to the main session context. It won't affect the current task.
+**Second**, complete session isolation. The reflection process happens in a background sub-session without polluting the main session context. It won't affect the current task.
 
 Also, when the model makes a mistake, the user might already be impatient. If the main flow has to wait for a reflection task before continuing, the user experience would be terrible.
 
@@ -58,7 +58,7 @@ AI might mistake a temporary correction for a general rule. Or treat a special c
 
 The core is 5-Why root cause analysis. Starting from the surface error, ask "why" layer by layer to find the true root cause.
 
-For example. If the model outputs incorrect code, the first layer asks why — it might be misunderstanding the requirement. The second layer asks why the misunderstanding — maybe context information is insufficient. The third layer asks why insufficient — maybe the user didn't explicitly state a constraint.
+For example. If the model outputs incorrect code, the first layer asks why — it might be misunderstanding the requirement. The second layer asks why the requirement was misunderstood — maybe context information is insufficient. The third layer asks why insufficient — maybe the user didn't explicitly state a constraint.
 
 Asking five times usually pinpoints the problem.
 
@@ -82,7 +82,7 @@ The first commit was the complete SKILL.md, 394 lines. I wrote the entire protoc
 
 Coordinator only does lightweight orchestration. It collects metadata like session ID, project directory, and language. Reflector does the reanalysis in a completely isolated background session.
 
-This design was clear from the start. No back and forth adjustments.
+This design was clear from the start. No back-and-forth adjustments.
 
 The second commit was the test script. 37 static assertions plus E2E live tests. The tests covered the complete chain from trigger mechanism to rule generation.
 
