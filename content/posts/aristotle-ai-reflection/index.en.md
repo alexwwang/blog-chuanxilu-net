@@ -3,7 +3,7 @@ title: "Aristotle: Teaching AI to Reflect on Its Mistakes"
 slug: "aristotle-ai-reflection"
 date: 2026-04-06T10:00:00+08:00
 draft: false
-description: "Installing reflection capability into AI coding assistants—when the model makes a mistake, immediately trigger root cause analysis and transform the correction into persistent rules."
+description: "Installing reflection capability into AI coding assistants: when the model makes a mistake, immediately trigger root cause analysis and transform the correction into persistent rules."
 tags: ["AI", "agent", "opencode", "reflection", "aristotle", "claude"]
 categories: ["AI Practice", "Teaching AI to Reflect"]
 series: ["Teaching AI to Reflect"]
@@ -20,7 +20,7 @@ Every time I work with an AI coding assistant, I run into the same problem.
 
 Mistakes that were corrected get repeated in the next session. The model isn't stupid. There's a structural gap in memory.
 
-For example. Last week I corrected a mistake the model made. It apologized, I accepted, we kept working. Today I started a new session, and the same mistake appeared again.
+For example. Last week I corrected a mistake the model made. It apologized, I accepted, and kept working. Today I started a new session, and the same mistake appeared again.
 
 The correction just... evaporated.
 
@@ -28,7 +28,7 @@ This isn't a one-off problem. It's the norm in every conversation. The model rem
 
 This made me realize something. The best time to reflect is right when the mistake happens. No delays. No switching tools. No interrupting the current workflow.
 
-When cognitive balance breaks — the model makes a mistake, the user corrects it — the metacognitive rebalancing should start soon after the conflict appears. But it shouldn't interfere with the original task.
+When cognitive balance breaks (the model makes a mistake, the user corrects it), the metacognitive rebalancing should start soon after the conflict appears. But it shouldn't interfere with the original task.
 
 I learned this from cognitive science. But the Vibe Coding tools and plugins I use don't have this capability yet.
 
@@ -58,7 +58,7 @@ AI might mistake a temporary correction for a general rule. Or treat a special c
 
 The core is 5-Why root cause analysis. Starting from the surface error, ask "why" layer by layer to find the true root cause.
 
-For example. If the model outputs incorrect code, the first layer asks why — it might be misunderstanding the requirement. The second layer asks why the requirement was misunderstood — maybe context information is insufficient. The third layer asks why it was insufficient — maybe the user didn't explicitly state a constraint.
+For example. If the model outputs incorrect code, the first layer asks why: it might be misunderstanding the requirement. The second layer asks why the requirement was misunderstood: maybe context information is insufficient. The third layer asks why it was insufficient: maybe the user didn't explicitly state a constraint.
 
 Asking five times usually pinpoints the problem.
 
@@ -68,7 +68,7 @@ Classification isn't the goal. It's to make subsequent rule matching more precis
 
 Rules are divided into two levels: user-level and project-level. User-level rules follow the individual. Project-level rules are shared within the team.
 
-The specific scope judgment mechanism is an engineering detail, so I won't go into it here. What matters is that the layered rules let the results of reflection be reused in the appropriate scope — neither over-generalized nor limited to one person's experience.
+The specific scope judgment mechanism is an engineering detail, so I won't go into it here. What matters is that the layered rules let the results of reflection be reused in the appropriate scope, neither over-generalized nor limited to one person's experience.
 
 oh-my-opencode (omo) background tasks naturally support isolated sub-sessions. The main session triggers a background task. The Reflector reads the conversation history in a completely isolated environment, does root cause analysis, and generates rule suggestions.
 
@@ -78,7 +78,7 @@ The entire process is transparent to the user and doesn't interrupt the workflow
 
 OpenCode's skill system plus the omo background task infrastructure made Aristotle's implementation surprisingly smooth. It only took 3 commits.
 
-The first commit was the complete SKILL.md, 394 lines. I wrote the entire protocol in one go — including the Coordinator-Reflector dual-layer architecture, the 5-Why root cause analysis template, and the Stop Hook automatic detection logic.
+The first commit was the complete SKILL.md, 394 lines. I wrote the entire protocol in one go, including the Coordinator-Reflector dual-layer architecture, the 5-Why root cause analysis template, and the Stop Hook automatic detection logic.
 
 Coordinator only does lightweight orchestration. It collects metadata like session ID, project directory, and language. Reflector does the reanalysis in a completely isolated background session.
 
@@ -86,11 +86,11 @@ This design was clear from the start. No back-and-forth adjustments.
 
 The second commit was the test script. 37 static assertions plus E2E live tests. The tests covered the complete chain from trigger mechanism to rule generation.
 
-When writing tests, I found several edge cases — like empty conversation history and multi-round correction scenarios. I added explanations for these in the SKILL.md.
+When writing tests, I found several edge cases, like empty conversation history and multi-round correction scenarios. I added explanations for these in the SKILL.md.
 
 The third commit was the README. Writing down the design philosophy and usage clearly, bringing this project to a close.
 
-The whole process went smoothly. 37 static assertions plus E2E tests all passed. The full chain — from trigger to rule generation — ran end to end without a hitch.
+The whole process went smoothly. 37 static assertions plus E2E tests all passed. The full chain, from trigger to rule generation, ran end to end without a hitch.
 
 Not because the problem was simple. But because OpenCode's infrastructure already solved the hardest parts. The skill system makes implementing custom commands natural. The omo task() background task natively supports session isolation. The session read/write APIs are complete.
 
@@ -110,7 +110,7 @@ The model makes mistakes not because it's smart or stupid. It's because it has n
 
 There's a concept in cognitive science called metacognition. It refers to "thinking about thinking," or "knowing what you know and knowing what you don't know."
 
-Human learning largely depends on metacognitive ability. When we encounter difficulties, we stop and reflect. "Why did I make this mistake?" "How to avoid it next time?"
+Human learning largely depends on metacognitive ability. When people encounter difficulties, they stop and reflect. "Why did I make this mistake?" "How to avoid it next time?"
 
 This reflection isn't accidental. It's a core link in the learning process.
 
