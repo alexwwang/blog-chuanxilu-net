@@ -118,7 +118,7 @@ Oracle pulled both out. The team's faces went red. All 1,754 tests were marching
 
 Story over. If you were the team lead watching Oracle pull out 6 hidden assassins, you might be thinking: fire the engineer who wrote the tests?
 
-Hold that thought. Before Oracle left, he stopped the manager reaching for the firing button.
+Hold that thought. Before Oracle left, he stopped the manager from reaching for the firing button.
 
 > "Don't blame the tests. Without those 1,754 automated guards holding the gates, without them catching every routine intruder, I wouldn't have walked into a castle with 6 hidden assassins. I would have walked into 60 rioters, or 600. And I never would have found the double agent. I never would have noticed Agent 0."
 
