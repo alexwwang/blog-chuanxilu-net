@@ -18,7 +18,7 @@ toc: true
 
 The team watched the test panel late on the night `Aristotle v1.6.0` shipped.
 
-Green indicators lit up like dominoes. Python side: 1,166 assertions. TypeScript side: 588 checks. Total: 1,754 automated test cases. All green.
+Green indicators lit up like dominoes. Python side: 1,166 assertions. TypeScript side: 588 checks. Total: 1,754 automated checks. All green.
 
 In code terms, that's like having cameras and infrared sensors on every wall. A fly couldn't sneak through without setting off alarms. The team leaned back. The system looked like an iron fortress.
 
