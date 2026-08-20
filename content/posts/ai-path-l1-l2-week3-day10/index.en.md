@@ -93,7 +93,7 @@ The AI might write a Python script that requires `psutil` on a minimal Ubuntu 22
 
 > Goal: Check disk usage daily and alert when above 85%.
 >
-> Constraints: System commands only, no third-party tools. Log alerts to `syslog`; no external notification channel.
+> Constraints: System commands only, no third-party tools. Log alerts to the system log; no external notification channel.
 >
 > Output: A runnable script plus a scheduler config example.
 
