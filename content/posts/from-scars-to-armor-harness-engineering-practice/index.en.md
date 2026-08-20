@@ -24,13 +24,13 @@ Part three gave us theory. This article returns to code — using Aristotle's re
 
 ## From "Smooth" to "Scars"
 
-The first version of Aristotle was genuinely smooth to implement. Three commits. Complete SKILL.md to test script to README, done in one flow. Not because the problem was simple. OpenCode's infrastructure solved the hardest parts.
+The first version of Aristotle was genuinely smooth to implement. Three commits. Complete `SKILL.md` to test script to README, done in one flow. Not because the problem was simple. OpenCode's infrastructure solved the hardest parts.
 
 In the first post, I confidently wrote three design principles. The second was "complete session isolation" — "reflection happens in a background sub-session, main session context is zero-pollution, won't affect current tasks." I also said "the entire process is transparent to users, won't interrupt workflow."
 
 After actually using it, I found those two claims delivered on **exactly nothing**.
 
-- The main session's context was not zero-pollution. When `/aristotle` triggered, the full 371-line SKILL.md was injected into the parent session. Reflection was supposed to be "isolated metacognition," but just starting it consumed huge chunks of the main session's tokens.
+- The main session's context was not zero-pollution. When `/aristotle` triggered, the full 371-line `SKILL.md` was injected into the parent session. Reflection was supposed to be "isolated metacognition," but just starting it consumed huge chunks of the main session's tokens.
 - When the subprocess finished, `background_output(full_session=true)` pulled the entire RCA report back to the parent session. Error classification, root cause chains, suggested rules — all flooded into the working context. The goal was to help the AI understand its limits. The process of understanding ended up disrupting normal work.
 - The sub-agent session created by `task()` is non-interactive — this is OpenCode's architectural limit. The first version assumed users could jump into the sub-agent's session for review. In practice, users could only manually open another terminal. The review flow broke in actual use.
 - The process wasn't transparent either. Startup popped a model selection dialog, consuming one round of conversation.
@@ -39,7 +39,7 @@ Promises vs. reality:
 
 | Promise from Part 1 | Actual Behavior |
 |---|---|
-| Main session context zero-pollution | Massive context pollution: SKILL.md 371 lines fully injected + RCA report fully pulled back |
+| Main session context zero-pollution | Massive context pollution: `SKILL.md` 371 lines fully injected + RCA report fully pulled back |
 | Entire process transparent to users | Immediately demands user choice: model selection popup consumes one conversation round |
 | Won't interrupt workflow | Severely interrupts current workflow: results write directly into the main session. Even opening another terminal for review doesn't work — because it's a sub-agent session, review is structurally impossible. The flow is broken. |
 
@@ -66,9 +66,9 @@ This means review can't happen in a sub-agent session. It must be implemented in
 
 From this constraint, a natural question: if user review is unavoidable in the workflow, and it can't happen in a sub-session, what about launching a dedicated main session just for this? If review happens in the main session, the main session needs to know which reflection records exist — that's the origin of `aristotle-state.json`. Need to load a specific record's DRAFT report — that's the `/aristotle review N` command. Need to handle confirm, revise, reject — that's the interactive review flow.
 
-Further: since the review protocol and the startup protocol are only used in different scenarios, was it necessary to put them in the same 371-line file? Do both scenarios need the same content loaded? After splitting by responsibility: routing logic stays in SKILL.md (84 lines), reflection startup logic in REFLECT.md (110 lines), review logic in REVIEW.md (167 lines), sub-agent analysis protocol in REFLECTOR.md (172 lines). Each file is loaded only in its scenario. Context usage drops significantly. The main session's context pollution is minimized.
+Further: since the review protocol and the startup protocol are only used in different scenarios, was it necessary to put them in the same 371-line file? Do both scenarios need the same content loaded? After splitting by responsibility: routing logic stays in `SKILL.md` (84 lines), reflection startup logic in `REFLECT.md` (110 lines), review logic in `REVIEW.md` (167 lines), sub-agent analysis protocol in `REFLECTOR.md` (172 lines). Each file is loaded only in its scenario. Context usage drops significantly. The main session's context pollution is minimized.
 
-After splitting, SKILL.md is just routing logic. But the first version had a model selection popup before startup, consuming one conversation round. Since starting reflection only needs REFLECT.md (+110 lines), the popup is completely unnecessary. Delete it, replace with command-line parameter `--model`. Default uses the current session model. Advanced users override via parameter. Starting reflection goes from a two-step operation to one.
+After splitting, `SKILL.md` is just routing logic. But the first version had a model selection popup before startup, consuming one conversation round. Since starting reflection only needs `REFLECT.md` (+110 lines), the popup is completely unnecessary. Delete it, replace with command-line parameter `--model`. Default uses the current session model. Advanced users override via parameter. Starting reflection goes from a two-step operation to one.
 
 Finally, information flow. The first version's `background_output(full_session=true)` pulled the sub-agent's complete analysis back to the main session. After refactoring, this call is deleted entirely. When the sub-agent finishes, the main session outputs one line of notification. When users want to review, they actively pull the DRAFT report via `/aristotle review N`. Information flow goes from "sub-agent pushes everything to main session" to "sub-agent writes state file, user pulls on demand."
 
@@ -82,18 +82,18 @@ The entire reasoning process distills into three principles:
 
 ## First Constraint: Context Boundary — 371 Lines to 84
 
-Direct approach: split the 371-line SKILL.md monolith into four on-demand files.
+Direct approach: split the 371-line `SKILL.md` monolith into four on-demand files.
 
 | Scenario | Files Loaded | Lines |
 |----------|-------------|-------|
-| Command routing | SKILL.md | 84 |
-| Starting reflection | SKILL.md + REFLECT.md | 194 |
-| Reviewing rules | SKILL.md + REVIEW.md | 251 |
-| Sub-agent analysis | REFLECTOR.md | 172 |
+| Command routing | `SKILL.md` | 84 |
+| Starting reflection | `SKILL.md` + `REFLECT.md` | 194 |
+| Reviewing rules | `SKILL.md` + `REVIEW.md` | 251 |
+| Sub-agent analysis | `REFLECTOR.md` | 172 |
 
 When `/aristotle` starts, only the 84-line routing file loads. The complete analysis protocol only goes to the sub-agent. The main session is protected from the start.
 
-Implementation: the Coordinator passes the REFLECTOR.md location to the sub-agent via the `SKILL_DIR` environment variable, not by inlining the full protocol. The sub-agent receives the prompt and reads the file itself.
+Implementation: the Coordinator passes the `REFLECTOR.md` location to the sub-agent via the `SKILL_DIR` environment variable, not by inlining the full protocol. The sub-agent receives the prompt and reads the file itself.
 
 The first version had no context boundary between main session and sub-agent — the sub-agent's protocol was unconditionally injected into the main session's context. After the fix, each scenario loads only the minimum information it needs. Think of hiring an external auditor. The auditor needs to see all the books. But you don't need the auditor's working papers spread across your desk. You need the conclusion, not every page of scratch paper. **Reflection is a post-incident activity. It shouldn't interfere with ongoing incident response.**
 
@@ -109,7 +109,7 @@ Delete the `background_output()` call entirely. When the sub-agent finishes, the
 🦉 Aristotle done [current]. Review: /aristotle review N
 ```
 
-The parent session no longer retrieves any analysis content. Review happens via `/aristotle review N` in a dedicated review session — REVIEW.md (167 lines) loads, reads the DRAFT report, and presents it for user confirmation.
+The parent session no longer retrieves any analysis content. Review happens via `/aristotle review N` in a dedicated review session — `REVIEW.md` (167 lines) loads, reads the DRAFT report, and presents it for user confirmation.
 
 Information flow went from bidirectional to strictly one-way: sub-agent → state file → user actively pulls.
 
@@ -184,12 +184,12 @@ Reflect Phase                    Review Phase
 371 lines to 84 lines, a 77% reduction. Functionality didn't decrease — it increased (the `--focus` parameter, state tracking, cross-session joint reflection, revision of already-written rules).
 
 Four files in the final structure:
-- SKILL.md (84 lines) — routing layer, parameter parsing and phase dispatch
-- REFLECT.md (110 lines) — reflection phase protocol, sub-agent startup and state tracking
-- REVIEW.md (167 lines) — review phase protocol, DRAFT review, rule writing, revision
-- REFLECTOR.md (172 lines) — sub-agent analysis protocol, error analysis, DRAFT generation
+- `SKILL.md` (84 lines) — routing layer, parameter parsing and phase dispatch
+- `REFLECT.md` (110 lines) — reflection phase protocol, sub-agent startup and state tracking
+- `REVIEW.md` (167 lines) — review phase protocol, DRAFT review, rule writing, revision
+- `REFLECTOR.md` (172 lines) — sub-agent analysis protocol, error analysis, DRAFT generation
 
-Test assertions expanded from 37 to 63, covering file structure, progressive disclosure, SKILL.md content, hook logic, error pattern detection (Chinese and English), and architectural guarantees.
+Test assertions expanded from 37 to 63, covering file structure, progressive disclosure, `SKILL.md` content, hook logic, error pattern detection (Chinese and English), and architectural guarantees.
 
 Every layer of this architecture is a product of trust judgments:
 - **File splitting**: don't trust the parent session to absorb the sub-agent's full context impact without problems
@@ -197,7 +197,7 @@ Every layer of this architecture is a product of trust judgments:
 - **Main session review**: don't trust the sub-agent session to properly handle user interaction — and it shouldn't
 - **No popup by default**: don't trust user attention to be unlimited
 
-But "don't trust" here isn't negative judgment. It's **precise trust calibration** — each component is trusted to do what it's best at, not trusted to do what's beyond its capabilities. Think of a symphony orchestra. It's not that you don't trust the horn player to play violin. Each section keeps to its own score. When it's your solo, you get the full part (REFLECTOR.md, 172 lines). When it's not your turn, you only need to know what's next (SKILL.md, 84 lines). Nobody needs the full score.
+But "don't trust" here isn't negative judgment. It's **precise trust calibration** — each component is trusted to do what it's best at, not trusted to do what's beyond its capabilities. Think of a symphony orchestra. It's not that you don't trust the horn player to play violin. Each section keeps to its own score. When it's your solo, you get the full part (`REFLECTOR.md`, 172 lines). When it's not your turn, you only need to know what's next (`SKILL.md`, 84 lines). Nobody needs the full score.
 
 ---
 
@@ -212,7 +212,7 @@ The trust curve across both projects:
 | First Aristotle | Implicit trust — didn't consider boundaries | 371-line full injection, full report retrieval |
 | Discovering problems | Trust calibration — realized boundaries were missing | Promise vs. reality comparison, four architectural defects exposed |
 | Refactoring Aristotle | Active constraints — lock boundaries with code structure | Progressive Disclosure |
-| claude-code-reflect | Constrained choices — platform limits shape the design | bypassPermissions, resumed session |
+| claude-code-reflect | Constrained choices — platform limits shape the design | `bypassPermissions`, resumed session |
 
 Two paths, same destination. Both converge to: sub-agent analyzes, main session reviews, user approves. The difference is, on OpenCode you have the opportunity to actively choose the correct constraints. On Claude Code, you're forced to find workarounds under platform limits.
 
@@ -238,4 +238,4 @@ But deciding "it's time to shift" — that's always human responsibility.
 
 ---
 
-Aristotle project: [https://github.com/alexwwang/aristotle](https://github.com/alexwwang/aristotle)
+Aristotle project: [https://github.com/alexwwang`/aristotle`](https://github.com/alexwwang/aristotle)

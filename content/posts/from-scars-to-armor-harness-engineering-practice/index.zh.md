@@ -24,13 +24,13 @@ toc: true
 
 ## 一、从"顺利"到"伤疤"
 
-初版 Aristotle 的实现过程确实顺利。只用了 3 个 commit，从完整的 SKILL.md 到测试脚本到 README，一气呵成。不是因为问题简单，而是 OpenCode 的基础设施把最难的部分解决了。
+初版 Aristotle 的实现过程确实顺利。只用了 3 个 commit，从完整的 `SKILL.md` 到测试脚本到 README，一气呵成。不是因为问题简单，而是 OpenCode 的基础设施把最难的部分解决了。
 
 第一篇里，我信誓旦旦地写了三条设计原则。第二条是“会话完全隔离”——“反思过程在后台的子会话里进行，主会话的上下文零污染，不会影响当前任务”。还说“整个过程对用户透明，不会打断工作流”。
 
 实际使用后，我发现这两句话**一句都没兑现**。
 
-- 主会话的上下文根本不是零污染。`/aristotle` 触发时，SKILL.md 全部 371 行被注入父 session。反思本应是"隔离的元认知"，但启动反思这件事本身就占了主 session 大量 token。
+- 主会话的上下文根本不是零污染。`/aristotle` 触发时，`SKILL.md` 全部 371 行被注入父 session。反思本应是"隔离的元认知"，但启动反思这件事本身就占了主 session 大量 token。
 - 子进程完成后，`background_output(full_session=true)` 又把整份 RCA 报告拉回父 session——错误分类、根因链条、建议规则全部涌入工作上下文。本来是为了让 AI 认识自己的局限，结果认识的过程本身干扰了正常工作。
 - `task()` 创建的子 agent session 是非交互式的——这是 OpenCode 的架构限制——但初版假设用户能切入子 agent 的 session 做审核确认，实际上用户只能另开终端手动操作。审核流程在实践中断裂了。
 - 过程也完全不是透明的。启动前弹一个模型选择对话框，消耗一轮对话。
@@ -39,7 +39,7 @@ toc: true
 
 | 第一篇的承诺 | 实际行为 |
 |------------|---------|
-| 主会话上下文零污染 | 大量污染上下文：SKILL.md 371 行全量注入 + RCA 报告全量拉回 |
+| 主会话上下文零污染 | 大量污染上下文：`SKILL.md` 371 行全量注入 + RCA 报告全量拉回 |
 | 整个过程对用户透明 | 上来就要用户选择：模型选择弹窗消耗一轮对话 |
 | 不会打断工作流 | 严重打断用户当前工作流：结果直接写入了主 session，即便另开终端审核，因为开的是子 session，根本无法审核，流程是断的 |
 
@@ -68,9 +68,9 @@ toc: true
 
 从这条约束出发，自然想到一个问题：如果用户审核在 workflow 中不可避免，又不能在子 session 中进行，那起一个主 session 专门做这个事情行不行？那么如果审核在主 session 中，主 session 需要知道有哪些反思记录——这就是 `aristotle-state.json` 状态追踪文件的由来。需要加载某条记录的 DRAFT 报告——这就是 `/aristotle review N` 命令。需要处理确认、修订、拒绝——这就是交互式审核流程。
 
-进一步，既然审核协议和启动协议只在不同场景被使用。初版把它们放在同一个 371 行的文件里是否有必要？两种场景需要加载相同内容吗？按职责拆分后：路由逻辑留在 SKILL.md（84 行），启动反思的逻辑在 REFLECT.md（110 行），审核的逻辑在 REVIEW.md（167 行），子 agent 的分析协议在 REFLECTOR.md（172 行）。每个文件只在一个场景被加载，上下文占用显著减少，主 session 的上下文污染问题也减少到最低。
+进一步，既然审核协议和启动协议只在不同场景被使用。初版把它们放在同一个 371 行的文件里是否有必要？两种场景需要加载相同内容吗？按职责拆分后：路由逻辑留在 `SKILL.md`（84 行），启动反思的逻辑在 `REFLECT.md`（110 行），审核的逻辑在 `REVIEW.md`（167 行），子 agent 的分析协议在 `REFLECTOR.md`（172 行）。每个文件只在一个场景被加载，上下文占用显著减少，主 session 的上下文污染问题也减少到最低。
 
-拆分之后，SKILL.md 只剩路由逻辑。但初版在启动前有一个模型选择弹窗，消耗一轮对话。既然启动反思只需要加载 REFLECT.md（+110 行），弹窗完全多余。删除弹窗，改为命令行参数 `--model`。默认使用当前会话模型，高级用户通过参数覆盖。启动反思从两步操作变成一步操作。
+拆分之后，`SKILL.md` 只剩路由逻辑。但初版在启动前有一个模型选择弹窗，消耗一轮对话。既然启动反思只需要加载 `REFLECT.md`（+110 行），弹窗完全多余。删除弹窗，改为命令行参数 `--model`。默认使用当前会话模型，高级用户通过参数覆盖。启动反思从两步操作变成一步操作。
 
 最后是信息流。初版的 `background_output(full_session=true)` 把子 agent 的完整分析拉回主 session。改造后彻底删除这个调用。子 agent 完成后，主 session 只输出一行通知。用户需要审核时，通过 `/aristotle review N` 主动拉取 DRAFT 报告。信息流从"子 agent 全量推送到主 session"变成"子 agent 写状态文件、用户主动拉取"。
 
@@ -84,18 +84,18 @@ toc: true
 
 ## 二、第一道约束：上下文边界——从 371 行到 84 行
 
-做法直接：把 SKILL.md 从 371 行的单一大文件拆成 4 个按需加载的文件。
+做法直接：把 `SKILL.md` 从 371 行的单一大文件拆成 4 个按需加载的文件。
 
 | 场景 | 加载文件 | 行数 |
 |------|---------|------|
-| 命令路由 | SKILL.md | 84 |
-| 启动反思 | SKILL.md + REFLECT.md | 194 |
-| 审核规则 | SKILL.md + REVIEW.md | 251 |
-| 子 agent 分析 | REFLECTOR.md | 172 |
+| 命令路由 | `SKILL.md` | 84 |
+| 启动反思 | `SKILL.md` + `REFLECT.md` | 194 |
+| 审核规则 | `SKILL.md` + `REVIEW.md` | 251 |
+| 子 agent 分析 | `REFLECTOR.md` | 172 |
 
 启动 `/aristotle` 时只加载 84 行的路由文件，完整的分析协议只传给子 agent 。主 session 的上下文从一开始就被保护了。
 
-实现上，Coordinator 通过 `SKILL_DIR` 环境变量把 REFLECTOR.md 的路径传给子 agent，不内联完整协议。子 agent 收到 prompt 后自行 Read 文件。
+实现上，Coordinator 通过 `SKILL_DIR` 环境变量把 `REFLECTOR.md` 的路径传给子 agent，不内联完整协议。子 agent 收到 prompt 后自行 Read 文件。
 
 初版的问题在于主 session 和子 agent 之间没有上下文边界——子 agent 的协议被无条件注入主 session 的上下文。修复后，每个场景只加载它需要的最小信息。像请外部审计师来查账——审计师需要看所有账本，但你不需要把审计师的工作底稿全部摊在自己的办公桌上。你需要的是结论，不是过程中每一页草稿。**反思是事后行为，不应该干扰现场补救措施的执行。**
 
@@ -111,7 +111,7 @@ git commit `39dffae` 完成了这次重构。371 行到 84 行，77% 的削减�
 🦉 Aristotle done [current]. Review: /aristotle review N
 ```
 
-父 session 不再取回任何分析内容。审核通过 `/aristotle review N` 在专门的审核主 session 中进行——此时加载 REVIEW.md（167 行），读取 DRAFT 报告，呈现给用户确认。
+父 session 不再取回任何分析内容。审核通过 `/aristotle review N` 在专门的审核主 session 中进行——此时加载 `REVIEW.md`（167 行），读取 DRAFT 报告，呈现给用户确认。
 
 信息流从双向变成了严格单向：子 agent  → 状态文件 → 用户主动拉取。
 
@@ -186,12 +186,12 @@ Reflect Phase                    Review Phase
 371 行到 84 行，77% 的削减。功能没有减少——反而增加了（`--focus` 参数、状态追踪、跨 session 联合反思、已写入规则的修订）。
 
 最终由 4 个文件构成：
-- SKILL.md（84 行）— 路由层，参数解析和 phase 分发
-- REFLECT.md（110 行）— 反思阶段协议，启动子 agent 和状态追踪
-- REVIEW.md（167 行）— 审核阶段协议，DRAFT 审阅、规则写入、修订
-- REFLECTOR.md（172 行）— 子 agent 分析协议，错误分析、DRAFT 生成
+- `SKILL.md`（84 行）— 路由层，参数解析和 phase 分发
+- `REFLECT.md`（110 行）— 反思阶段协议，启动子 agent 和状态追踪
+- `REVIEW.md`（167 行）— 审核阶段协议，DRAFT 审阅、规则写入、修订
+- `REFLECTOR.md`（172 行）— 子 agent 分析协议，错误分析、DRAFT 生成
 
-测试断言也从 37 个扩展到 63 个，覆盖了文件结构、progressive disclosure、SKILL.md 内容、hook 逻辑、错误模式检测（中英文）、以及架构保证。
+测试断言也从 37 个扩展到 63 个，覆盖了文件结构、progressive disclosure、`SKILL.md` 内容、hook 逻辑、错误模式检测（中英文）、以及架构保证。
 
 这套架构的每一层都是信任判断的产物：
 - **文件拆分**：不信任父 session 能承受子 agent 的完整上下文冲击而不出问题
@@ -199,7 +199,7 @@ Reflect Phase                    Review Phase
 - **主 session 审核**：不信任子 agent session 能恰当处理用户交互——也不应该信任
 - **默认不弹窗**：不信任用户的注意力是无限的
 
-但"不信任"在这里不是负面判断，而是**精确的信任校准**——每个组件被信任做它最擅长的事，不被信任做超出它能力范围的事。像一支交响乐队——不是不信任圆号手能拉小提琴，而是每个声部守好自己的谱子。该你独奏时给你完整的分谱（REFLECTOR.md 172 行），不该你发声时你只需要知道下一首要演什么（SKILL.md 84 行）。没有人需要看总谱。
+但"不信任"在这里不是负面判断，而是**精确的信任校准**——每个组件被信任做它最擅长的事，不被信任做超出它能力范围的事。像一支交响乐队——不是不信任圆号手能拉小提琴，而是每个声部守好自己的谱子。该你独奏时给你完整的分谱（`REFLECTOR.md` 172 行），不该你发声时你只需要知道下一首要演什么（`SKILL.md` 84 行）。没有人需要看总谱。
 
 ---
 
@@ -214,7 +214,7 @@ Reflect Phase                    Review Phase
 | 初版 Aristotle | 隐式信任——没考虑边界 | 371行全量注入、报告全量取回 |
 | 发现问题 | 信任校准——意识到边界缺失 | 承诺与现实对比，四个架构级缺陷暴露 |
 | 改造 Aristotle | 主动约束——用代码结构锁定边界 | Progressive Disclosure |
-| claude-code-reflect | 条件信任——平台限制倒逼主动设计 | bypassPermissions、resumed session |
+| claude-code-reflect | 条件信任——平台限制倒逼主动设计 | `bypassPermissions`、resumed session |
 
 两种约束殊途同归：最终都收敛到"子 agent 做分析、主 session 做审核、用户做审批"的职责分离。区别在于，OpenCode 上你有机会主动选择正确的约束，Claude Code 上你不得不在平台限制下寻找变通方案。
 
@@ -236,4 +236,4 @@ Aristotle 和 claude-code-reflect 不是"哪个更好"的关系，它们是同�
 
 ---
 
-Aristotle 项目地址：[https://github.com/alexwwang/aristotle](https://github.com/alexwwang/aristotle)
+Aristotle 项目地址：[https://github.com/alexwwang`/aristotle`](https://github.com/alexwwang/aristotle)
