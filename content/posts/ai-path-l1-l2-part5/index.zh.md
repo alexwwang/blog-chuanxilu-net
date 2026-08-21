@@ -242,6 +242,8 @@ Format 决定了每个阶段的输出"长什么样"，让下一阶段能直接�
 2. **审核验收标准**（第一阶段结束后）：检查 AI 生成的 AC 是否覆盖了你的真实需求
 
 后面的阶段。技术方案、测试用例、代码实现，都是 AI 根据你的输入自主推导的。
+
+关于 TDD-Pipeline 更详细的介绍，可以访问 GitHub 上的项目 [alexwwang/tdd-pipeline](https://github.com/alexwwang/tdd-pipeline)，也可以先看这篇综述：[AI 辅助 TDD 全流程：从需求到代码的完整防线](#)。
 这才是 RCTFC + TDD Pipeline 的真正威力：把"我会不会写代码"这个问题，替换成"我能不能把需求说清楚"。
 
 ---
