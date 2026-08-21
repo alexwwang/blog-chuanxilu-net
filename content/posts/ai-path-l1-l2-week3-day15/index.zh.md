@@ -2,7 +2,7 @@
 title: "Day 15：L2 毕业考核"
 slug: "ai-path-l1-l2-week3-day15"
 date: 2026-08-15T07:00:00+08:00
-draft: false
+draft: true
 description: "AI 之路 L1→L2 毕业考核：对照 11 项能力清单验收学习成果。L3 方向预告：从用工具到 Harness 架构设计。"
 tags: ["AI", "教程", "毕业考核", "L1-L2", "进阶指南"]
 categories: ["ai-path"]
