@@ -81,7 +81,7 @@ AI 会猜：处理什么文件？CSV 还是 JSON？什么语言？输出什么�
 > 角色：你是一个 Python 工程师。
 > 上下文：项目路径 `~/projects/sales`，Python 3.12，只有标准库。已有 `data/sales_2024.csv`，字段是 date、product、amount。
 > 任务：写一个脚本读取这个 CSV，输出每个产品的总金额和平均单价，保存到 `output/summary.json`。
-> 格式：函数式结构，`parse_csv(path)` 返回列表，`summarize(records)` 返回字典，`save_json(data, path)` 写文件。
+> 格式：脚本输出一个 JSON 文件，每个产品一行，包含产品名称、总金额、平均单价三个字段。
 > 约束：不用第三方库；处理空行和异常值；输出 JSON 按 product 排序。
 
 同一个任务，两个描述的差距不在 AI 能力，在于你有没有说清楚。
