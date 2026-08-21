@@ -1,7 +1,7 @@
 ---
 title: "AI 之路进阶升级指南（五）：不懂编码的人怎么用 AI 写代码"
 slug: "ai-path-l1-l2-part5"
-date: 2026-08-10T21:00:00+08:00
+date: 2026-08-21T21:00:00+08:00
 draft: false
 description: "AI 之路 L1→L2 Part 5：RCTFC 框架、代码验证方法、迭代修复流程。不是编程课，是沟通课。"
 tags: ["AI", "教程", "L1-L2", "prompt", "代码生成", "迭代修复"]
