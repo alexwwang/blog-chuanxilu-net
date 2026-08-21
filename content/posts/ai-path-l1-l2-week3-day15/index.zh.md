@@ -13,7 +13,7 @@ cover:
   alt: "水彩风格：一条弯路通向山顶的小旗，远处云层外隐约可见另一条路"
 ---
 
-> 这是「AI 之路进阶升级指南」L2 系列的毕业考核。上篇是 [Part 5：不懂编码的人怎么用 AI 写代码]({{< relref "ai-path-l1-l2-part5" >}})。项目地址：[picture-book-pipeline](https://github.com/alexwwang/picture-book-pipeline)。
+> 这是「AI 之路进阶升级指南」L2 系列的毕业考核。上篇是 [Part 5：不懂编码的人怎么用 AI 写代码](PART5_PLACEHOLDER)。项目地址：[picture-book-pipeline](https://github.com/alexwwang/picture-book-pipeline)。
 
 这篇兑现 Day 14 结尾那句"下一篇做 L2 毕业考核。考完这篇，L2 就结束"。
 
