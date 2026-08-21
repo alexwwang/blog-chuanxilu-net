@@ -271,4 +271,3 @@ L2 到这里全部结束。如果你还有不清楚的地方，回到对应文�
 
 > 这是「AI 之路进阶升级指南」L2 Part 5。下篇是 Day 15 L2 毕业考核。
 
-原文链接：https://blog.chuanxilu.net/posts/2026/08/ai-path-l1-l2-part5/
