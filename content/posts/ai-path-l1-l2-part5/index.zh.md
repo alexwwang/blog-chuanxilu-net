@@ -1,5 +1,5 @@
 ---
-title: "Part 5：不懂编码的人怎么用 AI 写代码"
+title: "AI 之路进阶升级指南（五）：不懂编码的人怎么用 AI 写代码"
 slug: "ai-path-l1-l2-part5"
 date: 2026-08-22T07:00:00+08:00
 draft: false
