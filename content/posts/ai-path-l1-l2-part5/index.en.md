@@ -274,4 +274,4 @@ That's the end of L2. If anything is unclear, go back to the corresponding artic
 
 ---
 
-> This is AI Path L2 Part 5. Next up: Day 15 L2 graduation assessment.
+> This is AI Path L2 Part 5. Next up: Day 16 L2 graduation assessment.
