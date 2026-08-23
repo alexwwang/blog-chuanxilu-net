@@ -172,4 +172,4 @@ What matters most to you when choosing an API provider? Price, caching, or somet
 
 ---
 
-> This is Day 9 of Week 2 in the "AI Path L1→L2 Upgrade Guide." Previous: [Day 8: Autonomous AI, Automation Without Writing Code](../ai-path-l1-l2-week2-day8/). [Read the original](https://blog.chuanxilu.net/ai-path-l1-l2-week2-day9/) for the full evaluation framework.
+> This is Day 9 of Week 2 in the "AI Path L1→L2 Upgrade Guide." Previous: [Day 8: Autonomous AI, Automation Without Writing Code](../ai-path-l1-l2-week2-day8/). [Read the original](https://blog.chuanxilu.net/posts/2026/06/ai-path-l1-l2-week2-day9/) for the full evaluation framework.

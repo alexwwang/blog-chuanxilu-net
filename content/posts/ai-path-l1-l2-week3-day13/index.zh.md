@@ -13,7 +13,7 @@ cover:
   alt: "水彩风格：六张卡片环形排列，标着 GOAL、FLOW、LIST、PLAN、BUILD、TEST，中间一个文件夹，代表六轮对话把工作流构建成技能包"
 ---
 
-> 这是「AI 之路进阶升级指南」第四周 Day 13 的配套练习。你需要先完成 [Day 8](../ai-path-l1-l2-week2-day8/)、[Day 9](../ai-path-l1-l2-week2-day9/)、[Day 10](../ai-path-l1-l2-week3-day10/)、[Day 11](../ai-path-l1-l2-week3-day11/) 和 [Day 12](../ai-path-l1-l2-week3-day12/)。
+> 这是「AI 之路进阶升级指南」第四周 Day 13 的配套练习。你需要先完成 [Day 8](/posts/2026/06/ai-path-l1-l2-week2-day8/)、[Day 9](/posts/2026/06/ai-path-l1-l2-week2-day9/)、[Day 10](/posts/2026/07/ai-path-l1-l2-week3-day10/)、[Day 11](/posts/2026/07/ai-path-l1-l2-week3-day11/) 和 [Day 12](../ai-path-l1-l2-week3-day12/)。
 
 Day 12 结尾我说：下一篇练习，把流水线亲手跑一遍，两个工具接力干活。今天兑现。
 

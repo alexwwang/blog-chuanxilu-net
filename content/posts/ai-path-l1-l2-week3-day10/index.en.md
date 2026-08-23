@@ -13,7 +13,7 @@ cover:
   alt: "Watercolor illustration: fuzzy clouds condensing into a sharp beam of light, illuminating three cubes labeled G, C, O"
 ---
 
-> This is Day 10 of the AI Path L1→L2 Upgrade Guide. You should complete [Day 8](../ai-path-l1-l2-week2-day8/) and [Day 9](../ai-path-l1-l2-week2-day9/) first.
+> This is Day 10 of the AI Path L1→L2 Upgrade Guide. You should complete [Day 8](/en/posts/2026/06/ai-path-l1-l2-week2-day8/) and [Day 9](/en/posts/2026/06/ai-path-l1-l2-week2-day9/) first.
 
 I learned this the hard way. "I thought I was being clear" is a lie I've told myself too many times while writing AI prompts.
 

@@ -165,7 +165,7 @@ Have you tried letting AI organize files or handle daily tasks? Share your exper
 
 ---
 
-> This is Day 8 of Week 2 in the "AI Path L1→L2 Upgrade Guide." Previous: [Day 7 Error Handling](../ai-path-l1-l2-week2-day7/). [Read original](https://blog.chuanxilu.net/en/ai-path-l1-l2-week2-day8/) for the full task description template.
+> This is Day 8 of Week 2 in the "AI Path L1→L2 Upgrade Guide." Previous: [Day 7 Error Handling](../ai-path-l1-l2-week2-day7/). [Read original](https://blog.chuanxilu.net/en/posts/2026/06/ai-path-l1-l2-week2-day8/) for the full task description template.
 
 ---
 

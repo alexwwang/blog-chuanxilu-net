@@ -13,7 +13,7 @@ cover:
   alt: "水彩风格：一束光从一列 GCO（Goal、Constraints、Output）穿过桌面上的放大镜，照在核验报告上，代表 AI 的输出需要人工验收过滤"
 ---
 
-> 这是「AI 之路进阶升级指南」第三周 Day 11 的练习文章。你需要先完成 [Day 8](../ai-path-l1-l2-week2-day8/) 和 [Day 10](../ai-path-l1-l2-week3-day10/)。
+> 这是「AI 之路进阶升级指南」第三周 Day 11 的练习文章。你需要先完成 [Day 8](/posts/2026/06/ai-path-l1-l2-week2-day8/) 和 [Day 10](../ai-path-l1-l2-week3-day10/)。
 
 Day 10 结尾留了一句话：检验和描述是一体两面，说不清楚目标就没法判断对错。
 

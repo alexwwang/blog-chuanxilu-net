@@ -13,7 +13,7 @@ cover:
   alt: "Watercolor: six cards arranged in a circle labeled GOAL, FLOW, LIST, PLAN, BUILD, TEST, with a folder in the middle. Six conversations turning a workflow into a skill kit."
 ---
 
-> This is Day 13 of the AI Path L1→L2 Upgrade Guide. Before diving in, check out [Day 8](../ai-path-l1-l2-week2-day8/), [Day 9](../ai-path-l1-l2-week2-day9/), [Day 10](../ai-path-l1-l2-week3-day10/), [Day 11](../ai-path-l1-l2-week3-day11/), and [Day 12](../ai-path-l1-l2-week3-day12/) first.
+> This is Day 13 of the AI Path L1→L2 Upgrade Guide. Before diving in, check out [Day 8](/en/posts/2026/06/ai-path-l1-l2-week2-day8/), [Day 9](/en/posts/2026/06/ai-path-l1-l2-week2-day9/), [Day 10](/en/posts/2026/07/ai-path-l1-l2-week3-day10/), [Day 11](/en/posts/2026/07/ai-path-l1-l2-week3-day11/), and [Day 12](../ai-path-l1-l2-week3-day12/) first.
 
 Day 12 ended with a promise: in the next practice, we'd run the pipeline by hand. Two tools working in relay. Today, I deliver on that promise.
 

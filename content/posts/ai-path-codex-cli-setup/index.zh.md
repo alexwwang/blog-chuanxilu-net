@@ -233,4 +233,4 @@ codex --approval-policy on-failure
 
 ---
 
-> 这是「AI 之路进阶升级指南」的番外篇。上篇 [Day 8 自主执行型 AI](../ai-path-l1-l2-week2-day8/) 对比了 Codex、Claude Code 和 OpenCode 三款工具。如果你更倾向开源方案，可以看另一篇番外 [OpenCode 冷启动](../ai-path-opencode-zen-setup/)。
+> 这是「AI 之路进阶升级指南」的番外篇。上篇 [Day 8 自主执行型 AI](/posts/2026/06/ai-path-l1-l2-week2-day8/) 对比了 Codex、Claude Code 和 OpenCode 三款工具。如果你更倾向开源方案，可以看另一篇番外 [OpenCode 冷启动](../ai-path-opencode-zen-setup/)。

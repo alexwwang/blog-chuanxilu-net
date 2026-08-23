@@ -166,4 +166,4 @@ This is just the start. For everyday repetitive tasks like batch renaming, organ
 
 ---
 
-> This is a bonus article for the "AI Path L1→L2 Upgrade Guide." Previous: [Day 8: Autonomous AI, Automation Without Writing Code](../ai-path-l1-l2-week2-day8/). After setting up, check out [When Your AI Coding Tool Needs Three Configs](../opencode-triple-config-switch/) for more advanced usage.
+> This is a bonus article for the "AI Path L1→L2 Upgrade Guide." Previous: [Day 8: Autonomous AI, Automation Without Writing Code](/en/posts/2026/06/ai-path-l1-l2-week2-day8/). After setting up, check out [When Your AI Coding Tool Needs Three Configs](/posts/2026/06/opencode-triple-config-switch/) for more advanced usage.

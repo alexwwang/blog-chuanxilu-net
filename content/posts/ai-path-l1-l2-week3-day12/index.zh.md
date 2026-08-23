@@ -13,7 +13,7 @@ cover:
   alt: "水彩风格：工具箱里放着代码脚本和自主执行型 AI 两个工具，旁边是正在批量生成的儿童绘本页面"
 ---
 
-> 这是「AI 之路进阶升级指南」第四周 Day 12 的骨干教程。你需要先完成 [Day 8](../ai-path-l1-l2-week2-day8/)、[Day 10](../ai-path-l1-l2-week3-day10/) 和 [Day 11](../ai-path-l1-l2-week3-day11/)。
+> 这是「AI 之路进阶升级指南」第四周 Day 12 的骨干教程。你需要先完成 [Day 8](/posts/2026/06/ai-path-l1-l2-week2-day8/)、[Day 10](/posts/2026/07/ai-path-l1-l2-week3-day10/) 和 [Day 11](/posts/2026/07/ai-path-l1-l2-week3-day11/)。
 
 Day 11 结尾我留了句话：下一步，怎么把这些动作自动化。
 

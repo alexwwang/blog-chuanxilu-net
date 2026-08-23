@@ -166,4 +166,4 @@ opencode
 
 ---
 
-> 这是「AI 之路进阶升级指南」的番外篇。上篇是 [Day 8 自主执行型 AI](../ai-path-l1-l2-week2-day8/)。配置完成后，你也可以阅读 [三套 OpenCode 配置方案](../opencode-triple-config-switch/) 了解更进阶的用法。
+> 这是「AI 之路进阶升级指南」的番外篇。上篇是 [Day 8 自主执行型 AI](/posts/2026/06/ai-path-l1-l2-week2-day8/)。配置完成后，你也可以阅读 [三套 OpenCode 配置方案](/posts/2026/06/opencode-triple-config-switch/) 了解更进阶的用法。

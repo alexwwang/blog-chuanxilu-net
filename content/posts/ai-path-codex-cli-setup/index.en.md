@@ -233,4 +233,4 @@ In the desktop app, you can adjust the approval policy in Settings.
 
 ---
 
-> This is a bonus article for the "AI Path L1→L2 Upgrade Guide." Previous: ["Day 8: Autonomous AI, Automation Without Writing Code"](../ai-path-l1-l2-week2-day8/) compared Codex, Claude Code, and OpenCode. If you prefer an open-source alternative, see [OpenCode Cold Start](../ai-path-opencode-zen-setup/).
+> This is a bonus article for the "AI Path L1→L2 Upgrade Guide." Previous: ["Day 8: Autonomous AI, Automation Without Writing Code"](/en/posts/2026/06/ai-path-l1-l2-week2-day8/) compared Codex, Claude Code, and OpenCode. If you prefer an open-source alternative, see [OpenCode Cold Start](../ai-path-opencode-zen-setup/).
