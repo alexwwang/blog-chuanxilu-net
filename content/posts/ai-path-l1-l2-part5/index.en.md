@@ -235,7 +235,7 @@ Format determines what each stage's output "looks like," letting the next stage 
 
 ### Why This Doesn't Require Coding Knowledge
 
-Throughout the TDD Pipeline, as a non-programmer you only do two things:
+Throughout the TDD Pipeline, as a non-programmer, you only need to focus on two things:
 
 1. **Describe business requirements** (Stage 1): Tell the AI what you want in natural language
 2. **Review acceptance criteria** (after Stage 1 ends): Check whether the AI-generated ACs cover your real needs
