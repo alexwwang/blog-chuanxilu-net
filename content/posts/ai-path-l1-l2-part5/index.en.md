@@ -128,7 +128,7 @@ The core of iterative fixing is **describing the difference precisely**, not des
 
 Each fix addresses one thing. Don't throw "fix bug + add feature + change format" at once. Progressive development: change one thing, run once, verify once, then change the next thing.
 
-Another technique: **minimal reproducible case.** If the problem is complex, ask the AI to first write a minimal reproducible case containing only the broken part. Once the case reproduces correctly, expand it back to the full code. Each iteration stays scoped, reducing the chance of introducing new bugs. If a fix breaks an earlier passing case, you revert to the last working state and try again.
+Another technique: **minimal reproducible case.** If the problem is complex, ask the AI to first write a minimal reproducible case containing only the broken part. Once the case reproduces correctly, expand it back to the full code. Each iteration stays scoped, reducing the chance of introducing new bugs. If a fix breaks an earlier passing case, revert to the last working state and try again.
 
 ---
 
@@ -251,7 +251,7 @@ This is the real power of RCTFC + TDD Pipeline: replacing the question "Do I kno
 Having AI write code isn't just about describing problems and verifying results. You also need some project habits:
 
 - **Plan before executing:** Use Plan Mode (read-only) to have the AI list implementation options first, so you can confirm the direction before executing. Otherwise, the AI writes a pile of code only for you to realize the direction was wrong.
-- **Project memory:** Place a `PROJECT_STATE.md` in the root directory recording current progress, known issues, and next steps. The AI reads this file at the start of every new conversation, so there's no need to re-explain background.
+- **Project memory:** Place a `PROJECT_STATE.md` in the root directory recording current progress, known issues, and next steps. The AI reads this file at the start of every new conversation, so there's no need to re-explain the background.
 - **Git version control:** Have the AI commit after every change with clear messages about what was changed. If something breaks, you can roll back to any state.
 - **Sandbox strategy:** Test on a copy and never touch the original, especially for tasks involving file operations or network requests.
 
