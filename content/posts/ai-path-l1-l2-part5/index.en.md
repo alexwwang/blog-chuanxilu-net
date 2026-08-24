@@ -57,12 +57,12 @@ The five elements build on each other. Role sets the tone, Context sets the boun
 
 Here's a common misconception: many people think Format requires coding knowledge. It doesn't.
 
-**Format asks for "the physical shape and interface specification of the result," not "the specific syntax and implementation details of the code."**
+**Format asks for "the physical shape and interface contract of the result," not "the specific syntax and implementation details of the code."**
 
 Non-coders can fully control Format by distinguishing two things:
 
 - **Code-level format (don't worry about it):** Tabs or spaces for indentation, camelCase or snake_case for variables, how to express underlying data structures. Leave all of this to the AI.
-- **Business and interface-level format (you can control this):** What form does the data come in, what format does it go out in, what parameter names does the function accept. This is fundamentally **business logic**, not a technical barrier.
+- **Interface contract (you can control this):** What form does the data come in, what format does it go out in, what parameter names does the function accept. This is fundamentally **business logic**, not a technical barrier.
 
 You define "how many rooms the house needs and which way the door faces." The AI buries the pipes and runs the wiring.
 
@@ -97,11 +97,11 @@ The code is written. How do you know it's right?
 
 You don't need to run every scenario. Just describe three things:
 
-**Normal input:** One typical use case. "Run it with `data/sales_2024.csv`—the output should be one row per product with correct totals and averages."
+**Happy path:** One typical use case. "Run it with `data/sales_2024.csv`—the output should be one row per product with correct totals and averages."
 
-**Boundary cases:** Extreme but not exceptional situations. "If a product has only one record, its total amount equals that row's amount, and its average price equals that row's price."
+**Edge cases:** Extreme but not exceptional situations. "If a product has only one record, its total amount equals that row's amount, and its average price equals that row's price."
 
-**Error input:** Anomalous situations. "If the CSV has empty rows, the script should skip them instead of throwing an error."
+**Invalid inputs:** Anomalous situations. "If the CSV has empty rows, the script should skip them instead of throwing an error."
 
 These three things form a minimal test set. You're not asking AI to write test code—you're asking yourself before delivery: "Can this code handle these three cases?" Then verify item by item against GCO's Output.
 
