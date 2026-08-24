@@ -55,7 +55,7 @@ L3's theme: **from using tools to Harness architecture design.**
 
 Start with an experiment. Anthropic ran the same model with the same prompt ("build a 2D retro game editor") twice. With nothing around it, the model burned $9 in 20 minutes and produced something unplayable. With a full environment around it (planner + generator + evaluator), six hours and $200 produced a game that actually plays. [The model did not change; what changed was the layer around it](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).
 
-That layer is the Harness (the exoskeleton). In [DeepSeek's formula](https://github.com/deepseek-ai/deepseek-harness): **Model + Harness = Agent**. The model is the brain; the Harness is the body. It does not think for the agent; it keeps the agent standing, carrying weight, and getting back up when it falls. How context gets assembled, how tools get called, how errors get recovered, how "done" gets verified: all Harness work.
+That layer is the Harness (the exoskeleton). In [DeepSeek's formula](https://github.com/deepseek-ai/deepseek-harness): **Model + Harness = Agent**. The model is the brain; the Harness is the body. The Harness does not think for the agent; it keeps the agent standing, carrying weight, and getting back up when it falls. How context gets assembled, how tools get called, how errors get recovered, how "done" gets verified: all Harness work.
 
 ![The model is the brain, the Harness is the body: a glowing core inside a mecha's chest](illustration-1.png)
 
