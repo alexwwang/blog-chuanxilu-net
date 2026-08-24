@@ -37,7 +37,7 @@ GCO (Day 10) solves the task-description problem. But GCO is a one-off prompt fo
 
 Code tasks need a finer-grained framework: **RCTFC**.
 
-**R (Role):** What role should the AI play? "You are a Python script engineer" and "You are an experienced backend developer" will produce different quality code. The former gives basic scripts; the latter gives modular, commented versions.
+**R (Role):** What role should the AI play? "You are a Python script engineer" and "You are an experienced backend developer" will produce different quality code. The former yields basic scripts; the latter produces modular, well-documented code.
 
 **C (Context):** The AI needs to know your existing environment: what language, what dependencies, which project, what existing files to reference. Without this, the AI guesses from scratch—and when it guesses wrong, you go back and forth fixing it.
 
@@ -59,7 +59,7 @@ Here's a common misconception: many people think Format requires coding knowledg
 
 **Format asks for "the physical shape and interface contract of the result," not "the specific syntax and implementation details of the code."**
 
-Non-coders can fully control Format by distinguishing between two things:
+Non-coders can take full control of Format by distinguishing between two things:
 
 - **Code-level format (don't worry about it):** Tabs or spaces for indentation, camelCase or snake_case for variables, how to express underlying data structures. Leave all of this to the AI.
 - **Interface contract (you can control this):** What form does the data come in, what format does it go out in, what parameter names does the function accept. This is fundamentally **business logic**, not a technical barrier.
@@ -162,7 +162,7 @@ Each stage ends with an independent review—not AI self-assessment, but a fresh
 L2's RCTFC is a one-shot task description. But for complex projects, one-shot description has problems:
 
 1. **Context explosion:** A complete project description might be thousands of words. The AI reads the later parts and forgets the earlier constraints.
-2. **Error propagation:** Ambiguities from the requirements stage only surface at the code stage—fixing them costs ten times more.
+2. **Error propagation:** Ambiguities from the requirements stage only surface at the code stage—fixing them costs ten times as much.
 3. **No staged verification:** Going through all stages at once leaves no checkpoint. When something goes wrong, you don't know which layer leaked.
 
 TDD Pipeline's approach: **break one big task into multiple small ones, each with clear input/output and review criteria.**
@@ -253,7 +253,7 @@ Having AI write code isn't just about describing problems and verifying results.
 - **Plan before executing:** Use Plan Mode (read-only) to have the AI list implementation options first, so you can confirm the direction before executing. Otherwise, the AI writes a pile of code only for you to realize the direction was wrong.
 - **Project memory:** Place a `PROJECT_STATE.md` in the root directory recording current progress, known issues, and next steps. The AI reads this file every new conversation—no need to re-explain background.
 - **Git version control:** Have the AI commit after every change with clear messages about what was changed. If something breaks, you can roll back to any state.
-- **Sandbox strategy:** Test on a copy, never touch the original. Especially for tasks involving file operations or network requests.
+- **Sandbox strategy:** Test on a copy and never touch the original, especially for tasks involving file operations or network requests.
 
 These habits aren't mandatory, but they significantly reduce the risk of "breaking things and not knowing how to get back to the previous version."
 
