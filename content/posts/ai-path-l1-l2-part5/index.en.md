@@ -128,7 +128,7 @@ The core of iterative fixing is **describing the difference precisely**, not des
 
 Each fix addresses one thing. Don't throw "fix bug + add feature + change format" at once. Progressive development: change one thing, run once, verify once, then change the next thing.
 
-Another technique: **minimal reproducible case.** If the problem is complex, ask the AI to first write a minimal reproduction script containing only the broken part. Once that reproduces correctly, expand it back to the full code. Each iteration stays scoped, reducing the chance of introducing new bugs; if a fix breaks an earlier passing case, you revert to the last working state and try again.
+Another technique: **minimal reproducible case.** If the problem is complex, ask the AI to first write a minimal reproducible case containing only the broken part. Once that reproduces correctly, expand it back to the full code. Each iteration stays scoped, reducing the chance of introducing new bugs; if a fix breaks an earlier passing case, you revert to the last working state and try again.
 
 ---
 
