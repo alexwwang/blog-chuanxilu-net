@@ -39,7 +39,7 @@ Code tasks need a finer-grained framework: **RCTFC**.
 
 **R (Role):** What role should the AI play? "You are a Python script engineer" and "You are an experienced backend developer" will produce different quality code. The former gives basic scripts; the latter gives modular, commented versions.
 
-**C (Context):** The AI needs to know your existing environment. What language, what dependencies, which project, what existing files to reference. Without this, the AI guesses from scratch—and when it guesses wrong, you go back and forth fixing it.
+**C (Context):** The AI needs to know your existing environment: what language, what dependencies, which project, what existing files to reference. Without this, the AI guesses from scratch—and when it guesses wrong, you go back and forth fixing it.
 
 **T (Task):** Same as GCO's Goal—a single sentence describing what you want done. Don't say "optimize it." Say "write a script that reads a CSV and outputs a statistical summary."
 
@@ -105,7 +105,7 @@ You don't need to run every scenario. Just describe three things:
 
 These three things form a minimal test set. You're not asking AI to write test code—you're asking yourself before delivery: "Can this code handle these three cases?" Then verify item by item against GCO's Output.
 
-Another method: **invariant checking.** Same concept as Day 11. For code tasks, invariants guard the baseline—"regardless of input, the output format must match Format requirements," "no uncaught exceptions under any circumstances," "file size stays under the threshold."
+Another method: **invariant checking.** This is the same concept as Day 11. For code tasks, invariants guard the baseline—"regardless of input, the output format must match Format requirements," "no uncaught exceptions under any circumstances," "file size stays under the threshold."
 
 The minimal test set validates specific results. Invariant checks guard the baseline. Together they cover two layers: "can it work?" and "will it break?"
 
