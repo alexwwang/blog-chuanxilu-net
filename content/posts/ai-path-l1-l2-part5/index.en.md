@@ -81,7 +81,7 @@ The AI will guess: What file? CSV or JSON? What language? What output? Get it wr
 > ✅ Clear:
 >
 > Role: You are a Python engineer.
-> Context: Project path `~/projects/sales`, Python 3.12, standard library only. Existing file `data/sales_2024.csv` with columns: date, product, amount.
+> Context: Project path `~/projects/sales`, Python 3.12, standard library only. Existing file `data/sales_2024.csv` with columns: date, product, amount, price.
 > Task: Write a script to read this CSV and output the total amount and average price per product, saved to `output/summary.json`.
 > Format: Functional structure—`parse_csv(path)` returns a list, `summarize(records)` returns a dictionary, `save_json(data, path)` writes the file.
 > Constraints: No third-party libraries; handle empty rows and outliers; sort output JSON by product.
@@ -99,7 +99,7 @@ You don't need to run every scenario. Just describe three things:
 
 **Normal input:** One typical use case. "Run it with `data/sales_2024.csv`—the output should be one row per product with correct totals and averages."
 
-**Boundary cases:** Extreme but not exceptional situations. "If a product has only one record, the average price equals that row's amount."
+**Boundary cases:** Extreme but not exceptional situations. "If a product has only one record, the average price equals that row's price."
 
 **Error input:** Anomalous situations. "If the CSV has empty rows, the script should skip them instead of throwing an error."
 
@@ -124,7 +124,7 @@ The core of iterative fixing is **describing the difference precisely**, not des
 ✅ "The `total_amount` field in `summary.json` is a string, not a number. Expected a float."
 
 ❌ "Optimize it for me."
-✅ "The current script takes 3 seconds to process 100k rows. Target is under 1 second. The bottleneck is likely line-by-line parsing—consider switching to `csv.DictReader` or chunked reads."
+✅ "The current script takes 3 seconds to process 100k rows. Target is under 1 second. The bottleneck is likely line-by-line parsing—consider reading the file in chunks instead of one row at a time."
 
 Each fix addresses one thing. Don't throw "fix bug + add feature + change format" at once. Progressive development: change one thing, run once, verify once, then change the next thing.
 
@@ -204,7 +204,7 @@ After the AI outputs acceptance criteria, run a review:
 
 > ❌ Vague AC: "Translation should be fast and error-free."
 >
-> Two problems:一是"fast" and "error-free" can't be binary-decided;二是 there's no way to know the judging criteria.
+> Two problems: first, "fast" and "error-free" can't be binary-decided; second, there's no way to know the judging criteria.
 
 > ✅ Binary-decidable AC (Key): "For any input `.md` file, a same-named `.en.md` file must be generated in the same directory."
 >
@@ -228,7 +228,7 @@ Format determines what each stage's output "looks like," letting the next stage 
 | Stage | Input | Output (Format) | Review Focus |
 |-------|-------|-----------------|--------------|
 | 1. Product Design | Raw user requirements | User stories + acceptance criteria | AC testability, criticality labeling |
-| 2. Tech Solution | Acceptance criteria | API research conclusions + architecture design | Whether each design decision has a basis |
+| 2. Tech Solution | Acceptance criteria | API research conclusions + architecture design | Whether each design decision has a basis and satisfies the stated RCTFC constraints |
 | 3. Test Plan | Tech solution | Test case checklist | Whether all key ACs are covered |
 | 4. Test Code | Test cases | Failing test files | Whether tests anchor to requirements |
 | 5. Business Code | Test code | Passing business code | Whether all tests pass |
