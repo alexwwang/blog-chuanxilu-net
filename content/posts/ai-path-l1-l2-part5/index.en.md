@@ -219,7 +219,7 @@ Notice the Format requirements for these two stages—they're completely differe
 - Stage 1 (Product Design) Format: user story list + acceptance criteria table
 - Stage 2 (Tech Solution) Format: API research table + component diagram + data flow
 
-**Format is like slots and interfaces on an assembly line:** the previous station must produce零件 of the right shape before the next station can attach and continue.
+**Format is like slots and interfaces on an assembly line:** the previous station must produce parts of the right shape before the next station can attach and continue.
 
 Format determines what each stage's output "looks like," letting the next stage read it directly without guessing. This is TDD Pipeline's core value—**each stage's Format is the next stage's Context**, and information flows between stages through fixed-format files, not relying on the AI's "understanding."
 
