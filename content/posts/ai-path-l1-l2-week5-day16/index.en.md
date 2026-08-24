@@ -24,7 +24,7 @@ Before I call you "graduated," score yourself against this list and tick the one
 - [ ] **You can register an API account and get your first reply from a Python request** (Day 0-3). Not just copy-pasting code once. Switch to another provider, another model name, and you can do it again on your own.
 - [ ] **You understand token billing, temperature, and context window limits** (Day 0-3). Input and output are billed separately. At temperature=0 the output is deterministic. An overlong context pushes early content out, and you can explain why to someone else.
 - [ ] **You have written at least one batch-processing script** (Day 4-7). Read file, call API, write results. It runs on real data, not just test data.
-- [ ] **You can describe a task to an autonomous agent** (Day 8). One-sentence goal, constraints listed, expected output made specific. Not a pile of requirements dumped all at once; you know to split them into batches, one task at a time.
+- [ ] **You can describe a task to an autonomous agent** (Day 8). One-sentence goal, constraints listed, expected output made specific. Not a pile of requirements dumped all at once; you know how to split them into batches, one task at a time.
 - [ ] **You can use the GCO framework to turn a vague request into clear instructions** (Day 10). Given "help me analyze this," you can break out goal, constraints, and output format, and point out which pieces the original request missed.
 - [ ] **You can check AI output with three verification methods** (Day 11). GCO cross-check asks "was it done," invariant checks ask "did anything change," reverse checks ask "where could it be wrong." You know which one fits when.
 - [ ] **You can sort a task by "can it be pinned down"** (Day 12). Prompt or script. Writing prompts is judgment work; running them is labor. The criterion works on real tasks, not just on paper.
@@ -87,11 +87,11 @@ One subtracts, one adds. L3 plans to walk both routes and break them down for yo
 The current plan unfolds in four stages: subtraction, constraints, addition, evolution.
 
 - **Subtraction (demystification):** dissect the agent loop. The core loop is about a hundred lines; the ability to recover from errors comes from the loop structure itself, not from piles of prompts. Then Pi's minimal philosophy: four atomic tools plus an external Docker sandbox. Why bloated prompts and nested plan modes are counterproductive, and why safety needs container isolation instead of a human clicking "allow."
-- **Constraints (hardening):** add hard constraints to a minimal Harness, moving from soft constraints (prompt persuasion) to hard constraints (programmatic interception). `AGENTS.md` should be a directory, not an encyclopedia. Lifecycle hooks intercept mechanically before and after tool execution; a Linter error gets fed back to the AI so it fixes itself. Day 11's three verification methods are soft verification; L3 adds the hard layer.
+- **Constraints (hardening):** add hard constraints to a minimal Harness, moving from soft constraints (prompt persuasion) to hard constraints (programmatic interception). `AGENTS.md` should be a directory, not an encyclopedia. Lifecycle hooks intercept programmatically before and after tool execution; a linter error gets fed back to the AI so it fixes itself. Day 11's three verification methods are soft verification; L3 adds the hard layer.
 - **Addition (extension):** tools and meta-architecture. Where MCP, Pi extensions, and DSH plugins each fit. How to abstract models, storage, sessions, and even another agent into pluggable components, and build a cross-agent collaboration system for your team.
 - **Evolution (landing):** state and practice. How three-layer memory is tiered, how tree-structured sessions and checkpoints let a long task resume instead of restarting, how token burn gets monitored in real time. It all lands back on a full workflow: **plan, implement, verify, reflect**, each stage backed by a Harness-level mechanism.
 
-The finish line is a graduation project: build a CI/CD automation Harness for your team. Container sandbox isolation, automatic Linter interception, and a two-agent setup where one writes code and the other reviews it.
+The finish line is a graduation project: build a CI/CD automation Harness for your team. Container sandbox isolation, automatic linter interception, and a two-agent setup where one writes code and the other reviews it.
 
 ---
 
