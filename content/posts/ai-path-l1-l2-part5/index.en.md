@@ -99,7 +99,7 @@ You don't need to run every scenario. Just describe three things:
 
 **Normal input:** One typical use case. "Run it with `data/sales_2024.csv`—the output should be one row per product with correct totals and averages."
 
-**Boundary cases:** Extreme but not exceptional situations. "If a product has only one record, the average price equals that row's price."
+**Boundary cases:** Extreme but not exceptional situations. "If a product has only one record, its total amount equals that row's amount, and its average price equals that row's price."
 
 **Error input:** Anomalous situations. "If the CSV has empty rows, the script should skip them instead of throwing an error."
 
