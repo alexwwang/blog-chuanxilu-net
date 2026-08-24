@@ -66,7 +66,7 @@ Non-coders can take full control of Format by distinguishing between two things:
 
 You define "how many rooms the house needs and which way the door faces." The AI buries the pipes and runs the wiring.
 
-**How to specify Format requirements—without code, using natural language and examples:**
+**How to specify Format requirements without code, using natural language and examples:**
 
 - Structure description: *"Write a function that takes a file path as input and returns a dictionary with two fields: total and average."*
 - Function signatures: *"Split the code into two independent functions: one handles reading the file (parse_file(path)), the other handles computing the data (calculate_data(data))."* (Even if you can't write the function internals, you can name the building blocks.)
@@ -251,7 +251,7 @@ This is the real power of RCTFC + TDD Pipeline: replacing the question "Do I kno
 Having AI write code isn't just about describing problems and verifying results. You also need some project habits:
 
 - **Plan before executing:** Use Plan Mode (read-only) to have the AI list implementation options first, so you can confirm the direction before executing. Otherwise, the AI writes a pile of code only for you to realize the direction was wrong.
-- **Project memory:** Place a `PROJECT_STATE.md` in the root directory recording current progress, known issues, and next steps. The AI reads this file every new conversation—no need to re-explain background.
+- **Project memory:** Place a `PROJECT_STATE.md` in the root directory recording current progress, known issues, and next steps. The AI reads this file at the start of every new conversation, so there's no need to re-explain background.
 - **Git version control:** Have the AI commit after every change with clear messages about what was changed. If something breaks, you can roll back to any state.
 - **Sandbox strategy:** Test on a copy and never touch the original, especially for tasks involving file operations or network requests.
 
