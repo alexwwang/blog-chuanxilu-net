@@ -70,7 +70,7 @@ You define "how many rooms the house needs and which way the door faces." The AI
 
 - Structure description: *"Write a function that takes a file path as input and returns a dictionary with two fields: total and average."*
 - Function signatures: *"Split the code into two independent functions: one handles reading the file (parse_file(path)), the other handles computing the data (calculate_data(data))."* (Even if you can't write the function internals, you can name the building blocks.)
-- Text/file format: *"The output JSON file must be sorted by key alphabetically, and every property name must be lowercase."*
+- Text/file format: *"The output JSON file must be sorted by key alphabetically, and every key name must be lowercase."*
 
 **Comparison of good vs. bad examples:**
 
@@ -161,7 +161,7 @@ Each stage ends with an independent review—not AI self-assessment, but a fresh
 
 L2's RCTFC is a one-shot task description. But for complex projects, one-shot description has problems:
 
-1. **Context explosion:** A complete project description might be thousands of characters. The AI reads the later parts and forgets the earlier constraints.
+1. **Context explosion:** A complete project description might be thousands of words. The AI reads the later parts and forgets the earlier constraints.
 2. **Error propagation:** Ambiguities from the requirements stage only surface at the code stage—fixing them costs ten times more.
 3. **No staged verification:** Going through all stages at once leaves no checkpoint. When something goes wrong, you don't know which layer leaked.
 
@@ -171,7 +171,7 @@ Behind this is RCTFC extended—each stage is itself an RCTFC task, except the i
 
 ### Using RCTFC to Describe the First Stage
 
-Say you want AI to help design a "batch translation script." The first step is product design. Using RCTFC:
+Say you want the AI to help design a "batch translation script." The first step is product design. Using RCTFC:
 
 ```
 Role: You are a product analyst skilled at breaking vague requirements into testable acceptance criteria.
@@ -204,7 +204,7 @@ After the AI outputs acceptance criteria, run a review:
 
 > ❌ Vague AC: "Translation should be fast and error-free."
 >
-> Two problems: first, "fast" and "error-free" can't be binary-decided; second, there's no way to know the judging criteria.
+> Two problems: first, "fast" and "error-free" are not binary-decidable; second, there's no way to know the judging criteria.
 
 > ✅ Binary-decidable AC (Key): "For any input `.md` file, a same-named `.en.md` file must be generated in the same directory."
 >
