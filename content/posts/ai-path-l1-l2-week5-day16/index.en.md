@@ -1,5 +1,5 @@
 ---
-title: "L2 Graduation: A Nine-Item Checklist and the Road to L3"
+title: "Day 16: L2 Complete! Next Stop Harness — Agent Exoskeleton Evolution and the L3 Blueprint"
 slug: "ai-path-l1-l2-week5-day16"
 date: 2026-08-24T11:00:00+08:00
 draft: false
@@ -14,6 +14,28 @@ cover:
 ---
 
 > This is the graduation assessment of the "AI Path: L1→L2 Upgrade Guide" series. Previous post: [Part 5: How Non-Coders Use AI to Write Code](/en/posts/2026/08/ai-path-l1-l2-part5/).
+
+## Full Navigation
+
+| Day | Type | Topic |
+|-----|------|-------|
+| Day 0 | Core Part 1 | [AI Path L1→L2 Upgrade Guide (1): Your First API Call](/en/posts/2026/06/ai-path-l1-l2-week1/) |
+| Day 1 | Exercise | [Day 1 Exercise: Run Your First API Code](/en/posts/2026/06/ai-path-l1-l2-week1-day1/) |
+| Day 2 | Exercise | [Day 2 Exercise: Run the Same Request on an Aggregator Platform](/en/posts/2026/06/ai-path-l1-l2-week1-day2/) |
+| Day 3 | Exercise | [Day 3 Exercise: API Parameter Experiments](/en/posts/2026/06/ai-path-l1-l2-week1-day3/) |
+| Day 4 | Core Part 2 | [AI Path L1→L2 Upgrade Guide (2): From One Call to Batch Processing: Let Your Program Do 100 Tasks](/en/posts/2026/06/ai-path-l1-l2-week1-day4/) |
+| Day 5 | Exercise | [Day 5 Exercise: Teach Your Script to Read More File Formats](/en/posts/2026/06/ai-path-l1-l2-week2-day5/) |
+| Day 6 | Exercise | [Day 6 Exercise: Batch Processing Practice: Pick a Scenario and Run It](/en/posts/2026/06/ai-path-l1-l2-week2-day6/) |
+| Day 7 | Exercise | [Day 7 Exercise: Add Error Handling to Your Script](/en/posts/2026/06/ai-path-l1-l2-week2-day7/) |
+| Day 8 | Core Part 3 | [Day 8: Autonomous AI, Automation Without Writing Code](/en/posts/2026/06/ai-path-l1-l2-week2-day8/) |
+| Day 9 | Side Quest | [Day 9: API Caching Basics and Why Unit Price Isn't the Whole Story](/en/posts/2026/06/ai-path-l1-l2-week2-day9/) |
+| Day 10 | Exercise | [Day 10: Your AI Feels Like an Intern? Try the GCO Framework](/en/posts/2026/07/ai-path-l1-l2-week3-day10/) |
+| Day 11 | Exercise | [Day 11: How to Verify What AI Gives You](/en/posts/2026/07/ai-path-l1-l2-week3-day11/) |
+| Day 12 | Core Part 4 | [Your AI Toolbox: How Scripts and AI Agent Work Together](/en/posts/2026/08/ai-path-l1-l2-week3-day12/) |
+| Day 13 | Exercise | [Day 13: Turning a Workflow into a Skill Kit](/en/posts/2026/08/ai-path-l1-l2-week3-day13/) |
+| Day 14 | Exercise | [Automating Skill Documents: Four Core Blocks for Tailored AI Workflows](/en/posts/2026/08/ai-path-l1-l2-week3-day14/) |
+| Day 15 | Core Part 5 | [Part 5: How Non-Coders Use AI to Write Code](/en/posts/2026/08/ai-path-l1-l2-part5/) |
+| Day 16 | Stage Recap | Graduation Assessment |
 
 ## Graduation Assessment: The L2 Nine-Item Checklist
 
