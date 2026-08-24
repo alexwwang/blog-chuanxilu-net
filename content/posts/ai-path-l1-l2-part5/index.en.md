@@ -250,7 +250,7 @@ This is the real power of RCTFC + TDD Pipeline: replacing the question "Do I kno
 
 Having AI write code isn't just about describing problems and verifying results. You also need some project habits:
 
-- **Plan before executing:** Use Plan Mode (read-only) to have the AI list implementation options first, confirm before动手. Avoid the AI writing a pile of code only to realize the direction was wrong.
+- **Plan before executing:** Use Plan Mode (read-only) to have the AI list implementation options first, so you can confirm the direction before executing. Avoid the AI writing a pile of code only to realize the direction was wrong.
 - **Project memory:** Place a `PROJECT_STATE.md` in the root directory recording current progress, known issues, and next steps. The AI reads this file every new conversation—no need to re-explain background.
 - **Git version control:** Have the AI commit after every change with clear messages about what was changed. If something breaks, you can roll back to any state.
 - **Sandbox strategy:** Test on a copy, never touch the original. Especially for tasks involving file operations or network requests.
