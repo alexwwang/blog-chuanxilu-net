@@ -63,7 +63,7 @@ In L2 I showed how to hand work to AI. In L3 I will show how to constrain the en
 
 ### The Core Insight: Harness Beats Prompt
 
-L2 spent a lot of pages on prompting. In L3 you will hit a counterintuitive conclusion: **what decides whether an agent system runs stably is whether the Harness is designed reasonably and rigorously. The influence of Prompt and Skill comes second.**
+L2 spent a lot of pages on prompting. In L3 you will hit a counterintuitive conclusion: **what decides whether an agent system runs stably is whether the Harness design is sound and rigorous. The influence of Prompt and Skill comes second.**
 
 Prompts are soft. They rely on the AI's "self-discipline." Over long chains, AI drifts, hallucinates, ignores constraints. A Harness is hard. It is enforced by the runtime environment and does not rely on the AI's understanding. A well-designed Harness keeps even a mediocre model stable, while a badly designed one breaks the agent even with the strongest model.
 
@@ -71,7 +71,7 @@ Prompts are soft. They rely on the AI's "self-discipline." Over long chains, AI 
 
 L3's first lesson teaches no new concept. It starts by showing you how the industry's understanding of the Harness got to where it is today.
 
-The first generation of Harnesses, the **agent workbenches** represented by Claude Code, Codex, and [OpenCode](https://github.com/anomalyco/opencode), proved that "loop + tools + file system" works. Everything you can do now (writing code with AI, batch jobs, automation) rests on the paradigm that generation established. But as task chains grew longer, the workbenches showed common pain points: stacked system prompts eating context (bloat), behavior drifting whenever an upgrade rewords the prompts (fragility), permission popups firing until you click "allow" out of habit (performative security). And a subtler problem: over long-running tasks, context piles up and rots, and [corrupted context gradually drifts the goal](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-05-why-long-running-tasks-lose-continuity/index.md). When the AI announces "done" and stops, what it delivers is no longer what you asked for (goal drift).
+The first generation of Harnesses, the **agent workbenches** represented by Claude Code, Codex, and [OpenCode](https://github.com/anomalyco/opencode), proved that "loop + tools + file system" works. Everything you can do now (writing code with AI, batch jobs, automation) rests on the paradigm the first generation established. But as task chains grew longer, the workbenches showed common pain points: stacked system prompts eating context (bloat), behavior drifting whenever an upgrade rewords the prompts (fragility), permission popups firing until you click "allow" out of habit (performative security). And a subtler problem: over long-running tasks, context piles up and rots, and [corrupted context gradually drifts the goal](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-05-why-long-running-tasks-lose-continuity/index.md). When the AI announces "done" and stops, what it delivers is no longer what you asked for (goal drift).
 
 So the 2026 generation of Harnesses split into two opposite extremes:
 
