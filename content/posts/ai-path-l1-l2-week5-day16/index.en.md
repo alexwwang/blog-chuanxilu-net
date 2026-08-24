@@ -22,7 +22,7 @@ Seventeen days, from your first API call to a complete pipeline of your own. AI 
 Before I call you "graduated," score yourself against this list and tick the ones you can do. Each item comes with a note to help you judge whether you actually pass.
 
 - [ ] **You can register an account with an API provider and get your first reply from a Python request** (Day 0-3). Not just copy-pasting code once. Switch to another provider, another model name, and you can do it again on your own.
-- [ ] **You understand token billing, temperature, and context window limits** (Day 0-3). Input and output are billed separately. At temperature=0, the output is deterministic. An overlong context pushes early content out, and you can explain why to someone else.
+- [ ] **You understand token billing, temperature, and context window limits** (Day 0-3). Input and output are billed separately. At `temperature=0`, the output is deterministic. An overlong context pushes early content out, and you can explain why to someone else.
 - [ ] **You have written at least one batch-processing script** (Day 4-7). Read file, call API, write results. It runs on real data, not just test data.
 - [ ] **You can describe a task to an autonomous agent** (Day 8). One-sentence goal, constraints listed, expected output made specific. Not a pile of requirements dumped all at once; you know how to break them down and send them one task at a time.
 - [ ] **You can use the GCO framework to turn a vague request into clear instructions** (Day 10). Given "help me analyze this," you can break out goal, constraints, and output format, and point out which pieces the original request missed.
