@@ -1,5 +1,5 @@
 ---
-title: "Day 16：L2 毕业考核"
+title: "Day 16｜L2 完结！下一站 Harness：Agent 外骨骼演进与 L3 蓝图预告"
 slug: "ai-path-l1-l2-week5-day16"
 date: 2026-08-24T11:00:00+08:00
 draft: false
