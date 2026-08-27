@@ -66,7 +66,7 @@ Now that you have the feel for it, the definitions. Different teams divide up th
 
 1. **The DeepSeek formula**: Model + Harness = Agent. The model is the brain; the harness is the body.[2]
 2. **Li Bojie's *Deep Understanding of AI Agent***: Agent = LLM + context + tools. Context and tools together form the body of the harness.[3]
-3. **The walkinglabs five subsystems**: Instructions (what you tell the model) + State (where the task stands) + Verification (how you check it worked) + Scope (what it may touch) + Lifecycle (how tasks start, pause, and end). This breaks the harness into engineering parts, and nearly every post in this series designs one of those parts.[4]
+3. **The walkinglabs five subsystems**: Instructions (what you tell the model) + State (where the task stands) + Verification (how you check it worked) + Scope (what it may touch) + Lifecycle (how long tasks start, pause, and end). This breaks the harness into engineering parts, and nearly every post in this series designs one of those parts.[4]
 
 In one sentence: a harness is the middle layer between a model and a real task. It decides what the model sees, what it can call, how it judges completion, how it recovers from errors, and how context is handed off on long tasks.
 
@@ -86,7 +86,7 @@ These products turned something that only chatted into something that ships real
 
 ## Five Pain Points You Hit in Practice
 
-But the longer I used tools like Claude Code and OpenCode, the more they felt like a sealed magic box. Pi's author, Mario Zechner, wrote a post listing these same issues, and they lined up almost perfectly with my own experience.[7]
+But the longer I used tools like Claude Code and OpenCode, the more they felt like a sealed magic box. Pi's author, Mario Zechner, put it most directly; I reordered them based on my own experience.[7]
 ![Opening the sealed magic box: prompt scrolls, gears, and pipes rising out of it](illustration-2.png)
 
 **1. Hidden context injection**
@@ -125,7 +125,7 @@ An interesting detail: OpenClaw's underlying framework switched to Pi after seve
 
 ### Route two: DeepSeek Harness, meta-architecture / plugin network
 
-The design is not to ship with built-in features, but to define interface contracts: developers build concrete features against those contracts, and users compose plugins on demand like Lego bricks, assembling their own scaffolding.[2][11]
+DeepSeek Harness goes in the other direction: everything harness-related is treated as a plugin, organized by a kernel called Cordis. Models, tools, sessions, even other agents are all plugins. The design is not to ship with built-in features, but to define interface contracts: developers build concrete features against those contracts, and users compose plugins on demand like Lego bricks, assembling their own scaffolding.[2][11]
 
 The official repo ships four sample assemblies for different scenarios: Standard (everyday coding), Code (lets the model orchestrate multiple rounds of tool calls itself), Minimal (only the most basic tools, good for testing), and Creator (inspect the current runtime, test plugins on the fly, combine them into new modes).[2]
 
