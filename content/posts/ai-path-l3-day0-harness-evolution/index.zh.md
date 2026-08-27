@@ -1,7 +1,8 @@
 ---
 title: "Day 0｜L3 启航：从工作台到极简与元架构的 Harness 演进史"
 slug: "ai-path-l3-day0-harness-evolution"
-date: 2026-08-25T18:00:00+08:00
+date: 2026-08-27T20:00:00+08:00
+publishDate: 2026-08-27T08:00:00+08:00
 draft: false
 description: "AI 之路 L3 开篇：从你 L2 写过的批量脚本出发，看懂 Harness 是什么、为什么它比模型更决定成败，以及从工作台模式到 Pi 与 DeepSeek Harness 两条路线的演进。"
 tags: ["AI", "教程", "Harness", "Pi", "DeepSeek Harness", "Agent"]

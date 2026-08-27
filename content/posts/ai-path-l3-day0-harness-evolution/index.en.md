@@ -1,7 +1,8 @@
 ---
 title: "Day 0 | L3 Kickoff: A Short History of Harnesses, From Your Batch Script to Pi and DeepSeek Harness"
 slug: "ai-path-l3-day0-harness-evolution"
-date: 2026-08-25T18:00:00+08:00
+date: 2026-08-27T20:00:00+08:00
+publishDate: 2026-08-27T08:00:00+08:00
 draft: false
 description: "AI Path L3 opening: starting from the batch script you wrote in L2, learn what a Harness is, why it decides success more than the model does, and how the field evolved from workbenches to two new routes."
 tags: ["AI", "tutorial", "Harness", "Pi", "DeepSeek Harness", "Agent"]
