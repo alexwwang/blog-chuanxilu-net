@@ -68,7 +68,7 @@ Now that you have the feel for it, the definitions. Different teams divide up th
 2. **Li Bojie's *Deep Understanding of AI Agent***: Agent = LLM + context + tools. Context and tools together form the body of the harness.[3]
 3. **The walkinglabs five subsystems**: Instructions (what you tell the model) + State (where the task stands) + Verification (how you check it worked) + Scope (what it may touch) + Lifecycle (how long tasks start, pause, and end). This breaks the harness into engineering parts, and nearly every post in this series designs one of those parts.[4]
 
-In one sentence: a harness is the middle layer between a model and a real task. It decides what the model sees, what it can call, how it judges completion, how it recovers from errors, and how long tasks are handed off.
+In one sentence: a harness is the middle layer between a model and a real task. It decides what the model sees, what it can call, how it judges completion, how it recovers from errors, and how context is handed off on long tasks.
 
 After nearly a year of vibecoding, my strongest takeaway is this: model capability stopped being the bottleneck a year ago. The binding constraint on model performance is what happens after the task arrives: which process breaks it down, how the nodes are designed, how agent roles are defined and divided. That is L3's learning goal.
 
