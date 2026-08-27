@@ -1,5 +1,5 @@
 ---
-title: "Day 16: L2 Complete! Next Stop Harness — Agent Exoskeleton Evolution and the L3 Blueprint"
+title: "Day 16: L2 Complete! Next Stop: Harness Engineering Evolution and the L3 Blueprint"
 slug: "ai-path-l1-l2-week5-day16"
 date: 2026-08-24T11:00:00+08:00
 draft: false
@@ -77,7 +77,7 @@ L3's theme: **from using tools to Harness architecture design.**
 
 Start with an experiment. Anthropic ran the same model with the same prompt ("build a 2D retro game editor") twice. With nothing around it, the model burned $9 in 20 minutes and produced something unplayable. With a full environment around it (planner + generator + evaluator), six hours and $200 produced a game that actually plays. [The model did not change; what changed was the layer around it](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).
 
-That layer is the Harness (the exoskeleton). In [DeepSeek's formula](https://github.com/deepseek-ai/deepseek-harness): **Model + Harness = Agent**. The model is the brain; the Harness is the body. The Harness does not think for the agent; it keeps the agent standing, carrying weight, and getting back up when it falls. How context gets assembled, how tools get called, how errors get recovered, how "done" gets verified: all Harness work.
+That layer is the Harness (harness engineering). In [DeepSeek's formula](https://github.com/deepseek-ai/deepseek-harness): **Model + Harness = Agent**. The model is the brain; the Harness is the body. The Harness does not think for the agent; it keeps the agent standing, carrying weight, and getting back up when it falls. How context gets assembled, how tools get called, how errors get recovered, how "done" gets verified: all Harness work.
 
 ![The model is the brain, the Harness is the body: a glowing core inside a mecha's chest](illustration-1.png)
 
@@ -120,6 +120,8 @@ The finish line is a graduation project: build a CI/CD automation Harness for yo
 Every stage of L3 dissects real products. The planned lineup includes Pi, DeepSeek Harness, Claude Code, and Codex, so your choices rest on analysis, not on following the crowd.
 
 If anything in L2 is still unclear, consolidate first. L3 can wait.
+
+> L3 has started: [Day 0 | L3 Kickoff: A Short History of Harnesses, From Workbenches to Pi and DeepSeek Harness](/en/posts/2026/08/ai-path-l3-day0-harness-evolution/).
 
 ---
 

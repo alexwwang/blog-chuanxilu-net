@@ -1,5 +1,5 @@
 ---
-title: "Day 16｜L2 完结！下一站 Harness：Agent 外骨骼演进与 L3 蓝图预告"
+title: "Day 16｜L2 完结！下一站 Harness：驾驭工程的演进与 L3 蓝图预告"
 slug: "ai-path-l1-l2-week5-day16"
 date: 2026-08-24T11:00:00+08:00
 draft: false
@@ -91,13 +91,13 @@ L3 的主题是：**从用工具到 Harness 架构设计**。
 
 先讲一个实验。Anthropic 用同一个模型、同一句提示词（"做一个 2D 复古游戏编辑器"）跑了两次：什么都不给，模型 20 分钟花掉 9 美元，产出一个不能玩的东西；配上一套完整的外围环境（规划器 + 生成器 + 评估器），6 小时花 200 美元，产出一个真能玩的游戏。[模型没变，变的是模型外面那层东西](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)。
 
-那层东西就是 Harness（外骨骼）。用 [DeepSeek 的公式](https://github.com/deepseek-ai/deepseek-harness)说：**Model + Harness = Agent**。模型是大脑，Harness 是身体。它不替 agent 想问题，它让 agent 站得稳、扛得住、摔倒了能爬起来。上下文怎么组装、工具怎么调用、出错怎么恢复、做完了怎么验证，全是 Harness 的事。
+那层东西就是 Harness（驾驭工程）。用 [DeepSeek 的公式](https://github.com/deepseek-ai/deepseek-harness)说：**Model + Harness = Agent**。模型是大脑，Harness 是身体。它不替 agent 想问题，它让 agent 站得稳、扛得住、摔倒了能爬起来。上下文怎么组装、工具怎么调用、出错怎么恢复、做完了怎么验证，全是 Harness 的事。
 
 ![模型是大脑，Harness 是身体：机甲胸腔里的发光核心](illustration-1.png)L2 我演示了怎么把活派给 AI 的思路；L3 将会演示如何约束 AI 干活的环境，提高产出的质量和稳定性。
 
 ### 核心认知：Harness 比 Prompt 更重要
 
-L2 花了大量篇幅讲怎么给 AI 写提示词。到了 L3，你会撞上一个反直觉的结论：**真正决定 Agent 系统能不能稳定运行的，是 Harness（外骨骼）设计得是否合理和严密，而 Prompt/Skill 的影响只能排到第二。**
+L2 花了大量篇幅讲怎么给 AI 写提示词。到了 L3，你会撞上一个反直觉的结论：**真正决定 Agent 系统能不能稳定运行的，是 Harness（驾驭工程）设计得是否合理和严密，而 Prompt/Skill 的影响只能排到第二。**
 
 Prompt 是软的，它依赖 AI 的"自律"。长链路里，AI 会漂移、会幻觉、会忽略约束。Harness 是硬的，它是运行环境里强制执行的规则，不依赖 AI 的理解力。一个设计良好的 Harness，能让即使不太聪明的模型也能稳定工作；而一个设计糟糕的 Harness，即使用最强模型也会让 agent 崩。
 
@@ -132,6 +132,8 @@ L3 的第一课不学新概念，先带你看清楚业界对 Harness 的理解�
 L3 的每一环节都会用真实产品来剖析：计划的有 Pi、DeepSeek Harness、Claude Code、Codex 等，让你的选择不停留在随大流的层面上。
 
 如果你现在对 L2 的内容还有不清楚的地方，先回头巩固。L3 不急。
+
+> L3 已开始：[Day 0｜L3 启航：从工作台到极简与元架构的 Harness 演进史](/posts/2026/08/ai-path-l3-day0-harness-evolution/)。
 
 ---
 
