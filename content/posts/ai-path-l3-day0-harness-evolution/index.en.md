@@ -66,7 +66,7 @@ Now that you have the feel for it, the definitions. Different teams divide up th
 
 1. **The DeepSeek formula**: Model + Harness = Agent. The model is the brain; the harness is the body.[2]
 2. **Li Bojie's *Deep Understanding of AI Agent***: Agent = LLM + context + tools. Context and tools together form the body of the harness.[3]
-3. **The walkinglabs five subsystems**: Instructions (what you tell the model) + State (where the task stands) + Verification (how you check it worked) + Scope (what it may touch) + Lifecycle (how long tasks start, pause, and end). This breaks the harness into engineering parts, and nearly every post in this series designs one of those parts.[4]
+3. **The walkinglabs five subsystems**: Instructions (what you tell the model) + State (where the task stands) + Verification (how you check it worked) + Scope (what it may touch) + Lifecycle (how tasks start, pause, and end). This breaks the harness into engineering parts, and nearly every post in this series designs one of those parts.[4]
 
 In one sentence: a harness is the middle layer between a model and a real task. It decides what the model sees, what it can call, how it judges completion, how it recovers from errors, and how context is handed off on long tasks.
 
