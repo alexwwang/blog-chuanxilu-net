@@ -45,7 +45,7 @@ The learning goal of L3 is understanding first, then knowing how to choose and b
 
 ## A Controlled Experiment: What the Scaffolding Is Worth
 
-In March 2026, Anthropic published the results of a controlled experiment[1]: the same model (Claude Opus 4.5) and the same prompt task, "Create a 2D retro game maker with features including a level editor, sprite editor, entity behaviors, and a playable test mode," run as a controlled comparison. The results:
+In March 2026, Anthropic published the results of a controlled experiment evaluating the same model (Claude Opus 4.5) on the exact same task prompt: "Create a 2D retro game maker with features including a level editor, sprite editor, entity behaviors, and a playable test mode." The results:
 
 The control group without a harness: 20 minutes and $9. The UI looked real, the sprite editor opened, menus worked. But in play mode the game character ignored player input, and digging into the bug showed the model had failed to wire the front-end interface to the game runtime.
 
