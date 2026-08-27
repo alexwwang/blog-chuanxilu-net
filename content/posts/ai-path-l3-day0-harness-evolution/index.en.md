@@ -84,7 +84,7 @@ Their value fits in one sentence: the kind of script you used to write by hand, 
 
 These products turned something that only chatted into something that ships real work.
 
-## Five Pain Points You Hit with Use
+## Five Pain Points You Hit in Practice
 
 But the longer I used tools like Claude Code and OpenCode, the more they felt like a sealed magic box. Pi's author, Mario Zechner, wrote a post listing these same issues, and they lined up almost perfectly with my own experience.[7]
 ![Opening the sealed magic box: prompt scrolls, gears, and pipes rising out of it](illustration-2.png)
@@ -125,7 +125,7 @@ An interesting detail: OpenClaw's underlying framework switched to Pi after seve
 
 ### Route two: DeepSeek Harness, meta-architecture / plugin network
 
-DeepSeek Harness goes in the other direction: everything harness-related is treated as a plugin, organized by a kernel called Cordis. Models, tools, sessions, even other agents are all plugins. The design is not to ship features built in, but to define interface contracts: developers build concrete features against those contracts, and users compose plugins on demand like Lego bricks, assembling their own scaffolding.[2][11]
+The design is not to ship with built-in features, but to define interface contracts: developers build concrete features against those contracts, and users compose plugins on demand like Lego bricks, assembling their own scaffolding.[2][11]
 
 The official repo ships four sample assemblies for different scenarios: Standard (everyday coding), Code (lets the model orchestrate multiple rounds of tool calls itself), Minimal (only the most basic tools, good for testing), and Creator (inspect the current runtime, test plugins on the fly, combine them into new modes).[2]
 
