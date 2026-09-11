@@ -1,5 +1,5 @@
 ---
-title: "Day 1 | 120 Lines to Understand the Agent Loop: miniharness Anatomy and 3 Counterintuitive Findings"
+title: "Day 1 | 120 Lines to Understand the Agent Loop: miniharness Teardown and 3 Counterintuitive Findings"
 slug: "ai-path-l3-day1-miniharness-agent-loop"
 date: 2026-09-07T20:00:00+08:00
 publishDate: 2026-09-07T12:00:00+08:00
@@ -45,9 +45,9 @@ When you use Claude Code, you probably never asked what happens behind the scene
 
 This post opens that box, and do not worry if you cannot follow: the core logic is not much longer than the batch script we wrote in L2 Day 4.
 
-## Dissecting miniharness: 120 Lines of Core Code
+## miniharness Teardown: 120 Lines of Core Code
 
-Today we dissect `tljcpa/miniharness`, a minimal Harness designed for empirical research[1]. It is tiny in scale but complete in structure.
+Today's teardown target is `tljcpa/miniharness`, a minimal Harness designed for empirical research[1]. It is tiny in scale but complete in structure.
 
 The core `agent.py` contains about 240 lines including docstrings, of which roughly 120 lines are actual logic. It ships with seven "plain" tools: `read_file`, `write_file`, `edit_file`, `list_dir`, `run_command`, `grep`, `finish`[1]. No MCP. No planning mode. No sub-agent.
 
