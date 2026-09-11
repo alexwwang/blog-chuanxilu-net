@@ -1,5 +1,5 @@
 ---
-title: "Day 1｜120 行代码读懂 Agent Loop：miniharness 解剖与 3 个反直觉发现"
+title: "Day 1｜120 行代码读懂 Agent Loop：miniharness 拆解与 3 个反直觉发现"
 slug: "ai-path-l3-day1-miniharness-agent-loop"
 date: 2026-09-07T20:00:00+08:00
 publishDate: 2026-09-07T12:00:00+08:00
