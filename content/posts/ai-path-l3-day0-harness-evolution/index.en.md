@@ -22,8 +22,8 @@ cover:
 > | Day | Type | Topic |
 > |-----|------|-------|
 > | Day 1 | Exercise | Reading the Agent Loop in 120 lines |
-> | Day 2 | Core | Contracts and interception: hooks and permissions |
-> | Day 3 | Exercise | Building an approval flow with Claude Code hooks |
+> | Day 2 | Core | Constraints and interception: hooks and permissions |
+> | Day 3 | Exercise | Adding an approval gate with hooks |
 > | Day 4 | Core | Extensions vs plugins: Pi vs DSH |
 > | Day 5 | Exercise | Writing a Pi extension |
 > | Day 6 | Exercise | Composing DSH Cordis plugin modes |
@@ -160,16 +160,16 @@ Next post, Day 1, we take a look inside a minimal harness called miniharness. It
 
 ---
 
-## Notes and References
+## References
 
-1. Anthropic, *Harness design for long-running application development*, 2026-03-24. Experiment data: Claude Opus 4.5, prompt "Create a 2D retro game maker with features including a level editor, sprite editor, entity behaviors, and a playable test mode." Without harness: 20 min / $9. Full harness (planner + generator + evaluator): 6 hr / $200. Accessed 2026-08-25. https://www.anthropic.com/engineering/harness-design-long-running-apps
-2. deepseek-ai/deepseek-harness GitHub repository and official docs. Built on the Cordis kernel; models, tools, sessions, and agents are all abstracted as plugins. Accessed 2026-08-25. https://github.com/deepseek-ai/deepseek-harness
-3. Li Bojie, *Deep Understanding of AI Agent*, Chapter 1. Agent = LLM + context + tools. https://github.com/bojieli/ai-agent-book
-4. walkinglabs, *Learn Harness Engineering*, Lecture 02. Five-subsystem framework: Instructions + State + Verification + Scope + Lifecycle. Accessed 2026-08-25. https://github.com/walkinglabs/learn-harness-engineering
-5. OpenAI, *Unrolling the Codex agent loop*, Michael Bolin. Codex agent loop, Rust rewrite, and approval modes. Accessed 2026-08-25. https://openai.com/index/unrolling-the-codex-agent-loop/
-6. anomalyco/opencode GitHub repository. Open-source modular coding workbench with plugins and hooks. https://github.com/anomalyco/opencode
-7. Mario Zechner, *Pi: a coding agent that is just right for me*, 2025-11-30. Pi design philosophy, critique of workbench-style harnesses, default no-confirmation stance, "spaceship" metaphor. Accessed 2026-08-25. https://mariozechner.at/posts/2025-11-30-pi-coding-agent/
-8. Anthropic, *Effective harnesses for long-running agents*, 2025-11-26. Introduces the initializer agent and coding agent context-handoff pattern. Accessed 2026-08-25. https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
-9. Pi official docs: *harness.md*. Defines Pi's core constraints: four atomic tools (read/write/edit/bash), triple-store structure, session tree, operation state machine. Accessed 2026-08-25. https://github.com/earendil-works/pi/blob/main/packages/agent/docs/harness.md
-10. Pi official docs: *extensions.md*. Auto-discovery directories (`~/.pi/agent/extensions/`, `.pi/extensions/`), tool registration, event subscription, command registration. Accessed 2026-08-25. https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/extensions.md
-11. DeepSeek Harness official docs: *architecture.md*. Cordis kernel, capability seams, event flow. Accessed 2026-08-25. https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/architecture.md
+1. [Anthropic: Harness design for long-running application development (2026-03-24)](https://www.anthropic.com/engineering/harness-design-long-running-apps)
+2. [deepseek-ai/deepseek-harness GitHub repository](https://github.com/deepseek-ai/deepseek-harness)
+3. [Li Bojie: Deep Understanding of AI Agent (Chapter 1)](https://github.com/bojieli/ai-agent-book)
+4. [walkinglabs: Learn Harness Engineering (Lecture 02)](https://github.com/walkinglabs/learn-harness-engineering)
+5. [OpenAI: Unrolling the Codex agent loop (Michael Bolin)](https://openai.com/index/unrolling-the-codex-agent-loop/)
+6. [anomalyco/opencode GitHub repository](https://github.com/anomalyco/opencode)
+7. [Mario Zechner: Pi: a coding agent that is just right for me (2025-11-30)](https://mariozechner.at/posts/2025-11-30-pi-coding-agent/)
+8. [Anthropic: Effective harnesses for long-running agents (2025-11-26)](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
+9. [Pi official docs: harness.md](https://github.com/earendil-works/pi/blob/main/packages/agent/docs/harness.md)
+10. [Pi official docs: extensions.md](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/extensions.md)
+11. [DeepSeek Harness official docs: architecture.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/architecture.md)

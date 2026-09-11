@@ -23,7 +23,7 @@ cover:
 > |-----|------|------|
 > | Day 1 | 练习 | 120 行代码读懂 Agent Loop |
 > | Day 2 | 骨干 | 约束与拦截：Hooks 与权限 |
-> | Day 3 | 练习 | 用 Claude Code Hooks 做审批 |
+> | Day 3 | 练习 | 用 Hook 给 Agent 装审批 |
 > | Day 4 | 骨干 | 扩展与插件：Pi vs DSH |
 > | Day 5 | 练习 | 写一个 Pi 扩展 |
 > | Day 6 | 练习 | 用 DSH Cordis 插件组合模式 |
@@ -160,16 +160,16 @@ Pi 选择做减法：把核心压到最小，让扩展承担所有附加功能�
 
 ---
 
-## 注释与引用
+## 参考资料
 
-1. Anthropic, *Harness design for long-running application development*, 2026-03-24. 对照实验数据：Claude Opus 4.5，提示词 "Create a 2D retro game maker with features including a level editor, sprite editor, entity behaviors, and a playable test mode."；无 harness 20 min / $9；完整 harness（planner + generator + evaluator）6 hr / $200。访问时间 2026-08-25。https://www.anthropic.com/engineering/harness-design-long-running-apps
-2. deepseek-ai/deepseek-harness GitHub 仓库与官方文档。基于 Cordis 内核，模型、工具、会话、Agent 全部抽象为插件。访问时间 2026-08-25。https://github.com/deepseek-ai/deepseek-harness
-3. 李博杰，*深入理解 AI Agent*，第 1 章。Agent = LLM + 上下文 + 工具。https://github.com/bojieli/ai-agent-book
-4. walkinglabs, *Learn Harness Engineering*, Lecture 02. 五子系统框架：Instructions + State + Verification + Scope + Lifecycle。访问时间 2026-08-25。https://github.com/walkinglabs/learn-harness-engineering
-5. OpenAI, *Unrolling the Codex agent loop*, Michael Bolin. Codex agent loop、Rust 重写与审批模式。访问时间 2026-08-25。https://openai.com/index/unrolling-the-codex-agent-loop/
-6. anomalyco/opencode GitHub 仓库。开源模块化编码工作台，支持插件与 Hook。https://github.com/anomalyco/opencode
-7. Mario Zechner, *Pi: a coding agent that is just right for me*, 2025-11-30. Pi 设计哲学原文，包含对工作台式 Harness 的批判、默认无确认弹窗的立场、"spaceship" 比喻。访问时间 2026-08-25。https://mariozechner.at/posts/2025-11-30-pi-coding-agent/
-8. Anthropic, *Effective harnesses for long-running agents*, 2025-11-26. 介绍 initializer agent 与 coding agent 的上下文交接机制。访问时间 2026-08-25。https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
-9. Pi 官方文档：*harness.md*。定义 Pi 的核心约束：4 个原子工具（read/write/edit/bash）、三存储结构、会话树、操作状态机。访问时间 2026-08-25。https://github.com/earendil-works/pi/blob/main/packages/agent/docs/harness.md
-10. Pi 官方文档：*extensions.md*。扩展自动发现目录（`~/.pi/agent/extensions/`、`.pi/extensions/`）、工具注册、事件订阅、命令注册。访问时间 2026-08-25。https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/extensions.md
-11. DeepSeek Harness 官方文档：*architecture.md*。Cordis 内核、capability seams、事件流。访问时间 2026-08-25。https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/architecture.md
+1. [Anthropic：Harness design for long-running application development（2026-03-24）](https://www.anthropic.com/engineering/harness-design-long-running-apps)
+2. [deepseek-ai/deepseek-harness GitHub 仓库](https://github.com/deepseek-ai/deepseek-harness)
+3. [李博杰：深入理解 AI Agent（第 1 章）](https://github.com/bojieli/ai-agent-book)
+4. [walkinglabs：Learn Harness Engineering（Lecture 02）](https://github.com/walkinglabs/learn-harness-engineering)
+5. [OpenAI：Unrolling the Codex agent loop（Michael Bolin）](https://openai.com/index/unrolling-the-codex-agent-loop/)
+6. [anomalyco/opencode GitHub 仓库](https://github.com/anomalyco/opencode)
+7. [Mario Zechner：Pi: a coding agent that is just right for me（2025-11-30）](https://mariozechner.at/posts/2025-11-30-pi-coding-agent/)
+8. [Anthropic：Effective harnesses for long-running agents（2025-11-26）](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
+9. [Pi 官方文档：harness.md](https://github.com/earendil-works/pi/blob/main/packages/agent/docs/harness.md)
+10. [Pi 官方文档：extensions.md](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/extensions.md)
+11. [DeepSeek Harness 官方文档：architecture.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/architecture.md)
