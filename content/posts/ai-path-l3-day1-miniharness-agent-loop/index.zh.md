@@ -45,7 +45,7 @@ cover:
 
 本篇带着你打开这个黑盒，不用害怕自己看不懂，这个核心逻辑的代码比 L2 Day 4 我们写的那份批量脚本也长不了多少。
 
-## 拆解miniharness ：120 行核心代码
+## 拆解 miniharness：120 行核心代码
 
 今天拆解的对象是 `tljcpa/miniharness`，这是一个专为实证研究设计的最小 Harness[1]，规模极小但结构完整。
 
@@ -87,7 +87,7 @@ def agent_loop(context, provider, tools):
 
 miniharness 的仓库里有一次消融实验的记录：固定模型（DeepSeek-Chat）、固定任务（写 FizzBuzz 并验证），只换工具调用格式（`native_json` / `xml` / `prompt`），每种格式跑一次[1]，结果里有几个反直觉的发现。
 
-**发现一： loop 可实现自动纠错。**
+**发现一：loop 可实现自动纠错。**
 
 直觉上，"从错误中恢复"应该是 harness 专门写代码实现的功能：重试机制、错误分类、恢复策略。miniharness 里这些一行都没有。
 
