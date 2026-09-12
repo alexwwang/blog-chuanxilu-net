@@ -95,7 +95,7 @@ In the smoke test (greet.py), the model took five steps, consumed 7,883 tokens, 
 
 The same recovery pattern appeared a second time in the fizzbuzz ablation. This time the model switched to `python3` directly in one step.
 
-The mechanism is clear: `ToolRegistry.execute` catches all exceptions and appends them to the context with `is_error=True` alongside the traceback; if these exceptions bubbled up unhandled, the loop would crash immediately and recovery would become impossible. Error handling here is a feature of the loop architecture itself. In Day 3 we will expand on the related Back-Pressure mechanism.
+The mechanism is clear: `ToolRegistry.execute` catches all exceptions and appends them to the context with `is_error=True` alongside the traceback; had these exceptions bubbled up unhandled, the loop would crash immediately and make recovery impossible. Error handling here is a feature of the loop architecture itself. In Day 3 we will expand on the related Back-Pressure mechanism.
 
 ![Error handling as part of the loop architecture: a ball that slipped off the track is caught by a net woven into the track itself and returned to the loop](illustration-2.png)
 
@@ -134,7 +134,7 @@ cp .env.example .env   # edit .env, set DEEPSEEK_API_KEY=sk-...
 python scripts/smoke_test.py --provider deepseek
 ```
 
-The companion teaching script `mini_loop.py` and execution instructions live in the `code/` subfolder under the article directory ([the code/ directory on GitHub](https://github.com/alexwwang/blog-chuanxilu-net/tree/master/content/posts/ai-path-l3-day1-miniharness-agent-loop/code)), published alongside the blog repo. Clone the repo and run them locally.
+The companion teaching script `mini_loop.py` and its execution instructions live in the `code/` subfolder under the article directory ([the code/ directory on GitHub](https://github.com/alexwwang/blog-chuanxilu-net/tree/master/content/posts/ai-path-l3-day1-miniharness-agent-loop/code)), published alongside the blog repository. Clone the repo and run them locally.
 
 Observation checklist:
 
