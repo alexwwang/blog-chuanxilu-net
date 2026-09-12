@@ -53,7 +53,7 @@ The core `agent.py` contains about 240 lines including docstrings, of which roug
 
 The miniharness author distilled a combination formula: `Agent = Provider × ToolFormat × ToolRegistry × Context × UI`. Provider is the model interface. ToolFormat is the tool call format. ToolRegistry is the tool registry. Context is context management. UI is the user interface. Free combination across these five dimensions builds different Agents.
 
-Split the loop section by section. Every line maps to a concept we already learned:
+When we break down the loop section by section, every line maps directly to a concept we have already covered:
 
 ```python
 def agent_loop(context, provider, tools):
@@ -95,7 +95,7 @@ In the smoke test (greet.py), the model took five steps, consumed 7,883 tokens, 
 
 The same recovery pattern appeared a second time in the fizzbuzz ablation. This time the model switched to `python3` directly in one step.
 
-The mechanism is clear. `ToolRegistry.execute` catches all exceptions and feeds them back into context as `is_error=True` plus traceback. If exceptions bubble up, the loop crashes immediately and recovery becomes impossible. Error handling here is a feature of the loop architecture itself. In Day 3 we will expand on the related Back-Pressure mechanism.
+The mechanism is clear: `ToolRegistry.execute` catches all exceptions and appends them to the context with `is_error=True` alongside the traceback; if these exceptions bubbled up unhandled, the loop would crash immediately and recovery would become impossible. Error handling here is a feature of the loop architecture itself. In Day 3 we will expand on the related Back-Pressure mechanism.
 
 ![Error handling as part of the loop architecture: a ball that slipped off the track is caught by a net woven into the track itself and returned to the loop](illustration-2.png)
 
@@ -113,7 +113,7 @@ The two deviations differ in both manner and degree. This means a task-level che
 
 **Finding three: Round count drives token consumption.**
 
-Intuition says native structured tool calling (`native_json`) is the proper path and should cost fewer tokens than stuffing XML or text conventions into the prompt. The data runs the other way: `native_json` at 6,618 tokens over 4 steps versus `xml` at 3,188 over 2 steps versus `prompt` at 2,966 over 2 steps, so native_json costs a little over twice either of the other two. The reason is two extra round trips carrying full context, and every extra round resends the entire context verbatim. Step count impacts cost more than format overhead. The three-run total cost is $0.0041 (12,019 prompt + 753 completion tokens, priced at $0.27/M + $1.1/M)[1].
+Intuition says native structured tool calling (`native_json`) is the proper path and should cost fewer tokens than stuffing XML or text conventions into the prompt. The data runs the other way: `native_json` at 6,618 tokens over 4 steps versus `xml` at 3,188 over 2 steps versus `prompt` at 2,966 over 2 steps, so native_json costs a little over twice either of the other two. The reason for the higher token count is two extra round trips carrying full context; because LLM APIs resend the cumulative conversation history on every request, each additional turn re-sends the entire past context verbatim. Step count impacts cost more than format overhead. The three-run total cost is $0.0041 (12,019 prompt + 753 completion tokens, priced at $0.27/M + $1.1/M)[1].
 
 But here the boundary must be stated clearly. Each experimental group ran only once (n=1). The repo README explicitly states "differences below 2x count as noise." This "a little over 2x" sits right on the noise line. Also the xml run was an early exit without verification, a confound. If forced to verify, its token consumption might catch up. So the precise wording is "finding," not "proof." The repo itself writes "statistically meaningful findings: zero." All three findings above are single-sample qualitative observations.
 
