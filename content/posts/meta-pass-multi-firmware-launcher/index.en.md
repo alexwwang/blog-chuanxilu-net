@@ -42,7 +42,7 @@ Two install channels.
 
 ![Two install channels: wireless Wi-Fi upload on the left, USB cable on the right](illustration-1.png)
 
-Channel one needs no cable. The device opens a Wi-Fi hotspot (SoftAP), and the screen shows a random password plus a 6-digit one-time pairing code. Connect a phone or laptop to the hotspot, open the local page in a browser, upload a `.bin`. Security rests entirely on that pairing code: it only ever appears on the device screen, so only someone holding the device and reading the screen can push firmware in. After upload comes verification; on failure the whole slot gets erased. No half-written firmware.
+Channel one needs no cable. The device opens a Wi-Fi hotspot (SoftAP), and the screen shows a random password plus a 6-digit one-time pairing code. Connect a phone or laptop to the hotspot, open the local page in a browser, and upload a `.bin`. Security rests entirely on that pairing code: it only ever appears on the device screen, so only someone holding the device and reading the screen can push firmware in. After upload comes verification; on failure the whole slot gets erased. No half-written firmware.
 
 Channel two needs one data cable. Hold UP while powering on and the device enters ROM download mode. On the computer, Chrome opens an install page and writes the firmware straight into the slot through Web Serial. Web Serial is the browser's way of talking to a data cable, and by security rule it only works on localhost or HTTPS pages[3]. The device's own `http://192.168.4.1` page doesn't qualify, so this page lives on the computer, which conveniently made it more capable and nicer to use. The writing is done by esptool-js[4], verified after writing.
 
