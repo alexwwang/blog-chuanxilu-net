@@ -34,7 +34,7 @@ AI pair-programmed the whole thing with me, but this was my first SoC project, a
 
 ESP32 flash can hold several app partitions. The system ships with a mechanism called OTA that picks which partition to boot from, and after a restart the bootloader loads the firmware from there[2]. OTA was designed to "keep a fallback when updating online." Look at it sideways, though, and it is a row of ready-made cartridge slots.
 
-So the layout: the meta-pass launcher sits in the factory partition and never moves. OTA partitions become slots, one child firmware per slot. The launcher scans the slots and shows a list; when you pick one, `esp_ota_set_boot_partition()` points to it, `esp_restart()` reboots, and the child firmware comes up. Switching went from "reflash everything, a few minutes" to "reboot, a few seconds."
+So the layout: the meta-pass launcher sits in the factory partition and never moves. OTA partitions become slots, one child firmware per slot. The launcher scans the slots and shows a list; when you pick one, `esp_ota_set_boot_partition()` sets it as the boot partition, `esp_restart()` reboots, and the child firmware comes up. Switching went from "reflash everything, a few minutes" to "reboot, a few seconds."
 
 ### How to Get Them In: Cable-Free Wi-Fi, and One USB Cable
 
