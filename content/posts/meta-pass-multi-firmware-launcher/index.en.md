@@ -77,7 +77,7 @@ One path left: play with how long a key is held. Enter two-level long press. Hol
 
 When the launcher lists the slots, what name should it show? Ideally the firmware's real name, like "Pocket Walkie." But real names live on the marketplace web page. Inside the firmware file, the `project_name` field is usually the compile template's default. Community firmware uniformly says `FoloToy-AI-Passport`. Scanning the image gets you no real name.
 
-Could we record the name at install time? Sure, but where? AI suggested NVS (ESP32's key-value storage), which sounds natural. But when the USB channel is at work, the device sits in ROM download mode, where esptool can only write raw flash, not structured NVS data. AI then suggested building in a list of marketplace names. I called that silly and uneconomical: every new marketplace firmware makes the list stale.
+Could I record the name at install time? Sure, but where? AI suggested NVS (ESP32's key-value storage), which sounds natural. But when the USB channel is at work, the device sits in ROM download mode, where esptool can only write raw flash, not structured NVS data. AI then suggested building in a list of marketplace names. I called that silly and uneconomical: every new marketplace firmware makes the list stale.
 
 The final answer: write the name into the slot itself. Reserve the last 4KB block at the slot's tail. At install time, write the display name there with an `MNAM` marker, a length, and a checksum. When the launcher scans, a passing checksum shows the stored display name; if the blob is missing or the checksum fails, the launcher falls back to the header's default project name. The name travels with the firmware. Deleting a slot erases the whole region, name included. Clean and complete.
 
