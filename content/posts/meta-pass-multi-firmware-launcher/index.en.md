@@ -46,7 +46,7 @@ Channel one needs no cable. The device opens a Wi-Fi hotspot (SoftAP), and the s
 
 Channel two needs one data cable. Hold UP while powering on and the device enters ROM download mode. On the computer, Chrome opens an install page and writes the firmware straight into the slot through Web Serial. Web Serial is the browser's way of talking to a data cable, and by security rule it only works on localhost or HTTPS pages[3]. The device's own `http://192.168.4.1` page doesn't qualify, so this page lives on the computer, which conveniently made it more capable and nicer to use. The writing is done by esptool-js[4], verified after writing.
 
-Why a second channel? Because the community marketplace only ships "full package" flash images, which need unpacking to get the application part out. And its API lacks CORS headers, which blocks direct browser requests and requires a local relay. The computer-side install page happens to do both jobs: a local server relays marketplace data, the page unpacks the image in JS, and after downloading it computes a fingerprint (SHA-256) to compare against the one the marketplace publishes. A match means the file was not swapped.
+Why a second channel? The first channel takes only a ready app `.bin` and doesn't unpack. And the community marketplace only ships "full package" flash images, which need unpacking to get the application part out. And its API lacks CORS headers, which blocks direct browser requests and requires a local relay. The computer-side install page happens to do both jobs: a local server relays marketplace data, the page unpacks the image in JS, and after downloading it computes a fingerprint (SHA-256) to compare against the one the marketplace publishes. A match means the file was not swapped.
 
 ![The USB install page: connect, pick a slot, choose firmware source, set a display name, install](illustration-2.png)
 
@@ -105,7 +105,7 @@ Behind the same white screen, the AI-written code hid a second bug: the server's
 
 ## Two Days Later
 
-Done, and verified end to end in a simulator: assembled a full image with Pocket Walkie and Passport Radar preloaded into the two slots, uploaded it, booted. The slot list showed both real names. I picked a slot, got the unsigned warning page, long-long pressed, and the walkie-talkie's WALKIE UI ran. Power off and on, and rollback returned to the launcher. The official Radar firmware's menu buttons also worked fine, which proved that booting through meta-pass leaves a child firmware's button handling intact.
+Done, and verified end to end in a simulator: assembled a full image with Pocket Walkie and Passport Radar preloaded into the two slots, uploaded it, booted. The slot list showed both real names. I picked a slot, got the unsigned warning page, long-long pressed, and the walkie-talkie's WALKIE UI ran. Power off and on, and since the walkie-talkie is unadapted community firmware that never says "I'm fine," rollback returned to the launcher. The official Radar firmware's menu buttons also worked fine, which proved that booting through meta-pass leaves a child firmware's button handling intact.
 
 ![Launcher menu: two slots showing real names, import firmware entry below](illustration-5.png)
 
