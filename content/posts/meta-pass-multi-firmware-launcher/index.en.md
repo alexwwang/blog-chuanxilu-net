@@ -1,8 +1,8 @@
 ---
 title: "One Firmware at a Time Wasn't Enough: Building a Multi-Boot Launcher for My Kid's AI Toy"
 slug: "meta-pass-multi-firmware-launcher"
-date: 2026-09-13T10:00:00+08:00
-draft: true
+date: 2026-09-14T07:00:00+08:00
+draft: false
 description: "The FoloToy AI Passport has a marketplace full of fun firmware, but the device holds only one at a time. Switching means reflashing the whole chip. I spent two days building meta-pass, a multi-firmware launcher with two slots, two install channels, and a rollback model designed to prevent bricking the device. Almost every good design in it was forced by a hardware constraint."
 tags: ["AI", "ESP32", "firmware", "FoloToy", "AI Passport", "meta-pass", "bootloader", "OTA", "hardware", "parenting"]
 categories: ["AI Practice", "AI Application Development"]

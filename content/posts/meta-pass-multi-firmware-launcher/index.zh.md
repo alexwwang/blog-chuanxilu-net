@@ -1,8 +1,8 @@
 ---
 title: "给孩子的 AI 玩具做个多卡带启动器：meta-pass 开发复盘"
 slug: "meta-pass-multi-firmware-launcher"
-date: 2026-09-13T10:00:00+08:00
-draft: true
+date: 2026-09-14T07:00:00+08:00
+draft: false
 description: 'FoloToy AI Passport 的 plays 市场里有很多好玩的固件，但设备一次只能刷一个，想换着玩就得整片重刷。我花两天写了个多固件启动器 meta-pass：两个槽位、两条安装通道、一套不回砖的回滚机制。复盘这个过程，几乎每个好设计都是被硬件约束逼出来的。'
 tags: ["AI", "ESP32", "固件", "FoloToy", "AI Passport", "meta-pass", "bootloader", "OTA", "硬件", "儿童编程"]
 categories: ["AI 实践", "AI应用开发"]
