@@ -34,7 +34,7 @@ AI pair-programmed the whole thing with me, but this was my first SoC project, a
 
 ESP32 flash can hold several app partitions. The system ships with a mechanism called OTA that picks which partition to boot from, and after a restart the bootloader loads the firmware from there[2]. OTA was designed to "keep a fallback when updating online." Look at it sideways, though, and it is a row of ready-made cartridge slots.
 
-So the layout: the meta-pass launcher sits in the factory partition and never moves. OTA partitions become slots, one child firmware per slot. The launcher scans the slots, shows a list, you pick one, `esp_ota_set_boot_partition()` points at it, `esp_restart()` reboots, and the child firmware comes up. Switching went from "reflash everything, a few minutes" to "reboot, a few seconds."
+So the layout: the meta-pass launcher sits in the factory partition and never moves. OTA partitions become slots, one child firmware per slot. The launcher scans the slots and shows a list; when you pick one, `esp_ota_set_boot_partition()` points at it, `esp_restart()` reboots, and the child firmware comes up. Switching went from "reflash everything, a few minutes" to "reboot, a few seconds."
 
 ### How to Get Them In: Cable-Free Wi-Fi, and One USB Cable
 
@@ -52,7 +52,7 @@ Why a second channel? Because the community marketplace only ships "full package
 
 ### How to Get Back: Automatic Rollback Keeps It Safe
 
-Playing with other people's firmware, the big fear is bricking (flashing something bad and the device won't boot). OTA's built-in rollback is the ready-made answer[2]: a freshly booted firmware must call `esp_ota_mark_app_valid_cancel_rollback()` to announce "I'm alive." Otherwise, after any restart (crash, power loss, freeze), the bootloader falls back to the last working partition.
+Playing with other people's firmware, the big fear is bricking (flashing something bad and the device won't boot). OTA's built-in rollback is the ready-made answer[2]: a freshly booted firmware must call `esp_ota_mark_app_valid_cancel_rollback()` to announce "I'm alive." Otherwise, after any restart (crash, power loss, or freeze), the bootloader falls back to the last working partition.
 
 That mechanism sets two house rules:
 
@@ -79,7 +79,7 @@ When the launcher lists the slots, what name should it show? Ideally the firmwar
 
 Could we record the name at install time? Sure, but where? AI suggested NVS (ESP32's key-value storage), which sounds natural. But when the USB channel is at work, the device sits in ROM download mode, where esptool can only write raw flash, not structured NVS data. AI then suggested building in a list of marketplace names. I called that silly and uneconomical: every new marketplace firmware makes the list stale.
 
-The final answer: write the name into the slot itself. Reserve the last 4KB block at the slot's tail. At install time, write the display name there with an `MNAM` marker, a length, and a checksum. When the launcher scans, a passing checksum shows the stored display name; if the blob is missing or the checksum fails, it falls back to the header's default project name. The name travels with the firmware. Deleting a slot erases the whole region, name included. Clean and complete.
+The final answer: write the name into the slot itself. Reserve the last 4KB block at the slot's tail. At install time, write the display name there with an `MNAM` marker, a length, and a checksum. When the launcher scans, a passing checksum shows the stored display name; if the blob is missing or the checksum fails, the launcher falls back to the header's default project name. The name travels with the firmware. Deleting a slot erases the whole region, name included. Clean and complete.
 
 ![Slot detail: real name Pocket Walkie, firmware size, and SHA fingerprint](illustration-3.png)
 
