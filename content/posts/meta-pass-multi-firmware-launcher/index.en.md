@@ -46,7 +46,7 @@ Channel one needs no cable. The device opens a Wi-Fi hotspot (SoftAP), and the s
 
 Channel two needs one data cable. Hold UP while powering on and the device enters ROM download mode. On the computer, Chrome opens an install page and writes the firmware straight into the slot through Web Serial. Web Serial is the browser's way of talking to a data cable, and by security rule it only works on localhost or HTTPS pages[3]. The device's own `http://192.168.4.1` page doesn't qualify, so this page lives on the computer, which conveniently made it more capable and nicer to use. The writing is done by esptool-js[4], verified after writing.
 
-Why a second channel? Because the community marketplace only ships "full package" flash images, which need unpacking to get the application part out. And its API lacks CORS headers, which blocks direct browser access, so someone has to relay it. The computer-side install page happens to do both jobs: a local server relays marketplace data, the page unpacks the image in JS, and after downloading it computes a fingerprint (SHA-256) to compare against the one the marketplace publishes. A match means the file was not swapped.
+Why a second channel? Because the community marketplace only ships "full package" flash images, which need unpacking to get the application part out. And its API lacks CORS headers, which blocks direct browser requests and requires a local relay. The computer-side install page happens to do both jobs: a local server relays marketplace data, the page unpacks the image in JS, and after downloading it computes a fingerprint (SHA-256) to compare against the one the marketplace publishes. A match means the file was not swapped.
 
 ![The USB install page: connect, pick a slot, choose firmware source, set a display name, install](illustration-2.png)
 
@@ -69,7 +69,7 @@ Once feasibility was confirmed, the interesting part began. Microcontrollers mea
 
 The original plan for returning to the launcher was a key combo, like "press UP and OK together." One look at the hardware specs revealed a dead end.
 
-The three buttons on this device share a single wire (GPIO0), distinguished by voltage level. Press two at once and the voltage collapses into one of them: UP plus anything reads as UP, DOWN plus OK reads as DOWN. Combo keys physically do not exist on this machine. GPIO0 also moonlights: in the instant of power-on, its state decides which mode the chip boots into[5]. So "hold a key during power-on to recover," the usual trick, is out too.
+The three buttons on this device share a single wire (GPIO0), distinguished by voltage level. Press two at once and the voltage collapses into one of them: UP plus anything reads as UP, DOWN plus OK reads as DOWN. Combo keys physically do not exist on this machine. GPIO0 also moonlights: in the instant of power-on, its state decides which mode the chip boots into[5]. So holding a key during power-on to recover, the usual trick, is out too.
 
 One path left: play with how long a key is held. Enter two-level long press. Hold OK a bit longer for in-app back. Hold it twice as long to return to the launcher (only adapted child firmware can do this; unadapted firmware can't, so power-cycle to get back to the launcher). The button system gained a `BSP_BTN_LONG2` event. The original long press behaves exactly as before.
 
