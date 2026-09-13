@@ -16,7 +16,7 @@ toc: true
 
 Last week I got a FoloToy AI Passport, an AI conversation toy driven by an ESP32. It has a plays marketplace with quite a few firmware toys[1]. A couple caught my eye: one turns the device into a walkie-talkie over Bluetooth, another uses BLE for a radar treasure hunt. Plenty of community work worth trying too.
 
-Lots of toys, but one awkward reality: **the device runs only one firmware at a time**. Switching from the walkie-talkie to the treasure hunt means opening a laptop, plugging in a cable, and reflashing the entire flash. Once you reflash, the previous toy is gone. Out in the park with my kid, one minute it's the walkie-talkie; if the next minute calls for the radar game, too bad. That has to wait until we get home.
+Lots of toys, but one awkward reality: **the device runs only one firmware at a time**. Switching from the walkie-talkie to the treasure hunt means opening a laptop, plugging in a cable, and reflashing the entire chip. Once you reflash, the previous toy is gone. Out in the park with my kid, one minute it's the walkie-talkie; if the next minute calls for the radar game, too bad. That has to wait until we get home.
 
 The device has 8MB of storage. Most firmware I've seen is under 2MB. It all fits. So why does the device get to have only one soul at a time?
 
@@ -34,7 +34,7 @@ AI pair-programmed the whole thing with me, but this was my first SoC project, a
 
 ESP32 flash can hold several app partitions. The system ships with a mechanism called OTA that picks which partition to boot from, and after a restart the bootloader loads the firmware from there[2]. OTA was designed to "keep a fallback when updating online." Look at it sideways, though, and it is a row of ready-made cartridge slots.
 
-So the layout: the meta-pass launcher sits in the factory partition and never moves. OTA partitions become slots, one child firmware per slot. The launcher scans the slots and shows a list; when you pick one, `esp_ota_set_boot_partition()` points at it, `esp_restart()` reboots, and the child firmware comes up. Switching went from "reflash everything, a few minutes" to "reboot, a few seconds."
+So the layout: the meta-pass launcher sits in the factory partition and never moves. OTA partitions become slots, one child firmware per slot. The launcher scans the slots and shows a list; when you pick one, `esp_ota_set_boot_partition()` points to it, `esp_restart()` reboots, and the child firmware comes up. Switching went from "reflash everything, a few minutes" to "reboot, a few seconds."
 
 ### How to Get Them In: Cable-Free Wi-Fi, and One USB Cable
 
@@ -87,7 +87,7 @@ The final answer: write the name into the slot itself. Reserve the last 4KB bloc
 
 The easiest security posture is to run only signed firmware. But not one existing marketplace firmware carries a signature. Demanding they all adapt would sentence this project to playing with its own firmware forever.
 
-So the rule became "integrity mandatory, signature optional." Every firmware passes a check on the way in: is the file header right, is it built for ESP32-C3, is the size within bounds, is the internal segment structure intact. Then a full SHA-256 fingerprint shows on the confirm page, ready for an eyeball comparison against the publisher's fingerprint. Signed firmware gets a "signed" badge. Unsigned firmware still runs, just behind an extra warning page and a long-long press.
+So the rule became "integrity is mandatory, signatures are optional." Every firmware passes a check on the way in: is the file header right, is it built for ESP32-C3, is the size within bounds, is the internal segment structure intact. Then a full SHA-256 fingerprint shows on the confirm page, ready for an eyeball comparison against the publisher's fingerprint. Signed firmware gets a "signed" badge. Unsigned firmware still runs, just behind an extra warning page and a long-long press.
 
 ![Warning page before booting unsigned firmware: OK long-long press to boot, click to cancel](illustration-4.png)
 
@@ -101,11 +101,11 @@ No matter how detailed the design document is, real-world hardware testing inevi
 
 Behind the same white screen, the AI-written code hid a second bug: the server's whitelist was missing `name-blob.js`, so the page's module failed to load at all. Why does a whitelist exist? This little local server does two jobs for the install page: read the files the page needs from your computer and serve them, and relay marketplace data. The risk sits in job one. The server reads files from your computer, and it can't tell who's asking. Any web page open in your browser can quietly ask it for things. If it read and served any path, any strange web page could walk off with any file on your computer. Clearly unsafe. So the whitelist acts as a fence: servable files are registered one by one, and anything unlisted gets nothing. Registration was manual. A file got added, nobody registered it, and the page died too. Both bugs fixed, the white screen was gone.
 
-**The docs' API name and the package's didn't match.** When the install page called esptool-js to write flash, AI followed the Python esptool habit and wrote `write_flash`. It errored. Checking the locally installed package revealed that esptool-js 0.5.6 uses camelCase: `writeFlash`. The lesson from this pit: what AI remembers is knowledge it learned during training, and that doesn't necessarily match the version actually installed on your machine. So when writing library calls, prompt the AI to verify the interface in the locally installed package first.
+**The docs' API name and the package's didn't match.** When the install page called esptool-js to write to flash, AI followed the Python esptool habit and wrote `write_flash`. It errored. Checking the locally installed package revealed that esptool-js 0.5.6 uses camelCase: `writeFlash`. The lesson from this pit: what AI remembers is knowledge it learned during training, and that doesn't necessarily match the version actually installed on your machine. So when writing library calls, prompt the AI to verify the interface in the locally installed package first.
 
 ## Two Days Later
 
-Done, and verified end to end in a simulator: assembled a full image with Pocket Walkie and Passport Radar preloaded into the two slots, uploaded it, booted. The slot list showed both real names. Picked a slot, got the unsigned warning page, long-long pressed, and the walkie-talkie's WALKIE UI ran. Power off and on, and rollback returned to the launcher. The official Radar firmware's menu buttons also worked fine, which proved that booting through meta-pass leaves a child firmware's button handling intact.
+Done, and verified end to end in a simulator: assembled a full image with Pocket Walkie and Passport Radar preloaded into the two slots, uploaded it, booted. The slot list showed both real names. I picked a slot, got the unsigned warning page, long-long pressed, and the walkie-talkie's WALKIE UI ran. Power off and on, and rollback returned to the launcher. The official Radar firmware's menu buttons also worked fine, which proved that booting through meta-pass leaves a child firmware's button handling intact.
 
 ![Launcher menu: two slots showing real names, import firmware entry below](illustration-5.png)
 
