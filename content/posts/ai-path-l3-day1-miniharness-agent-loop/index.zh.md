@@ -3,7 +3,7 @@ title: "Day 1｜120 行代码读懂 Agent Loop：miniharness 拆解与 3 个反�
 slug: "ai-path-l3-day1-miniharness-agent-loop"
 date: 2026-09-07T20:00:00+08:00
 publishDate: 2026-09-18T10:00:00+08:00
-draft: true
+draft: false
 description: 'AI 之路 L3 第一篇练习：用一个 120 行的最小 Harness 看懂 Agent Loop 的最小结构，三个消融实验发现：自我恢复来自 loop 本身、"成功"不等于任务完成、JSON 反而更费 token。'
 tags: ["AI", "教程", "Harness", "Agent Loop", "miniharness", "Agent"]
 categories: ["ai-path"]
