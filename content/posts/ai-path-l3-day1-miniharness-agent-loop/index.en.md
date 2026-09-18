@@ -2,7 +2,7 @@
 title: "Day 1 | 120 Lines to Understand the Agent Loop: miniharness Teardown and 3 Counterintuitive Findings"
 slug: "ai-path-l3-day1-miniharness-agent-loop"
 date: 2026-09-07T20:00:00+08:00
-publishDate: 2026-09-07T12:00:00+08:00
+publishDate: 2026-09-18T10:00:00+08:00
 draft: true
 description: 'AI Path L3 first exercise: using a 120-line minimal Harness to understand the Agent Loop minimum structure, three ablation findings: self-recovery from the loop, "success" not equaling task completion, JSON consuming more tokens.'
 tags: ["AI", "tutorial", "Harness", "Agent Loop", "miniharness", "Agent"]
