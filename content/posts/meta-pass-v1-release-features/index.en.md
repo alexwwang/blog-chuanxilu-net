@@ -18,7 +18,7 @@ meta-pass is a multi-firmware launcher I wrote for AI Passport: a persistent lau
 
 > Not useful. This thing takes up 3MB, leaving only two 2MB slots. Anything slightly practical won't fit.
 
-It was mostly right. Over the next six days, I submitted 90 commits, working through eight comments one by one, and ground meta-pass from MVP to v1.0: three slots, signature badges, backup and restore, single-file firmware, data-safe upgrades, bootloader hardening and a USB speedup. Most of the v1.0 changes were forced out by those comments.
+It was mostly right. Over the next six days, I submitted 90 commits, working through eight comments one by one, and iterated meta-pass from MVP to v1.0: three slots, signature badges, backup and restore, single-file firmware, data-safe upgrades, bootloader hardening and a USB speedup. Most of the v1.0 changes were forced out by those comments.
 
 ## The Space Problem
 
