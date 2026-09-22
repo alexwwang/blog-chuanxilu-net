@@ -24,7 +24,7 @@ It was mostly right. Over the next six days, I submitted 90 commits, working thr
 
 The complaint on September 12 hit the root cause: the launcher took 3MB, the two remaining slots were each 2MB, and larger gameplay firmwares simply would not fit.
 
-The second MVP build produced an 8MB combined image, but over 80% of that was empty slot space. The actual firmware code was only a small fraction of the total, and reserving 3MB of Flash for the launcher image was wildly inefficient. In v1.0 I ran compression optimizations and pushed the core factory down to under 1.44MB, freeing enough space to make slot 0 reach 1.84MB.
+The second MVP build produced an 8MB combined image, but over 80% of that was empty slot space. The actual firmware code was only a small fraction of the total, and reserving 3MB of Flash for the launcher image was wildly inefficient. In v1.0 I ran compression optimizations and pushed the factory image down to under 1.44MB, freeing enough space to make slot 0 reach 1.84MB.
 
 ![The MVP launcher list: only two slots available](illustration-1.png)
 
@@ -68,7 +68,7 @@ These next items were not prompted by comments, but they are all about making th
 
 The install page can now package all slot firmwares, slot-attached data, and the system storage area into a single zip. On restore, each item is validated against its fingerprint before writing; mismatched fingerprints are rejected, insufficient space is rejected explicitly, and a partial write never leaves the device in a corrupted state. The system storage area is handled automatically: packed on backup, written back on restore, without the user needing to know what it is called.
 
-Backups require reading entire slot regions, and speed determines whether this feature is usable at all. Before the fix, reading a 1MB payload over USB took three minutes and failed frequently. After raising the communication speed to 921600 baud and adding a three-tier automatic recovery strategy (retry with resynchronization, downgrade speed, full link reset), a 1MB backup now completes in about one minute, and transient USB disturbances trigger automatic retries instead of forcing a restart.
+Backups require reading entire slot regions, and speed determines whether this feature is usable at all. Before the fix, reading a 1MB payload over USB took three minutes and failed frequently. After raising the baud rate to 921600 and adding a three-tier automatic recovery strategy (retry with resynchronization, downgrade speed, full link reset), a 1MB backup now completes in about one minute, and transient USB disturbances trigger automatic retries instead of forcing a restart.
 
 ![The v1.0 USB install page: install, backup, and restore in one place](illustration-3.png)
 
