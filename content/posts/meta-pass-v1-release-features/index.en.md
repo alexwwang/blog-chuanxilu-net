@@ -52,7 +52,7 @@ Someone asked whether the long-press confirmation could be skipped for unsigned 
 
 I'm not adding that option. The warning page is the last gate, and if it can be bypassed, the signature mechanism becomes meaningless.
 
-But the long-press was genuinely awkward for new users. I changed it to a short press instead: the warning page pops up, you use the direction keys to highlight `BOOT`, and you press `OK` to confirm. Because the default cursor sits on `Cancel`, a casual stream of `OK` presses does not accidentally boot an unsigned firmware. Signed firmwares skip the warning page entirely and boot immediately when you press OK.
+But the long-press was genuinely awkward for new users. I changed it to a short press instead: the warning page pops up, you use the direction keys to highlight `BOOT`, and you press `OK` to confirm. Because the default cursor sits on `Cancel`, a casual stream of `OK` presses does not accidentally boot an unsigned firmware. Signed firmwares skip the warning page entirely and boot immediately when you press `OK`.
 
 ## Users Didn't Understand How to Use It
 
