@@ -28,11 +28,11 @@ The second MVP build produced an 8MB combined image, but over 80% of that was em
 
 ![The MVP launcher list: only two slots available](illustration-1.png)
 
-Once the factory image shrank, the previously unused gap in front of the cardid region on Flash could be put to work, providing enough space to fit a third slot.
+Once the factory image shrank, the previously unused gap in front of the `cardid` region on Flash could be put to work, providing enough space to fit a third slot.
 
 A user on September 15 asked: Is each partition capped at 2MB? Can we assign sizes freely?
 
-No. According to the manufacturer specifications, the cardid identity region is fixed in the middle of the Flash and cannot move. It splits the available space in half, and the addresses and sizes of all three slots are calculated from that fixed position. The gap in front holds 1.84MB, which became the first slot. The space behind cardid is aligned to 64KB boundaries; the second slot stays at 2MB, and the third takes the remaining 2.61MB.
+No. According to the manufacturer specifications, the `cardid` identity region is fixed in the middle of the Flash and cannot move. It splits the available space in half, and the addresses and sizes of all three slots are calculated from that fixed position. The gap in front holds 1.84MB, which became the first slot. The space behind `cardid` is aligned to 64KB boundaries; the second slot stays at 2MB, and the third takes the remaining 2.61MB.
 
 The largest slot goes to the most space-hungry gameplay, and it can double as storage for a voice-recording firmware. Now the walkie-talkie, the radar treasure game, and the third community project can all coexist on the device without deleting one before adding another.
 
@@ -52,7 +52,7 @@ Someone asked whether the long-press confirmation could be skipped for unsigned 
 
 I'm not adding that option. The warning page is the last gate, and if it can be bypassed, the signature mechanism becomes meaningless.
 
-But the long-press was genuinely awkward for new users. I changed it to a short press instead: the warning page pops up, you use the direction keys to highlight BOOT, and you press OK to confirm. Because the default cursor sits on Cancel, a casual stream of OK presses does not accidentally boot an unsigned firmware. Signed firmwares skip the warning page entirely and boot immediately when you press OK.
+But the long-press was genuinely awkward for new users. I changed it to a short press instead: the warning page pops up, you use the direction keys to highlight `BOOT`, and you press `OK` to confirm. Because the default cursor sits on `Cancel`, a casual stream of `OK` presses does not accidentally boot an unsigned firmware. Signed firmwares skip the warning page entirely and boot immediately when you press OK.
 
 ## Users Didn't Understand How to Use It
 
@@ -80,19 +80,19 @@ The last item fixes an old wound from the MVP period. In the original rollback m
 
 Ninety commits in six days produce a few durable observations.
 
-**Do not leave Flash space on the table.** The MVP combined image had 80% empty space. After compressing the factory image to under 1.44MB, the gaps on either side of the fixed cardid region could each absorb a slot, giving slot 0 a comfortable 1.84MB and slot 2 a generous 2.61MB. All of that came from reclaimed dead space.
+**Do not leave Flash space on the table.** The MVP combined image had 80% empty space. After compressing the factory image to under 1.44MB, the gaps on either side of the fixed `cardid` region could each absorb a slot, giving slot 0 a comfortable 1.84MB and slot 2 a generous 2.61MB. All of that came from reclaimed dead space.
 
 **More retries alone do not fix Flash read errors.** Bumping retries from five to eight still dropped packets at the higher baud rates. The fix required three tiers: retry with resynchronization, fall back to a lower speed, then reset the entire link. Only with all three in place did the problem disappear.
 
-**NVS, cardid, slot, and otadata are four different things.** NVS stores Wi-Fi credentials and app configuration. The slot stores firmware images. The cardid stores the device identity and must not be touched. The otadata records which slot is currently selected. Corrupt any one of them during a launcher upgrade and you lose credentials, identity, or boot selection in different ways.
+**`NVS`, `cardid`, `slot`, and `otadata` are four different things.** `NVS` stores Wi-Fi credentials and app configuration. The `slot` stores firmware images. The `cardid` stores the device identity and must not be touched. The `otadata` records which slot is currently selected. Corrupt any one of them during a launcher upgrade and you lose credentials, identity, or boot selection in different ways.
 
 **Do not assume community firmwares follow conventions.** Display names may be absent, signatures may be missing, and unported firmwares will still run if given the chance. The protocol layer passes only the minimal information it needs and never pretends the other side will comply.
 
 ## How to Get It
 
-Search for meta-pass on the market, or visit the install page at <https://metapass.chuanxilu.net>.
+Search for meta-pass on the market, or visit the [install page](https://metapass.chuanxilu.net).
 
-Source code and documentation: <https://github.com/alexwwang/meta-pass>
+Source code and documentation: [GitHub](https://github.com/alexwwang/meta-pass)
 
 ---
 
@@ -100,5 +100,5 @@ Source code and documentation: <https://github.com/alexwwang/meta-pass>
 
 1. MVP development retrospective: [Building a Multi-Cartridge Launcher for My Kid's AI Toy](/en/posts/2026/09/meta-pass-multi-firmware-launcher/)
 2. Bootloader single-session policy: [Writing the Boot Policy Into the ESP32 Bootloader](/en/posts/2026/09/esp32-bootloader-single-session-policy/)
-3. meta-pass repository: <https://github.com/alexwwang/meta-pass>
-4. FoloToy market meta-pass page (source of user comments): <https://ai-passport.folotoy.cn>
+3. meta-pass repository: [alexwwang/meta-pass](https://github.com/alexwwang/meta-pass)
+4. FoloToy market meta-pass page (source of user comments): [ai-passport.folotoy.cn](https://ai-passport.folotoy.cn)
