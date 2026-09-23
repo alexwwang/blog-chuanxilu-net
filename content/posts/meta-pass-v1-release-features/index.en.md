@@ -14,17 +14,17 @@ cover:
 toc: true
 ---
 
-meta-pass is a multi-firmware launcher I wrote for AI Passport: a persistent launcher sits on the device, firmware images are installed into Flash slots, and you select which one to boot from a startup list instead of reflashing the whole device every time. The two-day MVP process is documented in [the previous post](/en/posts/2026/09/meta-pass-multi-firmware-launcher/).
+meta-pass is a multi-firmware launcher I wrote for AI Passport. A persistent launcher sits on the device, firmware images are installed into Flash slots, and you select which one to boot from a startup list instead of reflashing the whole device every time. The two-day MVP process is documented in [the previous post](/en/posts/2026/09/meta-pass-multi-firmware-launcher/).
 
 > Not useful. This thing takes up 3MB, leaving only two 2MB slots. Anything slightly practical won't fit.
 
-It was mostly right. Over the next six days, I submitted 90 commits, working through eight comments one by one, and iterated meta-pass from MVP to v1.0: three slots, signature badges, backup and restore, single-file firmware, data-safe upgrades, bootloader hardening and a USB speedup. Most of the v1.0 changes were forced out by those comments.
+The comment was mostly right. Over the next six days, I submitted 90 commits, working through eight comments one by one, and iterated meta-pass from MVP to v1.0: three slots, signature badges, backup and restore, single-file firmware, data-safe upgrades, bootloader hardening and a USB speedup. Most of the v1.0 changes were forced out by those comments.
 
 ## The Space Problem
 
 The complaint on September 12 hit the root cause: the launcher took 3MB, the two remaining slots were each 2MB, and larger gameplay firmwares simply would not fit.
 
-The second MVP build produced an 8MB combined image, but over 80% of that was empty slot space. The actual firmware code was only a small fraction of the total, and reserving 3MB of Flash for the launcher image was wildly inefficient. In v1.0 I ran compression optimizations and pushed the factory image down to under 1.44MB, freeing enough space to make slot 0 reach 1.84MB.
+The second MVP build produced an 8MB combined image, but over 80% of that was empty slot space. The actual firmware code was only a small fraction of the total, and reserving 3MB of Flash for the launcher image was wildly inefficient. In v1.0 I ran compression optimizations and pushed the factory image down to under 1.44MB, freeing enough space to enlarge slot 0 to 1.84MB.
 
 ![The MVP launcher list: only two slots available](illustration-1.png)
 
@@ -34,13 +34,13 @@ A user on September 15 asked: Is each partition capped at 2MB? Can we assign siz
 
 No. By the manufacturer specification, the cardid identity region is fixed in the middle of the Flash and cannot move. It splits the available space in half, and the addresses and sizes of all three slots are calculated from that fixed position. The gap in front holds 1.84MB, which became the first slot. The space behind cardid is aligned to 64KB boundaries; the second slot stays at 2MB, and the third takes the remaining 2.61MB.
 
-The largest goes to the most space-hungry gameplay, and it can double as storage for a voice-recording firmware. Now the walkie-talkie, the radar treasure game, and the third community project can all coexist on the device without deleting one before adding another.
+The largest slot goes to the most space-hungry gameplay, and it can double as storage for a voice-recording firmware. Now the walkie-talkie, the radar treasure game, and the third community project can all coexist on the device without deleting one before adding another.
 
 ## Changed the Name, Still Booted as AI Passport
 
 Someone changed the display name, but the device still displayed AI Passport when it booted up.
 
-I traced the root cause and could not find a definitive answer. The display-name blob write logic had existed since the MVP, so it should have worked. I do not know exactly which link in the chain broke, and I have no evidence to point to. I will just admit the symptom was real and the cause remains unclear.
+I traced the root cause and could not find a definitive answer. The display-name blob write logic had existed since the MVP, so it should have worked. I do not know exactly which link in the chain broke, and I have no evidence to point to. I'll admit it: the symptom was real, and the cause remains unclear.
 
 v1.0 closes the loop completely. The USB install page now auto-fills the name with the gameplay's English title or local filename, and the Wi-Fi import page gained an optional name input field. This scenario should not recur.
 
@@ -50,17 +50,17 @@ v1.0 closes the loop completely. The USB install page now auto-fills the name wi
 
 Someone asked whether the long-press confirmation could be skipped for unsigned firmwares, saying the repeated pressing was annoying.
 
-That option is not getting added. The warning page is the last gate, and if it can be bypassed, the signature mechanism becomes meaningless.
+I'm not adding that option. The warning page is the last gate, and if it can be bypassed, the signature mechanism becomes meaningless.
 
-But the long-press was genuinely awkward for new users. I changed it to a short press instead: the warning page pops up, you use the direction keys to highlight BOOT, and you press OK to confirm. Because the default cursor sits on Cancel, a casual stream of OK presses does not accidentally boot an unsigned firmware. Signed firmwares skip the warning page entirely and go straight to boot on OK.
+But the long-press was genuinely awkward for new users. I changed it to a short press instead: the warning page pops up, you use the direction keys to highlight BOOT, and you press OK to confirm. Because the default cursor sits on Cancel, a casual stream of OK presses does not accidentally boot an unsigned firmware. Signed firmwares skip the warning page entirely and boot immediately when you press OK.
 
 ## Users Didn't Understand How to Use It
 
-Someone said they could not figure out how to use it, thinking they needed to install the downloaded gameplay together with meta-pass itself.
+Someone said they could not figure out how to use it, thinking they needed to install the downloaded gameplay alongside meta-pass itself.
 
 The market page did not explain the flow clearly enough. That is a content gap on the market side.
 
-In v1.0 I rewrote meta-pass's own market introduction page and laid out the usage steps plainly: how to install, how to use, how to switch firmwares. Users should not have to guess.
+In v1.0 I rewrote the market introduction page for meta-pass and laid out the usage steps plainly: how to install, how to use, how to switch firmwares. Users should not have to guess.
 
 ## Improvements Nobody Asked For
 
@@ -68,19 +68,19 @@ These next items were not prompted by comments, but they are all about making th
 
 The install page can now package all slot firmwares, slot-attached data, and the system storage area into a single zip. On restore, each item is validated against its fingerprint before writing; mismatched fingerprints are rejected, insufficient space is rejected explicitly, and a partial write never leaves the device in a corrupted state. The system storage area is handled automatically: packed on backup, written back on restore, without the user needing to know what it is called.
 
-Backups require reading entire slot regions, and speed determines whether this feature is usable at all. Before the fix, reading a 1MB payload over USB took three minutes and failed frequently. After raising the baud rate to 921600 and adding a three-tier automatic recovery strategy (retry with resynchronization, downgrade speed, full link reset), a 1MB backup now completes in about one minute, and transient USB disturbances trigger automatic retries instead of forcing a restart.
+Backups require reading entire slot regions, so transfer speed determines whether the feature is usable at all. Before the fix, reading a 1MB payload over USB took three minutes and failed frequently. After raising the baud rate to 921600 and adding a three-tier automatic recovery strategy (retry with resynchronization, downgrade speed, full link reset), a 1MB backup now completes in about one minute, and transient USB disturbances trigger automatic retries instead of forcing a restart.
 
 ![The v1.0 USB install page: install, backup, and restore in one place](illustration-3.png)
 
 Upgrading the launcher itself does not touch any data. The web page reads back the device partition table first and compares it byte-by-byte with the upgrade package; it then writes only the allowed regions: bootloader, partition table, and launcher application. System storage, the identity region, and all three slots are left untouched. Installed gameplay firmwares and user data survive intact.
 
-The last item fixes an old wound from the MVP period. In the original rollback mechanism, a firmware specified its own persistent run policy. Under the old scheme, a gameplay compiled from an outdated template that declared a persistent run would lock the device inside that gameplay forever, with no error message and no way back even after power cycling. Moving the policy into the bootloader layer forces it to run before any firmware executes, and no gameplay can bypass it. A device stuck in that state recovers after a single power cycle once it boots this version. The exclusion process and byte-level decision rules are documented in [another post](/en/posts/2026/09/esp32-bootloader-single-session-policy/).
+The last item fixes an old wound from the MVP period. In the original rollback mechanism, a firmware specified its own persistent run policy. Under the old scheme, a gameplay compiled from an outdated template that declared a persistent run policy would lock the device inside that gameplay forever, with no error message and no way back even after power cycling. Moving the policy into the bootloader layer forces it to run before any firmware executes, and no gameplay can bypass it. A device stuck in that state recovers after a single power cycle once it boots this version. The exclusion process and byte-level decision rules are documented in [another post](/en/posts/2026/09/esp32-bootloader-single-session-policy/).
 
 ## Lessons From Six Days
 
 Ninety commits in six days produce a few durable observations.
 
-**Do not leave Flash space on the table.** The MVP combined image had 80% empty space. After compressing the factory to under 1.44MB, the gaps in front of and behind the fixed cardid region could each absorb a slot, giving slot 0 a comfortable 1.84MB and slot 2 a generous 2.61MB. All of that came from reclaimed dead space.
+**Do not leave Flash space on the table.** The MVP combined image had 80% empty space. After compressing the factory to under 1.44MB, the gaps on either side of the fixed cardid region could each absorb a slot, giving slot 0 a comfortable 1.84MB and slot 2 a generous 2.61MB. All of that came from reclaimed dead space.
 
 **More retries alone do not fix Flash read errors.** Bumping retries from five to eight still dropped packets at the higher baud rates. The fix required three tiers: retry with resynchronization, fall back to a lower speed, then reset the entire link. Only with all three in place did the problem disappear.
 
