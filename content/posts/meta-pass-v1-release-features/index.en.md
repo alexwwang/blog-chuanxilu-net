@@ -18,13 +18,13 @@ meta-pass is a multi-firmware launcher I wrote for AI Passport. A persistent lau
 
 > Not useful. This thing takes up 3MB, leaving only two 2MB slots. Anything slightly practical won't fit.
 
-The comment was mostly right. Over the next six days, I submitted 90 commits, working through eight comments one by one, and iterated meta-pass from MVP to v1.0: three slots, signature badges, backup and restore, single-file firmware, data-safe upgrades, bootloader hardening and a USB speedup. Most of the v1.0 changes were forced out by those comments.
+The comment was mostly right. Over the next six days, I submitted 90 commits, working through eight comments one by one, and iterated meta-pass from MVP to v1.0: three slots, signature badges, backup and restore, single-file firmware, data-safe upgrades, bootloader hardening and a USB speedup. Most of the v1.0 changes were directly driven by those comments.
 
 ## The Space Problem
 
 The complaint on September 12 hit the root cause: the launcher took 3MB, the two remaining slots were each 2MB, and larger gameplay firmwares simply would not fit.
 
-The second MVP build produced an 8MB combined image, but over 80% of that was empty slot space. The actual firmware code was only a small fraction of the total, and reserving 3MB of Flash for the launcher image was wildly inefficient. In v1.0 I ran compression optimizations and pushed the factory image down to under 1.44MB, freeing enough space to enlarge slot 0 to 1.84MB.
+The second MVP build produced an 8MB combined image, but over 80% of that was empty slot space. The actual firmware code was only a small fraction of the total, and reserving 3MB of Flash for the launcher image was wildly inefficient. In v1.0, I ran compression optimizations and pushed the factory image down to under 1.44MB, freeing enough space to enlarge slot 0 to 1.84MB.
 
 ![The MVP launcher list: only two slots available](illustration-1.png)
 
@@ -32,7 +32,7 @@ Once the factory shrank, the previously unused gap in front of the cardid region
 
 A user on September 15 asked: Is each partition capped at 2MB? Can we assign sizes freely?
 
-No. By the manufacturer specification, the cardid identity region is fixed in the middle of the Flash and cannot move. It splits the available space in half, and the addresses and sizes of all three slots are calculated from that fixed position. The gap in front holds 1.84MB, which became the first slot. The space behind cardid is aligned to 64KB boundaries; the second slot stays at 2MB, and the third takes the remaining 2.61MB.
+No. According to the manufacturer specifications, the cardid identity region is fixed in the middle of the Flash and cannot move. It splits the available space in half, and the addresses and sizes of all three slots are calculated from that fixed position. The gap in front holds 1.84MB, which became the first slot. The space behind cardid is aligned to 64KB boundaries; the second slot stays at 2MB, and the third takes the remaining 2.61MB.
 
 The largest slot goes to the most space-hungry gameplay, and it can double as storage for a voice-recording firmware. Now the walkie-talkie, the radar treasure game, and the third community project can all coexist on the device without deleting one before adding another.
 
@@ -60,7 +60,7 @@ Someone said they could not figure out how to use it, thinking they needed to in
 
 The market page did not explain the flow clearly enough. That is a content gap on the market side.
 
-In v1.0 I rewrote the market introduction page for meta-pass and laid out the usage steps plainly: how to install, how to use, how to switch firmwares. Users should not have to guess.
+In v1.0, I rewrote the market introduction page for meta-pass and laid out the usage steps plainly: how to install, how to use, how to switch firmwares. Users should not have to guess.
 
 ## Improvements Nobody Asked For
 
@@ -74,7 +74,7 @@ Backups require reading entire slot regions, so transfer speed determines whethe
 
 Upgrading the launcher itself does not touch any data. The web page reads back the device partition table first and compares it byte-by-byte with the upgrade package; it then writes only the allowed regions: bootloader, partition table, and launcher application. System storage, the identity region, and all three slots are left untouched. Installed gameplay firmwares and user data survive intact.
 
-The last item fixes an old wound from the MVP period. In the original rollback mechanism, a firmware specified its own persistent run policy. Under the old scheme, a gameplay compiled from an outdated template that declared a persistent run policy would lock the device inside that gameplay forever, with no error message and no way back even after power cycling. Moving the policy into the bootloader layer forces it to run before any firmware executes, and no gameplay can bypass it. A device stuck in that state recovers after a single power cycle once it boots this version. The exclusion process and byte-level decision rules are documented in [another post](/en/posts/2026/09/esp32-bootloader-single-session-policy/).
+The last item fixes an old wound from the MVP period. In the original rollback mechanism, a firmware specified its own persistent run policy. Under the old scheme, a gameplay compiled from an outdated template that declared a persistent run policy would lock the device inside that gameplay forever, with no error message and no way back even after power cycling. Moving the policy into the bootloader layer forces it to run before any firmware executes, and no gameplay can bypass it. A device stuck in that state recovers after a single power cycle once updated to this version. The exclusion process and byte-level decision rules are documented in [another post](/en/posts/2026/09/esp32-bootloader-single-session-policy/).
 
 ## Lessons From Six Days
 
