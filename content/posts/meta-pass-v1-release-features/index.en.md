@@ -52,7 +52,7 @@ Someone asked whether the long-press confirmation could be skipped for unsigned 
 
 That option is not getting added. The warning page is the last gate, and if it can be bypassed, the signature mechanism becomes meaningless.
 
-But the long-press was genuinely awkward for new users. I changed it to a short press instead: the warning page pops up, use the direction keys to highlight BOOT, press OK to confirm, and the default cursor sits on Cancel so a casual stream of OK presses does not accidentally boot an unsigned firmware. Signed firmwares skip the warning page entirely and go straight to boot on OK.
+But the long-press was genuinely awkward for new users. I changed it to a short press instead: the warning page pops up, you use the direction keys to highlight BOOT, and you press OK to confirm. Because the default cursor sits on Cancel, a casual stream of OK presses does not accidentally boot an unsigned firmware. Signed firmwares skip the warning page entirely and go straight to boot on OK.
 
 ## Users Didn't Understand How to Use It
 
@@ -72,13 +72,13 @@ Backups require reading entire slot regions, and speed determines whether this f
 
 ![The v1.0 USB install page: install, backup, and restore in one place](illustration-3.png)
 
-Upgrading the launcher itself does not touch any data. The web page reads back the device partition table first, compares it byte-by-byte with the upgrade package, then only writes the allowed regions: bootloader, partition table, and launcher application. System storage, the identity region, and all three slots are left untouched. Installed gameplay firmwares and user data survive intact.
+Upgrading the launcher itself does not touch any data. The web page reads back the device partition table first and compares it byte-by-byte with the upgrade package; it then writes only the allowed regions: bootloader, partition table, and launcher application. System storage, the identity region, and all three slots are left untouched. Installed gameplay firmwares and user data survive intact.
 
 The last item fixes an old wound from the MVP period. In the original rollback mechanism, a firmware specified its own persistent run policy. Under the old scheme, a gameplay compiled from an outdated template that declared a persistent run would lock the device inside that gameplay forever, with no error message and no way back even after power cycling. Moving the policy into the bootloader layer forces it to run before any firmware executes, and no gameplay can bypass it. A device stuck in that state recovers after a single power cycle once it boots this version. The exclusion process and byte-level decision rules are documented in [another post](/en/posts/2026/09/esp32-bootloader-single-session-policy/).
 
 ## Lessons From Six Days
 
-Ninety commits in six days produces a few durable observations.
+Ninety commits in six days produce a few durable observations.
 
 **Do not leave Flash space on the table.** The MVP combined image had 80% empty space. After compressing the factory to under 1.44MB, the gaps in front of and behind the fixed cardid region could each absorb a slot, giving slot 0 a comfortable 1.84MB and slot 2 a generous 2.61MB. All of that came from reclaimed dead space.
 
