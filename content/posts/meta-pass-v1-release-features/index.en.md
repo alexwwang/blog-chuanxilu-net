@@ -22,13 +22,13 @@ The comment was mostly right. Over the next six days, I submitted 90 commits, wo
 
 ## The Space Problem
 
-The complaint on September 12 pointed right at the core problem: the launcher took 3MB, leaving just two 2MB slots, which meant larger gameplay firmwares couldn't fit.
+The comment on September 12 pointed right at the core issue: the launcher took 3MB, leaving just two 2MB slots, which meant larger gameplay firmwares couldn't fit.
 
-The second MVP build produced an 8MB combined image, but over 80% of that was empty slot space. The actual firmware code was only a small fraction of the total, and reserving 3MB of Flash for the launcher image was wildly inefficient. In v1.0, I ran compression optimizations and pushed the factory image down to under 1.44MB, freeing enough space to enlarge slot 0 to 1.84MB.
+The second MVP build produced an 8MB combined image, but over 80% of that was empty slot space. The actual firmware code was only a small fraction of the total, and reserving 3MB of Flash for the launcher image was wasteful. In v1.0, I ran compression optimizations and pushed the factory image down to under 1.44MB, freeing enough space to enlarge slot 0 to 1.84MB.
 
 ![The MVP launcher list: only two slots available](illustration-1.png)
 
-Once the factory shrank, the previously unused gap in front of the cardid region on Flash could be put to work, and it was large enough to fit a third slot.
+Once the factory image shrank, the previously unused gap in front of the cardid region on Flash could be put to work, providing enough space to fit a third slot.
 
 A user on September 15 asked: Is each partition capped at 2MB? Can we assign sizes freely?
 
@@ -64,7 +64,7 @@ In v1.0, I rewrote the market introduction page for meta-pass and laid out the u
 
 ## Improvements Nobody Asked For
 
-These next items were not prompted by comments, but they are all about making the experience feel reliable enough to use without anxiety.
+These next items were not prompted by comments, but they are all about making the launcher reliable and worry-free.
 
 The install page can now package all slot firmwares, slot-attached data, and the system storage area into a single zip. On restore, each item is validated against its fingerprint before writing; mismatched fingerprints are rejected, insufficient space is rejected explicitly, and a partial write never leaves the device in a corrupted state. The system storage area is handled automatically: packed on backup, written back on restore, without the user needing to know what it is called.
 
