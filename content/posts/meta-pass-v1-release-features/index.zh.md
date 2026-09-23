@@ -76,7 +76,7 @@ v1.0 把 meta-pass 自己的市场介绍页面重新写了一遍，把使用流�
 
 升级启动器本身也不动数据。网页先读回设备的分区表，和升级包逐字节比对，然后只写允许写的区域：bootloader、分区表、启动器应用。系统存储区、身份区、三个槽位，一个字节都不碰。装好的玩法和数据原样保留。
 
-最后一件是修一个 MVP 时期的旧伤。回滚机制里「是否常驻」由玩法固件自己声明，一个用旧版模板编译的固件声明了常驻，设备就锁死在玩法里，断电重启也回不来，全程没有任何报错。把这个策略挪到了 bootloader 层，在任何固件运行之前执行，玩法固件无法绕过。被锁死的设备升级到这个版本后，断电重启一次就恢复正常。方案排除过程和字节级的判定规则写在[另一篇](/posts/2026/09/esp32-bootloader-single-session-policy/)里。
+最后一件是修一个 MVP 时期的旧伤。回滚机制里「是否常驻」由玩法固件自己声明，一个用旧版模板编译的固件声明了常驻，设备就锁死在玩法里，断电重启也回不来，全程没有任何报错。把这个策略挪到了 bootloader 层，在任何固件运行之前执行，玩法固件无法绕过。被锁死的设备升级到这个版本后，断电重启一次就恢复正常。
 
 ## 踩坑踩出来的几条硬道理
 
@@ -100,6 +100,5 @@ v1.0 把 meta-pass 自己的市场介绍页面重新写了一遍，把使用流�
 ## 参考
 
 1. MVP 开发复盘：[给孩子的 AI 玩具做个多卡带启动器：meta-pass 开发复盘](/posts/2026/09/meta-pass-multi-firmware-launcher/)
-2. 开机策略的技术实现：[把 ESP32 的开机策略写进 bootloader](/posts/2026/09/esp32-bootloader-single-session-policy/)
-3. meta-pass 仓库：[alexwwang/meta-pass](https://github.com/alexwwang/meta-pass)
-4. 玩法市场 meta-pass 页面（用户留言出处）：[ai-passport.folotoy.cn](https://ai-passport.folotoy.cn)
+2. meta-pass 仓库：[alexwwang/meta-pass](https://github.com/alexwwang/meta-pass)
+3. 玩法市场 meta-pass 页面（用户留言出处）：[ai-passport.folotoy.cn](https://ai-passport.folotoy.cn)

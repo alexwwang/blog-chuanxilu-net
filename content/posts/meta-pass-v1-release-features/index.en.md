@@ -74,7 +74,7 @@ Backups require reading entire slot regions, so transfer speed determines whethe
 
 Upgrading the launcher itself does not touch any data. The web page reads back the device partition table first and compares it byte-by-byte with the upgrade package; it then writes only the allowed regions: bootloader, partition table and launcher application. System storage, the identity region and all three slots are left untouched. Installed gameplay firmwares and user data survive intact.
 
-The last item fixes an old wound from the MVP period. In the original rollback mechanism, a firmware specified its own persistent run policy. Under the old scheme, a gameplay compiled from an outdated template that declared a persistent run policy would lock the device inside that gameplay forever, with no error message and no way back even after power cycling. Moving the policy into the bootloader layer forces it to run before any firmware executes, and no gameplay can bypass it. A device stuck in that state recovers after a single power cycle once updated to this version. The exclusion process and byte-level decision rules are documented in [another post](/en/posts/2026/09/esp32-bootloader-single-session-policy/).
+The last item fixes an old wound from the MVP period. In the original rollback mechanism, a firmware specified its own persistent run policy. Under the old scheme, a gameplay compiled from an outdated template that declared a persistent run policy would lock the device inside that gameplay forever, with no error message and no way back even after power cycling. Moving the policy into the bootloader layer forces it to run before any firmware executes, and no gameplay can bypass it. A device stuck in that state recovers after a single power cycle once updated to this version.
 
 ## Lessons From Six Days
 
@@ -99,6 +99,5 @@ Source code and documentation: [GitHub](https://github.com/alexwwang/meta-pass)
 ## References
 
 1. MVP development retrospective: [Building a Multi-Cartridge Launcher for My Kid's AI Toy](/en/posts/2026/09/meta-pass-multi-firmware-launcher/)
-2. Bootloader single-session policy: [Writing the Boot Policy Into the ESP32 Bootloader](/en/posts/2026/09/esp32-bootloader-single-session-policy/)
-3. meta-pass repository: [alexwwang/meta-pass](https://github.com/alexwwang/meta-pass)
-4. FoloToy market meta-pass page (source of user comments): [ai-passport.folotoy.cn](https://ai-passport.folotoy.cn)
+2. meta-pass repository: [alexwwang/meta-pass](https://github.com/alexwwang/meta-pass)
+3. FoloToy market meta-pass page (source of user comments): [ai-passport.folotoy.cn](https://ai-passport.folotoy.cn)
