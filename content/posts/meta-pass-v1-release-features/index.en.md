@@ -22,7 +22,7 @@ The comment was mostly right. Over the next six days, I submitted 90 commits, wo
 
 ## The Space Problem
 
-The complaint on September 12 hit the root cause: the launcher took 3MB, the two remaining slots were each 2MB, and larger gameplay firmwares simply would not fit.
+The complaint on September 12 pointed right at the core problem: the launcher took 3MB, leaving just two 2MB slots, which meant larger gameplay firmwares couldn't fit.
 
 The second MVP build produced an 8MB combined image, but over 80% of that was empty slot space. The actual firmware code was only a small fraction of the total, and reserving 3MB of Flash for the launcher image was wildly inefficient. In v1.0, I ran compression optimizations and pushed the factory image down to under 1.44MB, freeing enough space to enlarge slot 0 to 1.84MB.
 
