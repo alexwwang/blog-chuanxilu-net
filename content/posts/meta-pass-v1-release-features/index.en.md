@@ -40,7 +40,7 @@ The largest slot goes to the most space-hungry gameplay, and it can double as st
 
 Someone changed the display name, but the device still displayed AI Passport when it booted up.
 
-I traced the root cause and could not find a definitive answer. The display-name blob write logic had existed since the MVP, so it should have worked. I do not know exactly which link in the chain broke, and I have no evidence to point to. I'll admit it: the symptom was real, and the cause remains unclear.
+I traced the root cause and could not find a definitive answer. The display-name blob write logic had existed since the MVP release, so it should have worked. I do not know exactly which link in the chain broke, and I have no evidence to point to. I'll admit it: the symptom was real, and the cause remains unclear.
 
 v1.0 closes the loop completely. The USB install page now auto-fills the name with the gameplay's English title or local filename, and the Wi-Fi import page gained an optional name input field. This scenario should not recur.
 
@@ -56,7 +56,7 @@ But the long-press was genuinely awkward for new users. I changed it to a short 
 
 ## Users Didn't Understand How to Use It
 
-Someone said they could not figure out how to use it, thinking they needed to install the downloaded gameplay alongside meta-pass itself.
+Someone said they could not figure out how to use it, thinking they needed to install the downloaded gameplay firmware alongside meta-pass itself.
 
 The market page did not explain the flow clearly enough. That is a content gap on the market side.
 
@@ -80,7 +80,7 @@ The last item fixes an old wound from the MVP period. In the original rollback m
 
 Ninety commits in six days produce a few durable observations.
 
-**Do not leave Flash space on the table.** The MVP combined image had 80% empty space. After compressing the factory to under 1.44MB, the gaps on either side of the fixed cardid region could each absorb a slot, giving slot 0 a comfortable 1.84MB and slot 2 a generous 2.61MB. All of that came from reclaimed dead space.
+**Do not leave Flash space on the table.** The MVP combined image had 80% empty space. After compressing the factory image to under 1.44MB, the gaps on either side of the fixed cardid region could each absorb a slot, giving slot 0 a comfortable 1.84MB and slot 2 a generous 2.61MB. All of that came from reclaimed dead space.
 
 **More retries alone do not fix Flash read errors.** Bumping retries from five to eight still dropped packets at the higher baud rates. The fix required three tiers: retry with resynchronization, fall back to a lower speed, then reset the entire link. Only with all three in place did the problem disappear.
 
