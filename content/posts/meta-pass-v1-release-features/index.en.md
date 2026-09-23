@@ -1,5 +1,5 @@
 ---
-title: "meta-pass v1.0 Release: Six Days, 90 Commits, and Eight Market Comments"
+title: "meta-pass v1.0 Release: Six Days, 90 Commits and Eight Market Comments"
 slug: "meta-pass-v1-release-features"
 date: 2026-09-20T16:00:00+08:00
 draft: false
@@ -14,11 +14,11 @@ cover:
 toc: true
 ---
 
-meta-pass is a multi-firmware launcher I wrote for AI Passport. A persistent launcher sits on the device, firmware images are installed into Flash slots, and you select which one to boot from a startup list instead of reflashing the whole device every time. The two-day MVP process is documented in [the previous post](/en/posts/2026/09/meta-pass-multi-firmware-launcher/).
+meta-pass is a multi-firmware launcher I wrote for AI Passport. A persistent launcher sits on the device, firmware images are installed into Flash slots and you select which one to boot from a startup list instead of reflashing the whole device every time. The two-day MVP process is documented in [the previous post](/en/posts/2026/09/meta-pass-multi-firmware-launcher/).
 
 > Not useful. This thing takes up 3MB, leaving only two 2MB slots. Anything slightly practical won't fit.
 
-The comment was mostly right. Over the next six days, I submitted 90 commits, working through eight comments one by one, and iterated meta-pass from MVP to v1.0: three slots, signature badges, backup and restore, single-file firmware, data-safe upgrades, bootloader hardening and a USB speedup. Most of the v1.0 changes were directly driven by those comments.
+The comment was mostly right. Over the next six days, I submitted 90 commits, working through eight comments one by one and iterated meta-pass from MVP to v1.0: three slots, signature badges, backup and restore, single-file firmware, data-safe upgrades, bootloader hardening and a USB speedup. Most of the v1.0 changes were directly driven by those comments.
 
 ## The Space Problem
 
@@ -34,7 +34,7 @@ A user on September 15 asked: Is each partition capped at 2MB? Can we assign siz
 
 No. According to the manufacturer specifications, the `cardid` identity region is fixed in the middle of the Flash and cannot move. It splits the available space in half, and the addresses and sizes of all three slots are calculated from that fixed position. The gap in front holds 1.84MB, which became the first slot. The space behind `cardid` is aligned to 64KB boundaries; the second slot stays at 2MB, and the third takes the remaining 2.61MB.
 
-The largest slot goes to the most space-hungry gameplay, and it can double as storage for a voice-recording firmware. Now the walkie-talkie, the radar treasure game, and the third community project can all coexist on the device without deleting one before adding another.
+The largest slot goes to the most space-hungry gameplay, and it can double as storage for a voice-recording firmware. Now the walkie-talkie, the radar treasure game and the third community project can all coexist on the device without deleting one before adding another.
 
 ## Changed the Name, Still Booted as AI Passport
 
@@ -52,7 +52,7 @@ Someone asked whether the long-press confirmation could be skipped for unsigned 
 
 I'm not adding that option. The warning page is the last gate, and if it can be bypassed, the signature mechanism becomes meaningless.
 
-But the long-press was genuinely awkward for new users. I changed it to a short press instead: the warning page pops up, you use the direction keys to highlight `BOOT`, and you press `OK` to confirm. Because the default cursor sits on `Cancel`, a casual stream of `OK` presses does not accidentally boot an unsigned firmware. Signed firmwares skip the warning page entirely and boot immediately when you press `OK`.
+But the long-press was genuinely awkward for new users. I changed it to a short press instead: the warning page pops up, you use the direction keys to highlight `BOOT` and you press `OK` to confirm. Because the default cursor sits on `Cancel`, a casual stream of `OK` presses does not accidentally boot an unsigned firmware. Signed firmwares skip the warning page entirely and boot immediately when you press `OK`.
 
 ## Users Didn't Understand How to Use It
 
@@ -66,13 +66,13 @@ In v1.0, I rewrote the market introduction page for meta-pass and laid out the u
 
 These next items were not prompted by comments, but they are all about making the launcher reliable and worry-free.
 
-The install page can now package all slot firmwares, slot-attached data, and the system storage area into a single zip. On restore, each item is validated against its fingerprint before writing; mismatched fingerprints are rejected, insufficient space is rejected explicitly, and a partial write never leaves the device in a corrupted state. The system storage area is handled automatically: packed on backup, written back on restore, without the user needing to know what it is called.
+The install page can now package all slot firmwares, slot-attached data and the system storage area into a single zip. On restore, each item is validated against its fingerprint before writing; mismatched fingerprints are rejected, insufficient space is rejected explicitly and a partial write never leaves the device in a corrupted state. The system storage area is handled automatically: packed on backup, written back on restore, without the user needing to know what it is called.
 
 Backups require reading entire slot regions, so transfer speed determines whether the feature is usable at all. Before the fix, reading a 1MB payload over USB took three minutes and failed frequently. After raising the baud rate to 921600 and adding a three-tier automatic recovery strategy (retry with resynchronization, downgrade speed, full link reset), a 1MB backup now completes in about one minute, and transient USB disturbances trigger automatic retries instead of forcing a restart.
 
-![The v1.0 USB install page: install, backup, and restore in one place](illustration-3.png)
+![The v1.0 USB install page: install, backup and restore in one place](illustration-3.png)
 
-Upgrading the launcher itself does not touch any data. The web page reads back the device partition table first and compares it byte-by-byte with the upgrade package; it then writes only the allowed regions: bootloader, partition table, and launcher application. System storage, the identity region, and all three slots are left untouched. Installed gameplay firmwares and user data survive intact.
+Upgrading the launcher itself does not touch any data. The web page reads back the device partition table first and compares it byte-by-byte with the upgrade package; it then writes only the allowed regions: bootloader, partition table and launcher application. System storage, the identity region and all three slots are left untouched. Installed gameplay firmwares and user data survive intact.
 
 The last item fixes an old wound from the MVP period. In the original rollback mechanism, a firmware specified its own persistent run policy. Under the old scheme, a gameplay compiled from an outdated template that declared a persistent run policy would lock the device inside that gameplay forever, with no error message and no way back even after power cycling. Moving the policy into the bootloader layer forces it to run before any firmware executes, and no gameplay can bypass it. A device stuck in that state recovers after a single power cycle once updated to this version. The exclusion process and byte-level decision rules are documented in [another post](/en/posts/2026/09/esp32-bootloader-single-session-policy/).
 
@@ -84,9 +84,9 @@ Ninety commits in six days produce a few durable observations.
 
 **More retries alone do not fix Flash read errors.** Bumping retries from five to eight still dropped packets at the higher baud rates. The fix required three tiers: retry with resynchronization, fall back to a lower speed, then reset the entire link. Only with all three in place did the problem disappear.
 
-**`NVS`, `cardid`, `slot`, and `otadata` are four different things.** `NVS` stores Wi-Fi credentials and app configuration. The `slot` stores firmware images. The `cardid` stores the device identity and must not be touched. The `otadata` records which slot is currently selected. Corrupt any one of them during a launcher upgrade and you lose credentials, identity, or boot selection in different ways.
+**`NVS`, `cardid`, `slot` and `otadata` are four different things.** `NVS` stores Wi-Fi credentials and app configuration. The `slot` stores firmware images. The `cardid` stores the device identity and must not be touched. The `otadata` records which slot is currently selected. Corrupt any one of them during a launcher upgrade and you lose credentials, identity or boot selection in different ways.
 
-**Do not assume community firmwares follow conventions.** Display names may be absent, signatures may be missing, and unported firmwares will still run if given the chance. The protocol layer passes only the minimal information it needs and never pretends the other side will comply.
+**Do not assume community firmwares follow conventions.** Display names may be absent, signatures may be missing and unported firmwares will still run if given the chance. The protocol layer passes only the minimal information it needs and never pretends the other side will comply.
 
 ## How to Get It
 
