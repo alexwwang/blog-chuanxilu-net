@@ -40,13 +40,13 @@ The largest goes to the most space-hungry gameplay, and it can double as storage
 
 Someone changed the display name, but the device still displayed AI Passport when it booted up.
 
-I traced the root cause and could not find a definitive answer. The display-name blob write logic had existed since the MVP, so it should have worked. I do not know exactly which link in the chain broke, and I have no evidence to point to, so I will just admit the symptom was real and the cause remains unclear.
+I traced the root cause and could not find a definitive answer. The display-name blob write logic had existed since the MVP, so it should have worked. I do not know exactly which link in the chain broke, and I have no evidence to point to. I will just admit the symptom was real and the cause remains unclear.
 
 v1.0 closes the loop completely. The USB install page now auto-fills the name with the gameplay's English title or local filename, and the Wi-Fi import page gained an optional name input field. This scenario should not recur.
 
 ![The v1.0 Wi-Fi import page with an optional display name field](illustration-2.png)
 
-## Can We Add a Bypass for Unsigned Firmwares
+## Can We Add a Bypass for Unsigned Firmwares?
 
 Someone asked whether the long-press confirmation could be skipped for unsigned firmwares, saying the repeated pressing was annoying.
 
