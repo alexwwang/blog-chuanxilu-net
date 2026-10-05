@@ -2,7 +2,7 @@
 title: "把 ESP32 的开机策略写进 bootloader：meta-pass 单次会话模型的方案排除与实现"
 slug: "esp32-bootloader-single-session-policy"
 date: 2026-09-20T15:00:00+08:00
-draft: false
+draft: true
 description: 'meta-pass 是 AI Passport 的多固件启动器。产品需求只有一句话：断电再上电必须回到启动器列表页。最顺手的工具（ESP-IDF 的 OTA 回滚机制）在这个场景里是错的，而且错得很安静。本文记录三个方案的排除过程、otadata 的字节级判定规则，以及四条从 IDF v5.5.3 源码核实出来的实现细节。'
 tags: ["AI", "ESP32", "固件", "FoloToy", "AI Passport", "meta-pass", "bootloader", "OTA"]
 categories: ["AI 实践", "AI应用开发"]
