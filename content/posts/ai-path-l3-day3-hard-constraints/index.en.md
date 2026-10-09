@@ -85,9 +85,9 @@ When the harness starts, it first validates the AGENTS.md format and content. If
 
 ## Lifecycle Hooks: The Interceptor Pattern
 
-Static constraints govern "can it be used"; Hooks govern "should it pass another gate before use."
+Static constraints answer 'can this tool be used?'; Hooks answer 'should this call pass another checkpoint before execution?'
 
-Hooks are a common concept in development frameworks: insert your own logic before or after an event occurs. In a harness, the common event points are before tool call, after tool call, and loop start/end.
+Hooks are standard pattern in software frameworks: they let us inject custom logic right before or after an event fires. In a harness, the common event points are before tool call, after tool call, and loop start/end.
 
 The minimal implementation looks like this:
 
@@ -120,7 +120,7 @@ Hooks can do many things:
 
 ![Hook interceptor: Every tool call passes through three gates](illustration-2.png)
 
-The industry standard is unified external interception. Major frameworks (Claude Code, Pi, OpenCode, smolagents) treat hooks as standalone components communicating with the harness through standardized interfaces, independent of specific tool implementations. Claude Code's hooks are standalone Shell scripts that receive JSON events via stdin/stdout[5]; Pi uses the `pi.on("tool_call", ...)` event system[2]; OpenCode's plugins register before/after callbacks at the loop level[6].
+The industry standard is unified external interception. Major frameworks (Claude Code, Pi, OpenCode, smolagents) treat hooks as standalone components communicating with the harness through standardized interfaces, independent of specific tool implementations. Claude Code implements hooks as standalone shell scripts that exchange JSON events over stdin/stdout[5]; Pi uses the `pi.on("tool_call", ...)` event system[2]; OpenCode registers callbacks at the loop level[6].
 
 ## A Complete Example: Git Protection Hook
 
@@ -159,7 +159,7 @@ class GitProtectionHook(Hook):
 
 This code is simple, but it solves a real high-risk problem in production scenarios.
 
-Someone might ask: why not just have the model promise in the prompt "I won't do dangerous operations"? The answer is that models make mistakes, and they often make them under the motivation of "helping the user solve a problem"—it thinks you're helping it remove obstacles, so it becomes more aggressive in trying. Hard interception is more reliable than soft promises.
+Someone might ask: why not just have the model promise in the prompt "I won't do dangerous operations"? The answer is that models make mistakes—often because they are driven to solve the prompt at all costs. The agent assumes it is helping you clear roadblocks, which makes its command attempts more aggressive. Hard interception is more reliable than soft promises.
 
 The value of this Hook also lies in **auditability**. Every interception is recorded; you can review what the Agent attempted, how many times it was blocked, and why. These logs are precious data for debugging Agent behavior.
 
@@ -179,12 +179,12 @@ Add layers as needed. Personal development might only need Layer 1; team collabo
 
 ## Today's Practice Task
 
-You've probably used Claude Code, Pi, Codex, or DeepSeek Harness before, right? Great—this exercise isn't about building a harness from scratch. It's about **observing how the tools you already use implement these constraints**.
+If you've used Claude Code, Pi, Codex, or DeepSeek Harness, you've already seen these ideas in action. This exercise will help you understand their underlying security architecture.
 
 Specific steps:
 1. Pick one Agent tool you've used (Claude Code, Pi, Codex, or DeepSeek Harness)
 2. Read its Hook configuration docs to understand what event types it supports
-3. Write a simple Hook: intercept all bash commands, log to a file
+3. Write a simple Hook that intercepts all bash commands and writes them to a log file.
 4. Run a task and check what's recorded in the log
 5. Also inspect AGENTS.md or equivalent config to see how static constraints are defined
 
@@ -195,7 +195,7 @@ The goal isn't to write code—it's to **develop an observational habit**: next 
 Today we discussed three core conclusions:
 
 1. **Static constraints > dynamic negotiation**: Tool permissions should be locked at harness startup, not negotiated with popups on every call.
-2. **Hooks are an interceptor pattern, not a permission system**: Hooks handle checking, rewriting, and logging—they don't judge "is this command safe?" That's AGENTS.md's job.
+2. **Hooks implement dynamic interception, not static authorization**: Lifecycle hooks handle runtime inspection, parameter transformation, and telemetry logging, whereas static contracts define baseline tool entitlements.
 3. **Three layers of defense added as needed**: Whitelist + Hooks + Sandbox, each solving problems at different levels; don't try to solve everything with one layer.
 
 Next up, Day 4, we'll rewrite AGENTS.md and actually add an interception Hook, turning today's theory into code.
