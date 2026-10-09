@@ -73,7 +73,7 @@ docs/         # Documentation
 ## Tool Permissions
 - read: read-only, unrestricted
 - write: can write to src/ and tests/, cannot overwrite AGENTS.md
-- edit: same file path restrictions as write (cannot modify AGENTS.md)
+- edit: same file path restrictions as write (cannot modify AGENTS.md or system files)
 - bash: restricted to allowlist only
 ```
 
