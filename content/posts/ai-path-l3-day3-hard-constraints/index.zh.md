@@ -48,6 +48,7 @@ Day 1 的 miniharness 有 7 个工具[1]，Day 2 的 Pi 砍到 4 个[2]。无论
 
 业界的答案是一个叫 `AGENTS.md` 的文件约定[3]。它由 OpenAI Codex、Cursor、Jules 等团队共同推动，现在由 Linux Foundation 旗下的 Agentic AI Foundation 托管，Codex、Cursor、Gemini CLI 等三十多个工具都认这个名字[3]。文件放在项目根目录，告诉 Agent 项目的结构、编码规范、常用命令、任务完成后怎么报告——定位是"写给 Agent 的 README"[3]。
 
+下面是一个 AGENTS.md 示例（权限和禁止清单是团队自定义的约定，不是标准格式）：
 ```markdown
 # AGENTS.md
 
@@ -172,7 +173,6 @@ class GitProtectionHook(Hook):
 | 第一层 | 静态契约（白名单） | 启动时锁定权限，Agent 不能临时要求更多 | 最低，解析一次文件，占用少量上下文 token |
 | 第二层 | Hook 拦截器 | 每次调用前检查、改写参数、记录日志 | 轻微，每次调用有函数调用开销 |
 | 第三层 | 外部沙箱 | 容器化物理隔离，即使突破前两层也出不去 | 最高，容器启动开销与资源隔离成本 |
-
 三层按需叠加。个人开发可能只需要第一层；团队协作需要三层；处理敏感数据的场景必须三层全开。
 
 ## 今天的实践任务
@@ -182,7 +182,7 @@ class GitProtectionHook(Hook):
 具体步骤：
 1. 选一个你用过的 Agent 工具（Claude Code、Pi、Codex 或 DSH）
 2. 查看它的 Hook 配置文档，了解它支持哪些事件类型
-3. 写一个简单的 Hook：拦截所有 bash 命令，记录到日志文件
+3. 写一个简单的 Hook：对所有 bash 命令先只记录日志、不拦截
 4. 跑一个任务，看日志里记录了什么
 5. 同时检查 AGENTS.md 或等效配置文件，看看静态约束是怎么定义的
 
