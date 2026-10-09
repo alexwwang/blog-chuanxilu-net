@@ -74,12 +74,12 @@ docs/         # Documentation
 - read: read-only, unrestricted
 - write: can write to src/ and tests/, cannot overwrite AGENTS.md
 - edit: same file path restrictions as write (cannot modify AGENTS.md)
-- bash: restricted to allowed list only
+- bash: restricted to allowlist only
 ```
 
 The value of this contract lies not in the file itself, but in the fact that it is deterministically enforced by the harness runtime before execution.
 
-When the harness starts, it first validates the AGENTS.md format and content. If the model attempts to call a command not in the allowed list, the harness rejects it outright and returns an error message. This isn't a popup asking you to click "allow"—it's a hard interception at the code level.
+When the harness starts, it first validates the AGENTS.md format and content. If the model attempts to call a command not in the allowlist, the harness rejects it outright and returns an error message. This isn't a popup asking you to click "allow"—it's a hard interception at the code level.
 
 ![Static contracts: Three checkpoint gates blocking out-of-bounds operations](illustration-1.png)
 
@@ -112,7 +112,7 @@ class Hook:
 
 Hooks can do many things:
 
-- **Permission checks**: In `on_before_tool`, check the AGENTS.md whitelist; if the command isn't in the list, raise an exception
+- **Permission checks**: In `on_before_tool`, check the AGENTS.md allowlist; if the command isn't in the list, raise an exception
 - **Parameter rewriting**: Change the model's `rm -rf /tmp/build` to a safer alternative command
 - **Result validation**: In `on_after_tool`, check if the output meets expectations; if not, trigger a retry
 - **Trace logging**: Write every tool call's input and output to a log file for post-hoc review
@@ -171,7 +171,7 @@ Combining static constraints and Hooks gives us three layers of defense:
 
 | Layer | Mechanism | Purpose | Cost |
 |-------|-----------|---------|------|
-| Layer 1 | AGENTS.md whitelist | Lock permissions at startup; Agent cannot request more on the fly | Lowest—parse file once |
+| Layer 1 | AGENTS.md allowlist | Lock permissions at startup; Agent cannot request more on the fly | Lowest—parse file once |
 | Layer 2 | Hook interceptors | Check before each call, rewrite params, log activity | Slight—function call overhead per call |
 | Layer 3 | External sandbox | Containerized physical isolation; even if the first two layers break, the Agent cannot escape | Highest—requires additional resources |
 
@@ -182,7 +182,7 @@ Add layers as needed. Personal development might only need Layer 1; team collabo
 You've probably used Claude Code, Pi, Codex, or DeepSeek Harness before, right? Great—this exercise isn't about building a harness from scratch. It's about **observing how the tools you already use implement these constraints**.
 
 Specific steps:
-1. Pick one Agent tool you've used (Claude Code, Pi, Codex, or DSH)
+1. Pick one Agent tool you've used (Claude Code, Pi, Codex, or DeepSeek Harness)
 2. Read its Hook configuration docs to understand what event types it supports
 3. Write a simple Hook: intercept all bash commands, log to a file
 4. Run a task and check what's recorded in the log
