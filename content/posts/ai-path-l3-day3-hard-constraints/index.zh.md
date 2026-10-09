@@ -4,7 +4,7 @@ slug: "ai-path-l3-day3-hard-constraints"
 date: 2026-10-09T10:00:00+08:00
 publishDate: 2026-10-09T10:00:00+08:00
 draft: false
-description: 'AI 之路 L3 第三篇骨干：为什么"允许一切"是错的，静态契约如何约束工具权限，生命周期 Hook 如何实现审批拦截。'
+description: 'AI 之路 L3 第三篇骨干：为什么“允许一切”是错的，静态契约如何约束工具权限，生命周期 Hook 如何实现审批拦截。'
 tags: ["AI", "教程", "Harness", "Agent Loop", "Hook", "静态契约", "硬约束"]
 categories: ["ai-path"]
 toc: true
@@ -20,7 +20,7 @@ cover:
 
 | Day | 类型 | 主题 |
 |-----|------|------|
-| Day 4 | 练习 | 重写你的 AGENTS.md + 加一个拦截 Hook |
+| Day 4 | 练习 | 重写你的 `AGENTS.md` + 加一个拦截 Hook |
 | Day 5 | 骨干 | 工具即界面：三种扩展路径 |
 | Day 6 | 练习 | 给你的 Agent 装一个新工具 |
 | Day 7 | 骨干 | 元架构：Everything is a Plugin |
@@ -76,7 +76,7 @@ docs/         # 文档
 - bash: 仅限允许的列表
 ```
 
-先澄清一个事实：**AGENTS.md 本身不带强制性**[3]。它没有 schema，没有必填字段，官方 FAQ 说得很直白——"the agent simply parses the text you provide"。违反约定不会报错，它约束 Agent 的唯一方式是模型读了之后自觉遵守[3]。真实工具也是这么分工的：Codex 把各层 AGENTS.md 拼进启动时的指令链[4]；Claude Code 判断"这个命令能不能执行"，靠的是独立的权限规则配置，跟 AGENTS.md 是两份东西[5]。
+先澄清一个事实：**AGENTS.md 本身不带强制性**[3]。它没有 schema，没有必填字段，官方 FAQ 说得很直白——"the agent simply parses the text you provide"。违反约定不会报错，它约束 Agent 的唯一方式是模型读了之后自觉遵守[3]。以 Claude Code 为例：它读取 AGENTS.md 了解项目背景，而权限规则则独立存放在 `claude_desktop_config.json` 中[5][6]——两者各管其事，互不僭越。
 
 所以静态约束要拆成两个角色：**约定**写在 AGENTS.md 里，**强制**交给 harness 的解析层来做。miniharness 选择了让两者合一：启动时强制解析 AGENTS.md，校验格式和内容；模型尝试调用不在白名单里的命令时，harness 直接拒绝，返回错误信息给模型。这不是弹窗让你点允许，是代码层面的硬拦截。业界工具里这两个角色通常由两份配置承担——约定归 AGENTS.md，权限规则归各自的配置文件[4][5]。
 
