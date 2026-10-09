@@ -1,7 +1,7 @@
 ---
 title: "Day 3｜Harness 的硬约束：静态契约与生命周期 Hook"
 slug: "ai-path-l3-day3-hard-constraints"
-date: 2026-10-09T10:00:00+08:00
+date: 2026-10-09T15:00:00+08:00
 publishDate: 2026-10-09T10:00:00+08:00
 draft: false
 description: 'AI 之路 L3 第三篇骨干：为什么“允许一切”是错的，静态契约如何约束工具权限，生命周期 Hook 如何实现审批拦截。'

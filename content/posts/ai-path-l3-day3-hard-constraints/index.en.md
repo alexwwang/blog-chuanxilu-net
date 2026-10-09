@@ -1,7 +1,7 @@
 ---
 title: "Day 3 | Harness Hard Constraints: Static Contracts and Lifecycle Hooks"
 slug: "ai-path-l3-day3-hard-constraints"
-date: 2026-10-09T10:00:00+08:00
+date: 2026-10-09T15:00:00+08:00
 publishDate: 2026-10-09T10:00:00+08:00
 draft: false
 description: "AI Path L3 backbone article: why 'allow everything' fails, how static contracts constrain tool permissions, and how lifecycle hooks implement approval interception."
