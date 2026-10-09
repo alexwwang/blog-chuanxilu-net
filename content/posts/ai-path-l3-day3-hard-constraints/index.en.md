@@ -4,7 +4,7 @@ slug: "ai-path-l3-day3-hard-constraints"
 date: 2026-10-09T10:00:00+08:00
 publishDate: 2026-10-09T10:00:00+08:00
 draft: false
-description: "AI Path L3 backbone article: why 'allow everything' is wrong, how static contracts constrain tool permissions, and how lifecycle Hooks implement approval interception."
+description: "AI Path L3 backbone article: why 'allow everything' is wrong, how static contracts constrain tool permissions, and how lifecycle hooks implement approval interception."
 tags: ["AI", "tutorial", "Harness", "Agent Loop", "Hook", "Static Contract", "Hard Constraints"]
 categories: ["ai-path"]
 toc: true
@@ -48,7 +48,7 @@ The core question of static constraints is: **how do you make the model aware of
 
 The answer is a file called `AGENTS.md`. This file sits in the project root and tells the Agent the project structure, coding standards, which tools can be used, and how to report completion.
 
-AGENTS.md is not a prompt; it's a **contract**—the model reads it like code reads type definitions. Violating the contract triggers errors, and the model must follow the contract.
+AGENTS.md acts as a static contract definition. While injected into the model's context like a prompt, its power comes from the harness runtime, which validates model outputs against these rules and aborts execution upon violation.
 
 ```markdown
 # AGENTS.md
@@ -73,11 +73,11 @@ docs/         # Documentation
 ## Tool Permissions
 - read: read-only, unrestricted
 - write: can write to src/ and tests/, cannot overwrite AGENTS.md
-- edit: same as write
+- edit: same file path restrictions as write (cannot modify AGENTS.md)
 - bash: restricted to allowed list only
 ```
 
-The value of this contract lies not in the file itself, but in the fact that it is **enforced through parsing**.
+The value of this contract lies not in the file itself, but in the fact that it is deterministically enforced by the harness runtime before execution.
 
 When the harness starts, it first validates the AGENTS.md format and content. If the model attempts to call a command not in the allowed list, the harness rejects it outright and returns an error message. This isn't a popup asking you to click "allow"—it's a hard interception at the code level.
 
@@ -208,4 +208,5 @@ Next up, Day 4, we'll rewrite AGENTS.md and actually add an interception Hook, t
 2. [Pi official documentation: extensions.md](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/extensions.md)
 3. [DeepSeek Harness official documentation: architecture.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/architecture.md)
 4. [Anthropic: Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
-5. [OpenCode Hook system documentation](https://github.com/anomalyco/opencode/blob/main/docs/hooks.md)
+5. [Claude Code: Hooks reference](https://code.claude.com/docs/en/hooks)
+6. [OpenCode Hook system documentation](https://github.com/anomalyco/opencode/blob/main/docs/hooks.md)
