@@ -1,17 +1,29 @@
 ---
-title: "Day 3 | Harness Hard Constraints: Static Contracts and Lifecycle Hooks"
-slug: "ai-path-l3-day3-hard-constraints"
-date: 2026-10-09T15:00:00+08:00
-publishDate: 2026-10-09T10:00:00+08:00
-draft: false
-description: "AI Path L3 backbone article: why 'allow everything' fails, how static contracts constrain tool permissions, and how lifecycle hooks implement approval interception."
-tags: ["AI", "tutorial", "Harness", "Agent Loop", "Hook", "Static Contract", "Hard Constraints"]
-categories: ["ai-path"]
-toc: true
-series: ["AI Path Advanced Upgrade Guide"]
+categories:
+- ai-path
 cover:
+  alt: 'Watercolor style: A contract document locked with chains, beside three checkpoint
+    gates labeled "read files", "modify code", "execute commands"'
   image: cover.png
-  alt: 'Watercolor style: A contract document locked with chains, beside three checkpoint gates labeled "read files", "modify code", "execute commands"'
+date: '2026-10-09T15:00:00+08:00'
+description: 'AI Path L3 backbone article: why ''allow everything'' fails, how static
+  contracts constrain tool permissions, and how lifecycle hooks implement approval
+  interception.'
+draft: false
+publishDate: '2026-10-09T15:00:00+08:00'
+series:
+- AI Path Advanced Upgrade Guide
+slug: ai-path-l3-day3-hard-constraints
+tags:
+- AI
+- tutorial
+- Harness
+- Agent Loop
+- Hook
+- Static Contract
+- Hard Constraints
+title: 'Day 3 | Harness Hard Constraints: Static Contracts and Lifecycle Hooks'
+toc: true
 ---
 
 > Previous article: [Day 2 | Minimalism and Hard Isolation: The Pi Paradigm](/en/posts/2026/09/ai-path-l3-day2-pi-minimalism/). Now that we understand why Pi strips features, we now address a more specific question: after the cuts, how should the remaining capabilities be managed?

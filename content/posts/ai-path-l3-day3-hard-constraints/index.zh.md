@@ -1,17 +1,26 @@
 ---
-title: "Day 3｜Harness 的硬约束：静态契约与生命周期 Hook"
-slug: "ai-path-l3-day3-hard-constraints"
-date: 2026-10-09T15:00:00+08:00
-publishDate: 2026-10-09T10:00:00+08:00
-draft: false
-description: 'AI 之路 L3 第三篇骨干：为什么“允许一切”是错的，静态契约如何约束工具权限，生命周期 Hook 如何实现审批拦截。'
-tags: ["AI", "教程", "Harness", "Agent Loop", "Hook", "静态契约", "硬约束"]
-categories: ["ai-path"]
-toc: true
-series: ["AI 之路进阶升级指南"]
+categories:
+- ai-path
 cover:
+  alt: 水彩风格：一张契约文件被铁链锁住，旁边立着三道闸机，第一道写着"读文件"，第二道写着"改代码"，第三道写着"执行命令"
   image: cover.png
-  alt: '水彩风格：一张契约文件被铁链锁住，旁边立着三道闸机，第一道写着"读文件"，第二道写着"改代码"，第三道写着"执行命令"'
+date: '2026-10-09T15:00:00+08:00'
+description: AI 之路 L3 第三篇骨干：为什么“允许一切”是错的，静态契约如何约束工具权限，生命周期 Hook 如何实现审批拦截。
+draft: false
+publishDate: '2026-10-09T15:00:00+08:00'
+series:
+- AI 之路进阶升级指南
+slug: ai-path-l3-day3-hard-constraints
+tags:
+- AI
+- 教程
+- Harness
+- Agent Loop
+- Hook
+- 静态契约
+- 硬约束
+title: Day 3｜Harness 的硬约束：静态契约与生命周期 Hook
+toc: true
 ---
 
 > 上一篇是 [Day 2｜极简主义与硬隔离：Pi 范式](/posts/2026/09/ai-path-l3-day2-pi-minimalism/)。理解了 Pi 为什么砍掉功能后，我们来看一个更具体的问题：砍掉之后，剩下的功能该怎么管？
