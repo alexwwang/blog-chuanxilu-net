@@ -67,7 +67,7 @@ L3 的学习目标，就是在理解的基础上，知道如何选择和构建�
 
 1. **DeepSeek 的公式**：Model + Harness = Agent。模型是大脑，Harness 是身体。[2]
 2. **李博杰《深入理解 AI Agent》**：Agent = LLM + 上下文 + 工具。上下文和工具合起来，就是 Harness 的主体。[3]
-3. **walkinglabs 五子系统**：Instructions（给模型的指令）+ State（任务进行到哪的状态）+ Verification（怎么验证做对了）+ Scope（允许碰什么范围）+ Lifecycle（长任务怎么开始、暂停、结束）。这是把 Harness 拆成工程零件，本系列后面每篇基本都在设计其中一个零件。[4]
+3. **walkinglabs 五子系统**：Instructions（给模型的指令）+ Tools（能调用什么工具）+ Environment（在什么环境里运行）+ State（任务进行到哪的状态）+ Feedback（怎么验证做对了）。这是把 Harness 拆成工程零件，本系列后面每篇基本都在设计其中一个零件。[4]
 
 一句话概括：Harness 是模型与真实任务之间的中间层。它决定模型看到什么、能调用什么、怎么判断完成、出错怎么恢复、长期任务怎么交接。
 

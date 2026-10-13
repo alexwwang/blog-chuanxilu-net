@@ -85,9 +85,9 @@ docs/         # 文档
 - bash: 仅限允许的列表
 ```
 
-先澄清一个事实：**AGENTS.md 本身不带强制性**[3]。它没有 schema，没有必填字段，官方 FAQ 说得很直白——"the agent simply parses the text you provide"。违反约定不会报错，它约束 Agent 的唯一方式是模型读了之后自觉遵守[3]。以 Claude Code 为例：它读取 AGENTS.md 了解项目背景，而权限规则则独立存放在 `claude_desktop_config.json` 中[5][6]——两者各管其事，互不僭越。
+先澄清一个事实：**AGENTS.md 本身不带强制性**[3]。它没有 schema，没有必填字段，官方 FAQ 说得很直白——"the agent simply parses the text you provide"。违反约定不会报错，它约束 Agent 的唯一方式是模型读了之后自觉遵守[3]。以 Claude Code 为例：项目约定写在 `CLAUDE.md` 里，权限规则则独立存放在 `.claude/settings.json` 中[5][6]——两者各管其事，互不僭越。
 
-所以静态约束要拆成两个角色：**约定**写在 AGENTS.md 里，**强制**交给 harness 的解析层来做。miniharness 选择了让两者合一：启动时强制解析 AGENTS.md，校验格式和内容；模型尝试调用不在白名单里的命令时，harness 直接拒绝，返回错误信息给模型。这不是弹窗让你点允许，是代码层面的硬拦截。业界工具里这两个角色通常由两份配置承担——约定归 AGENTS.md，权限规则归各自的配置文件[4][5]。
+所以静态约束要拆成两个角色：**约定**写在 AGENTS.md 里，**强制**交给 harness 的解析层来做。miniharness 的做法更朴素：它根本不读 AGENTS.md，工具的可用范围直接由代码定死——ToolRegistry 只注册那 7 个工具，模型能调用什么在启动那一刻就确定了，不存在运行时要权限的余地。这不是弹窗让你点允许，是代码层面的硬拦截。业界工具里这两个角色通常由两份配置承担——约定归 AGENTS.md 或 CLAUDE.md，权限规则归各自的配置文件[4][5]。
 
 ![静态契约：三道闸机挡住越界操作](illustration-1.png)
 
@@ -128,7 +128,7 @@ Hook 可以做很多事：
 
 ![Hook 拦截器：每个工具调用经过三道闸](illustration-2.png)
 
-业界主流框架（Claude Code、Pi、OpenCode、smolagents）都提供了 Hook 扩展机制，只是形态不同——Claude Code 的 Hook 是独立 Shell 脚本，通过 stdin/stdout 接收 JSON 事件[6]；Pi 通过 `pi.on("tool_call", ...)` 事件系统监听[2]；OpenCode 的插件在 loop 层面注册 before/after 回调[7]。
+业界主流工具（Claude Code、Pi、OpenCode）都提供了 Hook 扩展机制，只是形态不同——Claude Code 的 Hook 是独立 Shell 脚本，通过 stdin/stdout 接收 JSON 事件[6]；Pi 通过 `pi.on("tool_call", ...)` 事件系统监听[2]；OpenCode 的插件在 loop 层面注册 before/after 回调[7]。
 
 ## 一个完整的例子：Git 保护 Hook
 

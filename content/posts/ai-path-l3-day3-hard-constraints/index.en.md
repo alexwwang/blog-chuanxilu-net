@@ -91,7 +91,7 @@ docs/         # Documentation
 
 The value of this contract lies not in the file itself, but in the fact that it is deterministically enforced by the harness runtime before execution.
 
-When the harness starts, it first validates the AGENTS.md format and content. If the model attempts to call a command not in the allowlist, the harness rejects it outright and returns an error message. This isn't a popup asking you to click "allow"—it's a hard interception at the code level.
+miniharness takes a simpler approach: it doesn't read AGENTS.md at all. The available tool set is hard-coded—the ToolRegistry only registers those 7 tools, so what the model can call is determined the moment the harness starts, with no room to request more at runtime. This isn't a popup asking you to click "allow"—it's a hard interception at the code level.
 
 ![Static contracts: Three checkpoint gates blocking out-of-bounds operations](illustration-1.png)
 
@@ -130,9 +130,9 @@ Hooks can do many things:
 - **Trace logging**: Write every tool call's input and output to a log file for post-hoc review
 - **Context pruning**: When context exceeds a certain length, trigger summarization and compression
 
-![Hook interceptor: Every tool call passes through three gates](illustration-2.png)
+![Hook interceptor: Every tool call passes through three gates](/posts/2026/10/ai-path-l3-day3-hard-constraints/illustration-2.png)
 
-The industry standard is unified external interception. Major frameworks (Claude Code, Pi, OpenCode, smolagents) treat hooks as standalone components communicating with the harness through standardized interfaces, independent of specific tool implementations. Claude Code implements hooks as standalone shell scripts that exchange JSON events over stdin/stdout[5]; Pi uses the `pi.on("tool_call", ...)` event system[2]; OpenCode registers callbacks at the loop level[6].
+The industry standard is unified external interception. Major tools (Claude Code, Pi, OpenCode) all provide hook extension mechanisms as standalone components communicating with the harness through standardized interfaces, independent of specific tool implementations. Claude Code implements hooks as standalone shell scripts that exchange JSON events over stdin/stdout[5]; Pi uses the `pi.on("tool_call", ...)` event system[2]; OpenCode registers callbacks at the loop level[6].
 
 ## A Complete Example: Git Protection Hook
 
