@@ -11,7 +11,7 @@ toc: true
 series: ["AI 之路进阶升级指南"]
 cover:
   image: cover.png
-  alt: "水彩风格：一只机械手臂握着画笔，面前三个抽屉分别标注内置、扩展、服务"
+  alt: "水彩风格：三层架子上摆着不同形态的工具——顶层基础手工具、中层可插拔模块、底层化作线条延伸至远方云雾，机械臂正伸手挑选"
 ---
 
 > 上一篇是 [Day 4｜重写你的 AGENTS.md，并加上第一个拦截 Hook](/posts/2026/10/ai-path-l3-day4-rewrite-agents-md-hook/)。学会了让约束落地后，我们来看另一个核心问题：Agent 的工具该怎么设计？
