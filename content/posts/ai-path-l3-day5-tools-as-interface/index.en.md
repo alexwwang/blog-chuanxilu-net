@@ -14,7 +14,7 @@ cover:
   alt: "Watercolor style: three shelves holding tools of different forms—the top shelf has basic hand tools, the middle shelf has plug-in modules, the bottom shelf dissolves into lines stretching toward distant clouds, and a mechanical arm reaches out to pick one up"
 ---
 
-> Previous article: [Day 4 | Rewrite Your AGENTS.md and Add Your First Interception Hook](/en/posts/2026/10/ai-path-l3-day4-rewrite-agents-md-hook/). Now that you've got constraints locked down, let's look at another core question: how should an Agent's tools be designed?
+> Previous article: [Day 4 | Rewrite Your AGENTS.md and Add Your First Interception Hook](/en/posts/2026/10/ai-path-l3-day4-rewrite-agents-md-hook/). Now that you've got constraints locked down, we turn to another core question: how should an Agent's tools be designed?
 
 This is an L3 backbone article. Navigation for subsequent articles:
 
@@ -58,7 +58,7 @@ This conclusion has data backing it. The miniharness ablation study quantified t
 
 The model didn't get dumber; the tool was feeding it too little or too vague information. The native_json format made it clear how many parameters there were and what type each one was, so it knew exactly which steps to take. The XML and prompt formats left the model guessing—either giving up early or circling around.
 
-Gaps that no model upgrade can close can be bridged entirely by better tool design.
+Gaps that model selection can't close, better tool design might bridge in one move.
 
 ![Tool format ablation study: same task, different formats, wildly different outcomes](illustration-1.png)
 
@@ -120,9 +120,9 @@ Pi does support MCP on the service layer, but the clear bet is on the extension 
 
 ### Claude Code: Built-in Enough, Service-Layer Open
 
-Claude Code's built-in layer is much thicker: file operations, search, WebFetch, WebSearch, sub-agent orchestration—over a dozen tools ready to go out of the box. The design goal is blunt: lower the onboarding bar, so a beginner can get to work without learning an extension mechanism first.
+Claude Code's built-in layer is much thicker: file operations, search, WebFetch, WebSearch, sub-agent orchestration—over a dozen tools ready to go out of the box. The design goal is explicit: lower the onboarding bar, so a beginner can get to work without learning an extension mechanism first.
 
-Its extension layer is hooks and plugins—hooks handle event interception (Day 3 again), and plugins bundle slash commands, subagents, hooks, and MCP servers into distributable units. But here's the critical fact: **there's almost no way to register a new tool inside Claude Code's process**. The only real path is MCP. The ecosystem therefore centers on the service layer: Claude Code was the earliest adopter of [MCP (Model Context Protocol)](https://modelcontextprotocol.io/)[4]. MCP is an open protocol from Anthropic that lets Agents call external tools through a standard interface—servers can be written in any language, and both Claude Code and Codex can use them.
+Its extension layer is hooks and plugins—hooks handle event interception (Day 3 again), and plugins bundle slash commands, subagents, hooks, and MCP servers into distributable units. But here's the critical fact: **there's almost no way to register a new tool inside Claude Code's process**. The only real path is MCP. So the ecosystem centers on the service layer: Claude Code was the earliest adopter of [MCP (Model Context Protocol)](https://modelcontextprotocol.io/)[4]. MCP is an open protocol from Anthropic that lets Agents call external tools through a standard interface—servers can be written in any language, and both Claude Code and Codex can use them.
 
 A typical MCP Server tool definition looks like this:
 
@@ -226,7 +226,7 @@ When a tool call fails, don't just return an error code. Package the **reason** 
 
 This principle had empirical support back in Day 1: when the miniharness model hit `python: not found`, it self-corrected by running `which python3`. The loop's self-recovery ability depended entirely on error messages being specific enough.
 
-The dg-ai-notes practical guidelines[12] drops this principle down to concrete writing: error messages should spell out **why it failed and how to fix it** by error type. Don't just return "query failed"—tell the model "table doesn't exist; the database only has sales, products, and users," and it immediately knows to try a different table name instead of sitting there guessing.
+The dg-ai-notes practical guidelines[12] translate this principle into concrete advice: error messages should spell out **why a call failed and how to fix it** by error type. Don't just return "query failed"—tell the model "table doesn't exist; the database only has sales, products, and users," and it immediately knows to try a different table name instead of sitting there guessing.
 
 Comparing two approaches:
 
@@ -269,7 +269,7 @@ An easily missed point: two-pass querying adds one tool call. Why does that save
 
 The second experience is about the "write" direction. Aristotle lets AI distill new rules from reflection, but **every rule write must pass user approval before landing**.
 
-The reason is straightforward: AI can mistake a one-off correction for a universal rule. An error might happen only because the environment was missing a dependency that time, but the AI could distill it into a permanent rule like "always check X first from now on." Accumulate enough of these misjudgments and the rules library quietly rots—each rule looks reasonable in isolation, but together they make the system increasingly rigid.
+The reason is straightforward: AI can mistake a one-off correction for a universal rule. An error might happen only because the environment lacked a dependency at that moment, but the AI could distill it into a permanent rule like "always check X first from now on." Accumulate enough of these misjudgments and the rules library quietly rots—each rule looks reasonable in isolation, but together they make the system increasingly rigid.
 
 At the tool level, the write tool doesn't land directly. It generates a pending-approval entry (rule body, trigger condition, source reflection), and the rule becomes active only after the user confirms. A single line of summary plus "Accept / Reject" is enough for the approval UI—low cost, high payoff: human gatekeeping on rules library quality at all times.
 
@@ -297,7 +297,7 @@ Tomorrow's Day 6 is the exercise post: you'll actually install a new tool on an 
 
 L2's Day 12 covered "when to use a script, when to use an Agent"—a division-of-labor judgment at the toolbox level. L3 extends that question: **how should an Agent's tools be designed?**
 
-The difference: in the script era, you hardcoded the flow and the model only filled in blanks; in the Agent era, the model decides itself which tool to call and in what order. Control has been handed off, but the precondition for that handoff is good tool design—if the interface is vague, freedom becomes randomness; if the interface is clear, freedom becomes agency. In L2, the "parameters" you passed the model became the tool's `inputSchema`; the "output" you printed to the terminal became the tool's return value. The syntax changed; the goal didn't: **give the model everything it needs in one shot, without ambiguity, without wasting tokens.**
+The difference: in the script era, you hardcoded the flow and the model only filled in the blanks; in the Agent era, the model decides for itself which tool to call and in what order. Control has been handed off, but the precondition for that handoff is good tool design—if the interface is vague, freedom becomes randomness; if the interface is clear, freedom becomes agency. In L2, the "parameters" you passed the model became the tool's `inputSchema`; the "output" you printed to the terminal became the tool's return value. The syntax changed; the goal didn't: **give the model everything it needs in one shot, without ambiguity, without wasting tokens.**
 
 ---
 
