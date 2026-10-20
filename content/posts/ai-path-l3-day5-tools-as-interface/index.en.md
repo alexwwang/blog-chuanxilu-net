@@ -218,7 +218,7 @@ We discussed in Day 2 why Pi keeps only four atomic tools: every tool is a perma
 
 The counterexample is OpenClaw, which expanded from a coding tool into a personal-assistant platform, accumulating 20+ channel connections, voice, camera, and screen-control capabilities. Functionality grew, but so did startup time, memory footprint, and context overhead. Mario Zechner criticized older-generation Harnesses for turning "into a spaceship with 80% of functionality I have no use for"[11]—this is exactly that phenomenon.
 
-**The yardstick**: if a user can compose the capability from existing tools, don't build a new one. Pi doesn't ship a built-in todo list because `write` to a TODO.md does the job. Pi *does* ship a built-in search, not because users can't run `grep` via `bash`, but because `grep`'s raw output format is hostile to the model—providing structured match results saves the model a round of parsing. Whether to ship a tool comes down to one question: how hard is it for the model to do this work?
+**The yardstick**: if a user can compose the capability from existing tools, don't build a new one. Pi doesn't ship a built-in todo list because `write` to a TODO.md does the job. Pi does provide a built-in `grep` tool (off by default, enabled by adding `+grep` to `defaultTools`)—not because users can't run `grep` via `bash`, but because raw `grep` output is hostile to the model. Structured match results save the model a round of parsing. Whether to ship a tool comes down to one question: how hard is it for the model to do this work?
 
 ### Principle 2: Feed Errors Back Into Context
 
