@@ -120,7 +120,7 @@ Pi does support MCP on the service layer, but the clear bet is on the extension 
 
 ### Claude Code: Built-in Enough, Service-Layer Open
 
-Claude Code's built-in layer is much thicker: file operations, search, WebFetch, WebSearch, sub-agent orchestration—over a dozen tools ready to go out of the box. The design goal is explicit: lower the onboarding bar, so a beginner can get to work without learning an extension mechanism first.
+Claude Code's built-in layer is much thicker: file operations, search, WebFetch, WebSearch, subagent orchestration—over a dozen tools ready to go out of the box. The design goal is explicit: lower the onboarding bar, so a beginner can get to work without learning an extension mechanism first.
 
 Its extension layer is hooks and plugins—hooks handle event interception (Day 3 again), and plugins bundle slash commands, subagents, hooks, and MCP servers into distributable units. But here's the critical fact: **there's almost no way to register a new tool inside Claude Code's process**. The only real path is MCP. So the ecosystem centers on the service layer: Claude Code was the earliest adopter of [MCP (Model Context Protocol)](https://modelcontextprotocol.io/)[4]. MCP is an open protocol from Anthropic that lets Agents call external tools through a standard interface—servers can be written in any language, and both Claude Code and Codex can use them.
 
@@ -204,7 +204,7 @@ Laying the five products' strategies side by side:
 
 See the pattern? **All five share the same three-layer structure; only the trade-offs differ.** Pi bets on the extension layer, so it cuts built-in down to four. Claude Code bets on the service layer, so it gives up in-process registration entirely. Codex bets on the execution environment, keeping the tool layer simple. OpenCode covers both layers and leaves the judgment to you. DSH pushes the extension layer to the extreme and swallows the built-in layer whole.
 
-Different paths, same destination: each one is answering **"how do we give Agents just the right tools—not too few, not too many."** Once you understand this layer, any new Harness that comes along, you can quickly place its design philosophy: how thick is its built-in layer? What permissions does its extension layer grant? What protocols does its service layer support?
+Different paths, same destination: each one is answering **"how do we give Agents just the right tools—not too few, not too many."** Once you understand this three-layer framework, any new Harness that comes along, you can quickly place its design philosophy: how thick is its built-in layer? What permissions does its extension layer grant? What protocols does its service layer support?
 
 ---
 
@@ -259,7 +259,7 @@ Aristotle's rules library currently holds roughly 30 active rules. The original 
 The redesigned approach splits into two passes:
 
 - **Pass 1**: `list_rules` returns only metadata (rule name, tags, match score)—no body text. The coarse filter uses streaming frontmatter search—scanning only the YAML header of each file, clocking under 20ms across all rule files.
-- **Pass 2**: the main Agent picks candidates from the metadata, dispatches N parallel scoring subagents to each read one rule's full body, and collects the Top-5 summary.
+- **Pass 2**: the main Agent picks candidates from the metadata, dispatches N parallel scoring subagents, each reading a single rule's full body, and collects the Top-5 summary.
 
 The critical decision: **the main Agent never reads rule body text**. Body text enters context only after selection, and enters an isolated sub-session—not the main session. Same information, delivered on demand, in the right quantity, at the right place. This is the "separate tool output from tool results" principle applied at the architecture level.
 
