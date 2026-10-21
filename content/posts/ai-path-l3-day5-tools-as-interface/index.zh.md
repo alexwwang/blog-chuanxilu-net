@@ -1,8 +1,8 @@
 ---
 title: "Day 5｜工具即界面：内置、扩展、服务"
 slug: "ai-path-l3-day5-tools-as-interface"
-date: 2026-10-19T09:00:00+08:00
-publishDate: '2026-10-19T09:00:00+08:00'
+date: 2026-10-21T10:00:00+08:00
+publishDate: '2026-10-21T10:00:00+08:00'
 draft: false
 description: 'AI 之路 L3 第五篇骨干：工具有内置、扩展、服务三种性质，不同 Harness 在三层上的取舍不同，但回答的是同一个问题。'
 tags: ["AI", "教程", "Harness", "工具", "MCP"]

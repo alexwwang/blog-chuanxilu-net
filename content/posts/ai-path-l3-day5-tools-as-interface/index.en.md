@@ -1,8 +1,8 @@
 ---
 title: "Day 5 | Tools as Interface: Built-in, Extensions, Services"
 slug: "ai-path-l3-day5-tools-as-interface"
-date: '2026-10-19T09:00:00+08:00'
-publishDate: '2026-10-19T09:00:00+08:00'
+date: '2026-10-21T10:00:00+08:00'
+publishDate: '2026-10-21T10:00:00+08:00'
 draft: false
 description: "AI Path L3 backbone: tools come in three kinds—built-in, extensions, services—and different harnesses make different trade-offs across the three layers."
 tags: ["AI", "tutorial", "Harness", "Tools", "MCP"]
