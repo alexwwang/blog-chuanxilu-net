@@ -35,7 +35,7 @@ My rule of thumb: **the third time you repeat a manual operation, that is the si
 
 My own trigger was rule search. Aristotle's rules library lives in Markdown files with frontmatter headers, and in the early days I had the agent piece together a custom grep command every time: `grep` for the keyword, `head` for the file header, `awk` for the fields. The composition wasn't hard, but by the third repetition I was annoyed. Every time, the agent assembled the command differently, the output format came out different, and occasionally it swallowed a few KB of irrelevant body text.
 
-So the `search_rules` tool was born: one call, metadata only. Day 5 covered the redesigned two-pass query structure; today we walk through the whole birth process.
+So the `list_rules` tool was born: one call, metadata only. Day 5 covered the redesigned two-pass query structure; today we walk through the whole birth process.
 
 ## Before You Build: Three Questions
 
@@ -59,7 +59,7 @@ Role: You are a tool designer who writes clear interfaces for AI agents.
 Context: The rules library currently holds roughly 30 active rules,
 spread across Markdown files with frontmatter headers (name, tags, score).
 
-Task: Implement a search_rules tool that searches the rules library by keyword.
+Task: Implement a list_rules tool that searches the rules library by keyword.
 
 Format: One rule per line: name | tags | match score. Metadata only, no body text.
 
@@ -83,7 +83,7 @@ mcp = FastMCP("rules-search")
 
 
 @mcp.tool()
-def search_rules(keyword: str, limit: int = 10) -> str:
+def list_rules(keyword: str, limit: int = 10) -> str:
     """Search the rules library by keyword and return matching rules' names, tags, and match scores.
 
     Use for the coarse filtering pass: results contain metadata only, no rule body text.
@@ -163,13 +163,13 @@ All checks pass. Now run the comparison. Take the repeated operation you started
 | Tool calls | | |
 | Recovery rounds after an error | | |
 
-Your own numbers go in the cells, and the result is the same experiment as Day 5's miniharness ablation data at a different scale. My own comparison: once `search_rules` returned metadata only, rule body text stopped entering the main session. The coarse filter streams the frontmatter scan, clocking under 20ms across all rule files. The main agent went from "swallowing thousands of tokens of body text per call" to "reading a shortlist." The savings were exactly those thousands of tokens of resident pollution Day 5 talked about.
+Your own numbers go in the cells, and the result is the same experiment as Day 5's miniharness ablation data at a different scale. My own comparison: once `list_rules` returned metadata only, rule body text stopped entering the main session. The coarse filter streams the frontmatter scan, clocking under 20ms across all rule files. The main agent went from "swallowing thousands of tokens of body text per call" to "reading a shortlist." The savings were exactly those thousands of tokens of resident pollution Day 5 talked about.
 
 ## Optional Next Steps
 
 Two paths. Walk one.
 
-1. **Implement the same feature twice.** Rewrite `search_rules` as a Pi extension or an OpenCode custom tool[7], then compare it against the MCP version on communication overhead, control granularity, and portability. The point is to feel why "start on the service layer, sink deeper only when needed" is a one-way door: in-process code gets session state, which MCP can't give you, but you're bound to one Harness and have to rewrite for another. Pi's official extension examples live in the `pi-mono` repo[8].
+1. **Implement the same feature twice.** Rewrite `list_rules` as a Pi extension or an OpenCode custom tool[7], then compare it against the MCP version on communication overhead, control granularity, and portability. The point is to feel why "start on the service layer, sink deeper only when needed" is a one-way door: in-process code gets session state, which MCP can't give you, but you're bound to one Harness and have to rewrite for another. Pi's official extension examples live in the `pi-mono` repo[8].
 2. **Run an evaluation-driven iteration.** Generate five evaluation tasks close to your real scenarios, hand the run records to an agent for analysis, and let it improve the description itself. This is the iteration loop from Anthropic's official tool design methodology; tools they iterated this way beat researcher hand-tuning on a held-out test set[9]. Afterwards, you'll look back at the Step 2 description polishing with a different feel.
 
 ## Today's Takeaways

@@ -59,7 +59,7 @@ cover:
 上下文：规则库目前有约 30 条生效规则，分散在带 frontmatter 的
 Markdown 文件里，每条头部有 name、tags、score 字段。
 
-任务：实现 search_rules 工具，按关键词搜索规则库。
+任务：实现 list_rules 工具，按关键词搜索规则库。
 
 格式：每行一条：规则名 | 标签 | 匹配分数。只回元数据，不含正文。
 
@@ -82,7 +82,7 @@ mcp = FastMCP("rules-search")
 
 
 @mcp.tool()
-def search_rules(keyword: str, limit: int = 10) -> str:
+def list_rules(keyword: str, limit: int = 10) -> str:
     """按关键词搜索规则库，返回匹配规则的名称、标签和匹配分数。
 
     用于第一步粗筛：结果只含元数据，不含规则正文。
@@ -168,7 +168,7 @@ if __name__ == "__main__":
 
 两条路，选一条走通：
 
-1. **同一功能双实现**：用 Pi 扩展或 OpenCode 自定义工具[7]把 `search_rules` 再写一遍，和 MCP 版本对比通信开销、控制粒度、可移植性。重点体会"从服务层起步、有需要再下沉"为什么方向不可逆：进程内能拿到会话状态，这是 MCP 给不了的；但绑死单一 Harness，换产品要重写。Pi 官方扩展示例在 pi-mono 仓库[8]。
+1. **同一功能双实现**：用 Pi 扩展或 OpenCode 自定义工具[7]把 `list_rules` 再写一遍，和 MCP 版本对比通信开销、控制粒度、可移植性。重点体会"从服务层起步、有需要再下沉"为什么方向不可逆：进程内能拿到会话状态，这是 MCP 给不了的；但绑死单一 Harness，换产品要重写。Pi 官方扩展示例在 pi-mono 仓库[8]。
 2. **跑一轮评估驱动迭代**：生成 5 个贴近你真实场景的评测任务，把运行记录交给 Agent 分析，让它自己改进 description。这是 Anthropic 官方工具设计方法论里的迭代循环，他们在内部用它迭代出的工具，在留出测试集上超过了研究员手工调优的版本[9]。做完你会对第二步的 description 打磨有新的手感。
 
 ## 今日收获
