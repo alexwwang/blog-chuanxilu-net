@@ -169,7 +169,7 @@ All checks pass. Now run the comparison. Take the repeated operation you started
 |--------|------------------|----------|
 | Steps to complete | | |
 | Tool calls | | |
-| Recovery rounds after an error | | |
+| Rounds needed to recover after an error | | |
 
 One note on the third metric: a failure is any step that errors out, a non-zero exit or a failed tool call both count. Recovery means the agent reads the error, fixes the issue, and gets the task back on track without human intervention. Recovery rounds count the loop iterations from the error to that point; one round is one cycle of "see the error output, reason, issue the next action." Step 3's experiment already used this ruler: three or four rounds for the bare error code, one for the wrapped version.
 
