@@ -111,6 +111,14 @@ Good, scenario version: the full docstring in the code above.
 
 Watch the first call's parameters. Under the one-liner, the model often omits `limit` or treats the tool as full-text search, because nobody told it the tool is for coarse filtering. The two sentences "use for the coarse filtering pass" and "metadata only" in the good version make the decision for the model. Three samples is a small number, but the gap in first-call parameter accuracy is usually too wide to need a statistical test. Chapter 5 of `dg-ai-notes` has real cases of the same kind plus runnable examples for comparison[4].
 
+Read the two versions side by side and the gap concentrates in three places. That is your first-draft checklist:
+
+1. **What it does, and when to use it**: the line "use for the coarse filtering pass" decides for the model whether to pick the tool at all.
+2. **Output boundaries**: "metadata only, no body text" lets the model plan its next step after the call.
+3. **What to do next**: "after picking candidates, use the read tool to load specific rule files" wires the tool back into the workflow and removes the "okay, now what" pause.
+
+The one-liner fails all three: the model doesn't know the tool is a coarse filter, so it runs full-text searches; doesn't know what `limit` means, so it omits it; doesn't know what to do with the results. Walk the three items before you ship a description, then grade your work with the A/B test above.
+
 ## Step 3: Make It Fail on Purpose
 
 Now pull the last constraint out of that Step 1 description sheet: "when nothing matches, return a hint; never throw."
