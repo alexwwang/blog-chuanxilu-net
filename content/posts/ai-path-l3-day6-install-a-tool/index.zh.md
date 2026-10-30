@@ -1,8 +1,8 @@
 ---
 title: "Day 6｜给你的 Agent 装一个新工具：从重复操作到可验证的 MCP 工具"
 slug: "ai-path-l3-day6-install-a-tool"
-date: 2026-10-29T10:00:00+08:00
-publishDate: '2026-10-29T10:00:00+08:00'
+date: 2026-10-30T22:00:00+08:00
+publishDate: '2026-10-30T22:00:00+08:00'
 draft: false
 description: 'AI 之路 L3 第六篇练习：把一个重复操作做成 MCP 工具的完整五步——RCTFC 任务描述、打磨 description、错误封装实验、观察工具发现机制、装完自检，以及扩展前后的对比验证。'
 tags: ["AI", "教程", "Harness", "工具", "MCP"]

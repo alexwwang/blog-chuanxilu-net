@@ -1,8 +1,8 @@
 ---
 title: "Day 6 | Add a New Tool to Your Agent: From a Repeated Chore to a Verifiable MCP Tool"
 slug: "ai-path-l3-day6-install-a-tool"
-date: '2026-10-29T10:00:00+08:00'
-publishDate: '2026-10-29T10:00:00+08:00'
+date: '2026-10-30T22:00:00+08:00'
+publishDate: '2026-10-30T22:00:00+08:00'
 draft: false
 description: "AI Path L3 exercise: turn a repeated chore into an MCP tool in five steps, from an RCTFC task description to description polishing, error wrapping, watching how the agent discovers the tool, and an install-time self-check."
 tags: ["AI", "tutorial", "Harness", "Tools", "MCP"]
