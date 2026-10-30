@@ -94,7 +94,7 @@ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
 export default function (pi: ExtensionAPI) {
   pi.registerTool({
-    name: "search_rules",
+    name: "list_rules",
     description: "Search the rules library by keyword and return matching rule summaries",
     inputSchema: {
       type: "object",
@@ -131,7 +131,7 @@ A typical MCP Server tool definition looks like this:
 {
   "tools": [
     {
-      "name": "search_rules",
+      "name": "list_rules",
       "description": "Search the rules library by keyword",
       "inputSchema": {
         "type": "object",

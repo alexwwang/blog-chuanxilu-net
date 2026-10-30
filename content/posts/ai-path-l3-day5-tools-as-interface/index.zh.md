@@ -94,7 +94,7 @@ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
 export default function (pi: ExtensionAPI) {
   pi.registerTool({
-    name: "search_rules",
+    name: "list_rules",
     description: "按关键词搜索规则库，返回匹配的规则摘要",
     inputSchema: {
       type: "object",
@@ -131,7 +131,7 @@ Claude Code 的内置层厚得多：文件操作、搜索、WebFetch、WebSearch
 {
   "tools": [
     {
-      "name": "search_rules",
+      "name": "list_rules",
       "description": "按关键词搜索规则库",
       "inputSchema": {
         "type": "object",
