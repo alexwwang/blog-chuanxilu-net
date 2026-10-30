@@ -171,6 +171,8 @@ All checks pass. Now run the comparison. Take the repeated operation you started
 | Tool calls | | |
 | Recovery rounds after an error | | |
 
+One note on the third metric: a failure is any step that errors out, a non-zero exit or a failed tool call both count. Recovery means the agent reads the error, fixes the issue, and gets the task back on track without human intervention. Recovery rounds count the loop iterations from the error to that point; one round is one cycle of "see the error output, reason, issue the next action." Step 3's experiment already used this ruler: three or four rounds for the bare error code, one for the wrapped version.
+
 Your own numbers go in the cells, and the result is the same experiment as Day 5's miniharness ablation data at a different scale. My own comparison: once `list_rules` returned metadata only, rule body text stopped entering the main session. The coarse filter streams the frontmatter scan, clocking under 20ms across all rule files. The main agent went from "swallowing thousands of tokens of body text per call" to "reading a shortlist." The savings were exactly those thousands of tokens of resident pollution Day 5 talked about.
 
 ## Optional Next Steps
