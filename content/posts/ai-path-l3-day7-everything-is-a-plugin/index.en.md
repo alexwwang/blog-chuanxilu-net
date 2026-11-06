@@ -106,7 +106,7 @@ So when is a graph actually worth it? walkinglabs gives five criteria; act only 
 2. **The flow has forks that need to be spelled out in advance.** For example, which step to redo when tests fail, and which step to fall back to when the information turns out to be insufficient halfway through. These rollback paths should be written down beforehand so every collaborator can see them.
 3. **Mid-run state is worth saving.** An interruption or crash can then resume from the checkpoint, sparing the rework of starting from zero.
 4. **Every node has a machine-checkable definition of done**: tests pass, lint is clean — no human judgment required.
-5. **The time saved beats the upkeep.** Maintaining the graph and its shared state takes real effort, and that effort must be smaller than what parallelism and rollbacks save.
+5. **The gains must exceed the upkeep.** The time saved through parallelism and rollbacks has to be greater than the effort invested in maintaining the graph and its shared state.
 
 Hold "my task is complex" against this list and it doesn't qualify: complexity is just volume — it says nothing about structural needs for division of labor, verification, or recovery. Draw a graph with none of the five present, and you get a flowchart that costs more.
 
