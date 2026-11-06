@@ -138,7 +138,7 @@ At this point the two protagonists of L3 can finally face off. Nobody wins.
 
 This is not a matter of faith but of constraint profiles. I wrote a line in the [v1.6 architecture retrospective](/en/posts/2026/07/aristotle-v16-cross-language-design/) that closes this comparison perfectly: there is no context-free optimum — plans A and B can both be good; the job of design is figuring out which one is less bad under constraint X. One person chasing response speed and full visibility on their own machine has a constraint profile that favors Pi. A team that swaps models without touching code and delegates approval policy to configuration has a constraint profile that favors DSH. Day 2 plus this article together make the complete decision procedure: **subtract first, and see whether a bare core covers you; if not, add, and see whether you can afford the plugin network's cost.**
 
-The GEAR protocol's five-role decomposition is the smallest complete sample I've seen: orchestration, production, verification, consumption, retrieval — five roles mapped onto skill files, subagents, and MCP tools. No Cordis involved; it borrows the *idea* of meta-architecture, not the framework[14]. The idea is free. Learn the idea first.
+My own GEAR protocol is a ready-made example[14]: orchestration, production, verification, consumption, retrieval — five roles mapped onto skill files, subagents, and MCP tools. Each role has a single responsibility, handoffs go through stably formatted files in git, and replacing any one role leaves the other four untouched. So before agonizing over Pi versus DSH, there is one tech-agnostic move you can make first: decompose your own system into replaceable parts.
 
 ## What You Gained Today
 
