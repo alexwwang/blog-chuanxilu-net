@@ -36,7 +36,7 @@ Day 2 covered Pi's answer: keep the core thin and install what you need. That an
 
 DeepSeek Harness took the other road, and it is the protagonist of this article: **meta-architecture**. Don't hard-code a single component; make *the ability to assemble a harness* itself the architecture. The first paragraph of its official architecture doc says it outright: under the Cordis framework, **every part of the product is a plugin — the model adapter, the tool registry, the session log, even the agent loop itself** — and each one can be replaced from configuration[1].
 
-A harness without meta-architecture is an all-in-one machine: it ships in one fixed shape, and upgrading the graphics card means replacing the whole box. A harness with meta-architecture is a desktop PC: every part sits in a standard slot, and replacing any one of them disturbs nothing else. On Day 5 we asked "which layer should this tool live on?" Today that question levels up: **every layer of the harness can be a pluggable part.**
+A harness without meta-architecture is an all-in-one machine: whatever specs it ships with are the specs you keep — a few parts may be replaceable or plug in externally, but upgrading the graphics card means replacing the whole box. A harness with meta-architecture is a desktop PC: every part sits in a standard slot, and replacing any one of them disturbs nothing else. On Day 5 we asked "which layer should this tool live on?" Today that question levels up: **every layer of the harness can be a pluggable part.**
 
 ## Cordis: How "Everything Is a Plugin" Actually Works
 
