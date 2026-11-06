@@ -88,7 +88,7 @@ walkinglabs summarizes three structural failure modes of a single loop at scale[
 
 1. **Goodhart's law.** Optimize one metric hard enough and it stops being a metric. walkinglabs' canonical case: a support team builds a loop around ticket-resolution rate. The weekly numbers climb and climb; months later the renewal data comes in and churn has doubled — the bot got good at closing tickets, but it never actually solved a problem.
 2. **Blindness upward.** Inside a loop, the goal is sacred scripture, and there is no position in the structure from which to ask "is this goal itself right?" A thermostat never asks whether 68°F is the right temperature; a sales loop never asks whether the quota was sane.
-3. **Conflict.** Multiple individually healthy loops fight each other — a response-speed loop undermines a thoroughness loop, a growth loop undermines a quality loop, and every dashboard stays green while the whole system thrashes.
+3. **Conflict.** Multiple individually healthy loops undermine each other — a response-speed loop drags down a rigor loop, a growth loop drags down a quality loop, and every loop's own metrics still report healthy.
 
 All three failures share a root: the checker and the checked share one brain, one context. A loop can add checkpoints and stop conditions, but the checkpoints live inside the same agent — it will never ask itself "is this metric even right?" A graph doesn't add checkpoints; it **moves the check onto a standalone node with a fresh context**[6]. That is the maker-checker you'll build in the Day 9 graduation project: the verify node never sees the implement node's reasoning, only the code in shared state — "independent review" is achieved through context isolation in a graph, not through good intentions.
 
