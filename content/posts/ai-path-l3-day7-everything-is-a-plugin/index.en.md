@@ -58,7 +58,7 @@ On the user side there is another pair of concepts: **profiles and bundles**. A 
 dsh --profile web --dump-config
 ```
 
-Every line of the output is a plugin, and **any line can be replaced by your own patch**[1]. That is the acceptance test for meta-architecture: every plugin line on the assembly manifest can be swapped for an implementation of your own.
+Every line of the output is a plugin, and **any line can be replaced by your own patch**[1] — that is the acceptance test for meta-architecture.
 
 ![Composition as configuration: five colorful plugin modules with distinct symbols snapped into a horizontal backplane, a wordless checklist with tick marks floating above](illustration-1.png)
 
