@@ -110,7 +110,7 @@ So when is a graph actually worth it? walkinglabs gives five criteria; act only 
 
 Hold "my task is complex" against this list and it doesn't qualify: complexity is just volume — it says nothing about structural needs for division of labor, verification, or recovery. Draw a graph with none of the five present, and you get a flowchart that costs more.
 
-## Four Modes: Four Cuts of the Same Plugin Tree
+## Four Modes: One Plugin Tree, Four Preset Compositions
 
 Back to the product surface. DSH's four built-in modes have admirably restrained official descriptions[10]:
 
@@ -125,7 +125,7 @@ The three non-standard modes each earn one more paragraph.
 
 **PTC (Programmatic Tool Calling) mode** answers a question Day 5 planted: what happens when tool results flood the context? Its move is to have the agent use `run_code` to write a TypeScript program against a generated tool SDK — loops, conditionals, and concurrency all live in the program, tool results get filtered and aggregated there first, and **the model only sees the finished product**[10]. The current PTC preset also deliberately disables the workflow and plugin-management tools, squeezing the decision space down to batch processing — another official footnote for "context economy is the first constraint." PTC has since become an optional capability seam of its own (`ctx.ptcRuntime`): it mounts on demand, outside the agent-loop spine, and the shipped execution environment even runs in a sandboxed Node[11].
 
-**Minimal mode** deserves a pause: an addition-maximalist product like DSH keeps a cut close to Pi inside itself — almost nothing but a terminal, minimizing harness interference with the model. The official guide even suggests an experiment: run the same task from the same starting state in Standard and Minimal modes, then compare completion, tool-call counts, and the resulting diff[10]. That experimental design is the productized version of the Day 1 miniharness spirit: don't trust the brochure — run it and look at the data.
+**Minimal mode** deserves a pause: an addition-maximalist product like DSH keeps a subtraction-style configuration close to Pi inside itself — almost nothing but a terminal, minimizing harness interference with the model. The official guide even suggests an experiment: run the same task from the same starting state in Standard and Minimal modes, then compare completion, tool-call counts, and the resulting diff[10]. That experimental design is the productized version of the Day 1 miniharness spirit: don't trust the brochure — run it and look at the data.
 
 **Creator mode** is meta-architecture incarnate: the agent looks before it edits. Two read-only inspection tools, `cordis_inspect_list` and `cordis_inspect_query`, let it query which modules the running harness has loaded and each module's exact method signatures before writing any plugin code[12]; then it authors the plugin conversationally and persists it into the profile through the Plugin Manager. This goes well beyond "letting the agent write code": it's **letting the agent modify the harness it stands on** — and the entry point to self-evolution only opens on meta-architecture, because only a fully plugin-ized system can be safely rewritten by its own running self.
 
@@ -148,7 +148,7 @@ More fundamental than combining tools is getting your own system's design right.
 2. **Cordis's five rules**: Service objects, context lookup by key, inject-declared dependencies, typed events, reversible registration. Rule five (reversibility) is the foundation of the other four.
 3. **Three layers of decoupling**: model adaptation (`ctx.llm` seam), presets/bundles (modes are composition sheets), sub-agent assembly (someone else's agent is a plugin too). Learn Agent Teams' principles; think twice before production use.
 4. **The loop → graph decision**: three structural failures (Goodhart, blindness upward, conflict) plus five criteria (hit at least three). Remember: "you are the GIL of your agents."
-5. **The four modes are four cuts**: Standard wants completeness, PTC wants batching, Minimal wants a baseline, Creator wants self-modification. Minimal's built-in "same task, two modes" experiment is one anyone can run.
+5. **The four modes are four preset compositions**: Standard wants completeness, PTC wants batching, Minimal wants a baseline, Creator wants self-modification. Minimal's built-in "same task, two modes" experiment is one anyone can run.
 
 One line to remember: **the measure of a harness's maturity is not how much it ships with, but how much of it can be replaced — itself included.**
 
