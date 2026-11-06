@@ -100,7 +100,15 @@ But using a graph has costs too. Addy Osmani ran the numbers in *The Orchestrati
 
 That cost falls on engineering too, not only on people. My own Bridge — the Watchdog-Intervention cross-language bridge mentioned earlier — went through this once: we rejected a real-time HTTP scheme because the communication layer's own health would need another watchdog to watch it — every added layer of orchestration begs the question of who orchestrates the orchestrators[9]. The chosen design batches communication at checkpoints: zero extra overhead when there are zero violations, paid for by one round of slower intervention decisions. Orchestration has no free option.
 
-So when is a graph actually worth it? walkinglabs gives five criteria; hit at least three before you draw one: the task decomposes into independent units that can run in parallel; there are branch and rollback paths worth declaring explicitly; intermediate state is worth persisting for resume; every node has an automatically checkable definition of done; coordination benefits outweigh coordination costs[6]. "My task is complex" is not on the list: complexity alone never justifies a graph. **Structural needs — division of labor, verification, recovery — are what do.**
+So when is a graph actually worth it? walkinglabs gives five criteria; act only when at least three hit[6]:
+
+1. **The task splits into independent units** that can run side by side — three modules' tests don't wait on one another.
+2. **The flow has forks worth declaring up front**: where a test failure goes back to, where thin information goes back to. Once these rollback paths exist, they deserve to be drawn, not left inside one agent's head.
+3. **Mid-run state is worth saving.** After a crash or a new day, resume from the checkpoint instead of restarting from zero.
+4. **Every node has a machine-checkable definition of done** — tests pass or fail, lint is red or green, with no human weighing in.
+5. **The time saved beats the upkeep.** Maintaining the graph and its shared state must cost less than what parallelism and rollbacks save.
+
+Hold "my task is complex" against this list and it doesn't qualify: complexity is just volume — it says nothing about structural needs for division of labor, verification, or recovery. Draw a graph with none of the five present, and you get a flowchart that costs more.
 
 ## Four Modes: Four Cuts of the Same Plugin Tree
 
