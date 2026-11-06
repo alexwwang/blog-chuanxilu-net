@@ -4,14 +4,14 @@ slug: "ai-path-l3-day7-everything-is-a-plugin"
 date: 2026-11-05T10:00:00+08:00
 publishDate: '2026-11-05T10:00:00+08:00'
 draft: false
-description: 'AI 之路 L3 第七篇骨干：DSH 的 Cordis 元架构——模型适配器、工具注册表、会话存储、Agent Loop 本身都是插件；架构解耦的三个层面与四种模式；什么时候该从 loop 升级成 graph，以及 Pi 和 DSH 的终局对比。'
+description: 'AI 之路 L3 第七篇骨干：DSH 的 Cordis 元架构，模型适配器、工具注册表、会话存储、Agent Loop 本身都是插件；架构解耦的三个层面与四种模式；什么时候该从 loop 升级成 graph，以及 Pi 和 DSH 的终局对比。'
 tags: ["AI", "教程", "Harness", "元架构", "插件", "DeepSeek Harness"]
 categories: ["ai-path"]
 toc: true
 series: ["AI 之路进阶升级指南"]
 cover:
   image: cover.png
-  alt: "水彩风格：一台开放式主机，内部没有主板，只有一排标准插槽，每个插槽插着不同颜色的小插件模块——齿轮、对话气泡、眼睛、循环箭头——最中央的插槽里插着一枚写着循环图案的模块，正被一只手轻轻拔出更换"
+  alt: "水彩风格：一台开放式主机，内部没有主板，只有一排标准插槽，每个插槽插着不同颜色的小插件模块（齿轮、对话气泡、眼睛、循环箭头），最中央的插槽里插着一枚写着循环图案的模块，正被一只手轻轻拔出更换"
 ---
 
 > 上一篇是 [Day 6｜给你的 Agent 装一个新工具](/posts/2026/10/ai-path-l3-day6-install-a-tool/)。单个工具装熟了，本篇回到骨干篇，回答 Day 6 结尾的问题：如果模型、会话、甚至别的 Agent 都能插件化，Harness 会变成什么样子。
@@ -48,7 +48,7 @@ DeepSeek Harness 走了另一条路，也是本篇的主角：**元架构**。�
 4. **插件之间用类型化事件通信**。事件分五种派发模式：`emit`、`waterfall`、`parallel`、`serial`、`bail`。瀑布（waterfall）就是「包裹」模式的运行形态：监听器把请求传给下一个，也可以中途截断。`tools/*` 这类瀑布事件就是 Day 3 讲的 Hook 的载体。
 5. **注册是可逆的效果**。工具 schema、提示词段落、适配器、监听器，全部通过 `ctx.effect()` 注册，插件卸载时自动按逆序撤销，不留残渣。
 
-第五条值得单独看一眼。传统架构里「卸载一个功能」是最没人想碰的操作：注册时撒了一地全局状态，卸的时候不知道漏了什么。Cordis 把注册和撤销绑定成一次效果（effect），插件卸载时按预期逆序撤销。一个功能能干净地卸掉，才敢放心地装——这是「一切皆插件」能从口号变成工程的前提。
+第五条值得单独看一眼。传统架构里「卸载一个功能」是最没人想碰的操作：注册时撒了一地全局状态，卸的时候不知道漏了什么。Cordis 把注册和撤销绑定成一次效果（effect），插件卸载时按预期逆序撤销。一个功能能干净地卸掉，才敢放心地装。这是「一切皆插件」能从口号变成工程的前提。
 
 落到用户侧是另一组概念：**profile 和 bundle**。profile 是一份有名号的组合单，声明这个 Harness 由哪些 bundle 堆叠而成；bundle 是 Cordis 配置行的分发单位，装进来自带代码和配置，而且上层永远可以继续 patch 它[1]。所有 profile 共享的第一层叫 `dsh-base`：模型适配器、工具、持久化、沙箱和审批策略、设置、凭证、遥测，全在这一层。往上有加浏览器应用的，有加无服务器一次性运行的，有给 SDK 用的。
 
@@ -58,11 +58,11 @@ DeepSeek Harness 走了另一条路，也是本篇的主角：**元架构**。�
 dsh --profile web --dump-config
 ```
 
-打出来的每一行都是一个插件，任何一行都可以被你自己的 patch 替换[1]——这就是元架构的验收标准。
+打出来的每一行都是一个插件，任何一行都可以被你自己的 patch 替换[1]。这就是元架构的验收标准。
 
 ![配置即组合：一条总线背板上插着五个带不同符号的彩色插件模块，上方飘着一张只画勾选符号的配置清单](illustration-1.png)
 
-我自己的项目里没有 Cordis，但解决过同一类问题，只是那时没有标准插槽，结果写在 [Aristotle v1.6 的双语言架构](/posts/2026/07/aristotle-v16-cross-language-design/)里：Watchdog 用 TypeScript 写、Intervention 用 Python 写，中间用 subprocess 桥接。这不是审美选择，是五类约束逼出来的——同步拦截必须在宿主 tool call 路径上、1166 个 pytest 测试资产不能丢、零新增基础设施、400ms 启动延迟不能阻塞每次调用、MCP 的容错模型刚好覆盖跨语言失败。那次拼装是点对点的，每个接缝都要自己谈协议；元架构做的，是把这类约束下的拆分决策变成默认能力——部件一开始就插在标准插槽上。
+我自己的项目里没有 Cordis，但解决过同一类问题，只是那时没有标准插槽，结果写在 [Aristotle v1.6 的双语言架构](/posts/2026/07/aristotle-v16-cross-language-design/)里：Watchdog 用 TypeScript 写、Intervention 用 Python 写，中间用 subprocess 桥接。这不是审美选择，是五类约束逼出来的：同步拦截必须在宿主 tool call 路径上、1166 个 pytest 测试资产不能丢、零新增基础设施、400ms 启动延迟不能阻塞每次调用、MCP 的容错模型刚好覆盖跨语言失败。那次拼装是点对点的，每个接缝都要自己谈协议；元架构做的，是把这类约束下的拆分决策变成默认能力，部件一开始就插在标准插槽上。
 
 ## 架构解耦的三个层面
 
@@ -76,7 +76,7 @@ dsh --profile web --dump-config
 
 这个层面还有一个更激进的实验：Agent Teams。给根会话开启后，团队得到一个共享任务板：任务是有向无环图，`blockedBy` 边声明依赖，`writeScopes` 圈定每个任务的写路径（注意是 advisory 建议，不是锁），每次修改用 compare-and-set 的版本号校验，版本对不上的写入会被拒绝[4]。成员之间走普通的 subagent 消息。
 
-对 Agent Teams 我要多一句嘴：它最近刚从实验包毕业，代码从 `packages/experimental` 挪进了 `packages/team`，架构文档也摘掉了 Experimental 标签——但收敛过程的 churn 痕迹还在文档里：roster 花名册和 mailbox 邮箱已标成「历史格式」，身份、消息、发现全部移交普通 subagent 机制[4]。学它的设计原理（共享状态、任务 DAG、写范围）很有价值；把它建进生产系统之前，先想好任务板之外的概念会不会再变。插件市场也还在「Experimental plugins」开关底下藏着，默认不开[5]。
+对 Agent Teams 我要多一句嘴：它最近刚从实验包毕业，代码从 `packages/experimental` 挪进了 `packages/team`，架构文档也摘掉了 Experimental 标签，但收敛过程的 churn 痕迹还在文档里：roster 花名册和 mailbox 邮箱已标成「历史格式」，身份、消息、发现全部移交普通 subagent 机制[4]。学它的设计原理（共享状态、任务 DAG、写范围）很有价值；把它建进生产系统之前，先想好任务板之外的概念会不会再变。插件市场也还在「Experimental plugins」开关底下藏着，默认不开[5]。
 
 ## 什么时候该从 loop 升级成 graph
 
@@ -88,9 +88,9 @@ walkinglabs 总结了单个 loop 上规模之后的三种结构性失效[6]：�
 
 1. **Goodhart 定律**：单一指标被使劲优化就会不再是指标。walkinglabs 举的典型案例：客服团队围绕「工单解决率」建了 loop，周报数字月月涨，几个月后续费数据出来，流失翻了一倍：bot 会关工单了，但并没有真正解决问题。
 2. **向上失明**：loop 里的目标是圣旨，结构里没有任何一个位置能问「这个目标本身对不对」。恒温器不会问 68°F 合不合适，销售 loop 不会问配额合不合理。
-3. **冲突**：多个各自健康的 loop 互相打架——响应速度的 loop 拖累严谨性的 loop，增长的 loop 拖累质量的 loop，而每个 loop 自己的指标都显示运行良好。
+3. **冲突**：多个各自健康的 loop 互相打架：响应速度的 loop 拖累严谨性的 loop，增长的 loop 拖累质量的 loop，而每个 loop 自己的指标都显示运行良好。
 
-这三种失败有个共同点：检查者和被检查者共享同一个大脑、同一段上下文。loop 可以加 checkpoint、可以加停止条件，但 checkpoint 也住在同一个 Agent 里，它不会问自己「这个指标对吗」。graph 不加检查点，它**把检查挪到一个独立节点上**，给那段全新上下文[6]。这就是 Day 9 毕业项目要亲手搭的 maker-checker：verify 节点永远看不到 implement 节点的推理过程，只看到共享状态里的代码——「独立审核」在 graph 里是靠上下文隔离实现的，不是凭自觉。
+这三种失败有个共同点：检查者和被检查者共享同一个大脑、同一段上下文。loop 可以加 checkpoint、可以加停止条件，但 checkpoint 也住在同一个 Agent 里，它不会问自己「这个指标对吗」。graph 不加检查点，它**把检查挪到一个独立节点上**，给那段全新上下文[6]。这就是 Day 9 毕业项目要亲手搭的 maker-checker：verify 节点永远看不到 implement 节点的推理过程，只看到共享状态里的代码。「独立审核」在 graph 里是靠上下文隔离实现的，不是凭自觉。
 
 loop 和 graph 的区别，Luis Catacora 有一句最狠的概括：「loop 有很大的容错空间；graph 逼你承认你的工作流里有多少东西其实从没被真正建模过。」[6] 翻成工程语言：**loop 是把决策推迟到出事那天，graph 是把决策提前画在纸上**。loop 把问题藏在 loop 里，graph 把问题写在纸上；前者适合探索，后者适合生产。
 
@@ -127,7 +127,7 @@ loop 和 graph 的区别，Luis Catacora 有一句最狠的概括：「loop 有�
 
 **极简模式**值得你停下来想一下：DSH 这样的加法派产品，内部保留了一个接近 Pi 的减法配置：几乎只剩终端，把 Harness 对模型的干扰降到最小。官方指南甚至直接建议你做一个实验：从同样的初始状态出发，同一个任务分别在标准模式和极简模式各执行一遍，对比完成度、工具调用次数和最终改动[10]。这个实验设计就是 Day 1 miniharness 精神的产品版：别信宣传，执行一遍看数据。
 
-**创造模式**是元架构的化身：Agent 先查看再修改。两个只读检查工具 `cordis_inspect_list` 和 `cordis_inspect_query` 让它在写插件代码之前，先查询运行中的 Harness 加载了哪些模块、每个模块的确切方法签名[12]，然后对话式编写插件，经 Plugin Manager 持久化进 profile。这不是「让 Agent 写代码」那么简单，是**让 Agent 修改自己脚下的 Harness**——自我演化的入口开在元架构上，因为只有插件化的系统才允许被运行中的自己安全地改写。
+**创造模式**是元架构的化身：Agent 先查看再修改。两个只读检查工具 `cordis_inspect_list` 和 `cordis_inspect_query` 让它在写插件代码之前，先查询运行中的 Harness 加载了哪些模块、每个模块的确切方法签名[12]，然后对话式编写插件，经 Plugin Manager 持久化进 profile。这不是「让 Agent 写代码」那么简单，是**让 Agent 修改自己脚下的 Harness**。自我演化的入口开在元架构上，因为只有插件化的系统才允许被运行中的自己安全地改写。
 
 ## Pi vs DSH 的终局对比
 
@@ -136,7 +136,7 @@ loop 和 graph 的区别，Luis Catacora 有一句最狠的概括：「loop 有�
 - **Pi 相信**：一个足够薄的核 + 用户自己扩展。你要的是控制感，代价是凡事自己动手。
 - **DSH 相信**：一个可组合的插件网络 + 社区生态。你要的是生态，代价是概念门槛和维护面。最新的证据：连 Claude Code 的插件格式（mods）都能挂进 Cordis 组合机制，官方理由只有一句——"mods join the one composition mechanism every DSH plugin uses"[13]。
 
-这不是信仰之争，是约束画像之争。我在 [v1.6 架构复盘](/posts/2026/07/aristotle-v16-cross-language-design/)里写过一句话，拿来给这个对比收尾刚好：不存在脱离上下文的最优解——方案 A 好，方案 B 也好，在约束 X 下找出 A 和 B 哪个更不坏，才是设计要处理的问题。一个人在自己机器上追求极致响应速度和完全可见性，Pi 的约束画像胜；一个团队要换模型不动代码、要把审批策略交给配置，DSH 的约束画像胜。Day 2 和本篇合起来才是完整的判断题：**先减法，看清单核够不够你用；不够，再加法，看插件网络的代价你付不付得起**。
+这不是信仰之争，是约束画像之争。我在 [v1.6 架构复盘](/posts/2026/07/aristotle-v16-cross-language-design/)里写过一句话，拿来给这个对比收尾刚好：不存在脱离上下文的最优解：方案 A 好，方案 B 也好，在约束 X 下找出 A 和 B 哪个更不坏，才是设计要处理的问题。一个人在自己机器上追求极致响应速度和完全可见性，Pi 的约束画像胜；一个团队要换模型不动代码、要把审批策略交给配置，DSH 的约束画像胜。Day 2 和本篇合起来才是完整的判断题：**先减法，看清单核够不够你用；不够，再加法，看插件网络的代价你付不付得起**。
 
 这两个选择也不互相排斥，可以组合着用。一个务实的搭配：日常交互留在 Pi，享受响应速度和完全可见性；遇到 Pi 没有的能力，比如批量处理、浏览器操作这类 DSH 插件已经覆盖的场景，从 Pi 的 bash 里调用 `dsh headless` 这个一次性运行器，跑完拿着结果回到 Pi 会话。反过来，主战场在 DSH 的人，减法需求开极简模式就能满足，不必为 Pi 体验维护第二套工具。一句话分工：个人轻量任务选 Pi，团队协作选 DSH，边界上的任务按上面的组合来。
 
@@ -144,7 +144,7 @@ loop 和 graph 的区别，Luis Catacora 有一句最狠的概括：「loop 有�
 
 ## 今日收获
 
-1. **元架构的定义**：产品的每个部分——包括 Agent Loop 本身——都是插件，每个都能从配置替换。「可扩展」的验收标准是 `--dump-config` 能打印装配清单，任意一行换过。
+1. **元架构的定义**：产品的每个部分（包括 Agent Loop 本身）都是插件，每个都能从配置替换。「可扩展」的验收标准是 `--dump-config` 能打印装配清单，任意一行换过。
 2. **Cordis 五条规则**：Service 对象、ctx 按键寻址、inject 声明依赖、类型化事件、注册可逆。第五条（可逆）是前四条的地基。
 3. **解耦三层面**：模型适配（`ctx.llm` 接缝）、preset/bundle（模式即组合单）、sub-agent 组装（别人的 Agent 也是插件）。Agent Teams 学原理，生产慎用。
 4. **loop → graph 的判断**：三种结构性失败（Goodhart、向上失明、冲突）+ 五条标准（至少命中三条）。记住「你就是 Agent 们的 GIL」。
@@ -158,11 +158,11 @@ Day 8 进入 L3 的最后一个阶段：系统拼好了，它跑得怎么样？�
 
 ## 深入学习资源
 
-- [walkinglabs Lecture 14：图工程](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/lectures/lecture-14-graph-engineering/index.md)——loop 何时长成 graph 的完整框架，含可运行的 maker-checker graph 参考实现
-- [LangGraph](https://github.com/langchain-ai/langgraph)——工业界图编排的代表实现，对照 DSH 的 preset 看取舍
-- [Microsoft AutoGen](https://microsoft.github.io/autogen/)——多 Agent 编排的另一学派
-- [A2A 协议](https://github.com/a2aproject/A2A)——跨组织 Agent 协作的协议化方向（L4 前瞻）
-- [李博杰《深入理解 AI Agent》第 10 章](https://github.com/bojieli/ai-agent-book)——多 Agent 协作的理论框架
+- [walkinglabs Lecture 14：图工程](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/lectures/lecture-14-graph-engineering/index.md)，loop 何时长成 graph 的完整框架，含可运行的 maker-checker graph 参考实现
+- [LangGraph](https://github.com/langchain-ai/langgraph)，工业界图编排的代表实现，对照 DSH 的 preset 看取舍
+- [Microsoft AutoGen](https://microsoft.github.io/autogen/)，多 Agent 编排的另一学派
+- [A2A 协议](https://github.com/a2aproject/A2A)，跨组织 Agent 协作的协议化方向（L4 前瞻）
+- [李博杰《深入理解 AI Agent》第 10 章](https://github.com/bojieli/ai-agent-book)，多 Agent 协作的理论框架
 
 ## 参考资料
 
