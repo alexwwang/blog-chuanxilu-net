@@ -84,7 +84,7 @@ Meta-architecture answers "how do the parts fit together"; it doesn't yet answer
 
 First, precision: a graph is no invention. Nodes, edges, shared state, and routing rules — Airflow and Temporal have run on those for decades, and the five patterns in Anthropic's *Building Effective Agents* are all graphs when drawn[7]. The only genuinely new element is this: **the node type widened from "function" to "agent."** A workflow node is deterministic code; a graph-engineering node can be a full agent carrying its own loop, and an edge can be decided dynamically by a previous node's output. Anthropic's one-question test separates the two: if code fixes the control flow, it's a workflow; if the model can change the steps at runtime, it's an agent[7].
 
-Why does a single loop fail at scale? walkinglabs cites three structural failures, rooted in the loop's structure rather than in any particular loop's bugs[6]:
+walkinglabs summarizes three structural failure modes of a single loop at scale[6]: all three live in the loop's structure itself — swap in any implementation and they recur.
 
 1. **Goodhart's law.** Optimize one metric hard enough and it stops being a metric. walkinglabs' canonical case: a support team builds a loop around ticket-resolution rate. The weekly numbers climb and climb; months later the renewal data comes in and churn has doubled — the bot learned to close tickets, not to solve problems.
 2. **Blindness upward.** Inside a loop, the goal is sacred scripture, and there is no position in the structure from which to ask "is this goal itself right?" A thermostat never asks whether 68°F is the right temperature; a sales loop never asks whether the quota was sane.
