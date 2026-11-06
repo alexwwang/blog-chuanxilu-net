@@ -62,7 +62,7 @@ dsh --profile web --dump-config
 
 ![配置即组合：一条总线背板上插着五个带不同符号的彩色插件模块，上方飘着一张只画勾选符号的配置清单](illustration-1.png)
 
-我自己的项目里没有 Cordis，但有过一次同构的挣扎，结果写在 [Aristotle v1.6 的双语言架构](/posts/2026/07/aristotle-v16-cross-language-design/)里：Watchdog 用 TypeScript 写、Intervention 用 Python 写，中间用 subprocess 桥接。这不是审美选择，是五类约束逼出来的——同步拦截必须在宿主 tool call 路径上、1166 个 pytest 测试资产不能丢、零新增基础设施、400ms 启动延迟不能阻塞每次调用、MCP 的容错模型刚好兜住跨语言失败。元架构解决的是同一类问题，只是它把「被约束逼出来的拼装」变成了「默认就能拼装」。
+我自己的项目里没有 Cordis，但解决过同一类问题，只是那时没有标准插槽，结果写在 [Aristotle v1.6 的双语言架构](/posts/2026/07/aristotle-v16-cross-language-design/)里：Watchdog 用 TypeScript 写、Intervention 用 Python 写，中间用 subprocess 桥接。这不是审美选择，是五类约束逼出来的——同步拦截必须在宿主 tool call 路径上、1166 个 pytest 测试资产不能丢、零新增基础设施、400ms 启动延迟不能阻塞每次调用、MCP 的容错模型刚好兜住跨语言失败。那次拼装是点对点的，每个接缝都要自己谈协议；元架构做的，是把这类约束下的拆分决策变成默认能力——部件一开始就插在标准插槽上。
 
 ## 架构解耦的三个层面
 
