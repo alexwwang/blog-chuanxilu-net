@@ -174,7 +174,7 @@ Day 8 opens the final stage of L3: the system is assembled: how well does it run
 6. [walkinglabs Lecture 14: From Single Loops to Graph Engineering](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-14-graph-engineering/index.md)
 7. [Anthropic: Building Effective Agents (the workflow-vs-agent criterion and the five patterns)](https://www.anthropic.com/research/building-effective-agents)
 8. [Addy Osmani: The Orchestration Tax (2026-05-16)](https://addyosmani.com/blog/orchestration-tax/)
-9. [Aristotle v1.6 Watchdog-Intervention Bridge: real-time interception design and trade-offs](/en/posts/2026/06/aristotle-v16-watchdog-intervention-bridge/)
+9. [Aristotle v1.6 Watchdog-Intervention Bridge: real-time interception design and trade-offs](/en/posts/2026/07/aristotle-v16-watchdog-intervention-bridge/)
 10. [DSH built-in preset copy and mode guides (agent-preset component locales)](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/client/ui-agent-preset/src/client/guide-locales.ts)
 11. [DSH PTC runtime subsystem doc: the optional capability seam and the sandboxed-Node decision](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/ptc-runtime.md)
 12. [DSH dsh-tool-cordis: Creator mode's read-only inspection tools](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/extensions/tool-cordis/README.md)

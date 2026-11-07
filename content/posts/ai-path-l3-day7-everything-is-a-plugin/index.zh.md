@@ -174,7 +174,7 @@ Day 8 进入 L3 的最后一个阶段：系统拼好了，它跑得怎么样？�
 6. [walkinglabs Lecture 14：From Single Loops to Graph Engineering](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-14-graph-engineering/index.md)
 7. [Anthropic：Building effective agents（workflow 与 agent 的判据、五种模式）](https://www.anthropic.com/research/building-effective-agents)
 8. [Addy Osmani：The Orchestration Tax（2026-05-16）](https://addyosmani.com/blog/orchestration-tax/)
-9. [Aristotle v1.6 Watchdog-Intervention Bridge：实时拦截的设计与取舍](/posts/2026/06/aristotle-v16-watchdog-intervention-bridge/)
+9. [Aristotle v1.6 Watchdog-Intervention Bridge：实时拦截的设计与取舍](/posts/2026/07/aristotle-v16-watchdog-intervention-bridge/)
 10. [DSH 内置 preset 官方文案与模式指南（agent-preset 组件 locales）](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/client/ui-agent-preset/src/client/guide-locales.ts)
 11. [DSH PTC runtime 子系统文档：可选 capability seam 与沙箱 Node 决策](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/ptc-runtime.md)
 12. [DSH dsh-tool-cordis：Creator 模式只读检查工具](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/extensions/tool-cordis/README.md)
