@@ -7,14 +7,14 @@ description: "L1→L2 Week 2 Day 7 exercise: Add timeout retries, rate-limit bac
 tags: ["AI", "toolchain", "tutorial", "API", "Python", "deepseek v4 flash", "deepseek api"]
 categories: ["ai-path"]
 toc: true
-series: ["AI Path: Level Up Guide"]
+series: ["AI Path L1→L2 Upgrade Guide"]
 cover:
   image: "cover.png"
   alt: "Watercolor illustration: a tidy desk with a laptop showing green progress bars and a 3/3 completion badge, files stacked on the left, fanned out on the right"
   relative: true
 ---
 
-> This is the Day 7 exercise for Week 2 of the "AI Path: Level Up Guide" series. Complete [Day 6: Batch Processing Practice](../ai-path-l1-l2-week2-day6/) first.
+> This is the Day 7 exercise for Week 2 of the "AI Path L1→L2 Upgrade Guide" series. Complete [Day 6: Batch Processing Practice](../ai-path-l1-l2-week2-day6/) first.
 
 In [Day 6](../ai-path-l1-l2-week2-day6/), you wrote a batch processing script that works. Pick a scenario, walk the folder, call the API, save the results. It all runs smoothly until you try it for real.
 

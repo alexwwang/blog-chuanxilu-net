@@ -7,7 +7,7 @@ description: "AI Path L1→L2 Part 5: RCTFC framework, code verification methods
 tags: ["AI", "Tutorial", "L1-L2", "prompt", "Code Generation", "Iterative Fix"]
 categories: ["ai-path"]
 toc: true
-series: ["AI Path进阶指南"]
+series: ["AI Path L1→L2 Upgrade Guide"]
 cover:
   image: cover.png
   alt: "Watercolor style: A person hands a blurry cloud to an AI, which outputs a structured blueprint—a visual metaphor for the communication bridge from description to code"

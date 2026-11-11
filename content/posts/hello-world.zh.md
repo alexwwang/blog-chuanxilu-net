@@ -2,6 +2,7 @@
 title: "Hello World · 能工智人的传习录开篇"
 date: 2026-04-05
 draft: false
+slug: "hello-world"
 description: "能工智人的传习录开篇文章，记录建站初衷与未来方向。"
 tags: ["建站", "hugo", "随笔"]
 categories: ["折腾记录"]

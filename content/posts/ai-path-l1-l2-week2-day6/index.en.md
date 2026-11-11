@@ -7,14 +7,14 @@ description: "L1→L2 Week 2 Day 6 exercise: Pick a real scenario (translation, 
 tags: ["AI", "toolchain", "tutorial", "API", "Python", "deepseek v4 flash", "deepseek api"]
 categories: ["ai-path"]
 toc: true
-series: ["AI Path: Level Up Guide"]
+series: ["AI Path L1→L2 Upgrade Guide"]
 cover:
   image: "cover.png"
   alt: "Watercolor illustration: a wooden desk with a laptop showing a batch processing script, input files on the left, output files on the right"
   relative: true
 ---
 
-> This is the Day 6 exercise for Week 2 of the "AI Path: Level Up Guide" series. Complete [Day 5: Teach Your Script to Read More File Formats](../ai-path-l1-l2-week2-day5/) first, then come back here to work through Day 6.
+> This is the Day 6 exercise for Week 2 of the "AI Path L1→L2 Upgrade Guide" series. Complete [Day 5: Teach Your Script to Read More File Formats](../ai-path-l1-l2-week2-day5/) first, then come back here to work through Day 6.
 
 In [Day 5: Teach Your Script to Read More File Formats](../ai-path-l1-l2-week2-day5/), you built the `read_file()` function and the skeleton of a batch script. Your script recognizes files in various formats now. But you haven't run a full pipeline from start to finish yet. You still need to pick a scenario, call the API, and save the results. That loop is missing.
 

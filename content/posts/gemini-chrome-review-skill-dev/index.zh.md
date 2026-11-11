@@ -4,8 +4,8 @@ slug: "gemini-chrome-review-skill-dev"
 date: 2026-08-18T14:00:00+08:00
 draft: false
 description: "让 Chrome 内置的 Gemini 给英文博客提修改意见：96 条意见 84 条是错的。三天手工审稿、一天脚本化，十几个坑，和一条最重要的边界。"
-tags: ["AI", "agent", "debug", "automation", "CDP"]
-categories: ["AI Practice"]
+tags: ["AI", "agent", "debug", "自动化", "CDP"]
+categories: ["AI 实践"]
 toc: true
 cover:
   image: "cover.webp"

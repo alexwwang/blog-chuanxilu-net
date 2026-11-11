@@ -1,0 +1,3 @@
+---
+url: /categories/announcements/
+---

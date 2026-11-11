@@ -1,0 +1,3 @@
+---
+url: /tags/skill-design/
+---
