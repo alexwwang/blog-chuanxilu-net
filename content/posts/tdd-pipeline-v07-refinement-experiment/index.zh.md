@@ -4,7 +4,7 @@ slug: "tdd-pipeline-v07-refinement-experiment"
 date: 2026-05-20T10:00:00+08:00
 draft: false
 description: '你造了一把尺子，尺子量出"冗余有害"，然后你用这把尺子裁掉了尺子本身的冗余。把 AI 工具里的操作步骤删掉，只保留原则和反面例子，模型自己推导出了被删掉的步骤。'
-tags: ["AI", "TDD", "skill 设计", "prompt 工程", "原则驱动"]
+tags: ["AI", "TDD", "skill 设计", "提示工程", "原则驱动"]
 categories: ["AI 实践", "破而后立的 TDD 流程迭代"]
 series: ["破而后立的 TDD 流程迭代"]
 toc: true

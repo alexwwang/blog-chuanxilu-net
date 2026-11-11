@@ -4,7 +4,7 @@ slug: "why-articulation-upgrade-and-takeaways"
 date: 2026-05-17T09:00:00+08:00
 draft: false
 description: '基于 A/B 实验结果升级 Why Articulation 模板：去掉显式三问，改为先自由思考再自检补充，保留强制语气和纯反面例子。提炼出三条可迁移到其他 prompt 工程场景的建议。'
-tags: ["AI", "prompt 工程", "AB 测试", "TDD", "Why Articulation"]
+tags: ["AI", "提示工程", "AB 测试", "TDD", "Why Articulation"]
 categories: ["AI 实践", "为什么让 AI 动手之前先说 why"]
 series: ["为什么让 AI 动手之前先说 why"]
 toc: true

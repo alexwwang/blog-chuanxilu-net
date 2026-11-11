@@ -4,7 +4,7 @@ slug: "signal-purity-less-is-more"
 date: 2026-05-24T08:00:00+08:00
 draft: false
 description: "A review prompt went from 317 lines to 135 lines, and review quality improved by 29%. What I removed was not useful procedure, but redundant content the model could infer on its own. What stayed were strategy genes: irreplaceable constraints, negative examples, and tone locks."
-tags: ["AI", "Prompt Engineering", "Strategy Genes", "Genetic Algorithms", "Agent"]
+tags: ["AI", "prompt engineering", "Strategy Genes", "Genetic Algorithms", "Agent"]
 categories: ["AI Practice", "Classic Theory Meets Agent Practice"]
 series: ["Classic Theory Meets Agent Practice"]
 toc: true

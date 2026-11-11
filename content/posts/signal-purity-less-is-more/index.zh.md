@@ -4,7 +4,7 @@ slug: "signal-purity-less-is-more"
 date: 2026-05-24T08:00:00+08:00
 draft: false
 description: "审查 prompt 从 317 行砍到 135 行，审查质量反升 29%。删掉的不是流程步骤，是模型自己能推导出来的冗余内容。留下的才是策略基因——不可替代的约束、反面例子和语气锁。"
-tags: ["AI", "Prompt 工程", "策略基因", "遗传算法", "Agent"]
+tags: ["AI", "提示工程", "策略基因", "遗传算法", "Agent"]
 categories: ["AI 实践", "用经典理论指导 Agent 实践"]
 series: ["用经典理论指导 Agent 实践"]
 toc: true

@@ -4,7 +4,7 @@ slug: "ab-test-positive-examples-harm"
 date: 2026-05-15T10:00:00+08:00
 draft: false
 description: '为什么给 AI 看正面示例反而降低输出质量？一次 4 变量 A/B 实验，测了 Why Articulation 的结构、语气、位置和示例类型，发现正面示例有害——和 Anthropic 的对齐研究结论一致。'
-tags: ["AI", "prompt 工程", "AB 测试", "TDD", "Why Articulation"]
+tags: ["AI", "提示工程", "AB 测试", "TDD", "Why Articulation"]
 categories: ["AI 实践", "为什么让 AI 动手之前先说 why"]
 series: ["为什么让 AI 动手之前先说 why"]
 toc: true
