@@ -54,7 +54,9 @@ Unidad de conocimiento y acción, forjada con IA. Un blog bilingüe sobre práct
 {{- $pages := where $posts "Params.series" "intersect" (slice $s) }}
 {{- if gt (len $pages) 0 }}
 {{- $first := index $pages 0 }}
-- [{{ $s }}]({{ printf "/series/%s/" (urlize $s) | absLangURL }}): {{ $first.Params.description | default (printf "%d %s" (len $pages) (T "posts" | default "posts")) | plainify | truncate 100 }}
+{{- with site.GetPage (printf "/series/%s" $s) }}
+- [{{ $s }}]({{ .Permalink }}): {{ $first.Params.description | default (printf "%d %s" (len $pages) (T "posts" | default "posts")) | plainify | truncate 100 }}
+{{- end }}
 {{- end }}
 {{- end }}
 
